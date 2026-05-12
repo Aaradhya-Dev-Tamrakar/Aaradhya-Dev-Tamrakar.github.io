@@ -4,23 +4,27 @@ Personal portfolio website for **Aaradhya Dev Tamrakar** — BEI IV/I student at
 
 ## About
 
-This site showcases my work as an Electronics, Communication and Information Engineering student, IEEE KEC Vice Chair, Fuse AI Fellow (Fusemachines 2026), NSSR DataCamp Fellow (Cohort 2), and robotics enthusiast. It features a dark-themed, luxury editorial design with custom CSS animations and interactive elements.
+This site showcases my work as an Electronics, Communication and Information Engineering student, IEEE KEC Vice Chair, Fuse AI Fellow (Fusemachines 2026), NSSR DataCamp Fellow (Cohort 2), and robotics enthusiast. It features a modern, luxury editorial design with glassmorphism effects, custom CSS animations, and interactive elements.
 
 ## Features
 
-- Responsive design optimised for all devices
-- Custom cursor animation (pointer: fine only — keyboard/touch safe)
-- Smooth scrolling navigation with active-section highlighting
-- Light / dark theme toggle
-- Back-to-top button (appears after scrolling 400 px)
-- Profile photo with grayscale-to-colour hover effect (`loading="lazy"`)
-- Proficiency dot scale (●●● / ●●○ / ●○○) replacing arbitrary skill bars
-- Professional portfolio layout — projects, experience, skills, contact
-- Contact form with EmailJS (primary + auto-reply) → Formspree (fallback) → mailto (last resort)
-- Full ARIA landmark pass — `<main>`, `aria-labelledby` on all sections, `role="navigation"` on mobile drawer, `role="contentinfo"` on footer, skip link to `#main-content`, dynamic hamburger `aria-expanded`
-- `prefers-reduced-motion` guard on all animations
-- Google Analytics 4 (G-P38642CDGB) — pageview tracking, scroll depth, outbound clicks, CV download events, contact form conversion events
-- Font render-blocking eliminated — `media=print` onload swap + `rel=preload`; `@font-face` `size-adjust` fallbacks to reduce FOUT/CLS
+- **Responsive design** optimised for all devices
+- **Custom cursor animation** (pointer: fine only — keyboard/touch safe)
+- **Glassmorphism & depth effects** — modern aesthetic with backdrop blur and layered shadows
+- **Smooth scrolling navigation** with active-section highlighting
+- **Light / dark theme toggle** with smooth transitions
+- **Back-to-top button** (appears after scrolling 400 px)
+- **Profile photo** with grayscale-to-colour hover effect (`loading="lazy"`)
+- **Proficiency dot scale** (●●● / ●●○ / ●○○) replacing arbitrary skill bars
+- **Comprehensive portfolio sections** — projects, apps, experience, skills, achievements, contact
+- **Contact form** with EmailJS (primary + auto-reply) → Formspree (fallback) → mailto (last resort)
+- **Full ARIA landmark compliance** — `<main>`, `aria-labelledby` on all sections, `role="navigation"` on mobile drawer, `role="contentinfo"` on footer, skip link to `#main-content`, dynamic hamburger `aria-expanded`
+- **`prefers-reduced-motion` guard** on all animations
+- **Google Analytics 4** (G-P38642CDGB) — pageview tracking, scroll depth, outbound clicks, CV download events, contact form conversion events
+- **Font render-blocking eliminated** — `media=print` onload swap + `rel=preload`; `@font-face` `size-adjust` fallbacks to reduce FOUT/CLS
+- **Projects grid** with progress tracking (For in-progress projects)
+- **Apps showcase** — Live applications and tools
+- **Achievements section** — Training, certifications, and recognitions
 
 ## Lighthouse Scores *(May 2026)*
 
@@ -31,21 +35,50 @@ This site showcases my work as an Electronics, Communication and Information Eng
 
 Mobile FCP 3.0 s / LCP 4.3 s on slow-4G simulation. EmailJS (65 KiB) is an irreducible third-party cost. HubSpot Website Grader: **90 / 100**.
 
+## Portfolio Sections
+
+1. **Hero** — Introduction with status card displaying current roles, focus, and tech stack
+2. **Projects** — Featured engineering projects (6 showcase items) with GitHub links and progress tracking
+3. **Apps** — Live applications and tools (Alpha Super-App showcase)
+4. **Experience** — Professional roles, fellowships, and organizational positions
+5. **Skills** — Technical expertise organized by category (Languages, Hardware, Mobile, AI/Deployment) with proficiency ratings
+6. **Achievements** — Training programs, certifications, and recognitions
+7. **About** — Personal biography with stats (year, firmware versions, languages, etc.)
+8. **Contact** — Contact form with EmailJS integration + social links
+
 ## Technologies Used
 
-- HTML5
-- CSS3 (Custom properties, Flexbox, Grid)
-- JavaScript (Vanilla) — DATA-driven architecture (content separated from render logic)
-- Google Fonts — Cormorant Garamond · DM Mono · Instrument Sans
-- EmailJS — contact form with auto-reply
-- Formspree — contact form fallback
-- Google Analytics 4 (GA4) — visitor tracking, CV download events, contact form events
+- **HTML5** — Semantic structure with ARIA landmarks
+- **CSS3** — Custom properties, Flexbox, Grid, Glassmorphism effects, backdrop blur
+- **JavaScript (Vanilla)** — DATA-driven architecture (content separated from render logic) with dynamic rendering
+- **Google Fonts** — Cormorant Garamond (serif) · DM Mono (monospace) · Instrument Sans (sans-serif)
+- **EmailJS** — Contact form with auto-reply
+- **Formspree** — Contact form fallback
+- **Google Analytics 4** (GA4) — Visitor tracking, CV download events, contact form conversion events
+- **Canvas API** — Background animation layers (if applicable)
 
 ## Profile Photo & CV
 
 **Profile photo:** Add `photo.jpg` to the repo root (recommended: ~400×500 px minimum). The config already references `profilePhoto: "photo.jpg"` — just push the file.
 
 **CV download:** Place `AARADHYA_DEV_TAMRAKAR_CV.pdf` in the repo root. The hero **Download CV** button is already linked — no code changes needed.
+
+## Content Editing Guide
+
+All portfolio content is managed in a single `DATA` object in `index.html` (lines ~800–1100). Edit only this section to update:
+
+- **Profile Info:** `name`, `tagline`, `headline`, `description`
+- **Status Card:** `status` array (current focus, roles, tech stack)
+- **Projects:** `projects` array with title, description, tags, GitHub links, and progress tracking
+- **Apps:** `apps` array for live applications showcase
+- **Experience:** `experience` array with org, title, description, year
+- **Skills:** `skillGroups` array with categories and proficiency levels (1–3)
+- **Achievements:** `achievements` array with training, certifications, dates
+- **About:** `aboutParagraphs` (bio text) and `aboutStats` (metrics)
+- **Contact:** `contactTagline`, `contactNote`, `contactLinks`
+- **Footer:** `footerCopy`, `footerSocials`
+
+**No JSX, no build step, no framework needed** — all rendering is vanilla JavaScript with simple template strings.
 
 ## Local Development
 
