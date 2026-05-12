@@ -4,6 +4,708 @@
   "graph": {},
   "nodes": [
     {
+      "label": "AARADHYA_MASTER_v44.md",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L1",
+      "id": "aaradhya_master_v44_md",
+      "community": 0,
+      "norm_label": "aaradhya_master_v44.md"
+    },
+    {
+      "label": "AARADHYA DEV TAMRAKAR \u2014 Master Profile v44",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L1",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "community": 0,
+      "norm_label": "aaradhya dev tamrakar \u2014 master profile v44"
+    },
+    {
+      "label": "\ud83d\udccb Session Loading Instructions",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L7",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_session_loading_instructions",
+      "community": 0,
+      "norm_label": "\ud83d\udccb session loading instructions"
+    },
+    {
+      "label": "\ud83d\udd11 Accounts & Identities",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L20",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_accounts_identities",
+      "community": 0,
+      "norm_label": "\ud83d\udd11 accounts & identities"
+    },
+    {
+      "label": "\ud83e\uddd1 Personal Identity",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L36",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_personal_identity",
+      "community": 7,
+      "norm_label": "\ud83e\uddd1 personal identity"
+    },
+    {
+      "label": "Vedic Astrology",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L51",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_vedic_astrology",
+      "community": 7,
+      "norm_label": "vedic astrology"
+    },
+    {
+      "label": "Planetary Positions",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L67",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_planetary_positions",
+      "community": 7,
+      "norm_label": "planetary positions"
+    },
+    {
+      "label": "House Placements",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L82",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_house_placements",
+      "community": 7,
+      "norm_label": "house placements"
+    },
+    {
+      "label": "Chart Highlights",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L93",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_chart_highlights",
+      "community": 7,
+      "norm_label": "chart highlights"
+    },
+    {
+      "label": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc66 Family Background",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L104",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_family_background",
+      "community": 0,
+      "norm_label": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc66 family background"
+    },
+    {
+      "label": "Generational Context (Added Apr 27)",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L116",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_generational_context_added_apr_27",
+      "community": 0,
+      "norm_label": "generational context (added apr 27)"
+    },
+    {
+      "label": "\ud83c\udf93 Academic Background",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L131",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_academic_background",
+      "community": 0,
+      "norm_label": "\ud83c\udf93 academic background"
+    },
+    {
+      "label": "Current Subjects",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L141",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_current_subjects",
+      "community": 0,
+      "norm_label": "current subjects"
+    },
+    {
+      "label": "\ud83d\udcbc Professional & Organizational Roles",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L146",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_professional_organizational_roles",
+      "community": 0,
+      "norm_label": "\ud83d\udcbc professional & organizational roles"
+    },
+    {
+      "label": "NSSR DataCamp Fellowship Detail",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L159",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_nssr_datacamp_fellowship_detail",
+      "community": 0,
+      "norm_label": "nssr datacamp fellowship detail"
+    },
+    {
+      "label": "\ud83d\udee0\ufe0f Projects",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L186",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_projects",
+      "community": 4,
+      "norm_label": "\ud83d\udee0\ufe0f projects"
+    },
+    {
+      "label": "1. Edge AI Stability Detection System *(CV-featured)*",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L188",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_1_edge_ai_stability_detection_system_cv_featured",
+      "community": 4,
+      "norm_label": "1. edge ai stability detection system *(cv-featured)*"
+    },
+    {
+      "label": "2. Gesture-Controlled Self-Balancing Robot (GCSBR) \u2014 Minor Project *(Completed)*",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L197",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_2_gesture_controlled_self_balancing_robot_gcsbr_minor_project_completed",
+      "community": 4,
+      "norm_label": "2. gesture-controlled self-balancing robot (gcsbr) \u2014 minor project *(completed)*"
+    },
+    {
+      "label": "3. Alpha Android Super-App *(Active)*",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L209",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_3_alpha_android_super_app_active",
+      "community": 4,
+      "norm_label": "3. alpha android super-app *(active)*"
+    },
+    {
+      "label": "4. SysOptimizer \u2014 Windows Optimization Tool *(v4/v5 Active)*",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L216",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_4_sysoptimizer_windows_optimization_tool_v4_v5_active",
+      "community": 4,
+      "norm_label": "4. sysoptimizer \u2014 windows optimization tool *(v4/v5 active)*"
+    },
+    {
+      "label": "5. Custom Processor FSM Design *(Completed \u2014 Coursework)*",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L225",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_5_custom_processor_fsm_design_completed_coursework",
+      "community": 4,
+      "norm_label": "5. custom processor fsm design *(completed \u2014 coursework)*"
+    },
+    {
+      "label": "6. Major Project *(Direction Locked \u2014 May 5, 2026)*",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L233",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_6_major_project_direction_locked_may_5_2026",
+      "community": 4,
+      "norm_label": "6. major project *(direction locked \u2014 may 5, 2026)*"
+    },
+    {
+      "label": "7. Antenna Lab Data Analysis",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L249",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_7_antenna_lab_data_analysis",
+      "community": 4,
+      "norm_label": "7. antenna lab data analysis"
+    },
+    {
+      "label": "8. Fusemachines AI Fellowship Prep Toolkit *(Completed)*",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L253",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_8_fusemachines_ai_fellowship_prep_toolkit_completed",
+      "community": 4,
+      "norm_label": "8. fusemachines ai fellowship prep toolkit *(completed)*"
+    },
+    {
+      "label": "\ud83c\udfc5 Project Ranking & Ratings (v1 \u2014 May 1, 2026)",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L260",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_project_ranking_ratings_v1_may_1_2026",
+      "community": 0,
+      "norm_label": "\ud83c\udfc5 project ranking & ratings (v1 \u2014 may 1, 2026)"
+    },
+    {
+      "label": "\ud83c\udf10 Portfolio Website \u2014 aaradhyadtmr.github.io",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L279",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_portfolio_website_aaradhyadtmr_github_io",
+      "community": 0,
+      "norm_label": "\ud83c\udf10 portfolio website \u2014 aaradhyadtmr.github.io"
+    },
+    {
+      "label": "Current State (as of May 1, 2026)",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L281",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_current_state_as_of_may_1_2026",
+      "community": 0,
+      "norm_label": "current state (as of may 1, 2026)"
+    },
+    {
+      "label": "Pending Fixes (May 4, 2026 audit)",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L289",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_pending_fixes_may_4_2026_audit",
+      "community": 0,
+      "norm_label": "pending fixes (may 4, 2026 audit)"
+    },
+    {
+      "label": "\ud83e\udde0 Skills & Stack",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L303",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_skills_stack",
+      "community": 3,
+      "norm_label": "\ud83e\udde0 skills & stack"
+    },
+    {
+      "label": "Programming",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L305",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_programming",
+      "community": 3,
+      "norm_label": "programming"
+    },
+    {
+      "label": "Machine Learning",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L308",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_machine_learning",
+      "community": 3,
+      "norm_label": "machine learning"
+    },
+    {
+      "label": "Android Development",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L311",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_android_development",
+      "community": 3,
+      "norm_label": "android development"
+    },
+    {
+      "label": "Deployment",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L314",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_deployment",
+      "community": 3,
+      "norm_label": "deployment"
+    },
+    {
+      "label": "Embedded Systems & Digital Design",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L317",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_embedded_systems_digital_design",
+      "community": 3,
+      "norm_label": "embedded systems & digital design"
+    },
+    {
+      "label": "Productivity & Office",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L320",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_productivity_office",
+      "community": 3,
+      "norm_label": "productivity & office"
+    },
+    {
+      "label": "Tools",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L323",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_tools",
+      "community": 3,
+      "norm_label": "tools"
+    },
+    {
+      "label": "AI / Local LLM",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L326",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_ai_local_llm",
+      "community": 3,
+      "norm_label": "ai / local llm"
+    },
+    {
+      "label": "System Setup",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L329",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_system_setup",
+      "community": 3,
+      "norm_label": "system setup"
+    },
+    {
+      "label": "\ud83c\udfc6 Technical Activities & Certifications",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L336",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_technical_activities_certifications",
+      "community": 0,
+      "norm_label": "\ud83c\udfc6 technical activities & certifications"
+    },
+    {
+      "label": "\ud83c\udfaf NI Certification Career Plan (Added May 9, 2026)",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L348",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_ni_certification_career_plan_added_may_9_2026",
+      "community": 5,
+      "norm_label": "\ud83c\udfaf ni certification career plan (added may 9, 2026)"
+    },
+    {
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L350",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_decision",
+      "community": 5,
+      "norm_label": "decision"
+    },
+    {
+      "label": "Certification Ladder",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L354",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_certification_ladder",
+      "community": 5,
+      "norm_label": "certification ladder"
+    },
+    {
+      "label": "LabVIEW Track",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L356",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_labview_track",
+      "community": 5,
+      "norm_label": "labview track"
+    },
+    {
+      "label": "TestStand Track",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L364",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_teststand_track",
+      "community": 5,
+      "norm_label": "teststand track"
+    },
+    {
+      "label": "Optimal Sequence for Aaradhya",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L370",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_optimal_sequence_for_aaradhya",
+      "community": 5,
+      "norm_label": "optimal sequence for aaradhya"
+    },
+    {
+      "label": "\ud83c\udfb5 Personal Interests & Life",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L385",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_personal_interests_life",
+      "community": 8,
+      "norm_label": "\ud83c\udfb5 personal interests & life"
+    },
+    {
+      "label": "Music",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L387",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_music",
+      "community": 8,
+      "norm_label": "music"
+    },
+    {
+      "label": "Perfumery",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L392",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_perfumery",
+      "community": 8,
+      "norm_label": "perfumery"
+    },
+    {
+      "label": "Motorcycles",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L399",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_motorcycles",
+      "community": 8,
+      "norm_label": "motorcycles"
+    },
+    {
+      "label": "\ud83e\udde0 Thinking Style & Claude Preferences",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L405",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_thinking_style_claude_preferences",
+      "community": 0,
+      "norm_label": "\ud83e\udde0 thinking style & claude preferences"
+    },
+    {
+      "label": "\ud83d\udcca Profile Self-Assessment (April 21, 2026)",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L418",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_profile_self_assessment_april_21_2026",
+      "community": 0,
+      "norm_label": "\ud83d\udcca profile self-assessment (april 21, 2026)"
+    },
+    {
+      "label": "\ud83d\ude80 Ceiling Trajectories",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L431",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_ceiling_trajectories",
+      "community": 9,
+      "norm_label": "\ud83d\ude80 ceiling trajectories"
+    },
+    {
+      "label": "Trajectory 2 \u2014 Fellowship \u2192 Regional Tech Ecosystem *(Realistic Strong Outcome)*",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L433",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_trajectory_2_fellowship_regional_tech_ecosystem_realistic_strong_outcome",
+      "community": 9,
+      "norm_label": "trajectory 2 \u2014 fellowship \u2192 regional tech ecosystem *(realistic strong outcome)*"
+    },
+    {
+      "label": "Trajectory 3 \u2014 Build Something *(High Ceiling)*",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L436",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_trajectory_3_build_something_high_ceiling",
+      "community": 9,
+      "norm_label": "trajectory 3 \u2014 build something *(high ceiling)*"
+    },
+    {
+      "label": "Priority Actions (Next 18 Months)",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L441",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_priority_actions_next_18_months",
+      "community": 9,
+      "norm_label": "priority actions (next 18 months)"
+    },
+    {
+      "label": "\ud83c\udfc5 DataCamp Certification Plan (Locked \u2014 May 12, 2026)",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L449",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_datacamp_certification_plan_locked_may_12_2026",
+      "community": 6,
+      "norm_label": "\ud83c\udfc5 datacamp certification plan (locked \u2014 may 12, 2026)"
+    },
+    {
+      "label": "Phase 1 \u2014 Now \u2192 June 2026",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L453",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_phase_1_now_june_2026",
+      "community": 6,
+      "norm_label": "phase 1 \u2014 now \u2192 june 2026"
+    },
+    {
+      "label": "Phase 2 \u2014 June \u2192 Sept 2026 (post-fellowship)",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L459",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_phase_2_june_sept_2026_post_fellowship",
+      "community": 6,
+      "norm_label": "phase 2 \u2014 june \u2192 sept 2026 (post-fellowship)"
+    },
+    {
+      "label": "Phase 3 \u2014 Pre-India (Oct 2026 \u2013 Jan 2027)",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L465",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_phase_3_pre_india_oct_2026_jan_2027",
+      "community": 6,
+      "norm_label": "phase 3 \u2014 pre-india (oct 2026 \u2013 jan 2027)"
+    },
+    {
+      "label": "Skip List",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L471",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_skip_list",
+      "community": 6,
+      "norm_label": "skip list"
+    },
+    {
+      "label": "Key Notes",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L474",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_key_notes",
+      "community": 6,
+      "norm_label": "key notes"
+    },
+    {
+      "label": "\ud83d\udcc5 Recent Activity (as of May 12, 2026)",
+      "file_type": "document",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L482",
+      "id": "aaradhyadtmr_github_io_aaradhya_master_v44_recent_activity_as_of_may_12_2026",
+      "community": 0,
+      "norm_label": "\ud83d\udcc5 recent activity (as of may 12, 2026)"
+    },
+    {
+      "label": "AGENTS.md",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "id": "agents_md",
+      "community": 10,
+      "norm_label": "agents.md"
+    },
+    {
+      "label": "graphify",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "id": "aaradhyadtmr_github_io_agents_graphify",
+      "community": 10,
+      "norm_label": "graphify"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "id": "readme_md",
+      "community": 2,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "aaradhyadtmr.github.io",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "id": "aaradhyadtmr_github_io_readme_aaradhyadtmr_github_io",
+      "community": 2,
+      "norm_label": "aaradhyadtmr.github.io"
+    },
+    {
+      "label": "About",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L5",
+      "id": "aaradhyadtmr_github_io_readme_about",
+      "community": 2,
+      "norm_label": "about"
+    },
+    {
+      "label": "Features",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L9",
+      "id": "aaradhyadtmr_github_io_readme_features",
+      "community": 2,
+      "norm_label": "features"
+    },
+    {
+      "label": "Lighthouse Scores *(May 2026)*",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L29",
+      "id": "aaradhyadtmr_github_io_readme_lighthouse_scores_may_2026",
+      "community": 2,
+      "norm_label": "lighthouse scores *(may 2026)*"
+    },
+    {
+      "label": "Portfolio Sections",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L38",
+      "id": "aaradhyadtmr_github_io_readme_portfolio_sections",
+      "community": 2,
+      "norm_label": "portfolio sections"
+    },
+    {
+      "label": "Technologies Used",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L49",
+      "id": "aaradhyadtmr_github_io_readme_technologies_used",
+      "community": 2,
+      "norm_label": "technologies used"
+    },
+    {
+      "label": "Profile Photo & CV",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L60",
+      "id": "aaradhyadtmr_github_io_readme_profile_photo_cv",
+      "community": 2,
+      "norm_label": "profile photo & cv"
+    },
+    {
+      "label": "Content Editing Guide",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L66",
+      "id": "aaradhyadtmr_github_io_readme_content_editing_guide",
+      "community": 2,
+      "norm_label": "content editing guide"
+    },
+    {
+      "label": "Local Development",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L83",
+      "id": "aaradhyadtmr_github_io_readme_local_development",
+      "community": 2,
+      "norm_label": "local development"
+    },
+    {
+      "label": "code:bash (git clone https://github.com/AaradhyaDTmr/AaradhyaDTmr.githu)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L85",
+      "id": "aaradhyadtmr_github_io_readme_codeblock_1",
+      "community": 2,
+      "norm_label": "code:bash (git clone https://github.com/aaradhyadtmr/aaradhyadtmr.githu)"
+    },
+    {
+      "label": "Deployment",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L91",
+      "id": "aaradhyadtmr_github_io_readme_deployment",
+      "community": 2,
+      "norm_label": "deployment"
+    },
+    {
+      "label": "Contact",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L95",
+      "id": "aaradhyadtmr_github_io_readme_contact",
+      "community": 2,
+      "norm_label": "contact"
+    },
+    {
+      "label": "License",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L105",
+      "id": "aaradhyadtmr_github_io_readme_license",
+      "community": 2,
+      "norm_label": "license"
+    },
+    {
       "label": "Fuse AI Fellowship",
       "file_type": "concept",
       "source_file": "AARADHYA_MASTER_v42.md",
@@ -12,7 +714,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 1,
       "norm_label": "fuse ai fellowship",
       "id": "aaradhya_master_v42_fuse_ai_fellowship"
     },
@@ -25,7 +727,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 1,
       "norm_label": "ieee kec student branch",
       "id": "aaradhya_master_v42_ieee_kec_student_branch"
     },
@@ -38,7 +740,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 1,
       "norm_label": "datacamp fellowship",
       "id": "aaradhya_master_v42_datacamp_fellowship"
     },
@@ -51,7 +753,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 1,
       "norm_label": "edge ai stability detection system",
       "id": "aaradhya_master_v42_edge_ai_stability_system"
     },
@@ -64,7 +766,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 1,
       "norm_label": "gesture-controlled self-balancing robot",
       "id": "aaradhya_master_v42_gcsbr"
     },
@@ -77,7 +779,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 1,
       "norm_label": "alpha android super-app",
       "id": "aaradhya_master_v42_alpha_android_app"
     },
@@ -90,7 +792,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 1,
       "norm_label": "sysoptimizer",
       "id": "aaradhya_master_v42_sysoptimizer"
     },
@@ -103,7 +805,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 1,
       "norm_label": "major project (edge ai platform - har)",
       "id": "aaradhya_master_v42_major_project_har"
     },
@@ -116,7 +818,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 1,
       "norm_label": "portfolio website",
       "id": "index_html_portfolio"
     },
@@ -129,7 +831,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 1,
       "norm_label": "aaradhya dev tamrakar cv",
       "id": "aaradhya_dev_tamrakar_cv_pdf_cv"
     },
@@ -142,7 +844,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 1,
       "norm_label": "graphify agent",
       "id": "agents_graphify"
     },
@@ -155,7 +857,7 @@
       "captured_at": null,
       "author": "Aaradhya Dev Tamrakar",
       "contributor": null,
-      "community": 0,
+      "community": 1,
       "norm_label": "stability ai system",
       "id": "aaradhyadevtmr_stability_ai_system"
     },
@@ -168,7 +870,7 @@
       "captured_at": "2026-03-27T06:53:25",
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 1,
       "norm_label": "profile photo",
       "id": "aaradhyadevtmr_photo"
     },
@@ -181,7 +883,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 1,
       "norm_label": "linkedin profile",
       "id": "aaradhyadevtmr_linkedin"
     },
@@ -194,12 +896,762 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 1,
       "norm_label": "github profile",
       "id": "aaradhyadevtmr_github"
     }
   ],
   "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhya_master_v44_md",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_session_loading_instructions"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_accounts_identities"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_personal_identity"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L104",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_family_background"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L131",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_academic_background"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L146",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_professional_organizational_roles"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L186",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_projects"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L260",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_project_ranking_ratings_v1_may_1_2026"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L279",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_portfolio_website_aaradhyadtmr_github_io"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L303",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_skills_stack"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L336",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_technical_activities_certifications"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L348",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_ni_certification_career_plan_added_may_9_2026"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L385",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_personal_interests_life"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L405",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_thinking_style_claude_preferences"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L418",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_profile_self_assessment_april_21_2026"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L431",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_ceiling_trajectories"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L449",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_datacamp_certification_plan_locked_may_12_2026"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L482",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_aaradhya_dev_tamrakar_master_profile_v44",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_recent_activity_as_of_may_12_2026"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L51",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_personal_identity",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_vedic_astrology"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L67",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_personal_identity",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_planetary_positions"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L82",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_personal_identity",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_house_placements"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L93",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_personal_identity",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_chart_highlights"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L116",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_family_background",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_generational_context_added_apr_27"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L141",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_academic_background",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_current_subjects"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L159",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_professional_organizational_roles",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_nssr_datacamp_fellowship_detail"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L188",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_projects",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_1_edge_ai_stability_detection_system_cv_featured"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L197",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_projects",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_2_gesture_controlled_self_balancing_robot_gcsbr_minor_project_completed"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L209",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_projects",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_3_alpha_android_super_app_active"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L216",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_projects",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_4_sysoptimizer_windows_optimization_tool_v4_v5_active"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L225",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_projects",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_5_custom_processor_fsm_design_completed_coursework"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L233",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_projects",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_6_major_project_direction_locked_may_5_2026"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L249",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_projects",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_7_antenna_lab_data_analysis"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L253",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_projects",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_8_fusemachines_ai_fellowship_prep_toolkit_completed"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L281",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_portfolio_website_aaradhyadtmr_github_io",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_current_state_as_of_may_1_2026"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L289",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_portfolio_website_aaradhyadtmr_github_io",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_pending_fixes_may_4_2026_audit"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L305",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_skills_stack",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_programming"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L308",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_skills_stack",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_machine_learning"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L311",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_skills_stack",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_android_development"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L314",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_skills_stack",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_deployment"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L317",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_skills_stack",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_embedded_systems_digital_design"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L320",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_skills_stack",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_productivity_office"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L323",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_skills_stack",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_tools"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L326",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_skills_stack",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_ai_local_llm"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L329",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_skills_stack",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_system_setup"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L350",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_ni_certification_career_plan_added_may_9_2026",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_decision"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L354",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_ni_certification_career_plan_added_may_9_2026",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_certification_ladder"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L370",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_ni_certification_career_plan_added_may_9_2026",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_optimal_sequence_for_aaradhya"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L356",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_certification_ladder",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_labview_track"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L364",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_certification_ladder",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_teststand_track"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L387",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_personal_interests_life",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_music"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L392",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_personal_interests_life",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_perfumery"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L399",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_personal_interests_life",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_motorcycles"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L433",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_ceiling_trajectories",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_trajectory_2_fellowship_regional_tech_ecosystem_realistic_strong_outcome"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L436",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_ceiling_trajectories",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_trajectory_3_build_something_high_ceiling"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L441",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_ceiling_trajectories",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_priority_actions_next_18_months"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L453",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_datacamp_certification_plan_locked_may_12_2026",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_phase_1_now_june_2026"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L459",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_datacamp_certification_plan_locked_may_12_2026",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_phase_2_june_sept_2026_post_fellowship"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L465",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_datacamp_certification_plan_locked_may_12_2026",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_phase_3_pre_india_oct_2026_jan_2027"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L471",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_datacamp_certification_plan_locked_may_12_2026",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_skip_list"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AARADHYA_MASTER_v44.md",
+      "source_location": "L474",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_aaradhya_master_v44_datacamp_certification_plan_locked_may_12_2026",
+      "target": "aaradhyadtmr_github_io_aaradhya_master_v44_key_notes"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "agents_md",
+      "target": "aaradhyadtmr_github_io_agents_graphify"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "readme_md",
+      "target": "aaradhyadtmr_github_io_readme_aaradhyadtmr_github_io"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_readme_aaradhyadtmr_github_io",
+      "target": "aaradhyadtmr_github_io_readme_about"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_readme_aaradhyadtmr_github_io",
+      "target": "aaradhyadtmr_github_io_readme_features"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_readme_aaradhyadtmr_github_io",
+      "target": "aaradhyadtmr_github_io_readme_lighthouse_scores_may_2026"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L38",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_readme_aaradhyadtmr_github_io",
+      "target": "aaradhyadtmr_github_io_readme_portfolio_sections"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L49",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_readme_aaradhyadtmr_github_io",
+      "target": "aaradhyadtmr_github_io_readme_technologies_used"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L60",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_readme_aaradhyadtmr_github_io",
+      "target": "aaradhyadtmr_github_io_readme_profile_photo_cv"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L66",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_readme_aaradhyadtmr_github_io",
+      "target": "aaradhyadtmr_github_io_readme_content_editing_guide"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L83",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_readme_aaradhyadtmr_github_io",
+      "target": "aaradhyadtmr_github_io_readme_local_development"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L91",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_readme_aaradhyadtmr_github_io",
+      "target": "aaradhyadtmr_github_io_readme_deployment"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L95",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_readme_aaradhyadtmr_github_io",
+      "target": "aaradhyadtmr_github_io_readme_contact"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L105",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_readme_aaradhyadtmr_github_io",
+      "target": "aaradhyadtmr_github_io_readme_license"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L85",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "aaradhyadtmr_github_io_readme_local_development",
+      "target": "aaradhyadtmr_github_io_readme_codeblock_1"
+    },
     {
       "relation": "references",
       "confidence": "EXTRACTED",
@@ -342,5 +1794,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "f3a1405f94bcb6eabb792c59c4fbf8aa34c0a27e"
+  "built_at_commit": "694bf3d0ee59ffc462116526931379550c5565d2"
 }
