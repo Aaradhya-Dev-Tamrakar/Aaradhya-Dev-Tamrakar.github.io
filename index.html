@@ -286,7 +286,23 @@
     .contact-link-arrow { color: var(--muted); font-size: 1rem; transition: transform 0.2s, color 0.2s; }
     .contact-link:hover .contact-link-arrow { transform: translate(4px, -4px); color: var(--accent); }
 
-    /* Back to top */
+    /* Achievements */
+    #achievements { background: var(--bg); }
+    .achievements-grid { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .achievement-item { background: var(--bg2); padding: 1.75rem 2.5rem; display: grid; grid-template-columns: 1fr 3fr 1fr; align-items: start; gap: 3rem; border-bottom: 1px solid var(--line); transition: background 0.3s, padding-left 0.3s; }
+    .achievement-item:last-child { border-bottom: none; }
+    .achievement-item:hover { background: var(--bg3); padding-left: 2.9rem; }
+    .achievement-org { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); }
+    .achievement-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; color: var(--heading); margin-bottom: 0.4rem; }
+    .achievement-desc { font-size: 0.9rem; line-height: 1.7; color: var(--text); }
+    .achievement-date { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--accent); text-align: right; padding-top: 0.2rem; }
+
+    @media (max-width: 900px) {
+      .achievement-item { grid-template-columns: 1fr; gap: 0.3rem; padding: 1.5rem; }
+      .achievement-date { text-align: left; }
+    }
+
+
     .back-top { position: fixed; bottom: 5rem; right: 2rem; z-index: 200; width: 42px; height: 42px; background: var(--bg2); border: 1px solid var(--line); border-radius: 2px; display: flex; align-items: center; justify-content: center; color: var(--muted); cursor: none; opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity 0.3s, transform 0.3s, border-color 0.2s, color 0.2s; }
     .back-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
     .back-top:hover { border-color: var(--accent); color: var(--accent); }
@@ -467,6 +483,7 @@
     <a href="#apps" class="drawer-link">Apps</a>
     <a href="#experience" class="drawer-link">Experience</a>
     <a href="#skills" class="drawer-link">Skills</a>
+    <a href="#achievements" class="drawer-link">Achievements</a>
     <a href="#about" class="drawer-link">About</a>
     <a href="#contact" class="drawer-link">Contact</a>
   </div>
@@ -533,6 +550,16 @@
     </div>
     <div class="skill-legend reveal" id="skills-legend"></div>
     <div class="skills-layout reveal" id="skills-layout"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="achievements" aria-labelledby="achievements-heading">
+    <div class="section-header reveal">
+      <div class="section-num">05 / Achievements</div>
+      <h2 class="section-title" id="achievements-heading">Training &amp; <em>Certifications</em></h2>
+    </div>
+    <div class="achievements-grid reveal" id="achievements-grid"></div>
   </section>
 
   <div class="divider"></div>
@@ -614,43 +641,49 @@
 
     // ── Status card (hero) ───────────────────────────────────
     status: [
-      { label: "Focus",      value: "Fusemachines AI Fellowship — Week 1" },
+      { label: "Focus",      value: "Fuse AI Fellowship — Week 3" },
       { label: "Role",       value: "IEEE KEC Vice Chair · EPC Event Mgr" },
-      { label: "Fellowship", value: "Fuse AI Fellow · NSSR DataCamp (C2)" },
-      { label: "Stack",      value: "Python · Kotlin · C · FastAPI · SQL" },
-      { label: "Interests",  value: "Embedded Systems · AI/ML · Edge AI" },
+      { label: "Fellowship", value: "Fuse AI Fellow · NSSR DataCamp (C2) — SQL Associate next" },
+      { label: "Stack",      value: "Python · Kotlin · FastAPI · Docker · PostgreSQL · SQL" },
+      { label: "Interests",  value: "Embedded Systems · AI/ML · Edge AI · Major Project" },
     ],
 
     // ── Projects ─────────────────────────────────────────────
     projects: [
       {
         title: "Gesture-Controlled Self-Balancing Robot",
-        desc:  "A two-wheeled inverted pendulum robot controlled via real-time hand gesture recognition. Combines PID firmware, Bluetooth communication, and MediaPipe-based ML inference on a Python host.",
-        tags:  ["Arduino", "HC-05", "MPU-6050", "NEMA-17", "MediaPipe", "TFLite", "PID"],
-        link:  "https://github.com/AaradhyaDT/Gesture-Controlled-Self-Balancing-Robot",   // e.g. "https://github.com/AaradhyaDT/sbr"
+        desc:  "A two-wheeled inverted pendulum robot controlled via real-time hand gesture recognition. Dual-hand MediaPipe control over HC-05 Bluetooth, PID firmware with watchdog timer and integrator bleed, MATLAB simulation → DRV8825/CNC Shield deployment. Examiner described it as major project level.",
+        tags:  ["Arduino", "HC-05", "MPU-6050", "NEMA-17", "MediaPipe", "PID", "MATLAB"],
+        link:  "https://github.com/AaradhyaDT/Gesture-Controlled-Self-Balancing-Robot",
       },
       {
         title: "Edge AI Stability Detection System",
-        desc:  "ML portfolio project for Fusemachines AI Fellowship. Synthetic IMU data generation, RandomForest classification, and FastAPI deployment — demonstrating production-ready AI pipeline design.",
-        tags:  ["Python", "RandomForest", "FastAPI", "IMU", "Edge AI"],
+        desc:  "End-to-end ML pipeline for Fusemachines AI Fellowship: 10,000-sample synthetic IMU dataset generation, Random Forest classifier achieving 99.8% test accuracy, FastAPI REST deployment, and Joblib export for robotics integration.",
+        tags:  ["Python", "scikit-learn", "RandomForest", "FastAPI", "Joblib", "IMU", "Edge AI"],
         link:  "https://github.com/AaradhyaDT/stability-ai-system",
       },
       {
-        title: "Custom Processor FSM Design",
-        desc:  "VHDL implementation of a custom processor datapath and FSM for GCD and exponentiation operations. Simulated and verified in Vivado 2023.2 as part of Embedded Systems coursework.",
-        tags:  ["VHDL", "Vivado", "FSM", "Datapath", "FPGA"],
+        title: "Major Project — Edge AI Platform (HAR)",
+        desc:  "Modular edge AI platform for Human Activity Recognition (Walking, Running, Sitting, Cycling, Fall Detection). ESP32 + MPU6050 TFLite on-device inference → Android generic renderer → FastAPI OTA model delivery. Innovation at the integration layer: sensor-agnostic firmware↔mobile protocol on <1MB RAM.",
+        tags:  ["ESP32", "MPU6050", "TFLite", "Kotlin", "Jetpack Compose", "FastAPI", "BLE", "OTA"],
         link:  null,
       },
       {
         title: "Alpha Android Super-App",
-        desc:  "Personal Android application (Kotlin/Jetpack Compose, Material3) featuring SBR gesture control, a multi-mode calculator, Budget Tracker with eSewa Gmail parsing and Google Drive backup, and a custom settings module with DataStore Preferences.",
+        desc:  "Modular personal super-app (Kotlin/Jetpack Compose, Material3). SBR remote turns your phone into a gesture controller over Bluetooth. Budget Tracker parses eSewa transactions with DataStore-backed local persistence. Multi-mode calculator handles base conversion and logic gates. Settings module via DataStore Preferences.",
         tags:  ["Kotlin", "Jetpack Compose", "CameraX", "MediaPipe", "Bluetooth SPP", "DataStore", "Apache POI"],
         link:  "https://github.com/AaradhyaDT/Alpha-SuperApp",
       },
       {
         title: "SysOptimizer — Windows Optimization Tool",
-        desc:  "Standalone Windows system optimization tool packaged as a .exe. Features animated ring gauges, sparklines, per-core CPU reporting, Power Plan switcher, RAM flush, Background Bloat panel, and a Startup Scanner — all running silently with zero UI interruption.",
+        desc:  "Standalone Windows system optimization tool packaged as a .exe. Features animated ring gauges, sparklines, per-core CPU reporting, Power Plan switcher, RAM flush, Background Bloat panel (14 services/tasks), and Startup Scanner — all running silently with zero UI interruption via CREATE_NO_WINDOW.",
         tags:  ["Python", "CustomTkinter", "PyInstaller", "WMI", "PowerShell"],
+        link:  null,
+      },
+      {
+        title: "Custom Processor FSM Design",
+        desc:  "VHDL implementation of a custom processor datapath and FSM for GCD and exponentiation operations. Simulated and verified in Vivado 2023.2 as part of Embedded Systems coursework. Demonstrates digital design and hardware description language competency.",
+        tags:  ["VHDL", "Vivado", "FSM", "Datapath", "FPGA"],
         link:  null,
       },
     ],
@@ -660,7 +693,7 @@
       {
         icon:  "⚡",
         title: "Alpha — Android Super-App",
-        desc:  "A personal productivity super-app designed around real daily workflows. The Budget Tracker auto-parses eSewa Gmail receipts and backs up to Google Drive — no manual entry. The SBR remote turns your phone into a gesture controller over Bluetooth. The multi-mode calculator handles base conversion and logic gates that a stock calculator never would. Built for one user: me.",
+        desc:  "A personal productivity super-app designed for daily utility. Features a gesture-controlled Bluetooth remote, an automated eSewa transaction parser, and a specialized scientific calculator. Built as a modular ecosystem for Android with Material3 components and local data persistence via DataStore.",
         tags:  ["Kotlin", "Jetpack Compose", "Material3", "MediaPipe", "Bluetooth", "CameraX", "DataStore"],
         links: [
           { label: "GitHub", href: "https://github.com/AaradhyaDT/Alpha-SuperApp", type: "secondary" },
@@ -673,7 +706,7 @@
       {
         org:   "Fusemachines",
         title: "Fuse AI Fellow",
-        desc:  "Selected through a competitive entrance exam covering linear algebra, calculus, probability, Python, and ML. Week 1 active: heart attack risk prediction pipeline — data wrangling, BP string parsing, two-step left join merge → clean_patient_data.csv (8,763 × 22, 0 nulls). SQL assignment in progress (MySQL, 20 queries).",
+        desc:  "Selected through a competitive entrance exam. Week 1: Heart attack risk prediction pipeline — data wrangling, EDA, SQL (CTEs, Window Functions, correlated subqueries). Week 2 (submitted May 10): Docker + PostgreSQL containerization, FastAPI 4-layer architecture (logger → database → models → schemas → crud → router → main), asyncio concurrency with asyncio.gather() + run_in_executor(). GitHub: AaradhyaDT/fuseAiF_wk2_customer_api_app.",
         year:  "2026 — Present",
       },
       {
@@ -685,7 +718,7 @@
       {
         org:   "NSSR — Nepalese Society of Student Researchers",
         title: "DataCamp Fellow — Cohort 2",
-        desc:  "Selected April 28, 2026. Sponsored DataCamp Premium license for structured AI/ML coursework. SQL track active: Data Manipulation in SQL Ch.1 (CASE WHEN) complete, Ch.2 (Subqueries) in progress. Course priority: Data Manipulation in SQL → PostgreSQL Summary Stats → Pandas → Statistical Thinking → ML with scikit-learn.",
+        desc:  "Selected April 28, 2026 via competitive entrance exam. Sponsored DataCamp Premium license. Certification pathway locked (May 12): SQL Associate + Python Data Associate (Phase 1), Data Engineer + Data Scientist + AI (Phase 2), AI Engineer for Developers + AWS Cloud Practitioner (Phase 3). SQL track active: CASE WHEN, subqueries, window functions complete.",
         year:  "2026 — Present",
       },
       {
@@ -760,13 +793,13 @@
     aboutParagraphs: [
       "I'm a fourth-year <strong>Electronics, Communication &amp; Information Engineering</strong> student at Kathmandu Engineering College, IOE, Tribhuvan University — working at the frontier of embedded systems, robotics, and applied machine learning.",
       "My work bridges firmware and intelligence: from tuning PID loops on stepper-driven robots to deploying ML inference pipelines via FastAPI. Currently active as a <strong>Fuse AI Fellow</strong> (Fusemachines 2026) and <strong>NSSR DataCamp Fellow (Cohort 2)</strong>, building production-ready AI systems with real-world datasets.",
-      "Beyond the bench, I serve as <strong>Vice Chair of the IEEE KEC Student Branch</strong> and Event Manager at the Electronics Project Club, where I work to build a stronger technical community for engineers in Nepal.",
+      "Beyond the bench, I serve as <strong>the Vice Chair of the IEEE KEC Student Branch</strong> and Event Manager at the Electronics Project Club, where I work to build a stronger technical community for engineers in Nepal.",
     ],
     aboutStats: [
       { num: "4", sup: "th", label: "Year at KEC\nIOE, TU" },
       { num: "7", sup: "+",  label: "Firmware Versions\non SBR Project" },
       { num: "5", sup: "+",  label: "Languages &\nToolchains" },
-      { num: "∞", sup: "",   label: "Curiosity for\nIntelligent Systems" },
+      { num: "100", sup: "%", label: "Curiosity for\nIntelligent Systems" },
     ],
 
     // ── Contact ──────────────────────────────────────────────
@@ -778,6 +811,46 @@
       { label: "GitHub",    detail: "AaradhyaDT",                        href: "https://github.com/AaradhyaDT" },
       { label: "Instagram", detail: "@aaradhya_dev_tamrakar",            href: "https://instagram.com/aaradhya_dev_tamrakar" },
       { label: "X / Twitter", detail: "@AaradhyaDT",                    href: "https://x.com/AaradhyaDT" },
+    ],
+
+    // ── Achievements ─────────────────────────────────────────
+    achievements: [
+      {
+        title: "IEEEXtreme 19.0",
+        org:   "IEEE",
+        date:  "Oct 2025",
+        desc:  "Participated in the 24-hour global competitive programming marathon. Team: ShadowXTREME. Certificate received.",
+      },
+      {
+        title: "IEEE WIE LaTeX Training Program",
+        org:   "IEEE Women in Engineering, Nepal Section",
+        date:  "May 2026",
+        desc:  "Two-day LaTeX workshop at KEC Makerspace, Kalimati (May 5–6, 2026). Resource Person: Er. Dhawa Sang Dong. Certificate of Participation received.",
+      },
+      {
+        title: "NepaTronix Drone Training Program",
+        org:   "NepaTronix Engineering Solution · Drone Hub Nepal",
+        date:  "May 2026",
+        desc:  "3-day certified drone training covering flight operations, safety protocols, and basic applications.",
+      },
+      {
+        title: "AWS Cloud Computing Workshop",
+        org:   "KEC IT Club",
+        date:  "2025",
+        desc:  "Hands-on workshop on AWS core services and cloud fundamentals.",
+      },
+      {
+        title: "PreXtreme Competitive Programming Workshop",
+        org:   "IEEE Pulchowk",
+        date:  "2025",
+        desc:  "Competitive programming techniques and problem-solving strategies.",
+      },
+      {
+        title: "Git &amp; GitHub Workshop",
+        org:   "KEC IT Club",
+        date:  "2024",
+        desc:  "Version control fundamentals and collaborative workflow practices.",
+      },
     ],
 
     // ── Footer ───────────────────────────────────────────────
@@ -816,7 +889,7 @@
 
   function renderNav() {
     const links = document.getElementById('nav-links');
-    const sections = ['projects','apps','experience','skills','about'];
+    const sections = ['projects','apps','experience','skills','achievements','about'];
     sections.forEach(id => {
       links.innerHTML += `<li><a href="#${id}">${id.charAt(0).toUpperCase()+id.slice(1)}</a></li>`;
     });
@@ -898,7 +971,7 @@
   }
 
   function renderAbout() {
-    const num = '05';
+    const num = '06';
     const text = document.getElementById('about-text');
     text.innerHTML = `
       <div class="section-num" style="margin-bottom:1rem">${num} / About</div>
@@ -930,7 +1003,7 @@
   function renderContact() {
     const intro = document.getElementById('contact-intro');
     intro.innerHTML = `
-      <div class="section-num" style="margin-bottom:1rem">06 / Contact</div>
+      <div class="section-num" style="margin-bottom:1rem">07 / Contact</div>
       <h2 class="contact-tagline">${DATA.contactTagline}</h2>
       <p class="contact-note">${DATA.contactNote}</p>`;
   }
@@ -943,6 +1016,22 @@
     Facebook:  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>`,
     Instagram: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
   };
+
+  function renderAchievements() {
+    if (!DATA.achievements || DATA.achievements.length === 0) return;
+    const grid = document.getElementById('achievements-grid');
+    DATA.achievements.forEach(a => {
+      grid.innerHTML += `
+        <div class="achievement-item">
+          <div class="achievement-org">${a.org}</div>
+          <div>
+            <div class="achievement-title">${a.title}</div>
+            <p class="achievement-desc">${a.desc}</p>
+          </div>
+          <div class="achievement-date">${a.date}</div>
+        </div>`;
+    });
+  }
 
   function renderFooter() {
     document.getElementById('footer-copy').textContent = DATA.footerCopy;
@@ -960,6 +1049,7 @@
   renderApps();
   renderExperience();
   renderSkills();
+  renderAchievements();
   renderAbout();
   renderContact();
   renderFooter();
@@ -1016,7 +1106,7 @@
   // ── Active nav section highlight ────────────────────────────
   (function() {
     const navLinks = document.querySelectorAll('.nav-links a');
-    const sectionIds = ['projects','apps','experience','skills','about','contact'];
+    const sectionIds = ['projects','apps','experience','skills','achievements','about','contact'];
     const sectionEls = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
     const navMap = {};
     navLinks.forEach(a => {
