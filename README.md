@@ -6,7 +6,7 @@ _Last updated May 30, 2026._
 
 ## About
 
-This site showcases my work as an Electronics, Communication and Information Engineering student, IEEE KEC Vice Chair, Fuse AI Fellow (Fusemachines 2026), NSSR DataCamp Fellow (Cohort 2), and robotics enthusiast. It features a modern, luxury editorial design with glassmorphism effects, custom CSS animations, and interactive elements.
+This site showcases my work as an Electronics, Communication and Information Engineering student, IEEE KEC KTM Vice Chair, Fuse AI Fellow (Fusemachines 2026), NSSR DataCamp Fellow (Cohort 2), and robotics enthusiast. It features a modern, luxury editorial design with glassmorphism effects, custom CSS animations, and interactive elements.
 
 ## Features
 

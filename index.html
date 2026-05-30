@@ -6,7 +6,7 @@
 
   <!-- Primary SEO -->
   <title>Aaradhya Dev Tamrakar — Electronics Engineer &amp; AI/ML Developer</title>
-  <meta name="description" content="Portfolio of Aaradhya Dev Tamrakar — BEI IV/I at KEC, IOE. Fuse AI Fellow, IEEE KEC Vice Chair. Building intelligent systems at the intersection of embedded firmware, robotics, and machine learning." />
+  <meta name="description" content="Portfolio of Aaradhya Dev Tamrakar — BEI IV/I at KEC, IOE. Fuse AI Fellow, IEEE KEC KTM Vice Chair. Building intelligent systems at the intersection of embedded firmware, robotics, and machine learning." />
   <meta name="author" content="Aaradhya Dev Tamrakar" />
   <meta name="keywords" content="Aaradhya Dev Tamrakar, electronics engineer, AI ML, embedded systems, robotics, KEC IOE, Fusemachines, Nepal engineer portfolio" />
   <link rel="canonical" href="https://aaradhyadtmr.github.io/" />
@@ -15,7 +15,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://aaradhyadtmr.github.io/" />
   <meta property="og:title" content="Aaradhya Dev Tamrakar — Electronics Engineer &amp; AI/ML Developer" />
-  <meta property="og:description" content="BEI IV/I at KEC, IOE · Fuse AI Fellow · IEEE KEC Vice Chair · Building intelligent systems at the intersection of firmware, robotics, and machine learning." />
+  <meta property="og:description" content="BEI IV/I at KEC, IOE · Fuse AI Fellow · IEEE KEC KTM Vice Chair · Building intelligent systems at the intersection of firmware, robotics, and machine learning." />
   <meta property="og:image" content="https://aaradhyadtmr.github.io/photo.png" />
   <meta property="og:image:width" content="400" />
   <meta property="og:image:height" content="500" />
@@ -27,7 +27,7 @@
   <meta name="twitter:site" content="@AaradhyaDT" />
   <meta name="twitter:creator" content="@AaradhyaDT" />
   <meta name="twitter:title" content="Aaradhya Dev Tamrakar — Electronics Engineer &amp; AI/ML Developer" />
-  <meta name="twitter:description" content="BEI IV/I at KEC, IOE · Fuse AI Fellow · IEEE KEC Vice Chair · Robotics, embedded systems, machine learning." />
+  <meta name="twitter:description" content="BEI IV/I at KEC, IOE · Fuse AI Fellow · IEEE KEC KTM Vice Chair · Robotics, embedded systems, machine learning." />
   <meta name="twitter:image" content="https://aaradhyadtmr.github.io/photo.png" />
 
   <!-- JSON-LD structured data -->
@@ -39,7 +39,7 @@
     "url": "https://aaradhyadtmr.github.io/",
     "image": "https://aaradhyadtmr.github.io/photo.png",
     "jobTitle": "Electronics, Communication and Information Engineering Student",
-    "description": "BEI IV/I student at Kathmandu Engineering College, IOE, Tribhuvan University. Fuse AI Fellow (Fusemachines 2026), NSSR DataCamp Fellow, IEEE KEC Vice Chair.",
+    "description": "BEI IV/I student at Kathmandu Engineering College, IOE, Tribhuvan University. Fuse AI Fellow (Fusemachines 2026), NSSR DataCamp Fellow, IEEE KEC KTM Vice Chair.",
     "email": "aaradhyadevtmr@gmail.com",
     "alumniOf": {
       "@type": "EducationalOrganization",
@@ -582,6 +582,25 @@
     .back-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
     .back-top:hover { border-color: var(--accent); color: var(--accent); }
     .back-top svg { width: 14px; height: 14px; pointer-events: none; }
+    /* Scroll percentage indicator — sits directly below back-top button */
+    .scroll-pct {
+      position: fixed;
+      bottom: 2.9rem;
+      right: 2rem;
+      z-index: 200;
+      width: 42px;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 0.56rem;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: transparent;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .scroll-pct.visible { opacity: 0.7; transform: translateY(0); }
 
     /* Profile picture — full photo, centered */
     .about-photo-wrap {
@@ -646,8 +665,9 @@
     .about-photo {
       width: 100%;
       height: auto;
+      aspect-ratio: 3/4;      /* reserves layout space before load — prevents Contact scroll-position shift */
       display: block;
-      object-fit: contain;
+      object-fit: cover;
       border-radius: 2px;
       filter: grayscale(15%);
       transition: filter 0.4s;
@@ -665,6 +685,7 @@
       .about-left-col { align-items: center; text-align: center; }
       .about-stats { grid-template-columns: repeat(2, 1fr); }
       .back-top { bottom: 4.5rem; right: 1.5rem; }
+      .scroll-pct { bottom: 2.4rem; right: 1.5rem; }
     }
     footer { padding: 2rem 3rem; border-top: 1px solid var(--line); display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
     .footer-copy { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; color: var(--muted); text-align: center; }
@@ -1066,7 +1087,7 @@
     :root { --nav-h: 76px; }
     @media (max-width: 900px)  { :root { --nav-h: 68px; } }
     @media (max-width: 480px)  { :root { --nav-h: 60px; } }
-    section, .divider-wrap { scroll-margin-top: var(--nav-h); }
+    /* scroll-margin-top removed — anchor scroll handled exclusively by JS goTo() */
 
     /* ── Light theme: animated borders use dark-mode accent colours ─── */
     html[data-theme="light"] .status-card::before {
@@ -1301,6 +1322,7 @@
   <button class="back-top" id="backTop" aria-label="Back to top">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
   </button>
+  <div class="scroll-pct" id="scrollPct" aria-hidden="true">0%</div>
 
   <footer role="contentinfo">
     <div class="footer-copy" id="footer-copy"></div>
@@ -1322,7 +1344,7 @@
     description:
       "Electronics, Communication & Information Engineer building intelligent systems " +
       "at the intersection of hardware, firmware, and machine learning. " +
-      "Fuse AI Fellow · NSSR DataCamp Fellow · IEEE KEC Vice Chair · Robotics enthusiast.",
+      "Fuse AI Fellow · NSSR DataCamp Fellow · IEEE KEC KTM Vice Chair · Robotics enthusiast.",
 
     // ── Profile photo ─────────────────────────────────────────
     // Set to your image URL or relative path, e.g. "photo.png"
@@ -1332,7 +1354,7 @@
     // ── Status card (hero) ───────────────────────────────────
     status: [
       { label: "Focus",      value: "Fuse AI Fellowship — Wks 1–5 complete · Wk 6+ ongoing" },
-      { label: "Role",       value: "IEEE KEC Vice Chair · EPC Event Mgr" },
+      { label: "Role",       value: "IEEE KEC KTM Vice Chair · EPC Event Mgr" },
       { label: "Fellowship", value: "Fuse AI Fellow · NSSR DataCamp (C2) — SQL Associate next" },
       { label: "Stack",      value: "Python · Kotlin · FastAPI · Docker · PostgreSQL · XGBoost · SHAP" },
       { label: "Interests",  value: "Embedded Systems · AI/ML · Edge AI · IT4D 2026 Paper" },
@@ -1417,9 +1439,9 @@
         year:  "2026 — Present",
       },
       {
-        org:   "IEEE KEC Student Branch",
+        org:   "IEEE KEC KTM Student Branch",
         title: "Vice Chair",
-        desc:  "Spearheading strategic planning and high-level decision-making for the IEEE KEC Student Branch. Focused on scaling technical initiatives, mentoring executive members, and fostering industry partnerships to enhance the engineering ecosystem.",
+        desc:  "Spearheading strategic planning and high-level decision-making for the IEEE KEC KTM Student Branch. Focused on scaling technical initiatives, mentoring executive members, and fostering industry partnerships to enhance the engineering ecosystem.",
         year:  "2026 / 2027",
       },
       {
@@ -1435,9 +1457,9 @@
         year:  "2026 — Present",
       },
       {
-        org:   "IEEE KEC Student Branch",
+        org:   "IEEE KEC KTM Student Branch",
         title: "Vice Secretary",
-        desc:  "Led organizational and administrative operations of the IEEE KEC Student Branch. Coordinated events, managed communications, and drove technical initiatives for the engineering community.",
+        desc:  "Led organizational and administrative operations of the IEEE KEC KTM Student Branch. Coordinated events, managed communications, and drove technical initiatives for the engineering community.",
         year:  "2025 — 2026",
       },
       {
@@ -1502,7 +1524,7 @@
     aboutParagraphs: [
       "I'm a fourth-year <strong>Electronics, Communication &amp; Information Engineering</strong> student at Kathmandu Engineering College, IOE, Tribhuvan University — working at the frontier of embedded systems, robotics, and applied machine learning.",
       "My work bridges firmware and intelligence: from tuning PID loops on stepper-driven robots to deploying production ML pipelines via FastAPI and Docker. Currently a <strong>Fuse AI Fellow</strong> (Fusemachines 2026, Weeks 1–5 complete) building agentic Text-to-SQL systems, tree-based ensemble pipelines with SHAP explainability, and containerised REST APIs — with an IT4D 2026 concept paper in submission. Also an <strong>NSSR DataCamp Fellow (Cohort 2)</strong>, advancing through SQL Associate and Python Data Associate certification tracks.",
-      "Beyond the bench, I serve as <strong>the Vice Chair of the IEEE KEC Student Branch</strong> and Event Manager at the Electronics Project Club, where I work to build a stronger technical community for engineers in Nepal.",
+      "Beyond the bench, I serve as <strong>the Vice Chair of the IEEE KEC KTM Student Branch</strong> and Event Manager at the Electronics Project Club, where I work to build a stronger technical community for engineers in Nepal.",
     ],
     aboutStats: [
       { num: "4", sup: "th", label: "Year at KEC\nIOE, TU" },
@@ -1729,7 +1751,7 @@
       img.src = DATA.profilePhoto;
       img.alt = 'Aaradhya Dev Tamrakar';
       img.className = 'about-photo';
-      img.loading = 'lazy';
+      img.loading = 'eager';
       photoWrap.appendChild(img);
       // Build ring after image natural dimensions are known
       img.onload = () => {
@@ -1790,9 +1812,8 @@
             stroke-dasharray="${Math.round(RING_CIRC*0.09)} ${RING_CIRC}"
             stroke-dashoffset="${Math.round(RING_CIRC*0.5)}"/>
         </svg>` : '';
-      const extraAttrs = c.href.startsWith('mailto:') ? '' : ' target="_blank" rel="noopener"';
       list.innerHTML += `
-        <a class="contact-link" href="${c.href}"${extraAttrs}>
+        <a class="contact-link" href="${c.href}" target="_blank" rel="noopener">
           <div class="contact-link-left">
             <span class="contact-link-label">${c.label}</span>
             <span class="contact-link-detail">${c.detail}</span>
@@ -1859,9 +1880,13 @@
       var id = hash.charAt(0) === '#' ? hash.slice(1) : hash;
       var target = document.getElementById(id);
       if (!target) return;
-      // offsetHeight is reliable for a fixed element regardless of paint timing
+      // Use the section's own position + its computed padding-top.
+      // Querying a child (.section-num) is unreliable — it may be inside a
+      // .reveal element with transform: translateY(32px) not yet cleared,
+      // causing a 32px error on the first click.
       var offset = nav ? nav.offsetHeight : 0;
-      var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      var sectionPad = parseFloat(getComputedStyle(target).paddingTop) || 0;
+      var top = target.getBoundingClientRect().top + window.pageYOffset + sectionPad - offset - 16;
       window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
       history.replaceState(null, '', '#' + id);
     }
@@ -2243,13 +2268,17 @@
   // ── Nav scroll + progress bar (single listener) ─────────────
   const nav = document.getElementById('nav');
   const backTop = document.getElementById('backTop');
+  const scrollPct = document.getElementById('scrollPct');
   const progressBar = document.getElementById('scrollProgress');
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
     nav.classList.toggle('scrolled', scrollY > 50);
     backTop.classList.toggle('visible', scrollY > 400);
+    scrollPct.classList.toggle('visible', scrollY > 400);
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    progressBar.style.width = (docHeight > 0 ? (scrollY / docHeight * 100) : 0) + '%';
+    const pct = docHeight > 0 ? Math.round(scrollY / docHeight * 100) : 0;
+    progressBar.style.width = pct + '%';
+    scrollPct.textContent = pct + '%';
   }, { passive: true });
   backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
