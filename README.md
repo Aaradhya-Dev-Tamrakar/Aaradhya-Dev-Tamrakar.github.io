@@ -2,6 +2,8 @@
 
 Personal portfolio website for **Aaradhya Dev Tamrakar** — BEI IV/I student at Kathmandu Engineering College (KEC), Institute of Engineering (IOE), Tribhuvan University.
 
+_Last updated May 30, 2026._
+
 ## About
 
 This site showcases my work as an Electronics, Communication and Information Engineering student, IEEE KEC Vice Chair, Fuse AI Fellow (Fusemachines 2026), NSSR DataCamp Fellow (Cohort 2), and robotics enthusiast. It features a modern, luxury editorial design with glassmorphism effects, custom CSS animations, and interactive elements.
@@ -59,13 +61,13 @@ Mobile FCP 3.0 s / LCP 4.3 s on slow-4G simulation. EmailJS (65 KiB) is an irred
 
 ## Profile Photo & CV
 
-**Profile photo:** Add `photo.jpg` to the repo root (recommended: ~400×500 px minimum). The config already references `profilePhoto: "photo.jpg"` — just push the file.
+**Profile photo:** Add `photo.png` to the repo root (recommended: ~400×500 px minimum). The config already references `profilePhoto: "photo.png"` — just push the file.
 
 **CV download:** Place `AARADHYA_DEV_TAMRAKAR_CV.pdf` in the repo root. The hero **Download CV** button is already linked — no code changes needed.
 
 ## Content Editing Guide
 
-All portfolio content is managed in a single `DATA` object in `index.html` (lines ~800–1100). Edit only this section to update:
+All portfolio content is managed in a single `DATA` object in `index.html` around line 1234. Edit only this section to update:
 
 - **Profile Info:** `name`, `tagline`, `headline`, `description`
 - **Status Card:** `status` array (current focus, roles, tech stack)
@@ -77,6 +79,8 @@ All portfolio content is managed in a single `DATA` object in `index.html` (line
 - **About:** `aboutParagraphs` (bio text) and `aboutStats` (metrics)
 - **Contact:** `contactTagline`, `contactNote`, `contactLinks`
 - **Footer:** `footerCopy`, `footerSocials`
+
+The contact form configuration and EmailJS/Formspree fallback settings are defined later in `index.html` near the bottom of the file.
 
 **No JSX, no build step, no framework needed** — all rendering is vanilla JavaScript with simple template strings.
 

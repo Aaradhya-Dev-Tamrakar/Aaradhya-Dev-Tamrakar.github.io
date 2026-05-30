@@ -108,27 +108,25 @@
     }
 
     html[data-theme="light"] {
-      --bg:       #faf8f5;
-      --bg2:      #f1ede6;
-      --bg3:      #e8e2d8;
-      --line:     rgba(0,0,0,0.11);
-      --text:     #1a1612;
-      --muted:    #5c5650;
-      --accent:     #8a5800;
-      --accent2:    #1a6b57;
-      --accent-a07: rgba(138,88,0,0.07);
-      --accent-a35: rgba(138,88,0,0.35);
-      --accent-a40: rgba(138,88,0,0.40);
-      --accent-a45: rgba(138,88,0,0.45);
-      --accent-a80: rgba(138,88,0,0.80);
-      --heading:    #110d08;
-      --nav-scrolled-bg: rgba(250,248,245,0.94);
-      
-      /* Light Theme Glassmorphism */
-      --glass-bg: rgba(0, 0, 0, 0.02);
-      --glass-border: rgba(0, 0, 0, 0.06);
-      --glass-blur: 8px;
-      --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+      --bg:       #f5f2ec;
+      --bg2:      #ede8de;
+      --bg3:      #e3dcd1;
+      --line:     rgba(0,0,0,0.14);
+      --text:     #2a2420;
+      --muted:    #6b5e55;
+      --accent:     #7a4800;
+      --accent2:    #0f5a47;
+      --accent-a07: rgba(122,72,0,0.08);
+      --accent-a35: rgba(122,72,0,0.38);
+      --accent-a40: rgba(122,72,0,0.44);
+      --accent-a45: rgba(122,72,0,0.50);
+      --accent-a80: rgba(122,72,0,0.85);
+      --heading:    #0e0a06;
+      --nav-scrolled-bg: rgba(245,242,236,0.95);
+      --glass-bg:    rgba(0,0,0,0.025);
+      --glass-border: rgba(0,0,0,0.09);
+      --glass-blur:  8px;
+      --card-shadow: 0 4px 24px 0 rgba(80,50,20,0.10);
     }
 
     /* Smooth theme transition — scoped to avoid fighting CSS animations */
@@ -697,14 +695,14 @@
     }
     /* ── Ambient Perpetual Animations ──────────────────────── */
 
-    /* Particle canvas — sits above bg-canvas, below content */
+    /* Spark canvas — full page overlay, above all content, below cursor */
     #particle-canvas {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      z-index: 0;
+      z-index: 9997;      /* above content (100 nav) and drawer (99), below cursor (9999) and grain (9998) */
       pointer-events: none;
-      opacity: 0.5;
+      opacity: 1;
     }
 
     /* Section number — slow char flicker */
@@ -719,18 +717,111 @@
     .section-header:nth-of-type(2) .section-num { animation-delay: 1.3s; }
     .section-header:nth-of-type(3) .section-num { animation-delay: 2.6s; }
 
-    /* Section title italic — shimmer gradient */
+    /* Section title italic — shimmer gradient, both modes */
     @keyframes title-shimmer {
       0%   { background-position: -200% center; }
       100% { background-position: 200% center; }
     }
     .section-title em, .hero-name em, .contact-tagline em {
+      display: inline;
       background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 40%, var(--accent) 80%);
       background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       animation: title-shimmer 5s linear infinite;
+    }
+    /* Light mode: ensure shimmer is visible (darker accent has better contrast) */
+    html[data-theme="light"] .section-title em,
+    html[data-theme="light"] .hero-name em,
+    html[data-theme="light"] .contact-tagline em {
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 45%, var(--accent) 85%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Light mode explicit readability fixes */
+    html[data-theme="light"] .tag {
+      color: var(--text);
+      border-color: rgba(0,0,0,0.18);
+    }
+    html[data-theme="light"] .project-index,
+    html[data-theme="light"] .section-num,
+    html[data-theme="light"] .exp-org,
+    html[data-theme="light"] .achievement-org {
+      color: var(--accent);
+      opacity: 1;
+    }
+    html[data-theme="light"] .status-item-label,
+    html[data-theme="light"] .status-label {
+      color: var(--text);
+    }
+    html[data-theme="light"] .skill-group-title {
+      color: var(--accent);
+    }
+    html[data-theme="light"] .hero-desc,
+    html[data-theme="light"] .project-desc,
+    html[data-theme="light"] .app-desc,
+    html[data-theme="light"] .exp-desc,
+    html[data-theme="light"] .achievement-desc,
+    html[data-theme="light"] .about-text p,
+    html[data-theme="light"] .contact-note {
+      color: var(--text);
+    }
+    html[data-theme="light"] .hero-tag {
+      color: var(--accent);
+    }
+    html[data-theme="light"] .hero-tag::before {
+      background: var(--accent);
+    }
+    html[data-theme="light"] .status-card {
+      background: var(--bg2);
+      border-color: rgba(0,0,0,0.14);
+    }
+    html[data-theme="light"] .project-card,
+    html[data-theme="light"] .app-card,
+    html[data-theme="light"] .skill-group {
+      background: var(--bg2);
+    }
+    html[data-theme="light"] .project-card:hover,
+    html[data-theme="light"] .app-card:hover,
+    html[data-theme="light"] .skill-group:hover {
+      background: var(--bg3);
+    }
+    html[data-theme="light"] .achievement-item {
+      background: var(--bg2);
+    }
+    html[data-theme="light"] .achievement-item:hover {
+      background: var(--bg3);
+    }
+    html[data-theme="light"] .form-input,
+    html[data-theme="light"] .form-textarea {
+      background: var(--bg);
+      color: var(--text);
+      border-color: rgba(0,0,0,0.18);
+    }
+    html[data-theme="light"] .nav-drawer {
+      background: var(--bg);
+    }
+    html[data-theme="light"] .nav-drawer a {
+      color: var(--text);
+    }
+    html[data-theme="light"] .nav-links a {
+      color: var(--text);
+    }
+    html[data-theme="light"] .footer-copy {
+      color: var(--muted);
+    }
+    html[data-theme="light"] .project-link {
+      color: var(--accent2);
+    }
+    html[data-theme="light"] .contact-link-label {
+      color: var(--heading);
+    }
+    html[data-theme="light"] .contact-link-detail {
+      color: var(--muted);
     }
 
     /* Skill dots — staggered glow breathe */
@@ -1787,19 +1878,26 @@
     }
   }
 
-  // ── Floating Particle System ───────────────────────────────
-  class ParticleSystem {
+  // ── Full-Page Spark / Ember System ────────────────────────
+  class SparkSystem {
     constructor() {
       this.canvas = document.getElementById('particle-canvas');
       this.ctx    = this.canvas.getContext('2d');
-      this.particles = [];
+      this.sparks = [];
+      this.trails = [];          // fading trail segments
       this._resizeTimer = null;
       this.resize();
-      this.spawn();
+      this.seed();
       this.animate();
       window.addEventListener('resize', () => {
         clearTimeout(this._resizeTimer);
-        this._resizeTimer = setTimeout(() => this.resize(), 150);
+        this._resizeTimer = setTimeout(() => { this.resize(); this.seed(); }, 150);
+      }, { passive: true });
+
+      // Spawn burst on click / tap anywhere (including drawer)
+      document.addEventListener('click', e => this.burst(e.clientX, e.clientY, 10), { passive: true });
+      document.addEventListener('touchstart', e => {
+        if (e.touches[0]) this.burst(e.touches[0].clientX, e.touches[0].clientY, 8);
       }, { passive: true });
     }
 
@@ -1808,39 +1906,74 @@
       this.H = this.canvas.height = window.innerHeight;
     }
 
-    spawn() {
-      const count = Math.min(38, Math.floor((this.W * this.H) / 32000));
-      this.particles = [];
-      for (let i = 0; i < count; i++) {
-        this.particles.push(this.makeParticle(true));
-      }
+    // How many ambient sparks to seed
+    get targetCount() {
+      return Math.min(55, Math.max(22, Math.floor((this.W * this.H) / 22000)));
     }
 
-    makeParticle(randomY = false) {
+    seed() {
+      // Trim or pad to target
+      while (this.sparks.length > this.targetCount) this.sparks.pop();
+      while (this.sparks.length < this.targetCount) this.sparks.push(this.makeSpark(true));
+    }
+
+    makeSpark(scatter = false) {
+      const W = this.W, H = this.H;
+      // Spawn from random edge or anywhere if scatter
+      let x, y;
+      if (scatter) {
+        x = Math.random() * W;
+        y = Math.random() * H;
+      } else {
+        // Spawn from bottom or random sides
+        const edge = Math.random();
+        if (edge < 0.5) { x = Math.random() * W; y = H + 4; }
+        else if (edge < 0.7) { x = -4; y = Math.random() * H; }
+        else { x = W + 4; y = Math.random() * H; }
+      }
+
+      const angle = -Math.PI * (0.35 + Math.random() * 0.9);  // mostly upward
+      const speed = 0.35 + Math.random() * 0.7;
+      const isEmber = Math.random() < 0.3;   // 30% embers (mini hex), 70% sparks (dot)
+
       return {
-        x:    Math.random() * this.W,
-        y:    randomY ? Math.random() * this.H : this.H + 8,
-        vy:   -(0.18 + Math.random() * 0.28),   // drift upward
-        vx:   (Math.random() - 0.5) * 0.12,
-        size: 0.8 + Math.random() * 1.4,
-        life: 0,
-        maxLife: 280 + Math.random() * 220,
-        shape: Math.random() < 0.35 ? 'hex' : 'dot',  // 35% mini hex, rest dot
+        x, y,
+        vx: Math.cos(angle) * speed * (0.6 + Math.random() * 0.8),
+        vy: Math.sin(angle) * speed,
+        gravity: 0.004 + Math.random() * 0.006,   // slight upward fight
+        life:    0,
+        maxLife: isEmber ? 320 + Math.random() * 180
+                         : 180 + Math.random() * 140,
+        size:    isEmber ? 1.6 + Math.random() * 1.2
+                         : 0.7 + Math.random() * 1.0,
+        isEmber,
+        rot:     Math.random() * Math.PI * 2,
+        rotV:    (Math.random() - 0.5) * 0.04,
+        useAccent2: Math.random() < 0.38,  // 38% use teal accent
+        prevX: x, prevY: y,
       };
     }
 
-    drawMiniHex(ctx, x, y, r, color) {
-      ctx.beginPath();
-      for (let i = 0; i < 6; i++) {
-        const a = (Math.PI / 3) * i;
-        const vx = x + r * Math.cos(a);
-        const vy = y + r * Math.sin(a);
-        i === 0 ? ctx.moveTo(vx, vy) : ctx.lineTo(vx, vy);
+    burst(cx, cy, count = 12) {
+      for (let i = 0; i < count; i++) {
+        const angle = (Math.PI * 2 * i / count) + (Math.random() - 0.5) * 0.6;
+        const speed = 1.2 + Math.random() * 2.2;
+        this.sparks.push({
+          x: cx, y: cy,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - 0.8,
+          gravity: 0.06 + Math.random() * 0.04,
+          life: 0,
+          maxLife: 60 + Math.random() * 60,
+          size: 0.9 + Math.random() * 1.4,
+          isEmber: Math.random() < 0.4,
+          rot: Math.random() * Math.PI * 2,
+          rotV: (Math.random() - 0.5) * 0.12,
+          useAccent2: Math.random() < 0.4,
+          prevX: cx, prevY: cy,
+          isBurst: true,
+        });
       }
-      ctx.closePath();
-      ctx.strokeStyle = color;
-      ctx.lineWidth = 0.6;
-      ctx.stroke();
     }
 
     animate() {
@@ -1848,47 +1981,108 @@
       ctx.clearRect(0, 0, W, H);
 
       const isDark    = document.documentElement.getAttribute('data-theme') !== 'light';
-      const r1 = isDark ? '212,168,90' : '138,88,0';
-      const r2 = isDark ? '109,191,170' : '26,107,87';
+      // Two accent RGB strings — gold and teal, adapted per theme
+      const rgb1 = isDark ? '212,168,90'  : '122,72,0';
+      const rgb2 = isDark ? '109,191,170' : '15,90,71';
 
-      for (const p of this.particles) {
-        p.x += p.vx;
-        p.y += p.vy;
+      const dead = [];
+      for (let i = 0; i < this.sparks.length; i++) {
+        const p = this.sparks[i];
+
+        // Physics
+        p.prevX = p.x; p.prevY = p.y;
+        p.vx += (Math.random() - 0.5) * 0.015;   // micro turbulence
+        p.vy += p.gravity;
+        p.x  += p.vx;
+        p.y  += p.vy;
+        p.rot += p.rotV;
         p.life++;
 
-        // Fade in/out over lifetime
+        // Lifetime alpha envelope — sharp rise, long sustain, soft fade
         const t = p.life / p.maxLife;
-        const alpha = Math.min(1, t * 8) * Math.min(1, (1 - t) * 8) * 0.45;
-        if (alpha <= 0) { Object.assign(p, this.makeParticle(false)); continue; }
+        let alpha;
+        if (t < 0.08)      alpha = t / 0.08;
+        else if (t < 0.75) alpha = 1;
+        else               alpha = 1 - (t - 0.75) / 0.25;
+        alpha *= isDark ? 0.72 : 0.65;
+        if (alpha < 0.01) alpha = 0;
 
-        // Alternate accent colours
-        const rgb = (p.life % 80 < 40) ? r1 : r2;
+        const rgb   = p.useAccent2 ? rgb2 : rgb1;
         const color = `rgba(${rgb},${alpha})`;
 
-        if (p.shape === 'hex') {
-          this.drawMiniHex(ctx, p.x, p.y, p.size * 2.2, color);
-        } else {
+        if (p.isEmber) {
+          // Mini rotating hexagon ember
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          const r = p.size * 1.8;
+          for (let k = 0; k < 6; k++) {
+            const a = (Math.PI / 3) * k;
+            k === 0 ? ctx.moveTo(r * Math.cos(a), r * Math.sin(a))
+                    : ctx.lineTo(r * Math.cos(a), r * Math.sin(a));
+          }
+          ctx.closePath();
+          ctx.strokeStyle = color;
+          ctx.lineWidth   = 0.7;
+          ctx.stroke();
+          // inner glow dot
+          ctx.beginPath();
+          ctx.arc(0, 0, p.size * 0.35, 0, Math.PI * 2);
+          ctx.fillStyle = color;
+          ctx.fill();
+          ctx.restore();
+        } else {
+          // Spark — short line trail in direction of travel + tip dot
+          const dx = p.x - p.prevX;
+          const dy = p.y - p.prevY;
+          const len = Math.sqrt(dx * dx + dy * dy) || 1;
+          const trailLen = 3.5 + p.size * 2;
+          ctx.beginPath();
+          ctx.moveTo(p.x - (dx / len) * trailLen, p.y - (dy / len) * trailLen);
+          ctx.lineTo(p.x, p.y);
+          ctx.strokeStyle = color;
+          ctx.lineWidth   = p.size * 0.8;
+          ctx.lineCap     = 'round';
+          ctx.stroke();
+          // bright tip
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size * 0.7, 0, Math.PI * 2);
           ctx.fillStyle = color;
           ctx.fill();
         }
 
-        // Respawn if offscreen top
-        if (p.y < -10) Object.assign(p, this.makeParticle(false));
+        // Mark dead
+        if (p.life >= p.maxLife || p.y > H + 20 || p.x < -20 || p.x > W + 20) {
+          dead.push(i);
+        }
+      }
+
+      // Replace dead sparks — ambient ones respawn, burst ones are removed
+      for (let i = dead.length - 1; i >= 0; i--) {
+        const p = this.sparks[dead[i]];
+        if (p.isBurst) {
+          this.sparks.splice(dead[i], 1);
+        } else {
+          this.sparks[dead[i]] = this.makeSpark(false);
+        }
+      }
+
+      // Maintain ambient count
+      while (this.sparks.filter(s => !s.isBurst).length < this.targetCount) {
+        this.sparks.push(this.makeSpark(false));
       }
 
       requestAnimationFrame(() => this.animate());
     }
   }
-
   function initMagnetic() {
     // Buttons no longer move — cursor snaps to them instead (see cursor logic below)
   }
 
-  // ── Init background + particles ─────────────────────────────
+  // ── Init background + sparks ─────────────────────────────────
   new IsometricHexBackground();
-  new ParticleSystem();
+  new SparkSystem();
   initMagnetic();
 
   // ── Cursor (mouse only) ─────────────────────────────────────
