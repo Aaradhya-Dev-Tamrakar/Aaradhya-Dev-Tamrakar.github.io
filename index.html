@@ -3089,7 +3089,7 @@
           {
             label: "Focus",
             value:
-              "Fuse AI Fellowship — Wks 1–6 complete · HimalGuard Major Project",
+              "Fuse AI Fellowship — Wks 1–7 complete · PrakopNet Major Project",
           },
           {
             label: "Role",
@@ -3103,12 +3103,12 @@
           {
             label: "Stack",
             value:
-              "Python · Kotlin · FastAPI · Docker · PostgreSQL · XGBoost · PyMC · SHAP",
+              "Python · Kotlin · FastAPI · Docker · PostgreSQL · XGBoost · PyMC · SHAP · scikit-learn",
           },
           {
             label: "Interests",
             value:
-              "Embedded Systems · AI/ML · Edge AI · LoRa EWS · IT4D 2026 Paper",
+              "Embedded Systems · AI/ML · Edge AI · LoRa EWS · Disaster Tech",
           },
           { label: "Last Updated", value: "Loading latest commit..." },
         ],
@@ -3133,7 +3133,7 @@
           },
           {
             title: "Text-to-SQL Agentic Pipeline",
-            desc: "Production-grade five-stage agentic Text-to-SQL system over a classicmodels PostgreSQL database. Modular FastAPI state machine: Planner → Generator → Validator → Executor → Summarizer with up to 3 self-correction retries. Achieved 100% execution success rate and 100% result accuracy across a 50-question benchmark — zero retries required. Streamlit chat UI, Docker/Compose containerisation, rule-based SQL safety validation (blocks DML/DDL), structured JSON audit logging. Basis for IT4D 2026 concept paper (submission Jun 1).",
+            desc: "Production-grade five-stage agentic Text-to-SQL system over a classicmodels PostgreSQL database. Modular FastAPI state machine: Planner → Generator → Validator → Executor → Summarizer with up to 3 self-correction retries. Achieved 100% execution success rate and 100% result accuracy across a 50-question benchmark — zero retries required. Streamlit chat UI, Docker/Compose containerisation, rule-based SQL safety validation (blocks DML/DDL), structured JSON audit logging.",
             tags: [
               "Python",
               "FastAPI",
@@ -3235,13 +3235,28 @@
             link: "https://github.com/AaradhyaDT/FUSE_AIF_2026_M1",
           },
           {
-            title: "HimalGuard — Multi-Hazard Early Warning System",
-            desc: "Solar-powered LoRa mesh multi-hazard monitoring and early warning platform for remote regions of Nepal. ESP32 sensor nodes (flood, landslide, air quality, weather, wildfire, structural health) transmit over LoRa SX1278 to a Raspberry Pi 4B gateway running edge AI anomaly detection (LSTM/TinyML). GPS localization, solar + 18650 battery backup, web dashboard. Confirmed BEI major project — demo target January 2027.",
+            title: "Fusemachines Wk 7 — Customer Segmentation (Clustering)",
+            desc: "Market segmentation pipeline on UCI Online Retail II (~500,000 transactions). RFM feature engineering extended with AvgBasketSize, AvgDaysBetweenPurchases, UniqueProducts, ReturnRate, and keyword-bucketed category spend ratios (≥5 categories). Full clustering comparison: K-Means (elbow + silhouette, k-means++ vs random init), Hierarchical (Ward/Complete/Average/Single dendrograms), DBSCAN (k-distance ε estimation, ≥3 param combos, noise analysis). Validation: Silhouette Score, Davies-Bouldin Index, Calinski-Harabasz Index. Deliverable: cluster business narratives + executive summary.",
+            tags: [
+              "Python",
+              "scikit-learn",
+              "K-Means",
+              "Hierarchical Clustering",
+              "DBSCAN",
+              "RFM",
+              "Pandas",
+              "scipy",
+            ],
+            link: "https://github.com/AaradhyaDT/fuseAiF_wk7_customer_segmentation",
+          },
+          {
+            title: "PrakopNet — Multi-Hazard Early Warning System",
+            desc: "Solar-powered LoRa mesh multi-hazard monitoring and early warning platform for remote regions of Nepal. ESP32 sensor nodes (flood, landslide, air quality, weather) transmit over RYLR890 (868 MHz, Nepal-legal) to a Raspberry Pi 4B gateway running federated TFLite edge inference + LSTM HazardScore fusion. GPS localization, CN3791 solar charge controller, 18650 battery backup, INA219 power telemetry, FastAPI + Streamlit dashboard. BEI major project — demo target March 2027.",
             tags: [
               "ESP32",
-              "LoRa SX1278",
-              "Raspberry Pi",
-              "TinyML",
+              "RYLR890 LoRa 868 MHz",
+              "Raspberry Pi 4B",
+              "TFLite Micro",
               "LSTM",
               "GPS",
               "FastAPI",
@@ -3253,6 +3268,26 @@
               { label: "Architecture", done: true },
               { label: "Prototype", done: false },
               { label: "Demo", done: false },
+            ],
+          },
+          {
+            title: "Nexus — Personal AI Operating System",
+            desc: "Project-centric AI operating system replacing the multi-browser/multi-account/multi-tool workflow. Single prompt → project context → parallel Groq (Llama 3.3 70B) + Gemini 1.5 Flash fan-out → centralized persistent memory. Architecture: React (Vite) frontend · FastAPI backend · SQLite + FTS5 (context injection, zero embedding latency) · multi-key rotation pool (auto-retry on 429/401/403). Google account routing via index-swap; no OAuth storage. v2 redesign complete June 12, 2026.",
+            tags: [
+              "React",
+              "Vite",
+              "FastAPI",
+              "SQLite",
+              "FTS5",
+              "Groq",
+              "Gemini",
+              "Python",
+            ],
+            link: "https://github.com/AaradhyaDT/nexus",
+            status: "In Progress",
+            progress: [
+              { label: "v2 Core", done: true },
+              { label: "MVP", done: false },
             ],
           },
           {
@@ -3294,7 +3329,7 @@
           {
             org: "Fusemachines",
             title: "Fuse AI Fellow",
-            desc: "Selected through competitive entrance exam (linear algebra, calculus, probability, Python, ML). Wk 1: Heart attack risk prediction — EDA, SQL CTEs/window functions. Wk 2: Containerised FastAPI + PostgreSQL REST API (4-layer architecture, asyncio concurrency). Wk 3: Five-stage Text-to-SQL agentic pipeline — 100% execution success and 100% accuracy on 50-question benchmark; basis for IT4D 2026 concept paper. Wk 4: Telco Churn & CLV pipeline — ROC-AUC 0.841 ± 0.005, Papermill automation, HTML report. Wk 5: Tree-based ensemble pipeline — XGBoost + Random Forest, ImbPipeline/SMOTE (zero leakage), SHAP explainability, Joblib serialisation. Wk 6: Probabilistic models — Bayesian inference (MLE/MAP/full Bayes), Dirichlet-multinomial, multivariate Gaussian, PGMs, Gaussian process regression, PyMC Bayesian logistic regression.",
+            desc: "Selected through competitive entrance exam (linear algebra, calculus, probability, Python, ML). Wk 1: Heart attack risk prediction — EDA, SQL CTEs/window functions. Wk 2: Containerised FastAPI + PostgreSQL REST API (4-layer architecture, asyncio concurrency). Wk 3: Five-stage Text-to-SQL agentic pipeline — 100% execution success and 100% accuracy on 50-question benchmark. Wk 4: Telco Churn & CLV pipeline — ROC-AUC 0.841 ± 0.005, Papermill automation, HTML report. Wk 5: Tree-based ensemble pipeline — XGBoost + Random Forest, ImbPipeline/SMOTE (zero leakage), SHAP explainability, Joblib serialisation. Wk 6: Probabilistic models — Bayesian inference (MLE/MAP/full Bayes), Dirichlet-multinomial, multivariate Gaussian, PGMs, Gaussian process regression, PyMC Bayesian logistic regression. Wk 7: Customer segmentation on UCI Online Retail II — RFM + category-ratio feature engineering, K-Means/Hierarchical/DBSCAN clustering, full statistical validation (Silhouette, Davies-Bouldin, Calinski-Harabasz) and business narrative.",
             year: "2026 — Present",
           },
           {
@@ -3384,8 +3419,8 @@
         // ── About ────────────────────────────────────────────────
         aboutParagraphs: [
           "I'm a fourth-year <strong>Electronics, Communication &amp; Information Engineering</strong> student at Kathmandu Engineering College, IOE, Tribhuvan University — working at the frontier of embedded systems, robotics, and applied machine learning.",
-          "My work bridges firmware and intelligence: from tuning PID loops on stepper-driven robots to deploying production ML pipelines via FastAPI and Docker. Currently a <strong>Fuse AI Fellow</strong> (Fusemachines 2026, Weeks 1–6 complete) building agentic Text-to-SQL systems, tree-based ensemble pipelines with SHAP explainability, and probabilistic Bayesian inference workflows — with an IT4D 2026 concept paper in submission. Also an <strong>NSSR DataCamp Fellow (Cohort 2)</strong>, advancing through SQL Associate and Python Data Associate certification tracks.",
-          "My BEI major project, <strong>HimalGuard</strong>, is a solar-powered LoRa mesh multi-hazard early warning platform for remote Nepal — combining ESP32 sensor nodes, edge AI anomaly detection, and a Raspberry Pi gateway. Beyond the bench, I serve as <strong>Vice Chair of the IEEE KEC KTM Student Branch</strong> and Event Manager at the Electronics Project Club.",
+          "My work bridges firmware and intelligence: from tuning PID loops on stepper-driven robots to deploying production ML pipelines via FastAPI and Docker. Currently a <strong>Fuse AI Fellow</strong> (Fusemachines 2026, Weeks 1–7 complete) building agentic Text-to-SQL systems, tree-based ensemble pipelines with SHAP explainability, probabilistic Bayesian inference workflows, and customer segmentation pipelines. Also an <strong>NSSR DataCamp Fellow (Cohort 2)</strong>, advancing through SQL Associate and Python Data Associate certification tracks.",
+          "My BEI major project, <strong>PrakopNet</strong>, is a solar-powered LoRa mesh multi-hazard early warning platform for remote Nepal — combining ESP32 sensor nodes with federated TFLite edge inference, LSTM HazardScore fusion at a Raspberry Pi 4B gateway, and GPS localization. Beyond the bench, I serve as <strong>Vice Chair of the IEEE KEC KTM Student Branch</strong> and Event Manager at the Electronics Project Club.",
         ],
         aboutStats: [
           { num: "4", sup: "th", label: "Year at KEC\nIOE, TU" },
