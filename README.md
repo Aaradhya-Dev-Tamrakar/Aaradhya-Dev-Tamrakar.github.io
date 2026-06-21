@@ -127,6 +127,7 @@ This project is licensed under an **All Rights Reserved** proprietary license.
 
 No part of this website may be copied, modified, distributed, or used without **explicit written permission**. 
 
+
 To request permission to use or adapt any part of this portfolio, please contact: **aaradhyadevtmr@gmail.com**
 
 See the [LICENSE](LICENSE) file for full details.
