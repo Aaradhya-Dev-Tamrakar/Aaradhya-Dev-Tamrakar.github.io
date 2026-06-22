@@ -147,6 +147,40 @@
         .projects-grid { grid-template-columns: 1fr; }
         .project-card:only-child { grid-column: span 1; }
       }
+    
+      /* ── Quick-nav cards (Explore section) ───────────────── */
+      #quick-nav { background: transparent; position: relative; padding: 6rem 3rem; }
+      #quick-nav::before { content:""; position:absolute; inset:0; z-index:0; background: rgba(13,14,17,.55); pointer-events:none; }
+      html[data-theme="light"] #quick-nav::before { background: rgba(245,242,236,.7); }
+      #quick-nav > * { position: relative; z-index: 1; }
+      .quick-nav-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px;
+        border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+      }
+      .quick-nav-card {
+        background: var(--bg2); padding: 2.5rem 2rem;
+        display: flex; flex-direction: column; gap: 1rem;
+        text-decoration: none; position: relative; overflow: hidden;
+        transition: background .3s;
+      }
+      .quick-nav-card::after {
+        content:""; position:absolute; top:0; left:0; right:0; height:1px;
+        background: var(--accent); transform: scaleX(0); transform-origin: left;
+        transition: transform .4s ease;
+      }
+      .quick-nav-card:hover { background: var(--bg3); }
+      .quick-nav-card:hover::after { transform: scaleX(1); }
+      .quick-nav-index { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; color: var(--accent); opacity: .8; }
+      .quick-nav-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; color: var(--heading); }
+      .quick-nav-desc { font-size: 0.85rem; line-height: 1.65; color: var(--text); flex: 1; }
+      .quick-nav-cta {
+        font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--accent2);
+        display: inline-flex; align-items: center; gap: 0.4rem; transition: gap .25s;
+      }
+      .quick-nav-card:hover .quick-nav-cta { gap: 0.65rem; }
+      @media (max-width: 1100px) { #quick-nav { padding: 4rem 2rem; } }
+      @media (max-width: 900px)  { #quick-nav { padding: 3.5rem 1.5rem; } .quick-nav-grid { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
@@ -463,6 +497,39 @@
               <span class="tag">Matplotlib</span><span class="tag">Polar Plot</span>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section id="quick-nav" aria-label="Explore the site">
+        <div class="section-header reveal">
+          <div class="section-num">Explore</div>
+          <h2 class="section-title">Where to <em>look next</em></h2>
+        </div>
+        <div class="quick-nav-grid reveal">
+          <a class="quick-nav-card" href="experience.html">
+            <div class="quick-nav-index">P — 02</div>
+            <div class="quick-nav-title">Experience</div>
+            <p class="quick-nav-desc">Fellowships, IEEE leadership, and club roles over the past two years.</p>
+            <span class="quick-nav-cta">View Timeline →</span>
+          </a>
+          <a class="quick-nav-card" href="achievements.html">
+            <div class="quick-nav-index">P — 03</div>
+            <div class="quick-nav-title">Achievements</div>
+            <p class="quick-nav-desc">IEEEXtreme, fellowships, certifications, and competition results.</p>
+            <span class="quick-nav-cta">View Achievements →</span>
+          </a>
+          <a class="quick-nav-card" href="about.html">
+            <div class="quick-nav-index">P — 04</div>
+            <div class="quick-nav-title">About</div>
+            <p class="quick-nav-desc">Bio, technical stack, and the path from firmware to applied ML.</p>
+            <span class="quick-nav-cta">Read Bio →</span>
+          </a>
+          <a class="quick-nav-card" href="contact.html">
+            <div class="quick-nav-index">P — 05</div>
+            <div class="quick-nav-title">Contact</div>
+            <p class="quick-nav-desc">Open to collaborations, research, and internship conversations.</p>
+            <span class="quick-nav-cta">Get in Touch →</span>
+          </a>
         </div>
       </section>
     </main>
