@@ -161,6 +161,7 @@ window.SEARCH_INDEX = window.SEARCH_INDEX || [];
 (function init() {
   initTheme();       // must run first — sets data-theme before paint
   setActiveNav();
+  initKeyNav();
   initHamburger();
   initScroll();
   initReveal();
