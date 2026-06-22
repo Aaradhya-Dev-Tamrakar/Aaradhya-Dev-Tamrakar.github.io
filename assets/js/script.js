@@ -102,26 +102,33 @@ function renderSiteFooter() {
 function setActiveNav() {
   // Match current page filename against each nav link's href
   const page = location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-links a, .nav-drawer a').forEach(a => {
+  document.querySelectorAll('.nav-links a, .nav-drawer a, .nav-cta').forEach(a => {
     const linkPage = (a.getAttribute('href') || '').split('/').pop().split('#')[0] || 'index.html';
-    if (linkPage === page) a.classList.add('active');
+    a.classList.toggle('active', linkPage === page);
   });
 }
 
 /* ── Theme toggle ─────────────────────────────────────────── */
-function initTheme() {
-  const html = document.documentElement;
-  // Apply saved theme before first paint to avoid flash
-  const saved = localStorage.getItem('adt-theme') || 'dark';
-  html.setAttribute('data-theme', saved);
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+}
 
+function toggleTheme() {
+  const html = document.documentElement;
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+  localStorage.setItem('adt-theme', next);
+}
+
+function initTheme() {
+  const saved = localStorage.getItem('adt-theme') || 'dark';
+  applyTheme(saved);
+}
+
+function initThemeToggle() {
   const btn = document.getElementById('themeToggle');
   if (!btn) return;
-  btn.addEventListener('click', () => {
-    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('adt-theme', next);
-  });
+  btn.addEventListener('click', toggleTheme);
 }
 
 /* ── Mobile hamburger ─────────────────────────────────────── */
@@ -221,6 +228,7 @@ window.SEARCH_INDEX = window.SEARCH_INDEX || [];
   initTheme();       // must run first — sets data-theme before paint
   renderSiteNav();
   setActiveNav();
+  initThemeToggle();
   initKeyNav();
   initHamburger();
   initScroll();
@@ -244,10 +252,16 @@ function initKeyNav() {
     '6': 'contact.html',
   };
   document.addEventListener('keydown', e => {
-    if (!PAGE_MAP[e.key]) return;
     const tag = (document.activeElement || {}).tagName || '';
     if (/^(INPUT|TEXTAREA|SELECT)$/i.test(tag)) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
+
+    if (e.key === '0') {
+      toggleTheme();
+      return;
+    }
+
+    if (!PAGE_MAP[e.key]) return;
     window.location.href = PAGE_MAP[e.key];
   });
 }

@@ -306,6 +306,50 @@
         .hero-tag, .hero-name, .hero-desc, .hero-actions, .hero-right { opacity:1 !important; transform:none !important; animation:none !important; }
         .hero-glow { animation: none !important; }
       }
+
+      /* CV lightbox */
+      #cert-lightbox {
+        position: fixed; inset: 0; z-index: 9999;
+        display: flex; align-items: center; justify-content: center;
+        background: rgba(7, 8, 10, 0.88);
+        backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.22s ease;
+      }
+      #cert-lightbox.open { opacity: 1; pointer-events: all; }
+      .lightbox-inner {
+        position: relative; width: min(92vw, 860px); max-height: 90vh;
+        background: var(--surface, #14151a); border: 1px solid var(--line);
+        border-radius: 6px; overflow: hidden; display: flex; flex-direction: column;
+        transform: translateY(12px) scale(0.98); transition: transform 0.22s ease;
+        box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      }
+      #cert-lightbox.open .lightbox-inner { transform: translateY(0) scale(1); }
+      .lightbox-bar {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0.75rem 1rem 0.75rem 1.25rem; border-bottom: 1px solid var(--line);
+        flex-shrink: 0;
+      }
+      .lightbox-label {
+        font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.18em;
+        text-transform: uppercase; color: var(--accent);
+      }
+      .lightbox-actions { display: flex; align-items: center; gap: 0.5rem; }
+      .lb-btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 2rem; height: 2rem; border-radius: 4px;
+        border: 1px solid var(--line); background: transparent;
+        color: var(--text); cursor: pointer;
+        transition: background 0.15s, color 0.15s, border-color 0.15s;
+      }
+      .lb-btn svg { width: 0.9em; height: 0.9em; }
+      .lb-btn:hover { background: color-mix(in srgb, var(--text) 10%, transparent); color: var(--heading); border-color: color-mix(in srgb, var(--text) 40%, transparent); }
+      .lb-btn.lb-close { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+      .lb-btn.lb-close:hover { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--heading); border-color: var(--accent); }
+      .lb-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .lightbox-body { flex: 1; overflow: auto; display: flex; align-items: center; justify-content: center; min-height: 80vh; }
+      .lightbox-body iframe { width: 100%; height: 80vh; border: none; display: block; }
+      .lightbox-body img { width: 100%; max-height: 80vh; border: none; display: block; object-fit: contain; }
     </style>
   </head>
   <body>
@@ -345,12 +389,16 @@
             <div class="magnetic-wrap">
               <a
                 href="AARADHYA_DEV_TAMRAKAR_CV.pdf"
-                class="btn-ghost"
+                class="cert-btn btn-ghost"
                 download
-                aria-label="Download Aaradhya's CV"
+                data-cert="AARADHYA_DEV_TAMRAKAR_CV.pdf"
+                data-label="Aaradhya Dev Tamrakar CV"
+                data-type="pdf"
+                aria-label="View Aaradhya's CV"
                 onclick="window.gtag && gtag('event','cv_download',{event_category:'engagement',event_label:'Hero CV button'})"
-                >Download CV ↓</a
               >
+                Download CV ↓
+              </a>
             </div>
           </div>
         </div>
@@ -457,6 +505,33 @@
     <footer role="contentinfo">
       <div id="siteFooter"></div>
     </footer>
+
+    <!-- CV lightbox -->
+    <div id="cert-lightbox" role="dialog" aria-modal="true" aria-label="Curriculum vitae viewer">
+      <div class="lightbox-inner">
+        <div class="lightbox-bar">
+          <span class="lightbox-label" id="lb-label">CV Preview</span>
+          <div class="lightbox-actions">
+            <a id="lb-download" class="lb-btn" title="Download CV" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+            </a>
+            <a id="lb-open" class="lb-btn" title="Open in new tab" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+            <button id="lb-close" class="lb-btn lb-close" aria-label="Close CV viewer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="lightbox-body" id="lb-body"></div>
+      </div>
+    </div>
 
     <!-- Page-specific: background canvas animations (index.html only) -->
     <script defer>
@@ -651,6 +726,63 @@
         new SignalWaveBackground();
         new PCBTraces();
       }
+    </script>
+
+    <!-- CV lightbox logic -->
+    <script>
+      (function () {
+        const lb         = document.getElementById('cert-lightbox');
+        const lbBody     = document.getElementById('lb-body');
+        const lbLabel    = document.getElementById('lb-label');
+        const lbDownload = document.getElementById('lb-download');
+        const lbOpen     = document.getElementById('lb-open');
+        const lbClose    = document.getElementById('lb-close');
+        let lastFocus    = null;
+
+        function openLightbox(src, label, type) {
+          lastFocus = document.activeElement;
+          lbLabel.textContent = label;
+          lbDownload.href = src;
+          lbOpen.href = src;
+          lbBody.innerHTML = '';
+
+          if (type === 'pdf') {
+            const iframe = document.createElement('iframe');
+            iframe.src = src + '#toolbar=1&view=FitH';
+            iframe.title = label;
+            lbBody.appendChild(iframe);
+          } else {
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = label;
+            lbBody.appendChild(img);
+          }
+
+          lb.classList.add('open');
+          document.body.style.overflow = 'hidden';
+          lbClose.focus();
+        }
+
+        function closeLightbox() {
+          lb.classList.remove('open');
+          document.body.style.overflow = '';
+          setTimeout(() => { lbBody.innerHTML = ''; }, 230);
+          if (lastFocus) lastFocus.focus();
+        }
+
+        document.querySelectorAll('.cert-btn').forEach(btn => {
+          btn.addEventListener('click', event => {
+            event.preventDefault();
+            openLightbox(btn.dataset.cert, btn.dataset.label, btn.dataset.type);
+          });
+        });
+
+        lbClose.addEventListener('click', closeLightbox);
+        lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+        document.addEventListener('keydown', e => {
+          if (e.key === 'Escape' && lb.classList.contains('open')) closeLightbox();
+        });
+      })();
     </script>
 
     <!-- Shared site script — must be last -->

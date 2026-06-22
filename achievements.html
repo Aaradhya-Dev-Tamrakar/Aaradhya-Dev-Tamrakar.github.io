@@ -59,7 +59,7 @@
 
     <link rel="stylesheet" href="assets/css/style.css" />
 
-    <!-- Page-specific: achievements timeline -->
+    <!-- Page-specific: achievements timeline + lightbox -->
     <style>
       html, body { background: var(--bg); }
 
@@ -100,6 +100,90 @@
         letter-spacing: 0.1em; color: var(--accent); text-align: right; padding-top: 0.2rem;
       }
 
+      /* Certificate button */
+      .cert-btn {
+        display: inline-flex; align-items: center; gap: 0.45em;
+        margin-top: 0.9rem;
+        font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em;
+        text-transform: uppercase; color: var(--accent);
+        border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+        border-radius: 3px; padding: 0.35em 0.75em;
+        background: transparent; cursor: pointer;
+        transition: background 0.2s, color 0.2s, border-color 0.2s;
+      }
+      .cert-btn svg { width: 0.85em; height: 0.85em; flex-shrink: 0; }
+      .cert-btn:hover {
+        background: color-mix(in srgb, var(--accent) 12%, transparent);
+        border-color: var(--accent); color: var(--heading);
+      }
+      .cert-btn:focus-visible {
+        outline: 2px solid var(--accent); outline-offset: 2px;
+      }
+
+      /* ── Lightbox ── */
+      #cert-lightbox {
+        position: fixed; inset: 0; z-index: 9999;
+        display: flex; align-items: center; justify-content: center;
+        background: rgba(7, 8, 10, 0.88);
+        backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.22s ease;
+      }
+      #cert-lightbox.open { opacity: 1; pointer-events: all; }
+
+      .lightbox-inner {
+        position: relative;
+        width: min(92vw, 860px);
+        max-height: 90vh;
+        background: var(--surface, #14151a);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        overflow: hidden;
+        display: flex; flex-direction: column;
+        transform: translateY(12px) scale(0.98);
+        transition: transform 0.22s ease;
+        box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      }
+      #cert-lightbox.open .lightbox-inner {
+        transform: translateY(0) scale(1);
+      }
+
+      .lightbox-bar {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0.75rem 1rem 0.75rem 1.25rem;
+        border-bottom: 1px solid var(--line);
+        flex-shrink: 0;
+      }
+      .lightbox-label {
+        font-family: var(--mono); font-size: 0.6rem;
+        letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent);
+      }
+      .lightbox-actions { display: flex; align-items: center; gap: 0.5rem; }
+      .lb-btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 2rem; height: 2rem; border-radius: 4px;
+        border: 1px solid var(--line); background: transparent;
+        color: var(--text); cursor: pointer;
+        transition: background 0.15s, color 0.15s, border-color 0.15s;
+      }
+      .lb-btn svg { width: 0.9em; height: 0.9em; }
+      .lb-btn:hover { background: color-mix(in srgb, var(--text) 10%, transparent); color: var(--heading); border-color: color-mix(in srgb, var(--text) 40%, transparent); }
+      .lb-btn.lb-close { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+      .lb-btn.lb-close:hover { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--heading); border-color: var(--accent); }
+      .lb-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+      .lightbox-body { flex: 1; overflow: auto; display: flex; align-items: center; justify-content: center; min-height: 0; }
+
+      /* PDF view */
+      .lightbox-body iframe {
+        width: 100%; height: 75vh; border: none; display: block;
+      }
+
+      /* PNG/image view */
+      .lightbox-body img {
+        max-width: 100%; max-height: 75vh; object-fit: contain; display: block;
+      }
+
       @media (max-width: 1100px) {
         #page-header { padding: calc(var(--nav-h) + 2.5rem) 2rem 1.5rem; }
         #achievements { padding: 1.5rem 2rem 5rem; }
@@ -109,6 +193,7 @@
         #achievements { padding: 1.5rem 1.5rem 4rem; }
         .achievement-item { grid-template-columns: 1fr; gap: 0.4rem; padding: 1.75rem 0; }
         .achievement-date { text-align: left; }
+        .lightbox-inner { width: 96vw; }
       }
     </style>
   </head>
@@ -123,6 +208,33 @@
 
     <div id="siteNav"></div>
 
+    <!-- ── Lightbox ── -->
+    <div id="cert-lightbox" role="dialog" aria-modal="true" aria-label="Certificate viewer">
+      <div class="lightbox-inner">
+        <div class="lightbox-bar">
+          <span class="lightbox-label" id="lb-label">Certificate</span>
+          <div class="lightbox-actions">
+            <a id="lb-download" class="lb-btn" title="Download" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+            </a>
+            <a id="lb-open" class="lb-btn" title="Open in new tab" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+            <button id="lb-close" class="lb-btn lb-close" aria-label="Close certificate viewer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="lightbox-body" id="lb-body"></div>
+      </div>
+    </div>
+
     <main id="main-content">
       <header id="page-header">
         <div class="page-eyebrow">Training &amp; Certifications</div>
@@ -136,6 +248,7 @@
       <section id="achievements" aria-label="Achievements timeline">
         <div class="achievements-list">
 
+          <!-- No certificate file for this one -->
           <div class="achievement-item reveal">
             <div class="achievement-org">IEEE Nepal Section</div>
             <div>
@@ -156,6 +269,10 @@
                 Two-day LaTeX workshop at KEC Makerspace, Kalimati (May 5–6, 2026).
                 Resource Person: Er. Dhawa Sang Dong. Certificate of Participation received.
               </p>
+              <button class="cert-btn" data-cert="certificates/IEEE_WIE_LaTeX_Training_2026.png" data-label="IEEE WIE LaTeX Training 2026" data-type="image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
             </div>
             <div class="achievement-date">May 2026</div>
           </div>
@@ -168,6 +285,10 @@
                 Completed a 2-hour hands-on workshop on Prompt Engineering Fundamentals
                 at TechAxis (May 8, 2026). Certificate of Completion received.
               </p>
+              <button class="cert-btn" data-cert="certificates/TechAxis_Prompt_Engineering_2026.png" data-label="TechAxis Prompt Engineering 2026" data-type="image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
             </div>
             <div class="achievement-date">May 2026</div>
           </div>
@@ -182,6 +303,10 @@
                 contribution to planning, coordination, and execution of the event.
                 Certificate of Organization received.
               </p>
+              <button class="cert-btn" data-cert="certificates/IEEE_KEC_SPAx_Organization_2026.png" data-label="IEEE SPAx Organization 2026" data-type="image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
             </div>
             <div class="achievement-date">May 2026</div>
           </div>
@@ -191,11 +316,13 @@
             <div>
               <div class="achievement-title">NepaTronix Drone Training Program</div>
               <p class="achievement-desc">
-                3-day certified drone training conducted by NepaTronix Engineering Solution
-                Pvt. Ltd. in collaboration with Drone Hub Nepal and IITM Pravartak.
-                Covered drone technology fundamentals, hands-on flight operations,
-                safety protocols, and basic applications. Certificate of Completion received.
+                3-day certified drone training covering flight operations, safety
+                protocols, and basic applications.
               </p>
+              <button class="cert-btn" data-cert="certificates/NepaTronix_Drone_Hub_Nepal_3Day_Drone_Training_2026.pdf" data-label="NepaTronix Drone Training Program Certificate" data-type="pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
             </div>
             <div class="achievement-date">May 2026</div>
           </div>
@@ -210,20 +337,30 @@
                 AI-Assisted Product Launch, Building a Go-To-Market Strategy,
                 Generate a Study Guide, and Recommending Skincare Products.
               </p>
-            </div>
-            <div class="achievement-date">May 2026</div>
-          </div>
-
-          <div class="achievement-item reveal">
-            <div class="achievement-org">DataCamp</div>
-            <div>
-              <div class="achievement-title">DataCamp Statements of Accomplishment (×6)</div>
-              <p class="achievement-desc">
-                Six certified courses completed as part of the NSSR DataCamp fellowship:
-                Introduction to Python (4 hrs), Cleaning Data with Generative AI,
-                AI-Assisted Product Launch, Building a Go-To-Market Strategy,
-                Generate a Study Guide, and Recommending Skincare Products.
-              </p>
+              <button class="cert-btn" data-cert="certificates/Introduction_to_Python_certificate.pdf" data-label="Introduction to Python — DataCamp" data-type="pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                Intro to Python
+              </button>
+              <button class="cert-btn" data-cert="certificates/Cleaning_Data_with_Generative_AI.pdf" data-label="Cleaning Data with Generative AI — DataCamp" data-type="pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                Cleaning Data with GenAI
+              </button>
+              <button class="cert-btn" data-cert="certificates/AI-Assisted_Product_Launch.pdf" data-label="AI-Assisted Product Launch — DataCamp" data-type="pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                AI-Assisted Product Launch
+              </button>
+              <button class="cert-btn" data-cert="certificates/Building_a_Go-To-Market_Strategy.pdf" data-label="Building a Go-To-Market Strategy — DataCamp" data-type="pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                Go-To-Market Strategy
+              </button>
+              <button class="cert-btn" data-cert="certificates/Generate_a_Study_Guide.pdf" data-label="Generate a Study Guide — DataCamp" data-type="pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                Generate a Study Guide
+              </button>
+              <button class="cert-btn" data-cert="certificates/Recommending_Skincare_Products.pdf" data-label="Recommending Skincare Products — DataCamp" data-type="pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                Recommending Skincare Products
+              </button>
             </div>
             <div class="achievement-date">May 2026</div>
           </div>
@@ -237,6 +374,10 @@
                 hosted by IEEE, with over 19,000 participants worldwide.
                 Team: ShadowXTREME. Certificate received.
               </p>
+              <button class="cert-btn" data-cert="certificates/IEEE_IEEEXtreme_19_0_2025.pdf" data-label="IEEEXtreme 19.0 — 2025" data-type="pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
             </div>
             <div class="achievement-date">Oct 2025</div>
           </div>
@@ -250,6 +391,10 @@
                 IEEE Day 2025 event (October 9, 2025), organized by IEEE Kathmandu
                 Engineering College Student Branch. Certificate of Appreciation received.
               </p>
+              <button class="cert-btn" data-cert="certificates/IEEE_KEC_IEEE_Day_Organizer_2025.png" data-label="IEEE Day 2025 Organizer" data-type="image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
             </div>
             <div class="achievement-date">Oct 2025</div>
           </div>
@@ -262,6 +407,10 @@
                 Webinar on offensive security fundamentals and common attack bypass
                 techniques. Certificate of Participation received.
               </p>
+              <button class="cert-btn" data-cert="certificates/Offenso_Security_Bypass_Webinar_2025.pdf" data-label="Offenso Security Bypass Webinar 2025" data-type="pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
             </div>
             <div class="achievement-date">Jul 2025</div>
           </div>
@@ -275,6 +424,10 @@
                 Shree Kuleshwor Secondary School (July 27, 2025). Certificate of
                 Appreciation received for mentorship contribution.
               </p>
+              <button class="cert-btn" data-cert="certificates/IEEE_KEC_Electronics_For_All_Mentorship_2025.png" data-label="Electronics For All Mentorship 2025" data-type="image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
             </div>
             <div class="achievement-date">Jul 2025</div>
           </div>
@@ -288,6 +441,10 @@
                 organized by Nepal Students' Union, Kathmandu Engineering College in
                 collaboration with KEC Robotics Club. Certificate of Completion received.
               </p>
+              <button class="cert-btn" data-cert="certificates/KEC_Robotics_Club_PCB_Design_Fabrication_Workshop_2025.png" data-label="PCB Design & Fabrication Workshop 2025" data-type="image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
             </div>
             <div class="achievement-date">Jul 2025</div>
           </div>
@@ -300,6 +457,10 @@
                 Participated in an Agile Workshop organized by IEEE KEC KTM Student
                 Branch (July 22, 2025). Certificate of Appreciation received.
               </p>
+              <button class="cert-btn" data-cert="certificates/IEEE_KEC_Agile_Workshop_2025.png" data-label="IEEE KEC Agile Workshop 2025" data-type="image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
             </div>
             <div class="achievement-date">Jul 2025</div>
           </div>
@@ -313,6 +474,10 @@
                 by KEC I.T. Club in collaboration with AWS Cloud Club in Nepal
                 (July 19, 2025). Certificate of Achievement received.
               </p>
+              <button class="cert-btn" data-cert="certificates/KEC_IT_Club_AWS_Fundamentals_2025.png" data-label="AWS Fundamentals Workshop 2025" data-type="image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
             </div>
             <div class="achievement-date">Jul 2025</div>
           </div>
@@ -327,10 +492,15 @@
                 searching, sorting, recursion, greedy algorithms, bit manipulation,
                 dynamic programming, and graph theory. Certificate of Completion received.
               </p>
+              <button class="cert-btn" data-cert="certificates/IEEE_Pulchowk_PreXtreme_CP_Workshop.pdf" data-label="PreXtreme CP Workshop 2025" data-type="pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
             </div>
             <div class="achievement-date">Jul 2025</div>
           </div>
 
+          <!-- No certificate file for this one -->
           <div class="achievement-item reveal">
             <div class="achievement-org">KEC IT Club</div>
             <div>
@@ -352,6 +522,10 @@
                 in association with Dynamic Public Library (DPL) Teens.
                 Certificate of Completion received.
               </p>
+              <button class="cert-btn" data-cert="certificates/Microsoft_Learn_HTML_CSS_GitHub_Pages.pdf" data-label="Microsoft Learn HTML & CSS via GitHub Pages" data-type="pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
             </div>
             <div class="achievement-date">2024</div>
           </div>
@@ -372,5 +546,69 @@
     </footer>
 
     <script src="assets/js/script.js" defer></script>
+
+    <!-- Lightbox logic — minimal, no dependencies -->
+    <script>
+      (function () {
+        const lb        = document.getElementById('cert-lightbox');
+        const lbBody    = document.getElementById('lb-body');
+        const lbLabel   = document.getElementById('lb-label');
+        const lbDownload= document.getElementById('lb-download');
+        const lbOpen    = document.getElementById('lb-open');
+        const lbClose   = document.getElementById('lb-close');
+        let lastFocus   = null;
+
+        function openLightbox(src, label, type) {
+          lastFocus = document.activeElement;
+          lbLabel.textContent = label;
+          lbDownload.href = src;
+          lbOpen.href = src;
+          lbBody.innerHTML = '';
+
+          if (type === 'pdf') {
+            const iframe = document.createElement('iframe');
+            iframe.src = src + '#toolbar=1&view=FitH';
+            iframe.title = label;
+            lbBody.appendChild(iframe);
+          } else {
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = label;
+            lbBody.appendChild(img);
+          }
+
+          lb.classList.add('open');
+          document.body.style.overflow = 'hidden';
+          lbClose.focus();
+        }
+
+        function closeLightbox() {
+          lb.classList.remove('open');
+          document.body.style.overflow = '';
+          // Clear after transition
+          setTimeout(() => { lbBody.innerHTML = ''; }, 230);
+          if (lastFocus) lastFocus.focus();
+        }
+
+        // Wire all cert buttons
+        document.querySelectorAll('.cert-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            openLightbox(btn.dataset.cert, btn.dataset.label, btn.dataset.type);
+          });
+        });
+
+        lbClose.addEventListener('click', closeLightbox);
+
+        // Click backdrop to close
+        lb.addEventListener('click', e => {
+          if (e.target === lb) closeLightbox();
+        });
+
+        // ESC to close
+        document.addEventListener('keydown', e => {
+          if (e.key === 'Escape' && lb.classList.contains('open')) closeLightbox();
+        });
+      })();
+    </script>
   </body>
 </html>
