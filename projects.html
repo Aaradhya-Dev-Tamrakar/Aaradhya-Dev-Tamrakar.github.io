@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Projects — Aaradhya Dev Tamrakar</title>
+    <meta
+      name="description"
+      content="Selected engineering projects by Aaradhya Dev Tamrakar — robotics, embedded ML, agentic pipelines, and the PrakopNet multi-hazard early warning platform."
+    />
+    <meta name="author" content="Aaradhya Dev Tamrakar" />
+    <meta name="theme-color" content="#0d0e11" />
+    <link rel="canonical" href="https://aaradhyadtmr.github.io/projects.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://aaradhyadtmr.github.io/projects.html" />
+    <meta property="og:title" content="Projects — Aaradhya Dev Tamrakar" />
+    <meta
+      property="og:description"
+      content="Robotics, embedded ML, agentic pipelines, and the PrakopNet multi-hazard early warning platform."
+    />
+    <meta property="og:image" content="https://aaradhyadtmr.github.io/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Aaradhya Dev Tamrakar" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Projects — Aaradhya Dev Tamrakar" />
+    <meta
+      name="twitter:description"
+      content="Robotics, embedded ML, agentic pipelines, and the PrakopNet multi-hazard early warning platform."
+    />
+    <meta name="twitter:image" content="https://aaradhyadtmr.github.io/og-image.jpg" />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230d0e11'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='400' fill='%23d4a85a'>ADT</text></svg>"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400&display=swap"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400&display=swap"
+    /></noscript>
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- Page-specific: projects grid -->
+    <style>
+      html, body { background: var(--bg); }
+
+      #page-header { padding: calc(var(--nav-h) + 3rem) 3rem 2rem; }
+      .page-eyebrow {
+        font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em;
+        text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
+      }
+      .page-title {
+        font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.4rem);
+        font-weight: 300; color: var(--heading); line-height: 1.1;
+      }
+      .page-title em { font-style: italic; color: var(--accent); }
+      .page-sub {
+        margin-top: 1rem; font-size: 0.95rem; color: var(--text);
+        max-width: 560px; line-height: 1.75;
+      }
+
+      #projects { padding: 2rem 3rem 6rem; }
+      .projects-grid {
+        display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+        border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+      }
+      .project-card {
+        background: var(--bg2); padding: 2.5rem;
+        position: relative; overflow: hidden; transition: background .3s;
+      }
+      .project-card::after {
+        content:""; position:absolute; top:0; left:0; right:0; height:1px;
+        background: var(--accent); transform: scaleX(0); transform-origin: left;
+        transition: transform .4s ease;
+      }
+      .project-card:hover { background: var(--bg3); }
+      .project-card:hover::after { transform: scaleX(1); }
+      .project-index {
+        font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em;
+        color: var(--accent); margin-bottom: 1.5rem; opacity: .7;
+        display: flex; align-items: center; gap: 0.75rem;
+      }
+      .project-status {
+        font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--accent2);
+        border: 1px solid rgba(109,191,170,.35); padding: 0.2rem 0.55rem; border-radius: 2px;
+      }
+      .project-progress { margin: 1.25rem 0 1.5rem; }
+      .project-progress-track { display: flex; gap: 4px; margin-bottom: 0.5rem; }
+      .project-progress-step { flex: 1; height: 3px; background: var(--line); border-radius: 2px; }
+      .project-progress-step.done { background: var(--accent2); }
+      .project-progress-labels { display: flex; gap: 4px; }
+      .project-progress-label {
+        flex: 1; font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.06em;
+        text-transform: uppercase; color: var(--muted); text-align: center; line-height: 1.3;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      }
+      .project-progress-label.done { color: var(--accent2); }
+      .project-title {
+        font-family: var(--serif); font-size: 1.5rem; font-weight: 400;
+        color: var(--heading); margin-bottom: 0.75rem; line-height: 1.2;
+      }
+      .project-desc { font-size: 0.92rem; line-height: 1.75; color: var(--text); margin-bottom: 1.5rem; }
+      .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+      .project-link {
+        display: inline-flex; align-items: center; gap: 0.4rem;
+        font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--accent2); text-decoration: none;
+        margin-top: 1rem; padding: 0.5rem 0; position: relative;
+        transition: gap .3s;
+      }
+      .project-link::after {
+        content:""; position:absolute; bottom:0; left:0; width:0; height:1px;
+        background: var(--accent2); transition: width .35s ease;
+      }
+      .project-link:hover { gap: 0.65rem; }
+      .project-link:hover::after { width: 100%; }
+
+      .project-card:only-child { grid-column: span 2; }
+
+      @media (max-width: 1100px) {
+        #page-header { padding: calc(var(--nav-h) + 2.5rem) 2rem 1.5rem; }
+        #projects { padding: 1.5rem 2rem 5rem; }
+      }
+      @media (max-width: 900px) {
+        #page-header { padding: calc(var(--nav-h) + 2rem) 1.5rem 1.5rem; }
+        #projects { padding: 1.5rem 1.5rem 4rem; }
+        .projects-grid { grid-template-columns: 1fr; }
+        .project-card:only-child { grid-column: span 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <div class="cursor" id="cursor">
+      <div class="cursor-ring" id="cursorRing"></div>
+      <div class="cursor-dot" id="cursorDot"></div>
+    </div>
+
+    <nav id="nav" aria-label="Primary navigation">
+      <a href="index.html" class="nav-logo" id="nav-logo">ADT<span>.</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="contact.html" class="nav-cta" aria-label="Connect with Aaradhya">Connect</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="nav-drawer" id="navDrawer" role="navigation" aria-label="Mobile navigation">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <main id="main-content">
+      <header id="page-header">
+        <div class="page-eyebrow">Selected Work</div>
+        <h1 class="page-title">Engineering <em>Projects</em></h1>
+        <p class="page-sub">
+          Thirteen projects spanning robotics, embedded ML, agentic data
+          pipelines, and disaster-response hardware — from coursework labs
+          to a March 2027 major-project demo.
+        </p>
+      </header>
+
+      <section id="projects" aria-label="Projects grid">
+        <div class="projects-grid">
+          <div class="project-card reveal">
+            <div class="project-index">P — 001</div>
+            <h2 class="project-title">Gesture-Controlled Self-Balancing Robot</h2>
+            <p class="project-desc">
+              Two-wheeled inverted pendulum robot controlled via real-time hand
+              gesture recognition. Dual-hand MediaPipe control over HC-05
+              Bluetooth, PID firmware V6.9.1 (watchdog timer, atomic writes,
+              differential ramp, integrator bleed), MATLAB simulation →
+              DRV8825/CNC Shield deployment. Examiner described it as major
+              project level — rated 9.4/10.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Arduino</span><span class="tag">HC-05</span>
+              <span class="tag">MPU-6050</span><span class="tag">NEMA-17</span>
+              <span class="tag">MediaPipe</span><span class="tag">PID</span>
+              <span class="tag">MATLAB</span>
+            </div>
+            <a class="project-link" href="https://github.com/AaradhyaDT/Gesture-Controlled-Self-Balancing-Robot" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-index">P — 002</div>
+            <h2 class="project-title">Text-to-SQL Agentic Pipeline</h2>
+            <p class="project-desc">
+              Production-grade five-stage agentic Text-to-SQL system over a
+              classicmodels PostgreSQL database. Modular FastAPI state
+              machine: Planner → Generator → Validator → Executor →
+              Summarizer with up to 3 self-correction retries. Achieved 100%
+              execution success rate and 100% result accuracy across a
+              50-question benchmark — zero retries required. Streamlit chat
+              UI, Docker/Compose containerisation, rule-based SQL safety
+              validation, structured JSON audit logging.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">FastAPI</span>
+              <span class="tag">Streamlit</span><span class="tag">GPT-4o-mini</span>
+              <span class="tag">PostgreSQL</span><span class="tag">Docker</span>
+              <span class="tag">Prompt Chaining</span>
+            </div>
+            <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk3_text2sql" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-index">P — 003</div>
+            <h2 class="project-title">Telco Churn Tree-Based Ensemble Pipeline</h2>
+            <p class="project-desc">
+              End-to-end classification pipeline on Telco Customer Churn
+              (7,043 rows, ~27% positive rate). ImbPipeline with SMOTE
+              restricted to training folds only — zero preprocessing leakage.
+              Random Forest + XGBoost with GridSearch/Bayesian tuning,
+              Stratified K-Fold CV. SHAP global summary and local
+              waterfall/force plots for explainability. Full Joblib pipeline
+              serialisation. Secondary task: tenure prediction with learning
+              curves. Model Card with real metric values.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">XGBoost</span>
+              <span class="tag">Random Forest</span><span class="tag">SHAP</span>
+              <span class="tag">ImbPipeline</span><span class="tag">SMOTE</span>
+              <span class="tag">Joblib</span><span class="tag">scikit-learn</span>
+            </div>
+            <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk5_telco_churn_ensembles" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-index">P — 004</div>
+            <h2 class="project-title">Telco Churn &amp; CLV ML Pipeline</h2>
+            <p class="project-desc">
+              Classification and regression pipeline for churn prediction and
+              Customer Lifetime Value modeling. Logistic Regression / Ridge /
+              SGD classifiers benchmarked on Stratified 70/15/15 split. Custom
+              threshold at 0.385 isolates top-200 high-risk budget segment.
+              Stratified 5-fold CV: ROC-AUC 0.841 ± 0.005. Ridge Regression
+              best for CLV (mean $1,304.70); Lasso L1 regularisation paths
+              plotted. Papermill automation with full HTML report export.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">scikit-learn</span>
+              <span class="tag">Logistic Regression</span><span class="tag">Ridge</span>
+              <span class="tag">Lasso</span><span class="tag">Pandas</span>
+              <span class="tag">Papermill</span>
+            </div>
+            <a class="project-link" href="https://github.com/AaradhyaDT/FUSE_AIF_2026_M1" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-index">P — 005 <span class="project-status">In Progress</span></div>
+            <h2 class="project-title">Alpha Android Super-App</h2>
+            <p class="project-desc">
+              Modular personal super-app (SDK 36, Kotlin/Jetpack Compose,
+              Material3, custom Astronomus font). SBR Remote turns the phone
+              into a gesture controller over Bluetooth. Budget Tracker parses
+              eSewa Gmail transactions with Apache POI export and DataStore
+              persistence. Multi-mode calculator covers STD/PROG/LOGIC modes
+              including base conversion and logic gates. Primary shipping
+              target — Play Store release in progress.
+            </p>
+            <div class="project-progress">
+              <div class="project-progress-track">
+                <div class="project-progress-step done"></div>
+                <div class="project-progress-step"></div>
+              </div>
+              <div class="project-progress-labels">
+                <span class="project-progress-label done">Build</span>
+                <span class="project-progress-label">Play Store</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span>
+              <span class="tag">Material3</span><span class="tag">CameraX</span>
+              <span class="tag">MediaPipe</span><span class="tag">Bluetooth SPP</span>
+              <span class="tag">DataStore</span><span class="tag">Apache POI</span>
+            </div>
+            <a class="project-link" href="https://github.com/AaradhyaDT/Alpha-SuperApp" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-index">P — 006</div>
+            <h2 class="project-title">Edge AI Stability Detection System</h2>
+            <p class="project-desc">
+              ML system predicting platform stability from simulated IMU
+              sensor data (tilt_x, tilt_y, angular velocity). 10,000-sample
+              synthetic dataset; Random Forest classifier — 99.8% test
+              accuracy. REST API via FastAPI for real-time predictions;
+              Joblib export for robotics integration with GCSBR.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">scikit-learn</span>
+              <span class="tag">RandomForest</span><span class="tag">FastAPI</span>
+              <span class="tag">Joblib</span><span class="tag">IMU</span>
+              <span class="tag">Edge AI</span>
+            </div>
+            <a class="project-link" href="https://github.com/AaradhyaDT/stability-ai-system" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-index">P — 007</div>
+            <h2 class="project-title">SysOptimizer — Windows Optimization Tool</h2>
+            <p class="project-desc">
+              Standalone Windows optimization tool packaged as a .exe via
+              PyInstaller. Animated ring gauges, sparklines, per-core CPU
+              reporting, Power Plan switcher, RAM flush, Background Bloat
+              panel (14 services/tasks), and Startup Scanner — all running
+              silently via CREATE_NO_WINDOW.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">CustomTkinter</span>
+              <span class="tag">PyInstaller</span><span class="tag">WMI</span>
+              <span class="tag">PowerShell</span>
+            </div>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-index">P — 008</div>
+            <h2 class="project-title">Fusemachines Wk 6 — Probabilistic Models</h2>
+            <p class="project-desc">
+              Bayesian inference pipeline for Telco Churn using PyMC, ArviZ,
+              and pgmpy. Covers MLE/MAP estimation, Dirichlet-multinomial
+              sequential updating, multivariate Gaussian conditioning,
+              probabilistic graphical models, Gaussian process regression,
+              and PyMC Bayesian logistic regression. Fitted artifact:
+              telco_bayes_lr_v1.pkl.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">PyMC</span>
+              <span class="tag">ArviZ</span><span class="tag">pgmpy</span>
+              <span class="tag">Bayesian Inference</span><span class="tag">scikit-learn</span>
+              <span class="tag">Pandas</span>
+            </div>
+            <a class="project-link" href="https://github.com/AaradhyaDT/FUSE_AIF_2026_M1" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-index">P — 009</div>
+            <h2 class="project-title">Fusemachines Wk 7 — Customer Segmentation</h2>
+            <p class="project-desc">
+              Market segmentation pipeline on UCI Online Retail II (~500,000
+              transactions). RFM feature engineering extended with basket
+              size, purchase cadence, unique products, return rate, and
+              category spend ratios. Full clustering comparison: K-Means
+              (elbow + silhouette), Hierarchical (dendrograms), DBSCAN
+              (k-distance ε estimation). Validation via Silhouette,
+              Davies-Bouldin, and Calinski-Harabasz indices. Deliverable:
+              cluster business narratives + executive summary.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">scikit-learn</span>
+              <span class="tag">K-Means</span><span class="tag">Hierarchical Clustering</span>
+              <span class="tag">DBSCAN</span><span class="tag">RFM</span>
+              <span class="tag">Pandas</span><span class="tag">scipy</span>
+            </div>
+            <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk7_customer_segmentation" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-index">P — 010 <span class="project-status">In Progress</span></div>
+            <h2 class="project-title">PrakopNet — Multi-Hazard Early Warning System</h2>
+            <p class="project-desc">
+              Solar-powered LoRa mesh multi-hazard monitoring and early
+              warning platform for remote regions of Nepal. ESP32 sensor
+              nodes (flood, landslide, air quality, weather) transmit over
+              RYLR890 (868 MHz, Nepal-legal) to a Raspberry Pi 4B gateway
+              running federated TFLite edge inference + LSTM HazardScore
+              fusion. GPS localization, CN3791 solar charge controller,
+              18650 battery backup, INA219 power telemetry, FastAPI +
+              Streamlit dashboard. BEI major project — demo target March
+              2027.
+            </p>
+            <div class="project-progress">
+              <div class="project-progress-track">
+                <div class="project-progress-step done"></div>
+                <div class="project-progress-step"></div>
+                <div class="project-progress-step"></div>
+              </div>
+              <div class="project-progress-labels">
+                <span class="project-progress-label done">Architecture</span>
+                <span class="project-progress-label">Prototype</span>
+                <span class="project-progress-label">Demo</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="tag">ESP32</span><span class="tag">RYLR890 LoRa 868 MHz</span>
+              <span class="tag">Raspberry Pi 4B</span><span class="tag">TFLite Micro</span>
+              <span class="tag">LSTM</span><span class="tag">GPS</span>
+              <span class="tag">FastAPI</span><span class="tag">Edge AI</span>
+            </div>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-index">P — 011 <span class="project-status">In Progress</span></div>
+            <h2 class="project-title">Nexus — Personal AI Operating System</h2>
+            <p class="project-desc">
+              Project-centric AI operating system replacing the
+              multi-browser/multi-account/multi-tool workflow. Single
+              prompt → project context → parallel Groq (Llama 3.3 70B) +
+              Gemini 1.5 Flash fan-out → centralized persistent memory.
+              Architecture: React (Vite) frontend · FastAPI backend ·
+              SQLite + FTS5 (context injection, zero embedding latency) ·
+              multi-key rotation pool. v2 redesign complete June 12, 2026.
+            </p>
+            <div class="project-progress">
+              <div class="project-progress-track">
+                <div class="project-progress-step done"></div>
+                <div class="project-progress-step"></div>
+              </div>
+              <div class="project-progress-labels">
+                <span class="project-progress-label done">v2 Core</span>
+                <span class="project-progress-label">MVP</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="tag">React</span><span class="tag">Vite</span>
+              <span class="tag">FastAPI</span><span class="tag">SQLite</span>
+              <span class="tag">FTS5</span><span class="tag">Groq</span>
+              <span class="tag">Gemini</span><span class="tag">Python</span>
+            </div>
+            <a class="project-link" href="https://github.com/AaradhyaDT/nexus" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-index">P — 012</div>
+            <h2 class="project-title">Custom Processor FSM Design</h2>
+            <p class="project-desc">
+              VHDL implementation of a custom processor datapath and FSM
+              supporting GCD and exponentiation operations. Simulated and
+              verified in Vivado 2023.2 as Embedded Systems coursework.
+            </p>
+            <div class="project-tags">
+              <span class="tag">VHDL</span><span class="tag">Vivado</span>
+              <span class="tag">FSM</span><span class="tag">Datapath</span>
+              <span class="tag">FPGA</span>
+            </div>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-index">P — 013</div>
+            <h2 class="project-title">Antenna Lab Data Analysis</h2>
+            <p class="project-desc">
+              Python data-analysis pipeline for antenna radiation pattern
+              measurements exported from lab Excel sheets. Pandas for
+              wrangling, SciPy cubic interpolation to smooth measured points,
+              and Matplotlib polar plots to visualize the resulting radiation
+              pattern. Communication &amp; RF coursework deliverable.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">Pandas</span>
+              <span class="tag">NumPy</span><span class="tag">SciPy</span>
+              <span class="tag">Matplotlib</span><span class="tag">Polar Plot</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <button class="back-top" id="backTop" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15" />
+      </svg>
+    </button>
+    <div class="scroll-pct" id="scrollPct" aria-hidden="true">0%</div>
+
+    <footer role="contentinfo">
+      <div id="siteFooter"></div>
+    </footer>
+
+    <script src="assets/js/script.js" defer></script>
+  </body>
+</html>
