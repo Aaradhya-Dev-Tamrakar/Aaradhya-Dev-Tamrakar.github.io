@@ -16,6 +16,13 @@ const SITE = {
     { label:'Facebook',  href:'https://www.facebook.com/aaradhyadevtamrakar/' },
     { label:'Instagram', href:'https://www.instagram.com/aaradhya_dev_tamrakar/' },
   ],
+  navLinks: [
+    { label:'Home', labelShort:'Home', href:'index.html' },
+    { label:'Projects', labelShort:'Projects', href:'projects.html' },
+    { label:'Experience', labelShort:'Experience', href:'experience.html' },
+    { label:'Achievements', labelShort:'Achievements', href:'achievements.html' },
+    { label:'About', labelShort:'About', href:'about.html' },
+  ],
 };
 
 const SOCIAL_ICONS = {
@@ -27,6 +34,51 @@ const SOCIAL_ICONS = {
   Instagram: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
 };
 
+/* ── Navbar injection ─────────────────────────────────────── */
+function renderSiteNav() {
+  const el = document.getElementById('siteNav');
+  if (!el) return;
+  const navLinks = SITE.navLinks
+    .map(link => `<li><a href="${link.href}">${link.label}</a></li>`)
+    .join('');
+  const drawerLinks = SITE.navLinks
+    .map(link => `<a href="${link.href}">${link.label}</a>`)
+    .join('');
+  el.innerHTML = `
+    <nav id="nav" aria-label="Primary navigation">
+      <a href="index.html" class="nav-logo" id="nav-logo">ADT<span>.</span></a>
+      <ul class="nav-links" id="nav-links">
+        ${navLinks}
+      </ul>
+      <div class="nav-right">
+        <a href="contact.html" class="nav-cta" aria-label="Connect with Aaradhya">Connect</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="nav-drawer" id="navDrawer" role="navigation" aria-label="Mobile navigation">
+      ${drawerLinks}
+    </div>`;
+}
+
 /* ── Footer injection ─────────────────────────────────────── */
 function renderSiteFooter() {
   const el = document.getElementById('siteFooter');
@@ -35,8 +87,15 @@ function renderSiteFooter() {
     .map(s => `<a href="${s.href}" target="_blank" rel="noopener" aria-label="${s.label}" title="${s.label}">${SOCIAL_ICONS[s.label] || s.label}</a>`)
     .join('');
   el.innerHTML = `
-    <div class="footer-copy">${SITE.footerCopy}</div>
-    <div class="footer-socials">${socialsHtml}</div>`;
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">ADT<span>.</span></span>
+        <span class="footer-tagline">Electronics &amp; AI/ML Engineer</span>
+      </div>
+      <div class="footer-socials">${socialsHtml}</div>
+    </div>
+    <div class="footer-rule"></div>
+    <div class="footer-copy">${SITE.footerCopy}</div>`;
 }
 
 /* ── Active nav link (page-level, not anchor) ─────────────── */
@@ -160,6 +219,7 @@ window.SEARCH_INDEX = window.SEARCH_INDEX || [];
 /* ── Boot ─────────────────────────────────────────────────── */
 (function init() {
   initTheme();       // must run first — sets data-theme before paint
+  renderSiteNav();
   setActiveNav();
   initKeyNav();
   initHamburger();
@@ -179,8 +239,9 @@ function initKeyNav() {
     '1': 'index.html',
     '2': 'projects.html',
     '3': 'experience.html',
-    '4': 'about.html',
-    '5': 'contact.html',
+    '4': 'achievements.html',
+    '5': 'about.html',
+    '6': 'contact.html',
   };
   document.addEventListener('keydown', e => {
     if (!PAGE_MAP[e.key]) return;

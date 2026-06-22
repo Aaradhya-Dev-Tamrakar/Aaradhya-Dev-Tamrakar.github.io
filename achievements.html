@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Achievements — Aaradhya Dev Tamrakar</title>
+    <meta
+      name="description"
+      content="Certifications, training programs, and competitive achievements of Aaradhya Dev Tamrakar — IEEEXtreme, IEEE WIE LaTeX Training, NepaTronix Drone Program, AWS, and more."
+    />
+    <meta name="author" content="Aaradhya Dev Tamrakar" />
+    <meta name="theme-color" content="#0d0e11" />
+    <link rel="canonical" href="https://aaradhyadtmr.github.io/achievements.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://aaradhyadtmr.github.io/achievements.html" />
+    <meta property="og:title" content="Achievements — Aaradhya Dev Tamrakar" />
+    <meta
+      property="og:description"
+      content="Certifications, training programs, and competitive achievements — IEEEXtreme, IEEE WIE LaTeX, NepaTronix Drone, AWS, and more."
+    />
+    <meta property="og:image" content="https://aaradhyadtmr.github.io/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Aaradhya Dev Tamrakar" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Achievements — Aaradhya Dev Tamrakar" />
+    <meta
+      name="twitter:description"
+      content="Certifications, training programs, and competitive achievements — IEEEXtreme, IEEE WIE LaTeX, NepaTronix Drone, AWS, and more."
+    />
+    <meta name="twitter:image" content="https://aaradhyadtmr.github.io/og-image.jpg" />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230d0e11'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='400' fill='%23d4a85a'>ADT</text></svg>"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400&display=swap"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400&display=swap"
+    /></noscript>
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- Page-specific: achievements timeline -->
+    <style>
+      html, body { background: var(--bg); }
+
+      #page-header { padding: calc(var(--nav-h) + 3rem) 3rem 2rem; }
+      .page-eyebrow {
+        font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em;
+        text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
+      }
+      .page-title {
+        font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.4rem);
+        font-weight: 300; color: var(--heading); line-height: 1.1;
+      }
+      .page-title em { font-style: italic; color: var(--accent); }
+      .page-sub {
+        margin-top: 1rem; font-size: 0.95rem; color: var(--text);
+        max-width: 560px; line-height: 1.75;
+      }
+
+      #achievements { padding: 2rem 3rem 6rem; }
+      .achievements-list { display: flex; flex-direction: column; }
+      .achievement-item {
+        display: grid; grid-template-columns: 1fr 3fr 1fr;
+        align-items: start; gap: 3rem; padding: 2.5rem 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .achievement-item:first-child { border-top: 1px solid var(--line); }
+      .achievement-org {
+        font-family: var(--mono); font-size: 0.68rem;
+        letter-spacing: 0.1em; text-transform: uppercase; color: var(--text);
+      }
+      .achievement-title {
+        font-family: var(--serif); font-size: 1.4rem;
+        font-weight: 400; color: var(--heading); margin-bottom: 0.5rem;
+      }
+      .achievement-desc { font-size: 0.92rem; line-height: 1.75; color: var(--text); }
+      .achievement-date {
+        font-family: var(--mono); font-size: 0.65rem;
+        letter-spacing: 0.1em; color: var(--accent); text-align: right; padding-top: 0.2rem;
+      }
+
+      @media (max-width: 1100px) {
+        #page-header { padding: calc(var(--nav-h) + 2.5rem) 2rem 1.5rem; }
+        #achievements { padding: 1.5rem 2rem 5rem; }
+      }
+      @media (max-width: 900px) {
+        #page-header { padding: calc(var(--nav-h) + 2rem) 1.5rem 1.5rem; }
+        #achievements { padding: 1.5rem 1.5rem 4rem; }
+        .achievement-item { grid-template-columns: 1fr; gap: 0.4rem; padding: 1.75rem 0; }
+        .achievement-date { text-align: left; }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <div class="cursor" id="cursor">
+      <div class="cursor-ring" id="cursorRing"></div>
+      <div class="cursor-dot" id="cursorDot"></div>
+    </div>
+
+    <div id="siteNav"></div>
+
+    <main id="main-content">
+      <header id="page-header">
+        <div class="page-eyebrow">Training &amp; Certifications</div>
+        <h1 class="page-title">What I've <em>Earned</em></h1>
+        <p class="page-sub">
+          Competitive events, technical workshops, and certified training programs
+          alongside coursework and fellowship work.
+        </p>
+      </header>
+
+      <section id="achievements" aria-label="Achievements timeline">
+        <div class="achievements-list">
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">IEEE Nepal Section</div>
+            <div>
+              <div class="achievement-title">IEEE Conference Leadership Workshop 2026</div>
+              <p class="achievement-desc">
+                Workshop covering event management, leadership, and conference
+                organisation skills for IEEE student members.
+              </p>
+            </div>
+            <div class="achievement-date">2026</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">IEEE Women in Engineering, Nepal Section</div>
+            <div>
+              <div class="achievement-title">IEEE WIE LaTeX Training Program</div>
+              <p class="achievement-desc">
+                Two-day LaTeX workshop at KEC Makerspace, Kalimati (May 5–6, 2026).
+                Resource Person: Er. Dhawa Sang Dong. Certificate of Participation received.
+              </p>
+            </div>
+            <div class="achievement-date">May 2026</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">NepaTronix Engineering Solution · Drone Hub Nepal</div>
+            <div>
+              <div class="achievement-title">NepaTronix Drone Training Program</div>
+              <p class="achievement-desc">
+                3-day certified drone training covering flight operations, safety
+                protocols, and basic applications.
+              </p>
+            </div>
+            <div class="achievement-date">May 2026</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">IEEE</div>
+            <div>
+              <div class="achievement-title">IEEEXtreme 19.0</div>
+              <p class="achievement-desc">
+                Participated in the 24-hour global competitive programming marathon.
+                Team: ShadowXTREME. Certificate received.
+              </p>
+            </div>
+            <div class="achievement-date">Oct 2025</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">IEEE Pulchowk</div>
+            <div>
+              <div class="achievement-title">PreXtreme Competitive Programming Workshop</div>
+              <p class="achievement-desc">
+                Competitive programming techniques and problem-solving strategies.
+              </p>
+            </div>
+            <div class="achievement-date">2025</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">KEC IT Club</div>
+            <div>
+              <div class="achievement-title">AWS Cloud Computing Workshop</div>
+              <p class="achievement-desc">
+                Hands-on workshop on AWS core services and cloud fundamentals.
+              </p>
+            </div>
+            <div class="achievement-date">2025</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">KEC IT Club</div>
+            <div>
+              <div class="achievement-title">Git &amp; GitHub Workshop</div>
+              <p class="achievement-desc">
+                Version control fundamentals and collaborative workflow practices.
+              </p>
+            </div>
+            <div class="achievement-date">2024</div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <button class="back-top" id="backTop" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15" />
+      </svg>
+    </button>
+    <div class="scroll-pct" id="scrollPct" aria-hidden="true">0%</div>
+
+    <footer role="contentinfo">
+      <div id="siteFooter"></div>
+    </footer>
+
+    <script src="assets/js/script.js" defer></script>
+  </body>
+</html>

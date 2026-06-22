@@ -5,8 +5,14 @@ A personal portfolio website for **Aaradhya Dev Tamrakar**.
 ## Repository Structure
 
 - `index.html` — homepage and main portfolio entry
+- `projects.html` — projects showcase page
+- `experience.html` — work and education experience page
+- `achievements.html` — achievements and certificates page
+- `about.html` — personal introduction page
+- `contact.html` — contact and connect page
 - `robots.txt` — crawler directives
 - `sitemap.xml` — site map for GitHub Pages and search engines
+- `certificates/` — uploaded certificate files linked from achievements
 - `photo.png`, `photo.webp` — profile images used on the site
 - `AARADHYA_DEV_TAMRAKAR_CV.pdf` — downloadable resume
 - `assets/css/style.css` — shared CSS styles
@@ -14,17 +20,18 @@ A personal portfolio website for **Aaradhya Dev Tamrakar**.
 
 ## Current Status
 
-- `assets/css/` and `assets/js/` folders created for clean asset separation
-- `README.md` updated to reflect the current repository layout
-- `index.html` remains the active portfolio entry page
-- Additional content pages will be added in future rounds
+- Static site structure is in place for GitHub Pages.
+- Shared assets live in `assets/css/` and `assets/js/`.
+- All main pages are present and included in `sitemap.xml`.
+- `certificates/` is available for achievement-linked file uploads.
+- Navigation is centralized through shared JavaScript and the footer is shared site-wide.
 
 ## Notes
 
 - This is a static site intended for GitHub Pages.
-- `index.html` will continue to hold the main portfolio content until the remaining pages are created.
-- After moving inline styles and scripts into the `assets/` folders, update `index.html` to reference the new asset files.
-- Once `projects.html`, `experience.html`, `about.html`, and `contact.html` are created, add their URLs to `sitemap.xml`.
+- `sitemap.xml` contains the published page URLs used by search engines.
+- Add new HTML pages to `sitemap.xml` when they are created.
+- Keep shared CSS and JS changes centralized in `assets/css/style.css` and `assets/js/script.js`.
 
 ## Development
 
