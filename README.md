@@ -14,6 +14,7 @@ A personal portfolio website for **Aaradhya Dev Tamrakar**.
 - `sitemap.xml` — site map for GitHub Pages and search engines
 - `certificates/` — uploaded certificate files linked from achievements
 - `photo.png`, `photo.webp` — profile images used on the site
+- `og-image.jpg` — social sharing preview image
 - `AARADHYA_DEV_TAMRAKAR_CV.pdf` — downloadable resume
 - `assets/css/style.css` — shared CSS styles
 - `assets/js/script.js` — shared JavaScript behavior
