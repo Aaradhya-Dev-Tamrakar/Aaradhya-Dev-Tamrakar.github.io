@@ -203,6 +203,16 @@
         text-transform: uppercase; color: var(--text); margin-bottom: 1.5rem;
         display: flex; align-items: center; gap: 0.5rem;
       }
+      .status-clock {
+        margin-left: auto; display: flex; align-items: baseline; gap: 0.35rem;
+        font-family: var(--mono); letter-spacing: 0.04em; text-transform: none;
+        color: var(--heading); font-variant-numeric: tabular-nums;
+        opacity: 0; animation: fadeIn .9s .8s forwards;
+      }
+      .status-clock #statusClockTime { font-size: 0.78rem; }
+      .status-clock-tz {
+        font-size: 0.55rem; letter-spacing: 0.12em; color: var(--accent2);
+      }
       .status-dot { position: relative; width: 8px; height: 8px; flex-shrink: 0; }
       .status-dot::before, .status-dot::after { content:""; position:absolute; inset:0; border-radius:50%; }
       .status-dot::before { background: var(--accent2); box-shadow: 0 0 5px var(--accent2); animation: dot-breathe 2.4s ease-in-out infinite; }
@@ -225,6 +235,7 @@
       html[data-theme="light"] .status-dot::before { background:#6dbfaa; box-shadow:0 0 5px #6dbfaa; }
       html[data-theme="light"] .status-dot::after { border-color:#6dbfaa; }
       html[data-theme="light"] .status-dot-ring2 { border-color:#6dbfaa; }
+      html[data-theme="light"] .status-clock-tz { color:#0f5a47; }
 
       /* ── Stats strip ──────────────────────────────────────── */
       #stats { padding: 4.5rem 3rem; background: transparent; position: relative; }
@@ -301,10 +312,13 @@
       @media (max-width: 480px) {
         .hero-actions { flex-wrap: wrap; gap: 0.6rem; }
         .stat-num { font-size: 2.1rem; }
+        .status-label { flex-wrap: wrap; row-gap: 0.5rem; }
+        .status-clock { margin-left: 1.25rem; }
       }
       @media (prefers-reduced-motion: reduce) {
         .hero-tag, .hero-name, .hero-desc, .hero-actions, .hero-right { opacity:1 !important; transform:none !important; animation:none !important; }
         .hero-glow { animation: none !important; }
+        .status-clock { opacity: 1 !important; animation: none !important; }
       }
 
       /* CV lightbox */
@@ -407,6 +421,9 @@
             <div class="status-label">
               <span class="status-dot"><span class="status-dot-ring2"></span></span>
               Currently Active
+              <span class="status-clock" id="statusClock" aria-label="Current time in Kathmandu, Nepal">
+                <span id="statusClockTime">--:--:--</span><span class="status-clock-tz">NPT</span>
+              </span>
             </div>
             <div class="status-items">
               <div class="status-item">
@@ -788,6 +805,22 @@
     <!-- Shared site script — must be last -->
     <script src="assets/js/script.js" defer></script>
 
+
+    <!-- Digital clock — Kathmandu local time, status card -->
+    <script>
+      (function () {
+        var el = document.getElementById('statusClockTime');
+        if (!el) return;
+        var fmt = new Intl.DateTimeFormat('en-GB', {
+          timeZone: 'Asia/Kathmandu',
+          hour: '2-digit', minute: '2-digit', second: '2-digit',
+          hour12: false,
+        });
+        function tick() { el.textContent = fmt.format(new Date()); }
+        tick();
+        setInterval(tick, 1000);
+      })();
+    </script>
 
     <!-- Live date auto-update: Fuse week + BEI semester -->
     <script>
