@@ -371,7 +371,7 @@
         <div class="hero-bg-lines"></div>
         <div class="hero-glow"></div>
         <div class="hero-left">
-          <div class="hero-tag">BEI IV/I · KEC, IOE · Tribhuvan University</div>
+          <div class="hero-tag" id="live-hero-tag">BEI IV/I · KEC, IOE · Tribhuvan University</div>
           <h1 class="hero-name">Aaradhya Dev<br /><em>Tamrakar</em></h1>
           <p class="hero-desc">
             Electronics, Communication &amp; Information Engineer building
@@ -411,7 +411,7 @@
             <div class="status-items">
               <div class="status-item">
                 <span class="status-item-label">Focus</span>
-                <span class="status-item-value">Fuse AI Fellowship — Wks 1–7 complete · PrakopNet Major Project</span>
+                <span class="status-item-value" id="live-focus">PrakopNet Major Project (proposal July 2) · Fuse AI Fellowship complete</span>
               </div>
               <div class="status-item">
                 <span class="status-item-label">Role</span>
@@ -419,11 +419,11 @@
               </div>
               <div class="status-item">
                 <span class="status-item-label">Fellowship</span>
-                <span class="status-item-value">Fuse AI Fellow · NSSR DataCamp (C2) — SQL Associate next</span>
+                <span class="status-item-value" id="live-fellowship">Fuse AI Fellow · NSSR DataCamp (C2) — SQL Associate next</span>
               </div>
               <div class="status-item">
                 <span class="status-item-label">Stack</span>
-                <span class="status-item-value">Python · Kotlin · FastAPI · Docker · XGBoost · PyMC · scikit-learn</span>
+                <span class="status-item-value">Python · Kotlin · JavaScript/React · FastAPI · Docker · XGBoost · scikit-learn</span>
               </div>
               <div class="status-item">
                 <span class="status-item-label">Interests</span>
@@ -442,11 +442,11 @@
           </div>
           <div class="stat-cell">
             <div class="stat-num">4<span>th</span></div>
-            <div class="stat-label">Year at KEC, IOE</div>
+            <div class="stat-label" id="live-stat-sem">Year at KEC, IOE</div>
           </div>
           <div class="stat-cell">
             <div class="stat-num">2</div>
-            <div class="stat-label">Active Fellowships</div>
+            <div class="stat-label">Fellowships &amp; Grants</div>
           </div>
           <div class="stat-cell">
             <div class="stat-num">7<span>+</span></div>
@@ -788,17 +788,28 @@
     <!-- Shared site script — must be last -->
     <script src="assets/js/script.js" defer></script>
 
-    <!-- Google Analytics (GA4) — loaded async, post-render, FCP-safe -->
+
+    <!-- Live date auto-update: Fuse week + BEI semester -->
     <script>
-      window.addEventListener('load', function () {
-        var s = document.createElement('script');
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-P38642CDGB';
-        s.async = true;
-        document.head.appendChild(s);
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = function () { dataLayer.push(arguments); };
-        gtag('js', new Date());
-        gtag('config', 'G-P38642CDGB');
+      document.addEventListener('DOMContentLoaded', function () {
+        if (!window.applyLiveDates) return;
+        applyLiveDates({
+          'live-hero-tag': function(L) { return L.heroTag; },
+          'live-focus': function(L) {
+            var propDeadline = new Date(2026, 6, 2); // Jul 2 2026
+            var now = new Date();
+            var propPart = now < propDeadline
+              ? 'PrakopNet proposal due Jul 2'
+              : 'PrakopNet Major Project';
+            return propPart + ' · ' + L.fuseLabel;
+          },
+          'live-fellowship': function(L) {
+            return L.fuseLabel + ' · NSSR DataCamp (C2)';
+          },
+          'live-stat-sem': function(L) {
+            return 'BEI ' + L.semLabel + ' at KEC, IOE';
+          },
+        });
       });
     </script>
   </body>

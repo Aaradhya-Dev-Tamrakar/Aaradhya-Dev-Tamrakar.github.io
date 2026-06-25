@@ -223,9 +223,99 @@ function loadGA4() {
 // Usage in page: SEARCH_INDEX.push(...entries)
 window.SEARCH_INDEX = window.SEARCH_INDEX || [];
 
+/* ── Live date computation ────────────────────────────────── */
+// Computes current Fuse AI Fellowship week and BEI semester from today's date.
+// Results exposed on window.LIVE — page-specific scripts read and apply them.
+function computeLiveDates() {
+  var now = new Date();
+
+  // ── Fuse AI Fellowship week ──────────────────────────────
+  // Anchor: Week 1 started Monday 4 May 2026 (Mon–Sun cadence).
+  // Week flips every Monday 00:00 local time.
+  var FUSE_WK1    = new Date(2026, 4, 4);  // May 4 2026, 00:00 local
+  var FUSE_TOTAL  = 24;                     // 6 months × 4 weeks
+  var MS_WEEK     = 7 * 24 * 60 * 60 * 1000;
+  var elapsed     = now - FUSE_WK1;
+  var fuseWeek    = elapsed >= 0 ? Math.floor(elapsed / MS_WEEK) + 1 : null;
+  // Fellowship is complete once Wk24 ends (Mon Oct 19 2026 00:00 local)
+  var FUSE_END    = new Date(FUSE_WK1.getTime() + FUSE_TOTAL * MS_WEEK);
+  var fuseComplete = fuseWeek !== null && now >= FUSE_END;
+
+  var fuseLabel, fuseStatus;
+  if (fuseWeek === null) {
+    fuseLabel  = 'Fuse AI Fellowship — not yet started';
+    fuseStatus = 'upcoming';
+  } else if (fuseComplete) {
+    fuseLabel  = 'Fuse AI Fellowship — Completed (May–Oct 2026, 24 wks)';
+    fuseStatus = 'complete';
+  } else {
+    var currentWk = Math.min(fuseWeek, FUSE_TOTAL); // cap display at Wk24
+    var wkStart = new Date(FUSE_WK1.getTime() + (currentWk - 1) * MS_WEEK);
+    var wkEnd   = new Date(wkStart.getTime() + 6 * 24 * 60 * 60 * 1000);
+    var fmt = function(d) {
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    };
+    fuseLabel  = 'Fuse AI Fellow — Wk ' + currentWk + '/' + FUSE_TOTAL
+               + ' (' + fmt(wkStart) + '–' + fmt(wkEnd) + ') ongoing';
+    fuseStatus = 'ongoing';
+  }
+
+  // ── BEI Semester ─────────────────────────────────────────
+  // IV/I (7th sem) until KEC 8th sem officially begins Sep 1 2026.
+  var SEM_SWITCH = new Date(2026, 8, 1); // Sep 1 2026 00:00 local
+  var isIV2 = now >= SEM_SWITCH;
+
+  var semLabel = isIV2 ? 'IV/II' : 'IV/I';
+  var semFull  = isIV2 ? 'Year IV / Part II — 8th Semester'
+                       : 'Year IV / Part I — 7th Semester';
+  var semNote  = isIV2
+    ? '8th Semester · Expected graduation January 2027'
+    : '7th Semester · Expected graduation January 2027';
+  var heroTag  = 'BEI ' + semLabel + ' · KEC, IOE · Tribhuvan University';
+
+  var IV1_SUBJECTS = [
+    'Wireless Communication','Artificial Intelligence',
+    'Organization &amp; Management','Digital Signal Analysis &amp; Processing',
+    'RF &amp; Microwave Engineering','Aeronautical Telecom','Project Part A'
+  ];
+  var IV2_SUBJECTS = [
+    'Telecommunications','Professional Practice',
+    'Energy, Environment &amp; Society','Information Systems',
+    'Elective II (EX 765)','Elective III (EX 785)',
+    'Project Part B — PrakopNet'
+  ];
+
+  window.LIVE = {
+    fuseWeek:   fuseWeek,
+    fuseLabel:  fuseLabel,
+    fuseStatus: fuseStatus,
+    semLabel:   semLabel,
+    semFull:    semFull,
+    semNote:    semNote,
+    heroTag:    heroTag,
+    subjects:   isIV2 ? IV2_SUBJECTS : IV1_SUBJECTS,
+    isIV2:      isIV2,
+  };
+}
+
+/* ── Apply live dates to elements (called per-page) ──────── */
+// Pass a map of { elementId: fn(LIVE) | string }.
+// String values used as-is; functions called with LIVE object.
+function applyLiveDates(map) {
+  if (!window.LIVE) computeLiveDates();
+  var L = window.LIVE;
+  Object.keys(map).forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var v = map[id];
+    el.innerHTML = typeof v === 'function' ? v(L) : v;
+  });
+}
+
 /* ── Boot ─────────────────────────────────────────────────── */
 (function init() {
-  initTheme();       // must run first — sets data-theme before paint
+  initTheme();        // must run first — sets data-theme before paint
+  computeLiveDates(); // compute before any page script reads LIVE
   renderSiteNav();
   setActiveNav();
   initThemeToggle();

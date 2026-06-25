@@ -672,8 +672,8 @@
 
             <div class="about-stats reveal">
               <div class="stat-row">
-                <div class="stat-num">4<span>th</span></div>
-                <div class="stat-label">Year at KEC<br />IOE, TU</div>
+                <div class="stat-num" id="live-about-year">4<span>th</span></div>
+                <div class="stat-label" id="live-about-sem-label">Year at KEC<br />IOE, TU</div>
               </div>
               <div class="stat-row">
                 <div class="stat-num">12<span>+</span></div>
@@ -681,7 +681,7 @@
               </div>
               <div class="stat-row">
                 <div class="stat-num">2</div>
-                <div class="stat-label">Active<br />Fellowships</div>
+                <div class="stat-label">Fellowships<br />&amp; Grants</div>
               </div>
               <div class="stat-row">
                 <div class="stat-num">7<span>+</span></div>
@@ -712,7 +712,7 @@
               has to run outdoors.
             </p>
             <p>
-              I'm currently a <strong>Fuse AI Fellow</strong> (Fusemachines,
+              I'm a <strong>Fuse AI Fellow</strong> (Fusemachines,
               2026 cohort), having built an agentic Text-to-SQL pipeline,
               tree-based ensemble models with SHAP explainability, Bayesian
               inference workflows in PyMC, and a full customer-segmentation
@@ -779,6 +779,14 @@
               </div>
               <div class="skill-row">
                 <span class="skill-name">VHDL</span>
+                <div class="skill-dots">
+                  <span class="skill-dot filled"></span
+                  ><span class="skill-dot filled"></span
+                  ><span class="skill-dot"></span>
+                </div>
+              </div>
+              <div class="skill-row">
+                <span class="skill-name">JavaScript / React</span>
                 <div class="skill-dots">
                   <span class="skill-dot filled"></span
                   ><span class="skill-dot filled"></span
@@ -896,7 +904,7 @@
             <div class="edu-school">
               Kathmandu Engineering College (KEC), IOE, Tribhuvan University
             </div>
-            <p class="edu-meta">
+            <p class="edu-meta" id="live-edu-meta">
               <strong>Year IV / Part I</strong> — 7th Semester · Expected
               graduation <strong>January 2027</strong>. Current electives:
               Aeronautical Telecommunication (CNS/ATM, ATC communications, ICAO
@@ -905,8 +913,8 @@
             </p>
           </div>
           <div>
-            <div class="edu-subjects-title">Current Coursework</div>
-            <div class="edu-tags">
+            <div class="edu-subjects-title" id="live-subjects-title">Current Coursework</div>
+            <div class="edu-tags" id="live-edu-tags">
               <span class="tag">Wireless Communication</span>
               <span class="tag">Artificial Intelligence</span>
               <span class="tag">Organization &amp; Management</span>
@@ -991,18 +999,31 @@
     </footer>
 
     <script src="assets/js/script.js" defer></script>
-
-    <!-- Google Analytics (GA4) — loaded async, post-render, FCP-safe -->
+    <!-- Live date auto-update: BEI semester + subjects -->
     <script>
-      window.addEventListener('load', function () {
-        var s = document.createElement('script');
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-P38642CDGB';
-        s.async = true;
-        document.head.appendChild(s);
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = function () { dataLayer.push(arguments); };
-        gtag('js', new Date());
-        gtag('config', 'G-P38642CDGB');
+      document.addEventListener('DOMContentLoaded', function () {
+        if (!window.applyLiveDates) return;
+        applyLiveDates({
+          'live-about-sem-label': function(L) {
+            return 'BEI ' + L.semLabel + '<br />KEC, IOE, TU';
+          },
+          'live-edu-meta': function(L) {
+            return '<strong>' + L.semFull + '</strong>'
+              + ' · ' + L.semNote
+              + (L.isIV2
+                  ? '. Elective II/III TBC at registration.'
+                  : '. Elective: Aeronautical Telecommunication (CNS/ATM, ICAO standards)'
+                  + ' — aligned with a CAAN Nepal / AAI India JE career target.');
+          },
+          'live-subjects-title': function(L) {
+            return (L.isIV2 ? '8th' : '7th') + ' Semester Coursework';
+          },
+          'live-edu-tags': function(L) {
+            return L.subjects.map(function(s) {
+              return '<span class="tag">' + s + '</span>';
+            }).join('\n              ');
+          },
+        });
       });
     </script>
   </body>
