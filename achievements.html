@@ -7,7 +7,7 @@
 
   <title>Achievements — Aaradhya Dev Tamrakar</title>
   <meta name="description"
-    content="Certifications, training programs, and competitive achievements of Aaradhya Dev Tamrakar — IEEEXtreme, IEEE WIE LaTeX Training, NepaTronix Drone Program, AWS, and more." />
+    content="Certifications, training programs, and competitive achievements of Aaradhya Dev Tamrakar — IEEEXtreme, IEEE WIE LaTeX Training, Drone Operator Training, AWS, and more." />
   <meta name="author" content="Aaradhya Dev Tamrakar" />
   <meta name="theme-color" content="#0d0e11" />
   <link rel="canonical" href="https://aaradhyadtmr.github.io/achievements.html" />
@@ -16,7 +16,7 @@
   <meta property="og:url" content="https://aaradhyadtmr.github.io/achievements.html" />
   <meta property="og:title" content="Achievements — Aaradhya Dev Tamrakar" />
   <meta property="og:description"
-    content="Certifications, training programs, and competitive achievements — IEEEXtreme, IEEE WIE LaTeX, NepaTronix Drone, AWS, and more." />
+    content="Certifications, training programs, and competitive achievements — IEEEXtreme, IEEE WIE LaTeX, Drone Operator Training, AWS, and more." />
   <meta property="og:image" content="https://aaradhyadtmr.github.io/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -25,7 +25,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Achievements — Aaradhya Dev Tamrakar" />
   <meta name="twitter:description"
-    content="Certifications, training programs, and competitive achievements — IEEEXtreme, IEEE WIE LaTeX, NepaTronix Drone, AWS, and more." />
+    content="Certifications, training programs, and competitive achievements — IEEEXtreme, IEEE WIE LaTeX, Drone Operator Training, AWS, and more." />
   <meta name="twitter:image" content="https://aaradhyadtmr.github.io/og-image.jpg" />
 
   <!-- JSON-LD: Breadcrumb -->
@@ -247,7 +247,57 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.25rem;
+      position: sticky;
+      top: calc(var(--nav-h) + 0.75rem);
+      z-index: 5;
+      padding: 0.85rem 0.9rem;
+      margin-inline: -0.9rem;
+      border-radius: 10px;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      transition: box-shadow 0.2s;
+    }
+
+    .achv-toolbar.is-stuck {
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--line);
+    }
+
+    .achv-results-count {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      min-height: 1em;
+    }
+
+    .achv-results-count strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .achv-search kbd {
+      position: absolute;
+      right: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 0.12rem 0.4rem;
+      pointer-events: none;
+    }
+
+    .achv-search.has-value kbd {
+      display: none;
+    }
+
+    .achv-filter-chip .achv-chip-count {
+      opacity: 0.6;
+      margin-left: 0.35em;
     }
 
     .achv-search {
@@ -746,7 +796,7 @@
     </header>
 
     <section id="achievements" aria-label="Achievements timeline">
-      <div class="achv-toolbar reveal">
+      <div class="achv-toolbar reveal" id="achvToolbar">
         <div class="achv-search">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
             stroke-linejoin="round">
@@ -755,6 +805,7 @@
           </svg>
           <input type="text" id="achvSearch" placeholder="Search achievements…" aria-label="Search achievements"
             autocomplete="off" />
+          <kbd aria-hidden="true">/</kbd>
           <button class="achv-search-clear" id="achvSearchClear" aria-label="Clear search" type="button">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
               stroke-linejoin="round">
@@ -766,6 +817,7 @@
         <div class="achv-filters" id="achvFilters" role="group" aria-label="Filter by organisation">
           <!-- chips injected by JS -->
         </div>
+        <div class="achv-results-count" id="achvResultsCount" aria-live="polite"></div>
       </div>
 
       <div class="achv-empty-state" id="achvEmptyState">No achievements match your filters.</div>
@@ -781,7 +833,8 @@
               core programming concepts and web development fundamentals.
             </p>
             <button class="cert-btn" data-cert="certificates/javascript-bootcamp-certificate-kec-it-club-2023.jpeg"
-              data-label="JavaScript Bootcamp — KEC IT Club 2023" data-type="image">
+              data-label="JavaScript Bootcamp — KEC IT Club 2023" data-type="image"
+              aria-label="View certificate: JavaScript Bootcamp — KEC IT Club 2023">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -802,7 +855,7 @@
               branching, and basic collaboration workflows.
             </p>
             <button class="cert-btn" data-cert="certificates/Introduction_to_Git.pdf" data-label="Introduction to Git"
-              data-type="pdf">
+              data-type="pdf" aria-label="View certificate: Introduction to Git">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -836,7 +889,8 @@
               Certificate of Completion received.
             </p>
             <button class="cert-btn" data-cert="certificates/Microsoft_Learn_HTML_CSS_GitHub_Pages.pdf"
-              data-label="Microsoft Learn HTML & CSS via GitHub Pages" data-type="pdf">
+              data-label="Microsoft Learn HTML & CSS via GitHub Pages" data-type="pdf"
+              aria-label="View certificate: Microsoft Learn HTML & CSS via GitHub Pages">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -849,7 +903,7 @@
         </div>
 
         <div class="achievement-item reveal">
-          <div class="achievement-org">IEEE Pulchowk Student Branch</div>
+          <div class="achievement-org">IEEE</div>
           <div>
             <div class="achievement-title">PreXtreme Competitive Programming Workshop</div>
             <p class="achievement-desc">
@@ -859,7 +913,8 @@
               dynamic programming, and graph theory. Certificate of Completion received.
             </p>
             <button class="cert-btn" data-cert="certificates/IEEE_Pulchowk_PreXtreme_CP_Workshop.pdf"
-              data-label="PreXtreme CP Workshop 2025" data-type="pdf">
+              data-label="PreXtreme CP Workshop 2025" data-type="pdf"
+              aria-label="View certificate: PreXtreme CP Workshop 2025">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -881,7 +936,8 @@
               (July 19, 2025). Certificate of Achievement received.
             </p>
             <button class="cert-btn" data-cert="certificates/KEC_IT_Club_AWS_Fundamentals_2025.png"
-              data-label="AWS Fundamentals Workshop 2025" data-type="image">
+              data-label="AWS Fundamentals Workshop 2025" data-type="image"
+              aria-label="View certificate: AWS Fundamentals Workshop 2025">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -894,7 +950,7 @@
         </div>
 
         <div class="achievement-item reveal">
-          <div class="achievement-org">IEEE KEC KTM Student Branch</div>
+          <div class="achievement-org">IEEE</div>
           <div>
             <div class="achievement-title">Agile Workshop</div>
             <p class="achievement-desc">
@@ -902,7 +958,8 @@
               Branch (July 22, 2025). Certificate of Appreciation received.
             </p>
             <button class="cert-btn" data-cert="certificates/IEEE_KEC_Agile_Workshop_2025.png"
-              data-label="IEEE KEC Agile Workshop 2025" data-type="image">
+              data-label="IEEE KEC Agile Workshop 2025" data-type="image"
+              aria-label="View certificate: IEEE KEC Agile Workshop 2025">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -924,7 +981,8 @@
               collaboration with KEC Robotics Club. Certificate of Completion received.
             </p>
             <button class="cert-btn" data-cert="certificates/KEC_Robotics_Club_PCB_Design_Fabrication_Workshop_2025.png"
-              data-label="PCB Design & Fabrication Workshop 2025" data-type="image">
+              data-label="PCB Design & Fabrication Workshop 2025" data-type="image"
+              aria-label="View certificate: PCB Design & Fabrication Workshop 2025">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -937,7 +995,7 @@
         </div>
 
         <div class="achievement-item reveal">
-          <div class="achievement-org">IEEE KEC KTM Student Branch · Technova</div>
+          <div class="achievement-org">IEEE</div>
           <div>
             <div class="achievement-title">Mentor — Electronics For All Workshop</div>
             <p class="achievement-desc">
@@ -946,7 +1004,8 @@
               Appreciation received for mentorship contribution.
             </p>
             <button class="cert-btn" data-cert="certificates/IEEE_KEC_Electronics_For_All_Mentorship_2025.png"
-              data-label="Electronics For All Mentorship 2025" data-type="image">
+              data-label="Electronics For All Mentorship 2025" data-type="image"
+              aria-label="View certificate: Electronics For All Mentorship 2025">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -967,7 +1026,8 @@
               techniques. Certificate of Participation received.
             </p>
             <button class="cert-btn" data-cert="certificates/Offenso_Security_Bypass_Webinar_2025.pdf"
-              data-label="Offenso Security Bypass Webinar 2025" data-type="pdf">
+              data-label="Offenso Security Bypass Webinar 2025" data-type="pdf"
+              aria-label="View certificate: Offenso Security Bypass Webinar 2025">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -980,7 +1040,7 @@
         </div>
 
         <div class="achievement-item reveal">
-          <div class="achievement-org">IEEE KEC KTM Student Branch</div>
+          <div class="achievement-org">IEEE</div>
           <div>
             <div class="achievement-title">IEEE Day 2025 — Organizer</div>
             <p class="achievement-desc">
@@ -989,7 +1049,8 @@
               Engineering College Student Branch. Certificate of Appreciation received.
             </p>
             <button class="cert-btn" data-cert="certificates/IEEE_KEC_IEEE_Day_Organizer_2025.png"
-              data-label="IEEE Day 2025 Organizer" data-type="image">
+              data-label="IEEE Day 2025 Organizer" data-type="image"
+              aria-label="View certificate: IEEE Day 2025 Organizer">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -1011,7 +1072,7 @@
               Team: ShadowXTREME. Certificate received.
             </p>
             <button class="cert-btn" data-cert="certificates/IEEE_IEEEXtreme_19_0_2025.pdf"
-              data-label="IEEEXtreme 19.0 — 2025" data-type="pdf">
+              data-label="IEEEXtreme 19.0 — 2025" data-type="pdf" aria-label="View certificate: IEEEXtreme 19.0 — 2025">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -1024,7 +1085,7 @@
         </div>
 
         <div class="achievement-item reveal">
-          <div class="achievement-org">IEEE Women in Engineering, Nepal Section</div>
+          <div class="achievement-org">IEEE</div>
           <div>
             <div class="achievement-title">IEEE WIE LaTeX Training Program</div>
             <p class="achievement-desc">
@@ -1032,7 +1093,8 @@
               Resource Person: Er. Dhawa Sang Dong. Certificate of Participation received.
             </p>
             <button class="cert-btn" data-cert="certificates/IEEE_WIE_LaTeX_Training_2026.png"
-              data-label="IEEE WIE LaTeX Training 2026" data-type="image">
+              data-label="IEEE WIE LaTeX Training 2026" data-type="image"
+              aria-label="View certificate: IEEE WIE LaTeX Training 2026">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -1053,7 +1115,8 @@
               at TechAxis (May 8, 2026). Certificate of Completion received.
             </p>
             <button class="cert-btn" data-cert="certificates/TechAxis_Prompt_Engineering_2026.png"
-              data-label="TechAxis Prompt Engineering 2026" data-type="image">
+              data-label="TechAxis Prompt Engineering 2026" data-type="image"
+              aria-label="View certificate: TechAxis Prompt Engineering 2026">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -1066,7 +1129,7 @@
         </div>
 
         <div class="achievement-item reveal">
-          <div class="achievement-org">IEEE KEC KTM Student Branch</div>
+          <div class="achievement-org">IEEE</div>
           <div>
             <div class="achievement-title">IEEE SPAx — Engineer Your Profile</div>
             <p class="achievement-desc">
@@ -1076,7 +1139,8 @@
               Certificate of Organization received.
             </p>
             <button class="cert-btn" data-cert="certificates/IEEE_KEC_SPAx_Organization_2026.png"
-              data-label="IEEE SPAx Organization 2026" data-type="image">
+              data-label="IEEE SPAx Organization 2026" data-type="image"
+              aria-label="View certificate: IEEE SPAx Organization 2026">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -1089,7 +1153,7 @@
         </div>
 
         <div class="achievement-item reveal">
-          <div class="achievement-org">NepaTronix Engineering Solution · Drone Hub Nepal</div>
+          <div class="achievement-org">Drone Operator Training</div>
           <div>
             <div class="achievement-title">NepaTronix Drone Training Program</div>
             <p class="achievement-desc">
@@ -1097,7 +1161,8 @@
               protocols, and basic applications.
             </p>
             <button class="cert-btn" data-cert="certificates/NepaTronix_Drone_Hub_Nepal_3Day_Drone_Training_2026.pdf"
-              data-label="NepaTronix Drone Training Program Certificate" data-type="pdf">
+              data-label="NepaTronix Drone Training Program Certificate" data-type="pdf"
+              aria-label="View certificate: NepaTronix Drone Training Program Certificate">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -1118,7 +1183,8 @@
               Earned 2.6 CPE credits.
             </p>
             <button class="cert-btn" data-cert="certificates/Introduction_to_Python_ITP0014139470763.png"
-              data-label="Introduction to Python — DataCamp" data-type="image">
+              data-label="Introduction to Python — DataCamp" data-type="image"
+              aria-label="View certificate: Introduction to Python — DataCamp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -1142,7 +1208,8 @@
               Introduction to Git.
             </p>
             <button class="cert-btn" data-cert="certificates/Introduction_to_Python_certificate.pdf"
-              data-label="Introduction to Python — DataCamp" data-type="pdf">
+              data-label="Introduction to Python — DataCamp" data-type="pdf"
+              aria-label="View certificate: Introduction to Python — DataCamp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -1151,7 +1218,8 @@
               Intro to Python
             </button>
             <button class="cert-btn" data-cert="certificates/Cleaning_Data_with_Generative_AI.pdf"
-              data-label="Cleaning Data with Generative AI — DataCamp" data-type="pdf">
+              data-label="Cleaning Data with Generative AI — DataCamp" data-type="pdf"
+              aria-label="View certificate: Cleaning Data with Generative AI — DataCamp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -1160,7 +1228,8 @@
               Cleaning Data with GenAI
             </button>
             <button class="cert-btn" data-cert="certificates/AI-Assisted_Product_Launch.pdf"
-              data-label="AI-Assisted Product Launch — DataCamp" data-type="pdf">
+              data-label="AI-Assisted Product Launch — DataCamp" data-type="pdf"
+              aria-label="View certificate: AI-Assisted Product Launch — DataCamp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -1169,7 +1238,8 @@
               AI-Assisted Product Launch
             </button>
             <button class="cert-btn" data-cert="certificates/Building_a_Go-To-Market_Strategy.pdf"
-              data-label="Building a Go-To-Market Strategy — DataCamp" data-type="pdf">
+              data-label="Building a Go-To-Market Strategy — DataCamp" data-type="pdf"
+              aria-label="View certificate: Building a Go-To-Market Strategy — DataCamp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -1178,7 +1248,8 @@
               Go-To-Market Strategy
             </button>
             <button class="cert-btn" data-cert="certificates/Generate_a_Study_Guide.pdf"
-              data-label="Generate a Study Guide — DataCamp" data-type="pdf">
+              data-label="Generate a Study Guide — DataCamp" data-type="pdf"
+              aria-label="View certificate: Generate a Study Guide — DataCamp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -1187,7 +1258,8 @@
               Generate a Study Guide
             </button>
             <button class="cert-btn" data-cert="certificates/Recommending_Skincare_Products.pdf"
-              data-label="Recommending Skincare Products — DataCamp" data-type="pdf">
+              data-label="Recommending Skincare Products — DataCamp" data-type="pdf"
+              aria-label="View certificate: Recommending Skincare Products — DataCamp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -1196,7 +1268,8 @@
               Recommending Skincare Products
             </button>
             <button class="cert-btn" data-cert="certificates/Introduction_to_Git.pdf"
-              data-label="Introduction to Git — DataCamp" data-type="pdf">
+              data-label="Introduction to Git — DataCamp" data-type="pdf"
+              aria-label="View certificate: Introduction to Git — DataCamp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -1209,7 +1282,7 @@
         </div>
 
         <div class="achievement-item reveal">
-          <div class="achievement-org">IEEE Nepal Section</div>
+          <div class="achievement-org">IEEE</div>
           <div>
             <div class="achievement-title">IEEE Conference Leadership Workshop 2026</div>
             <p class="achievement-desc">
@@ -1229,7 +1302,8 @@
               Earned 1.6 CPE credits.
             </p>
             <button class="cert-btn" data-cert="certificates/Introduction_to_Git_CPE0469867571113.png"
-              data-label="Introduction to Git — DataCamp" data-type="image">
+              data-label="Introduction to Git — DataCamp" data-type="image"
+              aria-label="View certificate: Introduction to Git — DataCamp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -1254,7 +1328,7 @@
         <a class="quick-nav-card" href="projects.html">
           <div class="quick-nav-index">P — 01</div>
           <div class="quick-nav-title">Projects</div>
-          <p class="quick-nav-desc">Robotics, embedded ML, and the PrakopNet early-warning platform.</p>
+          <p class="quick-nav-desc">Robotics, embedded ML, and the FallGuard fall-detection platform.</p>
           <span class="quick-nav-cta">View Projects →</span>
         </a>
         <a class="quick-nav-card" href="experience.html">
@@ -1378,6 +1452,15 @@
           if (!buttons.length) return;
           const actions = document.createElement('div');
           actions.className = 'achievement-actions';
+          // Multiple certificates under one achievement (e.g. DataCamp ×6):
+          // group them so assistive tech announces them as a related set
+          // rather than an unlabeled run of buttons.
+          if (buttons.length > 1) {
+            actions.setAttribute('role', 'group');
+            const titleEl = item.querySelector('.achievement-title');
+            const titleText = titleEl ? titleEl.textContent.trim() : 'this achievement';
+            actions.setAttribute('aria-label', `Certificates for ${titleText}`);
+          }
           const firstButton = buttons[0];
           if (firstButton.parentNode) {
             firstButton.parentNode.insertBefore(actions, firstButton);
@@ -1395,6 +1478,8 @@
         const searchClear = document.getElementById('achvSearchClear');
         const filtersEl = document.getElementById('achvFilters');
         const emptyState = document.getElementById('achvEmptyState');
+        const resultsCount = document.getElementById('achvResultsCount');
+        const toolbar = document.getElementById('achvToolbar');
         if (!searchInput || !filtersEl) return;
 
         const yearGroups = Array.from(timeline.querySelectorAll('.year-group'));
@@ -1413,17 +1498,17 @@
           ].join(' ').toLowerCase();
         });
 
-        // Build the unique, alphabetised org chip list.
-        const orgSet = new Set();
-        allItems.forEach(item => item._orgs.forEach(o => orgSet.add(o)));
-        const orgs = Array.from(orgSet).sort((a, b) => a.localeCompare(b));
+        // Build the unique, alphabetised org chip list, each with a match count.
+        const orgCounts = new Map();
+        allItems.forEach(item => item._orgs.forEach(o => orgCounts.set(o, (orgCounts.get(o) || 0) + 1)));
+        const orgs = Array.from(orgCounts.keys()).sort((a, b) => a.localeCompare(b));
 
         let activeOrg = null;
 
         const allChip = document.createElement('button');
         allChip.type = 'button';
         allChip.className = 'achv-filter-chip active';
-        allChip.textContent = 'All';
+        allChip.innerHTML = `All <span class="achv-chip-count">${allItems.length}</span>`;
         allChip.setAttribute('aria-pressed', 'true');
         filtersEl.appendChild(allChip);
 
@@ -1432,7 +1517,7 @@
           const chip = document.createElement('button');
           chip.type = 'button';
           chip.className = 'achv-filter-chip';
-          chip.textContent = org;
+          chip.innerHTML = `${org} <span class="achv-chip-count">${orgCounts.get(org)}</span>`;
           chip.dataset.org = org;
           chip.setAttribute('aria-pressed', 'false');
           filtersEl.appendChild(chip);
@@ -1452,7 +1537,6 @@
           searchWrap.classList.toggle('has-value', query.length > 0);
 
           let visibleTotal = 0;
-
           yearGroups.forEach(group => {
             const items = Array.from(group.querySelectorAll('.achievement-item'));
             let visibleInGroup = 0;
@@ -1484,6 +1568,12 @@
           });
 
           emptyState.classList.toggle('visible', visibleTotal === 0);
+
+          if (query || activeOrg) {
+            resultsCount.innerHTML = `<strong>${visibleTotal}</strong> of ${allItems.length} shown`;
+          } else {
+            resultsCount.textContent = '';
+          }
         }
 
         chipButtons.forEach(chip => {
@@ -1503,6 +1593,27 @@
         });
 
         applyFilters();
+
+        // "/" focuses search, unless already typing somewhere else.
+        document.addEventListener('keydown', (e) => {
+          if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;
+          const tag = document.activeElement?.tagName;
+          if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement?.isContentEditable) return;
+          e.preventDefault();
+          searchInput.focus();
+        });
+
+        // Shadow/border kick in once the toolbar is actually pinned to the top.
+        if (toolbar && 'IntersectionObserver' in window) {
+          const sentinel = document.createElement('div');
+          sentinel.style.cssText = 'position:absolute;top:0;height:1px;width:1px;pointer-events:none;';
+          toolbar.style.position = toolbar.style.position || 'sticky';
+          toolbar.parentElement.insertBefore(sentinel, toolbar);
+          new IntersectionObserver(
+            ([entry]) => toolbar.classList.toggle('is-stuck', !entry.isIntersecting),
+            { threshold: 0, rootMargin: `-${Math.round(parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 76) + 12}px 0px 0px 0px` }
+          ).observe(sentinel);
+        }
       }
 
       function openLightbox(src, label, type) {
