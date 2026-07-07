@@ -123,9 +123,13 @@
       }
 
       /* Certificate button */
-      .cert-btn {
-        display: inline-flex; align-items: center; gap: 0.45em;
+      .achievement-actions {
+        display: flex; flex-direction: column; gap: 0.55rem;
         margin-top: 0.9rem;
+      }
+      .cert-btn {
+        display: inline-flex; align-items: center; justify-content: flex-start; gap: 0.45em;
+        width: 100%; max-width: 320px;
         font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em;
         text-transform: uppercase; color: var(--accent);
         border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
@@ -134,6 +138,28 @@
         transition: background 0.2s, color 0.2s, border-color 0.2s;
       }
       .cert-btn svg { width: 0.85em; height: 0.85em; flex-shrink: 0; }
+      .year-group {
+        border: 1px solid var(--line); border-radius: 8px;
+        background: color-mix(in srgb, var(--surface) 70%, transparent);
+        margin-bottom: 1rem; overflow: hidden;
+      }
+      .year-toggle {
+        list-style: none; cursor: pointer;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 1rem 1.25rem; font-family: var(--mono); font-size: 0.7rem;
+        letter-spacing: 0.16em; text-transform: uppercase; color: var(--heading);
+        background: color-mix(in srgb, var(--bg2) 86%, transparent);
+      }
+      .year-toggle::-webkit-details-marker { display: none; }
+      .year-count {
+        color: var(--accent); font-size: 0.65rem; letter-spacing: 0.12em;
+      }
+      .year-items { padding: 0 1.25rem 0.5rem; }
+      .year-items .achievement-item {
+        grid-template-columns: 1fr 3fr 1fr; gap: 2rem;
+        padding: 1.25rem 0; border-bottom: 1px solid var(--line);
+      }
+      .year-items .achievement-item:last-child { border-bottom: none; }
       .cert-btn:hover {
         background: color-mix(in srgb, var(--accent) 12%, transparent);
         border-color: var(--accent); color: var(--heading);
@@ -304,17 +330,200 @@
       <section id="achievements" aria-label="Achievements timeline">
         <div class="achievements-list">
 
-          <!-- No certificate file for this one -->
           <div class="achievement-item reveal">
-            <div class="achievement-org">IEEE Nepal Section</div>
+            <div class="achievement-org">KEC IT Club</div>
             <div>
-              <div class="achievement-title">IEEE Conference Leadership Workshop 2026</div>
+              <div class="achievement-title">JavaScript Bootcamp</div>
               <p class="achievement-desc">
-                Workshop covering event management, leadership, and conference
-                organisation skills for IEEE student members.
+                Participated in an introductory JavaScript bootcamp focused on
+                core programming concepts and web development fundamentals.
+              </p>
+              <button class="cert-btn" data-cert="certificates/javascript-bootcamp-certificate-kec-it-club-2023.jpeg" data-label="JavaScript Bootcamp — KEC IT Club 2023" data-type="image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
+            </div>
+            <div class="achievement-date">2023</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">KEC IT Club</div>
+            <div>
+              <div class="achievement-title">Introduction to Git</div>
+              <p class="achievement-desc">
+                Completed a foundational training on Git concepts, repositories,
+                branching, and basic collaboration workflows.
+              </p>
+              <button class="cert-btn" data-cert="certificates/Introduction_to_Git.pdf" data-label="Introduction to Git" data-type="pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
+            </div>
+            <div class="achievement-date">2024</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">KEC IT Club</div>
+            <div>
+              <div class="achievement-title">Git &amp; GitHub Workshop</div>
+              <p class="achievement-desc">
+                Version control fundamentals and collaborative workflow practices.
               </p>
             </div>
-            <div class="achievement-date">2026</div>
+            <div class="achievement-date">2024</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">Microsoft Learn Student Ambassador</div>
+            <div>
+              <div class="achievement-title">HTML &amp; CSS Workshop — Design, Code &amp; Launch via GitHub Pages</div>
+              <p class="achievement-desc">
+                Completed a workshop on designing, coding, and deploying a website
+                using GitHub Pages, conducted by Microsoft Learn Student Ambassador
+                in association with Dynamic Public Library (DPL) Teens.
+                Certificate of Completion received.
+              </p>
+              <button class="cert-btn" data-cert="certificates/Microsoft_Learn_HTML_CSS_GitHub_Pages.pdf" data-label="Microsoft Learn HTML & CSS via GitHub Pages" data-type="pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
+            </div>
+            <div class="achievement-date">2024</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">IEEE Pulchowk Student Branch</div>
+            <div>
+              <div class="achievement-title">PreXtreme Competitive Programming Workshop</div>
+              <p class="achievement-desc">
+                Five-day intensive workshop (July 11–16, 2025) on algorithms and data
+                structures: arrays, stacks, queues, number theory, combinatorics,
+                searching, sorting, recursion, greedy algorithms, bit manipulation,
+                dynamic programming, and graph theory. Certificate of Completion received.
+              </p>
+              <button class="cert-btn" data-cert="certificates/IEEE_Pulchowk_PreXtreme_CP_Workshop.pdf" data-label="PreXtreme CP Workshop 2025" data-type="pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
+            </div>
+            <div class="achievement-date">Jul 2025</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">KEC IT Club · AWS Cloud Club Nepal</div>
+            <div>
+              <div class="achievement-title">AWS Fundamentals Workshop</div>
+              <p class="achievement-desc">
+                Hands-on workshop on AWS core services and cloud fundamentals, organized
+                by KEC I.T. Club in collaboration with AWS Cloud Club in Nepal
+                (July 19, 2025). Certificate of Achievement received.
+              </p>
+              <button class="cert-btn" data-cert="certificates/KEC_IT_Club_AWS_Fundamentals_2025.png" data-label="AWS Fundamentals Workshop 2025" data-type="image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
+            </div>
+            <div class="achievement-date">Jul 2025</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">IEEE KEC KTM Student Branch</div>
+            <div>
+              <div class="achievement-title">Agile Workshop</div>
+              <p class="achievement-desc">
+                Participated in an Agile Workshop organized by IEEE KEC KTM Student
+                Branch (July 22, 2025). Certificate of Appreciation received.
+              </p>
+              <button class="cert-btn" data-cert="certificates/IEEE_KEC_Agile_Workshop_2025.png" data-label="IEEE KEC Agile Workshop 2025" data-type="image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
+            </div>
+            <div class="achievement-date">Jul 2025</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">Nepal Students' Union KEC · KEC Robotics Club</div>
+            <div>
+              <div class="achievement-title">PCB Design &amp; Fabrication Workshop</div>
+              <p class="achievement-desc">
+                Three-day workshop on PCB design and fabrication (July 24–26, 2025),
+                organized by Nepal Students' Union, Kathmandu Engineering College in
+                collaboration with KEC Robotics Club. Certificate of Completion received.
+              </p>
+              <button class="cert-btn" data-cert="certificates/KEC_Robotics_Club_PCB_Design_Fabrication_Workshop_2025.png" data-label="PCB Design & Fabrication Workshop 2025" data-type="image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
+            </div>
+            <div class="achievement-date">Jul 2025</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">IEEE KEC KTM Student Branch · Technova</div>
+            <div>
+              <div class="achievement-title">Mentor — Electronics For All Workshop</div>
+              <p class="achievement-desc">
+                Served as a mentor at the Electronics For All Workshop held at
+                Shree Kuleshwor Secondary School (July 27, 2025). Certificate of
+                Appreciation received for mentorship contribution.
+              </p>
+              <button class="cert-btn" data-cert="certificates/IEEE_KEC_Electronics_For_All_Mentorship_2025.png" data-label="Electronics For All Mentorship 2025" data-type="image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
+            </div>
+            <div class="achievement-date">Jul 2025</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">Offenso Hackers Academy</div>
+            <div>
+              <div class="achievement-title">How Hackers Bypass Security: A Beginner's Guide</div>
+              <p class="achievement-desc">
+                Webinar on offensive security fundamentals and common attack bypass
+                techniques. Certificate of Participation received.
+              </p>
+              <button class="cert-btn" data-cert="certificates/Offenso_Security_Bypass_Webinar_2025.pdf" data-label="Offenso Security Bypass Webinar 2025" data-type="pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
+            </div>
+            <div class="achievement-date">Jul 2025</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">IEEE KEC KTM Student Branch</div>
+            <div>
+              <div class="achievement-title">IEEE Day 2025 — Organizer</div>
+              <p class="achievement-desc">
+                Recognized for dedication and contribution as an Organizer at the
+                IEEE Day 2025 event (October 9, 2025), organized by IEEE Kathmandu
+                Engineering College Student Branch. Certificate of Appreciation received.
+              </p>
+              <button class="cert-btn" data-cert="certificates/IEEE_KEC_IEEE_Day_Organizer_2025.png" data-label="IEEE Day 2025 Organizer" data-type="image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
+            </div>
+            <div class="achievement-date">Oct 2025</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">IEEE</div>
+            <div>
+              <div class="achievement-title">IEEEXtreme 19.0</div>
+              <p class="achievement-desc">
+                Participated in the 24-hour global competitive programming marathon
+                hosted by IEEE, with over 19,000 participants worldwide.
+                Team: ShadowXTREME. Certificate received.
+              </p>
+              <button class="cert-btn" data-cert="certificates/IEEE_IEEEXtreme_19_0_2025.pdf" data-label="IEEEXtreme 19.0 — 2025" data-type="pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
+            </div>
+            <div class="achievement-date">Oct 2025</div>
           </div>
 
           <div class="achievement-item reveal">
@@ -386,12 +595,29 @@
           <div class="achievement-item reveal">
             <div class="achievement-org">DataCamp</div>
             <div>
+              <div class="achievement-title">Introduction to Python</div>
+              <p class="achievement-desc">
+                Completed on May 25, 2026. Credential ID ITP0014139470763.
+                Earned 2.6 CPE credits.
+              </p>
+              <button class="cert-btn" data-cert="certificates/Introduction_to_Python_ITP0014139470763.png" data-label="Introduction to Python — DataCamp" data-type="image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                View Certificate
+              </button>
+            </div>
+            <div class="achievement-date">May 2026</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">DataCamp</div>
+            <div>
               <div class="achievement-title">DataCamp Statements of Accomplishment (×6)</div>
               <p class="achievement-desc">
                 Six certified courses completed as part of the NSSR DataCamp fellowship:
                 Introduction to Python (4 hrs), Cleaning Data with Generative AI,
                 AI-Assisted Product Launch, Building a Go-To-Market Strategy,
-                Generate a Study Guide, and Recommending Skincare Products.
+                Generate a Study Guide, Recommending Skincare Products, and
+                Introduction to Git.
               </p>
               <button class="cert-btn" data-cert="certificates/Introduction_to_Python_certificate.pdf" data-label="Introduction to Python — DataCamp" data-type="pdf">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
@@ -417,174 +643,42 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
                 Recommending Skincare Products
               </button>
+              <button class="cert-btn" data-cert="certificates/Introduction_to_Git.pdf" data-label="Introduction to Git — DataCamp" data-type="pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                Introduction to Git
+              </button>
             </div>
-            <div class="achievement-date">May 2026</div>
+            <div class="achievement-date">May 2026 · Jul 2026</div>
           </div>
 
           <div class="achievement-item reveal">
-            <div class="achievement-org">IEEE</div>
+            <div class="achievement-org">IEEE Nepal Section</div>
             <div>
-              <div class="achievement-title">IEEEXtreme 19.0</div>
+              <div class="achievement-title">IEEE Conference Leadership Workshop 2026</div>
               <p class="achievement-desc">
-                Participated in the 24-hour global competitive programming marathon
-                hosted by IEEE, with over 19,000 participants worldwide.
-                Team: ShadowXTREME. Certificate received.
+                Workshop covering event management, leadership, and conference
+                organisation skills for IEEE student members.
               </p>
-              <button class="cert-btn" data-cert="certificates/IEEE_IEEEXtreme_19_0_2025.pdf" data-label="IEEEXtreme 19.0 — 2025" data-type="pdf">
+            </div>
+            <div class="achievement-date">2026</div>
+          </div>
+
+          <div class="achievement-item reveal">
+            <div class="achievement-org">DataCamp</div>
+            <div>
+              <div class="achievement-title">Introduction to Git</div>
+              <p class="achievement-desc">
+                Completed on July 6, 2026. Credential ID CPE0469867571113.
+                Earned 1.6 CPE credits.
+              </p>
+              <button class="cert-btn" data-cert="certificates/Introduction_to_Git_CPE0469867571113.png" data-label="Introduction to Git — DataCamp" data-type="image">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
                 View Certificate
               </button>
             </div>
-            <div class="achievement-date">Oct 2025</div>
+            <div class="achievement-date">Jul 2026</div>
           </div>
 
-          <div class="achievement-item reveal">
-            <div class="achievement-org">IEEE KEC KTM Student Branch</div>
-            <div>
-              <div class="achievement-title">IEEE Day 2025 — Organizer</div>
-              <p class="achievement-desc">
-                Recognized for dedication and contribution as an Organizer at the
-                IEEE Day 2025 event (October 9, 2025), organized by IEEE Kathmandu
-                Engineering College Student Branch. Certificate of Appreciation received.
-              </p>
-              <button class="cert-btn" data-cert="certificates/IEEE_KEC_IEEE_Day_Organizer_2025.png" data-label="IEEE Day 2025 Organizer" data-type="image">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                View Certificate
-              </button>
-            </div>
-            <div class="achievement-date">Oct 2025</div>
-          </div>
-
-          <div class="achievement-item reveal">
-            <div class="achievement-org">Offenso Hackers Academy</div>
-            <div>
-              <div class="achievement-title">How Hackers Bypass Security: A Beginner's Guide</div>
-              <p class="achievement-desc">
-                Webinar on offensive security fundamentals and common attack bypass
-                techniques. Certificate of Participation received.
-              </p>
-              <button class="cert-btn" data-cert="certificates/Offenso_Security_Bypass_Webinar_2025.pdf" data-label="Offenso Security Bypass Webinar 2025" data-type="pdf">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                View Certificate
-              </button>
-            </div>
-            <div class="achievement-date">Jul 2025</div>
-          </div>
-
-          <div class="achievement-item reveal">
-            <div class="achievement-org">IEEE KEC KTM Student Branch · Technova</div>
-            <div>
-              <div class="achievement-title">Mentor — Electronics For All Workshop</div>
-              <p class="achievement-desc">
-                Served as a mentor at the Electronics For All Workshop held at
-                Shree Kuleshwor Secondary School (July 27, 2025). Certificate of
-                Appreciation received for mentorship contribution.
-              </p>
-              <button class="cert-btn" data-cert="certificates/IEEE_KEC_Electronics_For_All_Mentorship_2025.png" data-label="Electronics For All Mentorship 2025" data-type="image">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                View Certificate
-              </button>
-            </div>
-            <div class="achievement-date">Jul 2025</div>
-          </div>
-
-          <div class="achievement-item reveal">
-            <div class="achievement-org">Nepal Students' Union KEC · KEC Robotics Club</div>
-            <div>
-              <div class="achievement-title">PCB Design &amp; Fabrication Workshop</div>
-              <p class="achievement-desc">
-                Three-day workshop on PCB design and fabrication (July 24–26, 2025),
-                organized by Nepal Students' Union, Kathmandu Engineering College in
-                collaboration with KEC Robotics Club. Certificate of Completion received.
-              </p>
-              <button class="cert-btn" data-cert="certificates/KEC_Robotics_Club_PCB_Design_Fabrication_Workshop_2025.png" data-label="PCB Design & Fabrication Workshop 2025" data-type="image">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                View Certificate
-              </button>
-            </div>
-            <div class="achievement-date">Jul 2025</div>
-          </div>
-
-          <div class="achievement-item reveal">
-            <div class="achievement-org">IEEE KEC KTM Student Branch</div>
-            <div>
-              <div class="achievement-title">Agile Workshop</div>
-              <p class="achievement-desc">
-                Participated in an Agile Workshop organized by IEEE KEC KTM Student
-                Branch (July 22, 2025). Certificate of Appreciation received.
-              </p>
-              <button class="cert-btn" data-cert="certificates/IEEE_KEC_Agile_Workshop_2025.png" data-label="IEEE KEC Agile Workshop 2025" data-type="image">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                View Certificate
-              </button>
-            </div>
-            <div class="achievement-date">Jul 2025</div>
-          </div>
-
-          <div class="achievement-item reveal">
-            <div class="achievement-org">KEC IT Club · AWS Cloud Club Nepal</div>
-            <div>
-              <div class="achievement-title">AWS Fundamentals Workshop</div>
-              <p class="achievement-desc">
-                Hands-on workshop on AWS core services and cloud fundamentals, organized
-                by KEC I.T. Club in collaboration with AWS Cloud Club in Nepal
-                (July 19, 2025). Certificate of Achievement received.
-              </p>
-              <button class="cert-btn" data-cert="certificates/KEC_IT_Club_AWS_Fundamentals_2025.png" data-label="AWS Fundamentals Workshop 2025" data-type="image">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                View Certificate
-              </button>
-            </div>
-            <div class="achievement-date">Jul 2025</div>
-          </div>
-
-          <div class="achievement-item reveal">
-            <div class="achievement-org">IEEE Pulchowk Student Branch</div>
-            <div>
-              <div class="achievement-title">PreXtreme Competitive Programming Workshop</div>
-              <p class="achievement-desc">
-                Five-day intensive workshop (July 11–16, 2025) on algorithms and data
-                structures: arrays, stacks, queues, number theory, combinatorics,
-                searching, sorting, recursion, greedy algorithms, bit manipulation,
-                dynamic programming, and graph theory. Certificate of Completion received.
-              </p>
-              <button class="cert-btn" data-cert="certificates/IEEE_Pulchowk_PreXtreme_CP_Workshop.pdf" data-label="PreXtreme CP Workshop 2025" data-type="pdf">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                View Certificate
-              </button>
-            </div>
-            <div class="achievement-date">Jul 2025</div>
-          </div>
-
-          <!-- No certificate file for this one -->
-          <div class="achievement-item reveal">
-            <div class="achievement-org">KEC IT Club</div>
-            <div>
-              <div class="achievement-title">Git &amp; GitHub Workshop</div>
-              <p class="achievement-desc">
-                Version control fundamentals and collaborative workflow practices.
-              </p>
-            </div>
-            <div class="achievement-date">2024</div>
-          </div>
-
-          <div class="achievement-item reveal">
-            <div class="achievement-org">Microsoft Learn Student Ambassador</div>
-            <div>
-              <div class="achievement-title">HTML &amp; CSS Workshop — Design, Code &amp; Launch via GitHub Pages</div>
-              <p class="achievement-desc">
-                Completed a workshop on designing, coding, and deploying a website
-                using GitHub Pages, conducted by Microsoft Learn Student Ambassador
-                in association with Dynamic Public Library (DPL) Teens.
-                Certificate of Completion received.
-              </p>
-              <button class="cert-btn" data-cert="certificates/Microsoft_Learn_HTML_CSS_GitHub_Pages.pdf" data-label="Microsoft Learn HTML & CSS via GitHub Pages" data-type="pdf">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                View Certificate
-              </button>
-            </div>
-            <div class="achievement-date">2024</div>
-          </div>
 
         </div>
       </section>
@@ -646,6 +740,88 @@
         const lbOpen    = document.getElementById('lb-open');
         const lbClose   = document.getElementById('lb-close');
         let lastFocus   = null;
+
+        const timeline = document.querySelector('.achievements-list');
+        if (timeline) {
+          const monthMap = {
+            jan: 0, january: 0,
+            feb: 1, february: 1,
+            mar: 2, march: 2,
+            apr: 3, april: 3,
+            may: 4,
+            jun: 5, june: 5,
+            jul: 6, july: 6,
+            aug: 7, august: 7,
+            sep: 8, sept: 8, september: 8,
+            oct: 9, october: 9,
+            nov: 10, november: 10,
+            dec: 11, december: 11
+          };
+
+          function parseDateValue(raw) {
+            if (!raw) return new Date(0);
+            const text = raw.trim();
+            if (!text) return new Date(0);
+
+            if (text.includes('·')) {
+              const parts = text.split('·').map(part => part.trim()).filter(Boolean);
+              const dates = parts.map(parseDateValue).filter(date => !Number.isNaN(date.getTime()));
+              if (dates.length) return new Date(Math.max(...dates));
+            }
+
+            const yearMatch = text.match(/(\d{4})/);
+            const year = yearMatch ? Number(yearMatch[1]) : new Date().getFullYear();
+            const monthMatch = text.match(/(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)/i);
+            const month = monthMatch ? monthMap[monthMatch[1].toLowerCase()] : 0;
+            return new Date(year, month, 1);
+          }
+
+          const items = Array.from(timeline.querySelectorAll('.achievement-item'));
+          const sortedEntries = items
+            .map(item => ({
+              item,
+              date: parseDateValue(item.dataset.date || item.querySelector('.achievement-date')?.textContent || ''),
+              year: parseDateValue(item.dataset.date || item.querySelector('.achievement-date')?.textContent || '').getFullYear()
+            }))
+            .sort((a, b) => b.date - a.date);
+
+          const yearBuckets = new Map();
+          sortedEntries.forEach(entry => {
+            const bucket = yearBuckets.get(entry.year) || [];
+            bucket.push(entry.item);
+            yearBuckets.set(entry.year, bucket);
+          });
+
+          timeline.innerHTML = '';
+          Array.from(yearBuckets.keys()).sort((a, b) => b - a).forEach((year, index) => {
+            const group = document.createElement('details');
+            group.className = 'year-group';
+            if (index === 0) group.open = true;
+
+            const summary = document.createElement('summary');
+            summary.className = 'year-toggle';
+            summary.innerHTML = `<span>${year}</span><span class="year-count">${yearBuckets.get(year).length}</span>`;
+            group.appendChild(summary);
+
+            const yearItems = document.createElement('div');
+            yearItems.className = 'year-items';
+            yearBuckets.get(year).forEach(item => yearItems.appendChild(item));
+            group.appendChild(yearItems);
+            timeline.appendChild(group);
+          });
+
+          timeline.querySelectorAll('.achievement-item').forEach(item => {
+            const buttons = Array.from(item.querySelectorAll('.cert-btn'));
+            if (!buttons.length) return;
+            const actions = document.createElement('div');
+            actions.className = 'achievement-actions';
+            const firstButton = buttons[0];
+            if (firstButton.parentNode) {
+              firstButton.parentNode.insertBefore(actions, firstButton);
+              buttons.forEach(button => actions.appendChild(button));
+            }
+          });
+        }
 
         function openLightbox(src, label, type) {
           lastFocus = document.activeElement;
