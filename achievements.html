@@ -740,6 +740,23 @@
 
         const timeline = document.querySelector('.achievements-list');
         if (timeline) {
+          // debounce helper
+          function debounce(fn, wait = 100) {
+            let t = null;
+            return (...args) => { clearTimeout(t); t = setTimeout(() => fn.apply(this, args), wait); };
+          }
+
+          // compute nav height (real rendered height) and write to CSS var --nav-h
+          function computeNavHeight() {
+            const nav = document.querySelector('#siteNav');
+            const h = nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
+            document.documentElement.style.setProperty('--nav-h', h + 'px');
+            return h;
+          }
+
+          // initial compute and update on resize
+          computeNavHeight();
+          window.addEventListener('resize', debounce(() => computeNavHeight(), 120));
           const monthMap = {
             jan: 0, january: 0,
             feb: 1, february: 1,
@@ -793,7 +810,7 @@
           Array.from(yearBuckets.keys()).sort((a, b) => b - a).forEach((year, index) => {
             const group = document.createElement('details');
             group.className = 'year-group';
-            if (index === 0) group.open = true;
+            // keep all groups closed by default; user requested initial closed state
             const summary = document.createElement('summary');
             summary.className = 'year-toggle';
             summary.innerHTML = `
@@ -826,6 +843,12 @@
             }
           });
 
+          // ensure initial scroll position shows the top of the achievements section
+          requestAnimationFrame(() => {
+            const navHeight = computeNavHeight();
+            window.scrollTo({ top: Math.max(0, timeline.getBoundingClientRect().top + window.scrollY - navHeight), behavior: 'instant' });
+          });
+
           timeline.querySelectorAll('.year-group').forEach(group => {
             group.addEventListener('toggle', () => {
               if (!group.open) return;
@@ -833,8 +856,7 @@
                 if (other !== group) other.open = false;
               });
               requestAnimationFrame(() => {
-                const nav = document.querySelector('#siteNav');
-                const navHeight = nav?.offsetHeight || 0;
+                const navHeight = computeNavHeight();
                 // compute the actual visual gap (in pixels) between this group and the previous
                 // using bounding boxes — this yields the real rendered distance regardless of rem/px units
                 let gap = 0;
