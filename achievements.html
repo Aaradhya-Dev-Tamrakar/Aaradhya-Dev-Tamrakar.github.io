@@ -150,6 +150,19 @@
         letter-spacing: 0.16em; text-transform: uppercase; color: var(--heading);
         background: color-mix(in srgb, var(--bg2) 86%, transparent);
       }
+      .year-toggle .year-left {
+        display: inline-flex; align-items: center; gap: 0.65rem;
+      }
+      .year-toggle .year-label {
+        font-weight: 700; /* bold year */
+        font-family: var(--mono); letter-spacing: 0.14em; font-size: 0.78rem;
+      }
+      .year-toggle .year-arrow {
+        display: inline-block; width: 0.9rem; height: 0.9rem; transform-origin: center;
+        transition: transform 0.18s ease;
+        color: var(--accent);
+      }
+      details[open] .year-toggle .year-arrow { transform: rotate(180deg); }
       .year-toggle::-webkit-details-marker { display: none; }
       .year-count {
         color: var(--accent); font-size: 0.65rem; letter-spacing: 0.12em;
@@ -663,22 +676,6 @@
             <div class="achievement-date">2026</div>
           </div>
 
-          <div class="achievement-item reveal">
-            <div class="achievement-org">DataCamp</div>
-            <div>
-              <div class="achievement-title">Introduction to Git</div>
-              <p class="achievement-desc">
-                Completed on July 6, 2026. Credential ID CPE0469867571113.
-                Earned 1.6 CPE credits.
-              </p>
-              <button class="cert-btn" data-cert="certificates/Introduction_to_Git_CPE0469867571113.png" data-label="Introduction to Git — DataCamp" data-type="image">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                View Certificate
-              </button>
-            </div>
-            <div class="achievement-date">Jul 2026</div>
-          </div>
-
 
         </div>
       </section>
@@ -797,10 +794,17 @@
             const group = document.createElement('details');
             group.className = 'year-group';
             if (index === 0) group.open = true;
-
             const summary = document.createElement('summary');
             summary.className = 'year-toggle';
-            summary.innerHTML = `<span>${year}</span><span class="year-count">${yearBuckets.get(year).length}</span>`;
+            summary.innerHTML = `
+              <span class="year-left">
+                <span class="year-label">${year}</span>
+                <svg class="year-arrow" viewBox="0 0 24 24" fill="none" aria-hidden>
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+              <span class="year-count">${yearBuckets.get(year).length}</span>
+            `;
             group.appendChild(summary);
 
             const yearItems = document.createElement('div');
@@ -820,6 +824,41 @@
               firstButton.parentNode.insertBefore(actions, firstButton);
               buttons.forEach(button => actions.appendChild(button));
             }
+          });
+
+          timeline.querySelectorAll('.year-group').forEach(group => {
+            group.addEventListener('toggle', () => {
+              if (!group.open) return;
+              timeline.querySelectorAll('.year-group').forEach(other => {
+                if (other !== group) other.open = false;
+              });
+              requestAnimationFrame(() => {
+                const nav = document.querySelector('#siteNav');
+                const navHeight = nav?.offsetHeight || 0;
+                // compute the actual visual gap (in pixels) between this group and the previous
+                // using bounding boxes — this yields the real rendered distance regardless of rem/px units
+                let gap = 0;
+                const prev = group.previousElementSibling;
+                if (prev) {
+                  const prevRect = prev.getBoundingClientRect();
+                  const groupRect = group.getBoundingClientRect();
+                  gap = Math.max(0, Math.round(groupRect.top - prevRect.bottom));
+                } else {
+                  // no previous sibling: fall back to group's computed margin-top (pixels)
+                  gap = parseFloat(getComputedStyle(group).marginTop) || 0;
+                }
+
+                const summary = group.querySelector('.year-toggle') || group.querySelector('summary');
+                // set scrollMarginTop so native scrollIntoView respects the header + visual gap
+                if (summary) {
+                  summary.style.scrollMarginTop = (navHeight + gap) + 'px';
+                  summary.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                  const targetOffset = (group.getBoundingClientRect().top + window.scrollY) - (navHeight + gap);
+                  window.scrollTo({ top: Math.max(0, Math.floor(targetOffset)), behavior: 'smooth' });
+                }
+              });
+            });
           });
         }
 
