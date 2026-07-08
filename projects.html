@@ -7,7 +7,7 @@
     <title>Projects — Aaradhya Dev Tamrakar</title>
     <meta
       name="description"
-      content="Selected engineering projects by Aaradhya Dev Tamrakar — robotics, embedded ML, agentic pipelines, and the PrakopNet multi-hazard early warning platform."
+      content="Selected engineering projects by Aaradhya Dev Tamrakar — robotics, embedded ML, agentic pipelines, and the SPARK fall-detection wearable."
     />
     <meta name="author" content="Aaradhya Dev Tamrakar" />
     <meta name="theme-color" content="#0d0e11" />
@@ -18,7 +18,7 @@
     <meta property="og:title" content="Projects — Aaradhya Dev Tamrakar" />
     <meta
       property="og:description"
-      content="Robotics, embedded ML, agentic pipelines, and the PrakopNet multi-hazard early warning platform."
+      content="Robotics, embedded ML, agentic pipelines, and the SPARK fall-detection wearable."
     />
     <meta property="og:image" content="https://aaradhyadtmr.github.io/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
@@ -29,7 +29,7 @@
     <meta name="twitter:title" content="Projects — Aaradhya Dev Tamrakar" />
     <meta
       name="twitter:description"
-      content="Robotics, embedded ML, agentic pipelines, and the PrakopNet multi-hazard early warning platform."
+      content="Robotics, embedded ML, agentic pipelines, and the SPARK fall-detection wearable."
     />
     <meta name="twitter:image" content="https://aaradhyadtmr.github.io/og-image.jpg" />
 
@@ -101,6 +101,76 @@
       }
 
       #projects { padding: 2rem 3rem 6rem; }
+
+      /* ── Filter / search bar ── */
+      .proj-toolbar {
+        display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.25rem;
+        position: sticky; top: calc(var(--nav-h) + 0.75rem); z-index: 5;
+        padding: 0.85rem 0.9rem; margin-inline: -0.9rem; border-radius: 10px;
+        background: color-mix(in srgb, var(--bg) 88%, transparent);
+        backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
+        transition: box-shadow 0.2s;
+      }
+      .proj-toolbar.is-stuck { box-shadow: var(--card-shadow); border: 1px solid var(--line); }
+      .proj-results-count {
+        font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--muted); min-height: 1em;
+      }
+      .proj-results-count strong { color: var(--accent); font-weight: 600; }
+      .proj-search { position: relative; display: flex; align-items: center; }
+      .proj-search svg {
+        position: absolute; left: 0.9rem; width: 0.95rem; height: 0.95rem;
+        color: var(--muted); pointer-events: none;
+      }
+      .proj-search input {
+        width: 100%; font-family: var(--sans); font-size: 0.85rem; color: var(--text);
+        background: color-mix(in srgb, var(--surface) 70%, transparent);
+        border: 1px solid var(--line); border-radius: 6px;
+        padding: 0.7rem 2.6rem 0.7rem 2.5rem; transition: border-color 0.2s, background 0.2s;
+      }
+      .proj-search input::placeholder { color: var(--muted); }
+      .proj-search input:focus {
+        outline: none; border-color: var(--accent-a45);
+        background: color-mix(in srgb, var(--surface) 90%, transparent);
+      }
+      .proj-search kbd {
+        position: absolute; right: 0.6rem; font-family: var(--mono); font-size: 0.62rem;
+        color: var(--muted); border: 1px solid var(--line); border-radius: 4px;
+        padding: 0.12rem 0.4rem; pointer-events: none;
+      }
+      .proj-search.has-value kbd { display: none; }
+      .proj-search-clear {
+        position: absolute; right: 0.6rem; display: none; align-items: center; justify-content: center;
+        width: 1.6rem; height: 1.6rem; border: none; background: transparent; color: var(--muted);
+        cursor: pointer; border-radius: 4px; transition: color 0.15s, background 0.15s;
+      }
+      .proj-search-clear svg { position: static; width: 0.8rem; height: 0.8rem; color: inherit; }
+      .proj-search-clear:hover { color: var(--heading); background: color-mix(in srgb, var(--text) 10%, transparent); }
+      .proj-search.has-value .proj-search-clear { display: flex; }
+      .proj-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+      .proj-filter-chip {
+        font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase;
+        color: var(--text); background: transparent; border: 1px solid var(--line); border-radius: 999px;
+        padding: 0.4rem 0.85rem; cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s;
+        white-space: nowrap;
+      }
+      .proj-filter-chip .proj-chip-count { opacity: 0.6; margin-left: 0.35em; }
+      .proj-filter-chip:hover { border-color: var(--accent-a40); color: var(--heading); }
+      .proj-filter-chip.active { background: var(--accent-a07); border-color: var(--accent); color: var(--accent); }
+      .proj-filter-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .proj-empty-state {
+        display: none; align-items: center; justify-content: center; gap: 0.6rem;
+        padding: 3.5rem 1rem; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em;
+        text-transform: uppercase; color: var(--muted); border: 1px dashed var(--line); border-radius: 8px;
+        margin-bottom: 1px;
+      }
+      .proj-empty-state.visible { display: flex; }
+      .project-card.is-hidden { display: none !important; }
+      @media (max-width: 480px) {
+        .proj-filters { gap: 0.4rem; }
+        .proj-filter-chip { font-size: 0.58rem; padding: 0.35rem 0.7rem; }
+      }
+
       .projects-grid {
         display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
         border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
@@ -221,14 +291,40 @@
         <div class="page-eyebrow">Selected Work</div>
         <h1 class="page-title">Engineering <em>Projects</em></h1>
         <p class="page-sub">
-          Thirteen projects spanning robotics, embedded ML, agentic data
+          Projects spanning robotics, embedded ML, agentic data
           pipelines, and disaster-response hardware — from coursework labs
           to a March 2027 major-project demo.
         </p>
       </header>
 
       <section id="projects" aria-label="Projects grid">
-        <div class="projects-grid">
+        <div class="proj-toolbar reveal" id="projToolbar">
+          <div class="proj-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input type="text" id="projSearch" placeholder="Search projects…" aria-label="Search projects"
+              autocomplete="off" />
+            <kbd aria-hidden="true">/</kbd>
+            <button class="proj-search-clear" id="projSearchClear" aria-label="Clear search" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+          <div class="proj-filters" id="projFilters" role="group" aria-label="Filter by status">
+            <!-- chips injected by JS -->
+          </div>
+          <div class="proj-results-count" id="projResultsCount" aria-live="polite"></div>
+        </div>
+
+        <div class="proj-empty-state" id="projEmptyState">No projects match your filters.</div>
+
+        <div class="projects-grid" id="projectsGrid">
           <div class="project-card reveal">
             <div class="project-index">P — 001</div>
             <h2 class="project-title">Gesture-Controlled Self-Balancing Robot</h2>
@@ -424,31 +520,21 @@
           </div>
 
           <div class="project-card reveal">
-            <div class="project-index">P — 010 <span class="project-status">In Progress</span></div>
+            <div class="project-index">P — 010 <span class="project-status">Archived</span></div>
             <h2 class="project-title">PrakopNet — Multi-Hazard Early Warning System</h2>
             <p class="project-desc">
-              Solar-powered LoRa mesh multi-hazard monitoring and early
-              warning platform for remote regions of Nepal. ESP32 sensor
-              nodes (flood, landslide, air quality, weather) transmit over
-              RYLR890 (868 MHz, Nepal-legal) to a Raspberry Pi 4B gateway
-              running federated TFLite edge inference + LSTM HazardScore
-              fusion. GPS localization, CN3791 solar charge controller,
-              18650 battery backup, INA219 power telemetry, FastAPI +
-              Streamlit dashboard. BEI major project — demo target March
-              2027.
+              Solar-powered LoRa mesh multi-hazard monitoring and
+              early-warning platform designed for remote regions of Nepal.
+              ESP32 sensor nodes (flood, landslide, air quality, weather)
+              would transmit over RYLR890 (868 MHz, Nepal-legal) to a
+              Raspberry Pi 4B gateway running federated TFLite edge
+              inference + LSTM HazardScore fusion. GPS localization, CN3791
+              solar charge controller, 18650 battery backup, INA219 power
+              telemetry, FastAPI + Streamlit dashboard. Explored as an early
+              BEI major-project direction; archived June 29, 2026 after
+              RYLR890's import-only sourcing conflicted with the
+              department's no-import policy. Superseded by SPARK.
             </p>
-            <div class="project-progress">
-              <div class="project-progress-track">
-                <div class="project-progress-step done"></div>
-                <div class="project-progress-step"></div>
-                <div class="project-progress-step"></div>
-              </div>
-              <div class="project-progress-labels">
-                <span class="project-progress-label done">Architecture</span>
-                <span class="project-progress-label">Prototype</span>
-                <span class="project-progress-label">Demo</span>
-              </div>
-            </div>
             <div class="project-tags">
               <span class="tag">ESP32</span><span class="tag">RYLR890 LoRa 868 MHz</span>
               <span class="tag">Raspberry Pi 4B</span><span class="tag">TFLite Micro</span>
@@ -519,6 +605,66 @@
               <span class="tag">Matplotlib</span><span class="tag">Polar Plot</span>
             </div>
           </div>
+
+          <div class="project-card reveal">
+            <div class="project-index">P — 014</div>
+            <h2 class="project-title">Fusemachines Wk 8 — Forecasting</h2>
+            <p class="project-desc">
+              Time-series forecasting pipeline benchmarking nine
+              classical-to-modern forecasters on monthly S&amp;P 500 data
+              (1990–2024). SARIMA, Holt-Winters, Prophet, LightGBM, LSTM, and
+              XGBoost compared against naive/seasonal-naive baselines via
+              MASE/RMSE, with error breakdowns by calendar month and
+              horizon. A 4-model ensemble (Holt-Winters + SARIMA + LSTM +
+              XGBoost) outperformed every single model — MASE 2.44, RMSE
+              96.7 — confirmed via Diebold-Mariano significance test
+              (p = 0.0092).
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">statsmodels</span>
+              <span class="tag">SARIMA</span><span class="tag">Holt-Winters</span>
+              <span class="tag">Prophet</span><span class="tag">LightGBM</span>
+              <span class="tag">LSTM</span><span class="tag">XGBoost</span>
+            </div>
+            <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk8_sp500_forecasting" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-index">P — 015 <span class="project-status">In Progress</span></div>
+            <h2 class="project-title">SPARK — Two-Layer Fall Detection Wearable</h2>
+            <p class="project-desc">
+              Fully on-device, two-layer fall-detection wearable with an
+              explainable gateway pipeline for eldercare, built entirely
+              from locally-sourced components — zero imports, zero custom
+              PCB. MPU6050 IMU streams through a complementary filter to a
+              sub-5ms Layer 1 threshold gate, then a Layer 2 TFLite Micro 1D
+              CNN (INT8, &lt;100ms) confirms via MQTT to a Raspberry Pi 4B
+              gateway running FastAPI, per-event SHAP attribution, a
+              Streamlit dashboard, Telegram alerts, and auto-generated
+              clinical-format PDF incident reports — end-to-end fall-to-alert
+              target under 2 seconds. Trained on UCI MHEALTH and SisFall,
+              extended with a self-collected Nepal-context IMU dataset. BEI
+              major project, four-person team — demo target March 2027.
+            </p>
+            <div class="project-progress">
+              <div class="project-progress-track">
+                <div class="project-progress-step done"></div>
+                <div class="project-progress-step"></div>
+                <div class="project-progress-step"></div>
+              </div>
+              <div class="project-progress-labels">
+                <span class="project-progress-label done">Proposal</span>
+                <span class="project-progress-label">Hardware Bring-up</span>
+                <span class="project-progress-label">Demo</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="tag">MPU6050</span><span class="tag">TFLite Micro</span>
+              <span class="tag">1D CNN</span><span class="tag">Raspberry Pi 4B</span>
+              <span class="tag">SHAP</span><span class="tag">FastAPI</span>
+              <span class="tag">Streamlit</span><span class="tag">Telegram</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -568,5 +714,127 @@
     </footer>
 
     <script src="assets/js/script.js" defer></script>
+    <script>
+      (function () {
+        const grid = document.getElementById('projectsGrid');
+        const searchWrap = document.querySelector('.proj-search');
+        const searchInput = document.getElementById('projSearch');
+        const searchClear = document.getElementById('projSearchClear');
+        const filtersEl = document.getElementById('projFilters');
+        const emptyState = document.getElementById('projEmptyState');
+        const resultsCount = document.getElementById('projResultsCount');
+        const toolbar = document.getElementById('projToolbar');
+        if (!grid || !searchInput || !filtersEl) return;
+
+        const allCards = Array.from(grid.querySelectorAll('.project-card'));
+
+        // Cache each card's status + searchable text once, up front.
+        allCards.forEach(card => {
+          const status = card.querySelector('.project-status')?.textContent.trim() || 'Complete';
+          card._status = status;
+          card._searchText = [
+            card.querySelector('.project-index')?.textContent || '',
+            card.querySelector('.project-title')?.textContent || '',
+            card.querySelector('.project-desc')?.textContent || '',
+            Array.from(card.querySelectorAll('.tag')).map(t => t.textContent).join(' ')
+          ].join(' ').toLowerCase();
+        });
+
+        // Build status chips, alphabetised, each with a match count.
+        const statusCounts = new Map();
+        allCards.forEach(card => statusCounts.set(card._status, (statusCounts.get(card._status) || 0) + 1));
+        const statuses = Array.from(statusCounts.keys()).sort((a, b) => a.localeCompare(b));
+
+        let activeStatus = null;
+
+        const allChip = document.createElement('button');
+        allChip.type = 'button';
+        allChip.className = 'proj-filter-chip active';
+        allChip.innerHTML = `All <span class="proj-chip-count">${allCards.length}</span>`;
+        allChip.setAttribute('aria-pressed', 'true');
+        filtersEl.appendChild(allChip);
+
+        const chipButtons = [allChip];
+        statuses.forEach(status => {
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'proj-filter-chip';
+          chip.innerHTML = `${status} <span class="proj-chip-count">${statusCounts.get(status)}</span>`;
+          chip.dataset.status = status;
+          chip.setAttribute('aria-pressed', 'false');
+          filtersEl.appendChild(chip);
+          chipButtons.push(chip);
+        });
+
+        function setActiveChip(chip) {
+          chipButtons.forEach(btn => {
+            const isActive = btn === chip;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-pressed', String(isActive));
+          });
+        }
+
+        function applyFilters() {
+          const query = searchInput.value.trim().toLowerCase();
+          searchWrap.classList.toggle('has-value', query.length > 0);
+
+          let visibleTotal = 0;
+          allCards.forEach(card => {
+            const matchesStatus = !activeStatus || card._status === activeStatus;
+            const matchesQuery = !query || card._searchText.includes(query);
+            const show = matchesStatus && matchesQuery;
+            card.classList.toggle('is-hidden', !show);
+            if (show) visibleTotal++;
+          });
+
+          emptyState.classList.toggle('visible', visibleTotal === 0);
+
+          if (query || activeStatus) {
+            resultsCount.innerHTML = `<strong>${visibleTotal}</strong> of ${allCards.length} shown`;
+          } else {
+            resultsCount.textContent = '';
+          }
+        }
+
+        chipButtons.forEach(chip => {
+          chip.addEventListener('click', () => {
+            activeStatus = chip.dataset.status || null;
+            setActiveChip(chip);
+            applyFilters();
+          });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+
+        searchClear.addEventListener('click', () => {
+          searchInput.value = '';
+          searchInput.focus();
+          applyFilters();
+        });
+
+        applyFilters();
+
+        // "/" focuses search, unless already typing somewhere else.
+        document.addEventListener('keydown', (e) => {
+          if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;
+          const tag = document.activeElement?.tagName;
+          if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement?.isContentEditable) return;
+          e.preventDefault();
+          searchInput.focus();
+        });
+
+        // Shadow/border kick in once the toolbar is actually pinned to the top.
+        if (toolbar && 'IntersectionObserver' in window) {
+          const sentinel = document.createElement('div');
+          sentinel.style.cssText = 'position:absolute;top:0;height:1px;width:1px;pointer-events:none;';
+          toolbar.style.position = toolbar.style.position || 'sticky';
+          toolbar.parentElement.insertBefore(sentinel, toolbar);
+          new IntersectionObserver(
+            ([entry]) => toolbar.classList.toggle('is-stuck', !entry.isIntersecting),
+            { threshold: 0, rootMargin: `-${Math.round(parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 76) + 12}px 0px 0px 0px` }
+          ).observe(sentinel);
+        }
+      })();
+    </script>
   </body>
 </html>

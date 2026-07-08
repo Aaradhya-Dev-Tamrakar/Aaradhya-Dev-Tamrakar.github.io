@@ -282,7 +282,7 @@ function computeLiveDates() {
     'Telecommunications', 'Professional Practice',
     'Energy, Environment &amp; Society', 'Information Systems',
     'Elective II (EX 765)', 'Elective III (EX 785)',
-    'Project Part B — FallGuard'
+    'Project Part B — SPARK'
   ];
 
   window.LIVE = {
