@@ -47,4 +47,3 @@ A personal portfolio website for **Aaradhya Dev Tamrakar**.
 ## License
 
 See [LICENSE](LICENSE).
-
