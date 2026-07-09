@@ -25,6 +25,8 @@ A personal portfolio website for **Aaradhya Dev Tamrakar**.
 - All main pages are present and included in `sitemap.xml`.
 - Certificate files are stored in `assets/certificates/` and loaded from the achievements page.
 - Navigation is centralized through shared JavaScript and the footer is shared site-wide.
+- Portfolio media and documents were reorganized into dedicated asset folders to avoid root-level clutter.
+- Updated page references now point to the correct asset paths for images, the CV, and certificate previews.
 
 ## Notes
 
@@ -32,6 +34,8 @@ A personal portfolio website for **Aaradhya Dev Tamrakar**.
 - `sitemap.xml` contains the published page URLs used by search engines.
 - Add new HTML pages to `sitemap.xml` when they are created.
 - Keep shared CSS and JS changes centralized in `assets/css/style.css` and `assets/js/script.js`.
+- When adding new media, place images in `assets/images/`, downloadable documents in `assets/docs/`, and certificates in `assets/certificates/`.
+- The site now uses consistent asset paths across the homepage, about, projects, experience, achievements, and contact pages.
 
 ## Development
 
