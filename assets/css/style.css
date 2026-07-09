@@ -15,6 +15,9 @@
   --accent: #d4a85a;
   --accent2: #6dbfaa;
   --accent-a07: rgba(212, 168, 90, 0.07);
+  --accent-a12: rgba(212, 168, 90, 0.12);
+  --text-a10: rgba(237, 233, 224, 0.10);
+  --text-a40: rgba(237, 233, 224, 0.40);
   --accent-a35: rgba(212, 168, 90, 0.35);
   --accent-a40: rgba(212, 168, 90, 0.4);
   --accent-a45: rgba(212, 168, 90, 0.45);
@@ -42,6 +45,9 @@ html[data-theme="light"] {
   --accent: #7a4800;
   --accent2: #0f5a47;
   --accent-a07: rgba(122, 72, 0, 0.08);
+  --accent-a12: rgba(122, 72, 0, 0.12);
+  --text-a10: rgba(42, 36, 32, 0.10);
+  --text-a40: rgba(42, 36, 32, 0.40);
   --accent-a35: rgba(122, 72, 0, 0.38);
   --accent-a40: rgba(122, 72, 0, 0.44);
   --accent-a45: rgba(122, 72, 0, 0.5);
@@ -232,6 +238,7 @@ nav {
 nav.scrolled {
   border-color: var(--line);
   background: var(--nav-scrolled-bg);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
 
@@ -838,8 +845,8 @@ html[data-theme="light"] .divider-node {
 /* ── Glass card ───────────────────────────────────────────── */
 .glass-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border);
   box-shadow: var(--card-shadow);
 }

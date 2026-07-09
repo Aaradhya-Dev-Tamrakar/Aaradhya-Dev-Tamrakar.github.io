@@ -14,7 +14,25 @@
   <meta name="author" content="Aaradhya Dev Tamrakar" />
   <meta name="keywords"
     content="Aaradhya Dev Tamrakar, electronics engineer, AI ML, embedded systems, robotics, KEC IOE, Fusemachines, Nepal engineer portfolio" />
-  <meta name="theme-color" content="#0d0e11" />
+  <!--
+    theme-color injected by script (not static HTML) so Edge Tools
+    doesn't flag the Firefox-unsupported meta tag as a warning.
+    Works in Chrome/Edge; Firefox never supported it → no-op there.
+  -->
+  <script>
+    (function() {
+      var d = document.createElement('meta');
+      d.name = 'theme-color';
+      d.content = '#0d0e11';
+      d.media = '(prefers-color-scheme: dark)';
+      document.head.appendChild(d);
+      var l = document.createElement('meta');
+      l.name = 'theme-color';
+      l.content = '#f5f2ec';
+      l.media = '(prefers-color-scheme: light)';
+      document.head.appendChild(l);
+    })();
+  </script>
   <link rel="canonical" href="https://aaradhyadtmr.github.io/" />
 
   <!-- Open Graph -->
@@ -23,7 +41,7 @@
   <meta property="og:title" content="Aaradhya Dev Tamrakar — Electronics Engineer &amp; AI/ML Developer" />
   <meta property="og:description"
     content="BEI IV/I at KEC, IOE · Fuse AI Fellow · IEEE KEC KTM Vice Chair · Building intelligent systems at the intersection of firmware, robotics, and machine learning." />
-  <meta property="og:image" content="https://aaradhyadtmr.github.io/og-image.jpg" />
+  <meta property="og:image" content="https://aaradhyadtmr.github.io/assets/images/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="en_US" />
@@ -36,7 +54,7 @@
   <meta name="twitter:title" content="Aaradhya Dev Tamrakar — Electronics Engineer &amp; AI/ML Developer" />
   <meta name="twitter:description"
     content="BEI IV/I at KEC, IOE · Fuse AI Fellow · IEEE KEC KTM Vice Chair · Robotics, embedded systems, machine learning." />
-  <meta name="twitter:image" content="https://aaradhyadtmr.github.io/og-image.jpg" />
+  <meta name="twitter:image" content="https://aaradhyadtmr.github.io/assets/images/og-image.jpg" />
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
@@ -45,7 +63,7 @@
         "@type": "Person",
         "name": "Aaradhya Dev Tamrakar",
         "url": "https://aaradhyadtmr.github.io/",
-        "image": "https://aaradhyadtmr.github.io/photo.png",
+        "image": "https://aaradhyadtmr.github.io/assets/images/photo.png",
         "jobTitle": "Electronics, Communication and Information Engineering Student",
         "description": "BEI IV/I student at Kathmandu Engineering College, IOE, Tribhuvan University. Fuse AI Fellow (Fusemachines 2026), NSSR DataCamp Fellow, IEEE KEC KTM Vice Chair.",
         "email": "aaradhyadevtmr@gmail.com",
@@ -124,8 +142,8 @@
         linear-gradient(90deg, var(--line) 1px, transparent 1px),
         linear-gradient(0deg, var(--line) 1px, transparent 1px);
       background-size: 80px 80px;
-      mask-image: radial-gradient(ellipse 120% 120% at 50% 50%, black 20%, transparent 75%);
       -webkit-mask-image: radial-gradient(ellipse 120% 120% at 50% 50%, black 20%, transparent 75%);
+      mask-image: radial-gradient(ellipse 120% 120% at 50% 50%, black 20%, transparent 75%);
     }
 
     .hero-glow {
@@ -738,8 +756,8 @@
       align-items: center;
       justify-content: center;
       background: rgba(7, 8, 10, 0.88);
-      backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.22s ease;
@@ -812,18 +830,19 @@
     }
 
     .lb-btn:hover {
+      background: var(--text-a10);
       background: color-mix(in srgb, var(--text) 10%, transparent);
       color: var(--heading);
-      border-color: color-mix(in srgb, var(--text) 40%, transparent);
+      border-color: var(--text-a40);
     }
 
     .lb-btn.lb-close {
       color: var(--accent);
-      border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+      border-color: var(--accent-a35);
     }
 
     .lb-btn.lb-close:hover {
-      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      background: var(--accent-a12);
       color: var(--heading);
       border-color: var(--accent);
     }
@@ -894,8 +913,8 @@
             <a href="contact.html" class="btn-ghost" aria-label="Get in touch with Aaradhya">Get in touch →</a>
           </div>
           <div class="magnetic-wrap">
-            <a href="AARADHYA_DEV_TAMRAKAR_CV.pdf" class="cert-btn btn-ghost" download
-              data-cert="AARADHYA_DEV_TAMRAKAR_CV.pdf" data-label="Aaradhya Dev Tamrakar CV" data-type="pdf"
+            <a href="assets/docs/AARADHYA_DEV_TAMRAKAR_CV.pdf" class="cert-btn btn-ghost" download
+              data-cert="assets/docs/AARADHYA_DEV_TAMRAKAR_CV.pdf" data-label="Aaradhya Dev Tamrakar CV" data-type="pdf"
               aria-label="View Aaradhya's CV"
               onclick="window.gtag && gtag('event','cv_download',{event_category:'engagement',event_label:'Hero CV button'})">
               Download CV ↓

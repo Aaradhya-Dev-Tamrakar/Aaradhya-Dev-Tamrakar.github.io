@@ -16,7 +16,7 @@
   <meta property="og:title" content="Achievements — Aaradhya Dev Tamrakar" />
   <meta property="og:description"
     content="Certifications, training programs, and competitive achievements — IEEEXtreme, IEEE WIE LaTeX, Drone Operator Training, AWS, and more." />
-  <meta property="og:image" content="https://aaradhyadtmr.github.io/og-image.jpg" />
+  <meta property="og:image" content="https://aaradhyadtmr.github.io/assets/images/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="Aaradhya Dev Tamrakar" />
@@ -25,7 +25,7 @@
   <meta name="twitter:title" content="Achievements — Aaradhya Dev Tamrakar" />
   <meta name="twitter:description"
     content="Certifications, training programs, and competitive achievements — IEEEXtreme, IEEE WIE LaTeX, Drone Operator Training, AWS, and more." />
-  <meta name="twitter:image" content="https://aaradhyadtmr.github.io/og-image.jpg" />
+  <meta name="twitter:image" content="https://aaradhyadtmr.github.io/assets/images/og-image.jpg" />
 
   <!-- JSON-LD: Breadcrumb -->
   <script type="application/ld+json">
@@ -179,7 +179,7 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--accent);
-      border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+      border: 1px solid var(--accent-a35);
       border-radius: 3px;
       padding: 0.35em 0.75em;
       background: transparent;
@@ -196,7 +196,7 @@
     .year-group {
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: color-mix(in srgb, var(--surface) 70%, transparent);
+      background: var(--glass-bg);
       margin-bottom: 1rem;
       overflow: hidden;
     }
@@ -213,7 +213,7 @@
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--heading);
-      background: color-mix(in srgb, var(--bg2) 86%, transparent);
+      background: var(--nav-scrolled-bg);
     }
 
     .year-toggle::-webkit-details-marker {
@@ -253,9 +253,9 @@
       padding: 0.85rem 0.9rem;
       margin-inline: -0.9rem;
       border-radius: 10px;
-      background: color-mix(in srgb, var(--bg) 88%, transparent);
-      backdrop-filter: blur(var(--glass-blur));
+      background: var(--nav-scrolled-bg);
       -webkit-backdrop-filter: blur(var(--glass-blur));
+      backdrop-filter: blur(var(--glass-blur));
       transition: box-shadow 0.2s;
     }
 
@@ -319,7 +319,7 @@
       font-family: var(--sans);
       font-size: 0.85rem;
       color: var(--text);
-      background: color-mix(in srgb, var(--surface) 70%, transparent);
+      background: var(--glass-bg);
       border: 1px solid var(--line);
       border-radius: 6px;
       padding: 0.7rem 2.6rem 0.7rem 2.5rem;
@@ -333,7 +333,7 @@
     .achv-search input:focus {
       outline: none;
       border-color: var(--accent-a45);
-      background: color-mix(in srgb, var(--surface) 90%, transparent);
+      background: var(--surface);
     }
 
     .achv-search-clear {
@@ -361,7 +361,7 @@
 
     .achv-search-clear:hover {
       color: var(--heading);
-      background: color-mix(in srgb, var(--text) 10%, transparent);
+      background: rgba(237, 233, 224, 0.1);
     }
 
     .achv-search.has-value .achv-search-clear {
@@ -442,7 +442,7 @@
     }
 
     .cert-btn:hover {
-      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      background: var(--accent-a07);
       border-color: var(--accent);
       color: var(--heading);
     }
@@ -461,8 +461,8 @@
       align-items: center;
       justify-content: center;
       background: rgba(7, 8, 10, 0.88);
-      backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.22s ease;
@@ -535,18 +535,18 @@
     }
 
     .lb-btn:hover {
-      background: color-mix(in srgb, var(--text) 10%, transparent);
+      background: rgba(237, 233, 224, 0.1);
       color: var(--heading);
-      border-color: color-mix(in srgb, var(--text) 40%, transparent);
+      border-color: rgba(237, 233, 224, 0.4);
     }
 
     .lb-btn.lb-close {
       color: var(--accent);
-      border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+      border-color: var(--accent-a35);
     }
 
     .lb-btn.lb-close:hover {
-      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      background: var(--accent-a07);
       color: var(--heading);
       border-color: var(--accent);
     }
@@ -831,7 +831,7 @@
               Participated in an introductory JavaScript bootcamp focused on
               core programming concepts and web development fundamentals.
             </p>
-            <button class="cert-btn" data-cert="certificates/javascript-bootcamp-certificate-kec-it-club-2023.jpeg"
+            <button class="cert-btn" data-cert="assets/certificates/javascript-bootcamp-certificate-kec-it-club-2023.jpeg"
               data-label="JavaScript Bootcamp — KEC IT Club 2023" data-type="image"
               aria-label="View certificate: JavaScript Bootcamp — KEC IT Club 2023">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -878,7 +878,7 @@
               in association with Dynamic Public Library (DPL) Teens.
               Certificate of Completion received.
             </p>
-            <button class="cert-btn" data-cert="certificates/Microsoft_Learn_HTML_CSS_GitHub_Pages.pdf"
+            <button class="cert-btn" data-cert="assets/certificates/Microsoft_Learn_HTML_CSS_GitHub_Pages.pdf"
               data-label="Microsoft Learn HTML & CSS via GitHub Pages" data-type="pdf"
               aria-label="View certificate: Microsoft Learn HTML & CSS via GitHub Pages">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -902,7 +902,7 @@
               searching, sorting, recursion, greedy algorithms, bit manipulation,
               dynamic programming, and graph theory. Certificate of Completion received.
             </p>
-            <button class="cert-btn" data-cert="certificates/IEEE_Pulchowk_PreXtreme_CP_Workshop.pdf"
+            <button class="cert-btn" data-cert="assets/certificates/IEEE_Pulchowk_PreXtreme_CP_Workshop.pdf"
               data-label="PreXtreme CP Workshop 2025" data-type="pdf"
               aria-label="View certificate: PreXtreme CP Workshop 2025">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -925,7 +925,7 @@
               by KEC I.T. Club in collaboration with AWS Cloud Club in Nepal
               (July 19, 2025). Certificate of Achievement received.
             </p>
-            <button class="cert-btn" data-cert="certificates/KEC_IT_Club_AWS_Fundamentals_2025.png"
+            <button class="cert-btn" data-cert="assets/certificates/KEC_IT_Club_AWS_Fundamentals_2025.png"
               data-label="AWS Fundamentals Workshop 2025" data-type="image"
               aria-label="View certificate: AWS Fundamentals Workshop 2025">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -947,7 +947,7 @@
               Participated in an Agile Workshop organized by IEEE KEC KTM Student
               Branch (July 22, 2025). Certificate of Appreciation received.
             </p>
-            <button class="cert-btn" data-cert="certificates/IEEE_KEC_Agile_Workshop_2025.png"
+            <button class="cert-btn" data-cert="assets/certificates/IEEE_KEC_Agile_Workshop_2025.png"
               data-label="IEEE KEC Agile Workshop 2025" data-type="image"
               aria-label="View certificate: IEEE KEC Agile Workshop 2025">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -970,7 +970,7 @@
               organized by Nepal Students' Union, Kathmandu Engineering College in
               collaboration with KEC Robotics Club. Certificate of Completion received.
             </p>
-            <button class="cert-btn" data-cert="certificates/KEC_Robotics_Club_PCB_Design_Fabrication_Workshop_2025.png"
+            <button class="cert-btn" data-cert="assets/certificates/KEC_Robotics_Club_PCB_Design_Fabrication_Workshop_2025.png"
               data-label="PCB Design & Fabrication Workshop 2025" data-type="image"
               aria-label="View certificate: PCB Design & Fabrication Workshop 2025">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -993,7 +993,7 @@
               Shree Kuleshwor Secondary School (July 27, 2025). Certificate of
               Appreciation received for mentorship contribution.
             </p>
-            <button class="cert-btn" data-cert="certificates/IEEE_KEC_Electronics_For_All_Mentorship_2025.png"
+            <button class="cert-btn" data-cert="assets/certificates/IEEE_KEC_Electronics_For_All_Mentorship_2025.png"
               data-label="Electronics For All Mentorship 2025" data-type="image"
               aria-label="View certificate: Electronics For All Mentorship 2025">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -1015,7 +1015,7 @@
               Webinar on offensive security fundamentals and common attack bypass
               techniques. Certificate of Participation received.
             </p>
-            <button class="cert-btn" data-cert="certificates/Offenso_Security_Bypass_Webinar_2025.pdf"
+            <button class="cert-btn" data-cert="assets/certificates/Offenso_Security_Bypass_Webinar_2025.pdf"
               data-label="Offenso Security Bypass Webinar 2025" data-type="pdf"
               aria-label="View certificate: Offenso Security Bypass Webinar 2025">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -1038,7 +1038,7 @@
               IEEE Day 2025 event (October 9, 2025), organized by IEEE Kathmandu
               Engineering College Student Branch. Certificate of Appreciation received.
             </p>
-            <button class="cert-btn" data-cert="certificates/IEEE_KEC_IEEE_Day_Organizer_2025.png"
+            <button class="cert-btn" data-cert="assets/certificates/IEEE_KEC_IEEE_Day_Organizer_2025.png"
               data-label="IEEE Day 2025 Organizer" data-type="image"
               aria-label="View certificate: IEEE Day 2025 Organizer">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -1061,7 +1061,7 @@
               hosted by IEEE, with over 19,000 participants worldwide.
               Team: ShadowXTREME. Certificate received.
             </p>
-            <button class="cert-btn" data-cert="certificates/IEEE_IEEEXtreme_19_0_2025.pdf"
+            <button class="cert-btn" data-cert="assets/certificates/IEEE_IEEEXtreme_19_0_2025.pdf"
               data-label="IEEEXtreme 19.0 — 2025" data-type="pdf" aria-label="View certificate: IEEEXtreme 19.0 — 2025">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -1082,7 +1082,7 @@
               Two-day LaTeX workshop at KEC Makerspace, Kalimati (May 5–6, 2026).
               Resource Person: Er. Dhawa Sang Dong. Certificate of Participation received.
             </p>
-            <button class="cert-btn" data-cert="certificates/IEEE_WIE_LaTeX_Training_2026.png"
+            <button class="cert-btn" data-cert="assets/certificates/IEEE_WIE_LaTeX_Training_2026.png"
               data-label="IEEE WIE LaTeX Training 2026" data-type="image"
               aria-label="View certificate: IEEE WIE LaTeX Training 2026">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -1104,7 +1104,7 @@
               Completed a 2-hour hands-on workshop on Prompt Engineering Fundamentals
               at TechAxis (May 8, 2026). Certificate of Completion received.
             </p>
-            <button class="cert-btn" data-cert="certificates/TechAxis_Prompt_Engineering_2026.png"
+            <button class="cert-btn" data-cert="assets/certificates/TechAxis_Prompt_Engineering_2026.png"
               data-label="TechAxis Prompt Engineering 2026" data-type="image"
               aria-label="View certificate: TechAxis Prompt Engineering 2026">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -1128,7 +1128,7 @@
               contribution to planning, coordination, and execution of the event.
               Certificate of Organization received.
             </p>
-            <button class="cert-btn" data-cert="certificates/IEEE_KEC_SPAx_Organization_2026.png"
+            <button class="cert-btn" data-cert="assets/certificates/IEEE_KEC_SPAx_Organization_2026.png"
               data-label="IEEE SPAx Organization 2026" data-type="image"
               aria-label="View certificate: IEEE SPAx Organization 2026">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -1150,7 +1150,7 @@
               3-day certified drone training covering flight operations, safety
               protocols, and basic applications.
             </p>
-            <button class="cert-btn" data-cert="certificates/NepaTronix_Drone_Hub_Nepal_3Day_Drone_Training_2026.pdf"
+            <button class="cert-btn" data-cert="assets/certificates/NepaTronix_Drone_Hub_Nepal_3Day_Drone_Training_2026.pdf"
               data-label="NepaTronix Drone Training Program Certificate" data-type="pdf"
               aria-label="View certificate: NepaTronix Drone Training Program Certificate">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -1172,7 +1172,7 @@
               Completed on May 25, 2026. Credential ID ITP0014139470763.
               Earned 2.6 CPE credits.
             </p>
-            <button class="cert-btn" data-cert="certificates/Introduction_to_Python_ITP0014139470763.png"
+            <button class="cert-btn" data-cert="assets/certificates/Introduction_to_Python_ITP0014139470763.png"
               data-label="Introduction to Python — DataCamp" data-type="image"
               aria-label="View certificate: Introduction to Python — DataCamp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -1197,7 +1197,7 @@
               Generate a Study Guide, Recommending Skincare Products, and
               Introduction to Git.
             </p>
-            <button class="cert-btn" data-cert="certificates/Introduction_to_Python_certificate.pdf"
+            <button class="cert-btn" data-cert="assets/certificates/Introduction_to_Python_certificate.pdf"
               data-label="Introduction to Python — DataCamp" data-type="pdf"
               aria-label="View certificate: Introduction to Python — DataCamp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -1207,7 +1207,7 @@
               </svg>
               Intro to Python
             </button>
-            <button class="cert-btn" data-cert="certificates/Cleaning_Data_with_Generative_AI.pdf"
+            <button class="cert-btn" data-cert="assets/certificates/Cleaning_Data_with_Generative_AI.pdf"
               data-label="Cleaning Data with Generative AI — DataCamp" data-type="pdf"
               aria-label="View certificate: Cleaning Data with Generative AI — DataCamp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -1217,7 +1217,7 @@
               </svg>
               Cleaning Data with GenAI
             </button>
-            <button class="cert-btn" data-cert="certificates/AI-Assisted_Product_Launch.pdf"
+            <button class="cert-btn" data-cert="assets/certificates/AI-Assisted_Product_Launch.pdf"
               data-label="AI-Assisted Product Launch — DataCamp" data-type="pdf"
               aria-label="View certificate: AI-Assisted Product Launch — DataCamp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -1227,7 +1227,7 @@
               </svg>
               AI-Assisted Product Launch
             </button>
-            <button class="cert-btn" data-cert="certificates/Building_a_Go-To-Market_Strategy.pdf"
+            <button class="cert-btn" data-cert="assets/certificates/Building_a_Go-To-Market_Strategy.pdf"
               data-label="Building a Go-To-Market Strategy — DataCamp" data-type="pdf"
               aria-label="View certificate: Building a Go-To-Market Strategy — DataCamp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -1237,7 +1237,7 @@
               </svg>
               Go-To-Market Strategy
             </button>
-            <button class="cert-btn" data-cert="certificates/Generate_a_Study_Guide.pdf"
+            <button class="cert-btn" data-cert="assets/certificates/Generate_a_Study_Guide.pdf"
               data-label="Generate a Study Guide — DataCamp" data-type="pdf"
               aria-label="View certificate: Generate a Study Guide — DataCamp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -1247,7 +1247,7 @@
               </svg>
               Generate a Study Guide
             </button>
-            <button class="cert-btn" data-cert="certificates/Recommending_Skincare_Products.pdf"
+            <button class="cert-btn" data-cert="assets/certificates/Recommending_Skincare_Products.pdf"
               data-label="Recommending Skincare Products — DataCamp" data-type="pdf"
               aria-label="View certificate: Recommending Skincare Products — DataCamp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -1257,7 +1257,7 @@
               </svg>
               Recommending Skincare Products
             </button>
-            <button class="cert-btn" data-cert="certificates/Introduction_to_Git.pdf"
+            <button class="cert-btn" data-cert="assets/certificates/Introduction_to_Git.pdf"
               data-label="Introduction to Git — DataCamp" data-type="pdf"
               aria-label="View certificate: Introduction to Git — DataCamp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -1291,7 +1291,7 @@
               Completed on July 6, 2026. Credential ID CPE0469867571113.
               Earned 1.6 CPE credits.
             </p>
-            <button class="cert-btn" data-cert="certificates/Introduction_to_Git_CPE0469867571113.png"
+            <button class="cert-btn" data-cert="assets/certificates/Introduction_to_Git_CPE0469867571113.png"
               data-label="Introduction to Git — DataCamp" data-type="image"
               aria-label="View certificate: Introduction to Git — DataCamp">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"

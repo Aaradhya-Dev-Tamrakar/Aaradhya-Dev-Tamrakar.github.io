@@ -12,18 +12,18 @@ A personal portfolio website for **Aaradhya Dev Tamrakar**.
 - `contact.html` — contact and connect page
 - `robots.txt` — crawler directives
 - `sitemap.xml` — site map for GitHub Pages and search engines
-- `certificates/` — uploaded certificate files linked from achievements
-- `photo.png`, `photo.webp` — profile images used on the site
-- `AARADHYA_DEV_TAMRAKAR_CV.pdf` — downloadable resume
+- `assets/certificates/` — certificate files linked from the achievements page
+- `assets/images/` — profile images and site preview images
+- `assets/docs/` — downloadable documents such as the CV
 - `assets/css/style.css` — shared CSS styles
 - `assets/js/script.js` — shared JavaScript behavior
 
 ## Current Status
 
 - Static site structure is in place for GitHub Pages.
-- Shared assets live in `assets/css/` and `assets/js/`.
+- Shared assets live under `assets/` for easier maintenance.
 - All main pages are present and included in `sitemap.xml`.
-- `certificates/` is available for achievement-linked file uploads.
+- Certificate files are stored in `assets/certificates/` and loaded from the achievements page.
 - Navigation is centralized through shared JavaScript and the footer is shared site-wide.
 
 ## Notes
