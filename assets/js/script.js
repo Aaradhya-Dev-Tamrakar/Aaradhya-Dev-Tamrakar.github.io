@@ -362,10 +362,10 @@ function initLightbox() {
   const lbClose = document.getElementById('lb-close');
   let lastFocus = null;
 
-  function openLightbox(src, label, type) {
+  function openLightbox(src, label, type, downloadSrc) {
     lastFocus = document.activeElement;
     lbLabel.textContent = label;
-    lbDownload.href = src;
+    lbDownload.href = downloadSrc || src;
     lbOpen.href = src;
     lbBody.innerHTML = '';
 
@@ -396,7 +396,7 @@ function initLightbox() {
   document.querySelectorAll('.cert-btn').forEach(btn => {
     btn.addEventListener('click', event => {
       event.preventDefault();
-      openLightbox(btn.dataset.cert, btn.dataset.label, btn.dataset.type);
+      openLightbox(btn.dataset.cert, btn.dataset.label, btn.dataset.type, btn.dataset.download);
     });
   });
 

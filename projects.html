@@ -191,6 +191,11 @@
         white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
       }
       .project-progress-label.done { color: var(--accent2); }
+      .proj-inline-link {
+        color: var(--accent2); text-decoration: underline;
+        text-decoration-color: var(--accent-a35); text-underline-offset: 2px;
+      }
+      .proj-inline-link:hover { text-decoration-color: var(--accent2); }
       .project-title {
         font-family: var(--serif); font-size: 1.5rem; font-weight: 400;
         color: var(--heading); margin-bottom: 0.75rem; line-height: 1.2;
@@ -274,7 +279,7 @@
         <div class="proj-empty-state" id="projEmptyState">No projects match your filters.</div>
 
         <div class="projects-grid" id="projectsGrid">
-          <div class="project-card reveal">
+          <div class="project-card reveal" id="p-001">
             <div class="project-index">P — 001</div>
             <h3 class="project-title">Gesture-Controlled Self-Balancing Robot</h3>
             <p class="project-desc">
@@ -398,7 +403,8 @@
               sensor data (tilt_x, tilt_y, angular velocity). 10,000-sample
               synthetic dataset; Random Forest classifier — 99.8% test
               accuracy. REST API via FastAPI for real-time predictions;
-              Joblib export for robotics integration with GCSBR.
+              Joblib export for robotics integration with
+              <a class="proj-inline-link" href="#p-001">GCSBR (Gesture-Controlled Self-Balancing Robot)</a>.
             </p>
             <div class="project-tags">
               <span class="tag">Python</span><span class="tag">scikit-learn</span>
@@ -614,6 +620,54 @@
               <span class="tag">SHAP</span><span class="tag">FastAPI</span>
               <span class="tag">Streamlit</span><span class="tag">Telegram</span>
             </div>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-index">P — 016</div>
+            <h3 class="project-title">Fusemachines Wk 9 — NEU Steel Defect CNN</h3>
+            <p class="project-desc">
+              PyTorch CNN classifier for NEU-DET steel surface-defect
+              detection — six classes (crazing, inclusion, patches, pitted
+              surface, rolled-in scale, scratches) across 1,800 grayscale
+              200&times;200 images. Four-part build: from-scratch 2-layer NN
+              foundation (30.7M params) &rarr; Conv&rarr;ReLU&rarr;MaxPool CNN
+              (15 epochs, 98.6%/84.7% train/val accuracy) &rarr; hardening via
+              train-only augmentation, BatchNorm2d, and Dropout(0.4)
+              &rarr; tuning via 2&times;2 grid search and a 4-trial Optuna
+              Bayesian search. Trained and executed on a Colab T4 GPU
+              runtime.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">PyTorch</span>
+              <span class="tag">torchvision</span><span class="tag">CNN</span>
+              <span class="tag">Optuna</span><span class="tag">scikit-learn</span>
+            </div>
+            <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk9_neu_defect_cnn" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-index">P — 017</div>
+            <h3 class="project-title">Fusemachines Wk 10 — Image Processing</h3>
+            <p class="project-desc">
+              Classical computer-vision pipeline across four parts: HSV-based
+              multi-class fruit segmentation (red apple, green apple, banana,
+              strawberry, orange, lime) via the Fruits-360 dataset;
+              morphological operations with Gaussian, median, and bilateral
+              denoising; a from-scratch Canny edge detector (Sobel gradients,
+              non-max suppression, double thresholding, hysteresis)
+              benchmarked against cv2.Canny(); and a full fruit-detection
+              pipeline combining Harris corner response, Hough circle
+              detection, masking, morphology, and contour-based bounding
+              boxes — extended with connected-component analysis to separate
+              touching apples.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">OpenCV</span>
+              <span class="tag">NumPy</span><span class="tag">Matplotlib</span>
+              <span class="tag">HSV Segmentation</span><span class="tag">Canny Edge Detection</span>
+              <span class="tag">Hough Transform</span>
+            </div>
+            <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk10_image_processing" target="_blank" rel="noopener">View on GitHub ↗</a>
           </div>
         </div>
       </section>
