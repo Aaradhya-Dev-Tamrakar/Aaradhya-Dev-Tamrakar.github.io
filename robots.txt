@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aaradhyadtmr.github.io/sitemap.xml
+Sitemap: https://aaradhya-dev-tamrakar.github.io/sitemap.xml

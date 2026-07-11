@@ -1,4 +1,4 @@
-# aaradhyadtmr.github.io
+# aaradhya-dev-tamrakar.github.io
 
 A personal portfolio website for **Aaradhya Dev Tamrakar**.
 
@@ -10,6 +10,7 @@ A personal portfolio website for **Aaradhya Dev Tamrakar**.
 - `achievements.html` — achievements and certificates page
 - `about.html` — personal introduction page
 - `contact.html` — contact and connect page
+- `404.html` — custom not-found page (excluded from `sitemap.xml`, marked `noindex`)
 - `robots.txt` — crawler directives
 - `sitemap.xml` — site map for GitHub Pages and search engines
 - `assets/certificates/` — certificate files linked from the achievements page
@@ -22,7 +23,7 @@ A personal portfolio website for **Aaradhya Dev Tamrakar**.
 
 - Static site structure is in place for GitHub Pages.
 - Shared assets live under `assets/` for easier maintenance.
-- All main pages are present and included in `sitemap.xml`.
+- All main pages are present and included in `sitemap.xml`. `404.html` is intentionally excluded (not-found pages shouldn't be indexed) and is marked `noindex, nofollow`.
 - Certificate files are stored in `assets/certificates/` and loaded from the achievements page.
 - Navigation is centralized through shared JavaScript and the footer is shared site-wide.
 - Portfolio media and documents were reorganized into dedicated asset folders to avoid root-level clutter.
@@ -46,7 +47,7 @@ A personal portfolio website for **Aaradhya Dev Tamrakar**.
 ## Contact
 
 - Email: `aaradhyadevtmr@gmail.com`
-- GitHub: `https://github.com/AaradhyaDT`
+- GitHub: `https://github.com/Aaradhya-Dev-Tamrakar`
 
 ## License
 
