@@ -23,7 +23,7 @@
     (function() {
       var d = document.createElement('meta');
       d.name = 'theme-color';
-      d.content = '#0d0e11';
+      d.content = '#0f0e0c';
       d.media = '(prefers-color-scheme: dark)';
       document.head.appendChild(d);
       var l = document.createElement('meta');
@@ -274,14 +274,14 @@
       background: var(--bg2);
       border: 1px solid rgba(255, 255, 255, .45);
       box-shadow: 0 0 5px 1px rgba(255, 255, 255, .1), inset 0 0 5px 1px rgba(255, 255, 255, .07);
-      outline: 2px solid rgba(212, 168, 90, .18);
+      outline: 2px solid var(--glow-gold-a18);
       outline-offset: 5px;
       transition: outline-color .35s ease, box-shadow .35s ease;
     }
 
     .status-card:hover {
-      outline-color: rgba(212, 168, 90, .9);
-      box-shadow: 0 0 5px 1px rgba(255, 255, 255, .1), inset 0 0 5px 1px rgba(255, 255, 255, .07), 0 0 18px 4px rgba(212, 168, 90, .35);
+      outline-color: var(--glow-gold-a90);
+      box-shadow: 0 0 5px 1px rgba(255, 255, 255, .1), inset 0 0 5px 1px rgba(255, 255, 255, .07), 0 0 18px 4px var(--glow-gold-a35);
     }
 
     .status-card::before {
@@ -289,8 +289,8 @@
       position: absolute;
       inset: 5px;
       border-radius: 3px;
-      border: 2px solid rgba(109, 191, 170, .7);
-      box-shadow: inset 0 0 10px 2px rgba(109, 191, 170, .25), 0 0 8px 1px rgba(109, 191, 170, .15);
+      border: 2px solid var(--glow-teal-a70);
+      box-shadow: inset 0 0 10px 2px var(--glow-teal-a25), 0 0 8px 1px var(--glow-teal-a15);
       pointer-events: none;
       z-index: 0;
     }
@@ -441,8 +441,8 @@
     }
 
     html[data-theme="light"] .status-card:hover {
-      outline-color: rgba(212, 168, 90, .9);
-      box-shadow: 0 0 5px 1px rgba(0, 0, 0, .08), inset 0 0 5px 1px rgba(0, 0, 0, .05), 0 0 18px 4px rgba(212, 168, 90, .3);
+      outline-color: var(--glow-gold-a90);
+      box-shadow: 0 0 5px 1px rgba(0, 0, 0, .08), inset 0 0 5px 1px rgba(0, 0, 0, .05), 0 0 18px 4px var(--glow-gold-a30);
     }
 
     html[data-theme="light"] .status-item-label,
@@ -463,20 +463,20 @@
     }
 
     html[data-theme="light"] .status-dot::before {
-      background: #6dbfaa;
-      box-shadow: 0 0 5px #6dbfaa;
+      background: var(--glow-teal);
+      box-shadow: 0 0 5px var(--glow-teal);
     }
 
     html[data-theme="light"] .status-dot::after {
-      border-color: #6dbfaa;
+      border-color: var(--glow-teal);
     }
 
     html[data-theme="light"] .status-dot-ring2 {
-      border-color: #6dbfaa;
+      border-color: var(--glow-teal);
     }
 
     html[data-theme="light"] .status-clock-tz {
-      color: #0f5a47;
+      color: var(--accent2);
     }
 
     /* ── Stats strip ──────────────────────────────────────── */
@@ -491,7 +491,7 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-      background: rgba(13, 14, 17, .65);
+      background: rgba(15, 14, 12, .65);
       pointer-events: none;
     }
 
@@ -547,110 +547,9 @@
       color: var(--muted);
     }
 
-    /* ── Quick-nav cards ──────────────────────────────────── */
-    #quick-nav {
-      background: transparent;
-      position: relative;
-      padding: 6rem 3rem;
-    }
-
-    #quick-nav::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background: rgba(13, 14, 17, .55);
-      pointer-events: none;
-    }
-
-    html[data-theme="light"] #quick-nav::before {
-      background: rgba(245, 242, 236, .7);
-    }
-
-    #quick-nav>* {
-      position: relative;
-      z-index: 1;
-    }
-
-    .quick-nav-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1px;
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .quick-nav-card {
-      background: var(--bg2);
-      padding: 2.5rem 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      text-decoration: none;
-      position: relative;
-      overflow: hidden;
-      transition: background .3s;
-    }
-
-    .quick-nav-card::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform .4s ease;
-    }
-
-    .quick-nav-card:hover {
-      background: var(--bg3);
-    }
-
-    .quick-nav-card:hover::after {
-      transform: scaleX(1);
-    }
-
-    .quick-nav-index {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-      opacity: .8;
-    }
-
-    .quick-nav-title {
-      font-family: var(--serif);
-      font-size: 1.35rem;
-      font-weight: 400;
-      color: var(--heading);
-    }
-
-    .quick-nav-desc {
-      font-size: 0.85rem;
-      line-height: 1.65;
-      color: var(--text);
-      flex: 1;
-    }
-
-    .quick-nav-cta {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: gap .25s;
-    }
-
-    .quick-nav-card:hover .quick-nav-cta {
-      gap: 0.65rem;
-    }
+    /* ── Quick-nav cards: base styles in shared style.css. Padding values
+       below are entangled with #stats in the same media queries, so they
+       stay inline; #quick-nav's own numbers match style.css exactly. ── */
 
     @media (max-width: 1100px) {
       #hero {
@@ -658,8 +557,7 @@
         padding: 0 2rem;
       }
 
-      #stats,
-      #quick-nav {
+      #stats {
         padding: 4rem 2rem;
       }
     }
@@ -683,8 +581,7 @@
         padding: 1.5rem;
       }
 
-      #stats,
-      #quick-nav {
+      #stats {
         padding: 3.5rem 1.5rem;
       }
 
@@ -698,10 +595,6 @@
 
       .stat-cell:nth-child(-n+2) {
         border-bottom: 1px solid var(--line);
-      }
-
-      .quick-nav-grid {
-        grid-template-columns: 1fr;
       }
     }
 
@@ -747,110 +640,7 @@
       }
     }
 
-    /* CV lightbox */
-    #cert-lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(7, 8, 10, 0.88);
-      -webkit-backdrop-filter: blur(8px);
-      backdrop-filter: blur(8px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.22s ease;
-    }
-
-    #cert-lightbox.open {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .lightbox-inner {
-      position: relative;
-      width: min(92vw, 860px);
-      max-height: 90vh;
-      background: var(--surface, #14151a);
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transform: translateY(12px) scale(0.98);
-      transition: transform 0.22s ease;
-      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
-    }
-
-    #cert-lightbox.open .lightbox-inner {
-      transform: translateY(0) scale(1);
-    }
-
-    .lightbox-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 1rem 0.75rem 1.25rem;
-      border-bottom: 1px solid var(--line);
-      flex-shrink: 0;
-    }
-
-    .lightbox-label {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .lightbox-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .lb-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 2rem;
-      height: 2rem;
-      border-radius: 4px;
-      border: 1px solid var(--line);
-      background: transparent;
-      color: var(--text);
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s, border-color 0.15s;
-    }
-
-    .lb-btn svg {
-      width: 0.9em;
-      height: 0.9em;
-    }
-
-    .lb-btn:hover {
-      background: var(--text-a10);
-      background: color-mix(in srgb, var(--text) 10%, transparent);
-      color: var(--heading);
-      border-color: var(--text-a40);
-    }
-
-    .lb-btn.lb-close {
-      color: var(--accent);
-      border-color: var(--accent-a35);
-    }
-
-    .lb-btn.lb-close:hover {
-      background: var(--accent-a12);
-      color: var(--heading);
-      border-color: var(--accent);
-    }
-
-    .lb-btn:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
+    /* CV lightbox: page-specific 80vh body sizing (vs default in style.css) */
 
     .lightbox-body {
       flex: 1;
@@ -890,6 +680,7 @@
     <div class="cursor-dot" id="cursorDot"></div>
   </div>
 
+  <noscript><nav aria-label="Primary navigation"><a href="index.html" class="nav-logo">ADT<span>.</span></a><ul class="nav-links"><li><a href="index.html" class="active" aria-current="page">Home</a></li><li><a href="projects.html">Projects</a></li><li><a href="experience.html">Experience</a></li><li><a href="achievements.html">Achievements</a></li><li><a href="about.html">About</a></li></ul><div class="nav-right"><a href="contact.html" class="nav-cta">Connect</a></div></nav></noscript>
   <div id="siteNav"></div>
 
   <main id="main-content">
@@ -966,7 +757,7 @@
     <section id="stats" aria-label="At a glance">
       <div class="stats-strip reveal">
         <div class="stat-cell">
-          <div class="stat-num">12<span>+</span></div>
+          <div class="stat-num">15<span>+</span></div>
           <div class="stat-label">Engineering Projects</div>
         </div>
         <div class="stat-cell">
@@ -1266,62 +1057,7 @@
     }
   </script>
 
-  <!-- CV lightbox logic -->
-  <script>
-    (function () {
-      const lb = document.getElementById('cert-lightbox');
-      const lbBody = document.getElementById('lb-body');
-      const lbLabel = document.getElementById('lb-label');
-      const lbDownload = document.getElementById('lb-download');
-      const lbOpen = document.getElementById('lb-open');
-      const lbClose = document.getElementById('lb-close');
-      let lastFocus = null;
-
-      function openLightbox(src, label, type) {
-        lastFocus = document.activeElement;
-        lbLabel.textContent = label;
-        lbDownload.href = src;
-        lbOpen.href = src;
-        lbBody.innerHTML = '';
-
-        if (type === 'pdf') {
-          const iframe = document.createElement('iframe');
-          iframe.src = src + '#toolbar=1&view=FitH';
-          iframe.title = label;
-          lbBody.appendChild(iframe);
-        } else {
-          const img = document.createElement('img');
-          img.src = src;
-          img.alt = label;
-          lbBody.appendChild(img);
-        }
-
-        lb.classList.add('open');
-        document.body.style.overflow = 'hidden';
-        lbClose.focus();
-      }
-
-      function closeLightbox() {
-        lb.classList.remove('open');
-        document.body.style.overflow = '';
-        setTimeout(() => { lbBody.innerHTML = ''; }, 230);
-        if (lastFocus) lastFocus.focus();
-      }
-
-      document.querySelectorAll('.cert-btn').forEach(btn => {
-        btn.addEventListener('click', event => {
-          event.preventDefault();
-          openLightbox(btn.dataset.cert, btn.dataset.label, btn.dataset.type);
-        });
-      });
-
-      lbClose.addEventListener('click', closeLightbox);
-      lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
-      document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && lb.classList.contains('open')) closeLightbox();
-      });
-    })();
-  </script>
+  <!-- Cert/CV lightbox logic lives in assets/js/script.js (initLightbox) -->
 
   <!-- Shared site script — must be last -->
   <script src="assets/js/script.js" defer></script>
@@ -1351,10 +1087,14 @@
         'live-hero-tag': function (L) { return L.heroTag; },
         'live-focus': function (L) {
           var propDeadline = new Date(2026, 6, 2); // Jul 2 2026
+          var defenceDate = new Date(2026, 6, 10); // Jul 10 2026
           var now = new Date();
           var propPart = now < propDeadline
             ? 'SPARK proposal due Jul 2'
-            : 'SPARK Major Project';
+            : now < defenceDate
+              ? 'SPARK proposal defended · Major Project'
+              : 'SPARK Major Project — proposal defended'
+          ;
           return propPart + ' · ' + L.fuseLabel;
         },
         'live-fellowship': function (L) {

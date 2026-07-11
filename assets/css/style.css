@@ -4,11 +4,19 @@
    Page-specific overrides live in each page's <head><style>.
    ============================================================ */
 
+/* ── Cross-document view transitions ─────────────────────────
+   Native browser support (Chrome 126+, Safari 18.2+); no-ops
+   elsewhere. Site's primary interaction is page-to-page nav,
+   so this smooths every internal link without extra JS. ── */
+@view-transition {
+  navigation: auto;
+}
+
 /* ── Token System ─────────────────────────────────────────── */
 :root {
-  --bg: #0d0e11;
-  --bg2: #13151a;
-  --bg3: #1a1d24;
+  --bg: #0f0e0c;
+  --bg2: #161513;
+  --bg3: #221c16;
   --line: rgba(255, 255, 255, 0.09);
   --text: #ede9e0;
   --muted: #9c9690;
@@ -26,13 +34,25 @@
   --serif: "Cormorant Garamond", Georgia, serif;
   --mono: "DM Mono", monospace;
   --sans: "Instrument Sans", sans-serif;
-  --nav-scrolled-bg: rgba(13, 14, 17, 0.88);
+  --nav-scrolled-bg: rgba(15, 14, 12, 0.88);
   --glass-bg: rgba(255, 255, 255, 0.03);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-blur: 12px;
   --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   --nav-h: 76px;
-  --surface: #14151a;
+  --surface: #171512;
+  /* Theme-invariant decorative glow — stays vivid gold/teal in both
+     themes (dividers, status indicators); do not override per-theme. */
+  --glow-gold: #d4a85a;
+  --glow-gold-a18: rgba(212, 168, 90, 0.18);
+  --glow-gold-a30: rgba(212, 168, 90, 0.3);
+  --glow-gold-a35: rgba(212, 168, 90, 0.35);
+  --glow-gold-a90: rgba(212, 168, 90, 0.9);
+  --glow-teal: #6dbfaa;
+  --glow-teal-a15: rgba(109, 191, 170, 0.15);
+  --glow-teal-a25: rgba(109, 191, 170, 0.25);
+  --glow-teal-a35: rgba(109, 191, 170, 0.35);
+  --glow-teal-a70: rgba(109, 191, 170, 0.7);
 }
 
 html[data-theme="light"] {
@@ -731,18 +751,18 @@ html[data-theme="light"] .section-num {
 }
 
 html[data-theme="light"] .divider::before {
-  border-top-color: #d4a85a;
-  filter: drop-shadow(0 0 5px #d4a85a) drop-shadow(0 0 2px #d4a85a);
+  border-top-color: var(--glow-gold);
+  filter: drop-shadow(0 0 5px var(--glow-gold)) drop-shadow(0 0 2px var(--glow-gold));
 }
 
 html[data-theme="light"] .divider::after {
-  border-top-color: #6dbfaa;
-  filter: drop-shadow(0 0 4px #6dbfaa);
+  border-top-color: var(--glow-teal);
+  filter: drop-shadow(0 0 4px var(--glow-teal));
 }
 
 html[data-theme="light"] .divider-node {
-  border-color: #d4a85a;
-  box-shadow: 0 0 6px rgba(212, 168, 90, 0.35);
+  border-color: var(--glow-gold);
+  box-shadow: 0 0 6px var(--glow-gold-a35);
 }
 
 /* ── Buttons ──────────────────────────────────────────────── */
@@ -1018,6 +1038,10 @@ footer {
 /* ── Reduced motion ───────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
 
+  @view-transition {
+    navigation: none;
+  }
+
   *,
   *::before,
   *::after {
@@ -1114,3 +1138,197 @@ footer {
     font-size: clamp(1.8rem, 7vw, 2.4rem);
   }
 }
+
+/* ============================================================
+   SHARED COMPONENTS
+   Rules below are used by 2+ pages and were previously duplicated
+   in each page's inline <style> block. Page-specific overrides
+   still live inline (loaded after this file, so they win on
+   equal specificity — verified safe across all 6 pages).
+   ============================================================ */
+
+/* ── Page header (about, projects, contact, achievements, experience) ── */
+#page-header {
+  padding: calc(var(--nav-h) + 3rem) 3rem 2rem;
+}
+
+.page-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.page-title {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 300;
+  color: var(--heading);
+  line-height: 1.1;
+}
+
+.page-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.page-sub {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: var(--text);
+  max-width: 560px;
+  line-height: 1.75;
+}
+
+@media (max-width: 1100px) {
+  #page-header {
+    padding: calc(var(--nav-h) + 2.5rem) 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  #page-header {
+    padding: calc(var(--nav-h) + 2rem) 1.5rem 1.5rem;
+  }
+}
+
+/* ── CV/Certificate lightbox (index, achievements, experience) ── */
+#cert-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(7, 8, 10, 0.88);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+#cert-lightbox.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox-inner {
+  position: relative;
+  width: min(92vw, 860px);
+  max-height: 90vh;
+  background: var(--surface, #171512);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(12px) scale(0.98);
+  transition: transform 0.22s ease;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+}
+
+#cert-lightbox.open .lightbox-inner {
+  transform: translateY(0) scale(1);
+}
+
+.lightbox-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+
+.lightbox-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.lightbox-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.lb-btn svg {
+  width: 0.9em;
+  height: 0.9em;
+}
+
+.lb-btn:hover {
+  background: var(--text-a10);
+  background: color-mix(in srgb, var(--text) 10%, transparent);
+  color: var(--heading);
+  border-color: var(--text-a40);
+}
+
+.lb-btn.lb-close {
+  color: var(--accent);
+  border-color: var(--accent-a35);
+}
+
+.lb-btn.lb-close:hover {
+  background: var(--accent-a12);
+  color: var(--heading);
+  border-color: var(--accent);
+}
+
+.lb-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── Quick-nav cards (Explore section — index, about, projects, contact, achievements, experience) ── */
+#quick-nav { background: transparent; position: relative; padding: 6rem 3rem; }
+#quick-nav::before { content:""; position:absolute; inset:0; z-index:0; background: rgba(15,14,12,.55); pointer-events:none; }
+html[data-theme="light"] #quick-nav::before { background: rgba(245,242,236,.7); }
+#quick-nav > * { position: relative; z-index: 1; }
+.quick-nav-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px;
+  border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+}
+.quick-nav-card {
+  background: var(--bg2); padding: 2.5rem 2rem;
+  display: flex; flex-direction: column; gap: 1rem;
+  text-decoration: none; position: relative; overflow: hidden;
+  transition: background .3s;
+}
+.quick-nav-card::after {
+  content:""; position:absolute; top:0; left:0; right:0; height:1px;
+  background: var(--accent); transform: scaleX(0); transform-origin: left;
+  transition: transform .4s ease;
+}
+.quick-nav-card:hover { background: var(--bg3); }
+.quick-nav-card:hover::after { transform: scaleX(1); }
+.quick-nav-index { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; color: var(--accent); opacity: .8; }
+.quick-nav-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; color: var(--heading); }
+.quick-nav-desc { font-size: 0.85rem; line-height: 1.65; color: var(--text); flex: 1; }
+.quick-nav-cta {
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent2);
+  display: inline-flex; align-items: center; gap: 0.4rem; transition: gap .25s;
+}
+.quick-nav-card:hover .quick-nav-cta { gap: 0.65rem; }
+@media (max-width: 1100px) { #quick-nav { padding: 4rem 2rem; } }
+@media (max-width: 900px)  { #quick-nav { padding: 3.5rem 1.5rem; } .quick-nav-grid { grid-template-columns: 1fr; } }

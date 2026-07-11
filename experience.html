@@ -72,40 +72,6 @@
       background: var(--bg);
     }
 
-    #page-header {
-      padding: calc(var(--nav-h) + 3rem) 3rem 2rem;
-    }
-
-    .page-eyebrow {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
-    }
-
-    .page-title {
-      font-family: var(--serif);
-      font-size: clamp(2.2rem, 4vw, 3.4rem);
-      font-weight: 300;
-      color: var(--heading);
-      line-height: 1.1;
-    }
-
-    .page-title em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .page-sub {
-      margin-top: 1rem;
-      font-size: 0.95rem;
-      color: var(--text);
-      max-width: 560px;
-      line-height: 1.75;
-    }
-
     #experience {
       padding: 2rem 3rem 6rem;
     }
@@ -209,109 +175,7 @@
       outline-offset: 2px;
     }
 
-    /* ── Certificate lightbox ── */
-    #cert-lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(7, 8, 10, 0.88);
-      -webkit-backdrop-filter: blur(8px);
-      backdrop-filter: blur(8px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.22s ease;
-    }
-
-    #cert-lightbox.open {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .lightbox-inner {
-      position: relative;
-      width: min(92vw, 860px);
-      max-height: 90vh;
-      background: var(--surface, #14151a);
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transform: translateY(12px) scale(0.98);
-      transition: transform 0.22s ease;
-      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
-    }
-
-    #cert-lightbox.open .lightbox-inner {
-      transform: translateY(0) scale(1);
-    }
-
-    .lightbox-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 1rem 0.75rem 1.25rem;
-      border-bottom: 1px solid var(--line);
-      flex-shrink: 0;
-    }
-
-    .lightbox-label {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .lightbox-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .lb-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 2rem;
-      height: 2rem;
-      border-radius: 4px;
-      border: 1px solid var(--line);
-      background: transparent;
-      color: var(--text);
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s, border-color 0.15s;
-    }
-
-    .lb-btn svg {
-      width: 0.9em;
-      height: 0.9em;
-    }
-
-    .lb-btn:hover {
-      background: var(--text-a10);
-      color: var(--heading);
-      border-color: var(--text-a40);
-    }
-
-    .lb-btn.lb-close {
-      color: var(--accent);
-      border-color: var(--accent-a35);
-    }
-
-    .lb-btn.lb-close:hover {
-      background: var(--accent-a12);
-      color: var(--heading);
-      border-color: var(--accent);
-    }
-
-    .lb-btn:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
+    /* Experience uses 75vh lightbox body (vs 80vh shared default) */
 
     .lightbox-body {
       flex: 1;
@@ -337,20 +201,12 @@
     }
 
     @media (max-width: 1100px) {
-      #page-header {
-        padding: calc(var(--nav-h) + 2.5rem) 2rem 1.5rem;
-      }
-
       #experience {
         padding: 1.5rem 2rem 5rem;
       }
     }
 
     @media (max-width: 900px) {
-      #page-header {
-        padding: calc(var(--nav-h) + 2rem) 1.5rem 1.5rem;
-      }
-
       #experience {
         padding: 1.5rem 1.5rem 4rem;
       }
@@ -370,126 +226,6 @@
       }
     }
 
-    /* ── Quick-nav cards (Explore section) ───────────────── */
-    #quick-nav {
-      background: transparent;
-      position: relative;
-      padding: 6rem 3rem;
-    }
-
-    #quick-nav::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background: rgba(13, 14, 17, .55);
-      pointer-events: none;
-    }
-
-    html[data-theme="light"] #quick-nav::before {
-      background: rgba(245, 242, 236, .7);
-    }
-
-    #quick-nav>* {
-      position: relative;
-      z-index: 1;
-    }
-
-    .quick-nav-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1px;
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .quick-nav-card {
-      background: var(--bg2);
-      padding: 2.5rem 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      text-decoration: none;
-      position: relative;
-      overflow: hidden;
-      transition: background .3s;
-    }
-
-    .quick-nav-card::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform .4s ease;
-    }
-
-    .quick-nav-card:hover {
-      background: var(--bg3);
-    }
-
-    .quick-nav-card:hover::after {
-      transform: scaleX(1);
-    }
-
-    .quick-nav-index {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-      opacity: .8;
-    }
-
-    .quick-nav-title {
-      font-family: var(--serif);
-      font-size: 1.35rem;
-      font-weight: 400;
-      color: var(--heading);
-    }
-
-    .quick-nav-desc {
-      font-size: 0.85rem;
-      line-height: 1.65;
-      color: var(--text);
-      flex: 1;
-    }
-
-    .quick-nav-cta {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: gap .25s;
-    }
-
-    .quick-nav-card:hover .quick-nav-cta {
-      gap: 0.65rem;
-    }
-
-    @media (max-width: 1100px) {
-      #quick-nav {
-        padding: 4rem 2rem;
-      }
-    }
-
-    @media (max-width: 900px) {
-      #quick-nav {
-        padding: 3.5rem 1.5rem;
-      }
-
-      .quick-nav-grid {
-        grid-template-columns: 1fr;
-      }
-    }
   </style>
 </head>
 
@@ -502,7 +238,8 @@
     <div class="cursor-dot" id="cursorDot"></div>
   </div>
 
-  <div id="siteNav"></div>
+  <noscript><nav aria-label="Primary navigation"><a href="index.html" class="nav-logo">ADT<span>.</span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="projects.html">Projects</a></li><li><a href="experience.html" class="active" aria-current="page">Experience</a></li><li><a href="achievements.html">Achievements</a></li><li><a href="about.html">About</a></li></ul><div class="nav-right"><a href="contact.html" class="nav-cta">Connect</a></div></nav></noscript>
+<div id="siteNav"></div>
 
   <!-- ── Lightbox ── -->
   <div id="cert-lightbox" role="dialog" aria-modal="true" aria-label="Certificate viewer">
@@ -554,7 +291,7 @@
         <div class="exp-item reveal">
           <div class="exp-org"><span class="exp-num">E — 001</span><span class="exp-org-name">Fusemachines</span></div>
           <div>
-            <div class="exp-title">Fuse AI Fellow</div>
+            <h3 class="exp-title">Fuse AI Fellow</h3>
             <p class="exp-desc">
               Selected through competitive entrance exam (linear algebra,
               calculus, probability, Python, ML). Wk 1: Heart attack risk
@@ -582,7 +319,7 @@
           <div class="exp-org"><span class="exp-num">E — 002</span><span class="exp-org-name">IEEE KEC KTM Student
               Branch</span></div>
           <div>
-            <div class="exp-title">Vice Chair</div>
+            <h3 class="exp-title">Vice Chair</h3>
             <p class="exp-desc">
               Spearheading strategic planning and high-level decision-making
               for the IEEE KEC KTM Student Branch. Focused on scaling
@@ -598,7 +335,7 @@
           <div class="exp-org"><span class="exp-num">E — 003</span><span class="exp-org-name">NSSR — Nepalese Society of
               Student Researchers</span></div>
           <div>
-            <div class="exp-title">DataCamp Fellow — Cohort 2</div>
+            <h3 class="exp-title">DataCamp Fellow — Cohort 2</h3>
             <p class="exp-desc">
               Competitively selected (April 2026) for a sponsored DataCamp
               Premium license. Phase 1 (Applied AI) complete: architected 6
@@ -617,7 +354,7 @@
         <div class="exp-item reveal">
           <div class="exp-org"><span class="exp-num">E — 004</span><span class="exp-org-name">KEC EPC CLUB</span></div>
           <div>
-            <div class="exp-title">Event Manager</div>
+            <h3 class="exp-title">Event Manager</h3>
             <p class="exp-desc">
               Spearheading the end-to-end execution of club events, from
               conceptualization and logistics to on-ground management,
@@ -632,7 +369,7 @@
           <div class="exp-org"><span class="exp-num">E — 005</span><span class="exp-org-name">KEC Maker's Space</span>
           </div>
           <div>
-            <div class="exp-title">Makerspace Ambassador</div>
+            <h3 class="exp-title">Makerspace Ambassador</h3>
             <p class="exp-desc">
               Representing the KEC Maker's Space as an active member on the
               web development track. Maintaining and shipping improvements to
@@ -649,7 +386,7 @@
           <div class="exp-org"><span class="exp-num">E — 006</span><span class="exp-org-name">IEEE KEC KTM Student
               Branch</span></div>
           <div>
-            <div class="exp-title">Vice Secretary</div>
+            <h3 class="exp-title">Vice Secretary</h3>
             <p class="exp-desc">
               Led organizational and administrative operations of the IEEE
               KEC KTM Student Branch. Coordinated events, managed
@@ -657,7 +394,7 @@
               engineering community.
             </p>
             <button class="cert-btn exp-cert-btn"
-              data-cert="assets/certificates/IEEE_KEC_Volunteering_Vice_Secretary_2025_2026.png"
+              data-cert="assets/certificates/IEEE_KEC_Volunteering_Vice_Secretary_2025_2026.webp"
               data-label="IEEE KEC Volunteering — Vice Secretary 2025/2026" data-type="image"
               aria-label="View certificate: IEEE KEC Volunteering — Vice Secretary 2025/2026">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -675,7 +412,7 @@
           <div class="exp-org"><span class="exp-num">E — 007</span><span class="exp-org-name">EPC Handover Program
               2025</span></div>
           <div>
-            <div class="exp-title">Event Co-Host</div>
+            <h3 class="exp-title">Event Co-Host</h3>
             <p class="exp-desc">
               Co-hosted the EPC Handover Program 2025, facilitating
               leadership transition and engaging a broad audience of
@@ -688,7 +425,7 @@
         <div class="exp-item reveal">
           <div class="exp-org"><span class="exp-num">E — 008</span><span class="exp-org-name">KEC EPC CLUB</span></div>
           <div>
-            <div class="exp-title">Resource Manager</div>
+            <h3 class="exp-title">Resource Manager</h3>
             <p class="exp-desc">
               Optimized allocation and procurement of physical and digital
               assets for club activities. Responsible for inventory
@@ -749,65 +486,7 @@
 
   <script src="assets/js/script.js" defer></script>
 
-  <!-- Certificate lightbox — same logic as achievements.html -->
-  <script>
-    (function () {
-      const lb = document.getElementById('cert-lightbox');
-      const lbBody = document.getElementById('lb-body');
-      const lbLabel = document.getElementById('lb-label');
-      const lbDownload = document.getElementById('lb-download');
-      const lbOpen = document.getElementById('lb-open');
-      const lbClose = document.getElementById('lb-close');
-      let lastFocus = null;
-
-      function openLightbox(src, label, type) {
-        lastFocus = document.activeElement;
-        lbLabel.textContent = label;
-        lbDownload.href = src;
-        lbOpen.href = src;
-        lbBody.innerHTML = '';
-
-        if (type === 'pdf') {
-          const iframe = document.createElement('iframe');
-          iframe.src = src + '#toolbar=1&view=FitH';
-          iframe.title = label;
-          lbBody.appendChild(iframe);
-        } else {
-          const img = document.createElement('img');
-          img.src = src;
-          img.alt = label;
-          lbBody.appendChild(img);
-        }
-
-        lb.classList.add('open');
-        document.body.style.overflow = 'hidden';
-        lbClose.focus();
-      }
-
-      function closeLightbox() {
-        lb.classList.remove('open');
-        document.body.style.overflow = '';
-        setTimeout(() => { lbBody.innerHTML = ''; }, 230);
-        if (lastFocus) lastFocus.focus();
-      }
-
-      document.querySelectorAll('.cert-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          openLightbox(btn.dataset.cert, btn.dataset.label, btn.dataset.type);
-        });
-      });
-
-      lbClose.addEventListener('click', closeLightbox);
-
-      lb.addEventListener('click', e => {
-        if (e.target === lb) closeLightbox();
-      });
-
-      document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && lb.classList.contains('open')) closeLightbox();
-      });
-    })();
-  </script>
+  <!-- Cert/CV lightbox logic lives in assets/js/script.js (initLightbox) -->
 
   <!-- Live date auto-update: Fuse fellowship week -->
   <script>

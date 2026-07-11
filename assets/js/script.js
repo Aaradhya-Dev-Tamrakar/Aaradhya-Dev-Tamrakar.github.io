@@ -17,11 +17,11 @@ const SITE = {
     { label: 'Instagram', href: 'https://www.instagram.com/aaradhya_dev_tamrakar/' },
   ],
   navLinks: [
-    { label: 'Home', labelShort: 'Home', href: 'index.html' },
-    { label: 'Projects', labelShort: 'Projects', href: 'projects.html' },
-    { label: 'Experience', labelShort: 'Experience', href: 'experience.html' },
-    { label: 'Achievements', labelShort: 'Achievements', href: 'achievements.html' },
-    { label: 'About', labelShort: 'About', href: 'about.html' },
+    { label: 'Home', labelShort: 'Home', href: 'index.html', key: '1' },
+    { label: 'Projects', labelShort: 'Projects', href: 'projects.html', key: '2' },
+    { label: 'Experience', labelShort: 'Experience', href: 'experience.html', key: '3' },
+    { label: 'Achievements', labelShort: 'Achievements', href: 'achievements.html', key: '4' },
+    { label: 'About', labelShort: 'About', href: 'about.html', key: '5' },
   ],
 };
 
@@ -39,11 +39,11 @@ function renderSiteNav() {
   const el = document.getElementById('siteNav');
   if (!el) return;
   const navLinks = SITE.navLinks
-    .map(link => `<li><a href="${link.href}">${link.label}</a></li>`)
+    .map(link => `<li><a href="${link.href}" title="Press ${link.key}">${link.label}</a></li>`)
     .join('');
   const drawerLinks = SITE.navLinks
     .map(link => `<a href="${link.href}">${link.label}</a>`)
-    .join('');
+    .join('') + `<a href="contact.html" class="nav-cta">Connect</a>`;
   el.innerHTML = `
     <nav id="nav" aria-label="Primary navigation">
       <a href="index.html" class="nav-logo" id="nav-logo">ADT<span>.</span></a>
@@ -104,7 +104,13 @@ function setActiveNav() {
   const page = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-links a, .nav-drawer a, .nav-cta').forEach(a => {
     const linkPage = (a.getAttribute('href') || '').split('/').pop().split('#')[0] || 'index.html';
-    a.classList.toggle('active', linkPage === page);
+    const isCurrent = linkPage === page;
+    a.classList.toggle('active', isCurrent);
+    if (isCurrent) {
+      a.setAttribute('aria-current', 'page');
+    } else {
+      a.removeAttribute('aria-current');
+    }
   });
 }
 
@@ -137,22 +143,32 @@ function initHamburger() {
   const drawer = document.getElementById('navDrawer');
   if (!hamburger || !drawer) return;
 
-  hamburger.addEventListener('click', () => {
-    const isOpen = drawer.classList.toggle('open');
+  const mainEl = document.getElementById('main-content') || document.querySelector('main');
+  const footerEl = document.querySelector('footer');
+
+  function setOpen(isOpen) {
+    drawer.classList.toggle('open', isOpen);
     hamburger.classList.toggle('open', isOpen);
     hamburger.setAttribute('aria-expanded', isOpen);
     hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
     document.body.style.overflow = isOpen ? 'hidden' : '';
+    if (mainEl) mainEl.inert = isOpen;
+    if (footerEl) footerEl.inert = isOpen;
+  }
+
+  hamburger.addEventListener('click', () => {
+    setOpen(!drawer.classList.contains('open'));
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+      setOpen(false);
+      hamburger.focus();
+    }
   });
 
   drawer.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      drawer.classList.remove('open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      hamburger.setAttribute('aria-label', 'Open menu');
-      document.body.style.overflow = '';
-    });
+    link.addEventListener('click', () => setOpen(false));
   });
 }
 
@@ -324,9 +340,72 @@ function applyLiveDates(map) {
   initScroll();
   initReveal();
   initCursor();
+  initLightbox();
   renderSiteFooter();
   window.addEventListener('load', loadGA4);
 })();
+
+/* ── Cert/CV lightbox (index, achievements, experience) ───── */
+// Shared across the three pages that render #cert-lightbox markup.
+// No-ops on pages without it. `.cert-btn` triggers via data-cert /
+// data-label / data-type attributes; preventDefault() is required
+// because index.html's cert-btn is an <a download>, and is a no-op
+// on the <button> variants used elsewhere.
+function initLightbox() {
+  const lb = document.getElementById('cert-lightbox');
+  if (!lb) return;
+
+  const lbBody = document.getElementById('lb-body');
+  const lbLabel = document.getElementById('lb-label');
+  const lbDownload = document.getElementById('lb-download');
+  const lbOpen = document.getElementById('lb-open');
+  const lbClose = document.getElementById('lb-close');
+  let lastFocus = null;
+
+  function openLightbox(src, label, type) {
+    lastFocus = document.activeElement;
+    lbLabel.textContent = label;
+    lbDownload.href = src;
+    lbOpen.href = src;
+    lbBody.innerHTML = '';
+
+    if (type === 'pdf') {
+      const iframe = document.createElement('iframe');
+      iframe.src = src + '#toolbar=1&view=FitH';
+      iframe.title = label;
+      lbBody.appendChild(iframe);
+    } else {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = label;
+      lbBody.appendChild(img);
+    }
+
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    lbClose.focus();
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { lbBody.innerHTML = ''; }, 230);
+    if (lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('.cert-btn').forEach(btn => {
+    btn.addEventListener('click', event => {
+      event.preventDefault();
+      openLightbox(btn.dataset.cert, btn.dataset.label, btn.dataset.type);
+    });
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lb.classList.contains('open')) closeLightbox();
+  });
+}
 
 /* ── Keyboard page navigation (1–6) ──────────────────────── */
 // 1 → index.html  2 → projects.html  3 → experience.html
