@@ -362,12 +362,18 @@ function initLightbox() {
   const lbClose = document.getElementById('lb-close');
   let lastFocus = null;
 
-  function openLightbox(src, label, type, downloadSrc) {
+  function openLightbox(src, label, type, downloadSrc, verifyUrl) {
     lastFocus = document.activeElement;
     lbLabel.textContent = label;
     lbDownload.href = downloadSrc || src;
     lbOpen.href = src;
     lbBody.innerHTML = '';
+
+    if (verifyUrl) {
+      const lbVerify = document.getElementById('lb-verify');
+      lbVerify.href = verifyUrl;
+      lbVerify.hidden = false;
+    }
 
     if (type === 'pdf') {
       const iframe = document.createElement('iframe');
@@ -390,13 +396,18 @@ function initLightbox() {
     lb.classList.remove('open');
     document.body.style.overflow = '';
     setTimeout(() => { lbBody.innerHTML = ''; }, 230);
+    const lbVerify = document.getElementById('lb-verify');
+    if (lbVerify) {
+      lbVerify.hidden = true;
+      lbVerify.href = '#';
+    }
     if (lastFocus) lastFocus.focus();
   }
 
   document.querySelectorAll('.cert-btn').forEach(btn => {
     btn.addEventListener('click', event => {
       event.preventDefault();
-      openLightbox(btn.dataset.cert, btn.dataset.label, btn.dataset.type, btn.dataset.download);
+      openLightbox(btn.dataset.cert, btn.dataset.label, btn.dataset.type, btn.dataset.download, btn.dataset.verify);
     });
   });
 
