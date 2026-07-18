@@ -62,73 +62,73 @@ const SEARCH_STATIC_INDEX = {
   achievement: [
   {
     "type": "achievement",
-    "title": "DataCamp Statements of Accomplishment (×7)",
-    "meta": "DataCamp · May 2026 · Jul 2026",
+    "title": "JavaScript Bootcamp",
+    "meta": "KEC IT Club · 2023",
     "href": "achievements.html#achv-0",
-    "text": "datacamp datacamp statements of accomplishment (×7) seven certified courses completed as part of the nssr datacamp fellowship: cleaning data with generative ai, ai-assisted product launch, building a go-to-market strategy, generate a study guide, and recommending skincare products — plus introduction to python and introduction to git, both shown separately above with their own credential ids. may 2026 · jul 2026"
+    "text": "kec it club javascript bootcamp participated in an introductory javascript bootcamp focused on core programming concepts and web development fundamentals. 2023"
   },
   {
     "type": "achievement",
-    "title": "Introduction to Git",
-    "meta": "DataCamp · Jul 2026",
+    "title": "Session on Git & GitHub",
+    "meta": "KEC IT Club · Nov 2024",
     "href": "achievements.html#achv-1",
-    "text": "datacamp introduction to git completed on july 6, 2026. credential id cpe0469867571113. earned 1.6 cpe credits. jul 2026"
+    "text": "kec it club session on git & github foundational session on git concepts, repositories, branching, and collaborative version-control workflows. nov 2024"
   },
   {
     "type": "achievement",
-    "title": "AI Fluency: Framework & Foundations",
-    "meta": "ANTHROPIC · Jul 2026",
+    "title": "Workshop on Linux and Open Source Contribution",
+    "meta": "GNOME Nepal & KEC IT Club · Nov 2024",
     "href": "achievements.html#achv-2",
-    "text": "anthropic ai fluency: framework & foundations completed an advanced course on ai frameworks and foundational concepts, covering practical applications of artificial intelligence in modern development. certificate of completion received. jul 2026"
+    "text": "gnome nepal & kec it club workshop on linux and open source contribution session on linux fundamentals and contributing to open source projects. nov 2024"
   },
   {
     "type": "achievement",
-    "title": "SimOps Certifications",
-    "meta": "SimOps · Jul 2026",
+    "title": "HTML & CSS Workshop — Design, Code & Launch via GitHub Pages",
+    "meta": "Microsoft Learn Student Ambassador · 2024",
     "href": "achievements.html#achv-3",
-    "text": "simops simops certifications jul 2026"
+    "text": "microsoft learn student ambassador html & css workshop — design, code & launch via github pages completed a workshop on designing, coding, and deploying a website using github pages, conducted by microsoft learn student ambassador in association with dynamic public library (dpl) teens. certificate of completion received. 2024"
   },
   {
     "type": "achievement",
-    "title": "IEEE WIE LaTeX Training Program",
-    "meta": "IEEE · May 2026",
+    "title": "PreXtreme Competitive Programming Workshop",
+    "meta": "IEEE · Jul 2025",
     "href": "achievements.html#achv-4",
-    "text": "ieee ieee wie latex training program two-day latex workshop at kec makerspace, kalimati (may 5–6, 2026). resource person: er. dhawa sang dong. certificate of participation received. may 2026"
+    "text": "ieee prextreme competitive programming workshop five-day intensive workshop (july 11–16, 2025) on algorithms and data structures: arrays, stacks, queues, number theory, combinatorics, searching, sorting, recursion, greedy algorithms, bit manipulation, dynamic programming, and graph theory. certificate of completion received. jul 2025"
   },
   {
     "type": "achievement",
-    "title": "Prompt Engineering Fundamentals",
-    "meta": "TechAxis · May 2026",
+    "title": "AWS Fundamentals Workshop",
+    "meta": "KEC IT Club · AWS Cloud Club Nepal · Jul 2025",
     "href": "achievements.html#achv-5",
-    "text": "techaxis prompt engineering fundamentals completed a 2-hour hands-on workshop on prompt engineering fundamentals at techaxis (may 8, 2026). certificate of completion received. may 2026"
+    "text": "kec it club · aws cloud club nepal aws fundamentals workshop hands-on workshop on aws core services and cloud fundamentals, organized by kec i.t. club in collaboration with aws cloud club in nepal (july 19, 2025). certificate of achievement received. jul 2025"
   },
   {
     "type": "achievement",
-    "title": "IEEE SPAx — Engineer Your Profile",
-    "meta": "IEEE · May 2026",
+    "title": "Agile Workshop",
+    "meta": "IEEE · Jul 2025",
     "href": "achievements.html#achv-6",
-    "text": "ieee ieee spax — engineer your profile organizing team member for ieee spax: engineer your profile, held on may 23, 2026 at kathmandu engineering college. recognized for outstanding contribution to planning, coordination, and execution of the event. certificate of organization received. may 2026"
+    "text": "ieee agile workshop participated in an agile workshop organized by ieee kec ktm student branch (july 22, 2025). certificate of appreciation received. jul 2025"
   },
   {
     "type": "achievement",
-    "title": "NepaTronix Drone Training Program",
-    "meta": "Drone Operator Training · May 2026",
+    "title": "PCB Design & Fabrication Workshop",
+    "meta": "Nepal Students' Union KEC · KEC Robotics Club · Jul 2025",
     "href": "achievements.html#achv-7",
-    "text": "drone operator training nepatronix drone training program 3-day certified drone training covering flight operations, safety protocols, and basic applications. may 2026"
+    "text": "nepal students' union kec · kec robotics club pcb design & fabrication workshop three-day workshop on pcb design and fabrication (july 24–26, 2025), organized by nepal students' union, kathmandu engineering college in collaboration with kec robotics club. certificate of completion received. jul 2025"
   },
   {
     "type": "achievement",
-    "title": "Introduction to Python",
-    "meta": "DataCamp · May 2026",
+    "title": "Mentor — Electronics For All Workshop",
+    "meta": "IEEE · Jul 2025",
     "href": "achievements.html#achv-8",
-    "text": "datacamp introduction to python completed on may 25, 2026. credential id itp0014139470763. earned 2.6 cpe credits. may 2026"
+    "text": "ieee mentor — electronics for all workshop served as a mentor at the electronics for all workshop held at shree kuleshwor secondary school (july 27, 2025). certificate of appreciation received for mentorship contribution. jul 2025"
   },
   {
     "type": "achievement",
-    "title": "IEEE Conference Leadership Workshop 2026",
-    "meta": "IEEE · 2026",
+    "title": "How Hackers Bypass Security: A Beginner's Guide",
+    "meta": "Offenso Hackers Academy · Jul 2025",
     "href": "achievements.html#achv-9",
-    "text": "ieee ieee conference leadership workshop 2026 workshop covering event management, leadership, and conference organisation skills for ieee student members. 2026"
+    "text": "offenso hackers academy how hackers bypass security: a beginner's guide webinar on offensive security fundamentals and common attack bypass techniques. certificate of participation received. jul 2025"
   },
   {
     "type": "achievement",
@@ -146,73 +146,115 @@ const SEARCH_STATIC_INDEX = {
   },
   {
     "type": "achievement",
-    "title": "PreXtreme Competitive Programming Workshop",
-    "meta": "IEEE · Jul 2025",
+    "title": "IEEE WIE LaTeX Training Program",
+    "meta": "IEEE · May 2026",
     "href": "achievements.html#achv-12",
-    "text": "ieee prextreme competitive programming workshop five-day intensive workshop (july 11–16, 2025) on algorithms and data structures: arrays, stacks, queues, number theory, combinatorics, searching, sorting, recursion, greedy algorithms, bit manipulation, dynamic programming, and graph theory. certificate of completion received. jul 2025"
+    "text": "ieee ieee wie latex training program two-day latex workshop at kec makerspace, kalimati (may 5–6, 2026). resource person: er. dhawa sang dong. certificate of participation received. may 2026"
   },
   {
     "type": "achievement",
-    "title": "AWS Fundamentals Workshop",
-    "meta": "KEC IT Club · AWS Cloud Club Nepal · Jul 2025",
+    "title": "Prompt Engineering Fundamentals",
+    "meta": "TechAxis · May 2026",
     "href": "achievements.html#achv-13",
-    "text": "kec it club · aws cloud club nepal aws fundamentals workshop hands-on workshop on aws core services and cloud fundamentals, organized by kec i.t. club in collaboration with aws cloud club in nepal (july 19, 2025). certificate of achievement received. jul 2025"
+    "text": "techaxis prompt engineering fundamentals completed a 2-hour hands-on workshop on prompt engineering fundamentals at techaxis (may 8, 2026). certificate of completion received. may 2026"
   },
   {
     "type": "achievement",
-    "title": "Agile Workshop",
-    "meta": "IEEE · Jul 2025",
+    "title": "IEEE SPAx — Engineer Your Profile",
+    "meta": "IEEE · May 2026",
     "href": "achievements.html#achv-14",
-    "text": "ieee agile workshop participated in an agile workshop organized by ieee kec ktm student branch (july 22, 2025). certificate of appreciation received. jul 2025"
+    "text": "ieee ieee spax — engineer your profile organizing team member for ieee spax: engineer your profile, held on may 23, 2026 at kathmandu engineering college. recognized for outstanding contribution to planning, coordination, and execution of the event. certificate of organization received. may 2026"
   },
   {
     "type": "achievement",
-    "title": "PCB Design & Fabrication Workshop",
-    "meta": "Nepal Students' Union KEC · KEC Robotics Club · Jul 2025",
+    "title": "NepaTronix Drone Training Program",
+    "meta": "Drone Operator Training · May 2026",
     "href": "achievements.html#achv-15",
-    "text": "nepal students' union kec · kec robotics club pcb design & fabrication workshop three-day workshop on pcb design and fabrication (july 24–26, 2025), organized by nepal students' union, kathmandu engineering college in collaboration with kec robotics club. certificate of completion received. jul 2025"
+    "text": "drone operator training nepatronix drone training program 3-day certified drone training covering flight operations, safety protocols, and basic applications. may 2026"
   },
   {
     "type": "achievement",
-    "title": "Mentor — Electronics For All Workshop",
-    "meta": "IEEE · Jul 2025",
+    "title": "DataCamp — CPE Credit Certificates",
+    "meta": "DataCamp · May 2026 · Jul 2026",
     "href": "achievements.html#achv-16",
-    "text": "ieee mentor — electronics for all workshop served as a mentor at the electronics for all workshop held at shree kuleshwor secondary school (july 27, 2025). certificate of appreciation received for mentorship contribution. jul 2025"
+    "text": "datacamp datacamp — cpe credit certificates two courses completed for cpe credit: introduction to python (credential itp0014139470763, 2.6 cpe credits, completed may 25, 2026) and introduction to git (credential cpe0469867571113, 1.6 cpe credits, completed jul 6, 2026). may 2026 · jul 2026"
   },
   {
     "type": "achievement",
-    "title": "How Hackers Bypass Security: A Beginner's Guide",
-    "meta": "Offenso Hackers Academy · Jul 2025",
+    "title": "DataCamp Statements of Accomplishment",
+    "meta": "DataCamp · May 2026 · Jul 2026",
     "href": "achievements.html#achv-17",
-    "text": "offenso hackers academy how hackers bypass security: a beginner's guide webinar on offensive security fundamentals and common attack bypass techniques. certificate of participation received. jul 2025"
+    "text": "datacamp datacamp statements of accomplishment five certified courses completed as part of the nssr datacamp fellowship: cleaning data with generative ai, ai-assisted product launch, building a go-to-market strategy, generate a study guide, and recommending skincare products. may 2026 · jul 2026"
   },
   {
     "type": "achievement",
-    "title": "Introduction to Git",
-    "meta": "KEC IT Club · 2024",
+    "title": "IEEE Conference Leadership Workshop 2026",
+    "meta": "IEEE · 2026",
     "href": "achievements.html#achv-18",
-    "text": "kec it club introduction to git completed a foundational training on git concepts, repositories, branching, and basic collaboration workflows. 2024"
+    "text": "ieee ieee conference leadership workshop 2026 workshop covering event management, leadership, and conference organisation skills for ieee student members. 2026"
   },
   {
     "type": "achievement",
-    "title": "Git & GitHub Workshop",
-    "meta": "KEC IT Club · 2024",
+    "title": "AI Fluency: Framework & Foundations",
+    "meta": "ANTHROPIC · Jul 2026",
     "href": "achievements.html#achv-19",
-    "text": "kec it club git & github workshop version control fundamentals and collaborative workflow practices. 2024"
+    "text": "anthropic ai fluency: framework & foundations completed an advanced course on ai frameworks and foundational concepts, covering practical applications of artificial intelligence in modern development. certificate of completion received. jul 2026"
   },
   {
     "type": "achievement",
-    "title": "HTML & CSS Workshop — Design, Code & Launch via GitHub Pages",
-    "meta": "Microsoft Learn Student Ambassador · 2024",
+    "title": "SimOps Certifications",
+    "meta": "SimOps · Jul 2026",
     "href": "achievements.html#achv-20",
-    "text": "microsoft learn student ambassador html & css workshop — design, code & launch via github pages completed a workshop on designing, coding, and deploying a website using github pages, conducted by microsoft learn student ambassador in association with dynamic public library (dpl) teens. certificate of completion received. 2024"
+    "text": "simops simops certifications jul 2026"
   },
   {
     "type": "achievement",
-    "title": "JavaScript Bootcamp",
-    "meta": "KEC IT Club · 2023",
+    "title": "Sports Week — Volunteer Organizer",
+    "meta": "Kathmandu Engineering College · 2026",
     "href": "achievements.html#achv-21",
-    "text": "kec it club javascript bootcamp participated in an introductory javascript bootcamp focused on core programming concepts and web development fundamentals. 2023"
+    "text": "kathmandu engineering college sports week — volunteer organizer volunteered in organizing kec's sports week. 2026"
+  },
+  {
+    "type": "achievement",
+    "title": "Dristi 3.0 — Volunteer Organizer",
+    "meta": "Kathmandu Engineering College · 2025",
+    "href": "achievements.html#achv-22",
+    "text": "kathmandu engineering college dristi 3.0 — volunteer organizer volunteered in organizing dristi 3.0 at kec. 2025"
+  },
+  {
+    "type": "achievement",
+    "title": "Mr. KEC 2025",
+    "meta": "Kathmandu Engineering College · 2025",
+    "href": "achievements.html#achv-23",
+    "text": "kathmandu engineering college mr. kec 2025 won the title of mr. kec 2025. 2025"
+  },
+  {
+    "type": "achievement",
+    "title": "Proteus Workshop",
+    "meta": "KEC Electrical Club · 2024",
+    "href": "achievements.html#achv-24",
+    "text": "kec electrical club proteus workshop attended a workshop on proteus circuit simulation software. 2024"
+  },
+  {
+    "type": "achievement",
+    "title": "AutoCAD Workshop",
+    "meta": "CESA (Civil Engineering Student's Association) · 2025",
+    "href": "achievements.html#achv-25",
+    "text": "cesa (civil engineering student's association) autocad workshop attended a workshop on autocad. 2025"
+  },
+  {
+    "type": "achievement",
+    "title": "Data Cleaning Hackathon",
+    "meta": "KEC IT Club · 2024",
+    "href": "achievements.html#achv-26",
+    "text": "kec it club data cleaning hackathon participated in a data cleaning hackathon. 2024"
+  },
+  {
+    "type": "achievement",
+    "title": "KEC Music Club — Performer",
+    "meta": "KEC Music Club · 2023–2026",
+    "href": "achievements.html#achv-27",
+    "text": "kec music club kec music club — performer performed 4+ times per year for 3+ years at kec music club events. 2023–2026"
   }
 ],
   project: [

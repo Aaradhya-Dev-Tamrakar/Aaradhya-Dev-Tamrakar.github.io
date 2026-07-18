@@ -211,6 +211,20 @@
       }
     }
 
+    /* Event-photo thumbnail — same frame as .cert-thumb but no forced white
+       background, since event photos (unlike certificate scans) vary in tone */
+    .photo-thumb {
+      background: var(--bg2);
+    }
+
+    .achievement-desc {
+      font-family: var(--serif);
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.4;
+      margin: -0.3rem 0 0.7rem;
+    }
+
     .achv-list-controls {
       display: flex;
       justify-content: flex-end;
@@ -334,6 +348,106 @@
 
     .achievement-item[data-category="leadership"]:hover {
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px var(--glow-teal-a35);
+    }
+
+    /* ECA (Extracurricular) track — separate legend/color set from the
+       Academic categories above; scoped to [data-track="eca"] so values
+       never collide with the Academic data-category system. */
+    :root {
+      --eca-volunteering: #e0954a;
+      --eca-leadership: #d1608f;
+      --eca-award: var(--glow-gold, #d4a85a);
+      --eca-performance: #4fb3c4;
+    }
+
+    .achievement-item[data-track="eca"][data-eca-category="volunteering"] {
+      border-left-color: var(--eca-volunteering);
+      border-right-color: var(--eca-volunteering);
+    }
+
+    .achievement-item[data-track="eca"][data-eca-category="leadership"] {
+      border-left-color: var(--eca-leadership);
+      border-right-color: var(--eca-leadership);
+    }
+
+    .achievement-item[data-track="eca"][data-eca-category="award"] {
+      border-left-color: var(--eca-award);
+      border-right-color: var(--eca-award);
+    }
+
+    .achievement-item[data-track="eca"][data-eca-category="performance"] {
+      border-left-color: var(--eca-performance);
+      border-right-color: var(--eca-performance);
+    }
+
+    .achievement-item[data-track="eca"][data-eca-category="volunteering"]:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px rgba(224, 149, 74, 0.35);
+    }
+
+    .achievement-item[data-track="eca"][data-eca-category="leadership"]:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px rgba(209, 96, 143, 0.35);
+    }
+
+    .achievement-item[data-track="eca"][data-eca-category="award"]:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px var(--glow-gold-a30, rgba(212, 168, 90, 0.3));
+    }
+
+    .achievement-item[data-track="eca"][data-eca-category="performance"]:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px rgba(79, 179, 196, 0.35);
+    }
+
+    .legend-swatch--volunteering {
+      --swatch-color: var(--eca-volunteering);
+    }
+
+    .legend-swatch--eca-leadership {
+      --swatch-color: var(--eca-leadership);
+    }
+
+    .legend-swatch--award {
+      --swatch-color: var(--eca-award);
+    }
+
+    .legend-swatch--performance {
+      --swatch-color: var(--eca-performance);
+    }
+
+    /* Track toggle */
+    .achv-track-toggle {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .achv-track-btn {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: transparent;
+      border: none;
+      padding: 0.5em 1em;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .achv-track-btn+.achv-track-btn {
+      border-left: 1px solid var(--line);
+    }
+
+    .achv-track-btn:hover {
+      color: var(--heading);
+    }
+
+    .achv-track-btn.is-active {
+      background: var(--accent-a12);
+      color: var(--accent);
+    }
+
+    .achv-legend[hidden] {
+      display: none;
     }
 
     .year-group {
@@ -567,13 +681,24 @@
 
     <section id="achievements" aria-label="Achievements timeline">
       <div class="achv-list-controls">
+        <div class="achv-track-toggle" role="group" aria-label="Filter by track">
+          <button type="button" class="achv-track-btn is-active" id="trackAcademicBtn"
+            aria-pressed="true">Academic</button>
+          <button type="button" class="achv-track-btn" id="trackEcaBtn" aria-pressed="false">Extracurricular</button>
+        </div>
         <div class="achv-legends">
-          <div class="achv-legend" aria-label="Achievement category legend">
+          <div class="achv-legend" id="legendAcademic" aria-label="Academic category legend">
             <span class="legend-item"><span class="legend-swatch legend-swatch--workshop"></span>Workshop</span>
             <span class="legend-item"><span
                 class="legend-swatch legend-swatch--certification"></span>Certification</span>
             <span class="legend-item"><span class="legend-swatch legend-swatch--competition"></span>Competition</span>
             <span class="legend-item"><span class="legend-swatch legend-swatch--leadership"></span>Leadership</span>
+          </div>
+          <div class="achv-legend" id="legendEca" aria-label="Extracurricular category legend" hidden>
+            <span class="legend-item"><span class="legend-swatch legend-swatch--volunteering"></span>Volunteering</span>
+            <span class="legend-item"><span class="legend-swatch legend-swatch--eca-leadership"></span>Leadership</span>
+            <span class="legend-item"><span class="legend-swatch legend-swatch--award"></span>Award / Title</span>
+            <span class="legend-item"><span class="legend-swatch legend-swatch--performance"></span>Performance</span>
           </div>
           <span class="achv-legend-sep" aria-hidden="true"></span>
           <div class="achv-legend" aria-label="Year recency legend">
@@ -592,7 +717,7 @@
       </div>
       <div class="achievements-list" id="achievementsList">
 
-        <div class="achievement-item reveal" data-category="workshop">
+        <div class="achievement-item reveal" id="achv-0" data-track="academic" data-category="workshop">
           <div class="achievement-org">KEC IT Club</div>
           <div>
             <h3 class="achievement-title">JavaScript Bootcamp</h3>
@@ -608,7 +733,7 @@
           <div class="achievement-date">2023</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="workshop">
+        <div class="achievement-item reveal" id="achv-1" data-track="academic" data-category="workshop">
           <div class="achievement-org">KEC IT Club</div>
           <div>
             <h3 class="achievement-title">Session on Git &amp; GitHub</h3>
@@ -623,7 +748,7 @@
           <div class="achievement-date">Nov 2024</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="workshop">
+        <div class="achievement-item reveal" id="achv-2" data-track="academic" data-category="workshop">
           <div class="achievement-org">GNOME Nepal &amp; KEC IT Club</div>
           <div>
             <h3 class="achievement-title">Workshop on Linux and Open Source Contribution</h3>
@@ -641,7 +766,7 @@
           <div class="achievement-date">Nov 2024</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="workshop">
+        <div class="achievement-item reveal" id="achv-3" data-track="academic" data-category="workshop">
           <div class="achievement-org">Microsoft Learn Student Ambassador</div>
           <div>
             <h3 class="achievement-title">HTML &amp; CSS Workshop — Design, Code &amp; Launch via GitHub Pages</h3>
@@ -657,7 +782,7 @@
           <div class="achievement-date">May 2022</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="workshop">
+        <div class="achievement-item reveal" id="achv-4" data-track="academic" data-category="workshop">
           <div class="achievement-org">IEEE</div>
           <div>
             <h3 class="achievement-title">PreXtreme Competitive Programming Workshop</h3>
@@ -672,7 +797,7 @@
           <div class="achievement-date">Jul 2025</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="workshop">
+        <div class="achievement-item reveal" id="achv-5" data-track="academic" data-category="workshop">
           <div class="achievement-org">KEC IT Club · AWS Cloud Club Nepal</div>
           <div>
             <h3 class="achievement-title">AWS Fundamentals Workshop</h3>
@@ -687,7 +812,7 @@
           <div class="achievement-date">Jul 2025</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="workshop">
+        <div class="achievement-item reveal" id="achv-6" data-track="academic" data-category="workshop">
           <div class="achievement-org">IEEE</div>
           <div>
             <h3 class="achievement-title">Agile Workshop</h3>
@@ -702,7 +827,7 @@
           <div class="achievement-date">Jul 2025</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="workshop">
+        <div class="achievement-item reveal" id="achv-7" data-track="academic" data-category="workshop">
           <div class="achievement-org">Nepal Students' Union KEC · KEC Robotics Club</div>
           <div>
             <h3 class="achievement-title">PCB Design &amp; Fabrication Workshop</h3>
@@ -718,7 +843,7 @@
           <div class="achievement-date">Jul 2025</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="leadership">
+        <div class="achievement-item reveal" id="achv-8" data-track="eca" data-eca-category="leadership">
           <div class="achievement-org">IEEE</div>
           <div>
             <h3 class="achievement-title">Mentor — Electronics For All Workshop</h3>
@@ -734,7 +859,7 @@
           <div class="achievement-date">Jul 2025</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="workshop">
+        <div class="achievement-item reveal" id="achv-9" data-track="academic" data-category="workshop">
           <div class="achievement-org">Offenso Hackers Academy</div>
           <div>
             <h3 class="achievement-title">How Hackers Bypass Security: A Beginner's Guide</h3>
@@ -750,7 +875,7 @@
           <div class="achievement-date">Jul 2025</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="leadership">
+        <div class="achievement-item reveal" id="achv-10" data-track="eca" data-eca-category="leadership">
           <div class="achievement-org">IEEE</div>
           <div>
             <h3 class="achievement-title">IEEE Day 2025 — Organizer</h3>
@@ -765,7 +890,7 @@
           <div class="achievement-date">Oct 2025</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="competition">
+        <div class="achievement-item reveal" id="achv-11" data-track="academic" data-category="competition">
           <div class="achievement-org">IEEE</div>
           <div>
             <h3 class="achievement-title">IEEEXtreme 19.0</h3>
@@ -779,7 +904,7 @@
           <div class="achievement-date">Oct 2025</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="workshop">
+        <div class="achievement-item reveal" id="achv-12" data-track="academic" data-category="workshop">
           <div class="achievement-org">IEEE</div>
           <div>
             <h3 class="achievement-title">IEEE WIE LaTeX Training Program</h3>
@@ -794,7 +919,8 @@
           <div class="achievement-date">May 2026</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="certification" data-date="Feb 2026">
+        <div class="achievement-item reveal" id="achv-13" data-track="academic" data-category="certification"
+          data-date="Feb 2026">
           <div class="achievement-org">TechAxis</div>
           <div>
             <h3 class="achievement-title">Prompt Engineering Fundamentals</h3>
@@ -809,7 +935,7 @@
           <div class="achievement-date">May 2026</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="workshop">
+        <div class="achievement-item reveal" id="achv-14" data-track="academic" data-category="workshop">
           <div class="achievement-org">IEEE</div>
           <div>
             <h3 class="achievement-title">IEEE SPAx — Engineer Your Profile</h3>
@@ -824,7 +950,7 @@
           <div class="achievement-date">May 2026</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="workshop">
+        <div class="achievement-item reveal" id="achv-15" data-track="academic" data-category="workshop">
           <div class="achievement-org">Drone Operator Training</div>
           <div>
             <h3 class="achievement-title">NepaTronix Drone Training Program</h3>
@@ -840,7 +966,7 @@
           <div class="achievement-date">May 2026</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="certification">
+        <div class="achievement-item reveal" id="achv-16" data-track="academic" data-category="certification">
           <div class="achievement-org">DataCamp</div>
           <div>
             <h3 class="achievement-title">DataCamp — CPE Credit Certificates</h3>
@@ -866,7 +992,7 @@
           <div class="achievement-date">May 2026 · Jul 2026</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="certification">
+        <div class="achievement-item reveal" id="achv-17" data-track="academic" data-category="certification">
           <div class="achievement-org">DataCamp</div>
           <div>
             <h3 class="achievement-title">DataCamp Statements of Accomplishment</h3>
@@ -911,7 +1037,7 @@
           <div class="achievement-date">May 2026 · Jul 2026</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="workshop">
+        <div class="achievement-item reveal" id="achv-18" data-track="academic" data-category="workshop">
           <div class="achievement-org">IEEE</div>
           <div>
             <h3 class="achievement-title">IEEE Conference Leadership Workshop 2026</h3>
@@ -927,7 +1053,7 @@
           <div class="achievement-date">2026</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="certification">
+        <div class="achievement-item reveal" id="achv-19" data-track="academic" data-category="certification">
           <div class="achievement-org">ANTHROPIC</div>
           <div>
             <h3 class="achievement-title">AI Fluency: Framework &amp; Foundations</h3>
@@ -943,7 +1069,7 @@
           <div class="achievement-date">Jul 2026</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="certification">
+        <div class="achievement-item reveal" id="achv-20" data-track="academic" data-category="certification">
           <div class="achievement-org">SimOps</div>
           <div>
             <h3 class="achievement-title">SimOps Certifications</h3>
@@ -983,6 +1109,97 @@
             </div>
           </div>
           <div class="achievement-date">Jul 2026</div>
+        </div>
+
+        <div class="achievement-item reveal" id="achv-21" data-track="eca" data-eca-category="volunteering">
+          <div class="achievement-org">Kathmandu Engineering College</div>
+          <div>
+            <h3 class="achievement-title">Sports Week — Volunteer Organizer</h3>
+            <button class="cert-btn photo-thumb" data-cert="assets/events/sports-week-2026.svg"
+              data-label="Sports Week — Volunteer Organizer" data-type="image"
+              aria-label="View photo: Sports Week — Volunteer Organizer">
+              <img src="assets/events/sports-week-2026.svg" alt="Sports Week 2026 event photo" loading="lazy" />
+            </button>
+          </div>
+          <div class="achievement-date">2026</div>
+        </div>
+
+        <div class="achievement-item reveal" id="achv-22" data-track="eca" data-eca-category="volunteering">
+          <div class="achievement-org">Kathmandu Engineering College</div>
+          <div>
+            <h3 class="achievement-title">Dristi 3.0 — Volunteer Organizer</h3>
+            <button class="cert-btn photo-thumb" data-cert="assets/events/dristi-3-0-2025.svg"
+              data-label="Dristi 3.0 — Volunteer Organizer" data-type="image"
+              aria-label="View photo: Dristi 3.0 — Volunteer Organizer">
+              <img src="assets/events/dristi-3-0-2025.svg" alt="Dristi 3.0 event photo" loading="lazy" />
+            </button>
+          </div>
+          <div class="achievement-date">2025</div>
+        </div>
+
+        <div class="achievement-item reveal" id="achv-23" data-track="eca" data-eca-category="award">
+          <div class="achievement-org">Kathmandu Engineering College</div>
+          <div>
+            <h3 class="achievement-title">Mr. KEC 2025</h3>
+            <button class="cert-btn photo-thumb" data-cert="assets/events/mr-kec-2025.svg" data-label="Mr. KEC 2025"
+              data-type="image" aria-label="View photo: Mr. KEC 2025">
+              <img src="assets/events/mr-kec-2025.svg" alt="Mr. KEC 2025 event photo" loading="lazy" />
+            </button>
+          </div>
+          <div class="achievement-date">2025</div>
+        </div>
+
+        <div class="achievement-item reveal" id="achv-24" data-track="academic" data-category="workshop">
+          <div class="achievement-org">KEC Electrical Club</div>
+          <div>
+            <h3 class="achievement-title">Proteus Workshop</h3>
+            <button class="cert-btn photo-thumb" data-cert="assets/events/proteus-workshop-2024.svg"
+              data-label="Proteus Workshop — KEC Electrical Club" data-type="image"
+              aria-label="View photo: Proteus Workshop — KEC Electrical Club">
+              <img src="assets/events/proteus-workshop-2024.svg" alt="Proteus Workshop event photo" loading="lazy" />
+            </button>
+          </div>
+          <div class="achievement-date">2024</div>
+        </div>
+
+        <div class="achievement-item reveal" id="achv-25" data-track="academic" data-category="workshop">
+          <div class="achievement-org">CESA (Civil Engineering Student's Association)</div>
+          <div>
+            <h3 class="achievement-title">AutoCAD Workshop</h3>
+            <button class="cert-btn photo-thumb" data-cert="assets/events/autocad-workshop-2025.svg"
+              data-label="AutoCAD Workshop — CESA" data-type="image" aria-label="View photo: AutoCAD Workshop — CESA">
+              <img src="assets/events/autocad-workshop-2025.svg" alt="AutoCAD Workshop event photo" loading="lazy" />
+            </button>
+          </div>
+          <div class="achievement-date">2025</div>
+        </div>
+
+        <div class="achievement-item reveal" id="achv-26" data-track="academic" data-category="competition">
+          <div class="achievement-org">KEC IT Club</div>
+          <div>
+            <h3 class="achievement-title">Data Cleaning Hackathon</h3>
+            <button class="cert-btn photo-thumb" data-cert="assets/events/data-cleaning-hackathon-2024.svg"
+              data-label="Data Cleaning Hackathon — KEC IT Club" data-type="image"
+              aria-label="View photo: Data Cleaning Hackathon — KEC IT Club">
+              <img src="assets/events/data-cleaning-hackathon-2024.svg" alt="Data Cleaning Hackathon event photo"
+                loading="lazy" />
+            </button>
+          </div>
+          <div class="achievement-date">2024</div>
+        </div>
+
+        <div class="achievement-item reveal" id="achv-27" data-track="eca" data-eca-category="performance">
+          <div class="achievement-org">KEC Music Club</div>
+          <div>
+            <h3 class="achievement-title">KEC Music Club — Performer</h3>
+            <p class="achievement-desc">Performed 4+ times per year for 3+ years at KEC music club events.</p>
+            <button class="cert-btn photo-thumb" data-cert="assets/events/kec-music-club.svg"
+              data-label="KEC Music Club — Performer" data-type="image"
+              aria-label="View photo: KEC Music Club — Performer">
+              <img src="assets/events/kec-music-club.svg" alt="KEC Music Club performance photo" loading="lazy" />
+            </button>
+          </div>
+          <div class="achievement-date">2023–2026</div>
         </div>
 
       </div>
@@ -1155,6 +1372,7 @@
         });
 
         initToggleAll(timeline);
+        initTrackToggle(timeline);
       }
 
       function initToggleAll(timeline) {
@@ -1163,23 +1381,84 @@
         const label = document.getElementById('toggleAllLabel');
         if (!groups.length || !btn || !label) return;
 
+        function visibleGroups() {
+          return groups.filter(group => group.style.display !== 'none');
+        }
+
         function syncLabel() {
-          const allOpen = groups.every(group => group.open);
+          const visible = visibleGroups();
+          const allOpen = visible.length > 0 && visible.every(group => group.open);
           btn.classList.toggle('is-all-open', allOpen);
           label.textContent = allOpen ? 'Collapse all' : 'Expand all';
           btn.setAttribute('aria-label', allOpen ? 'Collapse all years' : 'Expand all years');
         }
 
         btn.addEventListener('click', () => {
-          const allOpen = groups.every(group => group.open);
-          groups.forEach(group => { group.open = !allOpen; });
+          const visible = visibleGroups();
+          const allOpen = visible.length > 0 && visible.every(group => group.open);
+          visible.forEach(group => { group.open = !allOpen; });
           syncLabel();
         });
 
         // A manual click on any single year's <summary> should keep the
         // button's label honest too, not just clicks on the button itself.
         groups.forEach(group => group.addEventListener('toggle', syncLabel));
+
+        // Exposed so initTrackToggle can refresh the button label after
+        // filtering hides/shows year-groups (visible-group count changes).
+        timeline.__syncToggleAllLabel = syncLabel;
         syncLabel();
+      }
+
+      // Academic / Extracurricular track filter. Runs after year-groups are
+      // built, so it operates on .year-group / .year-items, not the flat list.
+      function initTrackToggle(timeline) {
+        const academicBtn = document.getElementById('trackAcademicBtn');
+        const ecaBtn = document.getElementById('trackEcaBtn');
+        const legendAcademic = document.getElementById('legendAcademic');
+        const legendEca = document.getElementById('legendEca');
+        if (!academicBtn || !ecaBtn) return;
+
+        function applyTrack(track) {
+          const groups = Array.from(timeline.querySelectorAll('.year-group'));
+
+          groups.forEach(group => {
+            const items = Array.from(group.querySelectorAll('.achievement-item'));
+            let visibleCount = 0;
+            let visibleCertCount = 0;
+
+            items.forEach(item => {
+              const match = item.dataset.track === track;
+              item.style.display = match ? '' : 'none';
+              if (match) {
+                visibleCount += 1;
+                visibleCertCount += item.querySelectorAll('.cert-btn').length;
+              }
+            });
+
+            group.style.display = visibleCount > 0 ? '' : 'none';
+
+            const countEl = group.querySelector('.year-count');
+            if (countEl) countEl.textContent = String(visibleCertCount);
+          });
+
+          academicBtn.classList.toggle('is-active', track === 'academic');
+          academicBtn.setAttribute('aria-pressed', String(track === 'academic'));
+          ecaBtn.classList.toggle('is-active', track === 'eca');
+          ecaBtn.setAttribute('aria-pressed', String(track === 'eca'));
+
+          if (legendAcademic) legendAcademic.hidden = track !== 'academic';
+          if (legendEca) legendEca.hidden = track !== 'eca';
+
+          if (typeof timeline.__syncToggleAllLabel === 'function') {
+            timeline.__syncToggleAllLabel();
+          }
+        }
+
+        academicBtn.addEventListener('click', () => applyTrack('academic'));
+        ecaBtn.addEventListener('click', () => applyTrack('eca'));
+
+        applyTrack('academic'); // default view on page load
       }
 
     })();
