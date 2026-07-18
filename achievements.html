@@ -461,17 +461,34 @@
         <div class="achievement-item reveal">
           <div class="achievement-org">KEC IT Club</div>
           <div>
-            <h3 class="achievement-title">Introduction to Git</h3>
+            <h3 class="achievement-title">Session on Git &amp; GitHub</h3>
+            <button class="cert-btn cert-thumb" data-cert="assets/certificates/KECIT_Git_GitHub_Session_2024.webp"
+              data-download="assets/certificates/KECIT_Git_GitHub_Session_2024.webp"
+              data-verify="https://www.instagram.com/p/DDd6hWvIKmL/" data-label="Session on Git & GitHub — KEC IT Club"
+              data-type="image" aria-label="View poster: Session on Git & GitHub — KEC IT Club">
+              <img src="assets/certificates/KECIT_Git_GitHub_Session_2024.webp"
+                alt="Session on Git & GitHub — KEC IT Club poster" loading="lazy" />
+            </button>
           </div>
-          <div class="achievement-date">2024</div>
+          <div class="achievement-date">Nov 2024</div>
         </div>
 
         <div class="achievement-item reveal">
-          <div class="achievement-org">KEC IT Club</div>
+          <div class="achievement-org">GNOME Nepal &amp; KEC IT Club</div>
           <div>
-            <h3 class="achievement-title">Git &amp; GitHub Workshop</h3>
+            <h3 class="achievement-title">Workshop on Linux and Open Source Contribution</h3>
+            <button class="cert-btn cert-thumb"
+              data-cert="assets/certificates/GNOME_Nepal_Linux_OpenSource_Workshop_2024.webp"
+              data-download="assets/certificates/GNOME_Nepal_Linux_OpenSource_Workshop_2024.webp"
+              data-verify="https://www.instagram.com/p/DCW2xVMTQ-B/"
+              data-label="Workshop on Linux and Open Source Contribution — GNOME Nepal & KEC IT Club" data-type="image"
+              aria-label="View poster: Workshop on Linux and Open Source Contribution — GNOME Nepal & KEC IT Club">
+              <img src="assets/certificates/GNOME_Nepal_Linux_OpenSource_Workshop_2024.webp"
+                alt="Workshop on Linux and Open Source Contribution — GNOME Nepal & KEC IT Club poster"
+                loading="lazy" />
+            </button>
           </div>
-          <div class="achievement-date">2024</div>
+          <div class="achievement-date">Nov 2024</div>
         </div>
 
         <div class="achievement-item reveal">
@@ -487,7 +504,7 @@
                 alt="Microsoft Learn HTML & CSS via GitHub Pages certificate" loading="lazy" />
             </button>
           </div>
-          <div class="achievement-date">2024</div>
+          <div class="achievement-date">May 2022</div>
         </div>
 
         <div class="achievement-item reveal">
@@ -930,9 +947,12 @@
           group.className = 'year-group';
           if (index === 0) group.open = true;
 
+          const certCount = yearBuckets.get(year).reduce(
+            (sum, item) => sum + item.querySelectorAll('.cert-btn').length, 0
+          );
           const summary = document.createElement('summary');
           summary.className = 'year-toggle';
-          summary.innerHTML = `<span>${year}</span><span class="year-count">${yearBuckets.get(year).length}</span>`;
+          summary.innerHTML = `<span>${year}</span><span class="year-count">${certCount}</span>`;
           group.appendChild(summary);
 
           const yearItems = document.createElement('div');
