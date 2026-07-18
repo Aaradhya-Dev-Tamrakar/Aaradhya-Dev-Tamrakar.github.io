@@ -361,7 +361,8 @@ nav.scrolled {
 }
 
 .nav-cta.active {
-  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--bg);
   animation: none;
   box-shadow: none;
 }
