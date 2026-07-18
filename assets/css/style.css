@@ -334,6 +334,7 @@ nav.scrolled {
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 10px var(--accent-a35);
+  animation: nav-cta-flicker 3.2s ease-in-out infinite;
   transition:
     background 0.25s,
     color 0.25s,
@@ -383,10 +384,6 @@ nav.scrolled {
     border-color: var(--glow-green);
     box-shadow: 0 0 10px 1px var(--glow-green-a35);
   }
-}
-
-.nav-cta {
-  animation: nav-cta-flicker 3.2s ease-in-out infinite;
 }
 
 .nav-cta.active::before {
@@ -1613,27 +1610,6 @@ footer {
   border-color: var(--accent) !important;
 }
 
-/* ── Current-page quick-nav card: periodic green/white flicker ── */
-@keyframes current-card-flicker {
-
-  0%,
-  76%,
-  100% {
-    border-color: var(--glow-green-a50);
-    box-shadow: none;
-  }
-
-  84% {
-    border-color: #f0fff4;
-    box-shadow: 0 0 18px 2px var(--glow-green-a50), 0 0 4px 1px rgba(255, 255, 255, .7);
-  }
-
-  92% {
-    border-color: var(--glow-green);
-    box-shadow: 0 0 10px 1px var(--glow-green-a35);
-  }
-}
-
 /* ── Quick-nav cards (Explore section — index, about, projects, contact, achievements, experience) ── */
 #quick-nav {
   background: transparent;
@@ -1687,7 +1663,6 @@ html[data-theme="light"] #quick-nav::before {
 .quick-nav-card--current {
   border-color: var(--glow-green-a50);
   cursor: default;
-  animation: current-card-flicker 3.2s ease-in-out infinite;
 }
 
 .quick-nav-card--current:hover {
