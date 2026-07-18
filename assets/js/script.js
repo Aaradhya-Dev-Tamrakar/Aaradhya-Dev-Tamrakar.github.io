@@ -1165,6 +1165,7 @@ function initGlobalSearch() {
 // 0 → toggle theme
 // ` → toggle hero date B.S. / A.D. (index.html only; no-op elsewhere)
 // Shift+4 → toggle Academic / Extracurricular track (achievements.html only; no-op elsewhere)
+// Alt+4 → expand/collapse all years (achievements.html only; no-op elsewhere)
 // Skipped when focus is inside an input, textarea, or select.
 function initKeyNav() {
   const PAGE_MAP = {
@@ -1178,7 +1179,15 @@ function initKeyNav() {
   document.addEventListener('keydown', e => {
     const tag = (document.activeElement || {}).tagName || '';
     if (/^(INPUT|TEXTAREA|SELECT)$/i.test(tag)) return;
-    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.metaKey || e.ctrlKey) return;
+
+    if (e.altKey && (e.key === '4' || e.key === '$')) {
+      const toggleAllBtn = document.getElementById('toggleAllBtn');
+      if (toggleAllBtn) {
+        toggleAllBtn.click();
+      }
+      return;
+    }
 
     if (e.key === '0') {
       toggleTheme();
