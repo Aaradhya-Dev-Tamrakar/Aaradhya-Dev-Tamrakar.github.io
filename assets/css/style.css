@@ -1559,43 +1559,26 @@ html[data-theme="light"] #quick-nav::before {
 .quick-nav-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1px;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  overflow: hidden;
+  gap: 1.1rem;
 }
 
 .quick-nav-card {
   background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
   padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   text-decoration: none;
   position: relative;
-  overflow: hidden;
-  transition: background .3s;
-}
-
-.quick-nav-card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .4s ease;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
 }
 
 .quick-nav-card:hover {
-  background: var(--bg3);
-}
-
-.quick-nav-card:hover::after {
-  transform: scaleX(1);
+  border-color: var(--accent-a35);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .3);
 }
 
 .quick-nav-index {

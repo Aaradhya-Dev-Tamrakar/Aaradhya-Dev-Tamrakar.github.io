@@ -172,6 +172,32 @@
       flex-shrink: 0;
     }
 
+    /* Certificate thumbnail badge (image instead of text label) */
+    .cert-thumb {
+      display: block;
+      width: 100%;
+      max-width: none;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg3);
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+
+    .cert-thumb:hover,
+    .cert-thumb:focus-visible {
+      border-color: var(--accent-a35);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+    }
+
+    .cert-thumb img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
     .achv-list-controls {
       display: flex;
       justify-content: flex-end;
@@ -891,32 +917,6 @@
         </div>
 
         <div class="achievement-item reveal">
-          <div class="achievement-org">SimOps AI</div>
-          <div>
-            <h3 class="achievement-title">AI for Graduates Training &amp; Certification</h3>
-            <p class="achievement-desc">
-              Completed the SimOps AI for Graduates training and certification program,
-              issued on July 14, 2026. The credential recognizes hands-on exposure to
-              applied AI concepts and graduate-level training content.
-            </p>
-            <button class="cert-btn"
-              data-cert="assets/certificates/SimOps AI for Graduates Training & Certification_98452248595354.webp"
-              data-download="assets/certificates/SimOps AI for Graduates Training & Certification_98452248595354.pdf"
-              data-verify="https://certification.simops.com/en/verify/98452248595354"
-              data-label="SimOps AI for Graduates Training & Certification" data-type="image"
-              aria-label="View certificate: SimOps AI for Graduates Training & Certification">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
-            </button>
-          </div>
-          <div class="achievement-date">Jul 14, 2026</div>
-        </div>
-
-        <div class="achievement-item reveal">
           <div class="achievement-org">ANTHROPIC</div>
           <div>
             <h3 class="achievement-title">AI Fluency: Framework &amp; Foundations</h3>
@@ -940,6 +940,67 @@
           <div class="achievement-date">Jul 2026</div>
         </div>
 
+        <div class="achievement-item reveal">
+          <div class="achievement-org">SimOps</div>
+          <div>
+            <h3 class="achievement-title">SimOps AI for Graduates</h3>
+            <button class="cert-btn cert-thumb"
+              data-cert="assets/certificates/SimOps_AI_for_Graduates_98452248595354.pdf"
+              data-download="assets/certificates/SimOps_AI_for_Graduates_98452248595354.pdf"
+              data-verify="https://certification.simops.com/en/verify/98452248595354"
+              data-label="SimOps AI for Graduates" data-type="pdf"
+              aria-label="View certificate: SimOps AI for Graduates">
+              <img src="assets/certificates/SimOps_AI_for_Graduates_98452248595354.webp"
+                alt="SimOps AI for Graduates certificate" loading="lazy" />
+            </button>
+          </div>
+          <div class="achievement-date">Jul 14, 2026</div>
+        </div>
+
+        <div class="achievement-item reveal">
+          <div class="achievement-org">SimOps</div>
+          <div>
+            <h3 class="achievement-title">SimOps Fundamentals</h3>
+            <button class="cert-btn cert-thumb" data-cert="assets/certificates/SimOps_Fundamentals_25303246876434.pdf"
+              data-download="assets/certificates/SimOps_Fundamentals_25303246876434.pdf"
+              data-verify="https://certification.simops.com/en/verify/25303246876434" data-label="SimOps Fundamentals"
+              data-type="pdf" aria-label="View certificate: SimOps Fundamentals">
+              <img src="assets/certificates/SimOps_Fundamentals_25303246876434.webp"
+                alt="SimOps Fundamentals certificate" loading="lazy" />
+            </button>
+          </div>
+          <div class="achievement-date">Jul 17, 2026</div>
+        </div>
+
+        <div class="achievement-item reveal">
+          <div class="achievement-org">SimOps</div>
+          <div>
+            <h3 class="achievement-title">SimOps Practitioner</h3>
+            <button class="cert-btn cert-thumb" data-cert="assets/certificates/SimOps_Practitioner_52653675650240.pdf"
+              data-download="assets/certificates/SimOps_Practitioner_52653675650240.pdf"
+              data-verify="https://certification.simops.com/en/verify/52653675650240" data-label="SimOps Practitioner"
+              data-type="pdf" aria-label="View certificate: SimOps Practitioner">
+              <img src="assets/certificates/SimOps_Practitioner_52653675650240.webp"
+                alt="SimOps Practitioner certificate" loading="lazy" />
+            </button>
+          </div>
+          <div class="achievement-date">Jul 17, 2026</div>
+        </div>
+
+        <div class="achievement-item reveal">
+          <div class="achievement-org">SimOps</div>
+          <div>
+            <h3 class="achievement-title">SimOps Expert</h3>
+            <button class="cert-btn cert-thumb" data-cert="assets/certificates/SimOps_Expert_12836702612982.pdf"
+              data-download="assets/certificates/SimOps_Expert_12836702612982.pdf"
+              data-verify="https://certification.simops.com/en/verify/12836702612982" data-label="SimOps Expert"
+              data-type="pdf" aria-label="View certificate: SimOps Expert">
+              <img src="assets/certificates/SimOps_Expert_12836702612982.webp" alt="SimOps Expert certificate"
+                loading="lazy" />
+            </button>
+          </div>
+          <div class="achievement-date">Jul 17, 2026</div>
+        </div>
 
       </div>
     </section>
