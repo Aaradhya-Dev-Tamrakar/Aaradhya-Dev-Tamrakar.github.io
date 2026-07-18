@@ -100,6 +100,16 @@
       box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--glow-green-a35);
     }
 
+    .project-card--gold {
+      border: 3px solid var(--glow-gold);
+      box-shadow: 0 0 0 1px var(--glow-gold-a35), 0 0 18px var(--glow-gold-a35);
+    }
+
+    .project-card--gold:hover {
+      border-color: var(--glow-gold);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 0 1px var(--glow-gold-a35), 0 0 24px var(--glow-gold-a90);
+    }
+
     .project-index {
       font-family: var(--mono);
       font-size: 0.6rem;
@@ -313,7 +323,38 @@
 
     <section id="projects" aria-label="Projects grid">
       <div class="projects-grid" id="projectsGrid">
-        <div class="project-card reveal" id="p-001">
+        <div class="project-card reveal project-card--gold">
+          <div class="project-index">P — 015 <span class="project-status">In Progress</span></div>
+          <h3 class="project-title">SPARK — Two-Layer Fall Detection Wearable</h3>
+          <ul class="project-desc-list">
+            <li>On-device, two-layer fall-detection wearable for eldercare — built entirely from locally-sourced
+              components, zero imports, zero custom PCB</li>
+            <li>Sub-5ms threshold gate (Layer 1) hands off to a TFLite Micro CNN on a Raspberry Pi 4B gateway (Layer 2)
+              for SHAP-explained confirmation</li>
+            <li>Streamlit dashboard, Telegram alerts, fall-to-alert under 2 seconds</li>
+            <li>BEI major project, four-person team — proposal defended Jul&nbsp;10, 2026</li>
+          </ul>
+          <div class="project-progress">
+            <div class="project-progress-track">
+              <div class="project-progress-step done"></div>
+              <div class="project-progress-step"></div>
+              <div class="project-progress-step"></div>
+            </div>
+            <div class="project-progress-labels">
+              <span class="project-progress-label done">Proposal</span>
+              <span class="project-progress-label">Hardware Bring-up</span>
+              <span class="project-progress-label">Demo</span>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">MPU6050</span><span class="tag">TFLite Micro</span>
+            <span class="tag">1D CNN</span><span class="tag">Raspberry Pi 4B</span>
+            <span class="tag">SHAP</span><span class="tag">FastAPI</span>
+            <span class="tag">Streamlit</span><span class="tag">Telegram</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal project-card--gold" id="p-001">
           <div class="project-index">P — 001</div>
           <h3 class="project-title">Gesture-Controlled Self-Balancing Robot</h3>
           <ul class="project-desc-list">
@@ -333,25 +374,108 @@
             target="_blank" rel="noopener">View on GitHub ↗</a>
         </div>
 
-        <div class="project-card reveal">
-          <div class="project-index">P — 002</div>
-          <h3 class="project-title">Text-to-SQL Agentic Pipeline</h3>
+        <div class="project-card reveal project-card--gold">
+          <div class="project-index">P — 017</div>
+          <h3 class="project-title">Fusemachines Wk 10 — Image Processing</h3>
           <ul class="project-desc-list">
-            <li>Five-stage agentic Text-to-SQL system over a classicmodels PostgreSQL database</li>
-            <li>Modular FastAPI state machine: Planner → Generator → Validator → Executor → Summarizer, up to 3
-              self-correction retries</li>
-            <li>100% execution success and 100% result accuracy across a 50-question benchmark — zero retries required
-            </li>
-            <li>Streamlit chat UI, Docker/Compose containerisation, rule-based SQL safety validation, structured JSON
-              audit logging</li>
+            <li>HSV-based multi-class fruit segmentation (red apple, green apple, banana, strawberry, orange, lime) via
+              the Fruits-360 dataset</li>
+            <li>Morphological operations with Gaussian, median, bilateral denoising</li>
+            <li>From-scratch Canny edge detector (Sobel gradients, non-max suppression, double thresholding, hysteresis)
+              benchmarked against cv2.Canny()</li>
+            <li>Full fruit-detection pipeline — Harris corner response, Hough circle detection, masking, morphology,
+              contour-based bounding boxes, extended with connected-component analysis for touching apples</li>
           </ul>
           <div class="project-tags">
-            <span class="tag">Python</span><span class="tag">FastAPI</span>
-            <span class="tag">Streamlit</span><span class="tag">GPT-4o-mini</span>
-            <span class="tag">PostgreSQL</span><span class="tag">Docker</span>
-            <span class="tag">Prompt Chaining</span>
+            <span class="tag">Python</span><span class="tag">OpenCV</span>
+            <span class="tag">NumPy</span><span class="tag">Matplotlib</span>
+            <span class="tag">HSV Segmentation</span><span class="tag">Canny Edge Detection</span>
+            <span class="tag">Hough Transform</span>
           </div>
-          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk3_text2sql" target="_blank"
+          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk10_image_processing" target="_blank"
+            rel="noopener">View on GitHub ↗</a>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-index">P — 016</div>
+          <h3 class="project-title">Fusemachines Wk 9 — NEU Steel Defect CNN</h3>
+          <ul class="project-desc-list">
+            <li>PyTorch CNN classifier for NEU-DET steel surface-defect detection — six classes across 1,800 grayscale
+              200&times;200 images</li>
+            <li>Four-part build: from-scratch 2-layer NN foundation (30.7M params) &rarr; Conv&rarr;ReLU&rarr;MaxPool
+              CNN (15 epochs, 98.6%/84.7% train/val accuracy)</li>
+            <li>Hardened via train-only augmentation, BatchNorm2d, Dropout(0.4)</li>
+            <li>Tuned via 2&times;2 grid search and a 4-trial Optuna Bayesian search — trained on Colab T4 GPU</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">PyTorch</span>
+            <span class="tag">torchvision</span><span class="tag">CNN</span>
+            <span class="tag">Optuna</span><span class="tag">scikit-learn</span>
+          </div>
+          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk9_neu_defect_cnn" target="_blank"
+            rel="noopener">View on GitHub ↗</a>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-index">P — 014</div>
+          <h3 class="project-title">Fusemachines Wk 8 — Forecasting</h3>
+          <ul class="project-desc-list">
+            <li>Time-series forecasting pipeline benchmarking nine classical-to-modern forecasters on monthly S&amp;P
+              500 data (1990–2024)</li>
+            <li>SARIMA, Holt-Winters, Prophet, LightGBM, LSTM, XGBoost compared against naive/seasonal-naive baselines
+              via MASE/RMSE</li>
+            <li>Error breakdowns by calendar month and horizon</li>
+            <li>4-model ensemble (Holt-Winters + SARIMA + LSTM + XGBoost) outperformed every single model — MASE 2.44,
+              RMSE 96.7, confirmed via Diebold-Mariano test (p = 0.0092)</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">statsmodels</span>
+            <span class="tag">SARIMA</span><span class="tag">Holt-Winters</span>
+            <span class="tag">Prophet</span><span class="tag">LightGBM</span>
+            <span class="tag">LSTM</span><span class="tag">XGBoost</span>
+          </div>
+          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk8_sp500_forecasting" target="_blank"
+            rel="noopener">View on GitHub ↗</a>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-index">P — 009</div>
+          <h3 class="project-title">Fusemachines Wk 7 — Customer Segmentation</h3>
+          <ul class="project-desc-list">
+            <li>Market segmentation pipeline on UCI Online Retail II (~500,000 transactions)</li>
+            <li>RFM feature engineering extended with basket size, purchase cadence, unique products, return rate,
+              category spend ratios</li>
+            <li>Full clustering comparison: K-Means (elbow + silhouette), Hierarchical (dendrograms), DBSCAN (k-distance
+              ε estimation)</li>
+            <li>Validated via Silhouette, Davies-Bouldin, Calinski-Harabasz indices — cluster business narratives +
+              executive summary</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">scikit-learn</span>
+            <span class="tag">K-Means</span><span class="tag">Hierarchical Clustering</span>
+            <span class="tag">DBSCAN</span><span class="tag">RFM</span>
+            <span class="tag">Pandas</span><span class="tag">scipy</span>
+          </div>
+          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk7_customer_segmentation" target="_blank"
+            rel="noopener">View on GitHub ↗</a>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-index">P — 008</div>
+          <h3 class="project-title">Fusemachines Wk 6 — Probabilistic Models</h3>
+          <ul class="project-desc-list">
+            <li>Bayesian inference pipeline for Telco Churn using PyMC, ArviZ, and pgmpy</li>
+            <li>MLE/MAP estimation, Dirichlet-multinomial sequential updating, multivariate Gaussian conditioning</li>
+            <li>Probabilistic graphical models and Gaussian process regression</li>
+            <li>PyMC Bayesian logistic regression — fitted artifact telco_bayes_lr_v1.pkl</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">PyMC</span>
+            <span class="tag">ArviZ</span><span class="tag">pgmpy</span>
+            <span class="tag">Bayesian Inference</span><span class="tag">scikit-learn</span>
+            <span class="tag">Pandas</span>
+          </div>
+          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk6_probabilistic_models" target="_blank"
             rel="noopener">View on GitHub ↗</a>
         </div>
 
@@ -393,6 +517,59 @@
           </div>
           <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk4_linear_models" target="_blank"
             rel="noopener">View on GitHub ↗</a>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-index">P — 002</div>
+          <h3 class="project-title">Text-to-SQL Agentic Pipeline</h3>
+          <ul class="project-desc-list">
+            <li>Five-stage agentic Text-to-SQL system over a classicmodels PostgreSQL database</li>
+            <li>Modular FastAPI state machine: Planner → Generator → Validator → Executor → Summarizer, up to 3
+              self-correction retries</li>
+            <li>100% execution success and 100% result accuracy across a 50-question benchmark — zero retries required
+            </li>
+            <li>Streamlit chat UI, Docker/Compose containerisation, rule-based SQL safety validation, structured JSON
+              audit logging</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">FastAPI</span>
+            <span class="tag">Streamlit</span><span class="tag">GPT-4o-mini</span>
+            <span class="tag">PostgreSQL</span><span class="tag">Docker</span>
+            <span class="tag">Prompt Chaining</span>
+          </div>
+          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk3_text2sql" target="_blank"
+            rel="noopener">View on GitHub ↗</a>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-index">P — 011 <span class="project-status">In Progress</span></div>
+          <h3 class="project-title">Nexus — Personal AI Operating System</h3>
+          <ul class="project-desc-list">
+            <li>Project-centric AI operating system replacing the multi-browser/multi-account/multi-tool workflow</li>
+            <li>Single prompt → project context → parallel Groq (Llama 3.3 70B) + Gemini 1.5 Flash fan-out → centralized
+              persistent memory</li>
+            <li>Architecture: React (Vite) frontend · FastAPI backend · SQLite + FTS5 (context injection, zero embedding
+              latency) · multi-key rotation pool</li>
+            <li>v2 redesign complete June 12, 2026</li>
+          </ul>
+          <div class="project-progress">
+            <div class="project-progress-track">
+              <div class="project-progress-step done"></div>
+              <div class="project-progress-step"></div>
+            </div>
+            <div class="project-progress-labels">
+              <span class="project-progress-label done">v2 Core</span>
+              <span class="project-progress-label">MVP</span>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">React</span><span class="tag">Vite</span>
+            <span class="tag">FastAPI</span><span class="tag">SQLite</span>
+            <span class="tag">FTS5</span><span class="tag">Groq</span>
+            <span class="tag">Gemini</span><span class="tag">Python</span>
+          </div>
+          <a class="project-link" href="https://github.com/AaradhyaDT/nexus" target="_blank" rel="noopener">View on
+            GitHub ↗</a>
         </div>
 
         <div class="project-card reveal">
@@ -448,116 +625,6 @@
         </div>
 
         <div class="project-card reveal">
-          <div class="project-index">P — 007</div>
-          <h3 class="project-title">SysOptimizer — Windows Optimization Tool</h3>
-          <ul class="project-desc-list">
-            <li>Standalone Windows optimization tool packaged as a .exe via PyInstaller</li>
-            <li>Animated ring gauges, sparklines, per-core CPU reporting</li>
-            <li>Power Plan switcher, RAM flush, Background Bloat panel (14 services/tasks), Startup Scanner</li>
-            <li>Runs silently via CREATE_NO_WINDOW</li>
-          </ul>
-          <div class="project-tags">
-            <span class="tag">Python</span><span class="tag">CustomTkinter</span>
-            <span class="tag">PyInstaller</span><span class="tag">WMI</span>
-            <span class="tag">PowerShell</span>
-          </div>
-        </div>
-
-        <div class="project-card reveal">
-          <div class="project-index">P — 008</div>
-          <h3 class="project-title">Fusemachines Wk 6 — Probabilistic Models</h3>
-          <ul class="project-desc-list">
-            <li>Bayesian inference pipeline for Telco Churn using PyMC, ArviZ, and pgmpy</li>
-            <li>MLE/MAP estimation, Dirichlet-multinomial sequential updating, multivariate Gaussian conditioning</li>
-            <li>Probabilistic graphical models and Gaussian process regression</li>
-            <li>PyMC Bayesian logistic regression — fitted artifact telco_bayes_lr_v1.pkl</li>
-          </ul>
-          <div class="project-tags">
-            <span class="tag">Python</span><span class="tag">PyMC</span>
-            <span class="tag">ArviZ</span><span class="tag">pgmpy</span>
-            <span class="tag">Bayesian Inference</span><span class="tag">scikit-learn</span>
-            <span class="tag">Pandas</span>
-          </div>
-          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk6_probabilistic_models" target="_blank"
-            rel="noopener">View on GitHub ↗</a>
-        </div>
-
-        <div class="project-card reveal">
-          <div class="project-index">P — 009</div>
-          <h3 class="project-title">Fusemachines Wk 7 — Customer Segmentation</h3>
-          <ul class="project-desc-list">
-            <li>Market segmentation pipeline on UCI Online Retail II (~500,000 transactions)</li>
-            <li>RFM feature engineering extended with basket size, purchase cadence, unique products, return rate,
-              category spend ratios</li>
-            <li>Full clustering comparison: K-Means (elbow + silhouette), Hierarchical (dendrograms), DBSCAN (k-distance
-              ε estimation)</li>
-            <li>Validated via Silhouette, Davies-Bouldin, Calinski-Harabasz indices — cluster business narratives +
-              executive summary</li>
-          </ul>
-          <div class="project-tags">
-            <span class="tag">Python</span><span class="tag">scikit-learn</span>
-            <span class="tag">K-Means</span><span class="tag">Hierarchical Clustering</span>
-            <span class="tag">DBSCAN</span><span class="tag">RFM</span>
-            <span class="tag">Pandas</span><span class="tag">scipy</span>
-          </div>
-          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk7_customer_segmentation" target="_blank"
-            rel="noopener">View on GitHub ↗</a>
-        </div>
-
-        <div class="project-card reveal">
-          <div class="project-index">P — 010 <span class="project-status">Archived</span></div>
-          <h3 class="project-title">PrakopNet — Multi-Hazard Early Warning System</h3>
-          <ul class="project-desc-list">
-            <li>Solar-powered LoRa mesh multi-hazard monitoring and early-warning platform for remote regions of Nepal
-            </li>
-            <li>ESP32 sensor nodes (flood, landslide, air quality, weather) over RYLR890 (868 MHz, Nepal-legal) to a
-              Raspberry Pi 4B gateway</li>
-            <li>Federated TFLite edge inference + LSTM HazardScore fusion; GPS localization, CN3791 solar charge
-              controller, 18650 battery backup, INA219 power telemetry</li>
-            <li>FastAPI + Streamlit dashboard — explored as early BEI major-project direction, archived June 29, 2026
-              after RYLR890's import-only sourcing conflicted with the department's no-import policy; superseded by
-              SPARK</li>
-          </ul>
-          <div class="project-tags">
-            <span class="tag">ESP32</span><span class="tag">RYLR890 LoRa 868 MHz</span>
-            <span class="tag">Raspberry Pi 4B</span><span class="tag">TFLite Micro</span>
-            <span class="tag">LSTM</span><span class="tag">GPS</span>
-            <span class="tag">FastAPI</span><span class="tag">Edge AI</span>
-          </div>
-        </div>
-
-        <div class="project-card reveal">
-          <div class="project-index">P — 011 <span class="project-status">In Progress</span></div>
-          <h3 class="project-title">Nexus — Personal AI Operating System</h3>
-          <ul class="project-desc-list">
-            <li>Project-centric AI operating system replacing the multi-browser/multi-account/multi-tool workflow</li>
-            <li>Single prompt → project context → parallel Groq (Llama 3.3 70B) + Gemini 1.5 Flash fan-out → centralized
-              persistent memory</li>
-            <li>Architecture: React (Vite) frontend · FastAPI backend · SQLite + FTS5 (context injection, zero embedding
-              latency) · multi-key rotation pool</li>
-            <li>v2 redesign complete June 12, 2026</li>
-          </ul>
-          <div class="project-progress">
-            <div class="project-progress-track">
-              <div class="project-progress-step done"></div>
-              <div class="project-progress-step"></div>
-            </div>
-            <div class="project-progress-labels">
-              <span class="project-progress-label done">v2 Core</span>
-              <span class="project-progress-label">MVP</span>
-            </div>
-          </div>
-          <div class="project-tags">
-            <span class="tag">React</span><span class="tag">Vite</span>
-            <span class="tag">FastAPI</span><span class="tag">SQLite</span>
-            <span class="tag">FTS5</span><span class="tag">Groq</span>
-            <span class="tag">Gemini</span><span class="tag">Python</span>
-          </div>
-          <a class="project-link" href="https://github.com/AaradhyaDT/nexus" target="_blank" rel="noopener">View on
-            GitHub ↗</a>
-        </div>
-
-        <div class="project-card reveal">
           <div class="project-index">P — 012</div>
           <h3 class="project-title">Custom Processor FSM Design</h3>
           <ul class="project-desc-list">
@@ -589,100 +656,43 @@
         </div>
 
         <div class="project-card reveal">
-          <div class="project-index">P — 014</div>
-          <h3 class="project-title">Fusemachines Wk 8 — Forecasting</h3>
+          <div class="project-index">P — 007</div>
+          <h3 class="project-title">SysOptimizer — Windows Optimization Tool</h3>
           <ul class="project-desc-list">
-            <li>Time-series forecasting pipeline benchmarking nine classical-to-modern forecasters on monthly S&amp;P
-              500 data (1990–2024)</li>
-            <li>SARIMA, Holt-Winters, Prophet, LightGBM, LSTM, XGBoost compared against naive/seasonal-naive baselines
-              via MASE/RMSE</li>
-            <li>Error breakdowns by calendar month and horizon</li>
-            <li>4-model ensemble (Holt-Winters + SARIMA + LSTM + XGBoost) outperformed every single model — MASE 2.44,
-              RMSE 96.7, confirmed via Diebold-Mariano test (p = 0.0092)</li>
+            <li>Standalone Windows optimization tool packaged as a .exe via PyInstaller</li>
+            <li>Animated ring gauges, sparklines, per-core CPU reporting</li>
+            <li>Power Plan switcher, RAM flush, Background Bloat panel (14 services/tasks), Startup Scanner</li>
+            <li>Runs silently via CREATE_NO_WINDOW</li>
           </ul>
           <div class="project-tags">
-            <span class="tag">Python</span><span class="tag">statsmodels</span>
-            <span class="tag">SARIMA</span><span class="tag">Holt-Winters</span>
-            <span class="tag">Prophet</span><span class="tag">LightGBM</span>
-            <span class="tag">LSTM</span><span class="tag">XGBoost</span>
-          </div>
-          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk8_sp500_forecasting" target="_blank"
-            rel="noopener">View on GitHub ↗</a>
-        </div>
-
-        <div class="project-card reveal">
-          <div class="project-index">P — 015 <span class="project-status">In Progress</span></div>
-          <h3 class="project-title">SPARK — Two-Layer Fall Detection Wearable</h3>
-          <ul class="project-desc-list">
-            <li>On-device, two-layer fall-detection wearable for eldercare — built entirely from locally-sourced
-              components, zero imports, zero custom PCB</li>
-            <li>Sub-5ms threshold gate (Layer 1) hands off to a TFLite Micro CNN on a Raspberry Pi 4B gateway (Layer 2)
-              for SHAP-explained confirmation</li>
-            <li>Streamlit dashboard, Telegram alerts, fall-to-alert under 2 seconds</li>
-            <li>BEI major project, four-person team — proposal defended Jul&nbsp;10, 2026</li>
-          </ul>
-          <div class="project-progress">
-            <div class="project-progress-track">
-              <div class="project-progress-step done"></div>
-              <div class="project-progress-step"></div>
-              <div class="project-progress-step"></div>
-            </div>
-            <div class="project-progress-labels">
-              <span class="project-progress-label done">Proposal</span>
-              <span class="project-progress-label">Hardware Bring-up</span>
-              <span class="project-progress-label">Demo</span>
-            </div>
-          </div>
-          <div class="project-tags">
-            <span class="tag">MPU6050</span><span class="tag">TFLite Micro</span>
-            <span class="tag">1D CNN</span><span class="tag">Raspberry Pi 4B</span>
-            <span class="tag">SHAP</span><span class="tag">FastAPI</span>
-            <span class="tag">Streamlit</span><span class="tag">Telegram</span>
+            <span class="tag">Python</span><span class="tag">CustomTkinter</span>
+            <span class="tag">PyInstaller</span><span class="tag">WMI</span>
+            <span class="tag">PowerShell</span>
           </div>
         </div>
 
         <div class="project-card reveal">
-          <div class="project-index">P — 016</div>
-          <h3 class="project-title">Fusemachines Wk 9 — NEU Steel Defect CNN</h3>
+          <div class="project-index">P — 010 <span class="project-status">Archived</span></div>
+          <h3 class="project-title">PrakopNet — Multi-Hazard Early Warning System</h3>
           <ul class="project-desc-list">
-            <li>PyTorch CNN classifier for NEU-DET steel surface-defect detection — six classes across 1,800 grayscale
-              200&times;200 images</li>
-            <li>Four-part build: from-scratch 2-layer NN foundation (30.7M params) &rarr; Conv&rarr;ReLU&rarr;MaxPool
-              CNN (15 epochs, 98.6%/84.7% train/val accuracy)</li>
-            <li>Hardened via train-only augmentation, BatchNorm2d, Dropout(0.4)</li>
-            <li>Tuned via 2&times;2 grid search and a 4-trial Optuna Bayesian search — trained on Colab T4 GPU</li>
+            <li>Solar-powered LoRa mesh multi-hazard monitoring and early-warning platform for remote regions of Nepal
+            </li>
+            <li>ESP32 sensor nodes (flood, landslide, air quality, weather) over RYLR890 (868 MHz, Nepal-legal) to a
+              Raspberry Pi 4B gateway</li>
+            <li>Federated TFLite edge inference + LSTM HazardScore fusion; GPS localization, CN3791 solar charge
+              controller, 18650 battery backup, INA219 power telemetry</li>
+            <li>FastAPI + Streamlit dashboard — explored as early BEI major-project direction, archived June 29, 2026
+              after RYLR890's import-only sourcing conflicted with the department's no-import policy; superseded by
+              SPARK</li>
           </ul>
           <div class="project-tags">
-            <span class="tag">Python</span><span class="tag">PyTorch</span>
-            <span class="tag">torchvision</span><span class="tag">CNN</span>
-            <span class="tag">Optuna</span><span class="tag">scikit-learn</span>
+            <span class="tag">ESP32</span><span class="tag">RYLR890 LoRa 868 MHz</span>
+            <span class="tag">Raspberry Pi 4B</span><span class="tag">TFLite Micro</span>
+            <span class="tag">LSTM</span><span class="tag">GPS</span>
+            <span class="tag">FastAPI</span><span class="tag">Edge AI</span>
           </div>
-          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk9_neu_defect_cnn" target="_blank"
-            rel="noopener">View on GitHub ↗</a>
         </div>
-
-        <div class="project-card reveal">
-          <div class="project-index">P — 017</div>
-          <h3 class="project-title">Fusemachines Wk 10 — Image Processing</h3>
-          <ul class="project-desc-list">
-            <li>HSV-based multi-class fruit segmentation (red apple, green apple, banana, strawberry, orange, lime) via
-              the Fruits-360 dataset</li>
-            <li>Morphological operations with Gaussian, median, bilateral denoising</li>
-            <li>From-scratch Canny edge detector (Sobel gradients, non-max suppression, double thresholding, hysteresis)
-              benchmarked against cv2.Canny()</li>
-            <li>Full fruit-detection pipeline — Harris corner response, Hough circle detection, masking, morphology,
-              contour-based bounding boxes, extended with connected-component analysis for touching apples</li>
-          </ul>
-          <div class="project-tags">
-            <span class="tag">Python</span><span class="tag">OpenCV</span>
-            <span class="tag">NumPy</span><span class="tag">Matplotlib</span>
-            <span class="tag">HSV Segmentation</span><span class="tag">Canny Edge Detection</span>
-            <span class="tag">Hough Transform</span>
-          </div>
-          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk10_image_processing" target="_blank"
-            rel="noopener">View on GitHub ↗</a>
-        </div>
-      </div>
+</div>
     </section>
 
     <section id="quick-nav" aria-label="Explore the site">

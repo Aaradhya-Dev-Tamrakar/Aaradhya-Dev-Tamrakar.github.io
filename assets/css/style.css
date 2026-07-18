@@ -1642,10 +1642,10 @@ html[data-theme="light"] #quick-nav::before {
 }
 
 .card-arrow.dist-1 { opacity: 1; }
-.card-arrow.dist-2 { opacity: .75; }
-.card-arrow.dist-3 { opacity: .55; }
-.card-arrow.dist-4 { opacity: .4; }
-.card-arrow.dist-5 { opacity: .3; }
+.card-arrow.dist-2 { opacity: .95; }
+.card-arrow.dist-3 { opacity: .9; }
+.card-arrow.dist-4 { opacity: .85; }
+.card-arrow.dist-5 { opacity: .8; }
 
 .quick-nav-card:hover .card-arrow {
   opacity: 1;
