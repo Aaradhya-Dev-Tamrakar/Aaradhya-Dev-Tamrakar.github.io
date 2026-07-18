@@ -494,7 +494,8 @@ function initScroll() {
   // the last social icon.
   const NEAR_BOTTOM_PX = 96;
 
-  window.addEventListener('scroll', () => {
+  let scrollTicking = false;
+  function onScroll() {
     const y = window.scrollY;
     const max = document.documentElement.scrollHeight - window.innerHeight;
     const nearBottom = max > 0 && (max - y) < NEAR_BOTTOM_PX;
@@ -505,6 +506,13 @@ function initScroll() {
       const pct = max > 0 ? y / max : 0;
       progressBar.style.transform = `scaleX(${pct})`;
       if (scrollPct) scrollPct.textContent = Math.round(pct * 100) + '%';
+    }
+    scrollTicking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+      requestAnimationFrame(onScroll);
+      scrollTicking = true;
     }
   }, { passive: true });
 
