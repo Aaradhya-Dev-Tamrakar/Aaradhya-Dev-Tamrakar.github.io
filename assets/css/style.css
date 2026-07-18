@@ -1632,6 +1632,28 @@ html[data-theme="light"] #quick-nav::before {
   box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--glow-green-a35);
 }
 
+.quick-nav-card--current {
+  border-color: var(--glow-green-a50);
+  cursor: default;
+}
+
+.quick-nav-card--current:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.quick-nav-card--current .quick-nav-cta {
+  color: var(--muted);
+}
+
+.quick-nav-card--current:hover .quick-nav-cta {
+  gap: 0.4rem;
+}
+
+.quick-nav-card--current .card-arrow {
+  display: none;
+}
+
 .quick-nav-index {
   font-family: var(--mono);
   font-size: 0.6rem;
