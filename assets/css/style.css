@@ -58,6 +58,15 @@
   --glow-green-a50: rgba(74, 222, 128, 0.5);
   --glow-red: #ef4444;
   --glow-red-a35: rgba(239, 68, 68, 0.35);
+  --glow-blue: #5b9bd5;
+  --glow-blue-a35: rgba(91, 155, 213, 0.35);
+  --glow-blue-a50: rgba(91, 155, 213, 0.5);
+  --glow-violet: #a78bfa;
+  --glow-violet-a35: rgba(167, 139, 250, 0.35);
+  --glow-violet-a50: rgba(167, 139, 250, 0.5);
+  --glow-coral: #e2685f;
+  --glow-coral-a35: rgba(226, 104, 95, 0.35);
+  --glow-coral-a50: rgba(226, 104, 95, 0.5);
 }
 
 html[data-theme="light"] {
