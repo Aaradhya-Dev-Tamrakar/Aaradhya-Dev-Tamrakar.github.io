@@ -17,11 +17,11 @@ const SITE = {
     { label: 'Instagram', href: 'https://www.instagram.com/aaradhya_dev_tamrakar/' },
   ],
   navLinks: [
-    { label: 'Home', labelShort: 'Home', href: 'index.html', key: '1' },
-    { label: 'Projects', labelShort: 'Projects', href: 'projects.html', key: '2' },
-    { label: 'Experience', labelShort: 'Experience', href: 'experience.html', key: '3' },
-    { label: 'Achievements', labelShort: 'Achievements', href: 'achievements.html', key: '4' },
-    { label: 'About', labelShort: 'About', href: 'about.html', key: '5' },
+    { label: 'Home', labelShort: 'Home', href: '/index.html', key: '1' },
+    { label: 'Projects', labelShort: 'Projects', href: '/projects.html', key: '2' },
+    { label: 'Experience', labelShort: 'Experience', href: '/experience.html', key: '3' },
+    { label: 'Achievements', labelShort: 'Achievements', href: '/achievements.html', key: '4' },
+    { label: 'About', labelShort: 'About', href: '/about.html', key: '5' },
   ],
 };
 
@@ -36,12 +36,12 @@ const SOCIAL_ICONS = {
 
 /* ── Command palette data ─────────────────────────────────── */
 const CMDK_PAGES = [
-  { title: 'Home', href: 'index.html' },
-  { title: 'Projects', href: 'projects.html' },
-  { title: 'Experience', href: 'experience.html' },
-  { title: 'Achievements', href: 'achievements.html' },
-  { title: 'About', href: 'about.html' },
-  { title: 'Contact', href: 'contact.html' },
+  { title: 'Home', href: '/index.html' },
+  { title: 'Projects', href: '/projects.html' },
+  { title: 'Experience', href: '/experience.html' },
+  { title: 'Achievements', href: '/achievements.html' },
+  { title: 'About', href: '/about.html' },
+  { title: 'Contact', href: '/contact.html' },
 ];
 
 const CMDK_TYPE_LABEL = { page: 'Page', project: 'Project', achievement: 'Achievement' };
@@ -347,15 +347,15 @@ function renderSiteNav() {
     .join('');
   const drawerLinks = SITE.navLinks
     .map(link => `<a href="${link.href}">${link.label}</a>`)
-    .join('') + `<a href="contact.html" class="nav-cta">Connect</a>`;
+    .join('') + `<a href="/contact.html" class="nav-cta">Connect</a>`;
   el.innerHTML = `
     <nav id="nav" aria-label="Primary navigation">
-      <a href="index.html" class="nav-logo" id="nav-logo">ADT<span>.</span></a>
+      <a href="/index.html" class="nav-logo" id="nav-logo">ADT<span>.</span></a>
       <ul class="nav-links" id="nav-links">
         ${navLinks}
       </ul>
       <div class="nav-right">
-        <a href="contact.html" class="nav-cta" aria-label="Connect with Aaradhya">Connect</a>
+        <a href="/contact.html" class="nav-cta" aria-label="Connect with Aaradhya">Connect</a>
         <button class="nav-search-btn" id="navSearchBtn" aria-label="Search (press /)" title="Search (press /)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8" />

@@ -198,15 +198,19 @@
   </footer>
 
   <script>
-    // Redirect canonicalizer: navigate to absolute `/404.html` so assets load.
+    // Redirect canonicalizer: when the server serves this file for a missing
+    // path, navigate the browser to the repository's canonical `/404.html` URL.
     (function () {
       try {
         var pathname = window.location.pathname || "/";
-        var target = '/404.html';
+        // User/org page (aaradhya-dev-tamrakar.github.io) — site root is always "/".
+        var target = "/404.html";
+        // avoid redirect loop if already at canonical 404
         if (pathname !== target && pathname !== (target.replace(/\/$/, ''))) {
           window.location.replace(target + window.location.search + window.location.hash);
         }
       } catch (e) {
+        // fail silently — do not block the page if something goes wrong
         console.warn('404 redirect script error', e);
       }
     })();
