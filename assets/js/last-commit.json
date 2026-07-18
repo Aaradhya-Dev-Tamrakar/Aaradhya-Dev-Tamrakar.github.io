@@ -1,6 +1,12 @@
 {
+<<<<<<< HEAD
   "sha": "b404cba4565b0e8ef64c5ea1df3bfcb079dd0825",
   "shortSha": "b404cba",
   "date": "2026-07-18T15:08:26+05:45",
+=======
+  "sha": "fa25b52568a0034ccf024a4a940e3b813bf074a0",
+  "shortSha": "fa25b52",
+  "date": "2026-07-18T15:44:09+05:45",
+>>>>>>> 5d035989b00d2454ca7b4e470450dd91c7ebd526
   "message": "Merge branch main of https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io\n"
 }
