@@ -1084,6 +1084,7 @@ function initGlobalSearch() {
 // 4 → achievements.html  5 → about.html  6 → contact.html
 // 0 → toggle theme
 // ` → toggle hero date B.S. / A.D. (index.html only; no-op elsewhere)
+// Shift+4 → toggle Academic / Extracurricular track (achievements.html only; no-op elsewhere)
 // Skipped when focus is inside an input, textarea, or select.
 function initKeyNav() {
   const PAGE_MAP = {
@@ -1106,6 +1107,15 @@ function initKeyNav() {
 
     if (e.key === '`' || e.code === 'Backquote') {
       toggleStatusDate();
+      return;
+    }
+
+    if (e.key === '4' && e.shiftKey) {
+      const academicBtn = document.getElementById('trackAcademicBtn');
+      const ecaBtn = document.getElementById('trackEcaBtn');
+      if (academicBtn && ecaBtn) {
+        (academicBtn.classList.contains('is-active') ? ecaBtn : academicBtn).click();
+      }
       return;
     }
 
