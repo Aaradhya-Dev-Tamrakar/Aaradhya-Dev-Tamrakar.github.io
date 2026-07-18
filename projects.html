@@ -5,26 +5,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Achievements — Aaradhya Dev Tamrakar</title>
+  <title>Projects — Aaradhya Dev Tamrakar</title>
   <meta name="description"
-    content="Certifications, training programs, and competitive achievements of Aaradhya Dev Tamrakar — IEEEXtreme, IEEE WIE LaTeX Training, Drone Operator Training, AWS, and more." />
+    content="Selected engineering projects by Aaradhya Dev Tamrakar — robotics, embedded ML, agentic pipelines, and the SPARK fall-detection wearable." />
   <meta name="author" content="Aaradhya Dev Tamrakar" />
-  <link rel="canonical" href="https://aaradhya-dev-tamrakar.github.io/achievements.html" />
+  <link rel="canonical" href="https://aaradhya-dev-tamrakar.github.io/projects.html" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://aaradhya-dev-tamrakar.github.io/achievements.html" />
-  <meta property="og:title" content="Achievements — Aaradhya Dev Tamrakar" />
+  <meta property="og:url" content="https://aaradhya-dev-tamrakar.github.io/projects.html" />
+  <meta property="og:title" content="Projects — Aaradhya Dev Tamrakar" />
   <meta property="og:description"
-    content="Certifications, training programs, and competitive achievements — IEEEXtreme, IEEE WIE LaTeX, Drone Operator Training, AWS, and more." />
+    content="Robotics, embedded ML, agentic pipelines, and the SPARK fall-detection wearable." />
   <meta property="og:image" content="https://aaradhya-dev-tamrakar.github.io/assets/images/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="Aaradhya Dev Tamrakar" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Achievements — Aaradhya Dev Tamrakar" />
+  <meta name="twitter:title" content="Projects — Aaradhya Dev Tamrakar" />
   <meta name="twitter:description"
-    content="Certifications, training programs, and competitive achievements — IEEEXtreme, IEEE WIE LaTeX, Drone Operator Training, AWS, and more." />
+    content="Robotics, embedded ML, agentic pipelines, and the SPARK fall-detection wearable." />
   <meta name="twitter:image" content="https://aaradhya-dev-tamrakar.github.io/assets/images/og-image.jpg" />
 
   <!-- JSON-LD: Breadcrumb -->
@@ -42,8 +42,8 @@
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Achievements",
-            "item": "https://aaradhya-dev-tamrakar.github.io/achievements.html"
+            "name": "Projects",
+            "item": "https://aaradhya-dev-tamrakar.github.io/projects.html"
           }
         ]
       }
@@ -65,416 +65,304 @@
 
   <link rel="stylesheet" href="assets/css/style.css" />
 
-  <!-- Page-specific: achievements timeline + lightbox -->
+  <!-- Page-specific: projects grid -->
   <style>
     html,
     body {
       background: var(--bg);
     }
 
-
-
-    #achievements {
+    #projects {
       padding: 2rem 3rem 6rem;
     }
 
-    .achievements-list {
-      display: flex;
-      flex-direction: column;
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.1rem;
     }
 
-    .achievement-item {
+    .project-card {
       display: flex;
       flex-direction: column;
       background: var(--bg2);
       border: 1px solid var(--line);
       border-radius: 10px;
-      padding: 1.75rem;
+      padding: 2.5rem;
       scroll-margin-top: calc(var(--nav-h) + 1rem);
-      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
     }
 
-    .achievement-item:hover {
+    .project-card:hover {
       border-color: var(--glow-green);
       transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px var(--glow-green-a35);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--glow-green-a35);
     }
 
-    .achievement-org {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      opacity: 0.75;
-      margin-bottom: 1rem;
+    .project-card--gold {
+      border: 3px solid var(--glow-gold);
+      box-shadow: 0 0 0 1px var(--glow-gold-a35), 0 0 18px var(--glow-gold-a35);
     }
 
-    .achievement-title {
-      font-family: var(--serif);
-      font-size: 1.3rem;
-      font-weight: 400;
-      color: var(--heading);
-      margin-bottom: 0.6rem;
-      line-height: 1.25;
+    .project-card--gold:hover {
+      border-color: var(--glow-gold);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 0 1px var(--glow-gold-a35), 0 0 24px var(--glow-gold-a90);
     }
 
-    .achievement-date {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      margin-top: auto;
-      padding-top: 1rem;
+    .project-card--major {
+      border: 3px solid var(--glow-green);
+      box-shadow: 0 0 0 1px var(--glow-green-a35), 0 0 18px var(--glow-green-a35);
+    }
+
+    .project-card--major:hover {
+      border-color: var(--glow-green);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 0 1px var(--glow-green-a35), 0 0 24px var(--glow-green-a50);
+    }
+
+    .project-card--in-progress {
+      border: 1px solid var(--glow-green);
+    }
+
+    .project-card--in-progress:hover {
+      border-color: var(--glow-green);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--glow-green-a35);
+    }
+
+    .project-card--archived {
+      border: 1px solid var(--glow-red);
+    }
+
+    .project-card--archived:hover {
+      border-color: var(--glow-red);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--glow-red-a35);
+    }
+
+    .color-legend {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
       border-top: 1px solid var(--line);
     }
 
-    /* Certificate button */
-    .achievement-actions {
+    .color-legend-item {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.55rem;
-      margin-top: 0.9rem;
-    }
-
-    .cert-btn,
-    .verify-btn {
-      display: inline-flex;
       align-items: center;
-      justify-content: flex-start;
-      gap: 0.45em;
-      width: auto;
-      max-width: 320px;
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent-a35);
-      border-radius: 3px;
-      padding: 0.35em 0.75em;
-      background: transparent;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
-      text-decoration: none;
+      gap: 0.55rem;
     }
 
-    .cert-btn svg,
-    .verify-btn svg {
-      width: 0.85em;
-      height: 0.85em;
+    .color-legend-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
       flex-shrink: 0;
     }
 
-    /* Certificate thumbnail badge (image instead of text label) */
-    .cert-thumb {
-      display: block;
-      width: 100%;
-      max-width: none;
-      padding: 0;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-      background: #fff;
-      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    .color-legend-swatch--major {
+      border: 3px solid var(--glow-green);
     }
 
-    .cert-thumb:hover,
-    .cert-thumb:focus-visible {
-      border-color: var(--glow-green);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28), 0 0 14px var(--glow-green-a35);
+    .color-legend-swatch--gold {
+      border: 3px solid var(--glow-gold);
     }
 
-    .cert-thumb img {
-      display: block;
-      width: 100%;
-      height: auto;
+    .color-legend-swatch--in-progress {
+      border: 1px solid var(--glow-green);
     }
 
-    /* SimOps bundle card — 2x2 grid of badge thumbnails inside one achievement-item */
-    .cert-thumb-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      max-width: 100%;
-      margin: 0 auto;
+    .color-legend-swatch--archived {
+      border: 1px solid var(--glow-red);
     }
 
-    .cert-thumb-grid .achievement-actions {
-      display: contents;
+    .color-legend-label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
 
-    @media (max-width: 480px) {
-      .cert-thumb-grid {
-        grid-template-columns: 1fr;
+    @media (max-width: 700px) {
+      .color-legend {
+        gap: 1rem 1.5rem;
       }
     }
 
-    .achv-list-controls {
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 0.9rem;
-    }
-
-    .achv-toggle-all {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5em;
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      border: 1px solid var(--line);
-      border-radius: 3px;
-      padding: 0.5em 0.9em;
-      background: transparent;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
-    }
-
-    .achv-toggle-all:hover {
-      color: var(--accent);
-      border-color: var(--accent-a35);
-    }
-
-    .achv-toggle-all svg {
-      width: 0.85em;
-      height: 0.85em;
-      flex-shrink: 0;
-      transition: transform 0.25s;
-    }
-
-    .achv-toggle-all.is-all-open svg {
-      transform: rotate(180deg);
-    }
-
-    .achv-list-controls {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 0.9rem;
-    }
-
-    .achv-legends {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1.1rem;
-    }
-
-    .achv-legend {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1.1rem;
+    .project-index {
       font-family: var(--mono);
       font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      opacity: .7;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .project-status {
+      font-family: var(--mono);
+      font-size: 0.58rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .achv-legend-sep {
-      width: 1px;
-      height: 1em;
-      background: var(--line);
-      flex-shrink: 0;
-    }
-
-    .legend-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5em;
-    }
-
-    .legend-swatch {
-      width: 0.8em;
-      height: 0.8em;
-      flex-shrink: 0;
+      color: var(--accent2);
+      border: 1px solid var(--glow-teal-a35);
+      padding: 0.2rem 0.55rem;
       border-radius: 2px;
-      background: var(--swatch-color);
-      box-shadow: 0 0 6px var(--swatch-color);
     }
 
-    .achievement-item[data-category="workshop"] {
-      border-left-color: var(--glow-blue);
-      border-right-color: var(--glow-blue);
+    .project-progress {
+      margin: 1.25rem 0 1.5rem;
     }
 
-    .achievement-item[data-category="certification"] {
-      border-left-color: var(--glow-violet);
-      border-right-color: var(--glow-violet);
-    }
-
-    .achievement-item[data-category="competition"] {
-      border-left-color: var(--glow-coral);
-      border-right-color: var(--glow-coral);
-    }
-
-    .achievement-item[data-category="leadership"] {
-      border-left-color: var(--glow-teal);
-      border-right-color: var(--glow-teal);
-    }
-
-    .achievement-item[data-category="workshop"]:hover {
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px var(--glow-blue-a35);
-    }
-
-    .achievement-item[data-category="certification"]:hover {
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px var(--glow-violet-a35);
-    }
-
-    .achievement-item[data-category="competition"]:hover {
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px var(--glow-coral-a35);
-    }
-
-    .achievement-item[data-category="leadership"]:hover {
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px var(--glow-teal-a35);
-    }
-
-    .year-group {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--glass-bg);
-      margin-bottom: 1rem;
-      overflow: hidden;
-    }
-
-    .year-group--current {
-      border-right: 4px solid var(--glow-green);
-    }
-
-    .year-group--past {
-      border-right: 4px solid var(--glow-blue);
-    }
-
-    .year-toggle {
-      list-style: none;
-      cursor: pointer;
+    .project-progress-track {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 1.25rem;
+      gap: 4px;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-progress-step {
+      flex: 1;
+      height: 3px;
+      background: var(--line);
+      border-radius: 2px;
+    }
+
+    .project-progress-step.done {
+      background: var(--accent2);
+    }
+
+    .project-progress-labels {
+      display: flex;
+      gap: 4px;
+    }
+
+    .project-progress-label {
+      flex: 1;
       font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.16em;
+      font-size: 0.52rem;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.35;
+      white-space: normal;
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+
+    .project-progress-label.done {
+      color: var(--accent2);
+    }
+
+    .proj-inline-link {
+      color: var(--accent2);
+      text-decoration: underline;
+      text-decoration-color: var(--accent-a35);
+      text-underline-offset: 2px;
+    }
+
+    .proj-inline-link:hover {
+      text-decoration-color: var(--accent2);
+    }
+
+    .project-title {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 400;
       color: var(--heading);
-      background: var(--nav-scrolled-bg);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
     }
 
-    .year-toggle::-webkit-details-marker {
-      display: none;
+    .project-desc {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 1.5rem;
     }
 
-    .year-count {
+    .project-desc-list {
+      list-style: none;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .project-desc-list li {
+      position: relative;
+      padding-left: 1.1rem;
+    }
+
+    .project-desc-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+      opacity: .8;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .project-link {
       display: inline-flex;
       align-items: center;
-      gap: 0.3em;
-      color: var(--accent);
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-    }
-
-    .year-count::before,
-    .year-count::after {
+      gap: 0.4rem;
       font-family: var(--mono);
-      font-size: 1.15em;
-      font-weight: 400;
-      color: inherit;
-      opacity: 0.65;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      text-decoration: none;
+      margin-top: 1rem;
+      padding: 0.5rem 0;
+      position: relative;
+      transition: gap .3s;
     }
 
-    .year-count::before {
-      content: "[";
+    .project-link::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent2);
+      transition: width .35s ease;
     }
 
-    .year-count::after {
-      content: "]";
+    .project-link:hover {
+      gap: 0.65rem;
     }
 
-    .year-group--current .year-count {
-      color: var(--glow-green);
-      text-shadow: 0 0 8px var(--glow-green-a50);
-    }
-
-    .year-group--past .year-count {
-      color: var(--glow-blue);
-      text-shadow: 0 0 8px var(--glow-blue-a50);
-    }
-
-    .year-items {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.1rem;
-      padding: 1.25rem;
-    }
-
-    .cert-btn:hover {
-      background: var(--accent-a12);
-      border-color: var(--accent);
-      color: var(--heading);
-    }
-
-    .cert-btn:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-
-    /* ── Lightbox: page-specific overrides only ── */
-    /* .lb-btn.lb-close:hover uses --accent-a07 here (vs --accent-a12 shared default) */
-    .lb-btn.lb-close:hover {
-      background: var(--accent-a07);
-      color: var(--heading);
-      border-color: var(--accent);
-    }
-
-    /* Achievements uses 75vh lightbox body (vs 80vh shared default) */
-    .lightbox-body {
-      flex: 1;
-      overflow: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 0;
-    }
-
-    .lightbox-body iframe {
+    .project-link:hover::after {
       width: 100%;
-      height: 75vh;
-      border: none;
-      display: block;
-    }
-
-    .lightbox-body img {
-      max-width: 100%;
-      max-height: 75vh;
-      object-fit: contain;
-      display: block;
     }
 
     @media (max-width: 1100px) {
-      #achievements {
+      #projects {
         padding: 1.5rem 2rem 5rem;
       }
     }
 
     @media (max-width: 900px) {
-      #achievements {
+      #projects {
         padding: 1.5rem 1.5rem 4rem;
       }
 
-      .year-items {
+      .projects-grid {
         grid-template-columns: 1fr;
-      }
-
-      .lightbox-inner {
-        width: 96vw;
       }
     }
   </style>
@@ -493,9 +381,9 @@
     <nav aria-label="Primary navigation"><a href="index.html" class="nav-logo">ADT<span>.</span></a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="projects.html">Projects</a></li>
+        <li><a href="projects.html" class="active" aria-current="page">Projects</a></li>
         <li><a href="experience.html">Experience</a></li>
-        <li><a href="achievements.html" class="active" aria-current="page">Achievements</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
       <div class="nav-right"><a href="contact.html" class="nav-cta">Connect</a></div>
@@ -503,484 +391,407 @@
   </noscript>
   <div id="siteNav"></div>
 
-  <!-- ── Lightbox ── -->
-  <div id="cert-lightbox" role="dialog" aria-modal="true" aria-label="Certificate viewer">
-    <div class="lightbox-inner">
-      <div class="lightbox-bar">
-        <span class="lightbox-label" id="lb-label">Certificate</span>
-        <div class="lightbox-actions">
-          <a id="lb-download" class="lb-btn" title="Download" download>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="3" x2="12" y2="15" />
-            </svg>
-          </a>
-          <a id="lb-open" class="lb-btn" title="Open in new tab" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-              <polyline points="15 3 21 3 21 9" />
-              <line x1="10" y1="14" x2="21" y2="3" />
-            </svg>
-          </a>
-          <a id="lb-verify" class="lb-btn" title="Verify certificate" target="_blank" rel="noopener" hidden>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-            </svg>
-          </a>
-          <button id="lb-close" class="lb-btn lb-close" aria-label="Close certificate viewer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
-        </div>
-      </div>
-      <div class="lightbox-body" id="lb-body"></div>
-    </div>
-  </div>
-
   <main id="main-content">
     <header id="page-header">
-      <div class="page-eyebrow">Training &amp; Certifications</div>
-      <h1 class="page-title">What I've <em>Earned</em></h1>
+      <div class="page-eyebrow">Selected Work</div>
+      <h1 class="page-title">Engineering <em>Projects</em></h1>
       <p class="page-sub">
-        Competitive events, technical workshops, and certified training programs
-        alongside coursework and fellowship work.
+        Projects spanning robotics, embedded ML, agentic data
+        pipelines, and disaster-response hardware — from coursework labs
+        to a March 2027 major-project demo.
       </p>
+      <div class="color-legend" aria-label="Project border color key">
+        <div class="color-legend-item">
+          <span class="color-legend-swatch color-legend-swatch--major" aria-hidden="true"></span>
+          <span class="color-legend-label">Major / Latest Fusemachines</span>
+        </div>
+        <div class="color-legend-item">
+          <span class="color-legend-swatch color-legend-swatch--gold" aria-hidden="true"></span>
+          <span class="color-legend-label">Minor Project</span>
+        </div>
+        <div class="color-legend-item">
+          <span class="color-legend-swatch color-legend-swatch--in-progress" aria-hidden="true"></span>
+          <span class="color-legend-label">In Progress</span>
+        </div>
+        <div class="color-legend-item">
+          <span class="color-legend-swatch color-legend-swatch--archived" aria-hidden="true"></span>
+          <span class="color-legend-label">Archived</span>
+        </div>
+      </div>
     </header>
 
-    <section id="achievements" aria-label="Achievements timeline">
-      <div class="achv-list-controls">
-        <div class="achv-legends">
-          <div class="achv-legend" aria-label="Achievement category legend">
-            <span class="legend-item"><span class="legend-swatch"
-                style="--swatch-color: var(--glow-blue)"></span>Workshop</span>
-            <span class="legend-item"><span class="legend-swatch"
-                style="--swatch-color: var(--glow-violet)"></span>Certification</span>
-            <span class="legend-item"><span class="legend-swatch"
-                style="--swatch-color: var(--glow-coral)"></span>Competition</span>
-            <span class="legend-item"><span class="legend-swatch"
-                style="--swatch-color: var(--glow-teal)"></span>Leadership</span>
-          </div>
-          <span class="achv-legend-sep" aria-hidden="true"></span>
-          <div class="achv-legend" aria-label="Year recency legend">
-            <span class="legend-item"><span class="legend-swatch"
-                style="--swatch-color: var(--glow-green)"></span>Current Year</span>
-            <span class="legend-item"><span class="legend-swatch" style="--swatch-color: var(--glow-blue)"></span>Past
-              Years</span>
-          </div>
-        </div>
-        <button type="button" class="achv-toggle-all" id="toggleAllBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-            stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
-          <span id="toggleAllLabel">Expand all</span>
-        </button>
-      </div>
-      <div class="achievements-list" id="achievementsList">
-
-        <div class="achievement-item reveal" data-category="workshop">
-          <div class="achievement-org">KEC IT Club</div>
-          <div>
-            <h3 class="achievement-title">JavaScript Bootcamp</h3>
-            <button class="cert-btn cert-thumb"
-              data-cert="assets/certificates/javascript-bootcamp-certificate-kec-it-club-2023.webp"
-              data-download="assets/certificates/javascript-bootcamp-certificate-kec-it-club-2023.pdf"
-              data-label="JavaScript Bootcamp — KEC IT Club 2023" data-type="image"
-              aria-label="View certificate: JavaScript Bootcamp — KEC IT Club 2023">
-              <img src="assets/certificates/javascript-bootcamp-certificate-kec-it-club-2023.webp"
-                alt="JavaScript Bootcamp — KEC IT Club 2023 certificate" loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">2023</div>
-        </div>
-
-        <div class="achievement-item reveal" data-category="workshop">
-          <div class="achievement-org">KEC IT Club</div>
-          <div>
-            <h3 class="achievement-title">Session on Git &amp; GitHub</h3>
-            <button class="cert-btn cert-thumb" data-cert="assets/certificates/KECIT_Git_GitHub_Session_2024.webp"
-              data-download="assets/certificates/KECIT_Git_GitHub_Session_2024.webp"
-              data-verify="https://www.instagram.com/p/DDd6hWvIKmL/" data-label="Session on Git & GitHub — KEC IT Club"
-              data-type="image" aria-label="View poster: Session on Git & GitHub — KEC IT Club">
-              <img src="assets/certificates/KECIT_Git_GitHub_Session_2024.webp"
-                alt="Session on Git & GitHub — KEC IT Club poster" loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">Nov 2024</div>
-        </div>
-
-        <div class="achievement-item reveal" data-category="workshop">
-          <div class="achievement-org">GNOME Nepal &amp; KEC IT Club</div>
-          <div>
-            <h3 class="achievement-title">Workshop on Linux and Open Source Contribution</h3>
-            <button class="cert-btn cert-thumb"
-              data-cert="assets/certificates/GNOME_Nepal_Linux_OpenSource_Workshop_2024.webp"
-              data-download="assets/certificates/GNOME_Nepal_Linux_OpenSource_Workshop_2024.webp"
-              data-verify="https://www.instagram.com/p/DCW2xVMTQ-B/"
-              data-label="Workshop on Linux and Open Source Contribution — GNOME Nepal & KEC IT Club" data-type="image"
-              aria-label="View poster: Workshop on Linux and Open Source Contribution — GNOME Nepal & KEC IT Club">
-              <img src="assets/certificates/GNOME_Nepal_Linux_OpenSource_Workshop_2024.webp"
-                alt="Workshop on Linux and Open Source Contribution — GNOME Nepal & KEC IT Club poster"
-                loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">Nov 2024</div>
-        </div>
-
-        <div class="achievement-item reveal" data-category="workshop">
-          <div class="achievement-org">Microsoft Learn Student Ambassador</div>
-          <div>
-            <h3 class="achievement-title">HTML &amp; CSS Workshop — Design, Code &amp; Launch via GitHub Pages</h3>
-            <button class="cert-btn cert-thumb"
-              data-cert="assets/certificates/Microsoft_Learn_HTML_CSS_GitHub_Pages.webp"
-              data-download="assets/certificates/Microsoft_Learn_HTML_CSS_GitHub_Pages.pdf"
-              data-label="Microsoft Learn HTML & CSS via GitHub Pages" data-type="image"
-              aria-label="View certificate: Microsoft Learn HTML & CSS via GitHub Pages">
-              <img src="assets/certificates/Microsoft_Learn_HTML_CSS_GitHub_Pages.webp"
-                alt="Microsoft Learn HTML & CSS via GitHub Pages certificate" loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">May 2022</div>
-        </div>
-
-        <div class="achievement-item reveal" data-category="workshop">
-          <div class="achievement-org">IEEE</div>
-          <div>
-            <h3 class="achievement-title">PreXtreme Competitive Programming Workshop</h3>
-            <button class="cert-btn cert-thumb" data-cert="assets/certificates/IEEE_Pulchowk_PreXtreme_CP_Workshop.webp"
-              data-download="assets/certificates/IEEE_Pulchowk_PreXtreme_CP_Workshop.pdf"
-              data-label="PreXtreme CP Workshop 2025" data-type="image"
-              aria-label="View certificate: PreXtreme CP Workshop 2025">
-              <img src="assets/certificates/IEEE_Pulchowk_PreXtreme_CP_Workshop.webp"
-                alt="PreXtreme CP Workshop 2025 certificate" loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">Jul 2025</div>
-        </div>
-
-        <div class="achievement-item reveal" data-category="workshop">
-          <div class="achievement-org">KEC IT Club · AWS Cloud Club Nepal</div>
-          <div>
-            <h3 class="achievement-title">AWS Fundamentals Workshop</h3>
-            <button class="cert-btn cert-thumb" data-cert="assets/certificates/KEC_IT_Club_AWS_Fundamentals_2025.webp"
-              data-download="assets/certificates/KEC_IT_Club_AWS_Fundamentals_2025.pdf"
-              data-label="AWS Fundamentals Workshop 2025" data-type="image"
-              aria-label="View certificate: AWS Fundamentals Workshop 2025">
-              <img src="assets/certificates/KEC_IT_Club_AWS_Fundamentals_2025.webp"
-                alt="AWS Fundamentals Workshop 2025 certificate" loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">Jul 2025</div>
-        </div>
-
-        <div class="achievement-item reveal" data-category="workshop">
-          <div class="achievement-org">IEEE</div>
-          <div>
-            <h3 class="achievement-title">Agile Workshop</h3>
-            <button class="cert-btn cert-thumb" data-cert="assets/certificates/IEEE_KEC_Agile_Workshop_2025.webp"
-              data-download="assets/certificates/IEEE_KEC_Agile_Workshop_2025.pdf"
-              data-label="IEEE KEC Agile Workshop 2025" data-type="image"
-              aria-label="View certificate: IEEE KEC Agile Workshop 2025">
-              <img src="assets/certificates/IEEE_KEC_Agile_Workshop_2025.webp"
-                alt="IEEE KEC Agile Workshop 2025 certificate" loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">Jul 2025</div>
-        </div>
-
-        <div class="achievement-item reveal" data-category="workshop">
-          <div class="achievement-org">Nepal Students' Union KEC · KEC Robotics Club</div>
-          <div>
-            <h3 class="achievement-title">PCB Design &amp; Fabrication Workshop</h3>
-            <button class="cert-btn cert-thumb"
-              data-cert="assets/certificates/KEC_Robotics_Club_PCB_Design_Fabrication_Workshop_2025.webp"
-              data-download="assets/certificates/KEC_Robotics_Club_PCB_Design_Fabrication_Workshop_2025.pdf"
-              data-label="PCB Design & Fabrication Workshop 2025" data-type="image"
-              aria-label="View certificate: PCB Design & Fabrication Workshop 2025">
-              <img src="assets/certificates/KEC_Robotics_Club_PCB_Design_Fabrication_Workshop_2025.webp"
-                alt="PCB Design & Fabrication Workshop 2025 certificate" loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">Jul 2025</div>
-        </div>
-
-        <div class="achievement-item reveal" data-category="leadership">
-          <div class="achievement-org">IEEE</div>
-          <div>
-            <h3 class="achievement-title">Mentor — Electronics For All Workshop</h3>
-            <button class="cert-btn cert-thumb"
-              data-cert="assets/certificates/IEEE_KEC_Electronics_For_All_Mentorship_2025.webp"
-              data-download="assets/certificates/IEEE_KEC_Electronics_For_All_Mentorship_2025.pdf"
-              data-label="Electronics For All Mentorship 2025" data-type="image"
-              aria-label="View certificate: Electronics For All Mentorship 2025">
-              <img src="assets/certificates/IEEE_KEC_Electronics_For_All_Mentorship_2025.webp"
-                alt="Electronics For All Mentorship 2025 certificate" loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">Jul 2025</div>
-        </div>
-
-        <div class="achievement-item reveal" data-category="workshop">
-          <div class="achievement-org">Offenso Hackers Academy</div>
-          <div>
-            <h3 class="achievement-title">How Hackers Bypass Security: A Beginner's Guide</h3>
-            <button class="cert-btn cert-thumb"
-              data-cert="assets/certificates/Offenso_Security_Bypass_Webinar_2025.webp"
-              data-download="assets/certificates/Offenso_Security_Bypass_Webinar_2025.pdf"
-              data-label="Offenso Security Bypass Webinar 2025" data-type="image"
-              aria-label="View certificate: Offenso Security Bypass Webinar 2025">
-              <img src="assets/certificates/Offenso_Security_Bypass_Webinar_2025.webp"
-                alt="Offenso Security Bypass Webinar 2025 certificate" loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">Jul 2025</div>
-        </div>
-
-        <div class="achievement-item reveal" data-category="leadership">
-          <div class="achievement-org">IEEE</div>
-          <div>
-            <h3 class="achievement-title">IEEE Day 2025 — Organizer</h3>
-            <button class="cert-btn cert-thumb" data-cert="assets/certificates/IEEE_KEC_IEEE_Day_Organizer_2025.webp"
-              data-download="assets/certificates/IEEE_KEC_IEEE_Day_Organizer_2025.pdf"
-              data-label="IEEE Day 2025 Organizer" data-type="image"
-              aria-label="View certificate: IEEE Day 2025 Organizer">
-              <img src="assets/certificates/IEEE_KEC_IEEE_Day_Organizer_2025.webp"
-                alt="IEEE Day 2025 Organizer certificate" loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">Oct 2025</div>
-        </div>
-
-        <div class="achievement-item reveal" data-category="competition">
-          <div class="achievement-org">IEEE</div>
-          <div>
-            <h3 class="achievement-title">IEEEXtreme 19.0</h3>
-            <button class="cert-btn cert-thumb" data-cert="assets/certificates/IEEE_IEEEXtreme_19_0_2025.webp"
-              data-download="assets/certificates/IEEE_IEEEXtreme_19_0_2025.pdf" data-label="IEEEXtreme 19.0 — 2025"
-              data-type="image" aria-label="View certificate: IEEEXtreme 19.0 — 2025">
-              <img src="assets/certificates/IEEE_IEEEXtreme_19_0_2025.webp" alt="IEEEXtreme 19.0 — 2025 certificate"
-                loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">Oct 2025</div>
-        </div>
-
-        <div class="achievement-item reveal" data-category="workshop">
-          <div class="achievement-org">IEEE</div>
-          <div>
-            <h3 class="achievement-title">IEEE WIE LaTeX Training Program</h3>
-            <button class="cert-btn cert-thumb" data-cert="assets/certificates/IEEE_WIE_LaTeX_Training_2026.webp"
-              data-download="assets/certificates/IEEE_WIE_LaTeX_Training_2026.pdf"
-              data-label="IEEE WIE LaTeX Training 2026" data-type="image"
-              aria-label="View certificate: IEEE WIE LaTeX Training 2026">
-              <img src="assets/certificates/IEEE_WIE_LaTeX_Training_2026.webp"
-                alt="IEEE WIE LaTeX Training 2026 certificate" loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">May 2026</div>
-        </div>
-
-        <div class="achievement-item reveal" data-category="certification" data-date="Feb 2026">
-          <div class="achievement-org">TechAxis</div>
-          <div>
-            <h3 class="achievement-title">Prompt Engineering Fundamentals</h3>
-            <button class="cert-btn cert-thumb" data-cert="assets/certificates/TechAxis_Prompt_Engineering_2026.webp"
-              data-download="assets/certificates/TechAxis_Prompt_Engineering_2026.pdf"
-              data-label="TechAxis Prompt Engineering 2026" data-type="image"
-              aria-label="View certificate: TechAxis Prompt Engineering 2026">
-              <img src="assets/certificates/TechAxis_Prompt_Engineering_2026.webp"
-                alt="TechAxis Prompt Engineering 2026 certificate" loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">May 2026</div>
-        </div>
-
-        <div class="achievement-item reveal" data-category="workshop">
-          <div class="achievement-org">IEEE</div>
-          <div>
-            <h3 class="achievement-title">IEEE SPAx — Engineer Your Profile</h3>
-            <button class="cert-btn cert-thumb" data-cert="assets/certificates/IEEE_KEC_SPAx_Organization_2026.webp"
-              data-download="assets/certificates/IEEE_KEC_SPAx_Organization_2026.pdf"
-              data-label="IEEE SPAx Organization 2026" data-type="image"
-              aria-label="View certificate: IEEE SPAx Organization 2026">
-              <img src="assets/certificates/IEEE_KEC_SPAx_Organization_2026.webp"
-                alt="IEEE SPAx Organization 2026 certificate" loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">May 2026</div>
-        </div>
-
-        <div class="achievement-item reveal" data-category="workshop">
-          <div class="achievement-org">Drone Operator Training</div>
-          <div>
-            <h3 class="achievement-title">NepaTronix Drone Training Program</h3>
-            <button class="cert-btn cert-thumb"
-              data-cert="assets/certificates/NepaTronix_Drone_Hub_Nepal_3Day_Drone_Training_2026.webp"
-              data-download="assets/certificates/NepaTronix_Drone_Hub_Nepal_3Day_Drone_Training_2026.pdf"
-              data-label="NepaTronix Drone Training Program Certificate" data-type="image"
-              aria-label="View certificate: NepaTronix Drone Training Program Certificate">
-              <img src="assets/certificates/NepaTronix_Drone_Hub_Nepal_3Day_Drone_Training_2026.webp"
-                alt="NepaTronix Drone Training Program Certificate certificate" loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">May 2026</div>
-        </div>
-
-        <div class="achievement-item reveal" data-category="certification">
-          <div class="achievement-org">DataCamp</div>
-          <div>
-            <h3 class="achievement-title">DataCamp — CPE Credit Certificates</h3>
-            <div class="cert-thumb-grid">
-              <button class="cert-btn cert-thumb"
-                data-cert="assets/certificates/Introduction_to_Python_ITP0014139470763.webp"
-                data-download="assets/certificates/Introduction_to_Python_ITP0014139470763.pdf"
-                data-label="Introduction to Python — DataCamp" data-type="image"
-                aria-label="View certificate: Introduction to Python — DataCamp">
-                <img src="assets/certificates/Introduction_to_Python_ITP0014139470763.webp"
-                  alt="Introduction to Python — DataCamp certificate" loading="lazy" />
-              </button>
-              <button class="cert-btn cert-thumb"
-                data-cert="assets/certificates/Introduction_to_Git_CPE0469867571113.webp"
-                data-download="assets/certificates/Introduction_to_Git_CPE0469867571113.pdf"
-                data-label="Introduction to Git — DataCamp" data-type="image"
-                aria-label="View certificate: Introduction to Git — DataCamp">
-                <img src="assets/certificates/Introduction_to_Git_CPE0469867571113.webp"
-                  alt="Introduction to Git — DataCamp certificate" loading="lazy" />
-              </button>
+    <section id="projects" aria-label="Projects grid">
+      <div class="projects-grid" id="projectsGrid">
+        <div class="project-card reveal project-card--major">
+          <div class="project-index">P — 015 <span class="project-status">In Progress</span></div>
+          <h3 class="project-title">SPARK — Two-Layer Fall Detection Wearable</h3>
+          <ul class="project-desc-list">
+            <li>On-device, two-layer fall-detection wearable for eldercare — threshold gate plus a TFLite Micro CNN
+              gateway, zero imports, zero custom PCB</li>
+            <li>BEI major project, four-person team — proposal defended Jul&nbsp;10, 2026</li>
+          </ul>
+          <div class="project-progress">
+            <div class="project-progress-track">
+              <div class="project-progress-step done"></div>
+              <div class="project-progress-step"></div>
+              <div class="project-progress-step"></div>
+            </div>
+            <div class="project-progress-labels">
+              <span class="project-progress-label done">Proposal</span>
+              <span class="project-progress-label">H/W Procurement</span>
+              <span class="project-progress-label">Demo</span>
             </div>
           </div>
-          <div class="achievement-date">May 2026 · Jul 2026</div>
+          <div class="project-tags">
+            <span class="tag">MPU6050</span><span class="tag">TFLite Micro</span>
+            <span class="tag">1D CNN</span><span class="tag">Raspberry Pi 4B</span>
+            <span class="tag">SHAP</span><span class="tag">FastAPI</span>
+            <span class="tag">Streamlit</span><span class="tag">Telegram</span>
+          </div>
         </div>
 
-        <div class="achievement-item reveal" data-category="certification">
-          <div class="achievement-org">DataCamp</div>
-          <div>
-            <h3 class="achievement-title">DataCamp Statements of Accomplishment</h3>
-            <div class="cert-thumb-grid">
-              <button class="cert-btn cert-thumb" data-cert="assets/certificates/Cleaning_Data_with_Generative_AI.webp"
-                data-download="assets/certificates/Cleaning_Data_with_Generative_AI.pdf"
-                data-label="Cleaning Data with Generative AI — DataCamp" data-type="image"
-                aria-label="View certificate: Cleaning Data with Generative AI — DataCamp">
-                <img src="assets/certificates/Cleaning_Data_with_Generative_AI.webp"
-                  alt="Cleaning Data with Generative AI — DataCamp certificate" loading="lazy" />
-              </button>
-              <button class="cert-btn cert-thumb" data-cert="assets/certificates/AI-Assisted_Product_Launch.webp"
-                data-download="assets/certificates/AI-Assisted_Product_Launch.pdf"
-                data-label="AI-Assisted Product Launch — DataCamp" data-type="image"
-                aria-label="View certificate: AI-Assisted Product Launch — DataCamp">
-                <img src="assets/certificates/AI-Assisted_Product_Launch.webp"
-                  alt="AI-Assisted Product Launch — DataCamp certificate" loading="lazy" />
-              </button>
-              <button class="cert-btn cert-thumb" data-cert="assets/certificates/Building_a_Go-To-Market_Strategy.webp"
-                data-download="assets/certificates/Building_a_Go-To-Market_Strategy.pdf"
-                data-label="Building a Go-To-Market Strategy — DataCamp" data-type="image"
-                aria-label="View certificate: Building a Go-To-Market Strategy — DataCamp">
-                <img src="assets/certificates/Building_a_Go-To-Market_Strategy.webp"
-                  alt="Building a Go-To-Market Strategy — DataCamp certificate" loading="lazy" />
-              </button>
-              <button class="cert-btn cert-thumb" data-cert="assets/certificates/Generate_a_Study_Guide.webp"
-                data-download="assets/certificates/Generate_a_Study_Guide.pdf"
-                data-label="Generate a Study Guide — DataCamp" data-type="image"
-                aria-label="View certificate: Generate a Study Guide — DataCamp">
-                <img src="assets/certificates/Generate_a_Study_Guide.webp"
-                  alt="Generate a Study Guide — DataCamp certificate" loading="lazy" />
-              </button>
-              <button class="cert-btn cert-thumb" data-cert="assets/certificates/Recommending_Skincare_Products.webp"
-                data-download="assets/certificates/Recommending_Skincare_Products.pdf"
-                data-label="Recommending Skincare Products — DataCamp" data-type="image"
-                aria-label="View certificate: Recommending Skincare Products — DataCamp">
-                <img src="assets/certificates/Recommending_Skincare_Products.webp"
-                  alt="Recommending Skincare Products — DataCamp certificate" loading="lazy" />
-              </button>
+        <div class="project-card reveal project-card--gold" id="p-001">
+          <div class="project-index">P — 001</div>
+          <h3 class="project-title">Gesture-Controlled Self-Balancing Robot</h3>
+          <ul class="project-desc-list">
+            <li>Two-wheeled inverted pendulum robot with real-time dual-hand MediaPipe gesture control over HC-05
+              Bluetooth</li>
+            <li>Examiner rated major-project level — 9.4/10</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Arduino</span><span class="tag">HC-05</span>
+            <span class="tag">MPU-6050</span><span class="tag">NEMA-17</span>
+            <span class="tag">MediaPipe</span><span class="tag">PID</span>
+            <span class="tag">MATLAB</span>
+          </div>
+          <a class="project-link" href="https://github.com/AaradhyaDT/Gesture-Controlled-Self-Balancing-Robot"
+            target="_blank" rel="noopener">View on GitHub ↗</a>
+        </div>
+
+        <div class="project-card reveal project-card--major">
+          <div class="project-index">P — 018 <span class="project-status">In Progress</span></div>
+          <h3 class="project-title">Fusemachines Capstone — Vision Fairness &amp; Bias Audit</h3>
+          <ul class="project-desc-list">
+            <li>Diagnostic tool for deployed vision classifiers — runs a multi-demographic test matrix, flags
+              statistical disparities, and outputs a compliance report; detects bias but doesn't correct it</li>
+            <li>Fellowship capstone, two-person team with <a class="proj-inline-link" href="https://github.com/tiixsha"
+                target="_blank" rel="noopener">Tisha Manandhar</a> — full README to follow in-repo</li>
+          </ul>
+          <div class="project-progress">
+            <div class="project-progress-track">
+              <div class="project-progress-step done"></div>
+              <div class="project-progress-step"></div>
+              <div class="project-progress-step"></div>
+            </div>
+            <div class="project-progress-labels">
+              <span class="project-progress-label done">Feasibility &amp; Scope</span>
+              <span class="project-progress-label">Test Matrix &amp; Detection Engine</span>
+              <span class="project-progress-label">Report &amp; Compliance Output</span>
             </div>
           </div>
-          <div class="achievement-date">May 2026 · Jul 2026</div>
-        </div>
-
-        <div class="achievement-item reveal" data-category="workshop">
-          <div class="achievement-org">IEEE</div>
-          <div>
-            <h3 class="achievement-title">IEEE Conference Leadership Workshop 2026</h3>
-            <button class="cert-btn cert-thumb" data-cert="assets/certificates/IEEE_Nepal_Section_CLW_2026.webp"
-              data-download="assets/certificates/IEEE_Nepal_Section_CLW_2026.webp"
-              data-verify="https://www.linkedin.com/posts/aaradhya-dev-tamrakar_ieee-ieeenepalsection-ieeeregion10-activity-7423020810887573504-mog7?utm_source=social_share_send&amp;utm_medium=member_desktop_web&amp;rcm=ACoAADVslLwBhOvfzutgxdKkjrvXOQfzzIrjlIk"
-              data-label="IEEE Conference Leadership Workshop 2026" data-type="image"
-              aria-label="View photo: IEEE Conference Leadership Workshop 2026">
-              <img src="assets/certificates/IEEE_Nepal_Section_CLW_2026.webp"
-                alt="IEEE Conference Leadership Workshop 2026 photo" loading="lazy" />
-            </button>
+          <div class="project-tags">
+            <span class="tag">AIF360</span><span class="tag">Fairlearn</span>
+            <span class="tag">FairFace</span><span class="tag">UTKFace</span>
+            <span class="tag">Computer Vision</span><span class="tag">Bias Auditing</span>
+            <span class="tag">Statistical Testing</span><span class="tag">HTML/Jinja2</span>
           </div>
-          <div class="achievement-date">2026</div>
         </div>
 
-        <div class="achievement-item reveal" data-category="certification">
-          <div class="achievement-org">ANTHROPIC</div>
-          <div>
-            <h3 class="achievement-title">AI Fluency: Framework &amp; Foundations</h3>
-            <button class="cert-btn cert-thumb"
-              data-cert="assets/certificates/AI-Fluency_Framework_and_Foundations.webp"
-              data-download="assets/certificates/AI-Fluency_Framework_and_Foundations.pdf"
-              data-label="AI Fluency: Framework & Foundations — ANTHROPIC" data-type="image"
-              aria-label="View certificate: AI Fluency: Framework & Foundations — ANTHROPIC">
-              <img src="assets/certificates/AI-Fluency_Framework_and_Foundations.webp"
-                alt="AI Fluency: Framework & Foundations — ANTHROPIC certificate" loading="lazy" />
-            </button>
+        <div class="project-card reveal">
+          <div class="project-index">P — 017</div>
+          <h3 class="project-title">Fusemachines Wk 10 — Image Processing</h3>
+          <ul class="project-desc-list">
+            <li>HSV-based multi-class fruit segmentation across the Fruits-360 dataset, plus a from-scratch Canny
+              edge detector benchmarked against cv2.Canny()</li>
+            <li>Full fruit-detection pipeline — Harris corners, Hough circles, contour-based bounding boxes</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">OpenCV</span>
+            <span class="tag">NumPy</span><span class="tag">Matplotlib</span>
+            <span class="tag">HSV Segmentation</span><span class="tag">Canny Edge Detection</span>
+            <span class="tag">Hough Transform</span>
           </div>
-          <div class="achievement-date">Jul 2026</div>
+          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk10_image_processing" target="_blank"
+            rel="noopener">View on GitHub ↗</a>
         </div>
 
-        <div class="achievement-item reveal" data-category="certification">
-          <div class="achievement-org">SimOps</div>
-          <div>
-            <h3 class="achievement-title">SimOps Certifications</h3>
-            <div class="cert-thumb-grid">
-              <button class="cert-btn cert-thumb" data-cert="assets/certificates/SimOps_Expert_12836702612982.webp"
-                data-download="assets/certificates/SimOps_Expert_12836702612982.pdf"
-                data-verify="https://certification.simops.com/en/verify/12836702612982" data-label="SimOps Expert"
-                data-type="image" aria-label="View certificate: SimOps Expert">
-                <img src="assets/certificates/SimOps_Expert_Badge_12836702612982.webp" alt="SimOps Expert badge"
-                  loading="lazy" />
-              </button>
-              <button class="cert-btn cert-thumb"
-                data-cert="assets/certificates/SimOps_Practitioner_52653675650240.webp"
-                data-download="assets/certificates/SimOps_Practitioner_52653675650240.pdf"
-                data-verify="https://certification.simops.com/en/verify/52653675650240" data-label="SimOps Practitioner"
-                data-type="image" aria-label="View certificate: SimOps Practitioner">
-                <img src="assets/certificates/SimOps_Practitioner_Badge_52653675650240.webp"
-                  alt="SimOps Practitioner badge" loading="lazy" />
-              </button>
-              <button class="cert-btn cert-thumb"
-                data-cert="assets/certificates/SimOps_Fundamentals_25303246876434.webp"
-                data-download="assets/certificates/SimOps_Fundamentals_25303246876434.pdf"
-                data-verify="https://certification.simops.com/en/verify/25303246876434" data-label="SimOps Fundamentals"
-                data-type="image" aria-label="View certificate: SimOps Fundamentals">
-                <img src="assets/certificates/SimOps_Fundamentals_Badge_25303246876434.webp"
-                  alt="SimOps Fundamentals badge" loading="lazy" />
-              </button>
-              <button class="cert-btn cert-thumb"
-                data-cert="assets/certificates/SimOps_AI_for_Graduates_98452248595354.webp"
-                data-download="assets/certificates/SimOps_AI_for_Graduates_98452248595354.pdf"
-                data-verify="https://certification.simops.com/en/verify/98452248595354"
-                data-label="SimOps AI for Graduates" data-type="image"
-                aria-label="View certificate: SimOps AI for Graduates">
-                <img src="assets/certificates/SimOps_AI_for_Graduates_Badge_98452248595354.webp"
-                  alt="SimOps AI for Graduates badge" loading="lazy" />
-              </button>
+        <div class="project-card reveal">
+          <div class="project-index">P — 016</div>
+          <h3 class="project-title">Fusemachines Wk 9 — NEU Steel Defect CNN</h3>
+          <ul class="project-desc-list">
+            <li>PyTorch CNN classifier for NEU-DET steel surface-defect detection — six classes, 1,800 grayscale
+              images</li>
+            <li>From-scratch NN foundation &rarr; tuned CNN, 98.6%/84.7% train/val accuracy via Optuna Bayesian
+              search</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">PyTorch</span>
+            <span class="tag">torchvision</span><span class="tag">CNN</span>
+            <span class="tag">Optuna</span><span class="tag">scikit-learn</span>
+          </div>
+          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk9_neu_defect_cnn" target="_blank"
+            rel="noopener">View on GitHub ↗</a>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-index">P — 014</div>
+          <h3 class="project-title">Fusemachines Wk 8 — Forecasting</h3>
+          <ul class="project-desc-list">
+            <li>Time-series pipeline benchmarking nine forecasters on monthly S&amp;P 500 data (1990–2024) via
+              MASE/RMSE</li>
+            <li>4-model ensemble outperformed every single model — MASE 2.44, confirmed via Diebold-Mariano test
+              (p = 0.0092)</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">statsmodels</span>
+            <span class="tag">SARIMA</span><span class="tag">Holt-Winters</span>
+            <span class="tag">Prophet</span><span class="tag">LightGBM</span>
+            <span class="tag">LSTM</span><span class="tag">XGBoost</span>
+          </div>
+          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk8_sp500_forecasting" target="_blank"
+            rel="noopener">View on GitHub ↗</a>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-index">P — 009</div>
+          <h3 class="project-title">Fusemachines Wk 7 — Customer Segmentation</h3>
+          <ul class="project-desc-list">
+            <li>Market segmentation on UCI Online Retail II (~500,000 transactions) with RFM + category-ratio feature
+              engineering</li>
+            <li>Full clustering comparison — K-Means, Hierarchical, DBSCAN — validated via Silhouette and
+              Davies-Bouldin indices</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">scikit-learn</span>
+            <span class="tag">K-Means</span><span class="tag">Hierarchical Clustering</span>
+            <span class="tag">DBSCAN</span><span class="tag">RFM</span>
+            <span class="tag">Pandas</span><span class="tag">scipy</span>
+          </div>
+          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk7_customer_segmentation" target="_blank"
+            rel="noopener">View on GitHub ↗</a>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-index">P — 008</div>
+          <h3 class="project-title">Fusemachines Wk 6 — Probabilistic Models</h3>
+          <ul class="project-desc-list">
+            <li>Bayesian inference pipeline for Telco Churn using PyMC, ArviZ, and pgmpy</li>
+            <li>MLE/MAP estimation, Dirichlet-multinomial updating, and a fitted PyMC Bayesian logistic regression
+              artifact</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">PyMC</span>
+            <span class="tag">ArviZ</span><span class="tag">pgmpy</span>
+            <span class="tag">Bayesian Inference</span><span class="tag">scikit-learn</span>
+            <span class="tag">Pandas</span>
+          </div>
+          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk6_probabilistic_models" target="_blank"
+            rel="noopener">View on GitHub ↗</a>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-index">P — 003</div>
+          <h3 class="project-title">Telco Churn Tree-Based Ensemble Pipeline</h3>
+          <ul class="project-desc-list">
+            <li>End-to-end classification pipeline on Telco Customer Churn (7,043 rows) with SMOTE restricted to
+              training folds only</li>
+            <li>Random Forest + XGBoost with SHAP explainability; secondary tenure-prediction task with a Model Card
+            </li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">XGBoost</span>
+            <span class="tag">Random Forest</span><span class="tag">SHAP</span>
+            <span class="tag">ImbPipeline</span><span class="tag">SMOTE</span>
+            <span class="tag">Joblib</span><span class="tag">scikit-learn</span>
+          </div>
+          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk5_telco_churn_ensembles" target="_blank"
+            rel="noopener">View on GitHub ↗</a>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-index">P — 004</div>
+          <h3 class="project-title">Telco Churn &amp; CLV ML Pipeline</h3>
+          <ul class="project-desc-list">
+            <li>Classification and regression pipeline for churn prediction and Customer Lifetime Value modeling —
+              ROC-AUC 0.841 ± 0.005</li>
+            <li>Ridge Regression best for CLV (mean $1,304.70); full HTML report export via Papermill</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">scikit-learn</span>
+            <span class="tag">Logistic Regression</span><span class="tag">Ridge</span>
+            <span class="tag">Lasso</span><span class="tag">Pandas</span>
+            <span class="tag">Papermill</span>
+          </div>
+          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk4_linear_models" target="_blank"
+            rel="noopener">View on GitHub ↗</a>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-index">P — 002</div>
+          <h3 class="project-title">Text-to-SQL Agentic Pipeline</h3>
+          <ul class="project-desc-list">
+            <li>Five-stage agentic Text-to-SQL system over a PostgreSQL database — Planner → Generator → Validator →
+              Executor → Summarizer</li>
+            <li>100% execution success and 100% result accuracy across a 50-question benchmark, zero retries required
+            </li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">FastAPI</span>
+            <span class="tag">Streamlit</span><span class="tag">GPT-4o-mini</span>
+            <span class="tag">PostgreSQL</span><span class="tag">Docker</span>
+            <span class="tag">Prompt Chaining</span>
+          </div>
+          <a class="project-link" href="https://github.com/AaradhyaDT/fuseAiF_wk3_text2sql" target="_blank"
+            rel="noopener">View on GitHub ↗</a>
+        </div>
+
+        <div class="project-card reveal project-card--in-progress">
+          <div class="project-index">P — 011 <span class="project-status">In Progress</span></div>
+          <h3 class="project-title">Nexus — Personal AI Operating System</h3>
+          <ul class="project-desc-list">
+            <li>Project-centric AI operating system replacing the multi-browser/multi-account/multi-tool workflow</li>
+            <li>React (Vite) + FastAPI + SQLite/FTS5, parallel Groq + Gemini fan-out — v2 redesign complete
+              June&nbsp;12, 2026</li>
+          </ul>
+          <div class="project-progress">
+            <div class="project-progress-track">
+              <div class="project-progress-step done"></div>
+              <div class="project-progress-step"></div>
+            </div>
+            <div class="project-progress-labels">
+              <span class="project-progress-label done">v2 Core</span>
+              <span class="project-progress-label">MVP</span>
             </div>
           </div>
-          <div class="achievement-date">Jul 2026</div>
+          <div class="project-tags">
+            <span class="tag">React</span><span class="tag">Vite</span>
+            <span class="tag">FastAPI</span><span class="tag">SQLite</span>
+            <span class="tag">FTS5</span><span class="tag">Groq</span>
+            <span class="tag">Gemini</span><span class="tag">Python</span>
+          </div>
+          <a class="project-link" href="https://github.com/AaradhyaDT/nexus" target="_blank" rel="noopener">View on
+            GitHub ↗</a>
         </div>
 
+        <div class="project-card reveal project-card--in-progress">
+          <div class="project-index">P — 005 <span class="project-status">In Progress</span></div>
+          <h3 class="project-title">Alpha Android Super-App</h3>
+          <ul class="project-desc-list">
+            <li>Modular personal super-app (Kotlin/Jetpack Compose, Material3) — gesture remote, budget tracker,
+              multi-mode calculator</li>
+            <li>Calculator is the primary shipping target, Play Store release in progress</li>
+          </ul>
+          <div class="project-progress">
+            <div class="project-progress-track">
+              <div class="project-progress-step done"></div>
+              <div class="project-progress-step"></div>
+            </div>
+            <div class="project-progress-labels">
+              <span class="project-progress-label done">Build</span>
+              <span class="project-progress-label">Play Store</span>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span>
+            <span class="tag">Material3</span><span class="tag">CameraX</span>
+            <span class="tag">MediaPipe</span><span class="tag">Bluetooth SPP</span>
+            <span class="tag">DataStore</span><span class="tag">Apache POI</span>
+          </div>
+          <a class="project-link" href="https://github.com/AaradhyaDT/Alpha-SuperApp" target="_blank"
+            rel="noopener">View on GitHub ↗</a>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-index">P — 006</div>
+          <h3 class="project-title">Edge AI Stability Detection System</h3>
+          <ul class="project-desc-list">
+            <li>ML system predicting platform stability from simulated IMU sensor data — Random Forest, 99.8% test
+              accuracy</li>
+            <li>REST API via FastAPI, Joblib export for robotics integration with
+              <a class="proj-inline-link" href="#p-001">GCSBR (Gesture-Controlled Self-Balancing Robot)</a>
+            </li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">scikit-learn</span>
+            <span class="tag">RandomForest</span><span class="tag">FastAPI</span>
+            <span class="tag">Joblib</span><span class="tag">IMU</span>
+            <span class="tag">Edge AI</span>
+          </div>
+          <a class="project-link" href="https://github.com/AaradhyaDT/stability-ai-system" target="_blank"
+            rel="noopener">View on GitHub ↗</a>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-index">P — 012</div>
+          <h3 class="project-title">Custom Processor FSM Design</h3>
+          <ul class="project-desc-list">
+            <li>VHDL implementation of a custom processor datapath and FSM supporting GCD and exponentiation
+              operations</li>
+            <li>Simulated and verified in Vivado 2023.2 as Embedded Systems coursework</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">VHDL</span><span class="tag">Vivado</span>
+            <span class="tag">FSM</span><span class="tag">Datapath</span>
+            <span class="tag">FPGA</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-index">P — 013</div>
+          <h3 class="project-title">Antenna Lab Data Analysis</h3>
+          <ul class="project-desc-list">
+            <li>Python data-analysis pipeline for antenna radiation pattern measurements from lab Excel sheets</li>
+            <li>SciPy cubic interpolation plus Matplotlib polar plots — Communication &amp; RF coursework
+              deliverable</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">Pandas</span>
+            <span class="tag">NumPy</span><span class="tag">SciPy</span>
+            <span class="tag">Matplotlib</span><span class="tag">Polar Plot</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-index">P — 007</div>
+          <h3 class="project-title">SysOptimizer — Windows Optimization Tool</h3>
+          <ul class="project-desc-list">
+            <li>Standalone Windows optimization tool packaged as a .exe via PyInstaller</li>
+            <li>Power Plan switcher, RAM flush, Background Bloat panel, Startup Scanner — runs silently via
+              CREATE_NO_WINDOW</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">CustomTkinter</span>
+            <span class="tag">PyInstaller</span><span class="tag">WMI</span>
+            <span class="tag">PowerShell</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal project-card--archived">
+          <div class="project-index">P — 010 <span class="project-status">Archived</span></div>
+          <h3 class="project-title">PrakopNet — Multi-Hazard Early Warning System</h3>
+          <ul class="project-desc-list">
+            <li>Solar-powered LoRa mesh multi-hazard monitoring platform for remote regions of Nepal — ESP32 nodes to
+              a Raspberry Pi 4B gateway</li>
+            <li>Archived June 29, 2026 after RYLR890's import-only sourcing conflicted with department policy;
+              superseded by SPARK</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">ESP32</span><span class="tag">RYLR890 LoRa 868 MHz</span>
+            <span class="tag">Raspberry Pi 4B</span><span class="tag">TFLite Micro</span>
+            <span class="tag">LSTM</span><span class="tag">GPS</span>
+            <span class="tag">FastAPI</span><span class="tag">Edge AI</span>
+          </div>
+        </div>
       </div>
     </section>
+
+    <div class="divider-wrap" aria-hidden="true">
+      <div class="divider-edge divider-edge--left"></div>
+      <div class="divider"></div>
+      <div class="divider-node"></div>
+      <div class="divider"></div>
+      <div class="divider-edge divider-edge--right"></div>
+    </div>
 
     <section id="quick-nav" aria-label="Explore the site">
       <div class="section-header reveal">
@@ -988,26 +799,26 @@
         <h2 class="section-title">Where to <em>look next</em></h2>
       </div>
       <div class="quick-nav-grid reveal">
-        <a class="quick-nav-card" href="projects.html">
-          <div class="quick-nav-index">P — 01 <span class="card-arrow dist-2">&lt;&lt;</span></div>
-          <div class="quick-nav-title">Projects</div>
-          <p class="quick-nav-desc">Robotics, embedded ML, and the SPARK fall-detection platform.</p>
-          <span class="quick-nav-cta">View Projects →</span>
-        </a>
         <a class="quick-nav-card" href="experience.html">
-          <div class="quick-nav-index">P — 02 <span class="card-arrow dist-1">&lt;&lt;</span></div>
+          <div class="quick-nav-index">P — 01 <span class="card-arrow dist-1">&gt;&gt;</span></div>
           <div class="quick-nav-title">Experience</div>
           <p class="quick-nav-desc">Fellowships, IEEE leadership, and club roles over the past two years.</p>
           <span class="quick-nav-cta">View Timeline →</span>
         </a>
+        <a class="quick-nav-card" href="achievements.html">
+          <div class="quick-nav-index">P — 02 <span class="card-arrow dist-2">&gt;&gt;</span></div>
+          <div class="quick-nav-title">Achievements</div>
+          <p class="quick-nav-desc">IEEEXtreme, fellowships, certifications, and competition results.</p>
+          <span class="quick-nav-cta">View Achievements →</span>
+        </a>
         <a class="quick-nav-card" href="about.html">
-          <div class="quick-nav-index">P — 03 <span class="card-arrow dist-1">&gt;&gt;</span></div>
+          <div class="quick-nav-index">P — 03 <span class="card-arrow dist-3">&gt;&gt;</span></div>
           <div class="quick-nav-title">About</div>
           <p class="quick-nav-desc">Bio, technical stack, and the path from firmware to applied ML.</p>
           <span class="quick-nav-cta">Read Bio →</span>
         </a>
         <a class="quick-nav-card" href="contact.html">
-          <div class="quick-nav-index">P — 04 <span class="card-arrow dist-2">&gt;&gt;</span></div>
+          <div class="quick-nav-index">P — 04 <span class="card-arrow dist-4">&gt;&gt;</span></div>
           <div class="quick-nav-title">Contact</div>
           <p class="quick-nav-desc">Open to collaborations, research, and internship conversations.</p>
           <span class="quick-nav-cta">Get in Touch →</span>
@@ -1029,147 +840,6 @@
   </footer>
 
   <script src="assets/js/script.js" defer></script>
-
-  <script>
-    (function () {
-      const timeline = document.querySelector('.achievements-list');
-      if (timeline) {
-        const monthMap = {
-          jan: 0, january: 0,
-          feb: 1, february: 1,
-          mar: 2, march: 2,
-          apr: 3, april: 3,
-          may: 4,
-          jun: 5, june: 5,
-          jul: 6, july: 6,
-          aug: 7, august: 7,
-          sep: 8, sept: 8, september: 8,
-          oct: 9, october: 9,
-          nov: 10, november: 10,
-          dec: 11, december: 11
-        };
-
-        function parseDateValue(raw) {
-          if (!raw) return new Date(0);
-          const text = raw.trim();
-          if (!text) return new Date(0);
-
-          if (text.includes('·')) {
-            const parts = text.split('·').map(part => part.trim()).filter(Boolean);
-            const dates = parts.map(parseDateValue).filter(date => !Number.isNaN(date.getTime()));
-            if (dates.length) return new Date(Math.max(...dates));
-          }
-
-          const yearMatch = text.match(/(\d{4})/);
-          const year = yearMatch ? Number(yearMatch[1]) : new Date().getFullYear();
-          const monthMatch = text.match(/(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)/i);
-          const month = monthMatch ? monthMap[monthMatch[1].toLowerCase()] : 0;
-          const dayMatch = text.match(/\b(\d{1,2})(?:st|nd|rd|th)?\b/);
-          const day = dayMatch ? Number(dayMatch[1]) : 1;
-          return new Date(year, month, day);
-        }
-
-        const items = Array.from(timeline.querySelectorAll('.achievement-item'));
-        const sortedEntries = items
-          .map(item => ({
-            item,
-            date: parseDateValue(item.dataset.date || item.querySelector('.achievement-date')?.textContent || ''),
-            year: parseDateValue(item.dataset.date || item.querySelector('.achievement-date')?.textContent || '').getFullYear()
-          }))
-          .sort((a, b) => b.date - a.date);
-
-        const yearBuckets = new Map();
-        sortedEntries.forEach(entry => {
-          const bucket = yearBuckets.get(entry.year) || [];
-          bucket.push(entry.item);
-          yearBuckets.set(entry.year, bucket);
-        });
-
-        timeline.innerHTML = '';
-        Array.from(yearBuckets.keys()).sort((a, b) => b - a).forEach((year, index) => {
-          const group = document.createElement('details');
-          const isCurrentYear = year === new Date().getFullYear();
-          group.className = `year-group ${isCurrentYear ? 'year-group--current' : 'year-group--past'}`;
-          if (index === 0) group.open = true;
-
-          const certCount = yearBuckets.get(year).reduce(
-            (sum, item) => sum + item.querySelectorAll('.cert-btn').length, 0
-          );
-          const summary = document.createElement('summary');
-          summary.className = 'year-toggle';
-          summary.innerHTML = `<span>${year}</span><span class="year-count">${certCount}</span>`;
-          group.appendChild(summary);
-
-          const yearItems = document.createElement('div');
-          yearItems.className = 'year-items';
-          yearBuckets.get(year).forEach(item => yearItems.appendChild(item));
-          group.appendChild(yearItems);
-          timeline.appendChild(group);
-        });
-
-        timeline.querySelectorAll('.achievement-item').forEach(item => {
-          const buttons = Array.from(item.querySelectorAll('.cert-btn, .verify-btn'));
-          if (!buttons.length) return;
-
-          const certThumbGrid = item.querySelector('.cert-thumb-grid');
-          if (certThumbGrid) {
-            if (buttons.length > 1) {
-              certThumbGrid.setAttribute('role', 'group');
-              const titleEl = item.querySelector('.achievement-title');
-              const titleText = titleEl ? titleEl.textContent.trim() : 'this achievement';
-              certThumbGrid.setAttribute('aria-label', `Certificates for ${titleText}`);
-            }
-            return;
-          }
-
-          const actions = document.createElement('div');
-          actions.className = 'achievement-actions';
-          // Multiple certificates under one achievement (e.g. DataCamp ×6):
-          // group them so assistive tech announces them as a related set
-          // rather than an unlabeled run of buttons.
-          if (buttons.length > 1) {
-            actions.setAttribute('role', 'group');
-            const titleEl = item.querySelector('.achievement-title');
-            const titleText = titleEl ? titleEl.textContent.trim() : 'this achievement';
-            actions.setAttribute('aria-label', `Certificates for ${titleText}`);
-          }
-          const firstButton = buttons[0];
-          if (firstButton.parentNode) {
-            firstButton.parentNode.insertBefore(actions, firstButton);
-            buttons.forEach(button => actions.appendChild(button));
-          }
-        });
-
-        initToggleAll(timeline);
-      }
-
-      function initToggleAll(timeline) {
-        const groups = Array.from(timeline.querySelectorAll('.year-group'));
-        const btn = document.getElementById('toggleAllBtn');
-        const label = document.getElementById('toggleAllLabel');
-        if (!groups.length || !btn || !label) return;
-
-        function syncLabel() {
-          const allOpen = groups.every(group => group.open);
-          btn.classList.toggle('is-all-open', allOpen);
-          label.textContent = allOpen ? 'Collapse all' : 'Expand all';
-          btn.setAttribute('aria-label', allOpen ? 'Collapse all years' : 'Expand all years');
-        }
-
-        btn.addEventListener('click', () => {
-          const allOpen = groups.every(group => group.open);
-          groups.forEach(group => { group.open = !allOpen; });
-          syncLabel();
-        });
-
-        // A manual click on any single year's <summary> should keep the
-        // button's label honest too, not just clicks on the button itself.
-        groups.forEach(group => group.addEventListener('toggle', syncLabel));
-        syncLabel();
-      }
-
-    })();
-  </script>
 </body>
 
 </html>

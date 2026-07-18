@@ -903,6 +903,31 @@ html[data-theme="light"] .divider-node {
   }
 }
 
+/* ── Legend swatch color variants (achievements, timeline) ── */
+.legend-swatch--workshop {
+  --swatch-color: var(--glow-blue);
+}
+
+.legend-swatch--certification {
+  --swatch-color: var(--glow-violet);
+}
+
+.legend-swatch--competition {
+  --swatch-color: var(--glow-coral);
+}
+
+.legend-swatch--leadership {
+  --swatch-color: var(--glow-teal);
+}
+
+.legend-swatch--current-year {
+  --swatch-color: var(--glow-green);
+}
+
+.legend-swatch--past-years {
+  --swatch-color: var(--glow-blue);
+}
+
 /* ── Tag chip ─────────────────────────────────────────────── */
 .tag {
   font-family: var(--mono);

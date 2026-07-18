@@ -88,8 +88,6 @@
       flex-direction: column;
       background: var(--bg2);
       border: 1px solid var(--line);
-      border-left: 4px solid var(--line);
-      border-right: 4px solid var(--line);
       border-radius: 10px;
       padding: 1.75rem;
       scroll-margin-top: calc(var(--nav-h) + 1rem);
@@ -97,45 +95,9 @@
     }
 
     .achievement-item:hover {
+      border-color: var(--glow-green);
       transform: translateY(-3px);
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px var(--glow-green-a35);
-    }
-
-    /* Category color-coding — left/right accent borders only, top/bottom stay neutral */
-    .achievement-item[data-category="workshop"] {
-      border-left-color: var(--glow-blue);
-      border-right-color: var(--glow-blue);
-    }
-
-    .achievement-item[data-category="certification"] {
-      border-left-color: var(--glow-violet);
-      border-right-color: var(--glow-violet);
-    }
-
-    .achievement-item[data-category="competition"] {
-      border-left-color: var(--glow-coral);
-      border-right-color: var(--glow-coral);
-    }
-
-    .achievement-item[data-category="leadership"] {
-      border-left-color: var(--glow-teal);
-      border-right-color: var(--glow-teal);
-    }
-
-    .achievement-item[data-category="workshop"]:hover {
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px var(--glow-blue-a35);
-    }
-
-    .achievement-item[data-category="certification"]:hover {
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px var(--glow-violet-a35);
-    }
-
-    .achievement-item[data-category="competition"]:hover {
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px var(--glow-coral-a35);
-    }
-
-    .achievement-item[data-category="leadership"]:hover {
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px var(--glow-teal-a35);
     }
 
     .achievement-org {
@@ -251,52 +213,8 @@
 
     .achv-list-controls {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.75rem;
+      justify-content: flex-end;
       margin-bottom: 0.9rem;
-    }
-
-    .achv-legends {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1.1rem;
-    }
-
-    .achv-legend-sep {
-      width: 1px;
-      height: 1em;
-      background: var(--line);
-      flex-shrink: 0;
-    }
-
-    .achv-legend {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1.1rem;
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .legend-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5em;
-    }
-
-    .legend-swatch {
-      width: 0.8em;
-      height: 0.8em;
-      flex-shrink: 0;
-      border-radius: 2px;
-      background: var(--swatch-color);
-      box-shadow: 0 0 6px var(--swatch-color);
     }
 
     .achv-toggle-all {
@@ -330,6 +248,92 @@
 
     .achv-toggle-all.is-all-open svg {
       transform: rotate(180deg);
+    }
+
+    .achv-list-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .achv-legends {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.1rem;
+    }
+
+    .achv-legend {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.1rem;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .achv-legend-sep {
+      width: 1px;
+      height: 1em;
+      background: var(--line);
+      flex-shrink: 0;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+
+    .legend-swatch {
+      width: 0.8em;
+      height: 0.8em;
+      flex-shrink: 0;
+      border-radius: 2px;
+      background: var(--swatch-color);
+      box-shadow: 0 0 6px var(--swatch-color);
+    }
+
+    .achievement-item[data-category="workshop"] {
+      border-left-color: var(--glow-blue);
+      border-right-color: var(--glow-blue);
+    }
+
+    .achievement-item[data-category="certification"] {
+      border-left-color: var(--glow-violet);
+      border-right-color: var(--glow-violet);
+    }
+
+    .achievement-item[data-category="competition"] {
+      border-left-color: var(--glow-coral);
+      border-right-color: var(--glow-coral);
+    }
+
+    .achievement-item[data-category="leadership"] {
+      border-left-color: var(--glow-teal);
+      border-right-color: var(--glow-teal);
+    }
+
+    .achievement-item[data-category="workshop"]:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px var(--glow-blue-a35);
+    }
+
+    .achievement-item[data-category="certification"]:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px var(--glow-violet-a35);
+    }
+
+    .achievement-item[data-category="competition"]:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px var(--glow-coral-a35);
+    }
+
+    .achievement-item[data-category="leadership"]:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px var(--glow-teal-a35);
     }
 
     .year-group {
@@ -370,27 +374,38 @@
     .year-count {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      width: 2em;
-      height: 2em;
-      flex-shrink: 0;
-      border-radius: 50%;
-      border: 1.5px solid var(--accent-a35);
+      gap: 0.3em;
       color: var(--accent);
-      font-size: 0.65rem;
-      letter-spacing: 0.05em;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .year-count::before,
+    .year-count::after {
+      font-family: var(--mono);
+      font-size: 1.15em;
+      font-weight: 400;
+      color: inherit;
+      opacity: 0.65;
+    }
+
+    .year-count::before {
+      content: "[";
+    }
+
+    .year-count::after {
+      content: "]";
     }
 
     .year-group--current .year-count {
-      border-color: var(--glow-green);
       color: var(--glow-green);
-      box-shadow: 0 0 8px var(--glow-green-a35);
+      text-shadow: 0 0 8px var(--glow-green-a50);
     }
 
     .year-group--past .year-count {
-      border-color: var(--glow-blue);
       color: var(--glow-blue);
-      box-shadow: 0 0 8px var(--glow-blue-a35);
+      text-shadow: 0 0 8px var(--glow-blue-a50);
     }
 
     .year-items {
@@ -544,20 +559,15 @@
       <div class="achv-list-controls">
         <div class="achv-legends">
           <div class="achv-legend" aria-label="Achievement category legend">
-            <span class="legend-item"><span class="legend-swatch"
-                style="--swatch-color: var(--glow-blue)"></span>Workshop</span>
-            <span class="legend-item"><span class="legend-swatch"
-                style="--swatch-color: var(--glow-violet)"></span>Certification</span>
-            <span class="legend-item"><span class="legend-swatch"
-                style="--swatch-color: var(--glow-coral)"></span>Competition</span>
-            <span class="legend-item"><span class="legend-swatch"
-                style="--swatch-color: var(--glow-teal)"></span>Leadership</span>
+            <span class="legend-item"><span class="legend-swatch legend-swatch--workshop"></span>Workshop</span>
+            <span class="legend-item"><span class="legend-swatch legend-swatch--certification"></span>Certification</span>
+            <span class="legend-item"><span class="legend-swatch legend-swatch--competition"></span>Competition</span>
+            <span class="legend-item"><span class="legend-swatch legend-swatch--leadership"></span>Leadership</span>
           </div>
           <span class="achv-legend-sep" aria-hidden="true"></span>
           <div class="achv-legend" aria-label="Year recency legend">
-            <span class="legend-item"><span class="legend-swatch"
-                style="--swatch-color: var(--glow-green)"></span>Current Year</span>
-            <span class="legend-item"><span class="legend-swatch" style="--swatch-color: var(--glow-blue)"></span>Past
+            <span class="legend-item"><span class="legend-swatch legend-swatch--current-year"></span>Current Year</span>
+            <span class="legend-item"><span class="legend-swatch legend-swatch--past-years"></span>Past
               Years</span>
           </div>
         </div>
@@ -773,7 +783,7 @@
           <div class="achievement-date">May 2026</div>
         </div>
 
-        <div class="achievement-item reveal" data-date="Feb 2026" data-category="certification">
+        <div class="achievement-item reveal" data-category="certification" data-date="Feb 2026">
           <div class="achievement-org">TechAxis</div>
           <div>
             <h3 class="achievement-title">Prompt Engineering Fundamentals</h3>
