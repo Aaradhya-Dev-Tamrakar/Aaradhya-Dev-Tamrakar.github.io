@@ -1110,7 +1110,7 @@ function initKeyNav() {
       return;
     }
 
-    if (e.key === '4' && e.shiftKey) {
+    if (e.shiftKey && (e.key === '4' || e.key === '$')) {
       const academicBtn = document.getElementById('trackAcademicBtn');
       const ecaBtn = document.getElementById('trackEcaBtn');
       if (academicBtn && ecaBtn) {
