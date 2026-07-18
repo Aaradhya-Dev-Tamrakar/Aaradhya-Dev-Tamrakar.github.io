@@ -22,6 +22,7 @@ A personal portfolio website for **Aaradhya Dev Tamrakar**.
 ## Current Status
 
 - Static site structure is in place for GitHub Pages.
+- **v23 (2026-07-18)**: UI refinements applied — hero date toggle, navigation arrow consistency, card-arrow styling, keyboard shortcut update (= for scroll-to-top), and refined keymap wording. Also: small CSS tweak added to `assets/css/style.css` to increase footer right padding and avoid overlap between the "Get in Touch"/goto control and the Instagram social icon on small viewports.
 - Shared assets live under `assets/` for easier maintenance.
 - All main pages are present and included in `sitemap.xml`. `404.html` is intentionally excluded (not-found pages shouldn't be indexed) and is marked `noindex, nofollow`.
 - Certificate files are stored in `assets/certificates/` and loaded from the achievements page.
