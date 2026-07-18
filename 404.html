@@ -40,7 +40,7 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400&display=swap" />
   </noscript>
 
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
 
   <!-- Page-specific: 404 (numeral + quick-nav, copied per the site's existing per-page style pattern) -->
   <style>
@@ -134,15 +134,15 @@
   </div>
 
   <noscript>
-    <nav aria-label="Primary navigation"><a href="index.html" class="nav-logo">ADT<span>.</span></a>
+    <nav aria-label="Primary navigation"><a href="/index.html" class="nav-logo">ADT<span>.</span></a>
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="experience.html">Experience</a></li>
-        <li><a href="achievements.html">Achievements</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/projects.html">Projects</a></li>
+        <li><a href="/experience.html">Experience</a></li>
+        <li><a href="/achievements.html">Achievements</a></li>
+        <li><a href="/about.html">About</a></li>
       </ul>
-      <div class="nav-right"><a href="contact.html" class="nav-cta">Connect</a></div>
+      <div class="nav-right"><a href="/contact.html" class="nav-cta">Connect</a></div>
     </nav>
   </noscript>
   <div id="siteNav"></div>
@@ -155,8 +155,8 @@
     </header>
 
     <div id="not-found-actions">
-      <a href="index.html" class="btn-primary" aria-label="Return to homepage">Back to Home</a>
-      <a href="contact.html" class="btn-ghost" aria-label="Report a broken link">Report a Broken Link →</a>
+      <a href="/index.html" class="btn-primary" aria-label="Return to homepage">Back to Home</a>
+      <a href="/contact.html" class="btn-ghost" aria-label="Report a broken link">Report a Broken Link →</a>
     </div>
 
     <section id="quick-nav" aria-label="Explore the site">
@@ -165,25 +165,25 @@
         <h2 class="section-title">Where to <em>look instead</em></h2>
       </div>
       <div class="quick-nav-grid reveal">
-        <a class="quick-nav-card" href="projects.html">
+        <a class="quick-nav-card" href="/projects.html">
           <div class="quick-nav-index">P — 01</div>
           <div class="quick-nav-title">Projects</div>
           <p class="quick-nav-desc">Robotics, embedded ML, and the SPARK fall-detection platform.</p>
           <span class="quick-nav-cta">View Projects →</span>
         </a>
-        <a class="quick-nav-card" href="experience.html">
+        <a class="quick-nav-card" href="/experience.html">
           <div class="quick-nav-index">P — 02</div>
           <div class="quick-nav-title">Experience</div>
           <p class="quick-nav-desc">Fellowships, IEEE leadership, and club roles over the past two years.</p>
           <span class="quick-nav-cta">View Timeline →</span>
         </a>
-        <a class="quick-nav-card" href="achievements.html">
+        <a class="quick-nav-card" href="/achievements.html">
           <div class="quick-nav-index">P — 03</div>
           <div class="quick-nav-title">Achievements</div>
           <p class="quick-nav-desc">IEEEXtreme, fellowships, certifications, and competition results.</p>
           <span class="quick-nav-cta">View Achievements →</span>
         </a>
-        <a class="quick-nav-card" href="about.html">
+        <a class="quick-nav-card" href="/about.html">
           <div class="quick-nav-index">P — 04</div>
           <div class="quick-nav-title">About</div>
           <p class="quick-nav-desc">Bio, technical stack, and the path from firmware to applied ML.</p>
@@ -198,26 +198,20 @@
   </footer>
 
   <script>
-    // Redirect canonicalizer: when the server serves this file for a missing
-    // path, navigate the browser to the repository's canonical `/404.html` URL.
+    // Redirect canonicalizer: navigate to absolute `/404.html` so assets load.
     (function () {
       try {
         var pathname = window.location.pathname || "/";
-        // compute repo-root (first path segment) or `/` for user site
-        var segs = pathname.split('/');
-        var root = segs[1] ? '/' + segs[1] + '/' : '/';
-        var target = root + '404.html';
-        // avoid redirect loop if already at canonical 404
+        var target = '/404.html';
         if (pathname !== target && pathname !== (target.replace(/\/$/, ''))) {
           window.location.replace(target + window.location.search + window.location.hash);
         }
       } catch (e) {
-        // fail silently — do not block the page if something goes wrong
         console.warn('404 redirect script error', e);
       }
     })();
   </script>
-  <script src="assets/js/script.js" defer></script>
+  <script src="/assets/js/script.js" defer></script>
 </body>
 
 </html>
