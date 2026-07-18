@@ -1674,31 +1674,37 @@ html[data-theme="light"] #quick-nav::before {
   display: inline-block;
   margin-left: 0.45em;
   color: var(--glow-green);
-  transition: opacity .25s, text-shadow .25s;
+  transition: opacity .25s, text-shadow .25s, transform .25s;
 }
 
 .card-arrow.dist-1 {
   opacity: 1;
+  transform: scale(1.15);
 }
 
 .card-arrow.dist-2 {
-  opacity: .95;
+  opacity: .8;
+  transform: scale(1.05);
 }
 
 .card-arrow.dist-3 {
-  opacity: .9;
+  opacity: .6;
+  transform: scale(1);
 }
 
 .card-arrow.dist-4 {
-  opacity: .85;
+  opacity: .45;
+  transform: scale(.92);
 }
 
 .card-arrow.dist-5 {
-  opacity: .8;
+  opacity: .3;
+  transform: scale(.85);
 }
 
 .quick-nav-card:hover .card-arrow {
   opacity: 1;
+  transform: scale(1);
   text-shadow: 0 0 8px var(--glow-green-a50);
 }
 
