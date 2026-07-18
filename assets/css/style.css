@@ -1299,36 +1299,355 @@ footer {
   outline-offset: 2px;
 }
 
-/* ── Quick-nav cards (Explore section — index, about, projects, contact, achievements, experience) ── */
-#quick-nav { background: transparent; position: relative; padding: 6rem 3rem; }
-#quick-nav::before { content:""; position:absolute; inset:0; z-index:0; background: rgba(15,14,12,.55); pointer-events:none; }
-html[data-theme="light"] #quick-nav::before { background: rgba(245,242,236,.7); }
-#quick-nav > * { position: relative; z-index: 1; }
-.quick-nav-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px;
-  border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+/* ── Nav search trigger ── */
+.nav-search-btn {
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: border-color 0.25s, color 0.25s;
 }
+
+.nav-search-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.nav-search-btn svg {
+  width: 15px;
+  height: 15px;
+  pointer-events: none;
+}
+
+/* ── Command palette (unified site search, "/" to open) ── */
+#cmdk {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 12vh 1.5rem 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+#cmdk.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cmdk-inner {
+  width: 100%;
+  max-width: 560px;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface, var(--bg2));
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  transform: translateY(10px) scale(0.98);
+  transition: transform 0.2s ease;
+}
+
+#cmdk.open .cmdk-inner {
+  transform: translateY(0) scale(1);
+}
+
+.cmdk-search {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1rem 1.1rem;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+
+.cmdk-search svg {
+  width: 16px;
+  height: 16px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.cmdk-search input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  color: var(--heading);
+}
+
+.cmdk-search input::placeholder {
+  color: var(--muted);
+}
+
+.cmdk-search kbd {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.15rem 0.4rem;
+  flex-shrink: 0;
+}
+
+.cmdk-tabs {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1.1rem;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+
+.cmdk-tab {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.32rem 0.75rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.cmdk-tab:hover {
+  color: var(--text);
+  border-color: var(--accent-a35);
+}
+
+.cmdk-tab.active {
+  color: var(--bg);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.cmdk-results {
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+.cmdk-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.65rem 0.7rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.cmdk-item.is-active {
+  background: var(--bg3, var(--accent-a07));
+}
+
+.cmdk-item-icon {
+  width: 15px;
+  height: 15px;
+  margin-top: 0.15rem;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.cmdk-item-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.cmdk-item-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.cmdk-item-title {
+  font-size: 0.88rem;
+  color: var(--heading);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cmdk-item-meta {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cmdk-empty {
+  padding: 2rem 1.1rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+@media (max-width: 600px) {
+  #cmdk {
+    padding: 6vh 0.75rem 1rem;
+  }
+}
+
+/* ── Search result highlight (landed on via the command palette) ── */
+@keyframes search-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--accent-a45);
+  }
+
+  30% {
+    box-shadow: 0 0 0 6px var(--accent-a12);
+  }
+}
+
+.search-highlight {
+  animation: search-pulse 1.6s ease;
+  border-color: var(--accent) !important;
+}
+
+/* ── Quick-nav cards (Explore section — index, about, projects, contact, achievements, experience) ── */
+#quick-nav {
+  background: transparent;
+  position: relative;
+  padding: 6rem 3rem;
+}
+
+#quick-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(15, 14, 12, .55);
+  pointer-events: none;
+}
+
+html[data-theme="light"] #quick-nav::before {
+  background: rgba(245, 242, 236, .7);
+}
+
+#quick-nav>* {
+  position: relative;
+  z-index: 1;
+}
+
+.quick-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
 .quick-nav-card {
-  background: var(--bg2); padding: 2.5rem 2rem;
-  display: flex; flex-direction: column; gap: 1rem;
-  text-decoration: none; position: relative; overflow: hidden;
+  background: var(--bg2);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
   transition: background .3s;
 }
+
 .quick-nav-card::after {
-  content:""; position:absolute; top:0; left:0; right:0; height:1px;
-  background: var(--accent); transform: scaleX(0); transform-origin: left;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
   transition: transform .4s ease;
 }
-.quick-nav-card:hover { background: var(--bg3); }
-.quick-nav-card:hover::after { transform: scaleX(1); }
-.quick-nav-index { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; color: var(--accent); opacity: .8; }
-.quick-nav-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; color: var(--heading); }
-.quick-nav-desc { font-size: 0.85rem; line-height: 1.65; color: var(--text); flex: 1; }
-.quick-nav-cta {
-  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--accent2);
-  display: inline-flex; align-items: center; gap: 0.4rem; transition: gap .25s;
+
+.quick-nav-card:hover {
+  background: var(--bg3);
 }
-.quick-nav-card:hover .quick-nav-cta { gap: 0.65rem; }
-@media (max-width: 1100px) { #quick-nav { padding: 4rem 2rem; } }
-@media (max-width: 900px)  { #quick-nav { padding: 3.5rem 1.5rem; } .quick-nav-grid { grid-template-columns: 1fr; } }
+
+.quick-nav-card:hover::after {
+  transform: scaleX(1);
+}
+
+.quick-nav-index {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  opacity: .8;
+}
+
+.quick-nav-title {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--heading);
+}
+
+.quick-nav-desc {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--text);
+  flex: 1;
+}
+
+.quick-nav-cta {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap .25s;
+}
+
+.quick-nav-card:hover .quick-nav-cta {
+  gap: 0.65rem;
+}
+
+@media (max-width: 1100px) {
+  #quick-nav {
+    padding: 4rem 2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  #quick-nav {
+    padding: 3.5rem 1.5rem;
+  }
+
+  .quick-nav-grid {
+    grid-template-columns: 1fr;
+  }
+}

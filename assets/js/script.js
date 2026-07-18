@@ -34,6 +34,24 @@ const SOCIAL_ICONS = {
   Instagram: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
 };
 
+/* ── Command palette data ─────────────────────────────────── */
+const CMDK_PAGES = [
+  { title: 'Home', href: 'index.html' },
+  { title: 'Projects', href: 'projects.html' },
+  { title: 'Experience', href: 'experience.html' },
+  { title: 'Achievements', href: 'achievements.html' },
+  { title: 'About', href: 'about.html' },
+  { title: 'Contact', href: 'contact.html' },
+];
+
+const CMDK_TYPE_LABEL = { page: 'Page', project: 'Project', achievement: 'Achievement' };
+
+const CMDK_ICONS = {
+  page: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 22V12h6v10M3 10l9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>',
+  project: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+  achievement: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 6 22l6-3 6 3-3-8.5"/></svg>',
+};
+
 /* ── Navbar injection ─────────────────────────────────────── */
 function renderSiteNav() {
   const el = document.getElementById('siteNav');
@@ -52,6 +70,12 @@ function renderSiteNav() {
       </ul>
       <div class="nav-right">
         <a href="contact.html" class="nav-cta" aria-label="Connect with Aaradhya">Connect</a>
+        <button class="nav-search-btn" id="navSearchBtn" aria-label="Search (press /)" title="Search (press /)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
@@ -341,6 +365,7 @@ function applyLiveDates(map) {
   initReveal();
   initCursor();
   initLightbox();
+  initGlobalSearch();
   renderSiteFooter();
   window.addEventListener('load', loadGA4);
 })();
@@ -416,6 +441,210 @@ function initLightbox() {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && lb.classList.contains('open')) closeLightbox();
   });
+}
+
+/* ── Global search / command palette ("/" to open, unified across pages) ── */
+function buildSearchIndex() {
+  const index = CMDK_PAGES.map(p => ({
+    type: 'page', title: p.title, meta: '', href: p.href, text: p.title.toLowerCase(),
+  }));
+
+  document.querySelectorAll('#achievementsList .achievement-item').forEach((el, i) => {
+    el.id = el.id || `achv-${i}`;
+    const org = el.querySelector('.achievement-org')?.textContent.trim() || '';
+    const title = el.querySelector('.achievement-title')?.textContent.trim() || '';
+    const desc = el.querySelector('.achievement-desc')?.textContent.trim() || '';
+    const date = el.querySelector('.achievement-date')?.textContent.trim() || '';
+    index.push({
+      type: 'achievement',
+      title,
+      meta: [org, date].filter(Boolean).join(' · '),
+      href: `achievements.html#${el.id}`,
+      text: [org, title, desc, date].join(' ').toLowerCase(),
+    });
+  });
+
+  document.querySelectorAll('#projectsGrid .project-card').forEach((el, i) => {
+    el.id = el.id || `proj-${i}`;
+    const title = el.querySelector('.project-title')?.textContent.trim() || '';
+    const desc = el.querySelector('.project-desc')?.textContent.trim() || '';
+    const status = el.querySelector('.project-status')?.textContent.trim() || '';
+    const tags = Array.from(el.querySelectorAll('.tag')).map(t => t.textContent.trim());
+    index.push({
+      type: 'project',
+      title,
+      meta: [status, tags.slice(0, 3).join(', ')].filter(Boolean).join(' · '),
+      href: `projects.html#${el.id}`,
+      text: [title, desc, tags.join(' '), status].join(' ').toLowerCase(),
+    });
+  });
+
+  return index;
+}
+
+function renderCmdk() {
+  if (document.getElementById('cmdk')) return;
+  const el = document.createElement('div');
+  el.id = 'cmdk';
+  el.setAttribute('role', 'dialog');
+  el.setAttribute('aria-modal', 'true');
+  el.setAttribute('aria-label', 'Search');
+  el.innerHTML = `
+    <div class="cmdk-inner">
+      <div class="cmdk-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        <input type="text" id="cmdkInput" placeholder="Search pages, projects, achievements…" aria-label="Search" autocomplete="off" />
+        <kbd>Esc</kbd>
+      </div>
+      <div class="cmdk-tabs" id="cmdkTabs" role="tablist" aria-label="Filter by type">
+        <button type="button" class="cmdk-tab active" data-type="" role="tab" aria-selected="true">All</button>
+        <button type="button" class="cmdk-tab" data-type="page" role="tab" aria-selected="false">Pages</button>
+        <button type="button" class="cmdk-tab" data-type="project" role="tab" aria-selected="false">Projects</button>
+        <button type="button" class="cmdk-tab" data-type="achievement" role="tab" aria-selected="false">Achievements</button>
+      </div>
+      <div class="cmdk-results" id="cmdkResults" role="listbox" aria-label="Results"></div>
+      <div class="cmdk-empty" id="cmdkEmpty" hidden>No matches.</div>
+    </div>`;
+  document.body.appendChild(el);
+}
+
+function revealSearchTarget() {
+  if (!location.hash) return;
+  const target = document.getElementById(location.hash.slice(1));
+  if (!target) return;
+  const group = target.closest('details.year-group');
+  if (group) group.open = true;
+  requestAnimationFrame(() => target.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+  target.classList.add('search-highlight');
+  setTimeout(() => target.classList.remove('search-highlight'), 1600);
+}
+
+function initGlobalSearch() {
+  renderCmdk();
+  const cmdk = document.getElementById('cmdk');
+  const input = document.getElementById('cmdkInput');
+  const tabsEl = document.getElementById('cmdkTabs');
+  const resultsEl = document.getElementById('cmdkResults');
+  const emptyEl = document.getElementById('cmdkEmpty');
+  const navBtn = document.getElementById('navSearchBtn');
+  if (!cmdk || !input || !resultsEl) return;
+
+  const index = buildSearchIndex();
+  let activeType = '';
+  let activeIndex = -1;
+  let lastFocus = null;
+
+  function currentResults() {
+    const query = input.value.trim().toLowerCase();
+    let pool = activeType ? index.filter(item => item.type === activeType) : index;
+    if (!query) {
+      pool = activeType ? pool : pool.filter(item => item.type === 'page');
+    } else {
+      pool = pool.filter(item => item.text.includes(query));
+    }
+    return pool.slice(0, 50);
+  }
+
+  function setActiveResult() {
+    const rows = Array.from(resultsEl.querySelectorAll('.cmdk-item'));
+    rows.forEach((row, i) => {
+      const isActive = i === activeIndex;
+      row.classList.toggle('is-active', isActive);
+      row.setAttribute('aria-selected', String(isActive));
+      if (isActive) row.scrollIntoView({ block: 'nearest' });
+    });
+  }
+
+  function renderResults(items) {
+    resultsEl.innerHTML = items.map((item, i) => `
+      <a href="${item.href}" class="cmdk-item" role="option" data-i="${i}" aria-selected="false">
+        <span class="cmdk-item-icon">${CMDK_ICONS[item.type]}</span>
+        <span class="cmdk-item-body">
+          <span class="cmdk-item-title">${item.title}</span>
+          <span class="cmdk-item-meta">${[CMDK_TYPE_LABEL[item.type], item.meta].filter(Boolean).join(' · ')}</span>
+        </span>
+      </a>`).join('');
+    activeIndex = items.length ? 0 : -1;
+    setActiveResult();
+    emptyEl.hidden = items.length !== 0;
+  }
+
+  function refresh() {
+    renderResults(currentResults());
+  }
+
+  function setActiveTab(tab) {
+    activeType = tab.dataset.type;
+    tabsEl.querySelectorAll('.cmdk-tab').forEach(t => {
+      const isActive = t === tab;
+      t.classList.toggle('active', isActive);
+      t.setAttribute('aria-selected', String(isActive));
+    });
+  }
+
+  function openCmdk() {
+    lastFocus = document.activeElement;
+    input.value = '';
+    setActiveTab(tabsEl.querySelector('.cmdk-tab[data-type=""]'));
+    refresh();
+    cmdk.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    input.focus();
+  }
+
+  function closeCmdk() {
+    cmdk.classList.remove('open');
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+
+  if (navBtn) navBtn.addEventListener('click', openCmdk);
+
+  document.addEventListener('keydown', e => {
+    if (cmdk.classList.contains('open')) return;
+    if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;
+    const tag = (document.activeElement || {}).tagName || '';
+    if (/^(INPUT|TEXTAREA|SELECT)$/i.test(tag) || document.activeElement?.isContentEditable) return;
+    e.preventDefault();
+    openCmdk();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (!cmdk.classList.contains('open')) return;
+    if (e.key === 'Escape') {
+      closeCmdk();
+      return;
+    }
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      const max = resultsEl.querySelectorAll('.cmdk-item').length;
+      if (!max) return;
+      activeIndex = e.key === 'ArrowDown'
+        ? (activeIndex + 1) % max
+        : (activeIndex - 1 + max) % max;
+      setActiveResult();
+      return;
+    }
+    if (e.key === 'Enter') {
+      const row = resultsEl.querySelectorAll('.cmdk-item')[activeIndex];
+      if (row) {
+        e.preventDefault();
+        row.click();
+      }
+    }
+  });
+
+  cmdk.addEventListener('click', e => { if (e.target === cmdk) closeCmdk(); });
+  resultsEl.addEventListener('click', e => { if (e.target.closest('.cmdk-item')) closeCmdk(); });
+  input.addEventListener('input', refresh);
+  tabsEl.querySelectorAll('.cmdk-tab').forEach(tab => {
+    tab.addEventListener('click', () => { setActiveTab(tab); refresh(); });
+  });
+
+  window.addEventListener('hashchange', revealSearchTarget);
+  revealSearchTarget();
 }
 
 /* ── Keyboard page navigation (1–6) ──────────────────────── */

@@ -84,47 +84,55 @@
     }
 
     .achievement-item {
-      display: grid;
-      grid-template-columns: 1fr 3fr 1fr;
-      align-items: start;
-      gap: 3rem;
-      padding: 2.5rem 0;
-      border-bottom: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1.75rem;
+      scroll-margin-top: calc(var(--nav-h) + 1rem);
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
     }
 
-    .achievement-item:first-child {
-      border-top: 1px solid var(--line);
+    .achievement-item:hover {
+      border-color: var(--accent-a35);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     }
 
     .achievement-org {
       font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--text);
+      color: var(--accent);
+      opacity: 0.75;
+      margin-bottom: 1rem;
     }
 
     .achievement-title {
       font-family: var(--serif);
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 400;
       color: var(--heading);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
+      line-height: 1.25;
     }
 
     .achievement-desc {
-      font-size: 0.92rem;
-      line-height: 1.75;
+      font-size: 0.88rem;
+      line-height: 1.7;
       color: var(--text);
     }
 
     .achievement-date {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       letter-spacing: 0.1em;
-      color: var(--accent);
-      text-align: right;
-      padding-top: 0.2rem;
+      color: var(--muted);
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
     }
 
     /* Certificate button */
@@ -164,6 +172,45 @@
       flex-shrink: 0;
     }
 
+    .achv-list-controls {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 0.9rem;
+    }
+
+    .achv-toggle-all {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 0.5em 0.9em;
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .achv-toggle-all:hover {
+      color: var(--accent);
+      border-color: var(--accent-a35);
+    }
+
+    .achv-toggle-all svg {
+      width: 0.85em;
+      height: 0.85em;
+      flex-shrink: 0;
+      transition: transform 0.25s;
+    }
+
+    .achv-toggle-all.is-all-open svg {
+      transform: rotate(180deg);
+    }
+
     .year-group {
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -198,218 +245,10 @@
     }
 
     .year-items {
-      padding: 0 1.25rem 0.5rem;
-    }
-
-    .year-items .achievement-item {
-      grid-template-columns: 1fr 3fr 1fr;
-      gap: 2rem;
-      padding: 1.25rem 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .year-items .achievement-item:last-child {
-      border-bottom: none;
-    }
-
-    /* ── Filter / search bar ── */
-    .achv-toolbar {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-      position: sticky;
-      top: calc(var(--nav-h) + 0.75rem);
-      z-index: 5;
-      padding: 0.85rem 0.9rem;
-      margin-inline: -0.9rem;
-      border-radius: 10px;
-      background: var(--nav-scrolled-bg);
-      -webkit-backdrop-filter: blur(var(--glass-blur));
-      backdrop-filter: blur(var(--glass-blur));
-      transition: box-shadow 0.2s;
-    }
-
-    .achv-toolbar.is-stuck {
-      box-shadow: var(--card-shadow);
-      border: 1px solid var(--line);
-    }
-
-    .achv-results-count {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      min-height: 1em;
-    }
-
-    .achv-results-count strong {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .achv-search kbd {
-      position: absolute;
-      right: 0.6rem;
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      color: var(--muted);
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      padding: 0.12rem 0.4rem;
-      pointer-events: none;
-    }
-
-    .achv-search.has-value kbd {
-      display: none;
-    }
-
-    .achv-filter-chip .achv-chip-count {
-      opacity: 0.6;
-      margin-left: 0.35em;
-    }
-
-    .achv-search {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-
-    .achv-search svg {
-      position: absolute;
-      left: 0.9rem;
-      width: 0.95rem;
-      height: 0.95rem;
-      color: var(--muted);
-      pointer-events: none;
-    }
-
-    .achv-search input {
-      width: 100%;
-      font-family: var(--sans);
-      font-size: 0.85rem;
-      color: var(--text);
-      background: var(--glass-bg);
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 0.7rem 2.6rem 0.7rem 2.5rem;
-      transition: border-color 0.2s, background 0.2s;
-    }
-
-    .achv-search input::placeholder {
-      color: var(--muted);
-    }
-
-    .achv-search input:focus {
-      outline: none;
-      border-color: var(--accent-a45);
-      background: var(--surface);
-    }
-
-    .achv-search-clear {
-      position: absolute;
-      right: 0.6rem;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      width: 1.6rem;
-      height: 1.6rem;
-      border: none;
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      border-radius: 4px;
-      transition: color 0.15s, background 0.15s;
-    }
-
-    .achv-search-clear svg {
-      position: static;
-      width: 0.8rem;
-      height: 0.8rem;
-      color: inherit;
-    }
-
-    .achv-search-clear:hover {
-      color: var(--heading);
-      background: var(--text-a10);
-    }
-
-    .achv-search.has-value .achv-search-clear {
-      display: flex;
-    }
-
-    .achv-filters {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .achv-filter-chip {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text);
-      background: transparent;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 0.4rem 0.85rem;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
-      white-space: nowrap;
-    }
-
-    .achv-filter-chip:hover {
-      border-color: var(--accent-a40);
-      color: var(--heading);
-    }
-
-    .achv-filter-chip.active {
-      background: var(--accent-a07);
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .achv-filter-chip:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-
-    .achv-empty-state {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      padding: 3.5rem 1rem;
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      border: 1px dashed var(--line);
-      border-radius: 8px;
-    }
-
-    .achv-empty-state.visible {
-      display: flex;
-    }
-
-    .achievement-item.is-hidden,
-    .year-group.is-hidden {
-      display: none !important;
-    }
-
-    @media (max-width: 480px) {
-      .achv-filters {
-        gap: 0.4rem;
-      }
-
-      .achv-filter-chip {
-        font-size: 0.58rem;
-        padding: 0.35rem 0.7rem;
-      }
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.1rem;
+      padding: 1.25rem;
     }
 
     .cert-btn:hover {
@@ -466,14 +305,8 @@
         padding: 1.5rem 1.5rem 4rem;
       }
 
-      .achievement-item {
+      .year-items {
         grid-template-columns: 1fr;
-        gap: 0.4rem;
-        padding: 1.75rem 0;
-      }
-
-      .achievement-date {
-        text-align: left;
       }
 
       .lightbox-inner {
@@ -559,32 +392,15 @@
     </header>
 
     <section id="achievements" aria-label="Achievements timeline">
-      <div class="achv-toolbar reveal" id="achvToolbar">
-        <div class="achv-search">
+      <div class="achv-list-controls">
+        <button type="button" class="achv-toggle-all" id="toggleAllBtn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
             stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            <polyline points="6 9 12 15 18 9" />
           </svg>
-          <input type="text" id="achvSearch" placeholder="Search achievements…" aria-label="Search achievements"
-            autocomplete="off" />
-          <kbd aria-hidden="true">/</kbd>
-          <button class="achv-search-clear" id="achvSearchClear" aria-label="Clear search" type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
-        </div>
-        <div class="achv-filters" id="achvFilters" role="group" aria-label="Filter by organisation">
-          <!-- chips injected by JS -->
-        </div>
-        <div class="achv-results-count" id="achvResultsCount" aria-live="polite"></div>
+          <span id="toggleAllLabel">Expand all</span>
+        </button>
       </div>
-
-      <div class="achv-empty-state" id="achvEmptyState">No achievements match your filters.</div>
-
       <div class="achievements-list" id="achievementsList">
 
         <div class="achievement-item reveal">
@@ -1270,190 +1086,32 @@
           }
         });
 
-        initAchievementFilters(timeline);
+        initToggleAll(timeline);
       }
 
-      /* ── Filter & search ── */
-      function initAchievementFilters(timeline) {
-        const searchWrap = document.querySelector('.achv-search');
-        const searchInput = document.getElementById('achvSearch');
-        const searchClear = document.getElementById('achvSearchClear');
-        const filtersEl = document.getElementById('achvFilters');
-        const emptyState = document.getElementById('achvEmptyState');
-        const resultsCount = document.getElementById('achvResultsCount');
-        const toolbar = document.getElementById('achvToolbar');
-        if (!searchInput || !filtersEl) return;
+      function initToggleAll(timeline) {
+        const groups = Array.from(timeline.querySelectorAll('.year-group'));
+        const btn = document.getElementById('toggleAllBtn');
+        const label = document.getElementById('toggleAllLabel');
+        if (!groups.length || !btn || !label) return;
 
-        const yearGroups = Array.from(timeline.querySelectorAll('.year-group'));
-        const allItems = Array.from(timeline.querySelectorAll('.achievement-item'));
-
-        // Cache each item's org list + searchable text once, up front.
-        allItems.forEach(item => {
-          const orgText = item.querySelector('.achievement-org')?.textContent || '';
-          const orgs = orgText.split('·').map(o => o.trim()).filter(Boolean);
-          item._orgs = orgs;
-          item._searchText = [
-            orgText,
-            item.querySelector('.achievement-title')?.textContent || '',
-            item.querySelector('.achievement-desc')?.textContent || '',
-            item.querySelector('.achievement-date')?.textContent || ''
-          ].join(' ').toLowerCase();
-        });
-
-        // Build the unique, alphabetised org chip list, each with a match count.
-        const orgCounts = new Map();
-        allItems.forEach(item => item._orgs.forEach(o => orgCounts.set(o, (orgCounts.get(o) || 0) + 1)));
-        const orgs = Array.from(orgCounts.keys()).sort((a, b) => a.localeCompare(b));
-
-        let activeOrg = null;
-
-        const allChip = document.createElement('button');
-        allChip.type = 'button';
-        allChip.className = 'achv-filter-chip active';
-        allChip.innerHTML = `All <span class="achv-chip-count">${allItems.length}</span>`;
-        allChip.setAttribute('aria-pressed', 'true');
-        filtersEl.appendChild(allChip);
-
-        const chipButtons = [allChip];
-        orgs.forEach(org => {
-          const chip = document.createElement('button');
-          chip.type = 'button';
-          chip.className = 'achv-filter-chip';
-          chip.innerHTML = `${org} <span class="achv-chip-count">${orgCounts.get(org)}</span>`;
-          chip.dataset.org = org;
-          chip.setAttribute('aria-pressed', 'false');
-          filtersEl.appendChild(chip);
-          chipButtons.push(chip);
-        });
-
-        function setActiveChip(chip) {
-          chipButtons.forEach(btn => {
-            const isActive = btn === chip;
-            btn.classList.toggle('active', isActive);
-            btn.setAttribute('aria-pressed', String(isActive));
-          });
+        function syncLabel() {
+          const allOpen = groups.every(group => group.open);
+          btn.classList.toggle('is-all-open', allOpen);
+          label.textContent = allOpen ? 'Collapse all' : 'Expand all';
+          btn.setAttribute('aria-label', allOpen ? 'Collapse all years' : 'Expand all years');
         }
 
-        function updateUrl() {
-          const params = new URLSearchParams();
-          if (activeOrg) params.set('org', activeOrg);
-          const q = searchInput.value.trim();
-          if (q) params.set('q', q);
-          const qs = params.toString();
-          const newUrl = location.pathname + (qs ? `?${qs}` : '');
-          history.replaceState(null, '', newUrl);
-        }
-
-        function applyFilters() {
-          const query = searchInput.value.trim().toLowerCase();
-          searchWrap.classList.toggle('has-value', query.length > 0);
-
-          let visibleTotal = 0;
-          yearGroups.forEach(group => {
-            const items = Array.from(group.querySelectorAll('.achievement-item'));
-            let visibleInGroup = 0;
-
-            items.forEach(item => {
-              const matchesOrg = !activeOrg || item._orgs.includes(activeOrg);
-              const matchesQuery = !query || item._searchText.includes(query);
-              const show = matchesOrg && matchesQuery;
-              item.classList.toggle('is-hidden', !show);
-              if (show) visibleInGroup++;
-            });
-
-            group.classList.toggle('is-hidden', visibleInGroup === 0);
-
-            const countEl = group.querySelector('.year-count');
-            if (countEl) {
-              countEl.textContent = (query || activeOrg)
-                ? `${visibleInGroup}/${items.length}`
-                : String(items.length);
-            }
-
-            // Auto-open groups with matches while a filter/search is active,
-            // so results aren't hidden inside a collapsed <details>.
-            if (query || activeOrg) {
-              if (visibleInGroup > 0) group.open = true;
-            }
-
-            visibleTotal += visibleInGroup;
-          });
-
-          emptyState.classList.toggle('visible', visibleTotal === 0);
-
-          if (query || activeOrg) {
-            resultsCount.innerHTML = `<strong>${visibleTotal}</strong> of ${allItems.length} shown`;
-          } else {
-            resultsCount.textContent = '';
-          }
-
-          updateUrl();
-        }
-
-        // Restore filter/search state from URL (shareable, bookmarkable, back-button aware).
-        const initialParams = new URLSearchParams(location.search);
-        const initialOrg = initialParams.get('org');
-        const initialQuery = initialParams.get('q');
-        if (initialOrg) {
-          const match = chipButtons.find(c => c.dataset.org === initialOrg);
-          if (match) {
-            activeOrg = initialOrg;
-            setActiveChip(match);
-          }
-        }
-        if (initialQuery) {
-          searchInput.value = initialQuery;
-        }
-
-        chipButtons.forEach(chip => {
-          chip.addEventListener('click', () => {
-            activeOrg = chip.dataset.org || null;
-            setActiveChip(chip);
-            applyFilters();
-          });
+        btn.addEventListener('click', () => {
+          const allOpen = groups.every(group => group.open);
+          groups.forEach(group => { group.open = !allOpen; });
+          syncLabel();
         });
 
-        searchInput.addEventListener('input', applyFilters);
-
-        searchClear.addEventListener('click', () => {
-          searchInput.value = '';
-          searchInput.focus();
-          applyFilters();
-        });
-
-        window.addEventListener('popstate', () => {
-          const p = new URLSearchParams(location.search);
-          const org = p.get('org');
-          const q = p.get('q') || '';
-          const match = org ? chipButtons.find(c => c.dataset.org === org) : allChip;
-          if (match) setActiveChip(match);
-          activeOrg = org || null;
-          searchInput.value = q;
-          applyFilters();
-        });
-
-        applyFilters();
-
-        // "/" focuses search, unless already typing somewhere else.
-        document.addEventListener('keydown', (e) => {
-          if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;
-          const tag = document.activeElement?.tagName;
-          if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement?.isContentEditable) return;
-          e.preventDefault();
-          searchInput.focus();
-        });
-
-        // Shadow/border kick in once the toolbar is actually pinned to the top.
-        if (toolbar && 'IntersectionObserver' in window) {
-          const sentinel = document.createElement('div');
-          sentinel.style.cssText = 'position:absolute;top:0;height:1px;width:1px;pointer-events:none;';
-          toolbar.style.position = toolbar.style.position || 'sticky';
-          toolbar.parentElement.insertBefore(sentinel, toolbar);
-          new IntersectionObserver(
-            ([entry]) => toolbar.classList.toggle('is-stuck', !entry.isIntersecting),
-            { threshold: 0, rootMargin: `-${Math.round(parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 76) + 12}px 0px 0px 0px` }
-          ).observe(sentinel);
-        }
+        // A manual click on any single year's <summary> should keep the
+        // button's label honest too, not just clicks on the button itself.
+        groups.forEach(group => group.addEventListener('toggle', syncLabel));
+        syncLabel();
       }
 
     })();
