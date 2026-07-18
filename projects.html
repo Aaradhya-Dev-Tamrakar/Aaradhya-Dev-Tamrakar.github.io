@@ -95,7 +95,7 @@
     }
 
     .project-card:hover {
-      border-color: var(--glow-green-a50);
+      border-color: var(--glow-green);
       transform: translateY(-3px);
       box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--glow-green-a35);
     }
@@ -108,6 +108,87 @@
     .project-card--gold:hover {
       border-color: var(--glow-gold);
       box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 0 1px var(--glow-gold-a35), 0 0 24px var(--glow-gold-a90);
+    }
+
+    .project-card--major {
+      border: 3px solid var(--glow-green);
+      box-shadow: 0 0 0 1px var(--glow-green-a35), 0 0 18px var(--glow-green-a35);
+    }
+
+    .project-card--major:hover {
+      border-color: var(--glow-green);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 0 1px var(--glow-green-a35), 0 0 24px var(--glow-green-a50);
+    }
+
+    .project-card--in-progress {
+      border: 1px solid var(--glow-green);
+    }
+
+    .project-card--in-progress:hover {
+      border-color: var(--glow-green);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--glow-green-a35);
+    }
+
+    .project-card--archived {
+      border: 1px solid var(--glow-red);
+    }
+
+    .project-card--archived:hover {
+      border-color: var(--glow-red);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--glow-red-a35);
+    }
+
+    .color-legend {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .color-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .color-legend-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .color-legend-swatch--major {
+      border: 3px solid var(--glow-green);
+    }
+
+    .color-legend-swatch--gold {
+      border: 3px solid var(--glow-gold);
+    }
+
+    .color-legend-swatch--in-progress {
+      border: 1px solid var(--glow-green);
+    }
+
+    .color-legend-swatch--archived {
+      border: 1px solid var(--glow-red);
+    }
+
+    .color-legend-label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    @media (max-width: 700px) {
+      .color-legend {
+        gap: 1rem 1.5rem;
+      }
     }
 
     .project-index {
@@ -319,19 +400,34 @@
         pipelines, and disaster-response hardware — from coursework labs
         to a March 2027 major-project demo.
       </p>
+      <div class="color-legend" aria-label="Project border color key">
+        <div class="color-legend-item">
+          <span class="color-legend-swatch color-legend-swatch--major" aria-hidden="true"></span>
+          <span class="color-legend-label">Major / Latest Fusemachines</span>
+        </div>
+        <div class="color-legend-item">
+          <span class="color-legend-swatch color-legend-swatch--gold" aria-hidden="true"></span>
+          <span class="color-legend-label">Minor Project</span>
+        </div>
+        <div class="color-legend-item">
+          <span class="color-legend-swatch color-legend-swatch--in-progress" aria-hidden="true"></span>
+          <span class="color-legend-label">In Progress</span>
+        </div>
+        <div class="color-legend-item">
+          <span class="color-legend-swatch color-legend-swatch--archived" aria-hidden="true"></span>
+          <span class="color-legend-label">Archived</span>
+        </div>
+      </div>
     </header>
 
     <section id="projects" aria-label="Projects grid">
       <div class="projects-grid" id="projectsGrid">
-        <div class="project-card reveal project-card--gold">
+        <div class="project-card reveal project-card--major">
           <div class="project-index">P — 015 <span class="project-status">In Progress</span></div>
           <h3 class="project-title">SPARK — Two-Layer Fall Detection Wearable</h3>
           <ul class="project-desc-list">
-            <li>On-device, two-layer fall-detection wearable for eldercare — built entirely from locally-sourced
-              components, zero imports, zero custom PCB</li>
-            <li>Sub-5ms threshold gate (Layer 1) hands off to a TFLite Micro CNN on a Raspberry Pi 4B gateway (Layer 2)
-              for SHAP-explained confirmation</li>
-            <li>Streamlit dashboard, Telegram alerts, fall-to-alert under 2 seconds</li>
+            <li>On-device, two-layer fall-detection wearable for eldercare — threshold gate plus a TFLite Micro CNN
+              gateway, zero imports, zero custom PCB</li>
             <li>BEI major project, four-person team — proposal defended Jul&nbsp;10, 2026</li>
           </ul>
           <div class="project-progress">
@@ -342,7 +438,7 @@
             </div>
             <div class="project-progress-labels">
               <span class="project-progress-label done">Proposal</span>
-              <span class="project-progress-label">Hardware Bring-up</span>
+              <span class="project-progress-label">H/W Procurement</span>
               <span class="project-progress-label">Demo</span>
             </div>
           </div>
@@ -360,8 +456,6 @@
           <ul class="project-desc-list">
             <li>Two-wheeled inverted pendulum robot with real-time dual-hand MediaPipe gesture control over HC-05
               Bluetooth</li>
-            <li>PID firmware V6.9.1 — watchdog timer, atomic writes, differential ramp, integrator bleed</li>
-            <li>MATLAB simulation → DRV8825/CNC Shield hardware deployment</li>
             <li>Examiner rated major-project level — 9.4/10</li>
           </ul>
           <div class="project-tags">
@@ -374,17 +468,42 @@
             target="_blank" rel="noopener">View on GitHub ↗</a>
         </div>
 
-        <div class="project-card reveal project-card--gold">
+        <div class="project-card reveal project-card--major">
+          <div class="project-index">P — 018 <span class="project-status">In Progress</span></div>
+          <h3 class="project-title">Fusemachines Capstone — Vision Fairness &amp; Bias Audit</h3>
+          <ul class="project-desc-list">
+            <li>Diagnostic tool for deployed vision classifiers — runs a multi-demographic test matrix, flags
+              statistical disparities, and outputs a compliance report; detects bias but doesn't correct it</li>
+            <li>Fellowship capstone, two-person team with <a class="proj-inline-link" href="https://github.com/tiixsha"
+                target="_blank" rel="noopener">Tisha Manandhar</a> — full README to follow in-repo</li>
+          </ul>
+          <div class="project-progress">
+            <div class="project-progress-track">
+              <div class="project-progress-step done"></div>
+              <div class="project-progress-step"></div>
+              <div class="project-progress-step"></div>
+            </div>
+            <div class="project-progress-labels">
+              <span class="project-progress-label done">Feasibility &amp; Scope</span>
+              <span class="project-progress-label">Test Matrix &amp; Detection Engine</span>
+              <span class="project-progress-label">Report &amp; Compliance Output</span>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">AIF360</span><span class="tag">Fairlearn</span>
+            <span class="tag">FairFace</span><span class="tag">UTKFace</span>
+            <span class="tag">Computer Vision</span><span class="tag">Bias Auditing</span>
+            <span class="tag">Statistical Testing</span><span class="tag">HTML/Jinja2</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
           <div class="project-index">P — 017</div>
           <h3 class="project-title">Fusemachines Wk 10 — Image Processing</h3>
           <ul class="project-desc-list">
-            <li>HSV-based multi-class fruit segmentation (red apple, green apple, banana, strawberry, orange, lime) via
-              the Fruits-360 dataset</li>
-            <li>Morphological operations with Gaussian, median, bilateral denoising</li>
-            <li>From-scratch Canny edge detector (Sobel gradients, non-max suppression, double thresholding, hysteresis)
-              benchmarked against cv2.Canny()</li>
-            <li>Full fruit-detection pipeline — Harris corner response, Hough circle detection, masking, morphology,
-              contour-based bounding boxes, extended with connected-component analysis for touching apples</li>
+            <li>HSV-based multi-class fruit segmentation across the Fruits-360 dataset, plus a from-scratch Canny
+              edge detector benchmarked against cv2.Canny()</li>
+            <li>Full fruit-detection pipeline — Harris corners, Hough circles, contour-based bounding boxes</li>
           </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">OpenCV</span>
@@ -400,12 +519,10 @@
           <div class="project-index">P — 016</div>
           <h3 class="project-title">Fusemachines Wk 9 — NEU Steel Defect CNN</h3>
           <ul class="project-desc-list">
-            <li>PyTorch CNN classifier for NEU-DET steel surface-defect detection — six classes across 1,800 grayscale
-              200&times;200 images</li>
-            <li>Four-part build: from-scratch 2-layer NN foundation (30.7M params) &rarr; Conv&rarr;ReLU&rarr;MaxPool
-              CNN (15 epochs, 98.6%/84.7% train/val accuracy)</li>
-            <li>Hardened via train-only augmentation, BatchNorm2d, Dropout(0.4)</li>
-            <li>Tuned via 2&times;2 grid search and a 4-trial Optuna Bayesian search — trained on Colab T4 GPU</li>
+            <li>PyTorch CNN classifier for NEU-DET steel surface-defect detection — six classes, 1,800 grayscale
+              images</li>
+            <li>From-scratch NN foundation &rarr; tuned CNN, 98.6%/84.7% train/val accuracy via Optuna Bayesian
+              search</li>
           </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">PyTorch</span>
@@ -420,13 +537,10 @@
           <div class="project-index">P — 014</div>
           <h3 class="project-title">Fusemachines Wk 8 — Forecasting</h3>
           <ul class="project-desc-list">
-            <li>Time-series forecasting pipeline benchmarking nine classical-to-modern forecasters on monthly S&amp;P
-              500 data (1990–2024)</li>
-            <li>SARIMA, Holt-Winters, Prophet, LightGBM, LSTM, XGBoost compared against naive/seasonal-naive baselines
-              via MASE/RMSE</li>
-            <li>Error breakdowns by calendar month and horizon</li>
-            <li>4-model ensemble (Holt-Winters + SARIMA + LSTM + XGBoost) outperformed every single model — MASE 2.44,
-              RMSE 96.7, confirmed via Diebold-Mariano test (p = 0.0092)</li>
+            <li>Time-series pipeline benchmarking nine forecasters on monthly S&amp;P 500 data (1990–2024) via
+              MASE/RMSE</li>
+            <li>4-model ensemble outperformed every single model — MASE 2.44, confirmed via Diebold-Mariano test
+              (p = 0.0092)</li>
           </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">statsmodels</span>
@@ -442,13 +556,10 @@
           <div class="project-index">P — 009</div>
           <h3 class="project-title">Fusemachines Wk 7 — Customer Segmentation</h3>
           <ul class="project-desc-list">
-            <li>Market segmentation pipeline on UCI Online Retail II (~500,000 transactions)</li>
-            <li>RFM feature engineering extended with basket size, purchase cadence, unique products, return rate,
-              category spend ratios</li>
-            <li>Full clustering comparison: K-Means (elbow + silhouette), Hierarchical (dendrograms), DBSCAN (k-distance
-              ε estimation)</li>
-            <li>Validated via Silhouette, Davies-Bouldin, Calinski-Harabasz indices — cluster business narratives +
-              executive summary</li>
+            <li>Market segmentation on UCI Online Retail II (~500,000 transactions) with RFM + category-ratio feature
+              engineering</li>
+            <li>Full clustering comparison — K-Means, Hierarchical, DBSCAN — validated via Silhouette and
+              Davies-Bouldin indices</li>
           </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">scikit-learn</span>
@@ -465,9 +576,8 @@
           <h3 class="project-title">Fusemachines Wk 6 — Probabilistic Models</h3>
           <ul class="project-desc-list">
             <li>Bayesian inference pipeline for Telco Churn using PyMC, ArviZ, and pgmpy</li>
-            <li>MLE/MAP estimation, Dirichlet-multinomial sequential updating, multivariate Gaussian conditioning</li>
-            <li>Probabilistic graphical models and Gaussian process regression</li>
-            <li>PyMC Bayesian logistic regression — fitted artifact telco_bayes_lr_v1.pkl</li>
+            <li>MLE/MAP estimation, Dirichlet-multinomial updating, and a fitted PyMC Bayesian logistic regression
+              artifact</li>
           </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">PyMC</span>
@@ -483,11 +593,9 @@
           <div class="project-index">P — 003</div>
           <h3 class="project-title">Telco Churn Tree-Based Ensemble Pipeline</h3>
           <ul class="project-desc-list">
-            <li>End-to-end classification pipeline on Telco Customer Churn (7,043 rows, ~27% positive rate)</li>
-            <li>ImbPipeline with SMOTE restricted to training folds only — zero preprocessing leakage</li>
-            <li>Random Forest + XGBoost with GridSearch/Bayesian tuning, Stratified K-Fold CV</li>
-            <li>SHAP explainability (global summary + local waterfall/force plots); secondary tenure-prediction task
-              with Model Card</li>
+            <li>End-to-end classification pipeline on Telco Customer Churn (7,043 rows) with SMOTE restricted to
+              training folds only</li>
+            <li>Random Forest + XGBoost with SHAP explainability; secondary tenure-prediction task with a Model Card</li>
           </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">XGBoost</span>
@@ -503,11 +611,9 @@
           <div class="project-index">P — 004</div>
           <h3 class="project-title">Telco Churn &amp; CLV ML Pipeline</h3>
           <ul class="project-desc-list">
-            <li>Classification and regression pipeline for churn prediction and Customer Lifetime Value modeling</li>
-            <li>Logistic Regression / Ridge / SGD classifiers on Stratified 70/15/15 split — ROC-AUC 0.841 ± 0.005
-              (5-fold CV)</li>
-            <li>Custom threshold at 0.385 isolates top-200 high-risk budget segment</li>
-            <li>Ridge Regression best for CLV (mean $1,304.70); Papermill automation with full HTML report export</li>
+            <li>Classification and regression pipeline for churn prediction and Customer Lifetime Value modeling —
+              ROC-AUC 0.841 ± 0.005</li>
+            <li>Ridge Regression best for CLV (mean $1,304.70); full HTML report export via Papermill</li>
           </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">scikit-learn</span>
@@ -523,13 +629,9 @@
           <div class="project-index">P — 002</div>
           <h3 class="project-title">Text-to-SQL Agentic Pipeline</h3>
           <ul class="project-desc-list">
-            <li>Five-stage agentic Text-to-SQL system over a classicmodels PostgreSQL database</li>
-            <li>Modular FastAPI state machine: Planner → Generator → Validator → Executor → Summarizer, up to 3
-              self-correction retries</li>
-            <li>100% execution success and 100% result accuracy across a 50-question benchmark — zero retries required
-            </li>
-            <li>Streamlit chat UI, Docker/Compose containerisation, rule-based SQL safety validation, structured JSON
-              audit logging</li>
+            <li>Five-stage agentic Text-to-SQL system over a PostgreSQL database — Planner → Generator → Validator →
+              Executor → Summarizer</li>
+            <li>100% execution success and 100% result accuracy across a 50-question benchmark, zero retries required</li>
           </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">FastAPI</span>
@@ -541,16 +643,13 @@
             rel="noopener">View on GitHub ↗</a>
         </div>
 
-        <div class="project-card reveal">
+        <div class="project-card reveal project-card--in-progress">
           <div class="project-index">P — 011 <span class="project-status">In Progress</span></div>
           <h3 class="project-title">Nexus — Personal AI Operating System</h3>
           <ul class="project-desc-list">
             <li>Project-centric AI operating system replacing the multi-browser/multi-account/multi-tool workflow</li>
-            <li>Single prompt → project context → parallel Groq (Llama 3.3 70B) + Gemini 1.5 Flash fan-out → centralized
-              persistent memory</li>
-            <li>Architecture: React (Vite) frontend · FastAPI backend · SQLite + FTS5 (context injection, zero embedding
-              latency) · multi-key rotation pool</li>
-            <li>v2 redesign complete June 12, 2026</li>
+            <li>React (Vite) + FastAPI + SQLite/FTS5, parallel Groq + Gemini fan-out — v2 redesign complete
+              June&nbsp;12, 2026</li>
           </ul>
           <div class="project-progress">
             <div class="project-progress-track">
@@ -572,15 +671,13 @@
             GitHub ↗</a>
         </div>
 
-        <div class="project-card reveal">
+        <div class="project-card reveal project-card--in-progress">
           <div class="project-index">P — 005 <span class="project-status">In Progress</span></div>
           <h3 class="project-title">Alpha Android Super-App</h3>
           <ul class="project-desc-list">
-            <li>Modular personal super-app (SDK 36, Kotlin/Jetpack Compose, Material3, custom Astronomus font)</li>
-            <li>SBR Remote turns the phone into a gesture controller over Bluetooth</li>
-            <li>Budget Tracker parses eSewa Gmail transactions — Apache POI export, DataStore persistence</li>
-            <li>Multi-mode calculator (STD/PROG/LOGIC) with base conversion and logic gates — primary shipping target,
-              Play Store release in progress</li>
+            <li>Modular personal super-app (Kotlin/Jetpack Compose, Material3) — gesture remote, budget tracker,
+              multi-mode calculator</li>
+            <li>Calculator is the primary shipping target, Play Store release in progress</li>
           </ul>
           <div class="project-progress">
             <div class="project-progress-track">
@@ -606,11 +703,9 @@
           <div class="project-index">P — 006</div>
           <h3 class="project-title">Edge AI Stability Detection System</h3>
           <ul class="project-desc-list">
-            <li>ML system predicting platform stability from simulated IMU sensor data (tilt_x, tilt_y, angular
-              velocity)</li>
-            <li>10,000-sample synthetic dataset; Random Forest classifier — 99.8% test accuracy</li>
-            <li>REST API via FastAPI for real-time predictions</li>
-            <li>Joblib export for robotics integration with
+            <li>ML system predicting platform stability from simulated IMU sensor data — Random Forest, 99.8% test
+              accuracy</li>
+            <li>REST API via FastAPI, Joblib export for robotics integration with
               <a class="proj-inline-link" href="#p-001">GCSBR (Gesture-Controlled Self-Balancing Robot)</a>
             </li>
           </ul>
@@ -628,8 +723,8 @@
           <div class="project-index">P — 012</div>
           <h3 class="project-title">Custom Processor FSM Design</h3>
           <ul class="project-desc-list">
-            <li>VHDL implementation of a custom processor datapath and FSM supporting GCD and exponentiation operations
-            </li>
+            <li>VHDL implementation of a custom processor datapath and FSM supporting GCD and exponentiation
+              operations</li>
             <li>Simulated and verified in Vivado 2023.2 as Embedded Systems coursework</li>
           </ul>
           <div class="project-tags">
@@ -644,8 +739,7 @@
           <h3 class="project-title">Antenna Lab Data Analysis</h3>
           <ul class="project-desc-list">
             <li>Python data-analysis pipeline for antenna radiation pattern measurements from lab Excel sheets</li>
-            <li>Pandas wrangling, SciPy cubic interpolation to smooth measured points</li>
-            <li>Matplotlib polar plots to visualize the resulting pattern — Communication &amp; RF coursework
+            <li>SciPy cubic interpolation plus Matplotlib polar plots — Communication &amp; RF coursework
               deliverable</li>
           </ul>
           <div class="project-tags">
@@ -660,9 +754,8 @@
           <h3 class="project-title">SysOptimizer — Windows Optimization Tool</h3>
           <ul class="project-desc-list">
             <li>Standalone Windows optimization tool packaged as a .exe via PyInstaller</li>
-            <li>Animated ring gauges, sparklines, per-core CPU reporting</li>
-            <li>Power Plan switcher, RAM flush, Background Bloat panel (14 services/tasks), Startup Scanner</li>
-            <li>Runs silently via CREATE_NO_WINDOW</li>
+            <li>Power Plan switcher, RAM flush, Background Bloat panel, Startup Scanner — runs silently via
+              CREATE_NO_WINDOW</li>
           </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">CustomTkinter</span>
@@ -671,19 +764,14 @@
           </div>
         </div>
 
-        <div class="project-card reveal">
+        <div class="project-card reveal project-card--archived">
           <div class="project-index">P — 010 <span class="project-status">Archived</span></div>
           <h3 class="project-title">PrakopNet — Multi-Hazard Early Warning System</h3>
           <ul class="project-desc-list">
-            <li>Solar-powered LoRa mesh multi-hazard monitoring and early-warning platform for remote regions of Nepal
-            </li>
-            <li>ESP32 sensor nodes (flood, landslide, air quality, weather) over RYLR890 (868 MHz, Nepal-legal) to a
-              Raspberry Pi 4B gateway</li>
-            <li>Federated TFLite edge inference + LSTM HazardScore fusion; GPS localization, CN3791 solar charge
-              controller, 18650 battery backup, INA219 power telemetry</li>
-            <li>FastAPI + Streamlit dashboard — explored as early BEI major-project direction, archived June 29, 2026
-              after RYLR890's import-only sourcing conflicted with the department's no-import policy; superseded by
-              SPARK</li>
+            <li>Solar-powered LoRa mesh multi-hazard monitoring platform for remote regions of Nepal — ESP32 nodes to
+              a Raspberry Pi 4B gateway</li>
+            <li>Archived June 29, 2026 after RYLR890's import-only sourcing conflicted with department policy;
+              superseded by SPARK</li>
           </ul>
           <div class="project-tags">
             <span class="tag">ESP32</span><span class="tag">RYLR890 LoRa 868 MHz</span>
@@ -692,7 +780,7 @@
             <span class="tag">FastAPI</span><span class="tag">Edge AI</span>
           </div>
         </div>
-</div>
+      </div>
     </section>
 
     <section id="quick-nav" aria-label="Explore the site">

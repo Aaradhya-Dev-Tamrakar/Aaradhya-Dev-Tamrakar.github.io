@@ -155,13 +155,13 @@
       }
       .about-photo-ring .ring-arc {
         fill: none;
-        stroke: var(--accent);
+        stroke: var(--glow-gold);
         stroke-width: 1.5;
         stroke-linecap: round;
         stroke-dasharray: 60 500;
         stroke-dashoffset: 0;
         animation: about-revolve-cw 2.2s linear infinite;
-        filter: drop-shadow(0 0 4px var(--accent));
+        filter: drop-shadow(0 0 4px var(--glow-gold));
       }
       .about-photo-ring .ring-arc-2 {
         fill: none;
@@ -317,11 +317,16 @@
       }
       .skill-group {
         background: var(--bg2);
+        border: 1px solid var(--line);
+        border-radius: 10px;
         padding: 2.5rem;
-        transition: background 0.3s;
+        transition: background 0.3s, border-color .25s, transform .25s, box-shadow .25s;
       }
       .skill-group:hover {
         background: var(--bg3);
+        border-color: var(--glow-green);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--glow-green-a35);
       }
       .skill-group-title {
         font-family: var(--mono);
@@ -378,13 +383,18 @@
         padding: 0 3rem 6rem;
       }
       .edu-card {
-        border: 1px solid var(--line);
+        border: 3px solid var(--glow-gold);
         border-radius: 4px;
         background: var(--bg2);
         padding: 2.5rem;
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 2.5rem;
+        box-shadow: 0 0 0 1px var(--glow-gold-a35), 0 0 18px var(--glow-gold-a35);
+        transition: box-shadow .25s;
+      }
+      .edu-card:hover {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 0 1px var(--glow-gold-a35), 0 0 24px var(--glow-gold-a90);
       }
       .edu-degree {
         font-family: var(--serif);
@@ -648,7 +658,11 @@
               tree-based ensemble models with SHAP explainability, Bayesian
               inference workflows in PyMC, and a full customer-segmentation
               pipeline (K-Means/Hierarchical/DBSCAN) on the UCI Online Retail II
-              dataset. In parallel, I'm an
+              dataset. My capstone is a
+              <strong>vision-model fairness &amp; bias audit tool</strong> —
+              a diagnostic layer that flags demographic performance
+              disparities in deployed classifiers without retraining them —
+              built with fellow Fellow Tisha Manandhar. In parallel, I'm an
               <strong>NSSR DataCamp Fellow (Cohort 2)</strong>, progressing
               through SQL Associate and Python Data Associate certification
               tracks after completing six applied GenAI projects in Phase 1.

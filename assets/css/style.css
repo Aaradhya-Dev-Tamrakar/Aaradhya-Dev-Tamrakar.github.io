@@ -56,6 +56,8 @@
   --glow-green: #4ade80;
   --glow-green-a35: rgba(74, 222, 128, 0.35);
   --glow-green-a50: rgba(74, 222, 128, 0.5);
+  --glow-red: #ef4444;
+  --glow-red-a35: rgba(239, 68, 68, 0.35);
 }
 
 html[data-theme="light"] {
@@ -931,9 +933,9 @@ footer {
   margin-top: 6rem;
   width: 100%;
   box-sizing: border-box;
-    /* extra right padding so fixed bottom widgets and the centered "goto" control
+  /* extra right padding so fixed bottom widgets and the centered "goto" control
       do not overlap the social icons on the right. Reduced on small screens. */
-    padding: 2.5rem 6rem 2rem;
+  padding: 2.5rem 6rem 2rem;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -1641,11 +1643,25 @@ html[data-theme="light"] #quick-nav::before {
   transition: opacity .25s, text-shadow .25s;
 }
 
-.card-arrow.dist-1 { opacity: 1; }
-.card-arrow.dist-2 { opacity: .95; }
-.card-arrow.dist-3 { opacity: .9; }
-.card-arrow.dist-4 { opacity: .85; }
-.card-arrow.dist-5 { opacity: .8; }
+.card-arrow.dist-1 {
+  opacity: 1;
+}
+
+.card-arrow.dist-2 {
+  opacity: .95;
+}
+
+.card-arrow.dist-3 {
+  opacity: .9;
+}
+
+.card-arrow.dist-4 {
+  opacity: .85;
+}
+
+.card-arrow.dist-5 {
+  opacity: .8;
+}
 
 .quick-nav-card:hover .card-arrow {
   opacity: 1;
