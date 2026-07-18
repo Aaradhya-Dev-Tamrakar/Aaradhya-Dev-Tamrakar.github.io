@@ -198,6 +198,24 @@
       height: auto;
     }
 
+    /* SimOps bundle card — 2x2 grid of badge thumbnails inside one achievement-item */
+    .cert-thumb-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .cert-thumb-grid .cert-thumb {
+      width: 100%;
+      background: #fff;
+    }
+
+    @media (max-width: 480px) {
+      .cert-thumb-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .achv-list-controls {
       display: flex;
       justify-content: flex-end;
@@ -943,63 +961,43 @@
         <div class="achievement-item reveal">
           <div class="achievement-org">SimOps</div>
           <div>
-            <h3 class="achievement-title">SimOps AI for Graduates</h3>
-            <button class="cert-btn cert-thumb"
-              data-cert="assets/certificates/SimOps_AI_for_Graduates_98452248595354.pdf"
-              data-download="assets/certificates/SimOps_AI_for_Graduates_98452248595354.pdf"
-              data-verify="https://certification.simops.com/en/verify/98452248595354"
-              data-label="SimOps AI for Graduates" data-type="pdf"
-              aria-label="View certificate: SimOps AI for Graduates">
-              <img src="assets/certificates/SimOps_AI_for_Graduates_98452248595354.webp"
-                alt="SimOps AI for Graduates certificate" loading="lazy" />
-            </button>
+            <h3 class="achievement-title">SimOps Certifications</h3>
+            <div class="cert-thumb-grid">
+              <button class="cert-btn cert-thumb" data-cert="assets/certificates/SimOps_Expert_12836702612982.webp"
+                data-download="assets/certificates/SimOps_Expert_12836702612982.pdf"
+                data-verify="https://certification.simops.com/en/verify/12836702612982" data-label="SimOps Expert"
+                data-type="image" aria-label="View certificate: SimOps Expert">
+                <img src="assets/certificates/SimOps_Expert_Badge_12836702612982.webp" alt="SimOps Expert badge"
+                  loading="lazy" />
+              </button>
+              <button class="cert-btn cert-thumb"
+                data-cert="assets/certificates/SimOps_Practitioner_52653675650240.webp"
+                data-download="assets/certificates/SimOps_Practitioner_52653675650240.pdf"
+                data-verify="https://certification.simops.com/en/verify/52653675650240" data-label="SimOps Practitioner"
+                data-type="image" aria-label="View certificate: SimOps Practitioner">
+                <img src="assets/certificates/SimOps_Practitioner_Badge_52653675650240.webp"
+                  alt="SimOps Practitioner badge" loading="lazy" />
+              </button>
+              <button class="cert-btn cert-thumb"
+                data-cert="assets/certificates/SimOps_Fundamentals_25303246876434.webp"
+                data-download="assets/certificates/SimOps_Fundamentals_25303246876434.pdf"
+                data-verify="https://certification.simops.com/en/verify/25303246876434" data-label="SimOps Fundamentals"
+                data-type="image" aria-label="View certificate: SimOps Fundamentals">
+                <img src="assets/certificates/SimOps_Fundamentals_Badge_25303246876434.webp"
+                  alt="SimOps Fundamentals badge" loading="lazy" />
+              </button>
+              <button class="cert-btn cert-thumb"
+                data-cert="assets/certificates/SimOps_AI_for_Graduates_98452248595354.webp"
+                data-download="assets/certificates/SimOps_AI_for_Graduates_98452248595354.pdf"
+                data-verify="https://certification.simops.com/en/verify/98452248595354"
+                data-label="SimOps AI for Graduates" data-type="image"
+                aria-label="View certificate: SimOps AI for Graduates">
+                <img src="assets/certificates/SimOps_AI_for_Graduates_Badge_98452248595354.webp"
+                  alt="SimOps AI for Graduates badge" loading="lazy" />
+              </button>
+            </div>
           </div>
-          <div class="achievement-date">Jul 14, 2026</div>
-        </div>
-
-        <div class="achievement-item reveal">
-          <div class="achievement-org">SimOps</div>
-          <div>
-            <h3 class="achievement-title">SimOps Fundamentals</h3>
-            <button class="cert-btn cert-thumb" data-cert="assets/certificates/SimOps_Fundamentals_25303246876434.pdf"
-              data-download="assets/certificates/SimOps_Fundamentals_25303246876434.pdf"
-              data-verify="https://certification.simops.com/en/verify/25303246876434" data-label="SimOps Fundamentals"
-              data-type="pdf" aria-label="View certificate: SimOps Fundamentals">
-              <img src="assets/certificates/SimOps_Fundamentals_25303246876434.webp"
-                alt="SimOps Fundamentals certificate" loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">Jul 17, 2026</div>
-        </div>
-
-        <div class="achievement-item reveal">
-          <div class="achievement-org">SimOps</div>
-          <div>
-            <h3 class="achievement-title">SimOps Practitioner</h3>
-            <button class="cert-btn cert-thumb" data-cert="assets/certificates/SimOps_Practitioner_52653675650240.pdf"
-              data-download="assets/certificates/SimOps_Practitioner_52653675650240.pdf"
-              data-verify="https://certification.simops.com/en/verify/52653675650240" data-label="SimOps Practitioner"
-              data-type="pdf" aria-label="View certificate: SimOps Practitioner">
-              <img src="assets/certificates/SimOps_Practitioner_52653675650240.webp"
-                alt="SimOps Practitioner certificate" loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">Jul 17, 2026</div>
-        </div>
-
-        <div class="achievement-item reveal">
-          <div class="achievement-org">SimOps</div>
-          <div>
-            <h3 class="achievement-title">SimOps Expert</h3>
-            <button class="cert-btn cert-thumb" data-cert="assets/certificates/SimOps_Expert_12836702612982.pdf"
-              data-download="assets/certificates/SimOps_Expert_12836702612982.pdf"
-              data-verify="https://certification.simops.com/en/verify/12836702612982" data-label="SimOps Expert"
-              data-type="pdf" aria-label="View certificate: SimOps Expert">
-              <img src="assets/certificates/SimOps_Expert_12836702612982.webp" alt="SimOps Expert certificate"
-                loading="lazy" />
-            </button>
-          </div>
-          <div class="achievement-date">Jul 17, 2026</div>
+          <div class="achievement-date">Jul 2026</div>
         </div>
 
       </div>

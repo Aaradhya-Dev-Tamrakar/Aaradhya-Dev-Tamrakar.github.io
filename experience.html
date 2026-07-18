@@ -65,7 +65,7 @@
 
   <link rel="stylesheet" href="assets/css/style.css" />
 
-  <!-- Page-specific: experience timeline -->
+  <!-- Page-specific: experience cards -->
   <style>
     html,
     body {
@@ -77,39 +77,85 @@
     }
 
     .exp-list {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.1rem;
     }
 
     .exp-item {
-      display: grid;
-      grid-template-columns: 1fr 3fr 1fr;
-      align-items: start;
-      gap: 3rem;
-      padding: 2.5rem 0;
-      border-bottom: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1.75rem;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
     }
 
-    .exp-item:first-child {
-      border-top: 1px solid var(--line);
+    .exp-item:hover {
+      border-color: var(--accent-a35);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .exp-head {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .exp-logo {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    a.exp-logo:hover,
+    a.exp-logo:focus-visible {
+      border-color: var(--accent-a35);
+      transform: translateY(-1px);
+    }
+
+    a.exp-logo:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .exp-logo img {
+      width: 72%;
+      height: 72%;
+      object-fit: contain;
+      display: block;
     }
 
     .exp-org {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6em;
       font-family: var(--mono);
-      font-size: 0.68rem;
+      font-size: 0.62rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--text);
     }
 
     .exp-num {
-      display: block;
       font-family: var(--mono);
-      font-size: 0.68rem;
+      font-size: 0.62rem;
       letter-spacing: 0.05em;
       color: var(--accent);
-      margin-bottom: 0.5em;
+      opacity: 0.75;
       font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
     }
 
     .exp-org-name {
@@ -118,25 +164,27 @@
 
     .exp-title {
       font-family: var(--serif);
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 400;
       color: var(--heading);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
+      line-height: 1.25;
     }
 
     .exp-desc {
-      font-size: 0.92rem;
-      line-height: 1.75;
+      font-size: 0.88rem;
+      line-height: 1.7;
       color: var(--text);
     }
 
     .exp-year {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       letter-spacing: 0.1em;
-      color: var(--accent);
-      text-align: right;
-      padding-top: 0.2rem;
+      color: var(--muted);
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
     }
 
     /* Certificate link — matches achievements.html cert-btn visual language */
@@ -155,7 +203,9 @@
       border-radius: 3px;
       padding: 0.35em 0.75em;
       background: transparent;
+      cursor: pointer;
       transition: background 0.2s, color 0.2s, border-color 0.2s;
+      align-self: flex-start;
     }
 
     .exp-cert-btn svg {
@@ -173,6 +223,10 @@
     .exp-cert-btn:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
+    }
+
+    .exp-item.exp-item--wide {
+      grid-column: 1 / -1;
     }
 
     /* Experience uses 75vh lightbox body (vs 80vh shared default) */
@@ -211,21 +265,14 @@
         padding: 1.5rem 1.5rem 4rem;
       }
 
-      .exp-item {
+      .exp-list {
         grid-template-columns: 1fr;
-        gap: 0.4rem;
-        padding: 1.75rem 0;
-      }
-
-      .exp-year {
-        text-align: left;
       }
 
       .lightbox-inner {
         width: 96vw;
       }
     }
-
   </style>
 </head>
 
@@ -238,8 +285,19 @@
     <div class="cursor-dot" id="cursorDot"></div>
   </div>
 
-  <noscript><nav aria-label="Primary navigation"><a href="index.html" class="nav-logo">ADT<span>.</span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="projects.html">Projects</a></li><li><a href="experience.html" class="active" aria-current="page">Experience</a></li><li><a href="achievements.html">Achievements</a></li><li><a href="about.html">About</a></li></ul><div class="nav-right"><a href="contact.html" class="nav-cta">Connect</a></div></nav></noscript>
-<div id="siteNav"></div>
+  <noscript>
+    <nav aria-label="Primary navigation"><a href="index.html" class="nav-logo">ADT<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="experience.html" class="active" aria-current="page">Experience</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="nav-right"><a href="contact.html" class="nav-cta">Connect</a></div>
+    </nav>
+  </noscript>
+  <div id="siteNav"></div>
 
   <!-- ── Lightbox ── -->
   <div id="cert-lightbox" role="dialog" aria-modal="true" aria-label="Certificate viewer">
@@ -286,153 +344,181 @@
       </p>
     </header>
 
-    <section id="experience" aria-label="Experience timeline">
+    <section id="experience" aria-label="Experience">
       <div class="exp-list">
-        <div class="exp-item reveal">
-          <div class="exp-org"><span class="exp-num">E — 001</span><span class="exp-org-name">Fusemachines</span></div>
-          <div>
-            <h3 class="exp-title">Fuse AI Fellow</h3>
-            <p class="exp-desc">
-              Selected through competitive entrance exam (linear algebra,
-              calculus, probability, Python, ML). Wk 1: Heart attack risk
-              prediction — EDA, SQL CTEs/window functions. Wk 2: Containerised
-              FastAPI + PostgreSQL REST API (4-layer architecture, asyncio
-              concurrency). Wk 3: Five-stage Text-to-SQL agentic pipeline —
-              100% execution success and 100% accuracy on a 50-question
-              benchmark. Wk 4: Telco Churn &amp; CLV pipeline — ROC-AUC
-              0.841 ± 0.005, Papermill automation, HTML report. Wk 5:
-              Tree-based ensemble pipeline — XGBoost + Random Forest,
-              ImbPipeline/SMOTE (zero leakage), SHAP explainability, Joblib
-              serialisation. Wk 6: Probabilistic models — Bayesian inference
-              (MLE/MAP/full Bayes), Dirichlet-multinomial, multivariate
-              Gaussian, PGMs, Gaussian process regression, PyMC Bayesian
-              logistic regression. Wk 7: Customer segmentation on UCI Online
-              Retail II — RFM + category-ratio feature engineering,
-              K-Means/Hierarchical/DBSCAN clustering, full statistical
-              validation and business narrative.
-            </p>
+        <div class="exp-item exp-item--wide reveal">
+          <div class="exp-head">
+            <a class="exp-logo" href="https://fusemachines.com" target="_blank" rel="noopener"
+              aria-label="Fusemachines website"><img src="assets/images/logos/fusemachines.png" alt=""
+                loading="lazy" /></a>
+            <div class="exp-org"><span class="exp-num">E — 001</span><span class="exp-org-name">Fusemachines</span>
+            </div>
           </div>
+          <h3 class="exp-title">Fuse AI Fellow</h3>
+          <p class="exp-desc">
+            Selected through competitive entrance exam (linear algebra,
+            calculus, probability, Python, ML). Wk 1: Heart attack risk
+            prediction — EDA, SQL CTEs/window functions. Wk 2: Containerised
+            FastAPI + PostgreSQL REST API (4-layer architecture, asyncio
+            concurrency). Wk 3: Five-stage Text-to-SQL agentic pipeline —
+            100% execution success and 100% accuracy on a 50-question
+            benchmark. Wk 4: Telco Churn &amp; CLV pipeline — ROC-AUC
+            0.841 ± 0.005, Papermill automation, HTML report. Wk 5:
+            Tree-based ensemble pipeline — XGBoost + Random Forest,
+            ImbPipeline/SMOTE (zero leakage), SHAP explainability, Joblib
+            serialisation. Wk 6: Probabilistic models — Bayesian inference
+            (MLE/MAP/full Bayes), Dirichlet-multinomial, multivariate
+            Gaussian, PGMs, Gaussian process regression, PyMC Bayesian
+            logistic regression. Wk 7: Customer segmentation on UCI Online
+            Retail II — RFM + category-ratio feature engineering,
+            K-Means/Hierarchical/DBSCAN clustering, full statistical
+            validation and business narrative.
+          </p>
           <div class="exp-year" id="live-fuse-year">May 2026 – ongoing</div>
         </div>
 
         <div class="exp-item reveal">
-          <div class="exp-org"><span class="exp-num">E — 002</span><span class="exp-org-name">IEEE KEC KTM Student
-              Branch</span></div>
-          <div>
-            <h3 class="exp-title">Vice Chair</h3>
-            <p class="exp-desc">
-              Spearheading strategic planning and high-level decision-making
-              for the IEEE KEC KTM Student Branch. Focused on scaling
-              technical initiatives, mentoring executive members, and
-              fostering industry partnerships to enhance the engineering
-              ecosystem.
-            </p>
+          <div class="exp-head">
+            <a class="exp-logo" href="https://studentbranches.ieee.org/np-kecktm/" target="_blank" rel="noopener"
+              aria-label="IEEE KEC KTM Student Branch website"><img src="assets/images/logos/ieee-kec.png" alt=""
+                loading="lazy" /></a>
+            <div class="exp-org"><span class="exp-num">E — 002</span><span class="exp-org-name">IEEE KEC KTM Student
+                Branch</span></div>
           </div>
+          <h3 class="exp-title">Vice Chair</h3>
+          <p class="exp-desc">
+            Spearheading strategic planning and high-level decision-making
+            for the IEEE KEC KTM Student Branch. Focused on scaling
+            technical initiatives, mentoring executive members, and
+            fostering industry partnerships to enhance the engineering
+            ecosystem.
+          </p>
           <div class="exp-year">2026 / 2027</div>
         </div>
 
         <div class="exp-item reveal">
-          <div class="exp-org"><span class="exp-num">E — 003</span><span class="exp-org-name">NSSR — Nepalese Society of
-              Student Researchers</span></div>
-          <div>
-            <h3 class="exp-title">DataCamp Fellow — Cohort 2</h3>
-            <p class="exp-desc">
-              Competitively selected (April 2026) for a sponsored DataCamp
-              Premium license. Phase 1 (Applied AI) complete: architected 6
-              GenAI projects spanning multi-variable prompt planning,
-              constraint-driven recommenders, automated text analytics, and
-              programmatic data-cleaning workflows. Phase 2 active: SQL
-              Associate + Python Data Associate pathways (Data Manipulation
-              in PostgreSQL, Pandas, Statistical Thinking, scikit-learn).
-              Data Engineer + Data Scientist + AI Engineer tracks to follow
-              post-fellowship.
-            </p>
+          <div class="exp-head">
+            <a class="exp-logo" href="https://nssrnepal.org" target="_blank" rel="noopener"
+              aria-label="NSSR Nepal website"><img src="assets/images/logos/nssr.png" alt="" loading="lazy" /></a>
+            <div class="exp-org"><span class="exp-num">E — 003</span><span class="exp-org-name">NSSR — Nepalese Society
+                of
+                Student Researchers</span></div>
           </div>
+          <h3 class="exp-title">DataCamp Fellow — Cohort 2</h3>
+          <p class="exp-desc">
+            Competitively selected (April 2026) for a sponsored DataCamp
+            Premium license. Phase 1 (Applied AI) complete: architected 6
+            GenAI projects spanning multi-variable prompt planning,
+            constraint-driven recommenders, automated text analytics, and
+            programmatic data-cleaning workflows. Phase 2 active: SQL
+            Associate + Python Data Associate pathways (Data Manipulation
+            in PostgreSQL, Pandas, Statistical Thinking, scikit-learn).
+            Data Engineer + Data Scientist + AI Engineer tracks to follow
+            post-fellowship.
+          </p>
           <div class="exp-year">2026 — Present</div>
         </div>
 
         <div class="exp-item reveal">
-          <div class="exp-org"><span class="exp-num">E — 004</span><span class="exp-org-name">KEC EPC CLUB</span></div>
-          <div>
-            <h3 class="exp-title">Event Manager</h3>
-            <p class="exp-desc">
-              Spearheading the end-to-end execution of club events, from
-              conceptualization and logistics to on-ground management,
-              ensuring seamless delivery and high student engagement across
-              all programs.
-            </p>
+          <div class="exp-head">
+            <a class="exp-logo" href="https://www.facebook.com/kecepcnepal/" target="_blank" rel="noopener"
+              aria-label="KEC EPC Club on Facebook"><img src="assets/images/logos/epc-club.png" alt=""
+                loading="lazy" /></a>
+            <div class="exp-org"><span class="exp-num">E — 004</span><span class="exp-org-name">KEC EPC CLUB</span>
+            </div>
           </div>
+          <h3 class="exp-title">Event Manager</h3>
+          <p class="exp-desc">
+            Spearheading the end-to-end execution of club events, from
+            conceptualization and logistics to on-ground management,
+            ensuring seamless delivery and high student engagement across
+            all programs.
+          </p>
           <div class="exp-year">2026 — Present</div>
         </div>
 
         <div class="exp-item reveal">
-          <div class="exp-org"><span class="exp-num">E — 005</span><span class="exp-org-name">KEC Maker's Space</span>
+          <div class="exp-head">
+            <a class="exp-logo" href="https://kec-innovation.github.io/makerspace/" target="_blank" rel="noopener"
+              aria-label="KEC Maker's Space website"><img src="assets/images/logos/makerspace.png" alt=""
+                loading="lazy" /></a>
+            <div class="exp-org"><span class="exp-num">E — 005</span><span class="exp-org-name">KEC Maker's Space</span>
+            </div>
           </div>
-          <div>
-            <h3 class="exp-title">Makerspace Ambassador</h3>
-            <p class="exp-desc">
-              Representing the KEC Maker's Space as an active member on the
-              web development track. Maintaining and shipping improvements to
-              the Makerspace site (makerspace-main), including site-wide bug
-              fixes, content updates, and UI enhancements. Grants free access
-              to 3D printing, laser cutting, electronics components, and the
-              1 Gbps campus network.
-            </p>
-          </div>
+          <h3 class="exp-title">Makerspace Ambassador</h3>
+          <p class="exp-desc">
+            Representing the KEC Maker's Space as an active member on the
+            web development track. Maintaining and shipping improvements to
+            the Makerspace site (makerspace-main), including site-wide bug
+            fixes, content updates, and UI enhancements. Grants free access
+            to 3D printing, laser cutting, electronics components, and the
+            1 Gbps campus network.
+          </p>
           <div class="exp-year">June 2026 — Present</div>
         </div>
 
         <div class="exp-item reveal">
-          <div class="exp-org"><span class="exp-num">E — 006</span><span class="exp-org-name">IEEE KEC KTM Student
-              Branch</span></div>
-          <div>
-            <h3 class="exp-title">Vice Secretary</h3>
-            <p class="exp-desc">
-              Led organizational and administrative operations of the IEEE
-              KEC KTM Student Branch. Coordinated events, managed
-              communications, and drove technical initiatives for the
-              engineering community.
-            </p>
-            <button class="cert-btn exp-cert-btn"
-              data-cert="assets/certificates/IEEE_KEC_Volunteering_Vice_Secretary_2025_2026.webp" data-download="assets/certificates/IEEE_KEC_Volunteering_Vice_Secretary_2025_2026.pdf"
-              data-label="IEEE KEC Volunteering — Vice Secretary 2025/2026" data-type="image"
-              aria-label="View certificate: IEEE KEC Volunteering — Vice Secretary 2025/2026">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
-            </button>
+          <div class="exp-head">
+            <a class="exp-logo" href="https://studentbranches.ieee.org/np-kecktm/" target="_blank" rel="noopener"
+              aria-label="IEEE KEC KTM Student Branch website"><img src="assets/images/logos/ieee-kec.png" alt=""
+                loading="lazy" /></a>
+            <div class="exp-org"><span class="exp-num">E — 006</span><span class="exp-org-name">IEEE KEC KTM Student
+                Branch</span></div>
           </div>
+          <h3 class="exp-title">Vice Secretary</h3>
+          <p class="exp-desc">
+            Led organizational and administrative operations of the IEEE
+            KEC KTM Student Branch. Coordinated events, managed
+            communications, and drove technical initiatives for the
+            engineering community.
+          </p>
+          <button class="cert-btn exp-cert-btn"
+            data-cert="assets/certificates/IEEE_KEC_Volunteering_Vice_Secretary_2025_2026.webp"
+            data-download="assets/certificates/IEEE_KEC_Volunteering_Vice_Secretary_2025_2026.pdf"
+            data-label="IEEE KEC Volunteering — Vice Secretary 2025/2026" data-type="image"
+            aria-label="View certificate: IEEE KEC Volunteering — Vice Secretary 2025/2026">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <path d="M3 9h18M9 21V9" />
+            </svg>
+            View Certificate
+          </button>
           <div class="exp-year">2025 — 2026</div>
         </div>
 
         <div class="exp-item reveal">
-          <div class="exp-org"><span class="exp-num">E — 007</span><span class="exp-org-name">EPC Handover Program
-              2025</span></div>
-          <div>
-            <h3 class="exp-title">Event Co-Host</h3>
-            <p class="exp-desc">
-              Co-hosted the EPC Handover Program 2025, facilitating
-              leadership transition and engaging a broad audience of
-              engineering students across departments.
-            </p>
+          <div class="exp-head">
+            <a class="exp-logo" href="https://www.facebook.com/kecepcnepal/" target="_blank" rel="noopener"
+              aria-label="KEC EPC Club on Facebook"><img src="assets/images/logos/epc-club.png" alt=""
+                loading="lazy" /></a>
+            <div class="exp-org"><span class="exp-num">E — 007</span><span class="exp-org-name">EPC Handover Program
+                2025</span></div>
           </div>
+          <h3 class="exp-title">Event Co-Host</h3>
+          <p class="exp-desc">
+            Co-hosted the EPC Handover Program 2025, facilitating
+            leadership transition and engaging a broad audience of
+            engineering students across departments.
+          </p>
           <div class="exp-year">2025</div>
         </div>
 
         <div class="exp-item reveal">
-          <div class="exp-org"><span class="exp-num">E — 008</span><span class="exp-org-name">KEC EPC CLUB</span></div>
-          <div>
-            <h3 class="exp-title">Resource Manager</h3>
-            <p class="exp-desc">
-              Optimized allocation and procurement of physical and digital
-              assets for club activities. Responsible for inventory
-              tracking, budget oversight, and ensuring team members have the
-              necessary tools for project success.
-            </p>
+          <div class="exp-head">
+            <a class="exp-logo" href="https://www.facebook.com/kecepcnepal/" target="_blank" rel="noopener"
+              aria-label="KEC EPC Club on Facebook"><img src="assets/images/logos/epc-club.png" alt=""
+                loading="lazy" /></a>
+            <div class="exp-org"><span class="exp-num">E — 008</span><span class="exp-org-name">KEC EPC CLUB</span>
+            </div>
           </div>
+          <h3 class="exp-title">Resource Manager</h3>
+          <p class="exp-desc">
+            Optimized allocation and procurement of physical and digital
+            assets for club activities. Responsible for inventory
+            tracking, budget oversight, and ensuring team members have the
+            necessary tools for project success.
+          </p>
           <div class="exp-year">2024 — 2026</div>
         </div>
       </div>
