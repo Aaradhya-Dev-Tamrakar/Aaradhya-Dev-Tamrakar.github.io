@@ -332,7 +332,9 @@
     .status-clock {
       margin-left: auto;
       display: flex;
+      flex-wrap: wrap;
       align-items: baseline;
+      justify-content: flex-end;
       gap: 0.35rem;
       font-family: var(--mono);
       letter-spacing: 0.04em;
@@ -341,6 +343,17 @@
       font-variant-numeric: tabular-nums;
       opacity: 0;
       animation: fadeIn .9s .8s forwards;
+    }
+
+    .status-clock #statusClockDate {
+      font-size: 0.68rem;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color .2s ease;
+    }
+
+    .status-clock #statusClockDate:hover {
+      color: var(--accent2);
     }
 
     .status-clock #statusClockTime {
@@ -744,8 +757,8 @@
           <div class="status-label">
             <span class="status-dot"><span class="status-dot-ring2"></span></span>
             Currently Active
-            <span class="status-clock" id="statusClock" aria-label="Current time in Kathmandu, Nepal">
-              <span id="statusClockTime">--:--:--</span><span class="status-clock-tz">NPT</span>
+            <span class="status-clock" id="statusClock" aria-label="Current date and time in Kathmandu, Nepal">
+              <span id="statusClockDate">-- --- ----</span><span id="statusClockTime">--:--:--</span><span class="status-clock-tz">NPT</span>
             </span>
           </div>
           <div class="status-items">
@@ -852,6 +865,7 @@
             <li><kbd>1</kbd>–<kbd>6</kbd><span>Jump to Home / Projects / Experience / Achievements / About /
                 Contact</span></li>
             <li><kbd>0</kbd><span>Toggle light / dark theme</span></li>
+            <li><kbd>`</kbd><span>Toggle hero date — B.S. / A.D.</span></li>
             <li><kbd>/</kbd><span>Open command palette (search)</span></li>
             <li><kbd>↑</kbd><kbd>↓</kbd><span>Move through palette results</span></li>
             <li><kbd>Enter</kbd><span>Open the highlighted result</span></li>
