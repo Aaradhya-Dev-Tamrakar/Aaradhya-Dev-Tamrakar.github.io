@@ -203,11 +203,17 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
+      max-width: 100%;
+      margin: 0 auto;
     }
 
     .cert-thumb-grid .cert-thumb {
       width: 100%;
       background: #fff;
+    }
+
+    .cert-thumb-grid .achievement-actions {
+      display: contents;
     }
 
     @media (max-width: 480px) {
@@ -1127,6 +1133,18 @@
         timeline.querySelectorAll('.achievement-item').forEach(item => {
           const buttons = Array.from(item.querySelectorAll('.cert-btn, .verify-btn'));
           if (!buttons.length) return;
+
+          const certThumbGrid = item.querySelector('.cert-thumb-grid');
+          if (certThumbGrid) {
+            if (buttons.length > 1) {
+              certThumbGrid.setAttribute('role', 'group');
+              const titleEl = item.querySelector('.achievement-title');
+              const titleText = titleEl ? titleEl.textContent.trim() : 'this achievement';
+              certThumbGrid.setAttribute('aria-label', `Certificates for ${titleText}`);
+            }
+            return;
+          }
+
           const actions = document.createElement('div');
           actions.className = 'achievement-actions';
           // Multiple certificates under one achievement (e.g. DataCamp ×6):
