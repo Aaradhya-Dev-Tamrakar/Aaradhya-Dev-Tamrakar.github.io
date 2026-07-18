@@ -976,6 +976,9 @@ footer {
   display: flex;
   gap: 0.25rem;
   align-items: center;
+  /* Keeps the row clear of the fixed back-top / scroll-pct widgets,
+     which share this same bottom-right corner. */
+  padding-right: 0.25rem;
 }
 
 .footer-socials a {
