@@ -259,6 +259,17 @@
       animation: fadeUp .9s .5s forwards;
     }
 
+    .hero-caption {
+      margin-top: 0.9rem;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--muted, var(--text));
+      max-width: 480px;
+      opacity: 0;
+      animation: fadeUp .9s .62s forwards;
+    }
+
     .hero-actions {
       margin-top: 2.5rem;
       display: flex;
@@ -766,6 +777,7 @@
           and machine learning. Fuse AI Fellow · NSSR DataCamp Fellow ·
           IEEE KEC KTM Vice Chair · Robotics enthusiast.
         </p>
+        <p class="hero-caption" id="hero-caption" aria-live="off"></p>
         <div class="hero-actions">
           <div class="magnetic-wrap">
             <a href="projects.html" class="btn-primary" aria-label="View Aaradhya's work">View Work</a>
@@ -1191,6 +1203,18 @@
   <!-- Shared site script — must be last -->
   <script src="assets/js/script.js" defer></script>
 
+
+  <!-- Rotating hero caption — one random line per page load, pool grows over time -->
+  <script>
+    (function () {
+      var el = document.getElementById('hero-caption');
+      if (!el) return;
+      var CAPTIONS = [
+        'No subscriptions — just time, iteration, and a lot of debugging.'
+      ];
+      el.textContent = CAPTIONS[Math.floor(Math.random() * CAPTIONS.length)];
+    })();
+  </script>
 
   <!-- Digital clock — Kathmandu local time, status card -->
   <script>
