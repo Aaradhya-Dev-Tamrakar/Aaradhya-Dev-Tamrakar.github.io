@@ -499,7 +499,7 @@ function initScroll() {
     const max = document.documentElement.scrollHeight - window.innerHeight;
     const nearBottom = max > 0 && (max - y) < NEAR_BOTTOM_PX;
     if (nav) nav.classList.toggle('scrolled', y > 50);
-    if (backTop) backTop.classList.toggle('visible', y > 400 && !nearBottom);
+    if (backTop) backTop.classList.toggle('visible', y > 400);
     if (scrollPct) scrollPct.classList.toggle('visible', y > 400 && !nearBottom);
     if (progressBar) {
       const pct = max > 0 ? y / max : 0;
@@ -509,6 +509,20 @@ function initScroll() {
   }, { passive: true });
 
   if (backTop) backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  document.addEventListener('keydown', e => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key !== '+' && e.key !== '-') return;
+    const tag = (document.activeElement || {}).tagName || '';
+    if (/^(INPUT|TEXTAREA|SELECT)$/i.test(tag) || document.activeElement?.isContentEditable) return;
+    e.preventDefault();
+    if (e.key === '+') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      window.scrollTo({ top: max, behavior: 'smooth' });
+    }
+  });
 }
 
 /* ── Reveal on scroll ─────────────────────────────────────── */
