@@ -476,6 +476,16 @@
       .lightbox-inner {
         width: 96vw;
       }
+
+      .achv-legends {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+
+      .achv-legend-sep {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -560,7 +570,8 @@
         <div class="achv-legends">
           <div class="achv-legend" aria-label="Achievement category legend">
             <span class="legend-item"><span class="legend-swatch legend-swatch--workshop"></span>Workshop</span>
-            <span class="legend-item"><span class="legend-swatch legend-swatch--certification"></span>Certification</span>
+            <span class="legend-item"><span
+                class="legend-swatch legend-swatch--certification"></span>Certification</span>
             <span class="legend-item"><span class="legend-swatch legend-swatch--competition"></span>Competition</span>
             <span class="legend-item"><span class="legend-swatch legend-swatch--leadership"></span>Leadership</span>
           </div>
