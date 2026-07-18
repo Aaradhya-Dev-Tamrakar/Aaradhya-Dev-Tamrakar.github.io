@@ -44,6 +44,46 @@ const CMDK_PAGES = [
   { title: 'Contact', href: '/contact.html' },
 ];
 
+/* ── Quick-nav ("Explore") card data ──────────────────────────
+   Single source of truth for the Explore grid on every page.
+   `file` matches location.pathname's basename so the renderer can
+   find "this page" and mark it --current. Contact is `showOn:
+   ['index.html']` — it only appears in Home's grid; every other
+   page relies on the always-visible Connect button instead. */
+const QUICK_NAV_PAGES = [
+  {
+    file: 'index.html', title: 'Home',
+    desc: 'BEI IV/I at KEC, IOE. Building intelligent systems across firmware, robotics, and machine learning.',
+    cta: 'Back to Home',
+  },
+  {
+    file: 'projects.html', title: 'Projects',
+    desc: 'Robotics, embedded ML, and the SPARK fall-detection platform.',
+    cta: 'View Projects',
+  },
+  {
+    file: 'experience.html', title: 'Experience',
+    desc: 'Fellowships, IEEE leadership, and club roles over the past two years.',
+    cta: 'View Timeline',
+  },
+  {
+    file: 'achievements.html', title: 'Achievements',
+    desc: 'IEEEXtreme, fellowships, certifications, and competition results.',
+    cta: 'View Achievements',
+  },
+  {
+    file: 'about.html', title: 'About',
+    desc: 'Bio, technical stack, and the path from firmware to applied ML.',
+    cta: 'Read Bio',
+  },
+  {
+    file: 'contact.html', title: 'Contact',
+    desc: 'Open to collaborations, research, and internship conversations.',
+    cta: 'Get in Touch',
+    showOn: ['index.html'],
+  },
+];
+
 const CMDK_TYPE_LABEL = { page: 'Page', project: 'Project', achievement: 'Achievement' };
 
 const CMDK_ICONS = {
@@ -450,6 +490,45 @@ function renderSiteFooter() {
     <div class="footer-copy">${SITE.footerCopy}</div>`;
 }
 
+/* ── Explore ("quick-nav") grid injection ─────────────────────
+   Renders every QUICK_NAV_PAGES entry that's eligible for the
+   current page (always-shown pages, plus any showOn-gated page
+   whose list includes this file) into #quickNavGrid. The current
+   page renders as a disabled --current card instead of a link;
+   every other card gets a dist-N/direction arrow based on its
+   position relative to the current page in the canonical order. */
+function renderQuickNav() {
+  const el = document.getElementById('quickNavGrid');
+  if (!el) return;
+  const page = location.pathname.split('/').pop() || 'index.html';
+  const currentIndex = QUICK_NAV_PAGES.findIndex(p => p.file === page);
+  const eligible = QUICK_NAV_PAGES.filter(p => !p.showOn || p.showOn.includes(page));
+
+  el.innerHTML = eligible.map(p => {
+    const isCurrent = p.file === page;
+    const idx = String(eligible.indexOf(p) + 1).padStart(2, '0');
+    if (isCurrent) {
+      return `
+        <div class="quick-nav-card quick-nav-card--current">
+          <div class="quick-nav-index">P — ${idx}</div>
+          <div class="quick-nav-title">${p.title}</div>
+          <p class="quick-nav-desc">${p.desc}</p>
+          <span class="quick-nav-cta">This is the current page</span>
+        </div>`;
+    }
+    const targetIndex = QUICK_NAV_PAGES.findIndex(q => q.file === p.file);
+    const dist = Math.min(5, Math.max(1, Math.abs(targetIndex - currentIndex)));
+    const arrow = targetIndex < currentIndex ? '&laquo;' : '&raquo;';
+    return `
+        <a class="quick-nav-card" href="/${p.file}">
+          <div class="quick-nav-index">P — ${idx} <span class="card-arrow dist-${dist}">${arrow}</span></div>
+          <div class="quick-nav-title">${p.title}</div>
+          <p class="quick-nav-desc">${p.desc}</p>
+          <span class="quick-nav-cta">${p.cta} →</span>
+        </a>`;
+  }).join('');
+}
+
 /* ── Active nav link (page-level, not anchor) ─────────────── */
 function setActiveNav() {
   // Match current page filename against each nav link's href
@@ -780,6 +859,7 @@ function initStatusDate() {
   computeLiveDates(); // compute before any page script reads LIVE
   renderSiteNav();
   setActiveNav();
+  renderQuickNav();
   initThemeToggle();
   initKeyNav();
   initStatusDate();

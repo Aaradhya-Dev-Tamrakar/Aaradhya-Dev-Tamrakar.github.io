@@ -333,6 +333,7 @@ nav.scrolled {
   border-radius: 2px;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 0 10px var(--accent-a35);
   transition:
     background 0.25s,
     color 0.25s,
@@ -351,11 +352,41 @@ nav.scrolled {
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.nav-cta:hover,
-.nav-cta.active {
+.nav-cta:hover {
   background: var(--accent);
   color: var(--bg);
   box-shadow: 0 0 14px var(--accent-a35);
+  animation-play-state: paused;
+}
+
+.nav-cta.active {
+  border-color: var(--accent);
+  animation: none;
+  box-shadow: none;
+}
+
+@keyframes nav-cta-flicker {
+
+  0%,
+  76%,
+  100% {
+    border-color: var(--accent-a80);
+    box-shadow: 0 0 10px var(--accent-a35);
+  }
+
+  84% {
+    border-color: #f0fff4;
+    box-shadow: 0 0 18px 2px var(--glow-green-a50), 0 0 4px 1px rgba(255, 255, 255, .7);
+  }
+
+  92% {
+    border-color: var(--glow-green);
+    box-shadow: 0 0 10px 1px var(--glow-green-a35);
+  }
+}
+
+.nav-cta {
+  animation: nav-cta-flicker 3.2s ease-in-out infinite;
 }
 
 .nav-cta.active::before {
@@ -1582,6 +1613,27 @@ footer {
   border-color: var(--accent) !important;
 }
 
+/* ── Current-page quick-nav card: periodic green/white flicker ── */
+@keyframes current-card-flicker {
+
+  0%,
+  76%,
+  100% {
+    border-color: var(--glow-green-a50);
+    box-shadow: none;
+  }
+
+  84% {
+    border-color: #f0fff4;
+    box-shadow: 0 0 18px 2px var(--glow-green-a50), 0 0 4px 1px rgba(255, 255, 255, .7);
+  }
+
+  92% {
+    border-color: var(--glow-green);
+    box-shadow: 0 0 10px 1px var(--glow-green-a35);
+  }
+}
+
 /* ── Quick-nav cards (Explore section — index, about, projects, contact, achievements, experience) ── */
 #quick-nav {
   background: transparent;
@@ -1635,11 +1687,11 @@ html[data-theme="light"] #quick-nav::before {
 .quick-nav-card--current {
   border-color: var(--glow-green-a50);
   cursor: default;
+  animation: current-card-flicker 3.2s ease-in-out infinite;
 }
 
 .quick-nav-card--current:hover {
   transform: none;
-  box-shadow: none;
 }
 
 .quick-nav-card--current .quick-nav-cta {
@@ -1696,6 +1748,7 @@ html[data-theme="light"] #quick-nav::before {
   display: inline-block;
   margin-left: 0.45em;
   color: var(--glow-green);
+  text-shadow: 0 0 8px var(--glow-green-a50);
   transition: opacity .25s, text-shadow .25s, transform .25s;
 }
 
@@ -1727,7 +1780,7 @@ html[data-theme="light"] #quick-nav::before {
 .quick-nav-card:hover .card-arrow {
   opacity: 1;
   transform: scale(1);
-  text-shadow: 0 0 8px var(--glow-green-a50);
+  text-shadow: 0 0 16px var(--glow-green-a50), 0 0 4px var(--glow-green);
 }
 
 @media (max-width: 1100px) {
