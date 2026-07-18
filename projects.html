@@ -95,9 +95,9 @@
     }
 
     .project-card:hover {
-      border-color: var(--accent-a35);
+      border-color: var(--glow-green-a50);
       transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, .3);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--glow-green-a35);
     }
 
     .project-index {
@@ -192,6 +192,30 @@
       line-height: 1.75;
       color: var(--text);
       margin-bottom: 1.5rem;
+    }
+
+    .project-desc-list {
+      list-style: none;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .project-desc-list li {
+      position: relative;
+      padding-left: 1.1rem;
+    }
+
+    .project-desc-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+      opacity: .8;
     }
 
     .project-tags {
@@ -292,14 +316,13 @@
         <div class="project-card reveal" id="p-001">
           <div class="project-index">P — 001</div>
           <h3 class="project-title">Gesture-Controlled Self-Balancing Robot</h3>
-          <p class="project-desc">
-            Two-wheeled inverted pendulum robot controlled via real-time hand
-            gesture recognition. Dual-hand MediaPipe control over HC-05
-            Bluetooth, PID firmware V6.9.1 (watchdog timer, atomic writes,
-            differential ramp, integrator bleed), MATLAB simulation →
-            DRV8825/CNC Shield deployment. Examiner described it as major
-            project level — rated 9.4/10.
-          </p>
+          <ul class="project-desc-list">
+            <li>Two-wheeled inverted pendulum robot with real-time dual-hand MediaPipe gesture control over HC-05
+              Bluetooth</li>
+            <li>PID firmware V6.9.1 — watchdog timer, atomic writes, differential ramp, integrator bleed</li>
+            <li>MATLAB simulation → DRV8825/CNC Shield hardware deployment</li>
+            <li>Examiner rated major-project level — 9.4/10</li>
+          </ul>
           <div class="project-tags">
             <span class="tag">Arduino</span><span class="tag">HC-05</span>
             <span class="tag">MPU-6050</span><span class="tag">NEMA-17</span>
@@ -313,16 +336,15 @@
         <div class="project-card reveal">
           <div class="project-index">P — 002</div>
           <h3 class="project-title">Text-to-SQL Agentic Pipeline</h3>
-          <p class="project-desc">
-            Production-grade five-stage agentic Text-to-SQL system over a
-            classicmodels PostgreSQL database. Modular FastAPI state
-            machine: Planner → Generator → Validator → Executor →
-            Summarizer with up to 3 self-correction retries. Achieved 100%
-            execution success rate and 100% result accuracy across a
-            50-question benchmark — zero retries required. Streamlit chat
-            UI, Docker/Compose containerisation, rule-based SQL safety
-            validation, structured JSON audit logging.
-          </p>
+          <ul class="project-desc-list">
+            <li>Five-stage agentic Text-to-SQL system over a classicmodels PostgreSQL database</li>
+            <li>Modular FastAPI state machine: Planner → Generator → Validator → Executor → Summarizer, up to 3
+              self-correction retries</li>
+            <li>100% execution success and 100% result accuracy across a 50-question benchmark — zero retries required
+            </li>
+            <li>Streamlit chat UI, Docker/Compose containerisation, rule-based SQL safety validation, structured JSON
+              audit logging</li>
+          </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">FastAPI</span>
             <span class="tag">Streamlit</span><span class="tag">GPT-4o-mini</span>
@@ -336,16 +358,13 @@
         <div class="project-card reveal">
           <div class="project-index">P — 003</div>
           <h3 class="project-title">Telco Churn Tree-Based Ensemble Pipeline</h3>
-          <p class="project-desc">
-            End-to-end classification pipeline on Telco Customer Churn
-            (7,043 rows, ~27% positive rate). ImbPipeline with SMOTE
-            restricted to training folds only — zero preprocessing leakage.
-            Random Forest + XGBoost with GridSearch/Bayesian tuning,
-            Stratified K-Fold CV. SHAP global summary and local
-            waterfall/force plots for explainability. Full Joblib pipeline
-            serialisation. Secondary task: tenure prediction with learning
-            curves. Model Card with real metric values.
-          </p>
+          <ul class="project-desc-list">
+            <li>End-to-end classification pipeline on Telco Customer Churn (7,043 rows, ~27% positive rate)</li>
+            <li>ImbPipeline with SMOTE restricted to training folds only — zero preprocessing leakage</li>
+            <li>Random Forest + XGBoost with GridSearch/Bayesian tuning, Stratified K-Fold CV</li>
+            <li>SHAP explainability (global summary + local waterfall/force plots); secondary tenure-prediction task
+              with Model Card</li>
+          </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">XGBoost</span>
             <span class="tag">Random Forest</span><span class="tag">SHAP</span>
@@ -359,15 +378,13 @@
         <div class="project-card reveal">
           <div class="project-index">P — 004</div>
           <h3 class="project-title">Telco Churn &amp; CLV ML Pipeline</h3>
-          <p class="project-desc">
-            Classification and regression pipeline for churn prediction and
-            Customer Lifetime Value modeling. Logistic Regression / Ridge /
-            SGD classifiers benchmarked on Stratified 70/15/15 split. Custom
-            threshold at 0.385 isolates top-200 high-risk budget segment.
-            Stratified 5-fold CV: ROC-AUC 0.841 ± 0.005. Ridge Regression
-            best for CLV (mean $1,304.70); Lasso L1 regularisation paths
-            plotted. Papermill automation with full HTML report export.
-          </p>
+          <ul class="project-desc-list">
+            <li>Classification and regression pipeline for churn prediction and Customer Lifetime Value modeling</li>
+            <li>Logistic Regression / Ridge / SGD classifiers on Stratified 70/15/15 split — ROC-AUC 0.841 ± 0.005
+              (5-fold CV)</li>
+            <li>Custom threshold at 0.385 isolates top-200 high-risk budget segment</li>
+            <li>Ridge Regression best for CLV (mean $1,304.70); Papermill automation with full HTML report export</li>
+          </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">scikit-learn</span>
             <span class="tag">Logistic Regression</span><span class="tag">Ridge</span>
@@ -381,15 +398,13 @@
         <div class="project-card reveal">
           <div class="project-index">P — 005 <span class="project-status">In Progress</span></div>
           <h3 class="project-title">Alpha Android Super-App</h3>
-          <p class="project-desc">
-            Modular personal super-app (SDK 36, Kotlin/Jetpack Compose,
-            Material3, custom Astronomus font). SBR Remote turns the phone
-            into a gesture controller over Bluetooth. Budget Tracker parses
-            eSewa Gmail transactions with Apache POI export and DataStore
-            persistence. Multi-mode calculator covers STD/PROG/LOGIC modes
-            including base conversion and logic gates. Primary shipping
-            target — Play Store release in progress.
-          </p>
+          <ul class="project-desc-list">
+            <li>Modular personal super-app (SDK 36, Kotlin/Jetpack Compose, Material3, custom Astronomus font)</li>
+            <li>SBR Remote turns the phone into a gesture controller over Bluetooth</li>
+            <li>Budget Tracker parses eSewa Gmail transactions — Apache POI export, DataStore persistence</li>
+            <li>Multi-mode calculator (STD/PROG/LOGIC) with base conversion and logic gates — primary shipping target,
+              Play Store release in progress</li>
+          </ul>
           <div class="project-progress">
             <div class="project-progress-track">
               <div class="project-progress-step done"></div>
@@ -413,14 +428,15 @@
         <div class="project-card reveal">
           <div class="project-index">P — 006</div>
           <h3 class="project-title">Edge AI Stability Detection System</h3>
-          <p class="project-desc">
-            ML system predicting platform stability from simulated IMU
-            sensor data (tilt_x, tilt_y, angular velocity). 10,000-sample
-            synthetic dataset; Random Forest classifier — 99.8% test
-            accuracy. REST API via FastAPI for real-time predictions;
-            Joblib export for robotics integration with
-            <a class="proj-inline-link" href="#p-001">GCSBR (Gesture-Controlled Self-Balancing Robot)</a>.
-          </p>
+          <ul class="project-desc-list">
+            <li>ML system predicting platform stability from simulated IMU sensor data (tilt_x, tilt_y, angular
+              velocity)</li>
+            <li>10,000-sample synthetic dataset; Random Forest classifier — 99.8% test accuracy</li>
+            <li>REST API via FastAPI for real-time predictions</li>
+            <li>Joblib export for robotics integration with
+              <a class="proj-inline-link" href="#p-001">GCSBR (Gesture-Controlled Self-Balancing Robot)</a>
+            </li>
+          </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">scikit-learn</span>
             <span class="tag">RandomForest</span><span class="tag">FastAPI</span>
@@ -434,13 +450,12 @@
         <div class="project-card reveal">
           <div class="project-index">P — 007</div>
           <h3 class="project-title">SysOptimizer — Windows Optimization Tool</h3>
-          <p class="project-desc">
-            Standalone Windows optimization tool packaged as a .exe via
-            PyInstaller. Animated ring gauges, sparklines, per-core CPU
-            reporting, Power Plan switcher, RAM flush, Background Bloat
-            panel (14 services/tasks), and Startup Scanner — all running
-            silently via CREATE_NO_WINDOW.
-          </p>
+          <ul class="project-desc-list">
+            <li>Standalone Windows optimization tool packaged as a .exe via PyInstaller</li>
+            <li>Animated ring gauges, sparklines, per-core CPU reporting</li>
+            <li>Power Plan switcher, RAM flush, Background Bloat panel (14 services/tasks), Startup Scanner</li>
+            <li>Runs silently via CREATE_NO_WINDOW</li>
+          </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">CustomTkinter</span>
             <span class="tag">PyInstaller</span><span class="tag">WMI</span>
@@ -451,14 +466,12 @@
         <div class="project-card reveal">
           <div class="project-index">P — 008</div>
           <h3 class="project-title">Fusemachines Wk 6 — Probabilistic Models</h3>
-          <p class="project-desc">
-            Bayesian inference pipeline for Telco Churn using PyMC, ArviZ,
-            and pgmpy. Covers MLE/MAP estimation, Dirichlet-multinomial
-            sequential updating, multivariate Gaussian conditioning,
-            probabilistic graphical models, Gaussian process regression,
-            and PyMC Bayesian logistic regression. Fitted artifact:
-            telco_bayes_lr_v1.pkl.
-          </p>
+          <ul class="project-desc-list">
+            <li>Bayesian inference pipeline for Telco Churn using PyMC, ArviZ, and pgmpy</li>
+            <li>MLE/MAP estimation, Dirichlet-multinomial sequential updating, multivariate Gaussian conditioning</li>
+            <li>Probabilistic graphical models and Gaussian process regression</li>
+            <li>PyMC Bayesian logistic regression — fitted artifact telco_bayes_lr_v1.pkl</li>
+          </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">PyMC</span>
             <span class="tag">ArviZ</span><span class="tag">pgmpy</span>
@@ -472,16 +485,15 @@
         <div class="project-card reveal">
           <div class="project-index">P — 009</div>
           <h3 class="project-title">Fusemachines Wk 7 — Customer Segmentation</h3>
-          <p class="project-desc">
-            Market segmentation pipeline on UCI Online Retail II (~500,000
-            transactions). RFM feature engineering extended with basket
-            size, purchase cadence, unique products, return rate, and
-            category spend ratios. Full clustering comparison: K-Means
-            (elbow + silhouette), Hierarchical (dendrograms), DBSCAN
-            (k-distance ε estimation). Validation via Silhouette,
-            Davies-Bouldin, and Calinski-Harabasz indices. Deliverable:
-            cluster business narratives + executive summary.
-          </p>
+          <ul class="project-desc-list">
+            <li>Market segmentation pipeline on UCI Online Retail II (~500,000 transactions)</li>
+            <li>RFM feature engineering extended with basket size, purchase cadence, unique products, return rate,
+              category spend ratios</li>
+            <li>Full clustering comparison: K-Means (elbow + silhouette), Hierarchical (dendrograms), DBSCAN (k-distance
+              ε estimation)</li>
+            <li>Validated via Silhouette, Davies-Bouldin, Calinski-Harabasz indices — cluster business narratives +
+              executive summary</li>
+          </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">scikit-learn</span>
             <span class="tag">K-Means</span><span class="tag">Hierarchical Clustering</span>
@@ -495,19 +507,17 @@
         <div class="project-card reveal">
           <div class="project-index">P — 010 <span class="project-status">Archived</span></div>
           <h3 class="project-title">PrakopNet — Multi-Hazard Early Warning System</h3>
-          <p class="project-desc">
-            Solar-powered LoRa mesh multi-hazard monitoring and
-            early-warning platform designed for remote regions of Nepal.
-            ESP32 sensor nodes (flood, landslide, air quality, weather)
-            would transmit over RYLR890 (868 MHz, Nepal-legal) to a
-            Raspberry Pi 4B gateway running federated TFLite edge
-            inference + LSTM HazardScore fusion. GPS localization, CN3791
-            solar charge controller, 18650 battery backup, INA219 power
-            telemetry, FastAPI + Streamlit dashboard. Explored as an early
-            BEI major-project direction; archived June 29, 2026 after
-            RYLR890's import-only sourcing conflicted with the
-            department's no-import policy. Superseded by SPARK.
-          </p>
+          <ul class="project-desc-list">
+            <li>Solar-powered LoRa mesh multi-hazard monitoring and early-warning platform for remote regions of Nepal
+            </li>
+            <li>ESP32 sensor nodes (flood, landslide, air quality, weather) over RYLR890 (868 MHz, Nepal-legal) to a
+              Raspberry Pi 4B gateway</li>
+            <li>Federated TFLite edge inference + LSTM HazardScore fusion; GPS localization, CN3791 solar charge
+              controller, 18650 battery backup, INA219 power telemetry</li>
+            <li>FastAPI + Streamlit dashboard — explored as early BEI major-project direction, archived June 29, 2026
+              after RYLR890's import-only sourcing conflicted with the department's no-import policy; superseded by
+              SPARK</li>
+          </ul>
           <div class="project-tags">
             <span class="tag">ESP32</span><span class="tag">RYLR890 LoRa 868 MHz</span>
             <span class="tag">Raspberry Pi 4B</span><span class="tag">TFLite Micro</span>
@@ -519,15 +529,14 @@
         <div class="project-card reveal">
           <div class="project-index">P — 011 <span class="project-status">In Progress</span></div>
           <h3 class="project-title">Nexus — Personal AI Operating System</h3>
-          <p class="project-desc">
-            Project-centric AI operating system replacing the
-            multi-browser/multi-account/multi-tool workflow. Single
-            prompt → project context → parallel Groq (Llama 3.3 70B) +
-            Gemini 1.5 Flash fan-out → centralized persistent memory.
-            Architecture: React (Vite) frontend · FastAPI backend ·
-            SQLite + FTS5 (context injection, zero embedding latency) ·
-            multi-key rotation pool. v2 redesign complete June 12, 2026.
-          </p>
+          <ul class="project-desc-list">
+            <li>Project-centric AI operating system replacing the multi-browser/multi-account/multi-tool workflow</li>
+            <li>Single prompt → project context → parallel Groq (Llama 3.3 70B) + Gemini 1.5 Flash fan-out → centralized
+              persistent memory</li>
+            <li>Architecture: React (Vite) frontend · FastAPI backend · SQLite + FTS5 (context injection, zero embedding
+              latency) · multi-key rotation pool</li>
+            <li>v2 redesign complete June 12, 2026</li>
+          </ul>
           <div class="project-progress">
             <div class="project-progress-track">
               <div class="project-progress-step done"></div>
@@ -551,11 +560,11 @@
         <div class="project-card reveal">
           <div class="project-index">P — 012</div>
           <h3 class="project-title">Custom Processor FSM Design</h3>
-          <p class="project-desc">
-            VHDL implementation of a custom processor datapath and FSM
-            supporting GCD and exponentiation operations. Simulated and
-            verified in Vivado 2023.2 as Embedded Systems coursework.
-          </p>
+          <ul class="project-desc-list">
+            <li>VHDL implementation of a custom processor datapath and FSM supporting GCD and exponentiation operations
+            </li>
+            <li>Simulated and verified in Vivado 2023.2 as Embedded Systems coursework</li>
+          </ul>
           <div class="project-tags">
             <span class="tag">VHDL</span><span class="tag">Vivado</span>
             <span class="tag">FSM</span><span class="tag">Datapath</span>
@@ -566,13 +575,12 @@
         <div class="project-card reveal">
           <div class="project-index">P — 013</div>
           <h3 class="project-title">Antenna Lab Data Analysis</h3>
-          <p class="project-desc">
-            Python data-analysis pipeline for antenna radiation pattern
-            measurements exported from lab Excel sheets. Pandas for
-            wrangling, SciPy cubic interpolation to smooth measured points,
-            and Matplotlib polar plots to visualize the resulting radiation
-            pattern. Communication &amp; RF coursework deliverable.
-          </p>
+          <ul class="project-desc-list">
+            <li>Python data-analysis pipeline for antenna radiation pattern measurements from lab Excel sheets</li>
+            <li>Pandas wrangling, SciPy cubic interpolation to smooth measured points</li>
+            <li>Matplotlib polar plots to visualize the resulting pattern — Communication &amp; RF coursework
+              deliverable</li>
+          </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">Pandas</span>
             <span class="tag">NumPy</span><span class="tag">SciPy</span>
@@ -583,17 +591,15 @@
         <div class="project-card reveal">
           <div class="project-index">P — 014</div>
           <h3 class="project-title">Fusemachines Wk 8 — Forecasting</h3>
-          <p class="project-desc">
-            Time-series forecasting pipeline benchmarking nine
-            classical-to-modern forecasters on monthly S&amp;P 500 data
-            (1990–2024). SARIMA, Holt-Winters, Prophet, LightGBM, LSTM, and
-            XGBoost compared against naive/seasonal-naive baselines via
-            MASE/RMSE, with error breakdowns by calendar month and
-            horizon. A 4-model ensemble (Holt-Winters + SARIMA + LSTM +
-            XGBoost) outperformed every single model — MASE 2.44, RMSE
-            96.7 — confirmed via Diebold-Mariano significance test
-            (p = 0.0092).
-          </p>
+          <ul class="project-desc-list">
+            <li>Time-series forecasting pipeline benchmarking nine classical-to-modern forecasters on monthly S&amp;P
+              500 data (1990–2024)</li>
+            <li>SARIMA, Holt-Winters, Prophet, LightGBM, LSTM, XGBoost compared against naive/seasonal-naive baselines
+              via MASE/RMSE</li>
+            <li>Error breakdowns by calendar month and horizon</li>
+            <li>4-model ensemble (Holt-Winters + SARIMA + LSTM + XGBoost) outperformed every single model — MASE 2.44,
+              RMSE 96.7, confirmed via Diebold-Mariano test (p = 0.0092)</li>
+          </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">statsmodels</span>
             <span class="tag">SARIMA</span><span class="tag">Holt-Winters</span>
@@ -607,15 +613,14 @@
         <div class="project-card reveal">
           <div class="project-index">P — 015 <span class="project-status">In Progress</span></div>
           <h3 class="project-title">SPARK — Two-Layer Fall Detection Wearable</h3>
-          <p class="project-desc">
-            On-device, two-layer fall-detection wearable for eldercare, built
-            entirely from locally-sourced components — zero imports, zero
-            custom PCB. A sub-5ms threshold gate (Layer 1) hands off to a
-            TFLite Micro CNN on a Raspberry Pi 4B gateway (Layer 2) for
-            SHAP-explained confirmation — Streamlit dashboard, Telegram
-            alerts, fall-to-alert under 2 seconds. BEI major project,
-            four-person team, proposal defended Jul&nbsp;10, 2026.
-          </p>
+          <ul class="project-desc-list">
+            <li>On-device, two-layer fall-detection wearable for eldercare — built entirely from locally-sourced
+              components, zero imports, zero custom PCB</li>
+            <li>Sub-5ms threshold gate (Layer 1) hands off to a TFLite Micro CNN on a Raspberry Pi 4B gateway (Layer 2)
+              for SHAP-explained confirmation</li>
+            <li>Streamlit dashboard, Telegram alerts, fall-to-alert under 2 seconds</li>
+            <li>BEI major project, four-person team — proposal defended Jul&nbsp;10, 2026</li>
+          </ul>
           <div class="project-progress">
             <div class="project-progress-track">
               <div class="project-progress-step done"></div>
@@ -639,18 +644,14 @@
         <div class="project-card reveal">
           <div class="project-index">P — 016</div>
           <h3 class="project-title">Fusemachines Wk 9 — NEU Steel Defect CNN</h3>
-          <p class="project-desc">
-            PyTorch CNN classifier for NEU-DET steel surface-defect
-            detection — six classes (crazing, inclusion, patches, pitted
-            surface, rolled-in scale, scratches) across 1,800 grayscale
-            200&times;200 images. Four-part build: from-scratch 2-layer NN
-            foundation (30.7M params) &rarr; Conv&rarr;ReLU&rarr;MaxPool CNN
-            (15 epochs, 98.6%/84.7% train/val accuracy) &rarr; hardening via
-            train-only augmentation, BatchNorm2d, and Dropout(0.4)
-            &rarr; tuning via 2&times;2 grid search and a 4-trial Optuna
-            Bayesian search. Trained and executed on a Colab T4 GPU
-            runtime.
-          </p>
+          <ul class="project-desc-list">
+            <li>PyTorch CNN classifier for NEU-DET steel surface-defect detection — six classes across 1,800 grayscale
+              200&times;200 images</li>
+            <li>Four-part build: from-scratch 2-layer NN foundation (30.7M params) &rarr; Conv&rarr;ReLU&rarr;MaxPool
+              CNN (15 epochs, 98.6%/84.7% train/val accuracy)</li>
+            <li>Hardened via train-only augmentation, BatchNorm2d, Dropout(0.4)</li>
+            <li>Tuned via 2&times;2 grid search and a 4-trial Optuna Bayesian search — trained on Colab T4 GPU</li>
+          </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">PyTorch</span>
             <span class="tag">torchvision</span><span class="tag">CNN</span>
@@ -663,19 +664,15 @@
         <div class="project-card reveal">
           <div class="project-index">P — 017</div>
           <h3 class="project-title">Fusemachines Wk 10 — Image Processing</h3>
-          <p class="project-desc">
-            Classical computer-vision pipeline across four parts: HSV-based
-            multi-class fruit segmentation (red apple, green apple, banana,
-            strawberry, orange, lime) via the Fruits-360 dataset;
-            morphological operations with Gaussian, median, and bilateral
-            denoising; a from-scratch Canny edge detector (Sobel gradients,
-            non-max suppression, double thresholding, hysteresis)
-            benchmarked against cv2.Canny(); and a full fruit-detection
-            pipeline combining Harris corner response, Hough circle
-            detection, masking, morphology, and contour-based bounding
-            boxes — extended with connected-component analysis to separate
-            touching apples.
-          </p>
+          <ul class="project-desc-list">
+            <li>HSV-based multi-class fruit segmentation (red apple, green apple, banana, strawberry, orange, lime) via
+              the Fruits-360 dataset</li>
+            <li>Morphological operations with Gaussian, median, bilateral denoising</li>
+            <li>From-scratch Canny edge detector (Sobel gradients, non-max suppression, double thresholding, hysteresis)
+              benchmarked against cv2.Canny()</li>
+            <li>Full fruit-detection pipeline — Harris corner response, Hough circle detection, masking, morphology,
+              contour-based bounding boxes, extended with connected-component analysis for touching apples</li>
+          </ul>
           <div class="project-tags">
             <span class="tag">Python</span><span class="tag">OpenCV</span>
             <span class="tag">NumPy</span><span class="tag">Matplotlib</span>

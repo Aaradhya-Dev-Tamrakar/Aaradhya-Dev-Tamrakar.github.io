@@ -53,6 +53,9 @@
   --glow-teal-a25: rgba(109, 191, 170, 0.25);
   --glow-teal-a35: rgba(109, 191, 170, 0.35);
   --glow-teal-a70: rgba(109, 191, 170, 0.7);
+  --glow-green: #4ade80;
+  --glow-green-a35: rgba(74, 222, 128, 0.35);
+  --glow-green-a50: rgba(74, 222, 128, 0.5);
 }
 
 html[data-theme="light"] {
@@ -1576,9 +1579,9 @@ html[data-theme="light"] #quick-nav::before {
 }
 
 .quick-nav-card:hover {
-  border-color: var(--accent-a35);
+  border-color: var(--glow-green-a50);
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, .3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--glow-green-a35);
 }
 
 .quick-nav-index {

@@ -52,6 +52,292 @@ const CMDK_ICONS = {
   achievement: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 6 22l6-3 6 3-3-8.5"/></svg>',
 };
 
+// Static snapshot of achievements/projects so search is truly global:
+// every page ships the full index, not just whichever type it happens
+// to render live in the DOM. Regenerate via extract_index.py after
+// editing achievements.html or projects.html. buildSearchIndex() below
+// merges this with a live DOM scan, so on-page edits still show up
+// immediately in the same session without needing a re-export.
+const SEARCH_STATIC_INDEX = {
+  achievement: [
+  {
+    "type": "achievement",
+    "title": "DataCamp Statements of Accomplishment (×7)",
+    "meta": "DataCamp · May 2026 · Jul 2026",
+    "href": "achievements.html#achv-0",
+    "text": "datacamp datacamp statements of accomplishment (×7) seven certified courses completed as part of the nssr datacamp fellowship: cleaning data with generative ai, ai-assisted product launch, building a go-to-market strategy, generate a study guide, and recommending skincare products — plus introduction to python and introduction to git, both shown separately above with their own credential ids. may 2026 · jul 2026"
+  },
+  {
+    "type": "achievement",
+    "title": "Introduction to Git",
+    "meta": "DataCamp · Jul 2026",
+    "href": "achievements.html#achv-1",
+    "text": "datacamp introduction to git completed on july 6, 2026. credential id cpe0469867571113. earned 1.6 cpe credits. jul 2026"
+  },
+  {
+    "type": "achievement",
+    "title": "AI Fluency: Framework & Foundations",
+    "meta": "ANTHROPIC · Jul 2026",
+    "href": "achievements.html#achv-2",
+    "text": "anthropic ai fluency: framework & foundations completed an advanced course on ai frameworks and foundational concepts, covering practical applications of artificial intelligence in modern development. certificate of completion received. jul 2026"
+  },
+  {
+    "type": "achievement",
+    "title": "SimOps Certifications",
+    "meta": "SimOps · Jul 2026",
+    "href": "achievements.html#achv-3",
+    "text": "simops simops certifications jul 2026"
+  },
+  {
+    "type": "achievement",
+    "title": "IEEE WIE LaTeX Training Program",
+    "meta": "IEEE · May 2026",
+    "href": "achievements.html#achv-4",
+    "text": "ieee ieee wie latex training program two-day latex workshop at kec makerspace, kalimati (may 5–6, 2026). resource person: er. dhawa sang dong. certificate of participation received. may 2026"
+  },
+  {
+    "type": "achievement",
+    "title": "Prompt Engineering Fundamentals",
+    "meta": "TechAxis · May 2026",
+    "href": "achievements.html#achv-5",
+    "text": "techaxis prompt engineering fundamentals completed a 2-hour hands-on workshop on prompt engineering fundamentals at techaxis (may 8, 2026). certificate of completion received. may 2026"
+  },
+  {
+    "type": "achievement",
+    "title": "IEEE SPAx — Engineer Your Profile",
+    "meta": "IEEE · May 2026",
+    "href": "achievements.html#achv-6",
+    "text": "ieee ieee spax — engineer your profile organizing team member for ieee spax: engineer your profile, held on may 23, 2026 at kathmandu engineering college. recognized for outstanding contribution to planning, coordination, and execution of the event. certificate of organization received. may 2026"
+  },
+  {
+    "type": "achievement",
+    "title": "NepaTronix Drone Training Program",
+    "meta": "Drone Operator Training · May 2026",
+    "href": "achievements.html#achv-7",
+    "text": "drone operator training nepatronix drone training program 3-day certified drone training covering flight operations, safety protocols, and basic applications. may 2026"
+  },
+  {
+    "type": "achievement",
+    "title": "Introduction to Python",
+    "meta": "DataCamp · May 2026",
+    "href": "achievements.html#achv-8",
+    "text": "datacamp introduction to python completed on may 25, 2026. credential id itp0014139470763. earned 2.6 cpe credits. may 2026"
+  },
+  {
+    "type": "achievement",
+    "title": "IEEE Conference Leadership Workshop 2026",
+    "meta": "IEEE · 2026",
+    "href": "achievements.html#achv-9",
+    "text": "ieee ieee conference leadership workshop 2026 workshop covering event management, leadership, and conference organisation skills for ieee student members. 2026"
+  },
+  {
+    "type": "achievement",
+    "title": "IEEE Day 2025 — Organizer",
+    "meta": "IEEE · Oct 2025",
+    "href": "achievements.html#achv-10",
+    "text": "ieee ieee day 2025 — organizer recognized for dedication and contribution as an organizer at the ieee day 2025 event (october 9, 2025), organized by ieee kathmandu engineering college student branch. certificate of appreciation received. oct 2025"
+  },
+  {
+    "type": "achievement",
+    "title": "IEEEXtreme 19.0",
+    "meta": "IEEE · Oct 2025",
+    "href": "achievements.html#achv-11",
+    "text": "ieee ieeextreme 19.0 participated in the 24-hour global competitive programming marathon hosted by ieee, with over 19,000 participants worldwide. team: shadowxtreme. certificate received. oct 2025"
+  },
+  {
+    "type": "achievement",
+    "title": "PreXtreme Competitive Programming Workshop",
+    "meta": "IEEE · Jul 2025",
+    "href": "achievements.html#achv-12",
+    "text": "ieee prextreme competitive programming workshop five-day intensive workshop (july 11–16, 2025) on algorithms and data structures: arrays, stacks, queues, number theory, combinatorics, searching, sorting, recursion, greedy algorithms, bit manipulation, dynamic programming, and graph theory. certificate of completion received. jul 2025"
+  },
+  {
+    "type": "achievement",
+    "title": "AWS Fundamentals Workshop",
+    "meta": "KEC IT Club · AWS Cloud Club Nepal · Jul 2025",
+    "href": "achievements.html#achv-13",
+    "text": "kec it club · aws cloud club nepal aws fundamentals workshop hands-on workshop on aws core services and cloud fundamentals, organized by kec i.t. club in collaboration with aws cloud club in nepal (july 19, 2025). certificate of achievement received. jul 2025"
+  },
+  {
+    "type": "achievement",
+    "title": "Agile Workshop",
+    "meta": "IEEE · Jul 2025",
+    "href": "achievements.html#achv-14",
+    "text": "ieee agile workshop participated in an agile workshop organized by ieee kec ktm student branch (july 22, 2025). certificate of appreciation received. jul 2025"
+  },
+  {
+    "type": "achievement",
+    "title": "PCB Design & Fabrication Workshop",
+    "meta": "Nepal Students' Union KEC · KEC Robotics Club · Jul 2025",
+    "href": "achievements.html#achv-15",
+    "text": "nepal students' union kec · kec robotics club pcb design & fabrication workshop three-day workshop on pcb design and fabrication (july 24–26, 2025), organized by nepal students' union, kathmandu engineering college in collaboration with kec robotics club. certificate of completion received. jul 2025"
+  },
+  {
+    "type": "achievement",
+    "title": "Mentor — Electronics For All Workshop",
+    "meta": "IEEE · Jul 2025",
+    "href": "achievements.html#achv-16",
+    "text": "ieee mentor — electronics for all workshop served as a mentor at the electronics for all workshop held at shree kuleshwor secondary school (july 27, 2025). certificate of appreciation received for mentorship contribution. jul 2025"
+  },
+  {
+    "type": "achievement",
+    "title": "How Hackers Bypass Security: A Beginner's Guide",
+    "meta": "Offenso Hackers Academy · Jul 2025",
+    "href": "achievements.html#achv-17",
+    "text": "offenso hackers academy how hackers bypass security: a beginner's guide webinar on offensive security fundamentals and common attack bypass techniques. certificate of participation received. jul 2025"
+  },
+  {
+    "type": "achievement",
+    "title": "Introduction to Git",
+    "meta": "KEC IT Club · 2024",
+    "href": "achievements.html#achv-18",
+    "text": "kec it club introduction to git completed a foundational training on git concepts, repositories, branching, and basic collaboration workflows. 2024"
+  },
+  {
+    "type": "achievement",
+    "title": "Git & GitHub Workshop",
+    "meta": "KEC IT Club · 2024",
+    "href": "achievements.html#achv-19",
+    "text": "kec it club git & github workshop version control fundamentals and collaborative workflow practices. 2024"
+  },
+  {
+    "type": "achievement",
+    "title": "HTML & CSS Workshop — Design, Code & Launch via GitHub Pages",
+    "meta": "Microsoft Learn Student Ambassador · 2024",
+    "href": "achievements.html#achv-20",
+    "text": "microsoft learn student ambassador html & css workshop — design, code & launch via github pages completed a workshop on designing, coding, and deploying a website using github pages, conducted by microsoft learn student ambassador in association with dynamic public library (dpl) teens. certificate of completion received. 2024"
+  },
+  {
+    "type": "achievement",
+    "title": "JavaScript Bootcamp",
+    "meta": "KEC IT Club · 2023",
+    "href": "achievements.html#achv-21",
+    "text": "kec it club javascript bootcamp participated in an introductory javascript bootcamp focused on core programming concepts and web development fundamentals. 2023"
+  }
+],
+  project: [
+  {
+    "type": "project",
+    "title": "Gesture-Controlled Self-Balancing Robot",
+    "meta": "Arduino, HC-05, MPU-6050",
+    "href": "projects.html#p-001",
+    "text": "gesture-controlled self-balancing robot two-wheeled inverted pendulum robot controlled via real-time hand gesture recognition. dual-hand mediapipe control over hc-05 bluetooth, pid firmware v6.9.1 (watchdog timer, atomic writes, differential ramp, integrator bleed), matlab simulation → drv8825/cnc shield deployment. examiner described it as major project level — rated 9.4/10. arduino hc-05 mpu-6050 nema-17 mediapipe pid matlab"
+  },
+  {
+    "type": "project",
+    "title": "Text-to-SQL Agentic Pipeline",
+    "meta": "Python, FastAPI, Streamlit",
+    "href": "projects.html#proj-1",
+    "text": "text-to-sql agentic pipeline production-grade five-stage agentic text-to-sql system over a classicmodels postgresql database. modular fastapi state machine: planner → generator → validator → executor → summarizer with up to 3 self-correction retries. achieved 100% execution success rate and 100% result accuracy across a 50-question benchmark — zero retries required. streamlit chat ui, docker/compose containerisation, rule-based sql safety validation, structured json audit logging. python fastapi streamlit gpt-4o-mini postgresql docker prompt chaining"
+  },
+  {
+    "type": "project",
+    "title": "Telco Churn Tree-Based Ensemble Pipeline",
+    "meta": "Python, XGBoost, Random Forest",
+    "href": "projects.html#proj-2",
+    "text": "telco churn tree-based ensemble pipeline end-to-end classification pipeline on telco customer churn (7,043 rows, ~27% positive rate). imbpipeline with smote restricted to training folds only — zero preprocessing leakage. random forest + xgboost with gridsearch/bayesian tuning, stratified k-fold cv. shap global summary and local waterfall/force plots for explainability. full joblib pipeline serialisation. secondary task: tenure prediction with learning curves. model card with real metric values. python xgboost random forest shap imbpipeline smote joblib scikit-learn"
+  },
+  {
+    "type": "project",
+    "title": "Telco Churn & CLV ML Pipeline",
+    "meta": "Python, scikit-learn, Logistic Regression",
+    "href": "projects.html#proj-3",
+    "text": "telco churn & clv ml pipeline classification and regression pipeline for churn prediction and customer lifetime value modeling. logistic regression / ridge / sgd classifiers benchmarked on stratified 70/15/15 split. custom threshold at 0.385 isolates top-200 high-risk budget segment. stratified 5-fold cv: roc-auc 0.841 ± 0.005. ridge regression best for clv (mean $1,304.70); lasso l1 regularisation paths plotted. papermill automation with full html report export. python scikit-learn logistic regression ridge lasso pandas papermill"
+  },
+  {
+    "type": "project",
+    "title": "Alpha Android Super-App",
+    "meta": "In Progress · Kotlin, Jetpack Compose, Material3",
+    "href": "projects.html#proj-4",
+    "text": "alpha android super-app modular personal super-app (sdk 36, kotlin/jetpack compose, material3, custom astronomus font). sbr remote turns the phone into a gesture controller over bluetooth. budget tracker parses esewa gmail transactions with apache poi export and datastore persistence. multi-mode calculator covers std/prog/logic modes including base conversion and logic gates. primary shipping target — play store release in progress. kotlin jetpack compose material3 camerax mediapipe bluetooth spp datastore apache poi in progress"
+  },
+  {
+    "type": "project",
+    "title": "Edge AI Stability Detection System",
+    "meta": "Python, scikit-learn, RandomForest",
+    "href": "projects.html#proj-5",
+    "text": "edge ai stability detection system ml system predicting platform stability from simulated imu sensor data (tilt_x, tilt_y, angular velocity). 10,000-sample synthetic dataset; random forest classifier — 99.8% test accuracy. rest api via fastapi for real-time predictions; joblib export for robotics integration with gcsbr (gesture-controlled self-balancing robot). python scikit-learn randomforest fastapi joblib imu edge ai"
+  },
+  {
+    "type": "project",
+    "title": "SysOptimizer — Windows Optimization Tool",
+    "meta": "Python, CustomTkinter, PyInstaller",
+    "href": "projects.html#proj-6",
+    "text": "sysoptimizer — windows optimization tool standalone windows optimization tool packaged as a .exe via pyinstaller. animated ring gauges, sparklines, per-core cpu reporting, power plan switcher, ram flush, background bloat panel (14 services/tasks), and startup scanner — all running silently via create_no_window. python customtkinter pyinstaller wmi powershell"
+  },
+  {
+    "type": "project",
+    "title": "Fusemachines Wk 6 — Probabilistic Models",
+    "meta": "Python, PyMC, ArviZ",
+    "href": "projects.html#proj-7",
+    "text": "fusemachines wk 6 — probabilistic models bayesian inference pipeline for telco churn using pymc, arviz, and pgmpy. covers mle/map estimation, dirichlet-multinomial sequential updating, multivariate gaussian conditioning, probabilistic graphical models, gaussian process regression, and pymc bayesian logistic regression. fitted artifact: telco_bayes_lr_v1.pkl. python pymc arviz pgmpy bayesian inference scikit-learn pandas"
+  },
+  {
+    "type": "project",
+    "title": "Fusemachines Wk 7 — Customer Segmentation",
+    "meta": "Python, scikit-learn, K-Means",
+    "href": "projects.html#proj-8",
+    "text": "fusemachines wk 7 — customer segmentation market segmentation pipeline on uci online retail ii (~500,000 transactions). rfm feature engineering extended with basket size, purchase cadence, unique products, return rate, and category spend ratios. full clustering comparison: k-means (elbow + silhouette), hierarchical (dendrograms), dbscan (k-distance ε estimation). validation via silhouette, davies-bouldin, and calinski-harabasz indices. deliverable: cluster business narratives + executive summary. python scikit-learn k-means hierarchical clustering dbscan rfm pandas scipy"
+  },
+  {
+    "type": "project",
+    "title": "PrakopNet — Multi-Hazard Early Warning System",
+    "meta": "Archived · ESP32, RYLR890 LoRa 868 MHz, Raspberry Pi 4B",
+    "href": "projects.html#proj-9",
+    "text": "prakopnet — multi-hazard early warning system solar-powered lora mesh multi-hazard monitoring and early-warning platform designed for remote regions of nepal. esp32 sensor nodes (flood, landslide, air quality, weather) would transmit over rylr890 (868 mhz, nepal-legal) to a raspberry pi 4b gateway running federated tflite edge inference + lstm hazardscore fusion. gps localization, cn3791 solar charge controller, 18650 battery backup, ina219 power telemetry, fastapi + streamlit dashboard. explored as an early bei major-project direction; archived june 29, 2026 after rylr890's import-only sourcing conflicted with the department's no-import policy. superseded by spark. esp32 rylr890 lora 868 mhz raspberry pi 4b tflite micro lstm gps fastapi edge ai archived"
+  },
+  {
+    "type": "project",
+    "title": "Nexus — Personal AI Operating System",
+    "meta": "In Progress · React, Vite, FastAPI",
+    "href": "projects.html#proj-10",
+    "text": "nexus — personal ai operating system project-centric ai operating system replacing the multi-browser/multi-account/multi-tool workflow. single prompt → project context → parallel groq (llama 3.3 70b) + gemini 1.5 flash fan-out → centralized persistent memory. architecture: react (vite) frontend · fastapi backend · sqlite + fts5 (context injection, zero embedding latency) · multi-key rotation pool. v2 redesign complete june 12, 2026. react vite fastapi sqlite fts5 groq gemini python in progress"
+  },
+  {
+    "type": "project",
+    "title": "Custom Processor FSM Design",
+    "meta": "VHDL, Vivado, FSM",
+    "href": "projects.html#proj-11",
+    "text": "custom processor fsm design vhdl implementation of a custom processor datapath and fsm supporting gcd and exponentiation operations. simulated and verified in vivado 2023.2 as embedded systems coursework. vhdl vivado fsm datapath fpga"
+  },
+  {
+    "type": "project",
+    "title": "Antenna Lab Data Analysis",
+    "meta": "Python, Pandas, NumPy",
+    "href": "projects.html#proj-12",
+    "text": "antenna lab data analysis python data-analysis pipeline for antenna radiation pattern measurements exported from lab excel sheets. pandas for wrangling, scipy cubic interpolation to smooth measured points, and matplotlib polar plots to visualize the resulting radiation pattern. communication & rf coursework deliverable. python pandas numpy scipy matplotlib polar plot"
+  },
+  {
+    "type": "project",
+    "title": "Fusemachines Wk 8 — Forecasting",
+    "meta": "Python, statsmodels, SARIMA",
+    "href": "projects.html#proj-13",
+    "text": "fusemachines wk 8 — forecasting time-series forecasting pipeline benchmarking nine classical-to-modern forecasters on monthly s&p 500 data (1990–2024). sarima, holt-winters, prophet, lightgbm, lstm, and xgboost compared against naive/seasonal-naive baselines via mase/rmse, with error breakdowns by calendar month and horizon. a 4-model ensemble (holt-winters + sarima + lstm + xgboost) outperformed every single model — mase 2.44, rmse 96.7 — confirmed via diebold-mariano significance test (p = 0.0092). python statsmodels sarima holt-winters prophet lightgbm lstm xgboost"
+  },
+  {
+    "type": "project",
+    "title": "SPARK — Two-Layer Fall Detection Wearable",
+    "meta": "In Progress · MPU6050, TFLite Micro, 1D CNN",
+    "href": "projects.html#proj-14",
+    "text": "spark — two-layer fall detection wearable on-device, two-layer fall-detection wearable for eldercare, built entirely from locally-sourced components — zero imports, zero custom pcb. a sub-5ms threshold gate (layer 1) hands off to a tflite micro cnn on a raspberry pi 4b gateway (layer 2) for shap-explained confirmation — streamlit dashboard, telegram alerts, fall-to-alert under 2 seconds. bei major project, four-person team, proposal defended jul 10, 2026. mpu6050 tflite micro 1d cnn raspberry pi 4b shap fastapi streamlit telegram in progress"
+  },
+  {
+    "type": "project",
+    "title": "Fusemachines Wk 9 — NEU Steel Defect CNN",
+    "meta": "Python, PyTorch, torchvision",
+    "href": "projects.html#proj-15",
+    "text": "fusemachines wk 9 — neu steel defect cnn pytorch cnn classifier for neu-det steel surface-defect detection — six classes (crazing, inclusion, patches, pitted surface, rolled-in scale, scratches) across 1,800 grayscale 200×200 images. four-part build: from-scratch 2-layer nn foundation (30.7m params) → conv→relu→maxpool cnn (15 epochs, 98.6%/84.7% train/val accuracy) → hardening via train-only augmentation, batchnorm2d, and dropout(0.4) → tuning via 2×2 grid search and a 4-trial optuna bayesian search. trained and executed on a colab t4 gpu runtime. python pytorch torchvision cnn optuna scikit-learn"
+  },
+  {
+    "type": "project",
+    "title": "Fusemachines Wk 10 — Image Processing",
+    "meta": "Python, OpenCV, NumPy",
+    "href": "projects.html#proj-16",
+    "text": "fusemachines wk 10 — image processing classical computer-vision pipeline across four parts: hsv-based multi-class fruit segmentation (red apple, green apple, banana, strawberry, orange, lime) via the fruits-360 dataset; morphological operations with gaussian, median, and bilateral denoising; a from-scratch canny edge detector (sobel gradients, non-max suppression, double thresholding, hysteresis) benchmarked against cv2.canny(); and a full fruit-detection pipeline combining harris corner response, hough circle detection, masking, morphology, and contour-based bounding boxes — extended with connected-component analysis to separate touching apples. python opencv numpy matplotlib hsv segmentation canny edge detection hough transform"
+  }
+],
+};
+
 /* ── Navbar injection ─────────────────────────────────────── */
 function renderSiteNav() {
   const el = document.getElementById('siteNav');
@@ -449,17 +735,25 @@ function buildSearchIndex() {
     type: 'page', title: p.title, meta: '', href: p.href, text: p.title.toLowerCase(),
   }));
 
+  // Start from the static snapshot (always present, every page).
+  const byHref = new Map();
+  SEARCH_STATIC_INDEX.achievement.forEach(item => byHref.set(item.href, item));
+  SEARCH_STATIC_INDEX.project.forEach(item => byHref.set(item.href, item));
+
+  // Live DOM scan overrides matching hrefs with current-page data (handles
+  // same-session edits without needing a re-export of the static index).
   document.querySelectorAll('#achievementsList .achievement-item').forEach((el, i) => {
     el.id = el.id || `achv-${i}`;
     const org = el.querySelector('.achievement-org')?.textContent.trim() || '';
     const title = el.querySelector('.achievement-title')?.textContent.trim() || '';
     const desc = el.querySelector('.achievement-desc')?.textContent.trim() || '';
     const date = el.querySelector('.achievement-date')?.textContent.trim() || '';
-    index.push({
+    const href = `achievements.html#${el.id}`;
+    byHref.set(href, {
       type: 'achievement',
       title,
       meta: [org, date].filter(Boolean).join(' · '),
-      href: `achievements.html#${el.id}`,
+      href,
       text: [org, title, desc, date].join(' ').toLowerCase(),
     });
   });
@@ -470,16 +764,17 @@ function buildSearchIndex() {
     const desc = el.querySelector('.project-desc')?.textContent.trim() || '';
     const status = el.querySelector('.project-status')?.textContent.trim() || '';
     const tags = Array.from(el.querySelectorAll('.tag')).map(t => t.textContent.trim());
-    index.push({
+    const href = `projects.html#${el.id}`;
+    byHref.set(href, {
       type: 'project',
       title,
       meta: [status, tags.slice(0, 3).join(', ')].filter(Boolean).join(' · '),
-      href: `projects.html#${el.id}`,
+      href,
       text: [title, desc, tags.join(' '), status].join(' ').toLowerCase(),
     });
   });
 
-  return index;
+  return index.concat(Array.from(byHref.values()));
 }
 
 function renderCmdk() {

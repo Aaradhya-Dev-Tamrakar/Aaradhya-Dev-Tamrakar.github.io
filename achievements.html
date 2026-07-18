@@ -95,9 +95,9 @@
     }
 
     .achievement-item:hover {
-      border-color: var(--accent-a35);
+      border-color: var(--glow-green-a50);
       transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px var(--glow-green-a35);
     }
 
     .achievement-org {
@@ -117,12 +117,6 @@
       color: var(--heading);
       margin-bottom: 0.6rem;
       line-height: 1.25;
-    }
-
-    .achievement-desc {
-      font-size: 0.88rem;
-      line-height: 1.7;
-      color: var(--text);
     }
 
     .achievement-date {
@@ -181,15 +175,15 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       overflow: hidden;
-      background: var(--bg3);
+      background: #fff;
       transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
     }
 
     .cert-thumb:hover,
     .cert-thumb:focus-visible {
-      border-color: var(--accent-a35);
+      border-color: var(--glow-green-a50);
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28), 0 0 14px var(--glow-green-a35);
     }
 
     .cert-thumb img {
@@ -205,11 +199,6 @@
       gap: 1rem;
       max-width: 100%;
       margin: 0 auto;
-    }
-
-    .cert-thumb-grid .cert-thumb {
-      width: 100%;
-      background: #fff;
     }
 
     .cert-thumb-grid .achievement-actions {
@@ -457,21 +446,13 @@
           <div class="achievement-org">KEC IT Club</div>
           <div>
             <h3 class="achievement-title">JavaScript Bootcamp</h3>
-            <p class="achievement-desc">
-              Participated in an introductory JavaScript bootcamp focused on
-              core programming concepts and web development fundamentals.
-            </p>
-            <button class="cert-btn"
+            <button class="cert-btn cert-thumb"
               data-cert="assets/certificates/javascript-bootcamp-certificate-kec-it-club-2023.webp"
               data-download="assets/certificates/javascript-bootcamp-certificate-kec-it-club-2023.pdf"
               data-label="JavaScript Bootcamp — KEC IT Club 2023" data-type="image"
               aria-label="View certificate: JavaScript Bootcamp — KEC IT Club 2023">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
+              <img src="assets/certificates/javascript-bootcamp-certificate-kec-it-club-2023.webp"
+                alt="JavaScript Bootcamp — KEC IT Club 2023 certificate" loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">2023</div>
@@ -481,10 +462,6 @@
           <div class="achievement-org">KEC IT Club</div>
           <div>
             <h3 class="achievement-title">Introduction to Git</h3>
-            <p class="achievement-desc">
-              Completed a foundational training on Git concepts, repositories,
-              branching, and basic collaboration workflows.
-            </p>
           </div>
           <div class="achievement-date">2024</div>
         </div>
@@ -493,9 +470,6 @@
           <div class="achievement-org">KEC IT Club</div>
           <div>
             <h3 class="achievement-title">Git &amp; GitHub Workshop</h3>
-            <p class="achievement-desc">
-              Version control fundamentals and collaborative workflow practices.
-            </p>
           </div>
           <div class="achievement-date">2024</div>
         </div>
@@ -504,22 +478,13 @@
           <div class="achievement-org">Microsoft Learn Student Ambassador</div>
           <div>
             <h3 class="achievement-title">HTML &amp; CSS Workshop — Design, Code &amp; Launch via GitHub Pages</h3>
-            <p class="achievement-desc">
-              Completed a workshop on designing, coding, and deploying a website
-              using GitHub Pages, conducted by Microsoft Learn Student Ambassador
-              in association with Dynamic Public Library (DPL) Teens.
-              Certificate of Completion received.
-            </p>
-            <button class="cert-btn" data-cert="assets/certificates/Microsoft_Learn_HTML_CSS_GitHub_Pages.webp"
+            <button class="cert-btn cert-thumb"
+              data-cert="assets/certificates/Microsoft_Learn_HTML_CSS_GitHub_Pages.webp"
               data-download="assets/certificates/Microsoft_Learn_HTML_CSS_GitHub_Pages.pdf"
               data-label="Microsoft Learn HTML & CSS via GitHub Pages" data-type="image"
               aria-label="View certificate: Microsoft Learn HTML & CSS via GitHub Pages">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
+              <img src="assets/certificates/Microsoft_Learn_HTML_CSS_GitHub_Pages.webp"
+                alt="Microsoft Learn HTML & CSS via GitHub Pages certificate" loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">2024</div>
@@ -529,22 +494,12 @@
           <div class="achievement-org">IEEE</div>
           <div>
             <h3 class="achievement-title">PreXtreme Competitive Programming Workshop</h3>
-            <p class="achievement-desc">
-              Five-day intensive workshop (July 11–16, 2025) on algorithms and data
-              structures: arrays, stacks, queues, number theory, combinatorics,
-              searching, sorting, recursion, greedy algorithms, bit manipulation,
-              dynamic programming, and graph theory. Certificate of Completion received.
-            </p>
-            <button class="cert-btn" data-cert="assets/certificates/IEEE_Pulchowk_PreXtreme_CP_Workshop.webp"
+            <button class="cert-btn cert-thumb" data-cert="assets/certificates/IEEE_Pulchowk_PreXtreme_CP_Workshop.webp"
               data-download="assets/certificates/IEEE_Pulchowk_PreXtreme_CP_Workshop.pdf"
               data-label="PreXtreme CP Workshop 2025" data-type="image"
               aria-label="View certificate: PreXtreme CP Workshop 2025">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
+              <img src="assets/certificates/IEEE_Pulchowk_PreXtreme_CP_Workshop.webp"
+                alt="PreXtreme CP Workshop 2025 certificate" loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">Jul 2025</div>
@@ -554,21 +509,12 @@
           <div class="achievement-org">KEC IT Club · AWS Cloud Club Nepal</div>
           <div>
             <h3 class="achievement-title">AWS Fundamentals Workshop</h3>
-            <p class="achievement-desc">
-              Hands-on workshop on AWS core services and cloud fundamentals, organized
-              by KEC I.T. Club in collaboration with AWS Cloud Club in Nepal
-              (July 19, 2025). Certificate of Achievement received.
-            </p>
-            <button class="cert-btn" data-cert="assets/certificates/KEC_IT_Club_AWS_Fundamentals_2025.webp"
+            <button class="cert-btn cert-thumb" data-cert="assets/certificates/KEC_IT_Club_AWS_Fundamentals_2025.webp"
               data-download="assets/certificates/KEC_IT_Club_AWS_Fundamentals_2025.pdf"
               data-label="AWS Fundamentals Workshop 2025" data-type="image"
               aria-label="View certificate: AWS Fundamentals Workshop 2025">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
+              <img src="assets/certificates/KEC_IT_Club_AWS_Fundamentals_2025.webp"
+                alt="AWS Fundamentals Workshop 2025 certificate" loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">Jul 2025</div>
@@ -578,20 +524,12 @@
           <div class="achievement-org">IEEE</div>
           <div>
             <h3 class="achievement-title">Agile Workshop</h3>
-            <p class="achievement-desc">
-              Participated in an Agile Workshop organized by IEEE KEC KTM Student
-              Branch (July 22, 2025). Certificate of Appreciation received.
-            </p>
-            <button class="cert-btn" data-cert="assets/certificates/IEEE_KEC_Agile_Workshop_2025.webp"
+            <button class="cert-btn cert-thumb" data-cert="assets/certificates/IEEE_KEC_Agile_Workshop_2025.webp"
               data-download="assets/certificates/IEEE_KEC_Agile_Workshop_2025.pdf"
               data-label="IEEE KEC Agile Workshop 2025" data-type="image"
               aria-label="View certificate: IEEE KEC Agile Workshop 2025">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
+              <img src="assets/certificates/IEEE_KEC_Agile_Workshop_2025.webp"
+                alt="IEEE KEC Agile Workshop 2025 certificate" loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">Jul 2025</div>
@@ -601,22 +539,13 @@
           <div class="achievement-org">Nepal Students' Union KEC · KEC Robotics Club</div>
           <div>
             <h3 class="achievement-title">PCB Design &amp; Fabrication Workshop</h3>
-            <p class="achievement-desc">
-              Three-day workshop on PCB design and fabrication (July 24–26, 2025),
-              organized by Nepal Students' Union, Kathmandu Engineering College in
-              collaboration with KEC Robotics Club. Certificate of Completion received.
-            </p>
-            <button class="cert-btn"
+            <button class="cert-btn cert-thumb"
               data-cert="assets/certificates/KEC_Robotics_Club_PCB_Design_Fabrication_Workshop_2025.webp"
               data-download="assets/certificates/KEC_Robotics_Club_PCB_Design_Fabrication_Workshop_2025.pdf"
               data-label="PCB Design & Fabrication Workshop 2025" data-type="image"
               aria-label="View certificate: PCB Design & Fabrication Workshop 2025">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
+              <img src="assets/certificates/KEC_Robotics_Club_PCB_Design_Fabrication_Workshop_2025.webp"
+                alt="PCB Design & Fabrication Workshop 2025 certificate" loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">Jul 2025</div>
@@ -626,21 +555,13 @@
           <div class="achievement-org">IEEE</div>
           <div>
             <h3 class="achievement-title">Mentor — Electronics For All Workshop</h3>
-            <p class="achievement-desc">
-              Served as a mentor at the Electronics For All Workshop held at
-              Shree Kuleshwor Secondary School (July 27, 2025). Certificate of
-              Appreciation received for mentorship contribution.
-            </p>
-            <button class="cert-btn" data-cert="assets/certificates/IEEE_KEC_Electronics_For_All_Mentorship_2025.webp"
+            <button class="cert-btn cert-thumb"
+              data-cert="assets/certificates/IEEE_KEC_Electronics_For_All_Mentorship_2025.webp"
               data-download="assets/certificates/IEEE_KEC_Electronics_For_All_Mentorship_2025.pdf"
               data-label="Electronics For All Mentorship 2025" data-type="image"
               aria-label="View certificate: Electronics For All Mentorship 2025">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
+              <img src="assets/certificates/IEEE_KEC_Electronics_For_All_Mentorship_2025.webp"
+                alt="Electronics For All Mentorship 2025 certificate" loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">Jul 2025</div>
@@ -650,20 +571,13 @@
           <div class="achievement-org">Offenso Hackers Academy</div>
           <div>
             <h3 class="achievement-title">How Hackers Bypass Security: A Beginner's Guide</h3>
-            <p class="achievement-desc">
-              Webinar on offensive security fundamentals and common attack bypass
-              techniques. Certificate of Participation received.
-            </p>
-            <button class="cert-btn" data-cert="assets/certificates/Offenso_Security_Bypass_Webinar_2025.webp"
+            <button class="cert-btn cert-thumb"
+              data-cert="assets/certificates/Offenso_Security_Bypass_Webinar_2025.webp"
               data-download="assets/certificates/Offenso_Security_Bypass_Webinar_2025.pdf"
               data-label="Offenso Security Bypass Webinar 2025" data-type="image"
               aria-label="View certificate: Offenso Security Bypass Webinar 2025">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
+              <img src="assets/certificates/Offenso_Security_Bypass_Webinar_2025.webp"
+                alt="Offenso Security Bypass Webinar 2025 certificate" loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">Jul 2025</div>
@@ -673,21 +587,12 @@
           <div class="achievement-org">IEEE</div>
           <div>
             <h3 class="achievement-title">IEEE Day 2025 — Organizer</h3>
-            <p class="achievement-desc">
-              Recognized for dedication and contribution as an Organizer at the
-              IEEE Day 2025 event (October 9, 2025), organized by IEEE Kathmandu
-              Engineering College Student Branch. Certificate of Appreciation received.
-            </p>
-            <button class="cert-btn" data-cert="assets/certificates/IEEE_KEC_IEEE_Day_Organizer_2025.webp"
+            <button class="cert-btn cert-thumb" data-cert="assets/certificates/IEEE_KEC_IEEE_Day_Organizer_2025.webp"
               data-download="assets/certificates/IEEE_KEC_IEEE_Day_Organizer_2025.pdf"
               data-label="IEEE Day 2025 Organizer" data-type="image"
               aria-label="View certificate: IEEE Day 2025 Organizer">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
+              <img src="assets/certificates/IEEE_KEC_IEEE_Day_Organizer_2025.webp"
+                alt="IEEE Day 2025 Organizer certificate" loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">Oct 2025</div>
@@ -697,20 +602,11 @@
           <div class="achievement-org">IEEE</div>
           <div>
             <h3 class="achievement-title">IEEEXtreme 19.0</h3>
-            <p class="achievement-desc">
-              Participated in the 24-hour global competitive programming marathon
-              hosted by IEEE, with over 19,000 participants worldwide.
-              Team: ShadowXTREME. Certificate received.
-            </p>
-            <button class="cert-btn" data-cert="assets/certificates/IEEE_IEEEXtreme_19_0_2025.webp"
+            <button class="cert-btn cert-thumb" data-cert="assets/certificates/IEEE_IEEEXtreme_19_0_2025.webp"
               data-download="assets/certificates/IEEE_IEEEXtreme_19_0_2025.pdf" data-label="IEEEXtreme 19.0 — 2025"
               data-type="image" aria-label="View certificate: IEEEXtreme 19.0 — 2025">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
+              <img src="assets/certificates/IEEE_IEEEXtreme_19_0_2025.webp" alt="IEEEXtreme 19.0 — 2025 certificate"
+                loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">Oct 2025</div>
@@ -720,43 +616,27 @@
           <div class="achievement-org">IEEE</div>
           <div>
             <h3 class="achievement-title">IEEE WIE LaTeX Training Program</h3>
-            <p class="achievement-desc">
-              Two-day LaTeX workshop at KEC Makerspace, Kalimati (May 5–6, 2026).
-              Resource Person: Er. Dhawa Sang Dong. Certificate of Participation received.
-            </p>
-            <button class="cert-btn" data-cert="assets/certificates/IEEE_WIE_LaTeX_Training_2026.webp"
+            <button class="cert-btn cert-thumb" data-cert="assets/certificates/IEEE_WIE_LaTeX_Training_2026.webp"
               data-download="assets/certificates/IEEE_WIE_LaTeX_Training_2026.pdf"
               data-label="IEEE WIE LaTeX Training 2026" data-type="image"
               aria-label="View certificate: IEEE WIE LaTeX Training 2026">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
+              <img src="assets/certificates/IEEE_WIE_LaTeX_Training_2026.webp"
+                alt="IEEE WIE LaTeX Training 2026 certificate" loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">May 2026</div>
         </div>
 
-        <div class="achievement-item reveal">
+        <div class="achievement-item reveal" data-date="Feb 2026">
           <div class="achievement-org">TechAxis</div>
           <div>
             <h3 class="achievement-title">Prompt Engineering Fundamentals</h3>
-            <p class="achievement-desc">
-              Completed a 2-hour hands-on workshop on Prompt Engineering Fundamentals
-              at TechAxis (May 8, 2026). Certificate of Completion received.
-            </p>
-            <button class="cert-btn" data-cert="assets/certificates/TechAxis_Prompt_Engineering_2026.webp"
+            <button class="cert-btn cert-thumb" data-cert="assets/certificates/TechAxis_Prompt_Engineering_2026.webp"
               data-download="assets/certificates/TechAxis_Prompt_Engineering_2026.pdf"
               data-label="TechAxis Prompt Engineering 2026" data-type="image"
               aria-label="View certificate: TechAxis Prompt Engineering 2026">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
+              <img src="assets/certificates/TechAxis_Prompt_Engineering_2026.webp"
+                alt="TechAxis Prompt Engineering 2026 certificate" loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">May 2026</div>
@@ -766,22 +646,12 @@
           <div class="achievement-org">IEEE</div>
           <div>
             <h3 class="achievement-title">IEEE SPAx — Engineer Your Profile</h3>
-            <p class="achievement-desc">
-              Organizing Team Member for IEEE SPAx: Engineer Your Profile, held on
-              May 23, 2026 at Kathmandu Engineering College. Recognized for outstanding
-              contribution to planning, coordination, and execution of the event.
-              Certificate of Organization received.
-            </p>
-            <button class="cert-btn" data-cert="assets/certificates/IEEE_KEC_SPAx_Organization_2026.webp"
+            <button class="cert-btn cert-thumb" data-cert="assets/certificates/IEEE_KEC_SPAx_Organization_2026.webp"
               data-download="assets/certificates/IEEE_KEC_SPAx_Organization_2026.pdf"
               data-label="IEEE SPAx Organization 2026" data-type="image"
               aria-label="View certificate: IEEE SPAx Organization 2026">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
+              <img src="assets/certificates/IEEE_KEC_SPAx_Organization_2026.webp"
+                alt="IEEE SPAx Organization 2026 certificate" loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">May 2026</div>
@@ -791,21 +661,13 @@
           <div class="achievement-org">Drone Operator Training</div>
           <div>
             <h3 class="achievement-title">NepaTronix Drone Training Program</h3>
-            <p class="achievement-desc">
-              3-day certified drone training covering flight operations, safety
-              protocols, and basic applications.
-            </p>
-            <button class="cert-btn"
+            <button class="cert-btn cert-thumb"
               data-cert="assets/certificates/NepaTronix_Drone_Hub_Nepal_3Day_Drone_Training_2026.webp"
               data-download="assets/certificates/NepaTronix_Drone_Hub_Nepal_3Day_Drone_Training_2026.pdf"
               data-label="NepaTronix Drone Training Program Certificate" data-type="image"
               aria-label="View certificate: NepaTronix Drone Training Program Certificate">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
+              <img src="assets/certificates/NepaTronix_Drone_Hub_Nepal_3Day_Drone_Training_2026.webp"
+                alt="NepaTronix Drone Training Program Certificate certificate" loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">May 2026</div>
@@ -815,20 +677,13 @@
           <div class="achievement-org">DataCamp</div>
           <div>
             <h3 class="achievement-title">Introduction to Python</h3>
-            <p class="achievement-desc">
-              Completed on May 25, 2026. Credential ID ITP0014139470763.
-              Earned 2.6 CPE credits.
-            </p>
-            <button class="cert-btn" data-cert="assets/certificates/Introduction_to_Python_ITP0014139470763.webp"
+            <button class="cert-btn cert-thumb"
+              data-cert="assets/certificates/Introduction_to_Python_ITP0014139470763.webp"
               data-download="assets/certificates/Introduction_to_Python_ITP0014139470763.pdf"
               data-label="Introduction to Python — DataCamp" data-type="image"
               aria-label="View certificate: Introduction to Python — DataCamp">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
+              <img src="assets/certificates/Introduction_to_Python_ITP0014139470763.webp"
+                alt="Introduction to Python — DataCamp certificate" loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">May 2026</div>
@@ -838,69 +693,43 @@
           <div class="achievement-org">DataCamp</div>
           <div>
             <h3 class="achievement-title">DataCamp Statements of Accomplishment (×7)</h3>
-            <p class="achievement-desc">
-              Seven certified courses completed as part of the NSSR DataCamp fellowship:
-              Cleaning Data with Generative AI, AI-Assisted Product Launch,
-              Building a Go-To-Market Strategy, Generate a Study Guide, and
-              Recommending Skincare Products — plus Introduction to Python and
-              Introduction to Git, both shown separately above with their own
-              credential IDs.
-            </p>
-            <button class="cert-btn" data-cert="assets/certificates/Cleaning_Data_with_Generative_AI.webp"
-              data-download="assets/certificates/Cleaning_Data_with_Generative_AI.pdf"
-              data-label="Cleaning Data with Generative AI — DataCamp" data-type="image"
-              aria-label="View certificate: Cleaning Data with Generative AI — DataCamp">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              Cleaning Data with GenAI
-            </button>
-            <button class="cert-btn" data-cert="assets/certificates/AI-Assisted_Product_Launch.webp"
-              data-download="assets/certificates/AI-Assisted_Product_Launch.pdf"
-              data-label="AI-Assisted Product Launch — DataCamp" data-type="image"
-              aria-label="View certificate: AI-Assisted Product Launch — DataCamp">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              AI-Assisted Product Launch
-            </button>
-            <button class="cert-btn" data-cert="assets/certificates/Building_a_Go-To-Market_Strategy.webp"
-              data-download="assets/certificates/Building_a_Go-To-Market_Strategy.pdf"
-              data-label="Building a Go-To-Market Strategy — DataCamp" data-type="image"
-              aria-label="View certificate: Building a Go-To-Market Strategy — DataCamp">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              Go-To-Market Strategy
-            </button>
-            <button class="cert-btn" data-cert="assets/certificates/Generate_a_Study_Guide.webp"
-              data-download="assets/certificates/Generate_a_Study_Guide.pdf"
-              data-label="Generate a Study Guide — DataCamp" data-type="image"
-              aria-label="View certificate: Generate a Study Guide — DataCamp">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              Generate a Study Guide
-            </button>
-            <button class="cert-btn" data-cert="assets/certificates/Recommending_Skincare_Products.webp"
-              data-download="assets/certificates/Recommending_Skincare_Products.pdf"
-              data-label="Recommending Skincare Products — DataCamp" data-type="image"
-              aria-label="View certificate: Recommending Skincare Products — DataCamp">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              Recommending Skincare Products
-            </button>
+            <div class="cert-thumb-grid">
+              <button class="cert-btn cert-thumb" data-cert="assets/certificates/Cleaning_Data_with_Generative_AI.webp"
+                data-download="assets/certificates/Cleaning_Data_with_Generative_AI.pdf"
+                data-label="Cleaning Data with Generative AI — DataCamp" data-type="image"
+                aria-label="View certificate: Cleaning Data with Generative AI — DataCamp">
+                <img src="assets/certificates/Cleaning_Data_with_Generative_AI.webp"
+                  alt="Cleaning Data with Generative AI — DataCamp certificate" loading="lazy" />
+              </button>
+              <button class="cert-btn cert-thumb" data-cert="assets/certificates/AI-Assisted_Product_Launch.webp"
+                data-download="assets/certificates/AI-Assisted_Product_Launch.pdf"
+                data-label="AI-Assisted Product Launch — DataCamp" data-type="image"
+                aria-label="View certificate: AI-Assisted Product Launch — DataCamp">
+                <img src="assets/certificates/AI-Assisted_Product_Launch.webp"
+                  alt="AI-Assisted Product Launch — DataCamp certificate" loading="lazy" />
+              </button>
+              <button class="cert-btn cert-thumb" data-cert="assets/certificates/Building_a_Go-To-Market_Strategy.webp"
+                data-download="assets/certificates/Building_a_Go-To-Market_Strategy.pdf"
+                data-label="Building a Go-To-Market Strategy — DataCamp" data-type="image"
+                aria-label="View certificate: Building a Go-To-Market Strategy — DataCamp">
+                <img src="assets/certificates/Building_a_Go-To-Market_Strategy.webp"
+                  alt="Building a Go-To-Market Strategy — DataCamp certificate" loading="lazy" />
+              </button>
+              <button class="cert-btn cert-thumb" data-cert="assets/certificates/Generate_a_Study_Guide.webp"
+                data-download="assets/certificates/Generate_a_Study_Guide.pdf"
+                data-label="Generate a Study Guide — DataCamp" data-type="image"
+                aria-label="View certificate: Generate a Study Guide — DataCamp">
+                <img src="assets/certificates/Generate_a_Study_Guide.webp"
+                  alt="Generate a Study Guide — DataCamp certificate" loading="lazy" />
+              </button>
+              <button class="cert-btn cert-thumb" data-cert="assets/certificates/Recommending_Skincare_Products.webp"
+                data-download="assets/certificates/Recommending_Skincare_Products.pdf"
+                data-label="Recommending Skincare Products — DataCamp" data-type="image"
+                aria-label="View certificate: Recommending Skincare Products — DataCamp">
+                <img src="assets/certificates/Recommending_Skincare_Products.webp"
+                  alt="Recommending Skincare Products — DataCamp certificate" loading="lazy" />
+              </button>
+            </div>
           </div>
           <div class="achievement-date">May 2026 · Jul 2026</div>
         </div>
@@ -909,10 +738,6 @@
           <div class="achievement-org">IEEE</div>
           <div>
             <h3 class="achievement-title">IEEE Conference Leadership Workshop 2026</h3>
-            <p class="achievement-desc">
-              Workshop covering event management, leadership, and conference
-              organisation skills for IEEE student members.
-            </p>
           </div>
           <div class="achievement-date">2026</div>
         </div>
@@ -921,20 +746,13 @@
           <div class="achievement-org">DataCamp</div>
           <div>
             <h3 class="achievement-title">Introduction to Git</h3>
-            <p class="achievement-desc">
-              Completed on July 6, 2026. Credential ID CPE0469867571113.
-              Earned 1.6 CPE credits.
-            </p>
-            <button class="cert-btn" data-cert="assets/certificates/Introduction_to_Git_CPE0469867571113.webp"
+            <button class="cert-btn cert-thumb"
+              data-cert="assets/certificates/Introduction_to_Git_CPE0469867571113.webp"
               data-download="assets/certificates/Introduction_to_Git_CPE0469867571113.pdf"
               data-label="Introduction to Git — DataCamp" data-type="image"
               aria-label="View certificate: Introduction to Git — DataCamp">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
+              <img src="assets/certificates/Introduction_to_Git_CPE0469867571113.webp"
+                alt="Introduction to Git — DataCamp certificate" loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">Jul 2026</div>
@@ -944,21 +762,13 @@
           <div class="achievement-org">ANTHROPIC</div>
           <div>
             <h3 class="achievement-title">AI Fluency: Framework &amp; Foundations</h3>
-            <p class="achievement-desc">
-              Completed an advanced course on AI frameworks and foundational concepts,
-              covering practical applications of artificial intelligence in modern
-              development. Certificate of Completion received.
-            </p>
-            <button class="cert-btn" data-cert="assets/certificates/AI-Fluency_Framework_and_Foundations.webp"
+            <button class="cert-btn cert-thumb"
+              data-cert="assets/certificates/AI-Fluency_Framework_and_Foundations.webp"
               data-download="assets/certificates/AI-Fluency_Framework_and_Foundations.pdf"
               data-label="AI Fluency: Framework & Foundations — ANTHROPIC" data-type="image"
               aria-label="View certificate: AI Fluency: Framework & Foundations — ANTHROPIC">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              View Certificate
+              <img src="assets/certificates/AI-Fluency_Framework_and_Foundations.webp"
+                alt="AI Fluency: Framework & Foundations — ANTHROPIC certificate" loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">Jul 2026</div>
