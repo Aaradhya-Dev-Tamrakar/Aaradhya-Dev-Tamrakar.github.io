@@ -197,6 +197,26 @@
     <div id="siteFooter"></div>
   </footer>
 
+  <script>
+    // Redirect canonicalizer: when the server serves this file for a missing
+    // path, navigate the browser to the repository's canonical `/404.html` URL.
+    (function () {
+      try {
+        var pathname = window.location.pathname || "/";
+        // compute repo-root (first path segment) or `/` for user site
+        var segs = pathname.split('/');
+        var root = segs[1] ? '/' + segs[1] + '/' : '/';
+        var target = root + '404.html';
+        // avoid redirect loop if already at canonical 404
+        if (pathname !== target && pathname !== (target.replace(/\/$/, ''))) {
+          window.location.replace(target + window.location.search + window.location.hash);
+        }
+      } catch (e) {
+        // fail silently — do not block the page if something goes wrong
+        console.warn('404 redirect script error', e);
+      }
+    })();
+  </script>
   <script src="assets/js/script.js" defer></script>
 </body>
 
