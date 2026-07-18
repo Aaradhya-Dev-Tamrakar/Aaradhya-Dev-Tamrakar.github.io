@@ -1033,7 +1033,7 @@ function initKeyNav() {
       return;
     }
 
-    if (e.key === '`') {
+    if (e.key === '`' || e.code === 'Backquote') {
       toggleStatusDate();
       return;
     }
