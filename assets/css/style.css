@@ -1634,3 +1634,93 @@ html[data-theme="light"] #quick-nav::before {
     grid-template-columns: 1fr;
   }
 }
+
+/* ── Keymap & display guide ──────────────────────────────── */
+.keymap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.1rem;
+}
+
+.keymap-card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 2.25rem 2rem;
+}
+
+.keymap-card-title {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--heading);
+  margin-bottom: 1.4rem;
+}
+
+.keymap-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.keymap-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.keymap-list li span:last-child {
+  flex: 1;
+}
+
+.keymap-list kbd {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--heading);
+  background: var(--bg3);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 0.2rem 0.5rem;
+  min-width: 1.6rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.keymap-mode {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  min-width: 6.5rem;
+  flex-shrink: 0;
+}
+
+.keymap-note {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--text-a40);
+  margin-top: 1.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 1100px) {
+  #keymap {
+    padding: 4rem 2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  #keymap {
+    padding: 3.5rem 1.5rem;
+  }
+
+  .keymap-grid {
+    grid-template-columns: 1fr;
+  }
+}

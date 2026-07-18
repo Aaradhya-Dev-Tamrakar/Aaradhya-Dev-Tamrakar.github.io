@@ -20,7 +20,7 @@
     Works in Chrome/Edge; Firefox never supported it → no-op there.
   -->
   <script>
-    (function() {
+    (function () {
       var d = document.createElement('meta');
       d.name = 'theme-color';
       d.content = '#0f0e0c';
@@ -680,7 +680,18 @@
     <div class="cursor-dot" id="cursorDot"></div>
   </div>
 
-  <noscript><nav aria-label="Primary navigation"><a href="index.html" class="nav-logo">ADT<span>.</span></a><ul class="nav-links"><li><a href="index.html" class="active" aria-current="page">Home</a></li><li><a href="projects.html">Projects</a></li><li><a href="experience.html">Experience</a></li><li><a href="achievements.html">Achievements</a></li><li><a href="about.html">About</a></li></ul><div class="nav-right"><a href="contact.html" class="nav-cta">Connect</a></div></nav></noscript>
+  <noscript>
+    <nav aria-label="Primary navigation"><a href="index.html" class="nav-logo">ADT<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="nav-right"><a href="contact.html" class="nav-cta">Connect</a></div>
+    </nav>
+  </noscript>
   <div id="siteNav"></div>
 
   <main id="main-content">
@@ -811,6 +822,37 @@
           <p class="quick-nav-desc">Open to collaborations, research, and internship conversations.</p>
           <span class="quick-nav-cta">Get in Touch →</span>
         </a>
+      </div>
+    </section>
+
+    <section id="keymap" aria-label="Keyboard shortcuts and display guidance">
+      <div class="section-header reveal">
+        <div class="section-num">Reference</div>
+        <h2 class="section-title">Keymap &amp; <em>display guide</em></h2>
+      </div>
+      <div class="keymap-grid reveal">
+        <div class="keymap-card">
+          <h3 class="keymap-card-title">Keyboard shortcuts</h3>
+          <ul class="keymap-list">
+            <li><kbd>1</kbd>–<kbd>6</kbd><span>Jump to Home / Projects / Experience / Achievements / About /
+                Contact</span></li>
+            <li><kbd>0</kbd><span>Toggle light / dark theme</span></li>
+            <li><kbd>/</kbd><span>Open command palette (search)</span></li>
+            <li><kbd>↑</kbd><kbd>↓</kbd><span>Move through palette results</span></li>
+            <li><kbd>Enter</kbd><span>Open the highlighted result</span></li>
+            <li><kbd>Esc</kbd><span>Close palette, menu, or CV viewer</span></li>
+          </ul>
+          <p class="keymap-note">Disabled while typing in a text field, or with ⌘ / Ctrl / Alt held.</p>
+        </div>
+        <div class="keymap-card">
+          <h3 class="keymap-card-title">Best viewing</h3>
+          <ul class="keymap-list keymap-list--plain">
+            <li><span class="keymap-mode">Light mode</span><span>Display brightness 25% or higher</span></li>
+            <li><span class="keymap-mode">Dark mode</span><span>Display brightness 75% or higher</span></li>
+          </ul>
+          <p class="keymap-note">Both palettes are tuned for low ambient contrast — press <kbd>0</kbd> to switch and
+            compare.</p>
+        </div>
       </div>
     </section>
   </main>
@@ -1094,7 +1136,7 @@
             : now < defenceDate
               ? 'SPARK proposal defended · Major Project'
               : 'SPARK Major Project — proposal defended'
-          ;
+            ;
           return propPart + ' · ' + L.fuseLabel;
         },
         'live-fellowship': function (L) {
