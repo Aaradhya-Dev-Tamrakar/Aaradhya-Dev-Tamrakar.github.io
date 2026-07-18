@@ -931,7 +931,9 @@ footer {
   margin-top: 6rem;
   width: 100%;
   box-sizing: border-box;
-  padding: 2.5rem 3rem 2rem;
+    /* extra right padding so fixed bottom widgets and the centered "goto" control
+      do not overlap the social icons on the right. Reduced on small screens. */
+    padding: 2.5rem 6rem 2rem;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -978,7 +980,14 @@ footer {
   align-items: center;
   /* Keeps the row clear of the fixed back-top / scroll-pct widgets,
      which share this same bottom-right corner. */
-  padding-right: 0.25rem;
+  padding-right: 1rem;
+}
+
+/* Reduce the extra right padding on small viewports so footer remains readable */
+@media (max-width: 720px) {
+  footer {
+    padding-right: 3rem;
+  }
 }
 
 .footer-socials a {
