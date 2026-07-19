@@ -350,6 +350,31 @@
       width: 100%;
     }
 
+    .project-video {
+      margin: 0.25rem 0 1.25rem;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #000;
+    }
+
+    .project-video video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .project-links .project-link {
+      margin-top: 0;
+    }
+
     @media (max-width: 1100px) {
       #projects {
         padding: 1.5rem 2rem 5rem;
@@ -464,8 +489,19 @@
             <span class="tag">MediaPipe</span><span class="tag">PID</span>
             <span class="tag">MATLAB</span>
           </div>
-          <a class="project-link" href="https://github.com/AaradhyaDT/Gesture-Controlled-Self-Balancing-Robot"
-            target="_blank" rel="noopener">View on GitHub ↗</a>
+          <div class="project-video">
+            <video controls preload="none" poster="assets/videos/GCSBR_working_demo_poster.jpg" playsinline>
+              <source src="assets/videos/GCSBR_working_demo.mp4" type="video/mp4" />
+              Your browser doesn't support embedded video.
+              <a href="assets/videos/GCSBR_working_demo.mp4">Download the demo video</a>.
+            </video>
+          </div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/AaradhyaDT/Gesture-Controlled-Self-Balancing-Robot"
+              target="_blank" rel="noopener">View on GitHub ↗</a>
+            <a class="project-link" href="assets/videos/GCSBR_working_demo.mp4" target="_blank" rel="noopener">Watch
+              Full Demo ↗</a>
+          </div>
         </div>
 
         <div class="project-card reveal project-card--major">
