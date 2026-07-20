@@ -1190,6 +1190,22 @@
           <div class="achievement-date">2024</div>
         </div>
 
+        <div class="achievement-item reveal" id="achv-28" data-track="academic" data-category="certification">
+          <div class="achievement-org">DataCamp</div>
+          <div>
+            <h3 class="achievement-title">EU AI Act Literacy — Specialist Certification</h3>
+            <button class="cert-btn cert-thumb" data-cert="assets/certificates/EU_AI_Act_Literacy_EU0028355472158.webp"
+              data-download="assets/certificates/EU_AI_Act_Literacy_EU0028355472158.pdf"
+              data-verify="https://www.datacamp.com/skill-verification/EU0028355472158"
+              data-label="EU AI Act Literacy — DataCamp" data-type="image"
+              aria-label="View certificate: EU AI Act Literacy — DataCamp">
+              <img src="assets/certificates/EU_AI_Act_Literacy_EU0028355472158.webp"
+                alt="EU AI Act Literacy — DataCamp certificate" loading="lazy" />
+            </button>
+          </div>
+          <div class="achievement-date">Jul 2026</div>
+        </div>
+
         <div class="achievement-item reveal" id="achv-27" data-track="eca" data-eca-category="performance">
           <div class="achievement-org">KEC Music Club</div>
           <div>
@@ -1266,6 +1282,12 @@
             const parts = text.split('·').map(part => part.trim()).filter(Boolean);
             const dates = parts.map(parseDateValue).filter(date => !Number.isNaN(date.getTime()));
             if (dates.length) return new Date(Math.max(...dates));
+          }
+
+          const rangeMatch = text.match(/(\d{4})\s*[–—-]\s*(\d{4})/);
+          if (rangeMatch) {
+            const dates = [rangeMatch[1], rangeMatch[2]].map(parseDateValue);
+            return new Date(Math.max(...dates));
           }
 
           const yearMatch = text.match(/(\d{4})/);
