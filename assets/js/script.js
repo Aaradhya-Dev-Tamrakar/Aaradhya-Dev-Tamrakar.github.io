@@ -286,9 +286,9 @@ const SEARCH_STATIC_INDEX = {
   {
     "type": "achievement",
     "title": "Data Cleaning Hackathon",
-    "meta": "KEC IT Club · 2024",
+    "meta": "WiseBee · 2024",
     "href": "achievements.html#achv-26",
-    "text": "kec it club data cleaning hackathon 2024"
+    "text": "wisebee data cleaning hackathon 2024"
   },
   {
     "type": "achievement",
