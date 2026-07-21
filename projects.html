@@ -214,6 +214,15 @@
       border-radius: 2px;
     }
 
+    .project-date {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: .85;
+    }
+
     .project-progress {
       margin: 1.25rem 0 1.5rem;
     }
@@ -490,7 +499,7 @@
             <span class="tag">MATLAB</span>
           </div>
           <div class="project-video">
-            <video controls preload="none" poster="assets/videos/GCSBR_working_demo_poster.jpg">
+            <video controls preload="none" poster="assets/videos/GCSBR_working_demo_poster.jpg" >
               <source src="assets/videos/GCSBR_working_demo.mp4" type="video/mp4" />
               Your browser doesn't support embedded video.
               <a href="assets/videos/GCSBR_working_demo.mp4">Download the demo video</a>.
@@ -553,7 +562,7 @@
         </div>
 
         <div class="project-card reveal">
-          <div class="project-index">P — 017</div>
+          <div class="project-index">P — 017 <span class="project-date">Due 16 Jul 2026</span></div>
           <h3 class="project-title">Fusemachines Wk 10 — Image Processing</h3>
           <ul class="project-desc-list">
             <li>HSV-based multi-class fruit segmentation across the Fruits-360 dataset, morphological cleanup, and
@@ -573,7 +582,7 @@
         </div>
 
         <div class="project-card reveal">
-          <div class="project-index">P — 016</div>
+          <div class="project-index">P — 016 <span class="project-date">Due 9 Jul 2026</span></div>
           <h3 class="project-title">Fusemachines Wk 9 — NEU Steel Defect CNN</h3>
           <ul class="project-desc-list">
             <li>PyTorch CNN classifier for NEU-DET steel surface-defect detection — six classes, 1,800 grayscale
@@ -591,7 +600,7 @@
         </div>
 
         <div class="project-card reveal">
-          <div class="project-index">P — 014</div>
+          <div class="project-index">P — 014 <span class="project-date">Due 1 Jul 2026</span></div>
           <h3 class="project-title">Fusemachines Wk 8 — Forecasting</h3>
           <ul class="project-desc-list">
             <li>Time-series pipeline benchmarking nine forecasters on monthly S&amp;P 500 data (1990–2024) via
@@ -610,7 +619,7 @@
         </div>
 
         <div class="project-card reveal">
-          <div class="project-index">P — 009</div>
+          <div class="project-index">P — 009 <span class="project-date">Due 21 Jun 2026</span></div>
           <h3 class="project-title">Fusemachines Wk 7 — Customer Segmentation</h3>
           <ul class="project-desc-list">
             <li>Market segmentation on UCI Online Retail II (~500,000 transactions) with RFM + category-ratio feature
@@ -629,7 +638,7 @@
         </div>
 
         <div class="project-card reveal">
-          <div class="project-index">P — 008</div>
+          <div class="project-index">P — 008 <span class="project-date">Due 5 Jun 2026</span></div>
           <h3 class="project-title">Fusemachines Wk 6 — Probabilistic Models</h3>
           <ul class="project-desc-list">
             <li>Bayesian inference pipeline for Telco Churn using PyMC, ArviZ, and pgmpy</li>
@@ -647,7 +656,7 @@
         </div>
 
         <div class="project-card reveal">
-          <div class="project-index">P — 003</div>
+          <div class="project-index">P — 003 <span class="project-date">Due 31 May 2026</span></div>
           <h3 class="project-title">Telco Churn Tree-Based Ensemble Pipeline</h3>
           <ul class="project-desc-list">
             <li>End-to-end classification pipeline on Telco Customer Churn (7,043 rows) with SMOTE restricted to
@@ -666,7 +675,7 @@
         </div>
 
         <div class="project-card reveal">
-          <div class="project-index">P — 004</div>
+          <div class="project-index">P — 004 <span class="project-date">Due 28 May 2026</span></div>
           <h3 class="project-title">Telco Churn &amp; CLV ML Pipeline</h3>
           <ul class="project-desc-list">
             <li>Classification and regression pipeline for churn prediction and Customer Lifetime Value modeling —
@@ -684,7 +693,7 @@
         </div>
 
         <div class="project-card reveal">
-          <div class="project-index">P — 002</div>
+          <div class="project-index">P — 002 <span class="project-date">Due 20 May 2026</span></div>
           <h3 class="project-title">Text-to-SQL Agentic Pipeline</h3>
           <ul class="project-desc-list">
             <li>Five-stage agentic Text-to-SQL system over a PostgreSQL database — Planner → Generator → Validator →
