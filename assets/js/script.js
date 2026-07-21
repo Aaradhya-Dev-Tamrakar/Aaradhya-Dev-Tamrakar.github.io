@@ -288,7 +288,7 @@ const SEARCH_STATIC_INDEX = {
     "title": "Data Cleaning Hackathon",
     "meta": "WiseBee · 2 Dec 2023",
     "href": "achievements.html#achv-26",
-    "text": "wisebee data cleaning hackathon 2 dec 2023"
+    "text": "wisebee data cleaning hackathon 2023"
   },
   {
     "type": "achievement",
@@ -303,6 +303,13 @@ const SEARCH_STATIC_INDEX = {
     "meta": "KEC Music Club · 2023–2026",
     "href": "achievements.html#achv-27",
     "text": "kec music club kec music club — performer performed 4+ times per year for 3+ years at kec music club events. 2023–2026"
+  },
+  {
+    "type": "achievement",
+    "title": "Mentor — Basic Electronics Workshop",
+    "meta": "Electronic Project Club (EPC) · 7 Dec 2025",
+    "href": "achievements.html#achv-29",
+    "text": "electronic project club (epc) mentor — basic electronics workshop mentored 1st and 2nd year students through building simple circuits and checking outputs step by step. 7 dec 2025"
   }
 
   ],
