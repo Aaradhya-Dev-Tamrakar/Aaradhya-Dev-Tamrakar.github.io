@@ -1049,6 +1049,22 @@ function revealSearchTarget() {
   if (!location.hash) return;
   const target = document.getElementById(location.hash.slice(1));
   if (!target) return;
+
+  // Achievements are split into an Academic / Extracurricular track toggle
+  // (achievements.html only — see initTrackToggle in that page's inline
+  // script). Whichever track isn't active gets display:none on every one
+  // of its items, so a search link straight to an ECA item (e.g. "Music
+  // Club") would land on a hidden element and scrollIntoView would
+  // silently no-op. If the target's track isn't the active one, click the
+  // matching toggle button first so the item is actually visible.
+  const itemTrack = target.dataset.track;
+  if (itemTrack) {
+    const btn = document.getElementById(
+      itemTrack === 'eca' ? 'trackEcaBtn' : 'trackAcademicBtn'
+    );
+    if (btn && !btn.classList.contains('is-active')) btn.click();
+  }
+
   const group = target.closest('details.year-group');
   if (group) group.open = true;
   requestAnimationFrame(() => target.scrollIntoView({ behavior: 'smooth', block: 'center' }));
