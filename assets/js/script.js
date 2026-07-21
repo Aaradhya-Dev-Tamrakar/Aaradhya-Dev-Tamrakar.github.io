@@ -309,7 +309,14 @@ const SEARCH_STATIC_INDEX = {
     "title": "Mentor — Basic Electronics Workshop",
     "meta": "Electronic Project Club (EPC) · 7 Dec 2025",
     "href": "achievements.html#achv-29",
-    "text": "electronic project club (epc) mentor — basic electronics workshop mentored 1st and 2nd year students through building simple circuits and checking\n              outputs step by step. 7 dec 2025"
+    "text": "electronic project club (epc) mentor — basic electronics workshop mentored 1st and 2nd year students through building simple circuits and checking outputs step by step. 7 dec 2025"
+  },
+  {
+    "type": "achievement",
+    "title": "+2 Students Orientation — Host",
+    "meta": "IEEE · 7 Jun 2026",
+    "href": "achievements.html#achv-30",
+    "text": "ieee +2 students orientation — host hosted +2 students at the ieee kec ktm student branch with interactive quiz rounds showcasing branch activities. 7 jun 2026"
   }
 
   ],
