@@ -129,6 +129,28 @@
       border-top: 1px solid var(--line);
     }
 
+    .achievement-links {
+      display: flex;
+      gap: 0.9em;
+      margin-top: 0.55rem;
+    }
+
+    .achievement-links a {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.8;
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-a35);
+      transition: opacity 0.2s;
+    }
+
+    .achievement-links a:hover {
+      opacity: 1;
+    }
+
     /* Certificate button */
     .achievement-actions {
       display: flex;
@@ -1156,11 +1178,22 @@
           <div class="achievement-org">KEC Electrical Club</div>
           <div>
             <h3 class="achievement-title">Proteus Workshop</h3>
-            <button class="cert-btn photo-thumb" data-cert="assets/events/proteus-workshop-2024.svg"
-              data-label="Proteus Workshop — KEC Electrical Club" data-type="image"
-              aria-label="View photo: Proteus Workshop — KEC Electrical Club">
-              <img src="assets/events/proteus-workshop-2024.svg" alt="Proteus Workshop event photo" loading="lazy" />
-            </button>
+            <div class="cert-thumb-grid">
+              <button class="cert-btn photo-thumb" data-cert="assets/events/proteus-workshop-2024-day1.jpg"
+                data-label="Proteus Workshop — Day 1 — KEC Electrical Club" data-type="image"
+                aria-label="View photo: Proteus Workshop Day 1">
+                <img src="assets/events/proteus-workshop-2024-day1.jpg" alt="Proteus Workshop Day 1 event photo" loading="lazy" />
+              </button>
+              <button class="cert-btn photo-thumb" data-cert="assets/events/proteus-workshop-2024-day2.jpg"
+                data-label="Proteus Workshop — Day 2 — KEC Electrical Club" data-type="image"
+                aria-label="View photo: Proteus Workshop Day 2">
+                <img src="assets/events/proteus-workshop-2024-day2.jpg" alt="Proteus Workshop Day 2 event photo" loading="lazy" />
+              </button>
+            </div>
+            <div class="achievement-links">
+              <a href="https://www.instagram.com/p/Ct3yXtTyP1f/?img_index=2" target="_blank" rel="noopener noreferrer">Day 1</a>
+              <a href="https://www.instagram.com/p/Ct6zIJ9Sqqd/?img_index=9" target="_blank" rel="noopener noreferrer">Day 2</a>
+            </div>
           </div>
           <div class="achievement-date">2024</div>
         </div>
