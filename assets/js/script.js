@@ -326,133 +326,133 @@ const SEARCH_STATIC_INDEX = {
     "title": "SPARK — Two-Layer Fall Detection Wearable",
     "meta": "In Progress · MPU6050, TFLite Micro, 1D CNN",
     "href": "projects.html#proj-0",
-    "text": "spark — two-layer fall detection wearable on-device, two-layer fall-detection wearable for eldercare — threshold gate plus a tflite micro cnn\n              gateway, zero imports, zero custom pcb bei major project, four-person team — proposal defended jul 10, 2026 mpu6050 tflite micro 1d cnn raspberry pi 4b shap fastapi streamlit telegram in progress"
+    "text": "spark — two-layer fall detection wearable on-device, two-layer fall-detection wearable for eldercare — threshold gate plus a tflite micro cnn gateway, zero imports, zero custom pcb bei major project, four-person team — proposal defended jul 10, 2026 mpu6050 tflite micro 1d cnn raspberry pi 4b shap fastapi streamlit telegram in progress"
   },
   {
     "type": "project",
     "title": "Gesture-Controlled Self-Balancing Robot",
     "meta": "Arduino, HC-05, MPU-6050",
     "href": "projects.html#p-001",
-    "text": "gesture-controlled self-balancing robot two-wheeled inverted pendulum robot with real-time dual-hand mediapipe gesture control over hc-05\n              bluetooth examiner rated major-project level — 9.4/10 arduino hc-05 mpu-6050 nema-17 mediapipe pid matlab"
+    "text": "gesture-controlled self-balancing robot two-wheeled inverted pendulum robot with real-time dual-hand mediapipe gesture control over hc-05 bluetooth examiner rated major-project level — 9.4/10 arduino hc-05 mpu-6050 nema-17 mediapipe pid matlab"
   },
   {
     "type": "project",
     "title": "Fusemachines Capstone — Vision Fairness & Bias Audit",
     "meta": "In Progress · AIF360, Fairlearn, FairFace",
     "href": "projects.html#proj-2",
-    "text": "fusemachines capstone — vision fairness & bias audit diagnostic tool for deployed vision classifiers — runs a multi-demographic test matrix, flags\n              statistical disparities, and outputs a compliance report; detects bias but doesn't correct it fellowship capstone, two-person team withtisha manandhar— full readme to follow in-repo aif360 fairlearn fairface utkface computer vision bias auditing statistical testing html/jinja2 in progress"
+    "text": "fusemachines capstone — vision fairness & bias audit diagnostic tool for deployed vision classifiers — runs a multi-demographic test matrix, flags statistical disparities, and outputs a compliance report; detects bias but doesn't correct it fellowship capstone, two-person team with tisha manandhar — full readme to follow in-repo aif360 fairlearn fairface utkface computer vision bias auditing statistical testing html/jinja2 in progress"
   },
   {
     "type": "project",
     "title": "Fusemachines Wk 11 — Vision Transformers",
     "meta": "Python, PyTorch, torchvision",
     "href": "projects.html#proj-3",
-    "text": "fusemachines wk 11 — vision transformers five-module deep computer vision stack — resnet-50 transfer learning + gradcam, faster r-cnn\n              object detection, deeplabv3+ segmentation, a from-scratch vae, and vit patch embedding clip zero-shot classification hit 92.0% on a 200-image slice, outscoring the fine-tuned resnet-50\n              (74.1%) — deployment memo compares both for a 500-camera warehouse rollout, exported to onnx python pytorch torchvision timm clip onnx gradcam vision transformers"
+    "text": "fusemachines wk 11 — vision transformers five-module deep computer vision stack — resnet-50 transfer learning + gradcam, faster r-cnn object detection, deeplabv3+ segmentation, a from-scratch vae, and vit patch embedding clip zero-shot classification hit 92.0% on a 200-image slice, outscoring the fine-tuned resnet-50 (74.1%) — deployment memo compares both for a 500-camera warehouse rollout, exported to onnx python pytorch torchvision timm clip onnx gradcam vision transformers"
   },
   {
     "type": "project",
     "title": "Fusemachines Wk 10 — Image Processing",
     "meta": "Python, OpenCV, NumPy",
     "href": "projects.html#proj-4",
-    "text": "fusemachines wk 10 — image processing hsv-based multi-class fruit segmentation across the fruits-360 dataset, morphological cleanup, and\n              filter-based denoising benchmarks (gaussian, median, bilateral) from-scratch canny edge detector (96.9% pixel agreement vs. cv2.canny()), plus a full\n              fruit-detection pipeline — harris corners, tuned hough circles, connected-component separation of\n              touching fruit, contour-based bounding boxes python opencv numpy matplotlib hsv segmentation canny edge detection hough transform"
+    "text": "fusemachines wk 10 — image processing hsv-based multi-class fruit segmentation across the fruits-360 dataset, morphological cleanup, and filter-based denoising benchmarks (gaussian, median, bilateral) from-scratch canny edge detector (96.9% pixel agreement vs. cv2.canny()), plus a full fruit-detection pipeline — harris corners, tuned hough circles, connected-component separation of touching fruit, contour-based bounding boxes python opencv numpy matplotlib hsv segmentation canny edge detection hough transform"
   },
   {
     "type": "project",
     "title": "Fusemachines Wk 9 — NEU Steel Defect CNN",
     "meta": "Python, PyTorch, torchvision",
     "href": "projects.html#proj-5",
-    "text": "fusemachines wk 9 — neu steel defect cnn pytorch cnn classifier for neu-det steel surface-defect detection — six classes, 1,800 grayscale\n              images from-scratch nn foundation → tuned cnn, 98.8%/78.9% train/val accuracy; augmentation,\n              batchnorm, and dropout ablations plus grid-search and optuna hyperparameter tuning python pytorch torchvision cnn optuna scikit-learn"
+    "text": "fusemachines wk 9 — neu steel defect cnn pytorch cnn classifier for neu-det steel surface-defect detection — six classes, 1,800 grayscale images from-scratch nn foundation → tuned cnn, 98.8%/78.9% train/val accuracy; augmentation, batchnorm, and dropout ablations plus grid-search and optuna hyperparameter tuning python pytorch torchvision cnn optuna scikit-learn"
   },
   {
     "type": "project",
     "title": "Fusemachines Wk 8 — Forecasting",
     "meta": "Python, statsmodels, SARIMA",
     "href": "projects.html#proj-6",
-    "text": "fusemachines wk 8 — forecasting time-series pipeline benchmarking nine forecasters on monthly s&p 500 data (1990–2024) via\n              mase/rmse 4-model ensemble outperformed every single model — mase 2.44, confirmed via diebold-mariano test\n              (p = 0.0092) python statsmodels sarima holt-winters prophet lightgbm lstm xgboost"
+    "text": "fusemachines wk 8 — forecasting time-series pipeline benchmarking nine forecasters on monthly s&p 500 data (1990–2024) via mase/rmse 4-model ensemble outperformed every single model — mase 2.44, confirmed via diebold-mariano test (p = 0.0092) python statsmodels sarima holt-winters prophet lightgbm lstm xgboost"
   },
   {
     "type": "project",
     "title": "Fusemachines Wk 7 — Customer Segmentation",
     "meta": "Python, scikit-learn, K-Means",
     "href": "projects.html#proj-7",
-    "text": "fusemachines wk 7 — customer segmentation market segmentation on uci online retail ii (~500,000 transactions) with rfm + category-ratio feature\n              engineering full clustering comparison — k-means, hierarchical, dbscan — validated via silhouette and\n              davies-bouldin indices python scikit-learn k-means hierarchical clustering dbscan rfm pandas scipy"
+    "text": "fusemachines wk 7 — customer segmentation market segmentation on uci online retail ii (~500,000 transactions) with rfm + category-ratio feature engineering full clustering comparison — k-means, hierarchical, dbscan — validated via silhouette and davies-bouldin indices python scikit-learn k-means hierarchical clustering dbscan rfm pandas scipy"
   },
   {
     "type": "project",
     "title": "Fusemachines Wk 6 — Probabilistic Models",
     "meta": "Python, PyMC, ArviZ",
     "href": "projects.html#proj-8",
-    "text": "fusemachines wk 6 — probabilistic models bayesian inference pipeline for telco churn using pymc, arviz, and pgmpy mle/map estimation, dirichlet-multinomial updating, and a fitted pymc bayesian logistic regression\n              artifact python pymc arviz pgmpy bayesian inference scikit-learn pandas"
+    "text": "fusemachines wk 6 — probabilistic models bayesian inference pipeline for telco churn using pymc, arviz, and pgmpy mle/map estimation, dirichlet-multinomial updating, and a fitted pymc bayesian logistic regression artifact python pymc arviz pgmpy bayesian inference scikit-learn pandas"
   },
   {
     "type": "project",
     "title": "Telco Churn Tree-Based Ensemble Pipeline",
     "meta": "Python, XGBoost, Random Forest",
     "href": "projects.html#proj-9",
-    "text": "telco churn tree-based ensemble pipeline end-to-end classification pipeline on telco customer churn (7,043 rows) with smote restricted to\n              training folds only random forest + xgboost with shap explainability; secondary tenure-prediction task with a model card python xgboost random forest shap imbpipeline smote joblib scikit-learn"
+    "text": "telco churn tree-based ensemble pipeline end-to-end classification pipeline on telco customer churn (7,043 rows) with smote restricted to training folds only random forest + xgboost with shap explainability; secondary tenure-prediction task with a model card python xgboost random forest shap imbpipeline smote joblib scikit-learn"
   },
   {
     "type": "project",
     "title": "Telco Churn & CLV ML Pipeline",
     "meta": "Python, scikit-learn, Logistic Regression",
     "href": "projects.html#proj-10",
-    "text": "telco churn & clv ml pipeline classification and regression pipeline for churn prediction and customer lifetime value modeling —\n              roc-auc 0.841 ± 0.005 ridge regression best for clv (mean $1,304.70); full html report export via papermill python scikit-learn logistic regression ridge lasso pandas papermill"
+    "text": "telco churn & clv ml pipeline classification and regression pipeline for churn prediction and customer lifetime value modeling — roc-auc 0.841 ± 0.005 ridge regression best for clv (mean $1,304.70); full html report export via papermill python scikit-learn logistic regression ridge lasso pandas papermill"
   },
   {
     "type": "project",
     "title": "Text-to-SQL Agentic Pipeline",
     "meta": "Python, FastAPI, Streamlit",
     "href": "projects.html#proj-11",
-    "text": "text-to-sql agentic pipeline five-stage agentic text-to-sql system over a postgresql database — planner → generator → validator →\n              executor → summarizer 100% execution success and 100% result accuracy across a 50-question benchmark, zero retries required python fastapi streamlit gpt-4o-mini postgresql docker prompt chaining"
+    "text": "text-to-sql agentic pipeline five-stage agentic text-to-sql system over a postgresql database — planner → generator → validator → executor → summarizer 100% execution success and 100% result accuracy across a 50-question benchmark, zero retries required python fastapi streamlit gpt-4o-mini postgresql docker prompt chaining"
   },
   {
     "type": "project",
     "title": "Nexus — Personal AI Operating System",
     "meta": "In Progress · React, Vite, FastAPI",
     "href": "projects.html#proj-12",
-    "text": "nexus — personal ai operating system project-centric ai operating system replacing the multi-browser/multi-account/multi-tool workflow react (vite) + fastapi + sqlite/fts5, parallel groq + gemini fan-out — v2 redesign complete\n              june 12, 2026 react vite fastapi sqlite fts5 groq gemini python in progress"
+    "text": "nexus — personal ai operating system project-centric ai operating system replacing the multi-browser/multi-account/multi-tool workflow react (vite) + fastapi + sqlite/fts5, parallel groq + gemini fan-out — v2 redesign complete june 12, 2026 react vite fastapi sqlite fts5 groq gemini python in progress"
   },
   {
     "type": "project",
     "title": "Alpha Android Super-App",
     "meta": "In Progress · Kotlin, Jetpack Compose, Material3",
     "href": "projects.html#proj-13",
-    "text": "alpha android super-app modular personal super-app (kotlin/jetpack compose, material3) — gesture remote, budget tracker,\n              multi-mode calculator calculator is the primary shipping target, play store release in progress kotlin jetpack compose material3 camerax mediapipe bluetooth spp datastore apache poi in progress"
+    "text": "alpha android super-app modular personal super-app (kotlin/jetpack compose, material3) — gesture remote, budget tracker, multi-mode calculator calculator is the primary shipping target, play store release in progress kotlin jetpack compose material3 camerax mediapipe bluetooth spp datastore apache poi in progress"
   },
   {
     "type": "project",
     "title": "Edge AI Stability Detection System",
     "meta": "Python, scikit-learn, RandomForest",
     "href": "projects.html#proj-14",
-    "text": "edge ai stability detection system ml system predicting platform stability from simulated imu sensor data — random forest, 99.8% test\n              accuracy rest api via fastapi, joblib export for robotics integration withgcsbr (gesture-controlled self-balancing robot) python scikit-learn randomforest fastapi joblib imu edge ai"
+    "text": "edge ai stability detection system ml system predicting platform stability from simulated imu sensor data — random forest, 99.8% test accuracy rest api via fastapi, joblib export for robotics integration with gcsbr (gesture-controlled self-balancing robot) python scikit-learn randomforest fastapi joblib imu edge ai"
   },
   {
     "type": "project",
     "title": "Custom Processor FSM Design",
     "meta": "VHDL, Vivado, FSM",
     "href": "projects.html#proj-15",
-    "text": "custom processor fsm design vhdl implementation of a custom processor datapath and fsm supporting gcd and exponentiation\n              operations simulated and verified in vivado 2023.2 as embedded systems coursework vhdl vivado fsm datapath fpga"
+    "text": "custom processor fsm design vhdl implementation of a custom processor datapath and fsm supporting gcd and exponentiation operations simulated and verified in vivado 2023.2 as embedded systems coursework vhdl vivado fsm datapath fpga"
   },
   {
     "type": "project",
     "title": "Antenna Lab Data Analysis",
     "meta": "Python, Pandas, NumPy",
     "href": "projects.html#proj-16",
-    "text": "antenna lab data analysis python data-analysis pipeline for antenna radiation pattern measurements from lab excel sheets scipy cubic interpolation plus matplotlib polar plots — communication & rf coursework\n              deliverable python pandas numpy scipy matplotlib polar plot"
+    "text": "antenna lab data analysis python data-analysis pipeline for antenna radiation pattern measurements from lab excel sheets scipy cubic interpolation plus matplotlib polar plots — communication & rf coursework deliverable python pandas numpy scipy matplotlib polar plot"
   },
   {
     "type": "project",
     "title": "SysOptimizer — Windows Optimization Tool",
     "meta": "Python, CustomTkinter, PyInstaller",
     "href": "projects.html#proj-17",
-    "text": "sysoptimizer — windows optimization tool standalone windows optimization tool packaged as a .exe via pyinstaller power plan switcher, ram flush, background bloat panel, startup scanner — runs silently via\n              create_no_window python customtkinter pyinstaller wmi powershell"
+    "text": "sysoptimizer — windows optimization tool standalone windows optimization tool packaged as a .exe via pyinstaller power plan switcher, ram flush, background bloat panel, startup scanner — runs silently via create_no_window python customtkinter pyinstaller wmi powershell"
   },
   {
     "type": "project",
     "title": "PrakopNet — Multi-Hazard Early Warning System",
     "meta": "Archived · ESP32, RYLR890 LoRa 868 MHz, Raspberry Pi 4B",
     "href": "projects.html#proj-18",
-    "text": "prakopnet — multi-hazard early warning system solar-powered lora mesh multi-hazard monitoring platform for remote regions of nepal — esp32 nodes to\n              a raspberry pi 4b gateway archived june 29, 2026 after rylr890's import-only sourcing conflicted with department policy;\n              superseded by spark esp32 rylr890 lora 868 mhz raspberry pi 4b tflite micro lstm gps fastapi edge ai archived"
+    "text": "prakopnet — multi-hazard early warning system solar-powered lora mesh multi-hazard monitoring platform for remote regions of nepal — esp32 nodes to a raspberry pi 4b gateway archived june 29, 2026 after rylr890's import-only sourcing conflicted with department policy; superseded by spark esp32 rylr890 lora 868 mhz raspberry pi 4b tflite micro lstm gps fastapi edge ai archived"
   }
 
   ]
