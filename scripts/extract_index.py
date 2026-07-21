@@ -34,7 +34,17 @@ END_MARK = "\n};"
 
 
 def text_of(el):
-    return el.get_text(strip=True) if el else ""
+    if not el:
+        return ""
+    # get_text(strip=True) strips each text fragment individually then
+    # joins with '' — this smashes words together at inline-tag boundaries
+    # (e.g. "team with <a>Name</a> —" -> "team withName—") and leaves
+    # internal newlines/indentation intact when a single text node is
+    # soft-wrapped across source lines. separator=" " fixes the join;
+    # the regex collapses any remaining whitespace runs (incl. \xa0 from
+    # &nbsp;) down to a single space.
+    raw = el.get_text(separator=" ", strip=True)
+    return re.sub(r"\s+", " ", raw).strip()
 
 
 def extract_achievements():
