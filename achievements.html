@@ -257,6 +257,23 @@
       object-fit: cover;
     }
 
+    .achievement-banner {
+      display: block;
+      width: 100%;
+      max-width: none;
+      padding: 0;
+      margin-bottom: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .achievement-banner img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
     .achievement-desc {
       font-family: var(--serif);
       font-size: 0.85rem;
@@ -1196,6 +1213,13 @@
           <div class="achievement-org">KEC Electrical Club</div>
           <div>
             <h3 class="achievement-title">Proteus Workshop</h3>
+            <button class="cert-btn photo-thumb achievement-banner"
+              data-cert="assets/events/proteus-workshop-2024-banner.webp"
+              data-label="Proteus Workshop — Event Poster — KEC Electrical Club" data-type="image"
+              aria-label="View photo: Proteus Workshop event poster">
+              <img src="assets/events/proteus-workshop-2024-banner.webp" alt="Proteus Workshop event poster"
+                loading="lazy" />
+            </button>
             <div class="cert-thumb-grid">
               <button class="cert-btn photo-thumb" data-cert="assets/events/proteus-workshop-2024-day1.webp"
                 data-label="Proteus Workshop — Day 1 — KEC Electrical Club" data-type="image"
@@ -1211,6 +1235,7 @@
               </button>
             </div>
             <div class="achievement-links">
+              <a href="https://www.instagram.com/p/Ctt4fjByOnz/" target="_blank" rel="noopener noreferrer">Poster</a>
               <a href="https://www.instagram.com/p/Ct3yXtTyP1f/?img_index=2" target="_blank"
                 rel="noopener noreferrer">Day 1</a>
               <a href="https://www.instagram.com/p/Ct6zIJ9Sqqd/?img_index=9" target="_blank"
