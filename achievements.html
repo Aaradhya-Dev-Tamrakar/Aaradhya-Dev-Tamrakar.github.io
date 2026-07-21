@@ -236,10 +236,6 @@
     /* Event-photo thumbnail — same frame as .cert-thumb but no forced white
        background, since event photos (unlike certificate scans) vary in tone */
     .photo-thumb {
-      background: var(--bg2);
-    }
-
-    .cert-thumb-grid .photo-thumb {
       display: block;
       width: 100%;
       max-width: none;
@@ -247,31 +243,24 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       overflow: hidden;
+      background: var(--bg2);
     }
 
-    .cert-thumb-grid .photo-thumb img {
+    .photo-thumb img {
       display: block;
       width: 100%;
       height: auto;
+    }
+
+    /* Square crop only inside multi-photo grids, so paired thumbs (e.g.
+       Day 1 / Day 2) line up; standalone and banner photos keep natural ratio. */
+    .cert-thumb-grid .photo-thumb img {
       aspect-ratio: 1 / 1;
       object-fit: cover;
     }
 
     .achievement-banner {
-      display: block;
-      width: 100%;
-      max-width: none;
-      padding: 0;
       margin-bottom: 1rem;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .achievement-banner img {
-      display: block;
-      width: 100%;
-      height: auto;
     }
 
     .achievement-desc {
@@ -1189,10 +1178,11 @@
           <div class="achievement-org">Kathmandu Engineering College</div>
           <div>
             <h3 class="achievement-title">Dristi 3.0 — Volunteer Organizer</h3>
-            <button class="cert-btn photo-thumb" data-cert="assets/events/dristi-3-0-2025.svg"
+            <button class="cert-btn photo-thumb" data-cert="assets/events/dristi-3-0-2025.webp"
+              data-verify="https://www.facebook.com/photo/?fbid=688611876708822&amp;set=pb.100066800481314.-2207520000"
               data-label="Dristi 3.0 — Volunteer Organizer" data-type="image"
               aria-label="View photo: Dristi 3.0 — Volunteer Organizer">
-              <img src="assets/events/dristi-3-0-2025.svg" alt="Dristi 3.0 event photo" loading="lazy" />
+              <img src="assets/events/dristi-3-0-2025.webp" alt="Dristi 3.0 event photo" loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">2025</div>
@@ -1202,10 +1192,23 @@
           <div class="achievement-org">Kathmandu Engineering College</div>
           <div>
             <h3 class="achievement-title">Mr. KEC 2025</h3>
-            <button class="cert-btn photo-thumb" data-cert="assets/events/mr-kec-2025.svg" data-label="Mr. KEC 2025"
-              data-type="image" aria-label="View photo: Mr. KEC 2025">
-              <img src="assets/events/mr-kec-2025.svg" alt="Mr. KEC 2025 event photo" loading="lazy" />
-            </button>
+            <div class="cert-thumb-grid">
+              <button class="cert-btn photo-thumb" data-cert="assets/events/mr-kec-2025-1.webp"
+                data-verify="https://www.instagram.com/p/DEwvp6LzNBp/?img_index=1" data-label="Mr. KEC 2025"
+                data-type="image" aria-label="View photo: Mr. KEC 2025, photo 1">
+                <img src="assets/events/mr-kec-2025-1.webp" alt="Mr. KEC 2025 event photo 1" loading="lazy" />
+              </button>
+              <button class="cert-btn photo-thumb" data-cert="assets/events/mr-kec-2025-2.webp"
+                data-verify="https://www.instagram.com/p/DEwvp6LzNBp/?img_index=1" data-label="Mr. KEC 2025"
+                data-type="image" aria-label="View photo: Mr. KEC 2025, photo 2">
+                <img src="assets/events/mr-kec-2025-2.webp" alt="Mr. KEC 2025 event photo 2" loading="lazy" />
+              </button>
+              <button class="cert-btn photo-thumb" data-cert="assets/events/mr-kec-2025-3.webp"
+                data-verify="https://www.instagram.com/p/DEwvp6LzNBp/?img_index=1" data-label="Mr. KEC 2025"
+                data-type="image" aria-label="View photo: Mr. KEC 2025, photo 3">
+                <img src="assets/events/mr-kec-2025-3.webp" alt="Mr. KEC 2025 event photo 3" loading="lazy" />
+              </button>
+            </div>
           </div>
           <div class="achievement-date">2025</div>
         </div>
@@ -1250,9 +1253,10 @@
           <div class="achievement-org">CESA (Civil Engineering Student's Association)</div>
           <div>
             <h3 class="achievement-title">AutoCAD Workshop</h3>
-            <button class="cert-btn photo-thumb" data-cert="assets/events/autocad-workshop-2025.svg"
-              data-label="AutoCAD Workshop — CESA" data-type="image" aria-label="View photo: AutoCAD Workshop — CESA">
-              <img src="assets/events/autocad-workshop-2025.svg" alt="AutoCAD Workshop event photo" loading="lazy" />
+            <button class="cert-btn photo-thumb" data-cert="assets/events/autocad-workshop-2025.webp"
+              data-verify="https://www.instagram.com/p/C2-fBrnvR5l/" data-label="AutoCAD Workshop — CESA"
+              data-type="image" aria-label="View photo: AutoCAD Workshop — CESA">
+              <img src="assets/events/autocad-workshop-2025.webp" alt="AutoCAD Workshop event photo" loading="lazy" />
             </button>
           </div>
           <div class="achievement-date">2025</div>
