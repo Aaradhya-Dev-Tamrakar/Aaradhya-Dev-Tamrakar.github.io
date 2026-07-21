@@ -1,0 +1,67 @@
+name: Update search index
+# Last updated: 2026-07-21
+
+# Runs on every push to main. Regenerates SEARCH_STATIC_INDEX in
+# assets/js/script.js from the current achievements.html / projects.html
+# via scripts/extract_index.py, then commits the result if it changed.
+#
+# This is what keeps global search (index.html, contact.html, experience.html,
+# about.html, 404.html) in sync with achievements/projects content — those
+# pages have no live DOM to scan, so they depend entirely on this snapshot.
+# Before this workflow existed, the snapshot was a manual export that could
+# silently go stale (e.g. a new certificate added to achievements.html would
+# not appear in search on any other page until someone remembered to
+# re-export by hand).
+#
+# Guard: the commit-back step is itself a push to main. Without the
+# "skip if last commit author is the bot" check below, that second push
+# would re-trigger this workflow, forever. Same pattern as
+# stamp-last-commit.yml.
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    if: github.event.head_commit.author.name != 'github-actions[bot]'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install beautifulsoup4
+
+      - name: Regenerate SEARCH_STATIC_INDEX
+        run: python3 scripts/extract_index.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/js/script.js
+          # Only commit if the index actually changed — avoids empty
+          # commits on pushes that didn't touch achievements/projects.
+          git diff --staged --quiet && exit 0
+          git commit -m "chore: regenerate search index [skip ci]"
+          # stamp-last-commit.yml also triggers on this same push and
+          # commits back to main in parallel — retry with rebase in case
+          # it pushed first and this push would otherwise be rejected as
+          # non-fast-forward.
+          for i in 1 2 3 4 5; do
+            git push && exit 0
+            git pull --rebase origin main
+            sleep $((RANDOM % 5 + 1))
+          done
+          git push
