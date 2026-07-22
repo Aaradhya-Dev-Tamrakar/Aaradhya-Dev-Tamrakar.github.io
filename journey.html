@@ -455,47 +455,25 @@
       }
     }
 
-    /* ── Chronological node glow: a full-circle ring appears around one
-       node at a time, in document order, 16 -> 1 (newest to oldest),
-       then wraps instantly back to 16 — straight loop, no reverse, no
-       pause. Each node's ring alternates color from the last node's,
-       high-speed (0.15s per node). Uses var(--text)/var(--bg) rather
-       than literal black/white so both alternating states stay
-       visible in both the dark (default) and light theme. Simple
-       appear/fade, no rotation, no growth, no trail. ── */
-    .journey-node {
-      position: relative;
+    /* ── Chronological card-border glow: the left accent border on one
+       journey-card at a time gets a bright box-shadow bloom in that
+       card's own category color (var(--node-accent)), then fades back
+       to its resting state. Document order, 16 -> 1 (newest to
+       oldest), then wraps instantly back to 16 — straight loop, no
+       reverse, no pause. High-speed (0.15s per card). ── */
+    .journey-card--glow {
+      animation: journeyCardBorderFlash 0.15s ease-out;
     }
 
-    .journey-node::before {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      border-radius: 50%;
-      opacity: 0;
-      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
-      mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
-    }
-
-    .journey-node--glow-a::before {
-      background: var(--text);
-      animation: journeyNodeFlash 0.15s ease-out;
-    }
-
-    .journey-node--glow-b::before {
-      background: var(--bg);
-      animation: journeyNodeFlash 0.15s ease-out;
-    }
-
-    @keyframes journeyNodeFlash {
+    @keyframes journeyCardBorderFlash {
       0% {
-        opacity: 1;
+        box-shadow: 0 0 12px 2px var(--node-accent-a35, transparent);
       }
       80% {
-        opacity: 1;
+        box-shadow: 0 0 12px 2px var(--node-accent-a35, transparent);
       }
       100% {
-        opacity: 0;
+        box-shadow: none;
       }
     }
   </style>
@@ -1320,28 +1298,24 @@
       syncJourneyToggleAllLabel();
     }
 
-    // Chronological node glow — straight loop, document order 16 -> 1
-    // (newest to oldest), then wraps instantly back to 16, forever,
-    // no pause, no reverse. Each node's ring alternates color from
-    // the previous node's (glow-a / glow-b), high-speed.
+    // Chronological card-border glow — straight loop, document order
+    // 16 -> 1 (newest to oldest), then wraps instantly back to 16,
+    // forever, no pause, no reverse. High-speed (0.15s per card).
     document.addEventListener('DOMContentLoaded', () => {
       initJourneyToggleAll();
 
-      const nodes = Array.from(document.querySelectorAll('#journeyTrack .journey-node'));
-      if (!nodes.length) return;
+      const cards = Array.from(document.querySelectorAll('#journeyTrack .journey-card'));
+      if (!cards.length) return;
 
       let index = 0;
-      let useA = true; // per-node alternation, carries through the wrap
 
       function glowNext() {
-        const node = nodes[index];
-        const glowClass = useA ? 'journey-node--glow-a' : 'journey-node--glow-b';
+        const card = cards[index];
 
-        node.classList.add(glowClass);
-        node.addEventListener('animationend', () => {
-          node.classList.remove(glowClass);
-          useA = !useA;
-          index = (index + 1) % nodes.length;
+        card.classList.add('journey-card--glow');
+        card.addEventListener('animationend', () => {
+          card.classList.remove('journey-card--glow');
+          index = (index + 1) % cards.length;
           glowNext();
         }, { once: true });
       }
