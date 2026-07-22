@@ -8,7 +8,10 @@
 const SITE = {
   GA4_ID: 'G-P38642CDGB',
   googleClientId: '21529775347-1g1tg96qa47njo5g6fdhsuh81auqm11v.apps.googleusercontent.com',
-  masterEmails: ['aaradhyadevtmr@gmail.com', 'aaradhya.bei79001@gmail.com', 'aaradhya.dev.tamrakar@gmail.com', 'aaradhyadt@gmail.com'],
+  masterEmails: ['aaradhyadevtmr@gmail.com', 
+    'aaradhya.bei79001@gmail.com', 
+    'adtgames2061@gmail.com', 
+    'devtamrakaraaradhya83@gmail.com'],
   vipEmails: ['*'], // Add specific VIP emails here, or use '*' to allow any verified Google account
   vipDomains: [],  // e.g. ['ioe.edu.np', 'fusemachines.com'] for automatic domain VIP access
   footerCopy: '© 2026 Aaradhya Dev Tamrakar · KEC, IOE, Tribhuvan University',
