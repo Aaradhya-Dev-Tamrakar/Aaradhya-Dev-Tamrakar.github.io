@@ -9,6 +9,8 @@ const SITE = {
   GA4_ID: 'G-P38642CDGB',
   googleClientId: '21529775347-1g1tg96qa47njo5g6fdhsuh81auqm11v.apps.googleusercontent.com',
   masterEmails: ['aaradhyadevtmr@gmail.com', 'aaradhya.bei79001@gmail.com', 'aaradhya.dev.tamrakar@gmail.com', 'aaradhyadt@gmail.com'],
+  vipEmails: ['*'], // Add specific VIP emails here, or use '*' to allow any verified Google account
+  vipDomains: [],  // e.g. ['ioe.edu.np', 'fusemachines.com'] for automatic domain VIP access
   footerCopy: '© 2026 Aaradhya Dev Tamrakar · KEC, IOE, Tribhuvan University',
   socials: [
     { label: 'GitHub', href: 'https://github.com/AaradhyaDT' },
@@ -1091,6 +1093,47 @@ function parseJwt(token) {
   }
 }
 
+function getCustomVipEmails() {
+  try {
+    return JSON.parse(localStorage.getItem('adt_custom_vip_emails')) || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function addCustomVipEmail(email) {
+  const clean = (email || '').trim().toLowerCase();
+  if (!clean || !clean.includes('@')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  const list = getCustomVipEmails();
+  if (!list.includes(clean)) {
+    list.push(clean);
+    localStorage.setItem('adt_custom_vip_emails', JSON.stringify(list));
+    showToast(`Added ${clean} to VIP list!`);
+  } else {
+    showToast(`${clean} is already in VIP list.`);
+  }
+  ACCESS_CONTROL.updateUI();
+}
+
+function removeCustomVipEmail(email) {
+  const clean = (email || '').trim().toLowerCase();
+  let list = getCustomVipEmails();
+  list = list.filter(e => e !== clean);
+  localStorage.setItem('adt_custom_vip_emails', JSON.stringify(list));
+  showToast(`Removed ${clean} from VIP list.`);
+  ACCESS_CONTROL.updateUI();
+}
+
+function promptAddVipEmail() {
+  const input = prompt('Enter the Google email address to grant VIP Access to:');
+  if (input) {
+    addCustomVipEmail(input);
+  }
+}
+
 function handleGoogleCredentialResponse(response) {
   if (!response || !response.credential) return;
   const user = parseJwt(response.credential);
@@ -1099,11 +1142,34 @@ function handleGoogleCredentialResponse(response) {
     return;
   }
 
+  const cleanEmail = user.email.toLowerCase();
+  const emailDomain = cleanEmail.split('@')[1] || '';
+
   const masterList = (SITE.masterEmails || []).map(e => e.toLowerCase());
-  const isMaster = masterList.includes(user.email.toLowerCase());
-  const tier = isMaster ? ACCESS_CONTROL.TIER_MASTER : ACCESS_CONTROL.TIER_VIP;
-  const label = isMaster ? 'Master Level' : 'Higher Tier (VIP)';
-  const passcode = isMaster ? 'master2026' : 'vip2026';
+  const customVipList = getCustomVipEmails();
+  const vipList = [...(SITE.vipEmails || []), ...customVipList].map(e => e.toLowerCase());
+  const vipDomains = (SITE.vipDomains || []).map(d => d.toLowerCase());
+
+  const isMaster = masterList.includes(cleanEmail);
+  const isVip = !isMaster && (
+    vipList.includes('*') ||
+    vipList.includes(cleanEmail) ||
+    vipDomains.includes(emailDomain)
+  );
+
+  let tier = ACCESS_CONTROL.TIER_PUBLIC;
+  let label = 'Visitor';
+  let passcode = '';
+
+  if (isMaster) {
+    tier = ACCESS_CONTROL.TIER_MASTER;
+    label = 'Master Level';
+    passcode = 'master2026';
+  } else if (isVip) {
+    tier = ACCESS_CONTROL.TIER_VIP;
+    label = 'Higher Tier (VIP)';
+    passcode = 'vip2026';
+  }
 
   ACCESS_CONTROL.saveGoogleSession(tier, passcode, {
     name: user.name || user.email.split('@')[0],
@@ -1112,7 +1178,11 @@ function handleGoogleCredentialResponse(response) {
   });
 
   closeAccessModal();
-  showToast(`Signed in as ${user.name || user.email} (${label})`);
+  if (tier > ACCESS_CONTROL.TIER_PUBLIC) {
+    showToast(`Signed in as ${user.name || user.email} (${label})`);
+  } else {
+    showToast(`Signed in as ${user.name || user.email}. Enter VIP passcode or ask owner for VIP access.`);
+  }
 }
 
 function getGoogleClientId() {
@@ -1512,6 +1582,15 @@ function renderMasterControlPanel() {
           <div class="master-stat-row"><span>Gated Nodes:</span> <span id="masterGatedCount">0</span></div>
           <div class="master-stat-row"><span>Search Index:</span> <span id="masterSearchCount">0</span></div>
         </div>
+
+        <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:0.6rem;">
+          <div class="master-sim-label" style="display:flex;justify-content:space-between;align-items:center;">
+            <span>VIP Email Allowlist</span>
+            <button type="button" onclick="promptAddVipEmail()" style="background:rgba(45,212,191,0.15);border:1px solid #2dd4bf;color:#2dd4bf;padding:0.15rem 0.4rem;font-size:0.6rem;border-radius:4px;cursor:pointer;">+ Add Email</button>
+          </div>
+          <div id="masterVipListWrap" style="margin-top:0.3rem;max-height:80px;overflow-y:auto;font-family:var(--mono);font-size:0.65rem;color:var(--muted);display:flex;flex-direction:column;gap:0.2rem;"></div>
+        </div>
+
         <button type="button" class="access-btn-logout" id="masterLockBtn" style="padding:0.4rem;width:100%;">
           Lock Master Session
         </button>
@@ -1562,6 +1641,23 @@ function renderMasterControlPanel() {
     const total = (SEARCH_STATIC_INDEX.achievement || []).length + (SEARCH_STATIC_INDEX.project || []).length;
     masterSearchCount.textContent = total;
   }
+
+  // Render Custom VIP Emails List
+  const vipWrap = document.getElementById('masterVipListWrap');
+  if (vipWrap) {
+    const customList = getCustomVipEmails();
+    if (customList.length === 0) {
+      vipWrap.innerHTML = `<span style="color:#71717a;font-style:italic;">No custom VIP emails added yet (Wildcard '*' active).</span>`;
+    } else {
+      vipWrap.innerHTML = customList.map(email => `
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.03);padding:0.2rem 0.4rem;border-radius:4px;">
+          <span>${email}</span>
+          <button type="button" onclick="removeCustomVipEmail('${email}')" style="background:none;border:none;color:#ef4444;cursor:pointer;font-size:0.65rem;" title="Remove VIP Access">✕</button>
+        </div>
+      `).join('');
+    }
+  }
+}
 }
 
 function initAccessKeyboardShortcuts() {
