@@ -1524,6 +1524,11 @@ function openAccessModal(defaultTier = 1) {
     });
   });
 
+  tabs.forEach(t => {
+    const tTier = parseInt(t.dataset.tier, 10);
+    t.classList.toggle('active', tTier === defaultTier);
+  });
+
   passToggle.addEventListener('click', () => {
     const isPass = passInput.type === 'password';
     passInput.type = isPass ? 'text' : 'password';
@@ -1559,23 +1564,6 @@ function openAccessModal(defaultTier = 1) {
     ACCESS_CONTROL.logout();
     closeAccessModal();
     showToast('Session locked. Reverted to public guest access.');
-  });
-
-  const actTier = ACCESS_CONTROL.getActualTier();
-  const effTier = ACCESS_CONTROL.getEffectiveTier();
-  const isVipOrMaster = effTier >= ACCESS_CONTROL.TIER_VIP;
-  const isSecretRevealed = window.masterSecretRevealed === true;
-
-  // Stealth Mode: Master tab is hidden from Public guests UNLESS they are VIP or performed secret action!
-  if (masterTab) {
-    masterTab.style.display = (isVipOrMaster || isSecretRevealed) ? '' : 'none';
-  }
-
-  if (logoutBtn) logoutBtn.hidden = (actTier === ACCESS_CONTROL.TIER_PUBLIC);
-
-  tabs.forEach(t => {
-    const tTier = parseInt(t.dataset.tier, 10);
-    t.classList.toggle('active', tTier === defaultTier);
   });
 
   overlay.classList.add('open');
