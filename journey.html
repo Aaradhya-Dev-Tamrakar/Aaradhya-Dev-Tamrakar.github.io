@@ -457,20 +457,23 @@
 
     /* ── Chronological card-border glow: the left accent border on one
        journey-card at a time gets a bright box-shadow bloom in that
-       card's own category color (var(--node-accent)), then fades back
-       to its resting state. Document order, 16 -> 1 (newest to
-       oldest), then wraps instantly back to 16 — straight loop, no
-       reverse, no pause. High-speed (0.15s per card). ── */
+       card's own category color, at full opacity (var(--node-accent),
+       not the dimmer -a35 token) for stronger intensity, projecting
+       only to the left (negative X offset, no Y/right spread) so it
+       hugs the accented edge rather than surrounding the whole card,
+       then fades back to resting state. Document order, 16 -> 1
+       (newest to oldest), then wraps instantly back to 16 — straight
+       loop, no reverse, no pause. High-speed (0.15s per card). ── */
     .journey-card--glow {
       animation: journeyCardBorderFlash 0.15s ease-out;
     }
 
     @keyframes journeyCardBorderFlash {
       0% {
-        box-shadow: 0 0 12px 2px var(--node-accent-a35, transparent);
+        box-shadow: -8px 0 24px 3px var(--node-accent, transparent);
       }
       80% {
-        box-shadow: 0 0 12px 2px var(--node-accent-a35, transparent);
+        box-shadow: -8px 0 24px 3px var(--node-accent, transparent);
       }
       100% {
         box-shadow: none;
