@@ -103,10 +103,10 @@ const SEARCH_STATIC_INDEX = {
   achievement: [
   {
     "type": "achievement",
-    "title": "Advanced Edge-AI & Embedded System Research Master Credential",
-    "meta": "IEEE & Fusemachines Research ⭐ VIP Tier · Jul 2026",
+    "title": "",
+    "meta": "",
     "href": "achievements.html#achv-vip-1",
-    "text": "ieee & fusemachines research ⭐ vip tier advanced edge-ai & embedded system research master credential confidential verification certificate for high-density neural network hardware acceleration and micro-uav optical flow deployment. jul 2026"
+    "text": ""
   },
   {
     "type": "achievement",
@@ -337,10 +337,10 @@ const SEARCH_STATIC_INDEX = {
   },
   {
     "type": "project",
-    "title": "Autonomous Micro-UAV Edge-AI Navigation & Telemetry",
-    "meta": "⭐ VIP Exclusive · Jetson Orin, ROS 2, LiDAR SLAM",
+    "title": "",
+    "meta": "",
     "href": "projects.html#proj-1",
-    "text": "autonomous micro-uav edge-ai navigation & telemetry high-frequency optical flow state estimation running on jetson orin nano with 3d lidar slam mapping. includes zero-latency lora cad telemetry logs, custom pcb layout files, and hardware design schematics. jetson orin ros 2 lidar slam tensorrt lora cad vip only ⭐ vip exclusive"
+    "text": ""
   },
   {
     "type": "project",
