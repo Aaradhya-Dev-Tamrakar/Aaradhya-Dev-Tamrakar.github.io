@@ -1,6 +1,6 @@
 {
-  "sha": "222b47014bcd13f425c04ad323e5700b91d20758",
-  "shortSha": "222b470",
-  "date": "2026-07-22T15:37:21+05:45",
-  "message": "docs: add CLAUDE.md with assistant workflow conventions\n"
+  "sha": "57c8fc01e06d2fad3981289f35b0a09a96161a34",
+  "shortSha": "57c8fc0",
+  "date": "2026-07-22T15:41:20+05:45",
+  "message": "feat(journey): convert cards to collapsible dropdowns\n"
 }
