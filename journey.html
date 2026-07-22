@@ -302,7 +302,7 @@
             </div>
             <div class="journey-links">
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/539623396edbec47113fc0975b14c1c8f231da88" target="_blank" rel="noopener">View commit ↗</a>
-              <a class="journey-link" href="index.html" target="_blank" rel="noopener">See it live ↗</a>
+              <a class="journey-link" href="javascript:void(0)" onclick="openAccessModal(); return false;">See it live ↗</a>
             </div>
           </div>
         </div>
@@ -416,7 +416,8 @@
             <div class="journey-meta"><span class="journey-period">Jul 2026</span><span>Feature</span></div>
             <h3 class="journey-title">Contact form with EmailJS</h3>
             <ul class="journey-desc">
-              <li>Wired the contact form to send real email without a backend — client-side EmailJS integration with input validation, so a message actually lands in my inbox rather than going nowhere.</li>
+              <li>Wired the contact form to send real email without a backend — client-side EmailJS integration so a message actually lands in my inbox rather than going nowhere.</li>
+              <li>Validation followed a few weeks later: a regex-anchored email pattern plus per-field required checks, each with a focused input and an inline status message rather than a silent block on submit.</li>
             </ul>
             <div class="journey-skill-label">Applied skillset</div>
             <div class="journey-tags">
@@ -425,6 +426,7 @@
             </div>
             <div class="journey-links">
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/32e9d6b30d9860487fcaca34f8a3f2f82be27f86" target="_blank" rel="noopener">View commit ↗</a>
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/2da1a1716109618b8096a0fcea9aec8d519b0820" target="_blank" rel="noopener">View validation commit ↗</a>
               <a class="journey-link" href="contact.html" target="_blank" rel="noopener">See it live ↗</a>
             </div>
           </div>
@@ -543,14 +545,64 @@
             <ul class="journey-desc">
               <li>Before the fork, on the original single-page site: added a "Last Updated" status field that fetches the file's most recent commit straight from <code>api.github.com</code> and renders it client-side — graceful fallback to "Last commit unavailable" on failure rather than a broken UI.</li>
               <li>This is the exact code path that later hit GitHub's rate limit during active development — the fix for it is the CI-resilience card above. Same repo, same feature, two commits apart in spirit if not in time.</li>
+              <li>Hardened the same day: wrapped the fetch in an <code>AbortController</code> with a 3-second timeout, so a slow or hanging API call degrades to the fallback message instead of leaving the status field stuck on "Loading…" indefinitely.</li>
             </ul>
             <div class="journey-skill-label">Applied skillset</div>
             <div class="journey-tags">
               <span class="tag">Async JavaScript</span><span class="tag">Fetch API</span>
-              <span class="tag">Graceful degradation</span>
+              <span class="tag">Graceful degradation</span><span class="tag">Request timeouts</span>
             </div>
             <div class="journey-links">
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/07da198df97a5b6055a05744446295eb073b8b32" target="_blank" rel="noopener">View commit ↗</a>
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/a959ec988cbdb3ede69b8bf959f53bd28356eb19" target="_blank" rel="noopener">View timeout fix ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M3 14h7v7H3z"/><path d="M6.5 10.5 6.5 14"/><path d="M17.5 10.5 17.5 14"/>
+            </svg>
+          </div>
+          <div class="journey-card">
+            <div class="journey-meta"><span class="journey-period">May 2026</span><span>Origin</span></div>
+            <h3 class="journey-title">Compositing over layout: a rendering-performance fix</h3>
+            <ul class="journey-desc">
+              <li>The scroll-progress bar and section-transition animations were built on <code>clip-path</code>, which most browsers can't hand off to the compositor — every frame was re-triggering paint. Rewrote both onto <code>transform: translateX()</code> with <code>will-change: transform</code>, which is compositor-only and doesn't touch layout or paint at all.</li>
+              <li>Same commit added a <code>&lt;link rel="preload" as="image"&gt;</code> for the hero photo — it's the page's LCP element, so it should stop waiting on the parser to discover it — and finished deferring GA4's script tag to a non-blocking load.</li>
+            </ul>
+            <div class="journey-skill-label">Applied skillset</div>
+            <div class="journey-tags">
+              <span class="tag">GPU compositing</span><span class="tag">CSS animation</span>
+              <span class="tag">LCP optimization</span><span class="tag">Performance debugging</span>
+            </div>
+            <div class="journey-links">
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/8181cf34bd9c0de2a0348eab94cf83eb728849ea" target="_blank" rel="noopener">View commit ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/>
+            </svg>
+          </div>
+          <div class="journey-card">
+            <div class="journey-meta"><span class="journey-period">May 2026</span><span>Origin</span></div>
+            <h3 class="journey-title">Font loading without the layout jump</h3>
+            <ul class="journey-desc">
+              <li>Switched web-font loading to preload-as-style with a print-media <code>onload</code> swap, so fonts load async instead of blocking render — then added <code>@font-face</code> fallbacks (Georgia, Courier New, Arial) with per-font <code>size-adjust</code> percentages tuned to match each web font's actual metrics.</li>
+              <li>That second part is the one people skip: without matching x-height and character width up front, the fallback-to-webfont swap still shifts every line on the page. Sized correctly, the swap is invisible instead of a layout jump.</li>
+            </ul>
+            <div class="journey-skill-label">Applied skillset</div>
+            <div class="journey-tags">
+              <span class="tag">CLS optimization</span><span class="tag">Font loading strategy</span>
+              <span class="tag">CSS</span>
+            </div>
+            <div class="journey-links">
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/d1dd1b1386268e1f226a91cba60728f019f3ae35" target="_blank" rel="noopener">View commit ↗</a>
             </div>
           </div>
         </div>
@@ -566,7 +618,6 @@
             <h3 class="journey-title">Analytics with actual event tracking</h3>
             <ul class="journey-desc">
               <li>Wired up Google Analytics 4 with custom <code>gtag('event', …)</code> calls on the CV-download button and both contact-form backends tried at the time (EmailJS, then Formspree) — not just a pageview pixel, but funnel data on the two actions that actually matter on a CV site.</li>
-              <li>Later revisited to defer GA's script loading so it stopped competing with first paint — the same instinct that shows up again in the Core Web Vitals pass above.</li>
             </ul>
             <div class="journey-skill-label">Applied skillset</div>
             <div class="journey-tags">
@@ -575,6 +626,31 @@
             </div>
             <div class="journey-links">
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/235373a0b33bc8eb0c6f45a60896b8ffc972b80f" target="_blank" rel="noopener">View commit ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 6 7 17l-5-5"/><path d="m22 10-7.5 7.5L13 16"/>
+            </svg>
+          </div>
+          <div class="journey-card">
+            <div class="journey-meta"><span class="journey-period">May 2026</span><span>Origin</span></div>
+            <h3 class="journey-title">Accessibility pass: skip-link, landmarks, focus-visible</h3>
+            <ul class="journey-desc">
+              <li>Added a "Skip to main content" link, wrapped the page in proper landmarks (<code>nav</code>/<code>main</code>/<code>footer</code> with <code>aria-label</code> or <code>aria-labelledby</code> on every section), and gave the mobile hamburger menu real state — <code>aria-expanded</code> and <code>aria-controls</code> flip correctly as it opens and closes.</li>
+              <li>Replaced blanket <code>:focus</code> outlines with <code>:focus-visible</code>, so keyboard users still get a visible ring while mouse clicks don't leave one behind — plus explicit <code>aria-label</code>s on every icon-only or ambiguous call-to-action.</li>
+            </ul>
+            <div class="journey-skill-label">Applied skillset</div>
+            <div class="journey-tags">
+              <span class="tag">WCAG / ARIA</span><span class="tag">Keyboard navigation</span>
+              <span class="tag">Semantic HTML</span>
+            </div>
+            <div class="journey-links">
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/663695e07790f7e5b4a73142d5db4c13b29247bc" target="_blank" rel="noopener">View commit ↗</a>
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/4b69af0ce1b921f6b3f25f6e840df2b34c343f27" target="_blank" rel="noopener">View focus-visible commit ↗</a>
             </div>
           </div>
         </div>
