@@ -465,8 +465,8 @@
        .journey-card has overflow:hidden and any blur radius large
        enough to read as a bloom wraps around all 4 sides regardless
        of shadow offset — this keeps the glow confined to the left
-       edge only. Document order, 16 -> 1 (newest to oldest), then
-       wraps instantly back to 16 — straight loop, no reverse, no
+       edge only. Document order, 18 -> 1 (newest to oldest), then
+       wraps instantly back to 18 — straight loop, no reverse, no
        pause. 0.5s per card (half current speed = double duration,
        from 0.25s). The next card's glow starts partway through the
        current one's fade (see JS, scaled to match), so consecutive
@@ -561,6 +561,94 @@
       </div>
 
       <div class="journey-track" id="journeyTrack">
+
+        <div class="journey-item reveal" data-card-type="feature">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          <span class="journey-node-num">18</span></div>
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">v28 · Jul 2026</span><span>Feature</span></div>
+                <h3 class="journey-title">Chronological glow indicator on the checkpoint timeline</h3>
+                <div class="journey-tags">
+              <span class="tag">CSS keyframe animation</span><span class="tag">JavaScript</span>
+              <span class="tag">UI iteration</span><span class="tag">Design consistency</span>
+            </div>
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+              <li>Added an ambient indicator so this timeline reads as a live sequence rather than a static list — a single traveling glow steps through every checkpoint in document order, forever, no pause.</li>
+              <li>Went through several shipped-then-replaced iterations first: a per-node rotating arc sweep, then a multi-node trailing "snake," before settling on the simpler model that's actually live now — one card's left-edge accent bar glows at a time, straight loop newest→oldest, with the next card starting its glow mid-fade so consecutive cards crossfade instead of handing off edge-to-edge.</li>
+              <li>Timing (0.5s, <code>cubic-bezier(0.4, 0, 0.2, 1)</code>) was matched to this element's own existing hover-transition values and the site's dominant transition tier, rather than picked arbitrarily.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">CSS keyframe animation</span><span class="tag">JavaScript</span>
+              <span class="tag">UI iteration</span><span class="tag">Design consistency</span>
+            </div>
+                  <div class="journey-links">
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/51eefe8" target="_blank" rel="noopener">View commit ↗</a>
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/46fb757" target="_blank" rel="noopener">Final version ↗</a>
+            </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal" data-card-type="feature">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
+            </svg>
+          <span class="journey-node-num">17</span></div>
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">v27 · Jul 2026</span><span>Feature</span></div>
+                <h3 class="journey-title">Collapsible checkpoint cards: type legend, descending serials, keyboard control</h3>
+                <div class="journey-tags">
+              <span class="tag">JavaScript</span><span class="tag">CSS</span>
+              <span class="tag">Information design</span><span class="tag">Accessibility (ARIA)</span>
+            </div>
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+              <li>Converted the timeline from always-expanded cards to collapsible dropdowns, so scanning the full checkpoint history doesn't mean scrolling past every entry's full detail just to see the sequence.</li>
+              <li>Added a color-coded type legend (Security fix, Feature, Bug fix, Infra/CI, Architecture, Repo A, Origin) plus descending serial numbers per node, so each checkpoint's category and place in the sequence are visible before expanding it.</li>
+              <li>Added an Alt+6 expand/collapse-all shortcut for scanning the whole history at once, with <code>aria-expanded</code> kept in sync on every card for screen readers.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">JavaScript</span><span class="tag">CSS</span>
+              <span class="tag">Information design</span><span class="tag">Accessibility (ARIA)</span>
+            </div>
+                  <div class="journey-links">
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/57c8fc0" target="_blank" rel="noopener">View commit ↗</a>
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/6197530" target="_blank" rel="noopener">Legend + serials ↗</a>
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/e07e41a" target="_blank" rel="noopener">Keymap commit ↗</a>
+            </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="journey-item reveal" data-card-type="security-fix">
           <div class="journey-node" aria-hidden="true">
@@ -1319,7 +1407,7 @@
     }
 
     // Chronological card-border glow — straight loop, document order
-    // 16 -> 1 (newest to oldest), then wraps instantly back to 16,
+    // 18 -> 1 (newest to oldest), then wraps instantly back to 18,
     // forever, no pause, no reverse. 0.5s per card. The next card
     // starts partway through the current one's animation (not after
     // it finishes) so consecutive cards crossfade — each card cleans
