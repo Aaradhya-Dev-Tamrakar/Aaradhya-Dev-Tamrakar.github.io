@@ -909,6 +909,61 @@ function initStatusDate() {
   renderStatusDate();
 }
 
+/* ── Encrypted Payload Data Store (Zero-leak AES-256-GCM) ───── */
+const ACCESS_CONTROL_PAYLOADS = {
+  "index-vip": "05e839eefecdfb5fef7aa991bf8fd06d0faeb2df6e066e408ec25f543df5e975fd5cf339cf0ca533f81e8556bcdd99f816fb4ae16f2c695cb3114d60eebf1aa86e9cdabdfef2cf97bcfd8b37ad2ae51e5cfafac39df4aef47bf7c98be89bf44ebac9dfc1c1f5c6c64117b4478440cccaefcdbdcaee50fe0aeeecbd7d21c97a80b6b27d42cf38a0f0254c41870efd12d480bebdcd93b22cf3cf3901b8aef42f61a15fa68ca4ff1aebaebe4ffea9ea9adfa8541eafabed10ab51ef40d46efb7074404bdff3e430f81d11ff3ce8e0eeefad3a2ed5ad0e2c2ddb12c85e49339e801b7a2d6ad6b0c20ab0e39bcabfe73e3bd6aeb32cbcfeb2b53b8fbf9cd5a5d10feff1cb4df44aeab6e7a2b918ee9ddb2f5bd9faecad3ec96d09ec6feefebcb3ebffb7fa253ffbc05f6e80b2a59a7a60d62ab3ffb9a674483ca794ef64c679fe05ad36fcbe",
+  "index-master": "142e08fba916e0ef1978ff8316cc360539cd3565fe9d121de5db652651aaad1b16682a75be9a817dc2759db349ef0d6f6a15c6a845988e9dad0c77a0f88fd26459599b4c28b0637cd2564aca98170b2c16fe9ad6088be372d4c64ceaf7d2b227533d2e7150df5397b450389acc16a528dacb450b4ef2effcbb09ed5e0647f36bf65bf3dc2dd206ace2c495930ed4b9b8ffbc8a986ec67db98611f8e47ceca7737bd7848a4af869cbd58cbb0b644e7530a5be6bb004385420a19204dcb4918423429ef56ae1977bc0c592fa2bb1f0b6919d7ec39b72d4a7f42a89a17911514ac0f344c0e5aa2ca974cd0b2fc40b49befb68af28da381f151c64215d15ff5fdeb507044e3aa0a4e37a2434030ee34c2f434a8b4cb1feec9c3f908651643be3b29d6ac2df8b74253f4b57f868157d8babdbd8de6da09fa0c2589039f779299a9e371bc3b674c769f18a2804349d9dc0084a89098b60fb98f34b94eaae1af7d433ad25392753a0376b674e8f8e25a26d03738069681e5a70ae25a72b6949bb48ffb90f4fd00a0b191f884813d79fe5f6c1d0c3d211558c4564b39b18a8abbfc818081aab220f2b0233ae4c6310b679ca5914c874dcbb16a4db17caea8d9f678a0ebdba76857202e466c24c3ae5ab85b4111ff5fcce8804102637fafbdd5f67601b8a28ba09733170a911907502b72720f6869d8b22ff3852a49c2228ed0a399ea0fe564fe3251ca17c174e5a128b245f0c199b52dffd9da2c0c30fa5c80de2b7466b8d4c37b2dcb43aae5125e6036c1b00834608c553a02b01fd705bae5c56eef9d11d9112716d20010ed4af098011188af21390d3f44435b5852d203b35bf32a08ea0f595f434bbf25cc32863b277e631fe2dc62486bcbba83ed0f2edaab1341d8e9429b07a8274fe1a9ab819dd90efaec44c8c1289cac88882d8fa5e30ff0c6949e29135c8e6f07c3a022977da77a8054f23c9c9e27c2de13be92e02294221fefe6b8dc1e61bde72bbf952a47257bf224e90a3f9afd2444842b13722849cceaa9133867117e79a1114a5d0ee78f740ffea073711393248080fad7f4bf2ef4e3262f487616e9a09ffc0790c56807875d196a7b72627ae838e61cb4024be9c645dba3c564901a4216be6667a9ef7443c3f28d4a19c9c04c584782d758847f35bebd496573f7bd69307f38e98a36514d004579cceb5f13c038455dd5c40306163b32595664eac1c0a68709ead8287884674d7298e905a4fd0b1895f30fc6b21cd1053d44ffc20a017156bd9b3944848f6bdb5c1943764a352fe8921306c0d79238e5d1ba44692112b3ed3c7e1ba84f2dad14170ea6014be5adc03ec7ce6e69df9eff0788e45d143aa414b329b4a978cf24dd16bb2c9f0349c223c2528840ce6326c041b784163ca8e83f7ff7539a525cb1553407eb07f8b0571f52997ab41163d4675c095ea8a33b24b7e1c6ffc6fcf92e1c764daa08ad01f94a884190de64100fa6d162beb88935b3a77a8a5c9eaef6c1d37253bcc9e47d631b49e13e351a250909a463961152678c7396a65f283435b57058a3c0940498d4457404428a990ad48dc54d4e898f34f31c442442044decb6162eb72c2fb036cdb3f6482dc519fc4fa6b7f1f9e633962a5db40b9247cdafda5c14d13ae0110b057121a578087d4feab921509ceb7037ddc179af17f3e724bb38fbcaa63f61430de300df453fa3fd5581a3850809fd3f7ae9f54275b080e7e31095258dde1e9193071863c7944ba69f24fca20c16cec190421d739cf7edbb76464ddbdabaa15b503a92738235bdb077e8e43bdd01bf1558d8bda85f5151cee76023273ac4fe3e42ff86391f379b25babc8e47180b647cd67a9c46b3ce209b0afe3ed5a415844c0f87d4b75d0fafb1d82d0353a6ca190bc9fda2de7f7e43d404a06754de798d257f80f588de8e7ba0705b8efc865b920dbb39b227cb6a434b8061762bc9f893a67586e89b144cb601e4e03a00bff338c5ae05a6b726d32fa27095c167ef3f3d62228f3f559cfc468649b81b09e96003fe61bca61265396c70905fd386426ddb87b07d3",
+  "projects-vip": "c2ddbdfd3a695a749fc76b731d8c705548a85ad858f9034d65b71f7f825af7bfd994a5858ed949eee074da884d104b409dc069e75e6ae213ec6e8ff193b06da9fc1402e2f6f5968a0a596c9578ff50e047de7ba9d93a8929c976c43ce07fe7383e3c00e7c60764b231bbb61b8ae0f68da473a762576b96152fbb42735b6570edc6c554cad40506c03045b04530b99fb2f04a11d23afc84939c8d1f3ff67eef40ab2b9ff348992e8edd999a8a74064ae07809787051fc0df479c6bb957126b09b67d1a06d9798776d220044ef335805c86fba7525ea76a5833ec900c5959e28f49bb5f3bc3b8f6e5bf935a3bf891659fa88c1b8203b74e2f9acb5ce99cf13b76f0f1483b6a56a23e44f1d16af002414d192e8fa3baf167bf88c1134a8b5436ef92e49a163273c562bd120eb3d4583e6b3dea4ecd879c03f6314afdb12b2968b6e968c2ce1cdc2bfbc708f875f537960c8133c3cd94009cebcf76f1d88b12c5ea68ef9701349154caa8611e93519b883ba2b2dccaeb74bfcaced051e9151afd858c77baac5c47bb7c550225cb4147123e58f69f74843cd1d16c06fbb19b347f597058a90eb9a9856734e2935b5872fedc930c394a449157e77730b129cd9bfbcf4aea717127b8c25650bade2a961c30efe4d3d0e64f241f4a1c1648d5a51b6b56a1dd258ce7851dad7a1c3c4a56d5f16b50666147f014d1490fd488406bf54fdf10b9ee2ad92f25136ee6a137cc00eb79de7b563998ef8a7ca22166e48192252b0e5b95bdbcfd4e6813018856d5c262bb1083d6706d1d7f1aca3b7cf21453e0568ce52f1560b86ce7aa443043be1ea25a6ea9bede5f41106e3226650895bf381467ed2a113fa3993c68d283f295275e4fbe81f4d8825f69d4b7d98a1a3590c21bc4ff96906ef7a85e989f35872579c25acbbc364a229c449fb45a827f99ebab72464443eb4174eaa5bb4ea68e36b3b76dcd3cd78472f84dc544215c66217fa7dcc79901d6b9a844e719458e364d69fd5a15efc1b4c16ba12909adadd8df804a98caac5219fed4ad50ef4b8d65fc781a5f41e54e884c090cc3b659c75df5b12a1783beca1b06b0451a22b2edd45ebb6037ceef3b263f2ce88b4905defcbf9a304e748c29ff3886ba4b49ad3939c195755b868029ee75503e82963af32e33f1a1b043e127e1b738f152bfd5eb98cabf3feb6811aaad50333fb7340383b4f19630ea040e496f78ff451d3fcb33512028d1ac5305fe0959d006c8fc3cfdefe952e623438d66fb61db7190d54953c231b4c97fccba532ad2f7a5a7e6f53f6d0fed89e7259121064e8a3057a099b2035b4e3e151fa8345877004c3cd31742354ce804f600eb9a8004512279dc35f112d787c8e88e79d9a443079b0f9e9e40dafaa0a30742d353453e8a587f4abe4449aa5e10b1151ccdec69ca782d159fff0ac65799a51700ccf40eec32861e3898d91088f62fe766f42e55d76d7ccda721b70ed75acb14469f358ab57e842869aa4f8eeb36e9f68d14d414688d86f0061b1aed21c5fb7",
+  "achievements-vip": "ec5fc7feb981b6f0176c8c6770affb1fdfd4c59dea7009d3460f5c19a390dfe0f323affac4b1728fdffd0dbe3101743b6b3d114d28259c4614fa0d97c5646fe7b6a7db676d2f71c4ffb542d52d3afd69e2544164d4ca076dd845c1ab4dc77561b12c0376ccdcb3605fa8faf310281ecabca9d165d4c6ae0c2f5fbbde4b05d4b73b97601c809c7c1605c869bacf49b3686d7291d6fb2bd97e37e66e6517f5a54be9389505f0c6cf9db623f5197b19a3ea000ef20658de7bf6cf06d85ecca3363290c2e269a5cd54b7ce0d7607ec95bba97ad2a06baff2a0b61e20d3821afcb3b6853b8c0235cbe7f4e3ed8fa5cd03810531d2e65a7b6698ac733811f099612d8cf061fcf1c5690b9358a225a0f54fb2ce0b70ef625ad27ca17b7bc0a045e920c1fefd604ef703ba0b4fd7674b632ed25d9f3d3d3eb533ae28b2a6643a2deb549dbf9c53a959d13cd70c723d59ccdcd13c7559236585ca3000aa74a1cc469b048614868ce21f1ac99ee8f916f2dfb4cd266c08580ba9de77aac9d0e259b0f7ff6bf10068247ee20389586fef7cbb06b10bd8a3c18f9727d3a65e0a63592ff44de3c14d840690f99ba84d557358e249967ab0ac5c5e9c7c61975a376092a1a1c71aa41ccb118af59fae6bf0c8345e8cf26554918b8ea5c3c016c3ec650135cc7546211c2fbd22969601a7de340e8a365121f4b1845553a117fa0415de0a990723d504207ed4da1f81e9a1e616c8804b37ea19b0d60ec93249844c24773c4f81644f7d73e42f96c0de5dbd1c94d85f0839c392ebe42001322651a01dfa51917f"
+};
+
+async function getDecryptionKey(passcode) {
+  const enc = new TextEncoder();
+  const keyMaterial = await crypto.subtle.importKey(
+    'raw',
+    enc.encode(passcode.trim().toLowerCase()),
+    { name: 'PBKDF2' },
+    false,
+    ['deriveKey']
+  );
+  return await crypto.subtle.deriveKey(
+    {
+      name: 'PBKDF2',
+      salt: enc.encode('adt_salt_2026'),
+      iterations: 100000,
+      hash: 'SHA-256'
+    },
+    keyMaterial,
+    { name: 'AES-GCM', length: 256 },
+    false,
+    ['decrypt']
+  );
+}
+
+async function decryptHexPayload(hexStr, passcode) {
+  try {
+    const bytes = new Uint8Array(hexStr.match(/.{1,2}/g).map(b => parseInt(b, 16)));
+    const iv = bytes.slice(0, 12);
+    const tag = bytes.slice(12, 28);
+    const cipherBytes = bytes.slice(28);
+    
+    const data = new Uint8Array(cipherBytes.length + tag.length);
+    data.set(cipherBytes, 0);
+    data.set(tag, cipherBytes.length);
+
+    const key = await getDecryptionKey(passcode);
+    const decrypted = await crypto.subtle.decrypt(
+      { name: 'AES-GCM', iv },
+      key,
+      data
+    );
+    return new TextDecoder().decode(decrypted);
+  } catch (e) {
+    console.error('Payload decryption failed:', e);
+    return null;
+  }
+}
+
 /* ── Access Control & Gating Engine ────────────────────────── */
 const ACCESS_CONTROL = {
   TIER_PUBLIC: 0,
@@ -921,13 +976,19 @@ const ACCESS_CONTROL = {
   sessionKey: 'adt_access_session',
   simulatedTier: null,
 
-  getActualTier() {
+  getSessionData() {
     try {
-      const session = JSON.parse(localStorage.getItem(this.sessionKey));
-      if (session && typeof session.tier === 'number') {
-        return session.tier;
-      }
-    } catch (e) {}
+      return JSON.parse(localStorage.getItem(this.sessionKey));
+    } catch (e) {
+      return null;
+    }
+  },
+
+  getActualTier() {
+    const session = this.getSessionData();
+    if (session && typeof session.tier === 'number') {
+      return session.tier;
+    }
     return this.TIER_PUBLIC;
   },
 
@@ -940,7 +1001,7 @@ const ACCESS_CONTROL = {
     const clean = passcode.trim().toLowerCase();
 
     if (this.MASTER_PASSCODES.includes(clean)) {
-      this.saveSession(this.TIER_MASTER);
+      this.saveSession(this.TIER_MASTER, clean);
       return { success: true, tier: this.TIER_MASTER, label: 'Master Level' };
     }
 
@@ -948,16 +1009,17 @@ const ACCESS_CONTROL = {
       if (requestedTier === this.TIER_MASTER) {
         return { success: false, error: 'Passcode is for Higher Tier (VIP), not Master Level.' };
       }
-      this.saveSession(this.TIER_VIP);
+      this.saveSession(this.TIER_VIP, clean);
       return { success: true, tier: this.TIER_VIP, label: 'Higher Tier (VIP)' };
     }
 
     return { success: false, error: 'Invalid passcode. Please try again.' };
   },
 
-  saveSession(tier) {
+  saveSession(tier, passcode) {
     const data = {
       tier,
+      passcode,
       authenticatedAt: new Date().toISOString(),
       userAgent: navigator.userAgent
     };
@@ -1022,47 +1084,66 @@ function renderAccessNavButton() {
   }
 }
 
-function updateGatedContentVisibility() {
+async function updateGatedContentVisibility() {
   const effTier = ACCESS_CONTROL.getEffectiveTier();
+  const session = ACCESS_CONTROL.getSessionData();
+  const passcode = session ? session.passcode : (effTier === ACCESS_CONTROL.TIER_MASTER ? 'master2026' : 'vip2026');
+
   const elements = document.querySelectorAll('[data-access-tier]');
 
-  elements.forEach(el => {
+  for (const el of elements) {
     const requiredStr = (el.dataset.accessTier || 'vip').toLowerCase();
     const requiredTier = (requiredStr === 'master' || requiredStr === '2')
       ? ACCESS_CONTROL.TIER_MASTER
       : ACCESS_CONTROL.TIER_VIP;
 
+    const payloadId = el.dataset.payloadId;
     const isUnlocked = effTier >= requiredTier;
 
     if (!isUnlocked) {
-      if (!el.classList.contains('gated-content-locked') && !el.querySelector('.gated-overlay')) {
-        const innerHTML = el.innerHTML;
-        const tierName = requiredTier === ACCESS_CONTROL.TIER_MASTER ? 'Master Level Access' : 'Higher Tier (VIP) Access';
+      // LOCKED: Wipe any decrypted inner body completely from the DOM!
+      const inner = el.querySelector('.gated-inner-body');
+      if (inner) inner.remove();
 
-        el.innerHTML = `
-          <div class="gated-inner-body">${innerHTML}</div>
-          <div class="gated-overlay">
-            <div class="gated-lock-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-              </svg>
-            </div>
-            <div class="gated-title">${tierName} Required</div>
-            <div class="gated-desc">This section contains protected research data, extended architecture specs, and raw metrics.</div>
-            <button type="button" class="gated-unlock-btn" onclick="openAccessModal(${requiredTier})">
-              <span>Unlock ${requiredTier === ACCESS_CONTROL.TIER_MASTER ? 'Master Access' : 'Higher Tier'}</span> →
-            </button>
+      if (!el.querySelector('.gated-overlay')) {
+        const tierName = requiredTier === ACCESS_CONTROL.TIER_MASTER ? 'Master Level Access' : 'Higher Tier (VIP) Access';
+        const overlay = document.createElement('div');
+        overlay.className = 'gated-overlay';
+        overlay.innerHTML = `
+          <div class="gated-lock-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
           </div>
+          <div class="gated-title">${tierName} Required</div>
+          <div class="gated-desc">This section contains protected research data, extended architecture specs, and raw metrics.</div>
+          <button type="button" class="gated-unlock-btn" onclick="openAccessModal(${requiredTier})">
+            <span>Unlock ${requiredTier === ACCESS_CONTROL.TIER_MASTER ? 'Master Access' : 'Higher Tier'}</span> →
+          </button>
         `;
+        el.appendChild(overlay);
       }
       el.classList.add('gated-content-locked');
       el.classList.remove('gated-content-unlocked');
     } else {
+      // UNLOCKED: Decrypt payload in memory using passcode and inject into DOM
+      if (!el.querySelector('.gated-inner-body') && payloadId && ACCESS_CONTROL_PAYLOADS[payloadId]) {
+        const decryptedHtml = await decryptHexPayload(ACCESS_CONTROL_PAYLOADS[payloadId], passcode);
+        if (decryptedHtml) {
+          const inner = document.createElement('div');
+          inner.className = 'gated-inner-body';
+          inner.innerHTML = decryptedHtml;
+          el.appendChild(inner);
+        }
+      }
+      const overlay = el.querySelector('.gated-overlay');
+      if (overlay) overlay.remove();
+
       el.classList.remove('gated-content-locked');
       el.classList.add('gated-content-unlocked');
     }
-  });
+  }
 }
 
 function renderAccessModal() {
