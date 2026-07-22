@@ -1,6 +1,6 @@
 {
-  "sha": "f85c03728916d5701b37dda08fba3a972ef4b518",
-  "shortSha": "f85c037",
-  "date": "2026-07-22T11:49:24+05:45",
-  "message": "refactor(nav): move Journey after About, remap keys 6=journey 7=contact\n"
+  "sha": "e64900826f140da3269d4d13f9a9777fc7d768f9",
+  "shortSha": "e649008",
+  "date": "2026-07-22T11:58:43+05:45",
+  "message": "refactor: update journey.html\n"
 }
