@@ -1,6 +1,6 @@
 {
-  "sha": "29645e426eb25ee407a3632673cd20ab8b334c92",
-  "shortSha": "29645e4",
-  "date": "2026-07-22T15:14:26+05:45",
-  "message": "refactor: update script.js, projects.html\n"
+  "sha": "ce947a0501b0e75ea7ae0bc4df06f4640c62a029",
+  "shortSha": "ce947a0",
+  "date": "2026-07-22T15:23:58+05:45",
+  "message": "fix(security): encrypt project GitHub links instead of exposing them as plaintext\n"
 }
