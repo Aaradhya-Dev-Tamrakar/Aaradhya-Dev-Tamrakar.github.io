@@ -232,6 +232,69 @@
         left: 10px;
       }
     }
+
+    /* ── Nested / indented sub-items ────────────────────────── */
+    .journey-item--nest-root {
+      /* The anchor card that "owns" the nested block below it */
+    }
+
+    .journey-nest-group {
+      position: relative;
+      margin-top: 0;
+      padding-left: 2rem;        /* indent the whole group from the main timeline */
+    }
+
+    /* Vertical branch line connecting nested items to each other */
+    .journey-nest-group::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 1.2rem;
+      width: 1px;
+      background: linear-gradient(to bottom,
+        color-mix(in srgb, var(--accent) 35%, transparent),
+        color-mix(in srgb, var(--accent) 15%, transparent)
+      );
+    }
+
+    /* Horizontal connector from branch to each node */
+    .journey-item--nested > .journey-node::before {
+      content: '';
+      position: absolute;
+      right: 100%;
+      top: 50%;
+      width: 1.8rem;
+      height: 1px;
+      background: color-mix(in srgb, var(--accent) 25%, transparent);
+      transform: translateY(-50%);
+    }
+
+    .journey-item--nested {
+      padding-left: 3.1rem;     /* same padding as normal items */
+    }
+
+    /* Slightly dim the node circle to visually subordinate it */
+    .journey-item--nested > .journey-node {
+      width: 19px;
+      height: 19px;
+      top: 0.45rem;
+      border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+    }
+
+    .journey-item--nested > .journey-node svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    @media (max-width: 640px) {
+      .journey-nest-group {
+        padding-left: 1.2rem;
+      }
+      .journey-item--nested {
+        padding-left: 2.4rem;
+      }
+    }
   </style>
 </head>
 
@@ -456,7 +519,7 @@
           </div>
         </div>
 
-        <div class="journey-item reveal">
+        <div class="journey-item journey-item--nest-root reveal">
           <div class="journey-node" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
@@ -483,7 +546,8 @@
           </div>
         </div>
 
-        <div class="journey-item reveal">
+        <div class="journey-nest-group">
+        <div class="journey-item journey-item--nested reveal">
           <div class="journey-node" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/>
@@ -508,7 +572,7 @@
           </div>
         </div>
 
-        <div class="journey-item reveal">
+        <div class="journey-item journey-item--nested reveal">
           <div class="journey-node" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>
@@ -533,7 +597,7 @@
           </div>
         </div>
 
-        <div class="journey-item reveal">
+        <div class="journey-item journey-item--nested reveal">
           <div class="journey-node" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="3"/><line x1="12" y1="1" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="23"/>
@@ -559,7 +623,7 @@
           </div>
         </div>
 
-        <div class="journey-item reveal">
+        <div class="journey-item journey-item--nested reveal">
           <div class="journey-node" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M3 14h7v7H3z"/><path d="M6.5 10.5 6.5 14"/><path d="M17.5 10.5 17.5 14"/>
@@ -583,7 +647,7 @@
           </div>
         </div>
 
-        <div class="journey-item reveal">
+        <div class="journey-item journey-item--nested reveal">
           <div class="journey-node" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/>
@@ -607,7 +671,7 @@
           </div>
         </div>
 
-        <div class="journey-item reveal">
+        <div class="journey-item journey-item--nested reveal">
           <div class="journey-node" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/>
@@ -630,7 +694,7 @@
           </div>
         </div>
 
-        <div class="journey-item reveal">
+        <div class="journey-item journey-item--nested reveal">
           <div class="journey-node" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 6 7 17l-5-5"/><path d="m22 10-7.5 7.5L13 16"/>
@@ -654,6 +718,8 @@
             </div>
           </div>
         </div>
+
+        </div><!-- /.journey-nest-group -->
 
       </div>
     </section>
