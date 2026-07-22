@@ -2406,3 +2406,43 @@ html[data-theme="light"] .gated-overlay {
 .master-stat-row span:last-child {
   color: #f4f4f5;
 }
+
+/* ── Google Sign-In & Profile Avatar Styles ──────────────────────── */
+.access-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.25rem 0;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.access-divider::before,
+.access-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid var(--line);
+}
+
+.access-divider span {
+  padding: 0 0.75rem;
+}
+
+.google-btn-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  min-height: 44px;
+}
+
+.nav-user-avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  flex-shrink: 0;
+}

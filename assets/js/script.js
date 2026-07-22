@@ -7,6 +7,8 @@
 /* ── Site constants ─────────────────────────────────────────── */
 const SITE = {
   GA4_ID: 'G-P38642CDGB',
+  googleClientId: '21529775347-1g1tg96qa47njo5g6fdhsuh81auqm11v.apps.googleusercontent.com',
+  masterEmails: ['aaradhyadevtmr@gmail.com', 'aaradhya.bei79001@gmail.com', 'aaradhya.dev.tamrakar@gmail.com', 'aaradhyadt@gmail.com'],
   footerCopy: '© 2026 Aaradhya Dev Tamrakar · KEC, IOE, Tribhuvan University',
   socials: [
     { label: 'GitHub', href: 'https://github.com/AaradhyaDT' },
@@ -1041,6 +1043,19 @@ const ACCESS_CONTROL = {
     this.updateUI();
   },
 
+  saveGoogleSession(tier, passcode, userProfile) {
+    const data = {
+      tier,
+      passcode,
+      authProvider: 'google',
+      user: userProfile,
+      authenticatedAt: new Date().toISOString(),
+      userAgent: navigator.userAgent
+    };
+    localStorage.setItem(this.sessionKey, JSON.stringify(data));
+    this.updateUI();
+  },
+
   logout() {
     localStorage.removeItem(this.sessionKey);
     this.simulatedTier = null;
@@ -1059,19 +1074,125 @@ const ACCESS_CONTROL = {
   }
 };
 
+function parseJwt(token) {
+  try {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split('')
+        .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join('')
+    );
+    return JSON.parse(jsonPayload);
+  } catch (e) {
+    console.error('JWT Parse Error:', e);
+    return null;
+  }
+}
+
+function handleGoogleCredentialResponse(response) {
+  if (!response || !response.credential) return;
+  const user = parseJwt(response.credential);
+  if (!user || !user.email) {
+    showError('Could not verify Google credential.');
+    return;
+  }
+
+  const masterList = (SITE.masterEmails || []).map(e => e.toLowerCase());
+  const isMaster = masterList.includes(user.email.toLowerCase());
+  const tier = isMaster ? ACCESS_CONTROL.TIER_MASTER : ACCESS_CONTROL.TIER_VIP;
+  const label = isMaster ? 'Master Level' : 'Higher Tier (VIP)';
+  const passcode = isMaster ? 'master2026' : 'vip2026';
+
+  ACCESS_CONTROL.saveGoogleSession(tier, passcode, {
+    name: user.name || user.email.split('@')[0],
+    email: user.email,
+    picture: user.picture || ''
+  });
+
+  closeAccessModal();
+  showToast(`Signed in as ${user.name || user.email} (${label})`);
+}
+
+function getGoogleClientId() {
+  return localStorage.getItem('adt_google_client_id') || SITE.googleClientId || '';
+}
+
+function promptForGoogleClientId() {
+  const current = getGoogleClientId();
+  const input = prompt('Enter your Google Cloud OAuth 2.0 Client ID (ends with .apps.googleusercontent.com):', current);
+  if (input !== null) {
+    const trimmed = input.trim();
+    if (trimmed) {
+      localStorage.setItem('adt_google_client_id', trimmed);
+      showToast('Google Client ID updated!');
+    } else {
+      localStorage.removeItem('adt_google_client_id');
+      showToast('Google Client ID reset to default.');
+    }
+    renderGoogleSignInButton();
+  }
+}
+
+function renderGoogleSignInButton() {
+  const container = document.getElementById('googleSignInBtnWrap');
+  if (!container) return;
+
+  const clientId = getGoogleClientId();
+
+  if (!window.google || !window.google.accounts) {
+    if (!document.getElementById('gsiScript')) {
+      const script = document.createElement('script');
+      script.id = 'gsiScript';
+      script.src = 'https://accounts.google.com/gsi/client';
+      script.async = true;
+      script.defer = true;
+      script.onload = () => renderGoogleSignInButton();
+      document.head.appendChild(script);
+    }
+    return;
+  }
+
+  try {
+    container.innerHTML = '';
+    window.handleGoogleCredentialResponse = handleGoogleCredentialResponse;
+    google.accounts.id.initialize({
+      client_id: clientId,
+      callback: handleGoogleCredentialResponse,
+      auto_select: false
+    });
+    google.accounts.id.renderButton(container, {
+      theme: document.documentElement.getAttribute('data-theme') === 'light' ? 'outline' : 'filled_black',
+      size: 'large',
+      type: 'standard',
+      shape: 'pill',
+      text: 'signin_with',
+      logo_alignment: 'left'
+    });
+  } catch (e) {
+    console.warn('Google Sign-In initialization:', e);
+  }
+}
+
 function renderAccessNavButton() {
   const btn = document.getElementById('navAccessBtn');
   if (!btn) return;
 
   const effTier = ACCESS_CONTROL.getEffectiveTier();
   const isSimulated = ACCESS_CONTROL.simulatedTier !== null;
+  const session = ACCESS_CONTROL.getSessionData();
+  const avatarHtml = (session && session.user && session.user.picture)
+    ? `<img src="${session.user.picture}" class="nav-user-avatar" alt="${session.user.name || 'User'}" />`
+    : '';
 
   btn.className = 'nav-access-btn';
 
   if (effTier === ACCESS_CONTROL.TIER_MASTER) {
     btn.classList.add('tier-master');
-    btn.title = 'Master Level Access Active (Ctrl+Shift+L)';
+    btn.title = `Master Level Active ${session?.user?.email ? '(' + session.user.email + ')' : ''} (Ctrl+Shift+L)`;
     btn.innerHTML = `
+      ${avatarHtml}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14v2H5v-2z"/>
       </svg>
@@ -1079,8 +1200,9 @@ function renderAccessNavButton() {
     `;
   } else if (effTier === ACCESS_CONTROL.TIER_VIP) {
     btn.classList.add('tier-vip');
-    btn.title = 'Higher Tier (VIP) Access Active (Ctrl+Shift+L)';
+    btn.title = `Higher Tier (VIP) Active ${session?.user?.email ? '(' + session.user.email + ')' : ''} (Ctrl+Shift+L)`;
     btn.innerHTML = `
+      ${avatarHtml}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
       </svg>
@@ -1222,10 +1344,19 @@ function renderAccessModal() {
         <button type="button" class="access-btn-submit" id="accessSubmitBtn">Unlock Access</button>
         <button type="button" class="access-btn-logout" id="accessLogoutBtn" hidden>Lock Session</button>
       </div>
+
+      <div class="access-divider"><span>Or Sign In With Google</span></div>
+      <div class="google-btn-wrap" id="googleSignInBtnWrap"></div>
+      <div style="text-align: center; margin-top: 0.25rem;">
+        <button type="button" onclick="promptForGoogleClientId()" style="background: none; border: none; color: var(--muted); font-size: 0.68rem; font-family: var(--mono); cursor: pointer; text-decoration: underline;">
+          ⚙️ Setup Google OAuth Client ID
+        </button>
+      </div>
     </div>
   `;
 
   document.body.appendChild(overlay);
+  renderGoogleSignInButton();
 
   const closeBtn = document.getElementById('accessModalClose');
   const submitBtn = document.getElementById('accessSubmitBtn');
@@ -1307,6 +1438,7 @@ function openAccessModal(defaultTier = 1) {
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
   if (passInput) passInput.focus();
+  renderGoogleSignInButton();
 }
 
 function closeAccessModal() {

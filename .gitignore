@@ -27,5 +27,3 @@ graphify-out/
 dev-logs/*
 !dev-logs/og-image/
 !dev-logs/og-image/**
-
-
