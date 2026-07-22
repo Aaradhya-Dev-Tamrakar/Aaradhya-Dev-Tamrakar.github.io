@@ -1,6 +1,6 @@
 {
-  "sha": "1a22e9bb092927935d6e4b35d69e4d5b7f8d45c9",
-  "shortSha": "1a22e9b",
-  "date": "2026-07-22T17:30:16+05:45",
-  "message": "docs(index): explain rationale for tiered access in About Sign-In section\n"
+  "sha": "c2ced57d38565f5f0ceca436b485e0fe54ca4ef3",
+  "shortSha": "c2ced57",
+  "date": "2026-07-22T17:57:15+05:45",
+  "message": "fix(achievements): remove VIP placeholder from achievements timeline\n"
 }
