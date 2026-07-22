@@ -2446,3 +2446,14 @@ html[data-theme="light"] .gated-overlay {
   border: 1px solid var(--line);
   flex-shrink: 0;
 }
+
+.project-link--locked {
+  opacity: 0.85;
+  border-color: rgba(234, 179, 8, 0.35) !important;
+  color: #eab308 !important;
+}
+.project-link--locked:hover {
+  opacity: 1;
+  border-color: #eab308 !important;
+  background: rgba(234, 179, 8, 0.08) !important;
+}

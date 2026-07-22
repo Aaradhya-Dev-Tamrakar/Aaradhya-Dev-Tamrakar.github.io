@@ -1307,6 +1307,29 @@ async function updateGatedContentVisibility() {
     masterDivider.style.display = isMasterActive ? 'flex' : 'none';
   }
 
+  // Dynamic VIP Links Processor (Gates GitHub Repo links for VIP Access)
+  const vipLinks = document.querySelectorAll('[data-vip-link]');
+  vipLinks.forEach(link => {
+    const rawHref = link.dataset.vipLink;
+    if (effTier < ACCESS_CONTROL.TIER_VIP) {
+      link.href = '#';
+      link.removeAttribute('target');
+      link.innerHTML = '🔒 GitHub Repo (VIP Access Required)';
+      link.onclick = (e) => {
+        e.preventDefault();
+        openAccessModal(ACCESS_CONTROL.TIER_VIP);
+        return false;
+      };
+      link.classList.add('project-link--locked');
+    } else {
+      link.href = rawHref;
+      link.target = '_blank';
+      link.innerHTML = 'View on GitHub ↗';
+      link.onclick = null;
+      link.classList.remove('project-link--locked');
+    }
+  });
+
   const elements = document.querySelectorAll('[data-access-tier]');
 
   for (const el of elements) {
