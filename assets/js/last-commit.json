@@ -1,6 +1,6 @@
 {
-  "sha": "6d5e27e9c1a8bd2782de12a0871506ec942a2120",
-  "shortSha": "6d5e27e",
-  "date": "2026-07-22T08:48:34+05:45",
-  "message": "fix(ui): hide redundant divider wrap when Master section is stealth hidden\n"
+  "sha": "ad3cf0d08a317f5091a88b83c5e61136232bc3fe",
+  "shortSha": "ad3cf0d",
+  "date": "2026-07-22T08:54:02+05:45",
+  "message": "fix(ui): eliminate modal tab bar and passcode hint giveaways in Guest mode\n"
 }
