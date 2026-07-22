@@ -455,18 +455,14 @@
       }
     }
 
-    /* ── Chronological node glow: a full-circle black/white ring grows
-       in around each node in turn, ping-pong traversal — 16→1
-       descending, then reversing 1→16 ascending, forever, no pause.
-       The ring's left half and right half are opposite colors
-       (#000/#fff), and which color sits on which side alternates
-       per node — independent of the leg's direction of travel, and
-       carrying across reversals (not reset to a fixed side).
-       Snake trail: the head node runs the live grow-and-fade
-       animation; the 3 nodes behind it stay visible at a frozen,
-       declining opacity (their own completed ring, not re-animating)
-       so 4 nodes are lit at once, brightest at the head, fading
-       toward the tail. ── */
+    /* ── Chronological node glow: a full-circle ring appears around one
+       node at a time, in document order, 16 -> 1 (newest to oldest),
+       then wraps instantly back to 16 — straight loop, no reverse, no
+       pause. Each node's ring alternates color from the last node's,
+       high-speed (0.15s per node). Uses var(--text)/var(--bg) rather
+       than literal black/white so both alternating states stay
+       visible in both the dark (default) and light theme. Simple
+       appear/fade, no rotation, no growth, no trail. ── */
     .journey-node {
       position: relative;
     }
@@ -479,48 +475,27 @@
       opacity: 0;
       -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
       mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
-      clip-path: circle(0% at 50% 50%);
     }
 
-    .journey-node--glow-left-white::before,
-    .journey-node--trail-left-white::before {
-      background: linear-gradient(90deg, #fff 50%, #000 50%);
+    .journey-node--glow-a::before {
+      background: var(--text);
+      animation: journeyNodeFlash 0.15s ease-out;
     }
 
-    .journey-node--glow-left-black::before,
-    .journey-node--trail-left-black::before {
-      background: linear-gradient(90deg, #000 50%, #fff 50%);
+    .journey-node--glow-b::before {
+      background: var(--bg);
+      animation: journeyNodeFlash 0.15s ease-out;
     }
 
-    .journey-node--glow-left-white::before,
-    .journey-node--glow-left-black::before {
-      animation: journeyNodeGrow 1.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* Trail segments — frozen fully grown, no animation, just the
-       ring at declining opacity as distance from the head increases. */
-    .journey-node--trail-left-white::before,
-    .journey-node--trail-left-black::before {
-      opacity: var(--trail-opacity);
-      clip-path: circle(100% at 50% 50%);
-    }
-
-    @keyframes journeyNodeGrow {
+    @keyframes journeyNodeFlash {
       0% {
         opacity: 1;
-        clip-path: circle(0% at 50% 50%);
       }
-      55% {
+      80% {
         opacity: 1;
-        clip-path: circle(100% at 50% 50%);
-      }
-      90% {
-        opacity: 1;
-        clip-path: circle(100% at 50% 50%);
       }
       100% {
         opacity: 0;
-        clip-path: circle(100% at 50% 50%);
       }
     }
   </style>
@@ -1345,85 +1320,28 @@
       syncJourneyToggleAllLabel();
     }
 
-    // Chronological node glow — ping-pong traversal, document order
-    // (16 -> 1, newest to oldest, then reversing 1 -> 16 back up),
-    // forever, no pause anywhere. Within each leg, every node
-    // alternates which side (left/right) is white vs black, carrying
-    // across reversals — the next leg's first node uses the opposite
-    // side-coloring of whatever the previous leg's last node used.
-    //
-    // Snake trail: 4 nodes lit at once — the head runs the live
-    // grow-and-fade animation, the 3 nodes just behind it stay visible
-    // at a frozen, declining opacity (their own already-grown ring,
-    // not re-animating). As the head advances, the oldest trail
-    // node's classes are cleared so it goes fully dark.
+    // Chronological node glow — straight loop, document order 16 -> 1
+    // (newest to oldest), then wraps instantly back to 16, forever,
+    // no pause, no reverse. Each node's ring alternates color from
+    // the previous node's (glow-a / glow-b), high-speed.
     document.addEventListener('DOMContentLoaded', () => {
       initJourneyToggleAll();
 
       const nodes = Array.from(document.querySelectorAll('#journeyTrack .journey-node'));
       if (!nodes.length) return;
 
-      const TRAIL_OPACITIES = [0.55, 0.3, 0.12]; // 3 nodes behind the head, nearest first
-
       let index = 0;
-      let descending = true; // true: walking 16->1, false: walking 1->16
-      let leftWhite = true; // per-node alternation (left side white vs black), carries across reversals
-      let trail = []; // most recent entries first: { node, leftWhite }
-
-      function clearNode(node) {
-        node.classList.remove('journey-node--glow-left-white', 'journey-node--glow-left-black', 'journey-node--trail-left-white', 'journey-node--trail-left-black');
-        node.style.removeProperty('--trail-opacity');
-      }
-
-      function renderTrail() {
-        trail.forEach((entry, i) => {
-          const node = entry.node;
-          clearNode(node);
-          const trailClass = entry.leftWhite ? 'journey-node--trail-left-white' : 'journey-node--trail-left-black';
-          node.classList.add(trailClass);
-          node.style.setProperty('--trail-opacity', TRAIL_OPACITIES[i]);
-        });
-      }
+      let useA = true; // per-node alternation, carries through the wrap
 
       function glowNext() {
         const node = nodes[index];
-        const glowClass = leftWhite ? 'journey-node--glow-left-white' : 'journey-node--glow-left-black';
+        const glowClass = useA ? 'journey-node--glow-a' : 'journey-node--glow-b';
 
         node.classList.add(glowClass);
         node.addEventListener('animationend', () => {
           node.classList.remove(glowClass);
-
-          // Push the just-finished head to the front of the trail,
-          // then drop whatever falls past the 3-node trail window.
-          trail.unshift({ node, leftWhite });
-          const dropped = trail.splice(3);
-          dropped.forEach(entry => clearNode(entry.node));
-
-          leftWhite = !leftWhite;
-
-          if (descending) {
-            if (index === nodes.length - 1) {
-              descending = false; // hit node 1, reverse
-            } else {
-              index++;
-            }
-          } else {
-            if (index === 0) {
-              descending = true; // hit node 16, reverse
-            } else {
-              index--;
-            }
-          }
-
-          // At a reversal the same node becomes the next head — it
-          // can't also sit in the static trail (that would apply a
-          // trail class and the live grow class to it at once), so
-          // drop it out of the trail the instant it's about to glow
-          // again.
-          const nextNode = nodes[index];
-          trail = trail.filter(entry => entry.node !== nextNode);
-
-          renderTrail();
+          useA = !useA;
+          index = (index + 1) % nodes.length;
           glowNext();
         }, { once: true });
       }
