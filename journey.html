@@ -136,11 +136,13 @@
       border: 1px solid var(--line);
       border-radius: 12px;
       padding: 1.4rem 1.6rem;
-      transition: border-color 0.2s;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
     }
 
     .journey-card:hover {
-      border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+      border-color: var(--glow-green);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--glow-green-a35);
     }
 
     .journey-meta {
@@ -234,18 +236,26 @@
     }
 
     /* ── Nested / indented sub-items ────────────────────────── */
+    /* .journey-nest-group is now a child of .journey-item--nest-root,
+       so its branch line inherits from the actual parent node instead
+       of an absolutely-positioned guess. */
+    .journey-item--nest-root {
+      position: relative;
+    }
+
     .journey-nest-group {
       position: relative;
-      margin-top: 0;
+      margin-top: 1.4rem;
       padding-left: 2rem;        /* indent the whole group from the main timeline */
     }
 
-    /* Vertical branch line connecting nested items to each other */
+    /* Vertical branch line connecting nested items to each other,
+       rooted at the parent node's own connector line */
     .journey-nest-group::before {
       content: '';
       position: absolute;
       left: 10px;
-      top: 0;
+      top: -1.4rem;
       bottom: 1.2rem;
       width: 1px;
       background: linear-gradient(to bottom,
@@ -540,13 +550,12 @@
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io" target="_blank" rel="noopener">Full repo ↗</a>
             </div>
           </div>
-        </div>
 
-        <div class="journey-nest-group">
+          <div class="journey-nest-group">
         <div class="journey-item journey-item--nested reveal">
           <div class="journey-node" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/>
+              <rect x="3" y="3" width="8" height="8" rx="1"/><path d="M7 11v4a2 2 0 0 0 2 2h8"/><path d="m14 14 3 3-3 3"/>
             </svg>
           </div>
           <div class="journey-card">
@@ -571,7 +580,7 @@
         <div class="journey-item journey-item--nested reveal">
           <div class="journey-node" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>
+              <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>
             </svg>
           </div>
           <div class="journey-card">
@@ -715,7 +724,8 @@
           </div>
         </div>
 
-        </div><!-- /.journey-nest-group -->
+          </div><!-- /.journey-nest-group -->
+        </div><!-- /.journey-item--nest-root -->
 
       </div>
     </section>
