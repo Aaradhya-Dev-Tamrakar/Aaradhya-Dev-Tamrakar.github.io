@@ -1,6 +1,6 @@
 {
-  "sha": "ad3cf0d08a317f5091a88b83c5e61136232bc3fe",
-  "shortSha": "ad3cf0d",
-  "date": "2026-07-22T08:54:02+05:45",
-  "message": "fix(ui): eliminate modal tab bar and passcode hint giveaways in Guest mode\n"
+  "sha": "0ddd181f2bd7f0e2ffb7f46c0f678d6c88543207",
+  "shortSha": "0ddd181",
+  "date": "2026-07-22T08:55:12+05:45",
+  "message": "fix(script): clean up duplicated variable declarations in openAccessModal\n"
 }
