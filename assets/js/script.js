@@ -981,7 +981,6 @@ const ACCESS_CONTROL = {
   TIER_MASTER: 2,   // Master Level Access
 
   VIP_PASSCODES: ['vip2026', 'vip', 'tier1'],
-  MASTER_PASSCODES: ['master2026', 'master', 'admin', 'root'],
 
   sessionKey: 'adt_access_session',
   simulatedTier: null,
@@ -1010,15 +1009,11 @@ const ACCESS_CONTROL = {
   authenticate(passcode, requestedTier = 1) {
     const clean = passcode.trim().toLowerCase();
 
-    if (this.MASTER_PASSCODES.includes(clean)) {
-      this.saveSession(this.TIER_MASTER, clean);
-      return { success: true, tier: this.TIER_MASTER, label: 'Master Level' };
+    if (requestedTier === this.TIER_MASTER) {
+      return { success: false, error: 'Master Level requires sign-in with an authorized Google account.' };
     }
 
     if (this.VIP_PASSCODES.includes(clean)) {
-      if (requestedTier === this.TIER_MASTER) {
-        return { success: false, error: 'Passcode is for Higher Tier (VIP), not Master Level.' };
-      }
       this.saveSession(this.TIER_VIP, clean);
       return { success: true, tier: this.TIER_VIP, label: 'Higher Tier (VIP)' };
     }
@@ -1261,34 +1256,23 @@ function renderAccessNavButton() {
       </svg>
       <span>${isSimulated ? '👑 Master (Sim)' : '👑 Master'}</span>
     `;
-  } 
-  // assets/js/script.js — renderAccessNavButton()
-
-  if (effTier === ACCESS_CONTROL.TIER_MASTER) {
-    btn.classList.add('tier-master');
-    btn.title = `Master Level Active ${session?.user?.email ? '(' + session.user.email + ')' : ''} (Ctrl+Shift+L)`;
-    btn.innerHTML = `
-      ${avatarHtml || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14v2H5v-2z"/>
-      </svg>`}
-      <span>${isSimulated ? '👑 Master (Sim)' : '👑 Master'}</span>
-    `;
   } else if (effTier === ACCESS_CONTROL.TIER_VIP) {
     btn.classList.add('tier-vip');
     btn.title = `Higher Tier (VIP) Active ${session?.user?.email ? '(' + session.user.email + ')' : ''} (Ctrl+Shift+L)`;
     btn.innerHTML = `
-      ${avatarHtml || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      ${avatarHtml}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-      </svg>`}
+      </svg>
       <span>${isSimulated ? '⭐ VIP (Sim)' : '⭐ VIP Access'}</span>
     `;
   } else {
     btn.title = 'Access Control / Login (Ctrl+Shift+L)';
     btn.innerHTML = `
-      ${avatarHtml || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
         <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-      </svg>`}
+      </svg>
       <span>${isSimulated ? '🔒 Public (Sim)' : 'Access'}</span>
     `;
   }
@@ -1468,9 +1452,7 @@ function renderAccessModal() {
       </div>
 
       <div class="access-hint-box" id="accessHintBox">
-        <strong>Demo Passcodes:</strong><br />
-        Higher Tier (VIP): <code>vip2026</code><br />
-        Master Level: <code>master2026</code>
+        <strong>Access Passcode:</strong> <code>vip2026</code>
       </div>
 
       <div class="access-error-msg" id="accessErrorMsg"></div>
@@ -1527,17 +1509,9 @@ function openAccessModal(defaultTier = 1) {
 
   // Stealth Mode: Hide Master demo passcode in Guest mode!
   if (hintBox) {
-    if (showMaster) {
-      hintBox.innerHTML = `
-        <strong>Demo Passcodes:</strong><br />
-        Higher Tier (VIP): <code>vip2026</code><br />
-        Master Level: <code>master2026</code>
-      `;
-    } else {
-      hintBox.innerHTML = `
-        <strong>Access Passcode:</strong> <code>vip2026</code>
-      `;
-    }
+    hintBox.innerHTML = `
+      <strong>Access Passcode:</strong> <code>vip2026</code>
+    `;
   }
 
   // Secret 5-click trigger on modal title
@@ -1905,7 +1879,7 @@ function buildSearchIndex() {
 
   index.push(
     { type: 'page', title: 'Access Control & VIP Login', meta: 'Passcode: vip2026 · Ctrl+Shift+L', href: 'javascript:openAccessModal(1)', text: 'access control login vip higher tier passcode password security' },
-    { type: 'page', title: 'Master Dashboard & Admin Login', meta: 'Passcode: master2026 · Ctrl+Shift+L', href: 'javascript:openAccessModal(2)', text: 'master level admin dashboard login passcode password security' }
+    { type: 'page', title: 'Master Dashboard & Admin Login', meta: 'Google Sign-In only · Ctrl+Shift+L', href: 'javascript:openAccessModal(2)', text: 'master level admin dashboard login google signin security' }
   );
 
   // Start from the static snapshot (always present, every page).
