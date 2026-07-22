@@ -1295,10 +1295,16 @@ async function updateGatedContentVisibility() {
   const session = ACCESS_CONTROL.getSessionData();
   const passcode = session ? session.passcode : (effTier === ACCESS_CONTROL.TIER_MASTER ? 'master2026' : 'vip2026');
 
-  // Stealth Mode: Hide Master-exclusive section completely from non-Master users!
+  // Stealth Mode: Hide Master-exclusive section & divider completely from non-Master users!
   const masterSection = document.getElementById('master-exclusive');
+  const masterDivider = document.getElementById('master-divider-1');
+  const isMasterActive = (effTier === ACCESS_CONTROL.TIER_MASTER);
+
   if (masterSection) {
-    masterSection.style.display = (effTier === ACCESS_CONTROL.TIER_MASTER) ? 'block' : 'none';
+    masterSection.style.display = isMasterActive ? 'block' : 'none';
+  }
+  if (masterDivider) {
+    masterDivider.style.display = isMasterActive ? 'flex' : 'none';
   }
 
   const elements = document.querySelectorAll('[data-access-tier]');
