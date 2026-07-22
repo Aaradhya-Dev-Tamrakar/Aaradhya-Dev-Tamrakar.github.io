@@ -1208,7 +1208,7 @@ function renderGoogleSignInButton() {
     if (!document.getElementById('gsiScript')) {
       const script = document.createElement('script');
       script.id = 'gsiScript';
-      script.src = 'https://accounts.google.com/gsi/client';
+      script.src = 'https://accounts.google.com/gsi/client?hl=en';
       script.async = true;
       script.defer = true;
       script.onload = () => renderGoogleSignInButton();
@@ -1231,6 +1231,7 @@ function renderGoogleSignInButton() {
       type: 'standard',
       shape: 'pill',
       text: 'signin_with',
+      locale: 'en',
       logo_alignment: 'left'
     });
   } catch (e) {
