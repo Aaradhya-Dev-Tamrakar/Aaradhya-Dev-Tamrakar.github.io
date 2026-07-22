@@ -179,6 +179,15 @@
     .journey-item[data-card-type="repo-a"]       { --node-accent: var(--glow-teal); --node-accent-a35: var(--glow-teal-a35); }
     .journey-item[data-card-type="origin"]       { --node-accent: var(--glow-gold); --node-accent-a35: var(--glow-gold-a35); }
 
+    .journey-list-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-bottom: 1.3rem;
+    }
+
     .journey-legends {
       display: flex;
       flex-wrap: wrap;
@@ -189,7 +198,40 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 1.3rem;
+    }
+
+    .journey-toggle-all {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 0.5em 0.9em;
+      background: transparent;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .journey-toggle-all:hover {
+      color: var(--accent);
+      border-color: var(--accent-a35);
+    }
+
+    .journey-toggle-all svg {
+      width: 0.85em;
+      height: 0.85em;
+      flex-shrink: 0;
+      transition: transform 0.25s;
+    }
+
+    .journey-toggle-all.is-all-open svg {
+      transform: rotate(180deg);
     }
 
     .journey-legend-item {
@@ -354,6 +396,11 @@
         left: 10px;
       }
 
+      .journey-list-controls {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
       .journey-legends {
         gap: 0.7rem;
       }
@@ -473,14 +520,22 @@
         in the linked commit on GitHub.
       </p>
 
-      <div class="journey-legends" aria-label="Checkpoint type legend">
-        <span class="journey-legend-item"><span class="journey-legend-swatch" style="--swatch-accent: var(--glow-red)"></span>Security fix</span>
-        <span class="journey-legend-item"><span class="journey-legend-swatch" style="--swatch-accent: var(--glow-green)"></span>Feature</span>
-        <span class="journey-legend-item"><span class="journey-legend-swatch" style="--swatch-accent: var(--glow-coral)"></span>Bug fix</span>
-        <span class="journey-legend-item"><span class="journey-legend-swatch" style="--swatch-accent: var(--glow-blue)"></span>Infra / CI</span>
-        <span class="journey-legend-item"><span class="journey-legend-swatch" style="--swatch-accent: var(--glow-violet)"></span>Architecture</span>
-        <span class="journey-legend-item"><span class="journey-legend-swatch" style="--swatch-accent: var(--glow-teal)"></span>Repo A</span>
-        <span class="journey-legend-item"><span class="journey-legend-swatch" style="--swatch-accent: var(--glow-gold)"></span>Origin</span>
+      <div class="journey-list-controls">
+        <div class="journey-legends" aria-label="Checkpoint type legend">
+          <span class="journey-legend-item"><span class="journey-legend-swatch" style="--swatch-accent: var(--glow-red)"></span>Security fix</span>
+          <span class="journey-legend-item"><span class="journey-legend-swatch" style="--swatch-accent: var(--glow-green)"></span>Feature</span>
+          <span class="journey-legend-item"><span class="journey-legend-swatch" style="--swatch-accent: var(--glow-coral)"></span>Bug fix</span>
+          <span class="journey-legend-item"><span class="journey-legend-swatch" style="--swatch-accent: var(--glow-blue)"></span>Infra / CI</span>
+          <span class="journey-legend-item"><span class="journey-legend-swatch" style="--swatch-accent: var(--glow-violet)"></span>Architecture</span>
+          <span class="journey-legend-item"><span class="journey-legend-swatch" style="--swatch-accent: var(--glow-teal)"></span>Repo A</span>
+          <span class="journey-legend-item"><span class="journey-legend-swatch" style="--swatch-accent: var(--glow-gold)"></span>Origin</span>
+        </div>
+        <button type="button" class="journey-toggle-all" id="journeyToggleAllBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+          <span id="journeyToggleAllLabel">Expand all</span>
+        </button>
       </div>
 
       <div class="journey-track" id="journeyTrack">
@@ -1206,10 +1261,45 @@
       const isOpen = card.getAttribute('data-open') === 'true';
       card.setAttribute('data-open', String(!isOpen));
       btn.setAttribute('aria-expanded', String(!isOpen));
+      syncJourneyToggleAllLabel();
+    }
+
+    // Expand all / collapse all — mirrors achievements.html's toggle-all UX,
+    // adapted from native <details>.open to this page's data-open attribute.
+    function syncJourneyToggleAllLabel() {
+      const btn = document.getElementById('journeyToggleAllBtn');
+      const label = document.getElementById('journeyToggleAllLabel');
+      const cards = document.querySelectorAll('#journeyTrack .journey-card');
+      if (!btn || !label || !cards.length) return;
+
+      const allOpen = Array.from(cards).every(card => card.getAttribute('data-open') === 'true');
+      btn.classList.toggle('is-all-open', allOpen);
+      label.textContent = allOpen ? 'Collapse all' : 'Expand all';
+      btn.setAttribute('aria-label', allOpen ? 'Collapse all checkpoints' : 'Expand all checkpoints');
+    }
+
+    function initJourneyToggleAll() {
+      const btn = document.getElementById('journeyToggleAllBtn');
+      const cards = document.querySelectorAll('#journeyTrack .journey-card');
+      if (!btn || !cards.length) return;
+
+      btn.addEventListener('click', () => {
+        const allOpen = Array.from(cards).every(card => card.getAttribute('data-open') === 'true');
+        cards.forEach(card => {
+          card.setAttribute('data-open', String(!allOpen));
+          const toggle = card.querySelector('.journey-card-toggle');
+          if (toggle) toggle.setAttribute('aria-expanded', String(!allOpen));
+        });
+        syncJourneyToggleAllLabel();
+      });
+
+      syncJourneyToggleAllLabel();
     }
 
     // Chronological node glow — one flash per node, in document (timeline) order, looping.
     document.addEventListener('DOMContentLoaded', () => {
+      initJourneyToggleAll();
+
       const nodes = document.querySelectorAll('#journeyTrack .journey-node');
       if (!nodes.length) return;
 
