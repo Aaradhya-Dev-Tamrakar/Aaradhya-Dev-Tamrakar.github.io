@@ -20,6 +20,7 @@ A personal portfolio website for **Aaradhya Dev Tamrakar**.
 - `assets/css/style.css` — shared CSS styles
 - `assets/js/script.js` — shared JavaScript behavior, including the global search / command palette
 - `scripts/extract_index.py` — regenerates the search index from `achievements.html` / `projects.html` (see [Site Search](#site-search))
+- `scripts/dev-serve.py` — local development HTTP testing server with no-cache headers
 - `sync.ps1` — PowerShell automation script for zero-conflict pulling, smart auto-commit message generation, pushing, and GitHub Actions bot synchronization
 - `.github/workflows/` — CI: commit-back bots that keep `assets/js/last-commit.json` and the search index in sync automatically on every push
 
