@@ -1,6 +1,6 @@
 {
-  "sha": "539623396edbec47113fc0975b14c1c8f231da88",
-  "shortSha": "5396233",
-  "date": "2026-07-22T08:36:24+05:45",
-  "message": "feat(auth): add zero-leak AES-256-GCM encryption & Google Sign-In support\n"
+  "sha": "eb215c7572e42eb3820927622a0a1a2df6fdae83",
+  "shortSha": "eb215c7",
+  "date": "2026-07-22T08:43:05+05:45",
+  "message": "feat(auth): add live VIP email allowlist manager to Master Control Panel\n"
 }
