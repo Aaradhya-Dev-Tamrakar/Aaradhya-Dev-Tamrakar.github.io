@@ -1143,21 +1143,47 @@ footer {
 }
 
 /* ── Responsive ───────────────────────────────────────────── */
-@media (max-width: 1100px) {
-  section {
-    padding: 6rem 2rem;
-  }
-
-  nav {
-    padding: 1.5rem 2rem;
-  }
-
+@media (max-width: 1300px) {
   .nav-access-btn span {
     display: none;
   }
 
   .nav-access-btn {
     padding: 0.4rem 0.55rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  section {
+    padding: 6rem 2rem;
+  }
+
+  nav {
+    padding: 1.4rem 2rem;
+    column-gap: 1rem;
+  }
+
+  .nav-links {
+    gap: 1.4rem;
+  }
+
+  .nav-right {
+    gap: 0.5rem;
+  }
+
+  .nav-cta {
+    padding: 0.5rem 0.9rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .nav-links a {
+    font-size: 0.72rem;
+    padding: 0.5rem 0.15rem;
+  }
+
+  .nav-links {
+    gap: 1.1rem;
   }
 }
 
@@ -1169,6 +1195,16 @@ footer {
   nav {
     padding: 1.2rem 1.5rem;
     grid-template-columns: 1fr 1fr;
+    column-gap: 0.75rem;
+  }
+
+  .nav-right {
+    gap: 0.4rem;
+  }
+
+  .nav-cta {
+    padding: 0.45rem 0.7rem;
+    font-size: 0.7rem;
   }
 
   .nav-links {
@@ -1223,8 +1259,45 @@ footer {
     --nav-h: 60px;
   }
 
+  nav {
+    padding: 1rem 1.1rem;
+  }
+
+  .nav-right {
+    gap: 0.35rem;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  .nav-access-btn {
+    display: none;
+  }
+
   .section-title {
     font-size: clamp(1.8rem, 7vw, 2.4rem);
+  }
+}
+
+@media (max-width: 360px) {
+  nav {
+    padding: 0.9rem 0.85rem;
+  }
+
+  .nav-logo {
+    font-size: 1rem;
+  }
+
+  .nav-right {
+    gap: 0.3rem;
+  }
+
+  .theme-toggle,
+  .nav-search-btn,
+  .nav-hamburger {
+    width: 32px;
+    height: 32px;
   }
 }
 
@@ -1888,6 +1961,7 @@ html[data-theme="light"] #quick-nav::before {
   border: 1px solid var(--line);
   border-radius: 20px;
   cursor: pointer;
+  white-space: nowrap;
   transition: all 0.25s ease;
 }
 
