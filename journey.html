@@ -459,7 +459,7 @@
     /* ── Chronological card-border glow: the left accent border on one
        journey-card at a time gets a bright glow bar hugging that edge,
        in the card's own category color, at full opacity
-       (var(--node-accent)) for strong intensity, then fades back to
+       (var(--node-accent)) for strong intensity, then eases back to
        resting state. Kept as a card-height ::before positioned flush
        against the left edge (rather than box-shadow) because
        .journey-card has overflow:hidden and any blur radius large
@@ -467,7 +467,11 @@
        of shadow offset — this keeps the glow confined to the left
        edge only. Document order, 16 -> 1 (newest to oldest), then
        wraps instantly back to 16 — straight loop, no reverse, no
-       pause. High-speed (0.15s per card). ── */
+       pause. 0.25s per card, matching this element's own existing
+       hover-transition timing (border-color/box-shadow .25s above).
+       The next card's glow starts partway through the current one's
+       fade (see JS), so consecutive cards crossfade rather than
+       handing off edge-to-edge. ── */
     .journey-card--glow::before {
       content: '';
       position: absolute;
@@ -475,14 +479,18 @@
       width: 24px;
       background: linear-gradient(to right, var(--node-accent, transparent), transparent);
       pointer-events: none;
-      animation: journeyCardBorderFlash 0.15s ease-out;
+      opacity: 0;
+      animation: journeyCardBorderFlash 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     @keyframes journeyCardBorderFlash {
       0% {
+        opacity: 0;
+      }
+      30% {
         opacity: 1;
       }
-      80% {
+      70% {
         opacity: 1;
       }
       100% {
@@ -1313,12 +1321,19 @@
 
     // Chronological card-border glow — straight loop, document order
     // 16 -> 1 (newest to oldest), then wraps instantly back to 16,
-    // forever, no pause, no reverse. High-speed (0.15s per card).
+    // forever, no pause, no reverse. 0.25s per card. The next card
+    // starts partway through the current one's animation (not after
+    // it finishes) so consecutive cards crossfade — each card cleans
+    // up its own glow class independently via its own animationend.
     document.addEventListener('DOMContentLoaded', () => {
       initJourneyToggleAll();
 
       const cards = Array.from(document.querySelectorAll('#journeyTrack .journey-card'));
       if (!cards.length) return;
+
+      // 0.25s CSS animation duration (must match journeyCardBorderFlash
+      // above); next card starts before it finishes for the crossfade.
+      const OVERLAP_MS = 130;
 
       let index = 0;
 
@@ -1328,9 +1343,10 @@
         card.classList.add('journey-card--glow');
         card.addEventListener('animationend', () => {
           card.classList.remove('journey-card--glow');
-          index = (index + 1) % cards.length;
-          glowNext();
         }, { once: true });
+
+        index = (index + 1) % cards.length;
+        setTimeout(glowNext, OVERLAP_MS);
       }
 
       glowNext();
