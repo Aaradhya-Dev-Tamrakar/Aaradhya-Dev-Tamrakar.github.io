@@ -497,7 +497,7 @@ function renderSiteNav() {
       </ul>
       <div class="nav-right">
         <a href="/contact.html" class="nav-cta" aria-label="Connect with Aaradhya">Connect</a>
-        <button class="nav-access-btn" id="navAccessBtn" aria-label="Access Control" title="Access Control (Ctrl+Shift+L)">
+        <button class="nav-access-btn" id="navAccessBtn" aria-label="Access Control" title="Access Control">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
@@ -798,15 +798,17 @@ function initScroll() {
 
   document.addEventListener('keydown', e => {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
-    if (e.key !== '=' && e.key !== '-') return;
+    const isMinus = e.key === '-' || e.key === '_' || e.code === 'Minus';
+    const isEqual = e.key === '=' || e.key === '+' || e.code === 'Equal';
+    if (!isEqual && !isMinus) return;
     const tag = (document.activeElement || {}).tagName || '';
     if (/^(INPUT|TEXTAREA|SELECT)$/i.test(tag) || document.activeElement?.isContentEditable) return;
     e.preventDefault();
-    if (e.key === '=') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if (isEqual) {
+      window.scrollTo({ top: e.shiftKey ? max * 0.25 : 0, behavior: 'smooth' });
     } else {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      window.scrollTo({ top: max, behavior: 'smooth' });
+      window.scrollTo({ top: e.shiftKey ? max * 0.75 : max, behavior: 'smooth' });
     }
   });
 }
@@ -1350,7 +1352,7 @@ function renderAccessNavButton() {
 
   if (effTier === ACCESS_CONTROL.TIER_MASTER) {
     btn.classList.add('tier-master');
-    btn.title = `Master Level Active ${session?.user?.email ? '(' + session.user.email + ')' : ''} (Ctrl+Shift+L)`;
+    btn.title = `Master Level Active ${session?.user?.email ? '(' + session.user.email + ')' : ''}`;
     btn.innerHTML = `
       ${avatarHtml || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14v2H5v-2z"/>
@@ -1359,7 +1361,7 @@ function renderAccessNavButton() {
     `;
   } else if (effTier === ACCESS_CONTROL.TIER_VIP) {
     btn.classList.add('tier-vip');
-    btn.title = `Higher Tier (VIP) Active ${session?.user?.email ? '(' + session.user.email + ')' : ''} (Ctrl+Shift+L)`;
+    btn.title = `Higher Tier (VIP) Active ${session?.user?.email ? '(' + session.user.email + ')' : ''}`;
     btn.innerHTML = `
       ${avatarHtml || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
@@ -1367,7 +1369,7 @@ function renderAccessNavButton() {
       <span>${isSimulated ? 'VIP (Sim)' : 'VIP Access'}</span>
     `;
   } else {
-    btn.title = 'Access Control / Login (Ctrl+Shift+L)';
+    btn.title = 'Access Control / Login';
     btn.innerHTML = `
       ${avatarHtml || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
@@ -1788,20 +1790,10 @@ function renderMasterControlPanel() {
 }
 
 
-function initAccessKeyboardShortcuts() {
-  document.addEventListener('keydown', e => {
-    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'L' || e.key === 'l')) {
-      e.preventDefault();
-      openAccessModal();
-    }
-  });
-}
-
 function initAccessControl() {
   renderAccessNavButton();
   updateGatedContentVisibility();
   renderMasterControlPanel();
-  initAccessKeyboardShortcuts();
 }
 
 /* ── Boot ─────────────────────────────────────────────────── */
@@ -1905,7 +1897,7 @@ function buildSearchIndex() {
   }));
 
   index.push(
-    { type: 'page', title: 'Access Control & VIP Login', meta: 'Passcode: vip2026 · Ctrl+Shift+L', href: 'javascript:openAccessModal(1)', text: 'access control login vip higher tier passcode password security' }
+    { type: 'page', title: 'Access Control & VIP Login', meta: 'Passcode: vip2026', href: 'javascript:openAccessModal(1)', text: 'access control login vip higher tier passcode password security' }
   );
 
   // Start from the static snapshot (always present, every page).
