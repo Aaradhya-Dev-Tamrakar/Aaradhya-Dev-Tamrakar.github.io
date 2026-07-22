@@ -1,6 +1,6 @@
 {
-  "sha": "f51ce5ffc1e0d151eb8712254eb6399e39ca5f87",
-  "shortSha": "f51ce5f",
-  "date": "2026-07-22T09:07:54+05:45",
-  "message": "feat(ui): redesign VIP unlocked payload & clean up locked overlay preview card\n"
+  "sha": "84210fbf944cd3109d36b021695f94376dea8cc8",
+  "shortSha": "84210fb",
+  "date": "2026-07-22T09:13:26+05:45",
+  "message": "fix(crypto): match decryption key directly to payload tier requirements\n"
 }
