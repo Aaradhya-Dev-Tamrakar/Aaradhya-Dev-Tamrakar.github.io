@@ -455,24 +455,59 @@
       }
     }
 
-    /* ── Chronological node glow (green → white flash, on load) ── */
-    @keyframes journeyNodeGlow {
+    /* ── Chronological node glow: a black/white ring sweeps a full
+       revolution around each node in turn. Alternates clockwise on
+       odd passes, counter-clockwise on even passes (see JS below),
+       theme-neutral by design (#000/#fff only). ── */
+    .journey-node {
+      position: relative;
+    }
+
+    .journey-node::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #fff 0deg, #000 45deg, transparent 90deg, transparent 360deg);
+      opacity: 0;
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+      mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+    }
+
+    .journey-node--glow-cw::before {
+      animation: journeyNodeSweepCW 1.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .journey-node--glow-ccw::before {
+      animation: journeyNodeSweepCCW 1.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes journeyNodeSweepCW {
       0% {
-        border-color: var(--line);
+        opacity: 1;
+        transform: rotate(0deg);
       }
-      40% {
-        border-color: var(--glow-green, #4ade80);
-      }
-      60% {
-        border-color: #fff;
+      90% {
+        opacity: 1;
       }
       100% {
-        border-color: var(--line);
+        opacity: 0;
+        transform: rotate(360deg);
       }
     }
 
-    .journey-node--glow {
-      animation: journeyNodeGlow 1.3s cubic-bezier(0.4, 0, 0.2, 1);
+    @keyframes journeyNodeSweepCCW {
+      0% {
+        opacity: 1;
+        transform: rotate(0deg);
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: rotate(-360deg);
+      }
     }
   </style>
 </head>
@@ -1296,11 +1331,14 @@
       syncJourneyToggleAllLabel();
     }
 
-    // Chronological node glow — one flash per node, in document (timeline) order, looping.
+    // Chronological node glow — one flash per node, alternating direction
+    // each pass: top→bottom clockwise, then bottom→top counter-clockwise,
+    // looping. The pause after the last node equals CYCLE_PAUSE_MS, so the
+    // next pass's first node lights immediately after that uniform gap.
     document.addEventListener('DOMContentLoaded', () => {
       initJourneyToggleAll();
 
-      const nodes = document.querySelectorAll('#journeyTrack .journey-node');
+      const nodes = Array.from(document.querySelectorAll('#journeyTrack .journey-node'));
       if (!nodes.length) return;
 
       const STEP_MS = 220;
@@ -1308,15 +1346,23 @@
       const CYCLE_PAUSE_MS = 1500;
       const cycleLength = (nodes.length - 1) * STEP_MS + ANIM_MS + CYCLE_PAUSE_MS;
 
+      let passCount = 0;
+
       function runCycle() {
-        nodes.forEach((node, i) => {
+        const clockwise = passCount % 2 === 0;
+        const glowClass = clockwise ? 'journey-node--glow-cw' : 'journey-node--glow-ccw';
+        const order = clockwise ? nodes : nodes.slice().reverse();
+
+        order.forEach((node, i) => {
           setTimeout(() => {
-            node.classList.add('journey-node--glow');
+            node.classList.add(glowClass);
             node.addEventListener('animationend', () => {
-              node.classList.remove('journey-node--glow');
+              node.classList.remove(glowClass);
             }, { once: true });
           }, i * STEP_MS);
         });
+
+        passCount++;
       }
 
       runCycle();
