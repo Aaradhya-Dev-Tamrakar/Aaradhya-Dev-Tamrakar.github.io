@@ -1380,9 +1380,10 @@ async function updateGatedContentVisibility() {
       el.classList.add('gated-content-locked');
       el.classList.remove('gated-content-unlocked');
     } else {
-      // UNLOCKED: Decrypt payload in memory using passcode and inject into DOM
+      // UNLOCKED: Decrypt payload in memory using required tier passcode and inject into DOM
       if (!el.querySelector('.gated-inner-body') && payloadId && ACCESS_CONTROL_PAYLOADS[payloadId]) {
-        const decryptedHtml = await decryptHexPayload(ACCESS_CONTROL_PAYLOADS[payloadId], passcode);
+        const targetPasscode = (requiredTier === ACCESS_CONTROL.TIER_MASTER) ? 'master2026' : 'vip2026';
+        const decryptedHtml = await decryptHexPayload(ACCESS_CONTROL_PAYLOADS[payloadId], targetPasscode);
         if (decryptedHtml) {
           const inner = document.createElement('div');
           inner.className = 'gated-inner-body';
