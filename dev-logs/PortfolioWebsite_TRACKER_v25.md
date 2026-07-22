@@ -47,6 +47,7 @@
 - Added Stealth Mode and secret action triggers for Master Level access.
 - Implemented VIP Gated GitHub repository links across projects page.
 - Added Live VIP email allowlist manager in Master Control Panel.
+- **Automated Git Workflow & Zero-Conflict Sync (`sync.ps1`)**: Added PowerShell automation script to handle `--autostash` pulls, smart commit message auto-generation, pushing, and automatic GitHub Actions stamp bot synchronization.
 - Updated codebase knowledge graph (`graphify update .`).
 
 ---
