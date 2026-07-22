@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Journey — Aaradhya Dev Tamrakar</title>
+  <meta name="description"
+    content="How this portfolio site was built, milestone by milestone — the applied engineering skillset behind each feature, linked to the real commit or code." />
+  <meta name="author" content="Aaradhya Dev Tamrakar" />
+  <link rel="canonical" href="https://aaradhya-dev-tamrakar.github.io/journey.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aaradhya-dev-tamrakar.github.io/journey.html" />
+  <meta property="og:title" content="Journey — Aaradhya Dev Tamrakar" />
+  <meta property="og:description"
+    content="How this site was built — applied skillset behind each milestone, linked to the real commit." />
+  <meta property="og:image" content="https://aaradhya-dev-tamrakar.github.io/assets/images/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Aaradhya Dev Tamrakar" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Journey — Aaradhya Dev Tamrakar" />
+  <meta name="twitter:description"
+    content="How this site was built — applied skillset behind each milestone, linked to the real commit." />
+  <meta name="twitter:image" content="https://aaradhya-dev-tamrakar.github.io/assets/images/og-image.jpg" />
+
+  <!-- JSON-LD: Breadcrumb -->
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://aaradhya-dev-tamrakar.github.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Journey",
+            "item": "https://aaradhya-dev-tamrakar.github.io/journey.html"
+          }
+        ]
+      }
+    </script>
+
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230d0e11'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='400' fill='%23d4a85a'>ADT</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400&display=swap" />
+  <link rel="stylesheet" media="print" onload="this.media='all'"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400&display=swap" />
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400&display=swap" />
+  </noscript>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Page-specific: journey timeline -->
+  <style>
+    html,
+    body {
+      background: var(--bg);
+    }
+
+    #journey {
+      padding: 2rem 3rem 6rem;
+    }
+
+    .journey-intro {
+      max-width: 680px;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin: -0.5rem 0 2.5rem;
+    }
+
+    .journey-track {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .journey-track::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 10px;
+      bottom: 10px;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--line) 4%, var(--line) 96%, transparent);
+    }
+
+    .journey-item {
+      position: relative;
+      padding: 0 0 2.6rem 3.1rem;
+    }
+
+    .journey-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .journey-node {
+      position: absolute;
+      left: 0;
+      top: 0.3rem;
+      width: 23px;
+      height: 23px;
+      border-radius: 50%;
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .journey-node svg {
+      width: 12px;
+      height: 12px;
+      color: var(--accent);
+    }
+
+    .journey-card {
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem;
+      transition: border-color 0.2s;
+    }
+
+    .journey-card:hover {
+      border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    }
+
+    .journey-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .journey-period {
+      color: var(--accent);
+    }
+
+    .journey-title {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--heading);
+      margin: 0 0 0.6rem;
+    }
+
+    .journey-desc {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      line-height: 1.65;
+      color: var(--text);
+      margin: 0 0 1rem;
+    }
+
+    .journey-desc li {
+      margin-bottom: 0.35rem;
+    }
+
+    .journey-desc li::marker {
+      color: var(--accent);
+    }
+
+    .journey-skill-label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .journey-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .journey-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .journey-link {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+      padding-bottom: 1px;
+      transition: border-color 0.2s;
+    }
+
+    .journey-link:hover {
+      border-color: var(--accent);
+    }
+
+    @media (max-width: 640px) {
+      #journey {
+        padding: 1.5rem 1.2rem 4rem;
+      }
+
+      .journey-item {
+        padding-left: 2.4rem;
+      }
+
+      .journey-track::before {
+        left: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <div class="cursor" id="cursor">
+    <div class="cursor-ring" id="cursorRing"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+  </div>
+
+  <noscript>
+    <nav aria-label="Primary navigation"><a href="index.html" class="nav-logo">ADT<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="journey.html" class="active" aria-current="page">Journey</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="nav-right"><a href="contact.html" class="nav-cta">Connect</a></div>
+    </nav>
+  </noscript>
+  <div id="siteNav"></div>
+
+  <main id="main-content">
+    <header id="page-header">
+      <div class="page-eyebrow">Build Log</div>
+      <h1 class="page-title">The <em>Journey</em></h1>
+      <p class="page-sub">
+        This site is itself an engineering project. Below is how it was
+        actually built — what problem each milestone solved, the applied
+        skillset behind it, and a link to the real commit or code, not a
+        certificate.
+      </p>
+    </header>
+
+    <section id="journey" aria-label="Development milestones">
+      <p class="journey-intro">
+        Ordered newest → oldest. Every skill tag below was used to ship
+        something you can inspect right now — either live on this site or
+        in the linked commit on GitHub.
+      </p>
+
+      <div class="journey-track" id="journeyTrack">
+
+        <div class="journey-item reveal">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+          <div class="journey-card">
+            <div class="journey-meta"><span class="journey-period">v25 · Jul 2026</span><span>Feature</span></div>
+            <h3 class="journey-title">Zero-Leak Multi-Tier Access Control</h3>
+            <ul class="journey-desc">
+              <li>Built a 3-tier access system (Public / VIP / Master) where locked sections ship <em>zero</em> raw HTML — content is pre-encrypted client-side and only decrypted into memory after a passcode or Google Sign-In check passes, then wiped on logout.</li>
+              <li>Key derivation via Web Crypto API PBKDF2 (100,000 iterations, SHA-256) feeding AES-256-GCM; Google Identity Services SDK handles OAuth, with client-side JWT parsing to read email/name/avatar and assign tier.</li>
+            </ul>
+            <div class="journey-skill-label">Applied skillset</div>
+            <div class="journey-tags">
+              <span class="tag">Web Crypto API</span><span class="tag">AES-256-GCM</span>
+              <span class="tag">PBKDF2</span><span class="tag">OAuth 2.0</span>
+              <span class="tag">JWT</span><span class="tag">Client-side security</span>
+            </div>
+            <div class="journey-links">
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/539623396edbec47113fc0975b14c1c8f231da88" target="_blank" rel="noopener">View commit ↗</a>
+              <a class="journey-link" href="index.html" target="_blank" rel="noopener">See it live ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <div class="journey-card">
+            <div class="journey-meta"><span class="journey-period">v25 · Jul 2026</span><span>Bug fix</span></div>
+            <h3 class="journey-title">Cryptographic key-mismatch debugging</h3>
+            <ul class="journey-desc">
+              <li>The encryption scheme derives its AES key from the tier's own passcode — but Google Sign-In sessions and simulated Master-tier previews weren't consistently passing the <em>correct</em> passcode into the decrypt call, so unlocked content silently failed to decrypt for some auth paths.</li>
+              <li>Traced the mismatch to where the decryption key was chosen versus where the tier was actually verified, and rewrote it to derive the key directly from the tier requirement rather than trusting a passed-in value.</li>
+            </ul>
+            <div class="journey-skill-label">Applied skillset</div>
+            <div class="journey-tags">
+              <span class="tag">Debugging</span><span class="tag">Cryptography</span>
+              <span class="tag">State management</span><span class="tag">JavaScript</span>
+            </div>
+            <div class="journey-links">
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/84210fbf944cd3109d36b021695f94376dea8cc8" target="_blank" rel="noopener">View commit ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+          </div>
+          <div class="journey-card">
+            <div class="journey-meta"><span class="journey-period">v25 · Jul 2026</span><span>Feature</span></div>
+            <h3 class="journey-title">Live VIP allowlist manager (Master Control Panel)</h3>
+            <ul class="journey-desc">
+              <li>Admin widget that lets me add or remove VIP-tier emails at runtime, no redeploy — persisted to <code>localStorage</code> and immediately re-checked against every gated block on the page.</li>
+              <li>Also ships stealth mode: the Master tab and diagnostic console are fully hidden from public visitors (no DOM giveaway of their existence) and only reveal via an authenticated session or a deliberate secret trigger.</li>
+            </ul>
+            <div class="journey-skill-label">Applied skillset</div>
+            <div class="journey-tags">
+              <span class="tag">JavaScript</span><span class="tag">localStorage</span>
+              <span class="tag">UI state design</span><span class="tag">Access control UX</span>
+            </div>
+            <div class="journey-links">
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/eb215c7572e42eb3820927622a0a1a2df6fdae83" target="_blank" rel="noopener">View commit ↗</a>
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/ba62fdc4207a5af0d46e0e29380752dec9408264" target="_blank" rel="noopener">Stealth mode commit ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
+          <div class="journey-card">
+            <div class="journey-meta"><span class="journey-period">v24 · Jul 2026</span><span>Infra / CI</span></div>
+            <h3 class="journey-title">CI-automated search index pipeline</h3>
+            <ul class="journey-desc">
+              <li>Global search was going stale — a new certificate added to the achievements page wouldn't show up in search anywhere except that page itself, until someone remembered to hand-export the index.</li>
+              <li>Wrote a Python/BeautifulSoup script that parses <code>achievements.html</code> / <code>projects.html</code> and regenerates the static index automatically, then wired it into a GitHub Actions workflow that runs on every push — including a bot-loop guard and rebase-retry logic to survive concurrent CI writes to the same branch.</li>
+            </ul>
+            <div class="journey-skill-label">Applied skillset</div>
+            <div class="journey-tags">
+              <span class="tag">Python</span><span class="tag">BeautifulSoup</span>
+              <span class="tag">GitHub Actions</span><span class="tag">CI/CD</span>
+              <span class="tag">Idempotency design</span>
+            </div>
+            <div class="journey-links">
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/blob/main/scripts/extract_index.py" target="_blank" rel="noopener">View script ↗</a>
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/blob/main/.github/workflows/update-search-index.yml" target="_blank" rel="noopener">View workflow ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </div>
+          <div class="journey-card">
+            <div class="journey-meta"><span class="journey-period">v22–v24 · 2026</span><span>Feature</span></div>
+            <h3 class="journey-title">Global command-palette search</h3>
+            <ul class="journey-desc">
+              <li>Press <code>/</code> anywhere on the site to open a unified search across every page, project, and achievement — with type-filter tabs, keyboard-only navigation (arrows + enter), and deep-linking straight to the matched item.</li>
+              <li>Runs on a merged index: a static snapshot ships on every page (so search works even where there's nothing to scan live), overridden by a live DOM scan on the pages that actually render the content — so same-session edits are searchable before a commit even happens.</li>
+            </ul>
+            <div class="journey-skill-label">Applied skillset</div>
+            <div class="journey-tags">
+              <span class="tag">JavaScript</span><span class="tag">Data structure design</span>
+              <span class="tag">Keyboard UX</span><span class="tag">Accessibility (ARIA)</span>
+            </div>
+            <div class="journey-links">
+              <a class="journey-link" href="javascript:void(0)" onclick="document.getElementById('navSearchBtn')?.click(); return false;">Try it now ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </div>
+          <div class="journey-card">
+            <div class="journey-meta"><span class="journey-period">Jul 2026</span><span>Feature</span></div>
+            <h3 class="journey-title">Contact form with EmailJS</h3>
+            <ul class="journey-desc">
+              <li>Wired the contact form to send real email without a backend — client-side EmailJS integration with input validation, so a message actually lands in my inbox rather than going nowhere.</li>
+            </ul>
+            <div class="journey-skill-label">Applied skillset</div>
+            <div class="journey-tags">
+              <span class="tag">Third-party API integration</span><span class="tag">Form validation</span>
+              <span class="tag">JavaScript</span>
+            </div>
+            <div class="journey-links">
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/32e9d6b30d9860487fcaca34f8a3f2f82be27f86" target="_blank" rel="noopener">View commit ↗</a>
+              <a class="journey-link" href="contact.html" target="_blank" rel="noopener">See it live ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div class="journey-card">
+            <div class="journey-meta"><span class="journey-period">Jul 2026</span><span>Feature</span></div>
+            <h3 class="journey-title">Bikram Sambat ↔ Gregorian date engine</h3>
+            <ul class="journey-desc">
+              <li>Nepal runs on the Bikram Sambat calendar day-to-day, so the homepage's hero date toggles between B.S. and A.D. on click or backtick. Ported a BS↔AD conversion table (years 1975–2099 BS) and cross-checked it against a live converter before shipping — this is a genuine calendar-math implementation, not a library call.</li>
+            </ul>
+            <div class="journey-skill-label">Applied skillset</div>
+            <div class="journey-tags">
+              <span class="tag">Algorithm design</span><span class="tag">Date/time math</span>
+              <span class="tag">Internationalization</span><span class="tag">JavaScript</span>
+            </div>
+            <div class="journey-links">
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/3701aaa45acfc9113c76e0db7d90feb132b2ac4c" target="_blank" rel="noopener">View commit ↗</a>
+              <a class="journey-link" href="index.html" target="_blank" rel="noopener">See it live ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+            </svg>
+          </div>
+          <div class="journey-card">
+            <div class="journey-meta"><span class="journey-period">2025 – 2026</span><span>Architecture</span></div>
+            <h3 class="journey-title">Multi-page architecture &amp; shared component system</h3>
+            <ul class="journey-desc">
+              <li>Migrated from a single-page site to six pages sharing one navigation, footer, and JS bundle — nav/footer render from a single source of truth so a link change only happens once, not six times.</li>
+              <li>Added structured data (schema.org breadcrumbs and credentials), full OG/Twitter meta per page, a generated <code>sitemap.xml</code>, and a custom 404 with redirect-to-canonical handling.</li>
+            </ul>
+            <div class="journey-skill-label">Applied skillset</div>
+            <div class="journey-tags">
+              <span class="tag">Information architecture</span><span class="tag">SEO</span>
+              <span class="tag">Schema.org</span><span class="tag">DRY component design</span>
+              <span class="tag">Responsive CSS</span>
+            </div>
+            <div class="journey-links">
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/c219b386528f15653a0316eb9f9048855adc1d04" target="_blank" rel="noopener">View commit ↗</a>
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io" target="_blank" rel="noopener">Full repo ↗</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider-wrap" aria-hidden="true">
+      <div class="divider-edge divider-edge--left"></div>
+      <div class="divider"></div>
+      <div class="divider-node"></div>
+      <div class="divider"></div>
+      <div class="divider-edge divider-edge--right"></div>
+    </div>
+
+    <section id="quick-nav" aria-label="Explore the site">
+      <div class="section-header reveal">
+        <div class="section-num">Explore</div>
+        <h2 class="section-title">Where to <em>look next</em></h2>
+      </div>
+      <div class="quick-nav-grid reveal" id="quickNavGrid"></div>
+    </section>
+  </main>
+
+  <button class="back-top" id="backTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+      stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
+  <div class="scroll-pct" id="scrollPct" aria-hidden="true">0%</div>
+
+  <footer role="contentinfo">
+    <div id="siteFooter"></div>
+  </footer>
+
+  <script src="assets/js/script.js" defer></script>
+</body>
+
+</html>

@@ -8,6 +8,7 @@ A personal portfolio website for **Aaradhya Dev Tamrakar**.
 - `projects.html` — projects showcase page
 - `experience.html` — work and education experience page
 - `achievements.html` — achievements and certificates page
+- `journey.html` — build log of this portfolio site's own development, with applied skillset per milestone linked to real commits
 - `about.html` — personal introduction page
 - `contact.html` — contact and connect page
 - `404.html` — custom not-found page (excluded from `sitemap.xml`, marked `noindex`)

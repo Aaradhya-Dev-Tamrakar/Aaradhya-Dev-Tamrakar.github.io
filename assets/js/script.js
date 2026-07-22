@@ -25,6 +25,7 @@ const SITE = {
     { label: 'Projects', labelShort: 'Projects', href: '/projects.html', key: '2' },
     { label: 'Experience', labelShort: 'Experience', href: '/experience.html', key: '3' },
     { label: 'Achievements', labelShort: 'Achievements', href: '/achievements.html', key: '4' },
+    { label: 'Journey', labelShort: 'Journey', href: '/journey.html', key: '7' },
     { label: 'About', labelShort: 'About', href: '/about.html', key: '5' },
   ],
 };
@@ -44,6 +45,7 @@ const CMDK_PAGES = [
   { title: 'Projects', href: '/projects.html' },
   { title: 'Experience', href: '/experience.html' },
   { title: 'Achievements', href: '/achievements.html' },
+  { title: 'Journey', href: '/journey.html' },
   { title: 'About', href: '/about.html' },
   { title: 'Contact', href: '/contact.html' },
 ];
@@ -74,6 +76,11 @@ const QUICK_NAV_PAGES = [
     file: 'achievements.html', title: 'Achievements',
     desc: 'IEEEXtreme, fellowships, certifications, and competition results.',
     cta: 'View Achievements',
+  },
+  {
+    file: 'journey.html', title: 'Journey',
+    desc: 'How this site was built — applied skillset behind each milestone, linked to the real commit.',
+    cta: 'View Build Log',
   },
   {
     file: 'about.html', title: 'About',
@@ -2109,9 +2116,10 @@ function initGlobalSearch() {
   revealSearchTarget();
 }
 
-/* ── Keyboard page navigation (1–6) ──────────────────────── */
+/* ── Keyboard page navigation (1–7) ──────────────────────── */
 // 1 → index.html  2 → projects.html  3 → experience.html
 // 4 → achievements.html  5 → about.html  6 → contact.html
+// 7 → journey.html
 // 0 → toggle theme
 // ` → toggle hero date B.S. / A.D. (index.html only; no-op elsewhere)
 // Shift+4 → toggle Academic / Extracurricular track (achievements.html only; no-op elsewhere)
@@ -2125,6 +2133,7 @@ function initKeyNav() {
     '4': 'achievements.html',
     '5': 'about.html',
     '6': 'contact.html',
+    '7': 'journey.html',
   };
   document.addEventListener('keydown', e => {
     const tag = (document.activeElement || {}).tagName || '';
