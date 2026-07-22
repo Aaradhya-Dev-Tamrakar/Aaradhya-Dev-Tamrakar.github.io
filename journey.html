@@ -455,10 +455,12 @@
       }
     }
 
-    /* ── Chronological node glow: a black/white ring sweeps a full
-       revolution around each node in turn. Alternates clockwise on
-       odd passes, counter-clockwise on even passes (see JS below),
-       theme-neutral by design (#000/#fff only). ── */
+    /* ── Chronological node glow: a black/white semicircle ring sweeps
+       each node in turn, ping-pong traversal — 16→1 descending with
+       clockwise sweeps, then reversing 1→16 ascending with
+       counter-clockwise sweeps, forever, no pause. Direction of the
+       sweep is tied to direction of travel, not to node parity.
+       Theme-neutral by design (#000/#fff only). ── */
     .journey-node {
       position: relative;
     }
@@ -492,7 +494,7 @@
       }
       100% {
         opacity: 0;
-        transform: rotate(360deg);
+        transform: rotate(180deg);
       }
     }
 
@@ -506,7 +508,7 @@
       }
       100% {
         opacity: 0;
-        transform: rotate(-360deg);
+        transform: rotate(-180deg);
       }
     }
   </style>
@@ -1331,28 +1333,42 @@
       syncJourneyToggleAllLabel();
     }
 
-    // Chronological node glow — one continuous chain, node by node in
-    // document order (16 -> 1, newest to oldest), alternating clockwise
-    // then counter-clockwise on every step. No pause anywhere: node 1's
-    // flash finishes and node 16 (top) starts on the very same frame,
-    // forever.
+    // Chronological node glow — ping-pong traversal, document order
+    // (16 -> 1, newest to oldest, then reversing 1 -> 16 back up),
+    // forever, no pause anywhere. Direction of the ring sweep matches
+    // direction of travel: clockwise while descending 16->1,
+    // counter-clockwise while ascending 1->16.
     document.addEventListener('DOMContentLoaded', () => {
       initJourneyToggleAll();
 
       const nodes = Array.from(document.querySelectorAll('#journeyTrack .journey-node'));
       if (!nodes.length) return;
 
-      let step = 0;
+      let index = 0;
+      let descending = true; // true: walking 16->1 (CW), false: walking 1->16 (CCW)
 
       function glowNext() {
-        const node = nodes[step % nodes.length];
-        const clockwise = step % 2 === 0;
-        const glowClass = clockwise ? 'journey-node--glow-cw' : 'journey-node--glow-ccw';
+        const node = nodes[index];
+        const glowClass = descending ? 'journey-node--glow-cw' : 'journey-node--glow-ccw';
 
         node.classList.add(glowClass);
         node.addEventListener('animationend', () => {
           node.classList.remove(glowClass);
-          step++;
+
+          if (descending) {
+            if (index === nodes.length - 1) {
+              descending = false; // hit node 1, reverse
+            } else {
+              index++;
+            }
+          } else {
+            if (index === 0) {
+              descending = true; // hit node 16, reverse
+            } else {
+              index--;
+            }
+          }
+
           glowNext();
         }, { once: true });
       }
