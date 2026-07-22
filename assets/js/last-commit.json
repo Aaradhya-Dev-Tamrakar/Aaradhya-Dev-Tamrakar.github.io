@@ -1,6 +1,6 @@
 {
-  "sha": "f23258a98f165bf9babf2d4a052d8d2ec2839a92",
-  "shortSha": "f23258a",
-  "date": "2026-07-22T08:21:47+05:45",
-  "message": "Merge branch main of https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io\n"
+  "sha": "539623396edbec47113fc0975b14c1c8f231da88",
+  "shortSha": "5396233",
+  "date": "2026-07-22T08:36:24+05:45",
+  "message": "feat(auth): add zero-leak AES-256-GCM encryption & Google Sign-In support\n"
 }
