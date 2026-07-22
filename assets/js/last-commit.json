@@ -1,6 +1,6 @@
 {
-  "sha": "240a724c42fd5c35119da44ae62cb898ccb061ff",
-  "shortSha": "240a724",
-  "date": "2026-07-22T17:16:56+05:45",
-  "message": "style(index): give About Sign-In section a card layout with icon and scannable facts\n"
+  "sha": "5eeed3029696d43ec09512d4f74ddc380a37611a",
+  "shortSha": "5eeed30",
+  "date": "2026-07-22T17:19:26+05:45",
+  "message": "fix(index): restore uniform section padding on About Sign-In\n"
 }
