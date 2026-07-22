@@ -467,11 +467,10 @@
        of shadow offset — this keeps the glow confined to the left
        edge only. Document order, 16 -> 1 (newest to oldest), then
        wraps instantly back to 16 — straight loop, no reverse, no
-       pause. 0.25s per card, matching this element's own existing
-       hover-transition timing (border-color/box-shadow .25s above).
-       The next card's glow starts partway through the current one's
-       fade (see JS), so consecutive cards crossfade rather than
-       handing off edge-to-edge. ── */
+       pause. 0.5s per card (half current speed = double duration,
+       from 0.25s). The next card's glow starts partway through the
+       current one's fade (see JS, scaled to match), so consecutive
+       cards crossfade rather than handing off edge-to-edge. ── */
     .journey-card--glow::before {
       content: '';
       position: absolute;
@@ -480,7 +479,7 @@
       background: linear-gradient(to right, var(--node-accent, transparent), transparent);
       pointer-events: none;
       opacity: 0;
-      animation: journeyCardBorderFlash 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: journeyCardBorderFlash 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     @keyframes journeyCardBorderFlash {
@@ -1321,7 +1320,7 @@
 
     // Chronological card-border glow — straight loop, document order
     // 16 -> 1 (newest to oldest), then wraps instantly back to 16,
-    // forever, no pause, no reverse. 0.25s per card. The next card
+    // forever, no pause, no reverse. 0.5s per card. The next card
     // starts partway through the current one's animation (not after
     // it finishes) so consecutive cards crossfade — each card cleans
     // up its own glow class independently via its own animationend.
@@ -1331,9 +1330,10 @@
       const cards = Array.from(document.querySelectorAll('#journeyTrack .journey-card'));
       if (!cards.length) return;
 
-      // 0.25s CSS animation duration (must match journeyCardBorderFlash
+      // 0.5s CSS animation duration (must match journeyCardBorderFlash
       // above); next card starts before it finishes for the crossfade.
-      const OVERLAP_MS = 130;
+      // Kept at the same ~52% ratio as before (130ms / 250ms).
+      const OVERLAP_MS = 260;
 
       let index = 0;
 
