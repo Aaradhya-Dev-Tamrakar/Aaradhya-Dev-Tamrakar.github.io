@@ -1,6 +1,6 @@
 {
-  "sha": "5eeed3029696d43ec09512d4f74ddc380a37611a",
-  "shortSha": "5eeed30",
-  "date": "2026-07-22T17:19:26+05:45",
-  "message": "fix(index): restore uniform section padding on About Sign-In\n"
+  "sha": "1a22e9bb092927935d6e4b35d69e4d5b7f8d45c9",
+  "shortSha": "1a22e9b",
+  "date": "2026-07-22T17:30:16+05:45",
+  "message": "docs(index): explain rationale for tiered access in About Sign-In section\n"
 }
