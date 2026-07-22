@@ -481,6 +481,56 @@
           </div>
         </div>
 
+        <div class="journey-item reveal">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/>
+            </svg>
+          </div>
+          <div class="journey-card">
+            <div class="journey-meta"><span class="journey-period">Jul 2026</span><span>Repo A</span></div>
+            <h3 class="journey-title">Porting CI resilience to the sibling repo</h3>
+            <ul class="journey-desc">
+              <li>This portfolio didn't start as six pages — it was forked from a single-page CV site (<code>AaradhyaDTmr.github.io</code>, Repo A) at the point above, and I've kept that original site live and independently maintained since.</li>
+              <li>Its "last updated" status was calling the unauthenticated <code>api.github.com</code> commits endpoint client-side, which hit GitHub's 60 req/hr rate limit during active development and silently showed "unavailable." Ported this repo's own CI pattern across: a new GitHub Actions workflow stamps the triggering commit into a static JSON file on every push, read same-origin instead — with the same bot-loop guard and least-privilege <code>contents: write</code> scoping as the search-index pipeline above.</li>
+            </ul>
+            <div class="journey-skill-label">Applied skillset</div>
+            <div class="journey-tags">
+              <span class="tag">GitHub Actions</span><span class="tag">CI/CD</span>
+              <span class="tag">Reliability engineering</span><span class="tag">Least-privilege design</span>
+            </div>
+            <div class="journey-links">
+              <a class="journey-link" href="https://github.com/AaradhyaDTmr/AaradhyaDTmr.github.io/commit/3ecf10b60d8c0f713104c5fb6a0fa5d9d9ffe722" target="_blank" rel="noopener">View commit ↗</a>
+              <a class="journey-link" href="https://github.com/AaradhyaDTmr/AaradhyaDTmr.github.io/blob/main/.github/workflows/stamp-last-commit.yml" target="_blank" rel="noopener">View workflow ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>
+            </svg>
+          </div>
+          <div class="journey-card">
+            <div class="journey-meta"><span class="journey-period">Jul 2026</span><span>Repo A</span></div>
+            <h3 class="journey-title">Core Web Vitals pass on the original CV site</h3>
+            <ul class="journey-desc">
+              <li>Deferred Google Analytics to an async-injected script instead of a render-blocking tag, added <code>preconnect</code>/<code>preload</code>-as-style for fonts, and moved layout-dependent JS reads onto <code>requestAnimationFrame</code> so they don't fight first paint.</li>
+              <li>Backed by a documented Lighthouse audit on Repo A: 98 Performance / 100 Accessibility / 100 Best Practices / 100 SEO on desktop (78 mobile — EmailJS's third-party script is the flagged, irreducible cost).</li>
+            </ul>
+            <div class="journey-skill-label">Applied skillset</div>
+            <div class="journey-tags">
+              <span class="tag">Core Web Vitals</span><span class="tag">Performance engineering</span>
+              <span class="tag">Lighthouse</span><span class="tag">Resource hints</span>
+            </div>
+            <div class="journey-links">
+              <a class="journey-link" href="https://github.com/AaradhyaDTmr/AaradhyaDTmr.github.io/commit/c542e6fc3ee714a34399f701079824a8b22752f7" target="_blank" rel="noopener">View commit ↗</a>
+              <a class="journey-link" href="https://github.com/AaradhyaDTmr/AaradhyaDTmr.github.io/blob/main/README.md" target="_blank" rel="noopener">View scores ↗</a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
