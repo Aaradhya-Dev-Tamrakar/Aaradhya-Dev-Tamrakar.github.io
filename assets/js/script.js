@@ -538,12 +538,25 @@ function renderSiteNav() {
 
   const navAccessBtn = document.getElementById('navAccessBtn');
   if (navAccessBtn) {
-    navAccessBtn.addEventListener('click', () => openAccessModal());
+    navAccessBtn.addEventListener('click', handleAccessBtnClick);
   }
   const drawerAccessBtn = document.getElementById('drawerAccessBtn');
   if (drawerAccessBtn) {
-    drawerAccessBtn.addEventListener('click', () => openAccessModal());
+    drawerAccessBtn.addEventListener('click', handleAccessBtnClick);
   }
+}
+
+function handleAccessBtnClick() {
+  const actTier = ACCESS_CONTROL.getActualTier();
+  if (actTier > ACCESS_CONTROL.TIER_PUBLIC) {
+    const label = actTier === ACCESS_CONTROL.TIER_MASTER ? 'Master Level' : 'Higher Tier (VIP)';
+    if (confirm(`Log out of ${label} access?`)) {
+      ACCESS_CONTROL.logout();
+      showToast('Logged out. Reverted to public guest access.');
+    }
+    return;
+  }
+  openAccessModal();
 }
 
 /* ── Footer injection ─────────────────────────────────────── */
@@ -1499,9 +1512,9 @@ function openAccessModal(defaultTier = 1) {
 
   const actTier = ACCESS_CONTROL.getActualTier();
   const effTier = ACCESS_CONTROL.getEffectiveTier();
-  const isVipOrMaster = effTier >= ACCESS_CONTROL.TIER_VIP;
+  const isMasterTier = effTier === ACCESS_CONTROL.TIER_MASTER;
   const isSecretRevealed = window.masterSecretRevealed === true;
-  const showMaster = isVipOrMaster || isSecretRevealed;
+  const showMaster = isMasterTier || isSecretRevealed;
 
   // Stealth Mode: Hide tabs container completely in Guest mode so there's no single-tab container giveaway!
   if (tabsContainer) {
