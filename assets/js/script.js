@@ -476,6 +476,13 @@ function renderSiteNav() {
       </ul>
       <div class="nav-right">
         <a href="/contact.html" class="nav-cta" aria-label="Connect with Aaradhya">Connect</a>
+        <button class="nav-access-btn" id="navAccessBtn" aria-label="Access Control" title="Access Control (Ctrl+Shift+L)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span id="navAccessLabel">Access</span>
+        </button>
         <button class="nav-search-btn" id="navSearchBtn" aria-label="Search (press /)" title="Search (press /)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8" />
@@ -506,7 +513,19 @@ function renderSiteNav() {
 
     <div class="nav-drawer" id="navDrawer" role="navigation" aria-label="Mobile navigation">
       ${drawerLinks}
+      <button class="nav-access-btn" id="drawerAccessBtn" style="margin: 1rem 0; width: calc(100% - 2rem); justify-content: center;" aria-label="Access Control">
+        Access Control / Login
+      </button>
     </div>`;
+
+  const navAccessBtn = document.getElementById('navAccessBtn');
+  if (navAccessBtn) {
+    navAccessBtn.addEventListener('click', () => openAccessModal());
+  }
+  const drawerAccessBtn = document.getElementById('drawerAccessBtn');
+  if (drawerAccessBtn) {
+    drawerAccessBtn.addEventListener('click', () => openAccessModal());
+  }
 }
 
 /* ── Footer injection ─────────────────────────────────────── */
@@ -890,6 +909,456 @@ function initStatusDate() {
   renderStatusDate();
 }
 
+/* ── Access Control & Gating Engine ────────────────────────── */
+const ACCESS_CONTROL = {
+  TIER_PUBLIC: 0,
+  TIER_VIP: 1,      // Higher Tier Access
+  TIER_MASTER: 2,   // Master Level Access
+
+  VIP_PASSCODES: ['vip2026', 'vip', 'tier1'],
+  MASTER_PASSCODES: ['master2026', 'master', 'admin', 'root'],
+
+  sessionKey: 'adt_access_session',
+  simulatedTier: null,
+
+  getActualTier() {
+    try {
+      const session = JSON.parse(localStorage.getItem(this.sessionKey));
+      if (session && typeof session.tier === 'number') {
+        return session.tier;
+      }
+    } catch (e) {}
+    return this.TIER_PUBLIC;
+  },
+
+  getEffectiveTier() {
+    if (this.simulatedTier !== null) return this.simulatedTier;
+    return this.getActualTier();
+  },
+
+  authenticate(passcode, requestedTier = 1) {
+    const clean = passcode.trim().toLowerCase();
+
+    if (this.MASTER_PASSCODES.includes(clean)) {
+      this.saveSession(this.TIER_MASTER);
+      return { success: true, tier: this.TIER_MASTER, label: 'Master Level' };
+    }
+
+    if (this.VIP_PASSCODES.includes(clean)) {
+      if (requestedTier === this.TIER_MASTER) {
+        return { success: false, error: 'Passcode is for Higher Tier (VIP), not Master Level.' };
+      }
+      this.saveSession(this.TIER_VIP);
+      return { success: true, tier: this.TIER_VIP, label: 'Higher Tier (VIP)' };
+    }
+
+    return { success: false, error: 'Invalid passcode. Please try again.' };
+  },
+
+  saveSession(tier) {
+    const data = {
+      tier,
+      authenticatedAt: new Date().toISOString(),
+      userAgent: navigator.userAgent
+    };
+    localStorage.setItem(this.sessionKey, JSON.stringify(data));
+    this.updateUI();
+  },
+
+  logout() {
+    localStorage.removeItem(this.sessionKey);
+    this.simulatedTier = null;
+    this.updateUI();
+  },
+
+  setSimulatedTier(tier) {
+    this.simulatedTier = tier;
+    this.updateUI();
+  },
+
+  updateUI() {
+    renderAccessNavButton();
+    updateGatedContentVisibility();
+    renderMasterControlPanel();
+  }
+};
+
+function renderAccessNavButton() {
+  const btn = document.getElementById('navAccessBtn');
+  if (!btn) return;
+
+  const effTier = ACCESS_CONTROL.getEffectiveTier();
+  const isSimulated = ACCESS_CONTROL.simulatedTier !== null;
+
+  btn.className = 'nav-access-btn';
+
+  if (effTier === ACCESS_CONTROL.TIER_MASTER) {
+    btn.classList.add('tier-master');
+    btn.title = 'Master Level Access Active (Ctrl+Shift+L)';
+    btn.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14v2H5v-2z"/>
+      </svg>
+      <span>${isSimulated ? '👑 Master (Sim)' : '👑 Master'}</span>
+    `;
+  } else if (effTier === ACCESS_CONTROL.TIER_VIP) {
+    btn.classList.add('tier-vip');
+    btn.title = 'Higher Tier (VIP) Access Active (Ctrl+Shift+L)';
+    btn.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+      <span>${isSimulated ? '⭐ VIP (Sim)' : '⭐ VIP Access'}</span>
+    `;
+  } else {
+    btn.title = 'Access Control / Login (Ctrl+Shift+L)';
+    btn.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+      <span>${isSimulated ? '🔒 Public (Sim)' : 'Access'}</span>
+    `;
+  }
+}
+
+function updateGatedContentVisibility() {
+  const effTier = ACCESS_CONTROL.getEffectiveTier();
+  const elements = document.querySelectorAll('[data-access-tier]');
+
+  elements.forEach(el => {
+    const requiredStr = (el.dataset.accessTier || 'vip').toLowerCase();
+    const requiredTier = (requiredStr === 'master' || requiredStr === '2')
+      ? ACCESS_CONTROL.TIER_MASTER
+      : ACCESS_CONTROL.TIER_VIP;
+
+    const isUnlocked = effTier >= requiredTier;
+
+    if (!isUnlocked) {
+      if (!el.classList.contains('gated-content-locked') && !el.querySelector('.gated-overlay')) {
+        const innerHTML = el.innerHTML;
+        const tierName = requiredTier === ACCESS_CONTROL.TIER_MASTER ? 'Master Level Access' : 'Higher Tier (VIP) Access';
+
+        el.innerHTML = `
+          <div class="gated-inner-body">${innerHTML}</div>
+          <div class="gated-overlay">
+            <div class="gated-lock-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+            <div class="gated-title">${tierName} Required</div>
+            <div class="gated-desc">This section contains protected research data, extended architecture specs, and raw metrics.</div>
+            <button type="button" class="gated-unlock-btn" onclick="openAccessModal(${requiredTier})">
+              <span>Unlock ${requiredTier === ACCESS_CONTROL.TIER_MASTER ? 'Master Access' : 'Higher Tier'}</span> →
+            </button>
+          </div>
+        `;
+      }
+      el.classList.add('gated-content-locked');
+      el.classList.remove('gated-content-unlocked');
+    } else {
+      el.classList.remove('gated-content-locked');
+      el.classList.add('gated-content-unlocked');
+    }
+  });
+}
+
+function renderAccessModal() {
+  if (document.getElementById('accessModalOverlay')) return;
+
+  const overlay = document.createElement('div');
+  overlay.id = 'accessModalOverlay';
+  overlay.className = 'access-modal-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', 'Access Control Login');
+
+  overlay.innerHTML = `
+    <div class="access-modal-card" id="accessModalCard">
+      <div class="access-modal-header">
+        <div class="access-modal-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>Access Control</span>
+        </div>
+        <button type="button" class="access-modal-close" id="accessModalClose" aria-label="Close modal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="access-tier-tabs" id="accessTierTabs">
+        <button type="button" class="access-tab-btn active" data-tier="1">
+          <span>⭐ Higher Tier (VIP)</span>
+        </button>
+        <button type="button" class="access-tab-btn" data-tier="2">
+          <span>👑 Master Level</span>
+        </button>
+      </div>
+
+      <div class="access-field-group">
+        <label class="access-label" for="accessPassInput">Enter Passcode</label>
+        <div class="access-input-wrap">
+          <input type="password" id="accessPassInput" class="access-input" placeholder="Enter access passcode…" autocomplete="off" />
+          <button type="button" class="access-pass-toggle" id="accessPassToggle" aria-label="Toggle password visibility">
+            <svg id="accessEyeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="access-hint-box" id="accessHintBox">
+        <strong>Demo Passcodes:</strong><br />
+        Higher Tier (VIP): <code>vip2026</code><br />
+        Master Level: <code>master2026</code>
+      </div>
+
+      <div class="access-error-msg" id="accessErrorMsg"></div>
+
+      <div class="access-actions">
+        <button type="button" class="access-btn-submit" id="accessSubmitBtn">Unlock Access</button>
+        <button type="button" class="access-btn-logout" id="accessLogoutBtn" hidden>Lock Session</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  const closeBtn = document.getElementById('accessModalClose');
+  const submitBtn = document.getElementById('accessSubmitBtn');
+  const logoutBtn = document.getElementById('accessLogoutBtn');
+  const passInput = document.getElementById('accessPassInput');
+  const passToggle = document.getElementById('accessPassToggle');
+  const eyeIcon = document.getElementById('accessEyeIcon');
+  const tabs = document.querySelectorAll('#accessTierTabs .access-tab-btn');
+  const card = document.getElementById('accessModalCard');
+
+  let activeTabTier = 1;
+
+  closeBtn.addEventListener('click', closeAccessModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeAccessModal(); });
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeTabTier = parseInt(tab.dataset.tier, 10);
+      document.getElementById('accessErrorMsg').classList.remove('visible');
+    });
+  });
+
+  passToggle.addEventListener('click', () => {
+    const isPass = passInput.type === 'password';
+    passInput.type = isPass ? 'text' : 'password';
+    eyeIcon.style.opacity = isPass ? '1' : '0.6';
+  });
+
+  function handleAuthenticate() {
+    const val = passInput.value;
+    if (!val) {
+      showError('Please enter a passcode.');
+      return;
+    }
+
+    const res = ACCESS_CONTROL.authenticate(val, activeTabTier);
+    if (res.success) {
+      closeAccessModal();
+      passInput.value = '';
+      showToast(`Unlocked ${res.label} successfully!`);
+    } else {
+      showError(res.error);
+      card.classList.add('shake');
+      setTimeout(() => card.classList.remove('shake'), 400);
+    }
+  }
+
+  submitBtn.addEventListener('click', handleAuthenticate);
+  passInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleAuthenticate(); });
+
+  logoutBtn.addEventListener('click', () => {
+    ACCESS_CONTROL.logout();
+    closeAccessModal();
+    showToast('Session locked. Reverted to public guest access.');
+  });
+}
+
+function openAccessModal(defaultTier = 1) {
+  renderAccessModal();
+  const overlay = document.getElementById('accessModalOverlay');
+  const passInput = document.getElementById('accessPassInput');
+  const errorMsg = document.getElementById('accessErrorMsg');
+  const logoutBtn = document.getElementById('accessLogoutBtn');
+  const tabs = document.querySelectorAll('#accessTierTabs .access-tab-btn');
+
+  if (errorMsg) errorMsg.classList.remove('visible');
+  if (passInput) passInput.value = '';
+
+  const actTier = ACCESS_CONTROL.getActualTier();
+  if (logoutBtn) logoutBtn.hidden = (actTier === ACCESS_CONTROL.TIER_PUBLIC);
+
+  tabs.forEach(t => {
+    const tTier = parseInt(t.dataset.tier, 10);
+    t.classList.toggle('active', tTier === defaultTier);
+  });
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (passInput) passInput.focus();
+}
+
+function closeAccessModal() {
+  const overlay = document.getElementById('accessModalOverlay');
+  if (overlay) {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+function showError(msg) {
+  const el = document.getElementById('accessErrorMsg');
+  if (el) {
+    el.textContent = msg;
+    el.classList.add('visible');
+  }
+}
+
+function showToast(msg) {
+  let toast = document.getElementById('accessToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'accessToast';
+    toast.style.cssText = 'position:fixed;bottom:2rem;right:2rem;z-index:10001;background:var(--heading);color:var(--bg);padding:0.75rem 1.2rem;border-radius:8px;font-family:var(--mono);font-size:0.78rem;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:opacity 0.3s, transform 0.3s;opacity:0;transform:translateY(10px);pointer-events:none;';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.style.opacity = '1';
+  toast.style.transform = 'translateY(0)';
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(10px)';
+  }, 2800);
+}
+
+function renderMasterControlPanel() {
+  const actTier = ACCESS_CONTROL.getActualTier();
+  let panel = document.getElementById('masterPanelWidget');
+
+  if (actTier !== ACCESS_CONTROL.TIER_MASTER) {
+    if (panel) panel.style.display = 'none';
+    return;
+  }
+
+  if (!panel) {
+    panel = document.createElement('div');
+    panel.id = 'masterPanelWidget';
+    panel.className = 'master-panel-widget';
+    panel.innerHTML = `
+      <button type="button" class="master-toggle-btn" id="masterToggleBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14v2H5v-2z"/>
+        </svg>
+        <span>Master Control</span>
+      </button>
+      <div class="master-card-popup" id="masterCardPopup">
+        <div class="master-pop-header">
+          <span class="master-pop-title">👑 Master Admin Panel</span>
+          <button type="button" class="access-modal-close" id="masterPopClose" style="padding:0.2rem;">✕</button>
+        </div>
+        <div>
+          <div class="master-sim-label">Simulate Visitor Tier</div>
+          <div class="master-sim-group">
+            <button type="button" class="master-sim-btn" data-sim="0">Public</button>
+            <button type="button" class="master-sim-btn" data-sim="1">VIP</button>
+            <button type="button" class="master-sim-btn" data-sim="2">Master</button>
+          </div>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:0.6rem;display:flex;flex-direction:column;gap:0.4rem;">
+          <div class="master-stat-row"><span>Session:</span> <span>Active Master</span></div>
+          <div class="master-stat-row"><span>Gated Nodes:</span> <span id="masterGatedCount">0</span></div>
+          <div class="master-stat-row"><span>Search Index:</span> <span id="masterSearchCount">0</span></div>
+        </div>
+        <button type="button" class="access-btn-logout" id="masterLockBtn" style="padding:0.4rem;width:100%;">
+          Lock Master Session
+        </button>
+      </div>
+    `;
+    document.body.appendChild(panel);
+
+    const toggleBtn = document.getElementById('masterToggleBtn');
+    const popup = document.getElementById('masterCardPopup');
+    const closeBtn = document.getElementById('masterPopClose');
+    const lockBtn = document.getElementById('masterLockBtn');
+    const simBtns = popup.querySelectorAll('.master-sim-btn');
+
+    toggleBtn.addEventListener('click', () => popup.classList.toggle('open'));
+    closeBtn.addEventListener('click', () => popup.classList.remove('open'));
+
+    simBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetSim = parseInt(btn.dataset.sim, 10);
+        ACCESS_CONTROL.setSimulatedTier(targetSim === ACCESS_CONTROL.TIER_MASTER ? null : targetSim);
+        showToast(`Simulating Tier: ${targetSim === 0 ? 'Public' : targetSim === 1 ? 'VIP' : 'Master'}`);
+      });
+    });
+
+    lockBtn.addEventListener('click', () => {
+      ACCESS_CONTROL.logout();
+      showToast('Master session locked.');
+    });
+  }
+
+  panel.style.display = 'block';
+
+  const popup = document.getElementById('masterCardPopup');
+  const simBtns = popup.querySelectorAll('.master-sim-btn');
+  const effTier = ACCESS_CONTROL.getEffectiveTier();
+
+  simBtns.forEach(btn => {
+    const bTier = parseInt(btn.dataset.sim, 10);
+    btn.classList.toggle('active', bTier === effTier);
+  });
+
+  const gatedCount = document.querySelectorAll('[data-access-tier]').length;
+  const masterGatedCount = document.getElementById('masterGatedCount');
+  if (masterGatedCount) masterGatedCount.textContent = gatedCount;
+
+  const masterSearchCount = document.getElementById('masterSearchCount');
+  if (masterSearchCount && window.SEARCH_STATIC_INDEX) {
+    const total = (SEARCH_STATIC_INDEX.achievement || []).length + (SEARCH_STATIC_INDEX.project || []).length;
+    masterSearchCount.textContent = total;
+  }
+}
+
+function initAccessKeyboardShortcuts() {
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'L' || e.key === 'l')) {
+      e.preventDefault();
+      openAccessModal();
+    }
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'M' || e.key === 'm')) {
+      if (ACCESS_CONTROL.getActualTier() === ACCESS_CONTROL.TIER_MASTER) {
+        e.preventDefault();
+        const popup = document.getElementById('masterCardPopup');
+        if (popup) popup.classList.toggle('open');
+      }
+    }
+  });
+}
+
+function initAccessControl() {
+  renderAccessNavButton();
+  updateGatedContentVisibility();
+  renderMasterControlPanel();
+  initAccessKeyboardShortcuts();
+}
 
 /* ── Boot ─────────────────────────────────────────────────── */
 (function init() {
@@ -907,6 +1376,7 @@ function initStatusDate() {
   initCursor();
   initLightbox();
   initGlobalSearch();
+  initAccessControl();
   renderSiteFooter();
   window.addEventListener('load', loadGA4);
 })();
@@ -989,6 +1459,11 @@ function buildSearchIndex() {
   const index = CMDK_PAGES.map(p => ({
     type: 'page', title: p.title, meta: '', href: p.href, text: p.title.toLowerCase(),
   }));
+
+  index.push(
+    { type: 'page', title: 'Access Control & VIP Login', meta: 'Passcode: vip2026 · Ctrl+Shift+L', href: 'javascript:openAccessModal(1)', text: 'access control login vip higher tier passcode password security' },
+    { type: 'page', title: 'Master Dashboard & Admin Login', meta: 'Passcode: master2026 · Ctrl+Shift+L', href: 'javascript:openAccessModal(2)', text: 'master level admin dashboard login passcode password security' }
+  );
 
   // Start from the static snapshot (always present, every page).
   const byHref = new Map();

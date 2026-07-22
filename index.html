@@ -890,6 +890,80 @@
       <div class="divider-edge divider-edge--right"></div>
     </div>
 
+    <!-- Higher Tier Access Gated Section -->
+    <section id="vip-exclusive" aria-label="Exclusive Higher Tier Access" style="padding: 4rem 3rem;">
+      <div class="section-header reveal">
+        <div class="section-num">VIP Tier</div>
+        <h2 class="section-title">Exclusive <em>Research &amp; Specs</em> <span class="tier-badge tier-badge-vip">⭐ VIP Tier</span></h2>
+      </div>
+      <div class="reveal" data-access-tier="vip" style="background: var(--bg2); border: 1px solid var(--line); border-radius: 12px; padding: 2rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <div>
+            <h3 style="font-family: var(--serif); font-size: 1.2rem; color: var(--heading); margin-bottom: 0.5rem;">SPARK Wearable Hardware Schematic &amp; Firmware Build</h3>
+            <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.6;">Access raw KiCAD 8.0 schematics, 1D-CNN TFLite Micro quantized model weights, and 500Hz MPU6050 FIFO buffer code for elderly fall detection.</p>
+            <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="tag">KiCAD 8.0</span>
+              <span class="tag">TFLite Micro 8-bit</span>
+              <span class="tag">C++ Firmware</span>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-family: var(--serif); font-size: 1.2rem; color: var(--heading); margin-bottom: 0.5rem;">Fusemachines Capstone Vision Matrix &amp; Evaluation</h3>
+            <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.6;">Full demographic fairness parity metrics, AIF360 disparate impact scores, and unreleased model evaluation notebooks.</p>
+            <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="tag">Fairlearn</span>
+              <span class="tag">AIF360</span>
+              <span class="tag">Confidential</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-wrap" aria-hidden="true">
+      <div class="divider-edge divider-edge--left"></div>
+      <div class="divider"></div>
+      <div class="divider-node"></div>
+      <div class="divider"></div>
+      <div class="divider-edge divider-edge--right"></div>
+    </div>
+
+    <!-- Master Level Gated Section -->
+    <section id="master-exclusive" aria-label="Master Level Admin Diagnostics" style="padding: 4rem 3rem;">
+      <div class="section-header reveal">
+        <div class="section-num">Master Level</div>
+        <h2 class="section-title">System Diagnostics &amp; <em>Master Console</em> <span class="tier-badge tier-badge-master">👑 Master Tier</span></h2>
+      </div>
+      <div class="reveal" data-access-tier="master" style="background: rgba(234, 179, 8, 0.04); border: 1px solid rgba(234, 179, 8, 0.25); border-radius: 12px; padding: 2rem;">
+        <h3 style="font-family: var(--serif); font-size: 1.3rem; color: #fef08a; margin-bottom: 0.75rem;">Master Administrator Operational Console</h3>
+        <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem;">
+          Welcome Master Administrator. You have full root authorization over this portfolio site instance. You can toggle visitor tier simulation using the floating Master Control widget at the bottom-left of your screen.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-family: var(--mono); font-size: 0.75rem;">
+          <div style="background: var(--bg); border: 1px solid var(--line); padding: 1rem; border-radius: 8px;">
+            <div style="color: var(--accent); font-weight: 600; margin-bottom: 0.2rem;">Web Crypto Engine</div>
+            <div style="color: var(--muted);">SHA-256 Active</div>
+          </div>
+          <div style="background: var(--bg); border: 1px solid var(--line); padding: 1rem; border-radius: 8px;">
+            <div style="color: #2dd4bf; font-weight: 600; margin-bottom: 0.2rem;">Session Handler</div>
+            <div style="color: var(--muted);">LocalStorage Token</div>
+          </div>
+          <div style="background: var(--bg); border: 1px solid var(--line); padding: 1rem; border-radius: 8px;">
+            <div style="color: #eab308; font-weight: 600; margin-bottom: 0.2rem;">Access Override</div>
+            <div style="color: var(--muted);">Full Authorization</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-wrap" aria-hidden="true">
+      <div class="divider-edge divider-edge--left"></div>
+      <div class="divider"></div>
+      <div class="divider-node"></div>
+      <div class="divider"></div>
+      <div class="divider-edge divider-edge--right"></div>
+    </div>
+
     <section id="keymap" aria-label="Keyboard shortcuts and display guidance">
       <div class="section-header reveal">
         <div class="section-num">Reference</div>
@@ -899,6 +973,8 @@
         <div class="keymap-card">
           <h3 class="keymap-card-title">Keyboard shortcuts</h3>
           <ul class="keymap-list">
+            <li><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd><span>Access Control &amp; Login (VIP / Master)</span></li>
+            <li><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd><span>Toggle Master Control Panel (Master Tier)</span></li>
             <li><kbd>1</kbd>–<kbd>6</kbd><span>Jump to Home / Projects / Experience / Achievements / About /
                 Contact</span></li>
             <li><kbd>0</kbd><span>Toggle light / dark theme</span></li>
@@ -912,8 +988,7 @@
             <li><kbd>=</kbd><span>Scroll to top</span></li>
             <li><kbd>-</kbd><span>Scroll to bottom</span></li>
           </ul>
-          <p class="keymap-note">Disabled while typing in a text field, or with ⌘ / Ctrl held. Alt is used for the
-            expand/collapse shortcut above.</p>
+          <p class="keymap-note">Disabled while typing in a text field, or with ⌘ / Ctrl held (except Ctrl+Shift shortcuts).</p>
         </div>
         <div class="keymap-card">
           <h3 class="keymap-card-title">Best viewing (400 nits OLED tested)</h3>
