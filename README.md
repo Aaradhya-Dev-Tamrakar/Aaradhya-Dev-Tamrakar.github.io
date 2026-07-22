@@ -20,6 +20,7 @@ A personal portfolio website for **Aaradhya Dev Tamrakar**.
 - `assets/css/style.css` — shared CSS styles
 - `assets/js/script.js` — shared JavaScript behavior, including the global search / command palette
 - `scripts/extract_index.py` — regenerates the search index from `achievements.html` / `projects.html` (see [Site Search](#site-search))
+- `sync.ps1` — PowerShell automation script for zero-conflict pulling, smart auto-commit message generation, pushing, and GitHub Actions bot synchronization
 - `.github/workflows/` — CI: commit-back bots that keep `assets/js/last-commit.json` and the search index in sync automatically on every push
 
 ## Current Status
@@ -76,6 +77,23 @@ To regenerate manually: `pip install beautifulsoup4 && python3 scripts/extract_i
 1. Open `index.html` in a browser to preview the homepage.
 2. Edit CSS in `assets/css/style.css`.
 3. Edit JS in `assets/js/script.js`.
+
+### Local Git Workflow & Auto-Sync (`sync.ps1`)
+
+To prevent merge conflicts on `assets/js/last-commit.json` (which is updated automatically on GitHub by a commit-back bot on every push), use `sync.ps1`:
+
+- **Auto-Commit & Push** (Auto-generates a conventional commit message based on modified files):
+  ```powershell
+  .\sync.ps1
+  ```
+- **Custom Commit Message**:
+  ```powershell
+  .\sync.ps1 -m "your commit message"
+  ```
+- **Safe Pull Only** (Uses `--autostash` to safely pull remote updates):
+  ```powershell
+  .\sync.ps1 -PullOnly
+  ```
 
 ## Contact
 
