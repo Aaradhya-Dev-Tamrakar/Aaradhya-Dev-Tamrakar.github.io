@@ -1331,42 +1331,33 @@
       syncJourneyToggleAllLabel();
     }
 
-    // Chronological node glow — one flash per node, alternating direction
-    // each pass: top→bottom clockwise, then bottom→top counter-clockwise,
-    // looping. The pause after the last node equals CYCLE_PAUSE_MS, so the
-    // next pass's first node lights immediately after that uniform gap.
+    // Chronological node glow — one continuous chain, node by node in
+    // document order (16 -> 1, newest to oldest), alternating clockwise
+    // then counter-clockwise on every step. No pause anywhere: node 1's
+    // flash finishes and node 16 (top) starts on the very same frame,
+    // forever.
     document.addEventListener('DOMContentLoaded', () => {
       initJourneyToggleAll();
 
       const nodes = Array.from(document.querySelectorAll('#journeyTrack .journey-node'));
       if (!nodes.length) return;
 
-      const STEP_MS = 220;
-      const ANIM_MS = 1300;
-      const CYCLE_PAUSE_MS = 1500;
-      const cycleLength = (nodes.length - 1) * STEP_MS + ANIM_MS + CYCLE_PAUSE_MS;
+      let step = 0;
 
-      let passCount = 0;
-
-      function runCycle() {
-        const clockwise = passCount % 2 === 0;
+      function glowNext() {
+        const node = nodes[step % nodes.length];
+        const clockwise = step % 2 === 0;
         const glowClass = clockwise ? 'journey-node--glow-cw' : 'journey-node--glow-ccw';
-        const order = clockwise ? nodes : nodes.slice().reverse();
 
-        order.forEach((node, i) => {
-          setTimeout(() => {
-            node.classList.add(glowClass);
-            node.addEventListener('animationend', () => {
-              node.classList.remove(glowClass);
-            }, { once: true });
-          }, i * STEP_MS);
-        });
-
-        passCount++;
+        node.classList.add(glowClass);
+        node.addEventListener('animationend', () => {
+          node.classList.remove(glowClass);
+          step++;
+          glowNext();
+        }, { once: true });
       }
 
-      runCycle();
-      setInterval(runCycle, cycleLength);
+      glowNext();
     });
   </script>
 </body>
