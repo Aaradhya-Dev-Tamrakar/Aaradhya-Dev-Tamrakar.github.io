@@ -531,6 +531,54 @@
           </div>
         </div>
 
+        <div class="journey-item reveal">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/><line x1="12" y1="1" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="23"/>
+            </svg>
+          </div>
+          <div class="journey-card">
+            <div class="journey-meta"><span class="journey-period">Jun 2026</span><span>Origin</span></div>
+            <h3 class="journey-title">Live commit-date status, before it needed fixing</h3>
+            <ul class="journey-desc">
+              <li>Before the fork, on the original single-page site: added a "Last Updated" status field that fetches the file's most recent commit straight from <code>api.github.com</code> and renders it client-side — graceful fallback to "Last commit unavailable" on failure rather than a broken UI.</li>
+              <li>This is the exact code path that later hit GitHub's rate limit during active development — the fix for it is the CI-resilience card above. Same repo, same feature, two commits apart in spirit if not in time.</li>
+            </ul>
+            <div class="journey-skill-label">Applied skillset</div>
+            <div class="journey-tags">
+              <span class="tag">Async JavaScript</span><span class="tag">Fetch API</span>
+              <span class="tag">Graceful degradation</span>
+            </div>
+            <div class="journey-links">
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/07da198df97a5b6055a05744446295eb073b8b32" target="_blank" rel="noopener">View commit ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/>
+            </svg>
+          </div>
+          <div class="journey-card">
+            <div class="journey-meta"><span class="journey-period">May 2026</span><span>Origin</span></div>
+            <h3 class="journey-title">Analytics with actual event tracking</h3>
+            <ul class="journey-desc">
+              <li>Wired up Google Analytics 4 with custom <code>gtag('event', …)</code> calls on the CV-download button and both contact-form backends tried at the time (EmailJS, then Formspree) — not just a pageview pixel, but funnel data on the two actions that actually matter on a CV site.</li>
+              <li>Later revisited to defer GA's script loading so it stopped competing with first paint — the same instinct that shows up again in the Core Web Vitals pass above.</li>
+            </ul>
+            <div class="journey-skill-label">Applied skillset</div>
+            <div class="journey-tags">
+              <span class="tag">Google Analytics 4</span><span class="tag">Event tracking</span>
+              <span class="tag">Conversion instrumentation</span>
+            </div>
+            <div class="journey-links">
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/235373a0b33bc8eb0c6f45a60896b8ffc972b80f" target="_blank" rel="noopener">View commit ↗</a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
