@@ -135,14 +135,65 @@
       background: var(--bg2);
       border: 1px solid var(--line);
       border-radius: 12px;
-      padding: 1.4rem 1.6rem;
       transition: border-color .25s, transform .25s, box-shadow .25s;
+      overflow: hidden;
     }
 
     .journey-card:hover {
       border-color: var(--glow-green);
       transform: translateY(-3px);
       box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--glow-green-a35);
+    }
+
+    .journey-card-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      padding: 1.4rem 1.6rem;
+      font: inherit;
+      color: inherit;
+    }
+
+    .journey-card-toggle-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .journey-chevron {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      color: var(--muted);
+      transition: transform .3s ease, color .25s;
+    }
+
+    .journey-card[data-open="true"] .journey-chevron {
+      transform: rotate(180deg);
+      color: var(--accent);
+    }
+
+    .journey-card-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .35s ease;
+    }
+
+    .journey-card[data-open="true"] .journey-card-body {
+      grid-template-rows: 1fr;
+    }
+
+    .journey-card-body-inner {
+      overflow: hidden;
+    }
+
+    .journey-card-body-content {
+      padding: 0 1.6rem 1.4rem;
     }
 
     .journey-meta {
@@ -198,6 +249,13 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.4rem;
+    }
+
+    .journey-card-toggle .journey-tags {
+      margin-bottom: 0;
+    }
+
+    .journey-card-body-content .journey-tags {
       margin-bottom: 1.1rem;
     }
 
@@ -357,23 +415,41 @@
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/>
             </svg>
           </div>
-          <div class="journey-card">
-            <div class="journey-meta"><span class="journey-period">v26 · Jul 2026</span><span>Security fix</span></div>
-            <h3 class="journey-title">Closing the plaintext-link leak in the tier system</h3>
-            <ul class="journey-desc">
-              <li>The VIP/Master tier gate only toggled <code>href</code>/CSS on each project's anchor tag client-side — the real GitHub URL still sat as plaintext in a <code>data-vip-link</code> attribute for all 13 projects, readable by anyone viewing raw HTML, curling the page, or hitting a search-engine cache, passcode or not.</li>
-              <li>Moved every project repo URL through the same AES-256-GCM/PBKDF2 pipeline already used for gated page content — <code>data-payload-link-id</code> references now stand in for the raw <code>href</code>, decrypted at runtime via <code>decryptHexPayload()</code> only after tier verification passes.</li>
-              <li>Follow-up pass removed the login vectors that didn't belong on a public tier system in the first place — a UI tab, a keyboard shortcut, and two undocumented trigger sequences — leaving Google Sign-In against an explicit allowlist as the only path to Master tier.</li>
-            </ul>
-            <div class="journey-skill-label">Applied skillset</div>
-            <div class="journey-tags">
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">v26 · Jul 2026</span><span>Security fix</span></div>
+                <h3 class="journey-title">Closing the plaintext-link leak in the tier system</h3>
+                <div class="journey-tags">
               <span class="tag">AES-256-GCM</span><span class="tag">PBKDF2</span>
               <span class="tag">Threat modeling</span><span class="tag">Attack-surface reduction</span>
               <span class="tag">JavaScript</span>
             </div>
-            <div class="journey-links">
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+              <li>The VIP/Master tier gate only toggled <code>href</code>/CSS on each project's anchor tag client-side — the real GitHub URL still sat as plaintext in a <code>data-vip-link</code> attribute for all 13 projects, readable by anyone viewing raw HTML, curling the page, or hitting a search-engine cache, passcode or not.</li>
+              <li>Moved every project repo URL through the same AES-256-GCM/PBKDF2 pipeline already used for gated page content — <code>data-payload-link-id</code> references now stand in for the raw <code>href</code>, decrypted at runtime via <code>decryptHexPayload()</code> only after tier verification passes.</li>
+              <li>Follow-up pass removed the login vectors that didn't belong on a public tier system in the first place — a UI tab, a keyboard shortcut, and two undocumented trigger sequences — leaving Google Sign-In against an explicit allowlist as the only path to Master tier.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">AES-256-GCM</span><span class="tag">PBKDF2</span>
+              <span class="tag">Threat modeling</span><span class="tag">Attack-surface reduction</span>
+              <span class="tag">JavaScript</span>
+            </div>
+                  <div class="journey-links">
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/ce947a0" target="_blank" rel="noopener">View commit ↗</a>
               <a class="journey-link" href="javascript:void(0)" onclick="openAccessModal(); return false;">See it live ↗</a>
+            </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -385,22 +461,40 @@
               <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
             </svg>
           </div>
-          <div class="journey-card">
-            <div class="journey-meta"><span class="journey-period">v25 · Jul 2026</span><span>Feature</span></div>
-            <h3 class="journey-title">Zero-Leak Multi-Tier Access Control</h3>
-            <ul class="journey-desc">
-              <li>Built a 3-tier access system (Public / VIP / Master) where locked sections ship <em>zero</em> raw HTML — content is pre-encrypted client-side and only decrypted into memory after a passcode or Google Sign-In check passes, then wiped on logout.</li>
-              <li>Key derivation via Web Crypto API PBKDF2 (100,000 iterations, SHA-256) feeding AES-256-GCM; Google Identity Services SDK handles OAuth, with client-side JWT parsing to read email/name/avatar and assign tier.</li>
-            </ul>
-            <div class="journey-skill-label">Applied skillset</div>
-            <div class="journey-tags">
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">v25 · Jul 2026</span><span>Feature</span></div>
+                <h3 class="journey-title">Zero-Leak Multi-Tier Access Control</h3>
+                <div class="journey-tags">
               <span class="tag">Web Crypto API</span><span class="tag">AES-256-GCM</span>
               <span class="tag">PBKDF2</span><span class="tag">OAuth 2.0</span>
               <span class="tag">JWT</span><span class="tag">Client-side security</span>
             </div>
-            <div class="journey-links">
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+              <li>Built a 3-tier access system (Public / VIP / Master) where locked sections ship <em>zero</em> raw HTML — content is pre-encrypted client-side and only decrypted into memory after a passcode or Google Sign-In check passes, then wiped on logout.</li>
+              <li>Key derivation via Web Crypto API PBKDF2 (100,000 iterations, SHA-256) feeding AES-256-GCM; Google Identity Services SDK handles OAuth, with client-side JWT parsing to read email/name/avatar and assign tier.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">Web Crypto API</span><span class="tag">AES-256-GCM</span>
+              <span class="tag">PBKDF2</span><span class="tag">OAuth 2.0</span>
+              <span class="tag">JWT</span><span class="tag">Client-side security</span>
+            </div>
+                  <div class="journey-links">
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/539623396edbec47113fc0975b14c1c8f231da88" target="_blank" rel="noopener">View commit ↗</a>
               <a class="journey-link" href="javascript:void(0)" onclick="openAccessModal(); return false;">See it live ↗</a>
+            </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -411,20 +505,37 @@
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
             </svg>
           </div>
-          <div class="journey-card">
-            <div class="journey-meta"><span class="journey-period">v25 · Jul 2026</span><span>Bug fix</span></div>
-            <h3 class="journey-title">Cryptographic key-mismatch debugging</h3>
-            <ul class="journey-desc">
-              <li>The encryption scheme derives its AES key from the tier's own passcode — but Google Sign-In sessions and simulated Master-tier previews weren't consistently passing the <em>correct</em> passcode into the decrypt call, so unlocked content silently failed to decrypt for some auth paths.</li>
-              <li>Traced the mismatch to where the decryption key was chosen versus where the tier was actually verified, and rewrote it to derive the key directly from the tier requirement rather than trusting a passed-in value.</li>
-            </ul>
-            <div class="journey-skill-label">Applied skillset</div>
-            <div class="journey-tags">
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">v25 · Jul 2026</span><span>Bug fix</span></div>
+                <h3 class="journey-title">Cryptographic key-mismatch debugging</h3>
+                <div class="journey-tags">
               <span class="tag">Debugging</span><span class="tag">Cryptography</span>
               <span class="tag">State management</span><span class="tag">JavaScript</span>
             </div>
-            <div class="journey-links">
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+              <li>The encryption scheme derives its AES key from the tier's own passcode — but Google Sign-In sessions and simulated Master-tier previews weren't consistently passing the <em>correct</em> passcode into the decrypt call, so unlocked content silently failed to decrypt for some auth paths.</li>
+              <li>Traced the mismatch to where the decryption key was chosen versus where the tier was actually verified, and rewrote it to derive the key directly from the tier requirement rather than trusting a passed-in value.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">Debugging</span><span class="tag">Cryptography</span>
+              <span class="tag">State management</span><span class="tag">JavaScript</span>
+            </div>
+                  <div class="journey-links">
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/84210fbf944cd3109d36b021695f94376dea8cc8" target="_blank" rel="noopener">View commit ↗</a>
+            </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -435,21 +546,38 @@
               <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
             </svg>
           </div>
-          <div class="journey-card">
-            <div class="journey-meta"><span class="journey-period">v25 · Jul 2026</span><span>Feature</span></div>
-            <h3 class="journey-title">Live VIP allowlist manager (Master Control Panel)</h3>
-            <ul class="journey-desc">
-              <li>Admin widget that lets me add or remove VIP-tier emails at runtime, no redeploy — persisted to <code>localStorage</code> and immediately re-checked against every gated block on the page.</li>
-              <li>Also ships stealth mode: the Master tab and diagnostic console are fully hidden from public visitors (no DOM giveaway of their existence) and only reveal via an authenticated session or a deliberate secret trigger.</li>
-            </ul>
-            <div class="journey-skill-label">Applied skillset</div>
-            <div class="journey-tags">
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">v25 · Jul 2026</span><span>Feature</span></div>
+                <h3 class="journey-title">Live VIP allowlist manager (Master Control Panel)</h3>
+                <div class="journey-tags">
               <span class="tag">JavaScript</span><span class="tag">localStorage</span>
               <span class="tag">UI state design</span><span class="tag">Access control UX</span>
             </div>
-            <div class="journey-links">
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+              <li>Admin widget that lets me add or remove VIP-tier emails at runtime, no redeploy — persisted to <code>localStorage</code> and immediately re-checked against every gated block on the page.</li>
+              <li>Also ships stealth mode: the Master tab and diagnostic console are fully hidden from public visitors (no DOM giveaway of their existence) and only reveal via an authenticated session or a deliberate secret trigger.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">JavaScript</span><span class="tag">localStorage</span>
+              <span class="tag">UI state design</span><span class="tag">Access control UX</span>
+            </div>
+                  <div class="journey-links">
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/eb215c7572e42eb3820927622a0a1a2df6fdae83" target="_blank" rel="noopener">View commit ↗</a>
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/ba62fdc4207a5af0d46e0e29380752dec9408264" target="_blank" rel="noopener">Stealth mode commit ↗</a>
+            </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -460,22 +588,40 @@
               <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
             </svg>
           </div>
-          <div class="journey-card">
-            <div class="journey-meta"><span class="journey-period">v24 · Jul 2026</span><span>Infra / CI</span></div>
-            <h3 class="journey-title">CI-automated search index pipeline</h3>
-            <ul class="journey-desc">
-              <li>Global search was going stale — a new certificate added to the achievements page wouldn't show up in search anywhere except that page itself, until someone remembered to hand-export the index.</li>
-              <li>Wrote a Python/BeautifulSoup script that parses <code>achievements.html</code> / <code>projects.html</code> and regenerates the static index automatically, then wired it into a GitHub Actions workflow that runs on every push — including a bot-loop guard and rebase-retry logic to survive concurrent CI writes to the same branch.</li>
-            </ul>
-            <div class="journey-skill-label">Applied skillset</div>
-            <div class="journey-tags">
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">v24 · Jul 2026</span><span>Infra / CI</span></div>
+                <h3 class="journey-title">CI-automated search index pipeline</h3>
+                <div class="journey-tags">
               <span class="tag">Python</span><span class="tag">BeautifulSoup</span>
               <span class="tag">GitHub Actions</span><span class="tag">CI/CD</span>
               <span class="tag">Idempotency design</span>
             </div>
-            <div class="journey-links">
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+              <li>Global search was going stale — a new certificate added to the achievements page wouldn't show up in search anywhere except that page itself, until someone remembered to hand-export the index.</li>
+              <li>Wrote a Python/BeautifulSoup script that parses <code>achievements.html</code> / <code>projects.html</code> and regenerates the static index automatically, then wired it into a GitHub Actions workflow that runs on every push — including a bot-loop guard and rebase-retry logic to survive concurrent CI writes to the same branch.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">Python</span><span class="tag">BeautifulSoup</span>
+              <span class="tag">GitHub Actions</span><span class="tag">CI/CD</span>
+              <span class="tag">Idempotency design</span>
+            </div>
+                  <div class="journey-links">
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/blob/main/scripts/extract_index.py" target="_blank" rel="noopener">View script ↗</a>
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/blob/main/.github/workflows/update-search-index.yml" target="_blank" rel="noopener">View workflow ↗</a>
+            </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -486,20 +632,37 @@
               <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
           </div>
-          <div class="journey-card">
-            <div class="journey-meta"><span class="journey-period">v22–v24 · 2026</span><span>Feature</span></div>
-            <h3 class="journey-title">Global command-palette search</h3>
-            <ul class="journey-desc">
-              <li>Press <code>/</code> anywhere on the site to open a unified search across every page, project, and achievement — with type-filter tabs, keyboard-only navigation (arrows + enter), and deep-linking straight to the matched item.</li>
-              <li>Runs on a merged index: a static snapshot ships on every page (so search works even where there's nothing to scan live), overridden by a live DOM scan on the pages that actually render the content — so same-session edits are searchable before a commit even happens.</li>
-            </ul>
-            <div class="journey-skill-label">Applied skillset</div>
-            <div class="journey-tags">
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">v22–v24 · 2026</span><span>Feature</span></div>
+                <h3 class="journey-title">Global command-palette search</h3>
+                <div class="journey-tags">
               <span class="tag">JavaScript</span><span class="tag">Data structure design</span>
               <span class="tag">Keyboard UX</span><span class="tag">Accessibility (ARIA)</span>
             </div>
-            <div class="journey-links">
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+              <li>Press <code>/</code> anywhere on the site to open a unified search across every page, project, and achievement — with type-filter tabs, keyboard-only navigation (arrows + enter), and deep-linking straight to the matched item.</li>
+              <li>Runs on a merged index: a static snapshot ships on every page (so search works even where there's nothing to scan live), overridden by a live DOM scan on the pages that actually render the content — so same-session edits are searchable before a commit even happens.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">JavaScript</span><span class="tag">Data structure design</span>
+              <span class="tag">Keyboard UX</span><span class="tag">Accessibility (ARIA)</span>
+            </div>
+                  <div class="journey-links">
               <a class="journey-link" href="javascript:void(0)" onclick="document.getElementById('navSearchBtn')?.click(); return false;">Try it now ↗</a>
+            </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -510,22 +673,39 @@
               <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
             </svg>
           </div>
-          <div class="journey-card">
-            <div class="journey-meta"><span class="journey-period">Jul 2026</span><span>Feature</span></div>
-            <h3 class="journey-title">Contact form with EmailJS</h3>
-            <ul class="journey-desc">
-              <li>Wired the contact form to send real email without a backend — client-side EmailJS integration so a message actually lands in my inbox rather than going nowhere.</li>
-              <li>Validation followed a few weeks later: a regex-anchored email pattern plus per-field required checks, each with a focused input and an inline status message rather than a silent block on submit.</li>
-            </ul>
-            <div class="journey-skill-label">Applied skillset</div>
-            <div class="journey-tags">
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">Jul 2026</span><span>Feature</span></div>
+                <h3 class="journey-title">Contact form with EmailJS</h3>
+                <div class="journey-tags">
               <span class="tag">Third-party API integration</span><span class="tag">Form validation</span>
               <span class="tag">JavaScript</span>
             </div>
-            <div class="journey-links">
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+              <li>Wired the contact form to send real email without a backend — client-side EmailJS integration so a message actually lands in my inbox rather than going nowhere.</li>
+              <li>Validation followed a few weeks later: a regex-anchored email pattern plus per-field required checks, each with a focused input and an inline status message rather than a silent block on submit.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">Third-party API integration</span><span class="tag">Form validation</span>
+              <span class="tag">JavaScript</span>
+            </div>
+                  <div class="journey-links">
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/32e9d6b30d9860487fcaca34f8a3f2f82be27f86" target="_blank" rel="noopener">View commit ↗</a>
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/2da1a1716109618b8096a0fcea9aec8d519b0820" target="_blank" rel="noopener">View validation commit ↗</a>
               <a class="journey-link" href="contact.html" target="_blank" rel="noopener">See it live ↗</a>
+            </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -536,20 +716,37 @@
               <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
             </svg>
           </div>
-          <div class="journey-card">
-            <div class="journey-meta"><span class="journey-period">Jul 2026</span><span>Feature</span></div>
-            <h3 class="journey-title">Bikram Sambat ↔ Gregorian date engine</h3>
-            <ul class="journey-desc">
-              <li>Nepal runs on the Bikram Sambat calendar day-to-day, so the homepage's hero date toggles between B.S. and A.D. on click or backtick. Ported a BS↔AD conversion table (years 1975–2099 BS) and cross-checked it against a live converter before shipping — this is a genuine calendar-math implementation, not a library call.</li>
-            </ul>
-            <div class="journey-skill-label">Applied skillset</div>
-            <div class="journey-tags">
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">Jul 2026</span><span>Feature</span></div>
+                <h3 class="journey-title">Bikram Sambat ↔ Gregorian date engine</h3>
+                <div class="journey-tags">
               <span class="tag">Algorithm design</span><span class="tag">Date/time math</span>
               <span class="tag">Internationalization</span><span class="tag">JavaScript</span>
             </div>
-            <div class="journey-links">
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+              <li>Nepal runs on the Bikram Sambat calendar day-to-day, so the homepage's hero date toggles between B.S. and A.D. on click or backtick. Ported a BS↔AD conversion table (years 1975–2099 BS) and cross-checked it against a live converter before shipping — this is a genuine calendar-math implementation, not a library call.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">Algorithm design</span><span class="tag">Date/time math</span>
+              <span class="tag">Internationalization</span><span class="tag">JavaScript</span>
+            </div>
+                  <div class="journey-links">
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/3701aaa45acfc9113c76e0db7d90feb132b2ac4c" target="_blank" rel="noopener">View commit ↗</a>
               <a class="journey-link" href="index.html" target="_blank" rel="noopener">See it live ↗</a>
+            </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -561,22 +758,40 @@
               <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
             </svg>
           </div>
-          <div class="journey-card">
-            <div class="journey-meta"><span class="journey-period">2025 – 2026</span><span>Architecture</span></div>
-            <h3 class="journey-title">Multi-page architecture &amp; shared component system</h3>
-            <ul class="journey-desc">
-              <li>Migrated from a single-page site to six pages sharing one navigation, footer, and JS bundle — nav/footer render from a single source of truth so a link change only happens once, not six times.</li>
-              <li>Added structured data (schema.org breadcrumbs and credentials), full OG/Twitter meta per page, a generated <code>sitemap.xml</code>, and a custom 404 with redirect-to-canonical handling.</li>
-            </ul>
-            <div class="journey-skill-label">Applied skillset</div>
-            <div class="journey-tags">
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">2025 – 2026</span><span>Architecture</span></div>
+                <h3 class="journey-title">Multi-page architecture &amp; shared component system</h3>
+                <div class="journey-tags">
               <span class="tag">Information architecture</span><span class="tag">SEO</span>
               <span class="tag">Schema.org</span><span class="tag">DRY component design</span>
               <span class="tag">Responsive CSS</span>
             </div>
-            <div class="journey-links">
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+              <li>Migrated from a single-page site to six pages sharing one navigation, footer, and JS bundle — nav/footer render from a single source of truth so a link change only happens once, not six times.</li>
+              <li>Added structured data (schema.org breadcrumbs and credentials), full OG/Twitter meta per page, a generated <code>sitemap.xml</code>, and a custom 404 with redirect-to-canonical handling.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">Information architecture</span><span class="tag">SEO</span>
+              <span class="tag">Schema.org</span><span class="tag">DRY component design</span>
+              <span class="tag">Responsive CSS</span>
+            </div>
+                  <div class="journey-links">
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/c219b386528f15653a0316eb9f9048855adc1d04" target="_blank" rel="noopener">View commit ↗</a>
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io" target="_blank" rel="noopener">Full repo ↗</a>
+            </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -587,21 +802,38 @@
               <rect x="3" y="3" width="8" height="8" rx="1"/><path d="M7 11v4a2 2 0 0 0 2 2h8"/><path d="m14 14 3 3-3 3"/>
             </svg>
           </div>
-          <div class="journey-card">
-            <div class="journey-meta"><span class="journey-period">Jul 2026</span><span>Repo A</span></div>
-            <h3 class="journey-title">Porting CI resilience to the sibling repo</h3>
-            <ul class="journey-desc">
-              <li>This portfolio didn't start as six pages — it was forked from a single-page CV site (<code>AaradhyaDTmr.github.io</code>, Repo A) at the point above, and I've kept that original site live and independently maintained since.</li>
-              <li>Its "last updated" status was calling the unauthenticated <code>api.github.com</code> commits endpoint client-side, which hit GitHub's 60 req/hr rate limit during active development and silently showed "unavailable." Ported this repo's own CI pattern across: a new GitHub Actions workflow stamps the triggering commit into a static JSON file on every push, read same-origin instead — with the same bot-loop guard and least-privilege <code>contents: write</code> scoping as the search-index pipeline above.</li>
-            </ul>
-            <div class="journey-skill-label">Applied skillset</div>
-            <div class="journey-tags">
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">Jul 2026</span><span>Repo A</span></div>
+                <h3 class="journey-title">Porting CI resilience to the sibling repo</h3>
+                <div class="journey-tags">
               <span class="tag">GitHub Actions</span><span class="tag">CI/CD</span>
               <span class="tag">Reliability engineering</span><span class="tag">Least-privilege design</span>
             </div>
-            <div class="journey-links">
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+              <li>This portfolio didn't start as six pages — it was forked from a single-page CV site (<code>AaradhyaDTmr.github.io</code>, Repo A) at the point above, and I've kept that original site live and independently maintained since.</li>
+              <li>Its "last updated" status was calling the unauthenticated <code>api.github.com</code> commits endpoint client-side, which hit GitHub's 60 req/hr rate limit during active development and silently showed "unavailable." Ported this repo's own CI pattern across: a new GitHub Actions workflow stamps the triggering commit into a static JSON file on every push, read same-origin instead — with the same bot-loop guard and least-privilege <code>contents: write</code> scoping as the search-index pipeline above.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">GitHub Actions</span><span class="tag">CI/CD</span>
+              <span class="tag">Reliability engineering</span><span class="tag">Least-privilege design</span>
+            </div>
+                  <div class="journey-links">
               <a class="journey-link" href="https://github.com/AaradhyaDTmr/AaradhyaDTmr.github.io/commit/3ecf10b60d8c0f713104c5fb6a0fa5d9d9ffe722" target="_blank" rel="noopener">View commit ↗</a>
               <a class="journey-link" href="https://github.com/AaradhyaDTmr/AaradhyaDTmr.github.io/blob/main/.github/workflows/stamp-last-commit.yml" target="_blank" rel="noopener">View workflow ↗</a>
+            </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -612,21 +844,38 @@
               <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>
             </svg>
           </div>
-          <div class="journey-card">
-            <div class="journey-meta"><span class="journey-period">Jul 2026</span><span>Repo A</span></div>
-            <h3 class="journey-title">Core Web Vitals pass on the original CV site</h3>
-            <ul class="journey-desc">
-              <li>Deferred Google Analytics to an async-injected script instead of a render-blocking tag, added <code>preconnect</code>/<code>preload</code>-as-style for fonts, and moved layout-dependent JS reads onto <code>requestAnimationFrame</code> so they don't fight first paint.</li>
-              <li>Backed by a documented Lighthouse audit on Repo A: 98 Performance / 100 Accessibility / 100 Best Practices / 100 SEO on desktop (78 mobile — EmailJS's third-party script is the flagged, irreducible cost).</li>
-            </ul>
-            <div class="journey-skill-label">Applied skillset</div>
-            <div class="journey-tags">
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">Jul 2026</span><span>Repo A</span></div>
+                <h3 class="journey-title">Core Web Vitals pass on the original CV site</h3>
+                <div class="journey-tags">
               <span class="tag">Core Web Vitals</span><span class="tag">Performance engineering</span>
               <span class="tag">Lighthouse</span><span class="tag">Resource hints</span>
             </div>
-            <div class="journey-links">
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+              <li>Deferred Google Analytics to an async-injected script instead of a render-blocking tag, added <code>preconnect</code>/<code>preload</code>-as-style for fonts, and moved layout-dependent JS reads onto <code>requestAnimationFrame</code> so they don't fight first paint.</li>
+              <li>Backed by a documented Lighthouse audit on Repo A: 98 Performance / 100 Accessibility / 100 Best Practices / 100 SEO on desktop (78 mobile — EmailJS's third-party script is the flagged, irreducible cost).</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">Core Web Vitals</span><span class="tag">Performance engineering</span>
+              <span class="tag">Lighthouse</span><span class="tag">Resource hints</span>
+            </div>
+                  <div class="journey-links">
               <a class="journey-link" href="https://github.com/AaradhyaDTmr/AaradhyaDTmr.github.io/commit/c542e6fc3ee714a34399f701079824a8b22752f7" target="_blank" rel="noopener">View commit ↗</a>
               <a class="journey-link" href="https://github.com/AaradhyaDTmr/AaradhyaDTmr.github.io/blob/main/README.md" target="_blank" rel="noopener">View scores ↗</a>
+            </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -637,22 +886,39 @@
               <circle cx="12" cy="12" r="3"/><line x1="12" y1="1" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="23"/>
             </svg>
           </div>
-          <div class="journey-card">
-            <div class="journey-meta"><span class="journey-period">Jun 2026</span><span>Origin</span></div>
-            <h3 class="journey-title">Live commit-date status, before it needed fixing</h3>
-            <ul class="journey-desc">
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">Jun 2026</span><span>Origin</span></div>
+                <h3 class="journey-title">Live commit-date status, before it needed fixing</h3>
+                <div class="journey-tags">
+              <span class="tag">Async JavaScript</span><span class="tag">Fetch API</span>
+              <span class="tag">Graceful degradation</span><span class="tag">Request timeouts</span>
+            </div>
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
               <li>Before the fork, on the original single-page site: added a "Last Updated" status field that fetches the file's most recent commit straight from <code>api.github.com</code> and renders it client-side — graceful fallback to "Last commit unavailable" on failure rather than a broken UI.</li>
               <li>This is the exact code path that later hit GitHub's rate limit during active development — the fix for it is the CI-resilience card above. Same repo, same feature, two commits apart in spirit if not in time.</li>
               <li>Hardened the same day: wrapped the fetch in an <code>AbortController</code> with a 3-second timeout, so a slow or hanging API call degrades to the fallback message instead of leaving the status field stuck on "Loading…" indefinitely.</li>
             </ul>
-            <div class="journey-skill-label">Applied skillset</div>
-            <div class="journey-tags">
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
               <span class="tag">Async JavaScript</span><span class="tag">Fetch API</span>
               <span class="tag">Graceful degradation</span><span class="tag">Request timeouts</span>
             </div>
-            <div class="journey-links">
+                  <div class="journey-links">
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/07da198df97a5b6055a05744446295eb073b8b32" target="_blank" rel="noopener">View commit ↗</a>
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/a959ec988cbdb3ede69b8bf959f53bd28356eb19" target="_blank" rel="noopener">View timeout fix ↗</a>
+            </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -663,20 +929,37 @@
               <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M3 14h7v7H3z"/><path d="M6.5 10.5 6.5 14"/><path d="M17.5 10.5 17.5 14"/>
             </svg>
           </div>
-          <div class="journey-card">
-            <div class="journey-meta"><span class="journey-period">May 2026</span><span>Origin</span></div>
-            <h3 class="journey-title">Compositing over layout: a rendering-performance fix</h3>
-            <ul class="journey-desc">
-              <li>The scroll-progress bar and section-transition animations were built on <code>clip-path</code>, which most browsers can't hand off to the compositor — every frame was re-triggering paint. Rewrote both onto <code>transform: translateX()</code> with <code>will-change: transform</code>, which is compositor-only and doesn't touch layout or paint at all.</li>
-              <li>Same commit added a <code>&lt;link rel="preload" as="image"&gt;</code> for the hero photo — it's the page's LCP element, so it should stop waiting on the parser to discover it — and finished deferring GA4's script tag to a non-blocking load.</li>
-            </ul>
-            <div class="journey-skill-label">Applied skillset</div>
-            <div class="journey-tags">
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">May 2026</span><span>Origin</span></div>
+                <h3 class="journey-title">Compositing over layout: a rendering-performance fix</h3>
+                <div class="journey-tags">
               <span class="tag">GPU compositing</span><span class="tag">CSS animation</span>
               <span class="tag">LCP optimization</span><span class="tag">Performance debugging</span>
             </div>
-            <div class="journey-links">
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+              <li>The scroll-progress bar and section-transition animations were built on <code>clip-path</code>, which most browsers can't hand off to the compositor — every frame was re-triggering paint. Rewrote both onto <code>transform: translateX()</code> with <code>will-change: transform</code>, which is compositor-only and doesn't touch layout or paint at all.</li>
+              <li>Same commit added a <code>&lt;link rel="preload" as="image"&gt;</code> for the hero photo — it's the page's LCP element, so it should stop waiting on the parser to discover it — and finished deferring GA4's script tag to a non-blocking load.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">GPU compositing</span><span class="tag">CSS animation</span>
+              <span class="tag">LCP optimization</span><span class="tag">Performance debugging</span>
+            </div>
+                  <div class="journey-links">
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/8181cf34bd9c0de2a0348eab94cf83eb728849ea" target="_blank" rel="noopener">View commit ↗</a>
+            </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -687,20 +970,37 @@
               <path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/>
             </svg>
           </div>
-          <div class="journey-card">
-            <div class="journey-meta"><span class="journey-period">May 2026</span><span>Origin</span></div>
-            <h3 class="journey-title">Font loading without the layout jump</h3>
-            <ul class="journey-desc">
-              <li>Switched web-font loading to preload-as-style with a print-media <code>onload</code> swap, so fonts load async instead of blocking render — then added <code>@font-face</code> fallbacks (Georgia, Courier New, Arial) with per-font <code>size-adjust</code> percentages tuned to match each web font's actual metrics.</li>
-              <li>That second part is the one people skip: without matching x-height and character width up front, the fallback-to-webfont swap still shifts every line on the page. Sized correctly, the swap is invisible instead of a layout jump.</li>
-            </ul>
-            <div class="journey-skill-label">Applied skillset</div>
-            <div class="journey-tags">
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">May 2026</span><span>Origin</span></div>
+                <h3 class="journey-title">Font loading without the layout jump</h3>
+                <div class="journey-tags">
               <span class="tag">CLS optimization</span><span class="tag">Font loading strategy</span>
               <span class="tag">CSS</span>
             </div>
-            <div class="journey-links">
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+              <li>Switched web-font loading to preload-as-style with a print-media <code>onload</code> swap, so fonts load async instead of blocking render — then added <code>@font-face</code> fallbacks (Georgia, Courier New, Arial) with per-font <code>size-adjust</code> percentages tuned to match each web font's actual metrics.</li>
+              <li>That second part is the one people skip: without matching x-height and character width up front, the fallback-to-webfont swap still shifts every line on the page. Sized correctly, the swap is invisible instead of a layout jump.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">CLS optimization</span><span class="tag">Font loading strategy</span>
+              <span class="tag">CSS</span>
+            </div>
+                  <div class="journey-links">
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/d1dd1b1386268e1f226a91cba60728f019f3ae35" target="_blank" rel="noopener">View commit ↗</a>
+            </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -711,19 +1011,36 @@
               <path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/>
             </svg>
           </div>
-          <div class="journey-card">
-            <div class="journey-meta"><span class="journey-period">May 2026</span><span>Origin</span></div>
-            <h3 class="journey-title">Analytics with actual event tracking</h3>
-            <ul class="journey-desc">
-              <li>Wired up Google Analytics 4 with custom <code>gtag('event', …)</code> calls on the CV-download button and both contact-form backends tried at the time (EmailJS, then Formspree) — not just a pageview pixel, but funnel data on the two actions that actually matter on a CV site.</li>
-            </ul>
-            <div class="journey-skill-label">Applied skillset</div>
-            <div class="journey-tags">
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">May 2026</span><span>Origin</span></div>
+                <h3 class="journey-title">Analytics with actual event tracking</h3>
+                <div class="journey-tags">
               <span class="tag">Google Analytics 4</span><span class="tag">Event tracking</span>
               <span class="tag">Conversion instrumentation</span>
             </div>
-            <div class="journey-links">
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+              <li>Wired up Google Analytics 4 with custom <code>gtag('event', …)</code> calls on the CV-download button and both contact-form backends tried at the time (EmailJS, then Formspree) — not just a pageview pixel, but funnel data on the two actions that actually matter on a CV site.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">Google Analytics 4</span><span class="tag">Event tracking</span>
+              <span class="tag">Conversion instrumentation</span>
+            </div>
+                  <div class="journey-links">
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/235373a0b33bc8eb0c6f45a60896b8ffc972b80f" target="_blank" rel="noopener">View commit ↗</a>
+            </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -734,21 +1051,38 @@
               <path d="M18 6 7 17l-5-5"/><path d="m22 10-7.5 7.5L13 16"/>
             </svg>
           </div>
-          <div class="journey-card">
-            <div class="journey-meta"><span class="journey-period">May 2026</span><span>Origin</span></div>
-            <h3 class="journey-title">Accessibility pass: skip-link, landmarks, focus-visible</h3>
-            <ul class="journey-desc">
-              <li>Added a "Skip to main content" link, wrapped the page in proper landmarks (<code>nav</code>/<code>main</code>/<code>footer</code> with <code>aria-label</code> or <code>aria-labelledby</code> on every section), and gave the mobile hamburger menu real state — <code>aria-expanded</code> and <code>aria-controls</code> flip correctly as it opens and closes.</li>
-              <li>Replaced blanket <code>:focus</code> outlines with <code>:focus-visible</code>, so keyboard users still get a visible ring while mouse clicks don't leave one behind — plus explicit <code>aria-label</code>s on every icon-only or ambiguous call-to-action.</li>
-            </ul>
-            <div class="journey-skill-label">Applied skillset</div>
-            <div class="journey-tags">
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">May 2026</span><span>Origin</span></div>
+                <h3 class="journey-title">Accessibility pass: skip-link, landmarks, focus-visible</h3>
+                <div class="journey-tags">
               <span class="tag">WCAG / ARIA</span><span class="tag">Keyboard navigation</span>
               <span class="tag">Semantic HTML</span>
             </div>
-            <div class="journey-links">
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+              <li>Added a "Skip to main content" link, wrapped the page in proper landmarks (<code>nav</code>/<code>main</code>/<code>footer</code> with <code>aria-label</code> or <code>aria-labelledby</code> on every section), and gave the mobile hamburger menu real state — <code>aria-expanded</code> and <code>aria-controls</code> flip correctly as it opens and closes.</li>
+              <li>Replaced blanket <code>:focus</code> outlines with <code>:focus-visible</code>, so keyboard users still get a visible ring while mouse clicks don't leave one behind — plus explicit <code>aria-label</code>s on every icon-only or ambiguous call-to-action.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">WCAG / ARIA</span><span class="tag">Keyboard navigation</span>
+              <span class="tag">Semantic HTML</span>
+            </div>
+                  <div class="journey-links">
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/663695e07790f7e5b4a73142d5db4c13b29247bc" target="_blank" rel="noopener">View commit ↗</a>
               <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/4b69af0ce1b921f6b3f25f6e840df2b34c343f27" target="_blank" rel="noopener">View focus-visible commit ↗</a>
+            </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -790,6 +1124,14 @@
 
   <script src="assets/js/script.js" defer></script>
   <script>
+    // Journey cards: collapsed by default, expand on toggle click.
+    function toggleJourneyCard(btn) {
+      const card = btn.closest('.journey-card');
+      const isOpen = card.getAttribute('data-open') === 'true';
+      card.setAttribute('data-open', String(!isOpen));
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    }
+
     // Chronological node glow — one flash per node, in document (timeline) order, looping.
     document.addEventListener('DOMContentLoaded', () => {
       const nodes = document.querySelectorAll('#journeyTrack .journey-node');
