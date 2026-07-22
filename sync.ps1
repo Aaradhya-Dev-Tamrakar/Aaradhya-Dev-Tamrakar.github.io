@@ -145,6 +145,11 @@ if ($Message) {
 
     Write-Host "[Git Sync] Pushing to origin main..." -ForegroundColor Cyan
     git push origin main
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "[Git Sync] Push rejected. Re-pulling and retrying push..." -ForegroundColor Yellow
+        git pull --rebase --autostash origin main
+        git push origin main
+    }
 
     Write-Host "[Git Sync] Waiting 4s for GitHub Actions stamp bot..." -ForegroundColor Yellow
     Start-Sleep -Seconds 4
