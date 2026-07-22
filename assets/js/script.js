@@ -25,8 +25,8 @@ const SITE = {
     { label: 'Projects', labelShort: 'Projects', href: '/projects.html', key: '2' },
     { label: 'Experience', labelShort: 'Experience', href: '/experience.html', key: '3' },
     { label: 'Achievements', labelShort: 'Achievements', href: '/achievements.html', key: '4' },
-    { label: 'Journey', labelShort: 'Journey', href: '/journey.html', key: '7' },
     { label: 'About', labelShort: 'About', href: '/about.html', key: '5' },
+    { label: 'Journey', labelShort: 'Journey', href: '/journey.html', key: '6' },
   ],
 };
 
@@ -2118,8 +2118,8 @@ function initGlobalSearch() {
 
 /* ── Keyboard page navigation (1–7) ──────────────────────── */
 // 1 → index.html  2 → projects.html  3 → experience.html
-// 4 → achievements.html  5 → about.html  6 → contact.html
-// 7 → journey.html
+// 4 → achievements.html  5 → about.html  6 → journey.html
+// 7 → contact.html
 // 0 → toggle theme
 // ` → toggle hero date B.S. / A.D. (index.html only; no-op elsewhere)
 // Shift+4 → toggle Academic / Extracurricular track (achievements.html only; no-op elsewhere)
@@ -2132,8 +2132,8 @@ function initKeyNav() {
     '3': 'experience.html',
     '4': 'achievements.html',
     '5': 'about.html',
-    '6': 'contact.html',
-    '7': 'journey.html',
+    '6': 'journey.html',
+    '7': 'contact.html',
   };
   document.addEventListener('keydown', e => {
     const tag = (document.activeElement || {}).tagName || '';
