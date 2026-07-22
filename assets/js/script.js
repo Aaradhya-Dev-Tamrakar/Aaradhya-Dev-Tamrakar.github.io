@@ -1261,23 +1261,34 @@ function renderAccessNavButton() {
       </svg>
       <span>${isSimulated ? '👑 Master (Sim)' : '👑 Master'}</span>
     `;
+  } 
+  // assets/js/script.js — renderAccessNavButton()
+
+  if (effTier === ACCESS_CONTROL.TIER_MASTER) {
+    btn.classList.add('tier-master');
+    btn.title = `Master Level Active ${session?.user?.email ? '(' + session.user.email + ')' : ''} (Ctrl+Shift+L)`;
+    btn.innerHTML = `
+      ${avatarHtml || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14v2H5v-2z"/>
+      </svg>`}
+      <span>${isSimulated ? '👑 Master (Sim)' : '👑 Master'}</span>
+    `;
   } else if (effTier === ACCESS_CONTROL.TIER_VIP) {
     btn.classList.add('tier-vip');
     btn.title = `Higher Tier (VIP) Active ${session?.user?.email ? '(' + session.user.email + ')' : ''} (Ctrl+Shift+L)`;
     btn.innerHTML = `
-      ${avatarHtml}
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      ${avatarHtml || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-      </svg>
+      </svg>`}
       <span>${isSimulated ? '⭐ VIP (Sim)' : '⭐ VIP Access'}</span>
     `;
   } else {
     btn.title = 'Access Control / Login (Ctrl+Shift+L)';
     btn.innerHTML = `
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      ${avatarHtml || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
         <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-      </svg>
+      </svg>`}
       <span>${isSimulated ? '🔒 Public (Sim)' : 'Access'}</span>
     `;
   }

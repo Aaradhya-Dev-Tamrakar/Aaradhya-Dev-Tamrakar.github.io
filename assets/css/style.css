@@ -2192,6 +2192,7 @@ html[data-theme="light"] #quick-nav::before {
   position: relative;
   border-radius: 12px;
   overflow: hidden;
+  min-height: 280px;
 }
 
 .gated-content-locked > .gated-inner-body {
