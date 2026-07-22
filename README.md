@@ -24,14 +24,30 @@ A personal portfolio website for **Aaradhya Dev Tamrakar**.
 ## Current Status
 
 - Static site structure is in place for GitHub Pages.
-- **v24 (2026-07-21)**: Fixed stale global search — the EU AI Act Literacy certificate (and any achievement/project added since the last manual export) was missing from search on every page except `achievements.html`/`projects.html`. Root cause: `SEARCH_STATIC_INDEX` in `assets/js/script.js` was a hand-maintained snapshot with no actual regeneration script, despite a code comment referencing one. Added `scripts/extract_index.py` (parses `achievements.html`/`projects.html` the same way the live JS scan does) and `.github/workflows/update-search-index.yml` (runs it automatically on every push, commits the result). Also fixed a related live-scan gap: the DOM scan only ever checked `.project-desc`, but every project card actually uses `.project-desc-list`, so live-scanned project search text was silently missing descriptions — now checks both.
-- **v23 (2026-07-18)**: UI refinements applied — hero date toggle, navigation arrow consistency, card-arrow styling, keyboard shortcut update (= for scroll-to-top), and refined keymap wording. Also: small CSS tweak added to `assets/css/style.css` to increase footer right padding and avoid overlap between the "Get in Touch"/goto control and the Instagram social icon on small viewports.
+- **v25 (2026-07-22)**: Implemented Zero-Leak Multi-Tier Access Control & Google OAuth 2.0 Sign-In. Features include:
+  - **Zero-Leak Client-Side AES-256-GCM Encryption**: Protected HTML blocks are stripped from raw DOM source and stored as pre-encrypted ciphertext hex payloads (`ACCESS_CONTROL_PAYLOADS`). Key derivation uses Web Crypto API PBKDF2 (100,000 iterations, SHA-256) with salted passcodes (`vip2026`, `master2026`). Unlocked payloads are decrypted into browser memory on demand and wiped completely on logout/lock.
+  - **Google Account Sign-In Integration**: Integrated official Google Identity Services SDK (`https://accounts.google.com/gsi/client?hl=en`) forced to English locale, featuring client-side JWT token decoding. Master emails (`aaradhyadevtmr@gmail.com`) grant Master Level (Tier 2); VIP allowlist emails/domains grant Higher Tier Access (Tier 1). User profile picture avatar renders in navigation bar upon sign-in.
+  - **Stealth Mode for Master Access**: Master Level tab in login modal and diagnostic console on `index.html` are 100% hidden from public visitors. Master tab automatically reveals for authenticated VIP users or via secret triggers (`Ctrl+Shift+M`, secret typing `master`/`admin`/`root`, or 5 fast clicks on modal title).
+  - **VIP Gated GitHub Repository Links**: All project cards remain visible to public visitors with descriptions and tags, while GitHub source code links (`data-vip-link`) are gated (`🔒 GitHub Repo (VIP Access Required)`). Unlocks direct links upon VIP/Master verification.
+  - **Live VIP Allowlist Manager**: Built-in allowlist management widget inside the Master Admin Control Panel popup to add/remove VIP user emails dynamically (persisted in `localStorage`).
+- **v24 (2026-07-21)**: Fixed stale global search — added `scripts/extract_index.py` and GitHub Actions workflow for search index auto-updates.
+- **v23 (2026-07-18)**: UI refinements applied — hero date toggle, navigation arrow consistency, card-arrow styling, keyboard shortcut update (`=` for scroll-to-top), and refined keymap wording.
 - Shared assets live under `assets/` for easier maintenance.
 - All main pages are present and included in `sitemap.xml`. `404.html` is intentionally excluded (not-found pages shouldn't be indexed) and is marked `noindex, nofollow`.
 - Certificate files are stored in `assets/certificates/` and loaded from the achievements page.
 - Navigation is centralized through shared JavaScript and the footer is shared site-wide.
-- Portfolio media and documents were reorganized into dedicated asset folders to avoid root-level clutter.
-- Updated page references now point to the correct asset paths for images, the CV, and certificate previews.
+
+## Access Control & Security Model
+
+The site implements a 3-Tier Access Hierarchy:
+1. **Public Guest (Tier 0)**: Default visitor view. Standard portfolio content, locked GitHub links (`🔒 VIP Required`), hidden Master diagnostic controls.
+2. **Higher Tier VIP (Tier 1)**: Authenticated via VIP passcode (`vip2026`) or VIP Google Sign-In. Unlocks all 13+ GitHub repository links, extended benchmark metrics, and private project specifications.
+3. **Master Level Admin (Tier 2)**: Authenticated via Master passcode (`master2026`) or Master Google Sign-In (`aaradhyadevtmr@gmail.com`). Unlocks Master Diagnostic Console, simulated tier controls, and live VIP email allowlist manager.
+
+### Security Highlights
+- **Zero Raw HTML Exposure**: Locked containers render empty DOM wrappers `<div data-payload-id="..."></div>`. No plain text or unencrypted HTML is visible in Chrome DevTools (`F12`).
+- **Web Crypto API**: Uses AES-256-GCM encryption with PBKDF2 key derivation (salt: `adt_salt_2026`).
+- **Git Safety**: Secrets directory `dev-logs/secrets/` is strictly `.gitignore`d to prevent any credential leaks.
 
 ## Site Search
 
