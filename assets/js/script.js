@@ -117,13 +117,6 @@ const SEARCH_STATIC_INDEX = {
   achievement: [
   {
     "type": "achievement",
-    "title": "",
-    "meta": "",
-    "href": "achievements.html#achv-vip-1",
-    "text": ""
-  },
-  {
-    "type": "achievement",
     "title": "JavaScript Bootcamp",
     "meta": "KEC IT Club · 2023",
     "href": "achievements.html#achv-0",
