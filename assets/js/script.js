@@ -1287,7 +1287,9 @@ function renderAccessNavButton() {
 async function updateGatedContentVisibility() {
   const effTier = ACCESS_CONTROL.getEffectiveTier();
   const session = ACCESS_CONTROL.getSessionData();
-  const passcode = session ? session.passcode : (effTier === ACCESS_CONTROL.TIER_MASTER ? 'master2026' : 'vip2026');
+  const passcode = (session && session.passcode)
+    ? session.passcode
+    : (effTier === ACCESS_CONTROL.TIER_MASTER ? 'master2026' : 'vip2026');
 
   // Stealth Mode: Hide Master-exclusive section & divider completely from non-Master users!
   const masterSection = document.getElementById('master-exclusive');
@@ -1342,6 +1344,9 @@ async function updateGatedContentVisibility() {
 
       if (!el.querySelector('.gated-overlay')) {
         const tierName = requiredTier === ACCESS_CONTROL.TIER_MASTER ? 'Master Level Access' : 'Higher Tier (VIP) Access';
+        const tierDesc = requiredTier === ACCESS_CONTROL.TIER_MASTER
+          ? 'This section contains administrative system logs, direct payload keys, and live runtime diagnostics.'
+          : 'This tier unlocks confidential GitHub repository access, extended benchmark data, and private technical specifications.';
         const overlay = document.createElement('div');
         overlay.className = 'gated-overlay';
         overlay.innerHTML = `
@@ -1352,7 +1357,7 @@ async function updateGatedContentVisibility() {
             </svg>
           </div>
           <div class="gated-title">${tierName} Required</div>
-          <div class="gated-desc">This section contains protected research data, extended architecture specs, and raw metrics.</div>
+          <div class="gated-desc">${tierDesc}</div>
           <button type="button" class="gated-unlock-btn" onclick="openAccessModal(${requiredTier})">
             <span>Unlock ${requiredTier === ACCESS_CONTROL.TIER_MASTER ? 'Master Access' : 'Higher Tier'}</span> →
           </button>
