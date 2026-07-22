@@ -1,6 +1,6 @@
 {
-  "sha": "c5bc41721d088e76fb92be11924d3673847d81ee",
-  "shortSha": "c5bc417",
-  "date": "2026-07-22T17:14:51+05:45",
-  "message": "docs(legal): remove Master Level mentions from privacy and terms pages\n"
+  "sha": "240a724c42fd5c35119da44ae62cb898ccb061ff",
+  "shortSha": "240a724",
+  "date": "2026-07-22T17:16:56+05:45",
+  "message": "style(index): give About Sign-In section a card layout with icon and scannable facts\n"
 }
