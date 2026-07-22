@@ -83,13 +83,14 @@ To regenerate manually: `pip install beautifulsoup4 && python3 scripts/extract_i
 
 To prevent merge conflicts on `assets/js/last-commit.json` (which is updated automatically on GitHub by a commit-back bot on every push), use `sync.ps1`:
 
-- **Auto-Commit & Push** (Auto-generates a conventional commit message based on modified files):
+- **Minor / Routine Changes** (Auto-generates a conventional commit message and updates tracker timestamp):
   ```powershell
   .\sync.ps1
   ```
-- **Custom Commit Message**:
+- **Major Features / Architectural Changes**:
+  Update `dev-logs/PortfolioWebsite_TRACKER.md` with detailed release notes first, then pass a descriptive message:
   ```powershell
-  .\sync.ps1 -m "your commit message"
+  .\sync.ps1 -m "feat(scope): detailed architectural summary"
   ```
 - **Safe Pull Only** (Uses `--autostash` to safely pull remote updates):
   ```powershell

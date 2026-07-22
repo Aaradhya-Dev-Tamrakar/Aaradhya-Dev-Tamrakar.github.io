@@ -11,6 +11,9 @@ Rules:
 ## git-workflow
 
 To prevent merge conflicts on `assets/js/last-commit.json` (which is updated automatically on GitHub by a commit-back bot on every push):
-- Always use `.\sync.ps1` (or `.\sync.ps1 -m "message"`) to commit, push, and auto-sync the GitHub Actions bot's stamp commit cleanly.
-- `sync.ps1` uses `--autostash` and auto-generates smart commit messages when `-m` is omitted.
+- **Minor / Routine Changes**: Use `.\sync.ps1` without arguments. It auto-generates a conventional commit message and updates the tracker timestamp.
+- **Major Features / Architectural Changes**:
+  1. Update `dev-logs/PortfolioWebsite_TRACKER.md` with detailed release notes, state of play items, and verification build logs.
+  2. Execute `.\sync.ps1 -m "type(scope): detailed commit summary"` with a descriptive message to ensure rich historical context is preserved.
+
 
