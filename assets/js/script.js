@@ -78,14 +78,14 @@ const QUICK_NAV_PAGES = [
     cta: 'View Achievements',
   },
   {
-    file: 'journey.html', title: 'Journey',
-    desc: 'How this site was built — applied skillset behind each milestone, linked to the real commit.',
-    cta: 'View Build Log',
-  },
-  {
     file: 'about.html', title: 'About',
     desc: 'Bio, technical stack, and the path from firmware to applied ML.',
     cta: 'Read Bio',
+  },
+  {
+    file: 'journey.html', title: 'Journey',
+    desc: 'How this site was built — applied skillset behind each milestone, linked to the real commit.',
+    cta: 'View Build Log',
   },
   {
     file: 'contact.html', title: 'Contact',
