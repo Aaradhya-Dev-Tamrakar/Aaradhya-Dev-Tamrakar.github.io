@@ -1496,12 +1496,6 @@ async function updateGatedContentVisibility() {
   }
 }
 
-function revealMasterAccessModal() {
-  window.masterSecretRevealed = true;
-  openAccessModal(ACCESS_CONTROL.TIER_MASTER);
-  showToast('👑 Master Level Authentication Unlocked');
-}
-
 function renderAccessModal() {
   if (document.getElementById('accessModalOverlay')) return;
 
@@ -1527,15 +1521,6 @@ function renderAccessModal() {
             <line x1="18" y1="6" x2="6" y2="18"/>
             <line x1="6" y1="6" x2="18" y2="18"/>
           </svg>
-        </button>
-      </div>
-
-      <div class="access-tier-tabs" id="accessTierTabs">
-        <button type="button" class="access-tab-btn active" data-tier="1">
-          <span>⭐ Higher Tier (VIP)</span>
-        </button>
-        <button type="button" class="access-tab-btn" data-tier="2">
-          <span>👑 Master Level</span>
         </button>
       </div>
 
@@ -1583,30 +1568,14 @@ function openAccessModal(defaultTier = 1) {
   const passInput = document.getElementById('accessPassInput');
   const errorMsg = document.getElementById('accessErrorMsg');
   const logoutBtn = document.getElementById('accessLogoutBtn');
-  const tabsContainer = document.getElementById('accessTierTabs');
   const hintBox = document.getElementById('accessHintBox');
-  const tabs = document.querySelectorAll('#accessTierTabs .access-tab-btn');
-  const masterTab = document.querySelector('#accessTierTabs .access-tab-btn[data-tier="2"]');
   const card = document.getElementById('accessModalCard');
-  const modalTitle = document.querySelector('.access-modal-title');
 
   if (errorMsg) errorMsg.classList.remove('visible');
   if (passInput) passInput.value = '';
 
   const actTier = ACCESS_CONTROL.getActualTier();
   const effTier = ACCESS_CONTROL.getEffectiveTier();
-  const isMasterTier = effTier === ACCESS_CONTROL.TIER_MASTER;
-  const isSecretRevealed = window.masterSecretRevealed === true;
-  const showMaster = isMasterTier || isSecretRevealed;
-
-  // Stealth Mode: Hide tabs container completely in Guest mode so there's no single-tab container giveaway!
-  if (tabsContainer) {
-    tabsContainer.style.display = showMaster ? 'grid' : 'none';
-  }
-
-  if (masterTab) {
-    masterTab.style.display = showMaster ? '' : 'none';
-  }
 
   // Stealth Mode: Hide Master demo passcode in Guest mode!
   if (hintBox) {
@@ -1616,20 +1585,6 @@ function openAccessModal(defaultTier = 1) {
   }
 
   // Secret 5-click trigger on modal title
-  if (modalTitle) {
-    let clickCount = 0;
-    let clickTimer = null;
-    modalTitle.addEventListener('click', () => {
-      clickCount++;
-      clearTimeout(clickTimer);
-      clickTimer = setTimeout(() => { clickCount = 0; }, 1500);
-      if (clickCount >= 5) {
-        clickCount = 0;
-        revealMasterAccessModal();
-      }
-    });
-  }
-
   const closeBtn = document.getElementById('accessModalClose');
   const submitBtn = document.getElementById('accessSubmitBtn');
   const passToggle = document.getElementById('accessPassToggle');
@@ -1637,19 +1592,6 @@ function openAccessModal(defaultTier = 1) {
 
   closeBtn.addEventListener('click', closeAccessModal);
   overlay.addEventListener('click', e => { if (e.target === overlay) closeAccessModal(); });
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById('accessErrorMsg').classList.remove('visible');
-    });
-  });
-
-  tabs.forEach(t => {
-    const tTier = parseInt(t.dataset.tier, 10);
-    t.classList.toggle('active', tTier === defaultTier);
-  });
 
   passToggle.addEventListener('click', () => {
     const isMasked = passInput.classList.contains('access-input-masked');
@@ -1844,29 +1786,10 @@ function renderMasterControlPanel() {
 
 
 function initAccessKeyboardShortcuts() {
-  let secretBuffer = '';
   document.addEventListener('keydown', e => {
     if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'L' || e.key === 'l')) {
       e.preventDefault();
       openAccessModal();
-    }
-    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'M' || e.key === 'm')) {
-      e.preventDefault();
-      if (ACCESS_CONTROL.getActualTier() === ACCESS_CONTROL.TIER_MASTER) {
-        const popup = document.getElementById('masterCardPopup');
-        if (popup) popup.classList.toggle('open');
-      } else {
-        revealMasterAccessModal();
-      }
-    }
-
-    // Secret key sequence listener (typing 'master', 'admin', or 'root' outside of input fields)
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
-    secretBuffer += e.key.toLowerCase();
-    if (secretBuffer.length > 25) secretBuffer = secretBuffer.slice(-25);
-    if (secretBuffer.endsWith('master') || secretBuffer.endsWith('admin') || secretBuffer.endsWith('root')) {
-      secretBuffer = '';
-      revealMasterAccessModal();
     }
   });
 }
@@ -1979,8 +1902,7 @@ function buildSearchIndex() {
   }));
 
   index.push(
-    { type: 'page', title: 'Access Control & VIP Login', meta: 'Passcode: vip2026 · Ctrl+Shift+L', href: 'javascript:openAccessModal(1)', text: 'access control login vip higher tier passcode password security' },
-    { type: 'page', title: 'Master Dashboard & Admin Login', meta: 'Google Sign-In only · Ctrl+Shift+L', href: 'javascript:openAccessModal(2)', text: 'master level admin dashboard login google signin security' }
+    { type: 'page', title: 'Access Control & VIP Login', meta: 'Passcode: vip2026 · Ctrl+Shift+L', href: 'javascript:openAccessModal(1)', text: 'access control login vip higher tier passcode password security' }
   );
 
   // Start from the static snapshot (always present, every page).
