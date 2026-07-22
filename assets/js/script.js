@@ -303,10 +303,10 @@ const SEARCH_STATIC_INDEX = {
   },
   {
     "type": "achievement",
-    "title": "Data Cleaning Hackathon",
+    "title": "Machine Learning Hackathon",
     "meta": "WiseBee · 2 Dec 2023",
     "href": "achievements.html#achv-26",
-    "text": "wisebee data cleaning hackathon 2 dec 2023"
+    "text": "wisebee machine learning hackathon 2 dec 2023"
   },
   {
     "type": "achievement",
