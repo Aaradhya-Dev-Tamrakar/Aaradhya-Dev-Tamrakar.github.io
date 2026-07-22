@@ -354,6 +354,33 @@
         <div class="journey-item reveal">
           <div class="journey-node" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/>
+            </svg>
+          </div>
+          <div class="journey-card">
+            <div class="journey-meta"><span class="journey-period">v26 · Jul 2026</span><span>Security fix</span></div>
+            <h3 class="journey-title">Closing the plaintext-link leak in the tier system</h3>
+            <ul class="journey-desc">
+              <li>The VIP/Master tier gate only toggled <code>href</code>/CSS on each project's anchor tag client-side — the real GitHub URL still sat as plaintext in a <code>data-vip-link</code> attribute for all 13 projects, readable by anyone viewing raw HTML, curling the page, or hitting a search-engine cache, passcode or not.</li>
+              <li>Moved every project repo URL through the same AES-256-GCM/PBKDF2 pipeline already used for gated page content — <code>data-payload-link-id</code> references now stand in for the raw <code>href</code>, decrypted at runtime via <code>decryptHexPayload()</code> only after tier verification passes.</li>
+              <li>Follow-up pass removed the login vectors that didn't belong on a public tier system in the first place — a UI tab, a keyboard shortcut, and two undocumented trigger sequences — leaving Google Sign-In against an explicit allowlist as the only path to Master tier.</li>
+            </ul>
+            <div class="journey-skill-label">Applied skillset</div>
+            <div class="journey-tags">
+              <span class="tag">AES-256-GCM</span><span class="tag">PBKDF2</span>
+              <span class="tag">Threat modeling</span><span class="tag">Attack-surface reduction</span>
+              <span class="tag">JavaScript</span>
+            </div>
+            <div class="journey-links">
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/ce947a0" target="_blank" rel="noopener">View commit ↗</a>
+              <a class="journey-link" href="javascript:void(0)" onclick="openAccessModal(); return false;">See it live ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
               <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
             </svg>
