@@ -291,7 +291,7 @@ nav.scrolled {
 
 .nav-links {
   display: flex;
-  gap: 2.5rem;
+  gap: 2rem;
   list-style: none;
   justify-content: center;
 }
@@ -316,7 +316,7 @@ nav.scrolled {
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.65rem;
   justify-content: flex-end;
 }
 
@@ -1149,6 +1149,14 @@ footer {
 
   nav {
     padding: 1.5rem 2rem;
+  }
+
+  .nav-access-btn span {
+    display: none;
+  }
+
+  .nav-access-btn {
+    padding: 0.4rem 0.55rem;
   }
 }
 
