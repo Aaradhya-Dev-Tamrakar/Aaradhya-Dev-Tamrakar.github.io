@@ -1855,6 +1855,16 @@ html[data-theme="light"] #quick-nav::before {
   .quick-nav-grid {
     grid-template-columns: 1fr;
   }
+
+  .quick-nav-card {
+    display: none;
+  }
+
+  .quick-nav-card--current,
+  .quick-nav-card--current + .quick-nav-card,
+  .quick-nav-card:has(+ .quick-nav-card--current) {
+    display: flex;
+  }
 }
 
 /* ── Keymap & display guide ──────────────────────────────── */
