@@ -27,5 +27,6 @@ graphify-out/
 dev-logs/*
 !dev-logs/og-image/
 !dev-logs/og-image/**
+!dev-logs/PortfolioWebsite_TRACKER.md
 !dev-logs/PortfolioWebsite_TRACKER_*.md
 dev-logs/secrets/
