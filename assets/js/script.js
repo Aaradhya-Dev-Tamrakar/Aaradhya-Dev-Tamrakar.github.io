@@ -1295,6 +1295,12 @@ async function updateGatedContentVisibility() {
   const session = ACCESS_CONTROL.getSessionData();
   const passcode = session ? session.passcode : (effTier === ACCESS_CONTROL.TIER_MASTER ? 'master2026' : 'vip2026');
 
+  // Stealth Mode: Hide Master-exclusive section completely from non-Master users!
+  const masterSection = document.getElementById('master-exclusive');
+  if (masterSection) {
+    masterSection.style.display = (effTier === ACCESS_CONTROL.TIER_MASTER) ? 'block' : 'none';
+  }
+
   const elements = document.querySelectorAll('[data-access-tier]');
 
   for (const el of elements) {
@@ -1352,6 +1358,12 @@ async function updateGatedContentVisibility() {
   }
 }
 
+function revealMasterAccessModal() {
+  window.masterSecretRevealed = true;
+  openAccessModal(ACCESS_CONTROL.TIER_MASTER);
+  showToast('👑 Master Level Authentication Unlocked');
+}
+
 function renderAccessModal() {
   if (document.getElementById('accessModalOverlay')) return;
 
@@ -1365,7 +1377,7 @@ function renderAccessModal() {
   overlay.innerHTML = `
     <div class="access-modal-card" id="accessModalCard">
       <div class="access-modal-header">
-        <div class="access-modal-title">
+        <div class="access-modal-title" style="cursor:pointer;" title="Access Control (5 clicks to reveal Master mode)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
@@ -1436,8 +1448,24 @@ function renderAccessModal() {
   const eyeIcon = document.getElementById('accessEyeIcon');
   const tabs = document.querySelectorAll('#accessTierTabs .access-tab-btn');
   const card = document.getElementById('accessModalCard');
+  const modalTitle = document.querySelector('.access-modal-title');
 
   let activeTabTier = 1;
+
+  // Secret 5-click trigger on modal title
+  if (modalTitle) {
+    let clickCount = 0;
+    let clickTimer = null;
+    modalTitle.addEventListener('click', () => {
+      clickCount++;
+      clearTimeout(clickTimer);
+      clickTimer = setTimeout(() => { clickCount = 0; }, 1500);
+      if (clickCount >= 5) {
+        clickCount = 0;
+        revealMasterAccessModal();
+      }
+    });
+  }
 
   closeBtn.addEventListener('click', closeAccessModal);
   overlay.addEventListener('click', e => { if (e.target === overlay) closeAccessModal(); });
@@ -1493,11 +1521,21 @@ function openAccessModal(defaultTier = 1) {
   const errorMsg = document.getElementById('accessErrorMsg');
   const logoutBtn = document.getElementById('accessLogoutBtn');
   const tabs = document.querySelectorAll('#accessTierTabs .access-tab-btn');
+  const masterTab = document.querySelector('#accessTierTabs .access-tab-btn[data-tier="2"]');
 
   if (errorMsg) errorMsg.classList.remove('visible');
   if (passInput) passInput.value = '';
 
   const actTier = ACCESS_CONTROL.getActualTier();
+  const effTier = ACCESS_CONTROL.getEffectiveTier();
+  const isVipOrMaster = effTier >= ACCESS_CONTROL.TIER_VIP;
+  const isSecretRevealed = window.masterSecretRevealed === true;
+
+  // Stealth Mode: Master tab is hidden from Public guests UNLESS they are VIP or performed secret action!
+  if (masterTab) {
+    masterTab.style.display = (isVipOrMaster || isSecretRevealed) ? '' : 'none';
+  }
+
   if (logoutBtn) logoutBtn.hidden = (actTier === ACCESS_CONTROL.TIER_PUBLIC);
 
   tabs.forEach(t => {
@@ -1658,20 +1696,32 @@ function renderMasterControlPanel() {
     }
   }
 }
-}
+
 
 function initAccessKeyboardShortcuts() {
+  let secretBuffer = '';
   document.addEventListener('keydown', e => {
     if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'L' || e.key === 'l')) {
       e.preventDefault();
       openAccessModal();
     }
     if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'M' || e.key === 'm')) {
+      e.preventDefault();
       if (ACCESS_CONTROL.getActualTier() === ACCESS_CONTROL.TIER_MASTER) {
-        e.preventDefault();
         const popup = document.getElementById('masterCardPopup');
         if (popup) popup.classList.toggle('open');
+      } else {
+        revealMasterAccessModal();
       }
+    }
+
+    // Secret key sequence listener (typing 'master', 'admin', or 'root' outside of input fields)
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
+    secretBuffer += e.key.toLowerCase();
+    if (secretBuffer.length > 25) secretBuffer = secretBuffer.slice(-25);
+    if (secretBuffer.endsWith('master') || secretBuffer.endsWith('admin') || secretBuffer.endsWith('root')) {
+      secretBuffer = '';
+      revealMasterAccessModal();
     }
   });
 }
