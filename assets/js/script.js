@@ -1383,7 +1383,7 @@ function renderAccessModal() {
   overlay.innerHTML = `
     <div class="access-modal-card" id="accessModalCard">
       <div class="access-modal-header">
-        <div class="access-modal-title" style="cursor:pointer;" title="Access Control (5 clicks to reveal Master mode)">
+        <div class="access-modal-title">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
@@ -1445,18 +1445,53 @@ function renderAccessModal() {
 
   document.body.appendChild(overlay);
   renderGoogleSignInButton();
+}
 
-  const closeBtn = document.getElementById('accessModalClose');
-  const submitBtn = document.getElementById('accessSubmitBtn');
-  const logoutBtn = document.getElementById('accessLogoutBtn');
+function openAccessModal(defaultTier = 1) {
+  renderAccessModal();
+  const overlay = document.getElementById('accessModalOverlay');
   const passInput = document.getElementById('accessPassInput');
-  const passToggle = document.getElementById('accessPassToggle');
-  const eyeIcon = document.getElementById('accessEyeIcon');
+  const errorMsg = document.getElementById('accessErrorMsg');
+  const logoutBtn = document.getElementById('accessLogoutBtn');
+  const tabsContainer = document.getElementById('accessTierTabs');
+  const hintBox = document.getElementById('accessHintBox');
   const tabs = document.querySelectorAll('#accessTierTabs .access-tab-btn');
+  const masterTab = document.querySelector('#accessTierTabs .access-tab-btn[data-tier="2"]');
   const card = document.getElementById('accessModalCard');
   const modalTitle = document.querySelector('.access-modal-title');
 
-  let activeTabTier = 1;
+  if (errorMsg) errorMsg.classList.remove('visible');
+  if (passInput) passInput.value = '';
+
+  const actTier = ACCESS_CONTROL.getActualTier();
+  const effTier = ACCESS_CONTROL.getEffectiveTier();
+  const isVipOrMaster = effTier >= ACCESS_CONTROL.TIER_VIP;
+  const isSecretRevealed = window.masterSecretRevealed === true;
+  const showMaster = isVipOrMaster || isSecretRevealed;
+
+  // Stealth Mode: Hide tabs container completely in Guest mode so there's no single-tab container giveaway!
+  if (tabsContainer) {
+    tabsContainer.style.display = showMaster ? 'grid' : 'none';
+  }
+
+  if (masterTab) {
+    masterTab.style.display = showMaster ? '' : 'none';
+  }
+
+  // Stealth Mode: Hide Master demo passcode in Guest mode!
+  if (hintBox) {
+    if (showMaster) {
+      hintBox.innerHTML = `
+        <strong>Demo Passcodes:</strong><br />
+        Higher Tier (VIP): <code>vip2026</code><br />
+        Master Level: <code>master2026</code>
+      `;
+    } else {
+      hintBox.innerHTML = `
+        <strong>Access Passcode:</strong> <code>vip2026</code>
+      `;
+    }
+  }
 
   // Secret 5-click trigger on modal title
   if (modalTitle) {
@@ -1473,6 +1508,11 @@ function renderAccessModal() {
     });
   }
 
+  const closeBtn = document.getElementById('accessModalClose');
+  const submitBtn = document.getElementById('accessSubmitBtn');
+  const passToggle = document.getElementById('accessPassToggle');
+  const eyeIcon = document.getElementById('accessEyeIcon');
+
   closeBtn.addEventListener('click', closeAccessModal);
   overlay.addEventListener('click', e => { if (e.target === overlay) closeAccessModal(); });
 
@@ -1480,7 +1520,6 @@ function renderAccessModal() {
     tab.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      activeTabTier = parseInt(tab.dataset.tier, 10);
       document.getElementById('accessErrorMsg').classList.remove('visible');
     });
   });
@@ -1493,6 +1532,8 @@ function renderAccessModal() {
 
   function handleAuthenticate() {
     const val = passInput.value;
+    const activeTab = document.querySelector('.access-tab-btn.active');
+    const activeTabTier = activeTab ? parseInt(activeTab.dataset.tier, 10) : 1;
     if (!val) {
       showError('Please enter a passcode.');
       return;
@@ -1513,24 +1554,12 @@ function renderAccessModal() {
   submitBtn.addEventListener('click', handleAuthenticate);
   passInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleAuthenticate(); });
 
+  if (logoutBtn) logoutBtn.hidden = (actTier === ACCESS_CONTROL.TIER_PUBLIC);
   logoutBtn.addEventListener('click', () => {
     ACCESS_CONTROL.logout();
     closeAccessModal();
     showToast('Session locked. Reverted to public guest access.');
   });
-}
-
-function openAccessModal(defaultTier = 1) {
-  renderAccessModal();
-  const overlay = document.getElementById('accessModalOverlay');
-  const passInput = document.getElementById('accessPassInput');
-  const errorMsg = document.getElementById('accessErrorMsg');
-  const logoutBtn = document.getElementById('accessLogoutBtn');
-  const tabs = document.querySelectorAll('#accessTierTabs .access-tab-btn');
-  const masterTab = document.querySelector('#accessTierTabs .access-tab-btn[data-tier="2"]');
-
-  if (errorMsg) errorMsg.classList.remove('visible');
-  if (passInput) passInput.value = '';
 
   const actTier = ACCESS_CONTROL.getActualTier();
   const effTier = ACCESS_CONTROL.getEffectiveTier();
