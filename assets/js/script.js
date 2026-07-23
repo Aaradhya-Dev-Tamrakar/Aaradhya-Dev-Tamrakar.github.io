@@ -334,6 +334,13 @@ const SEARCH_STATIC_INDEX = {
   },
   {
     "type": "achievement",
+    "title": "AI-Assisted Coding for Developers",
+    "meta": "DataCamp · Jul 2026",
+    "href": "achievements.html#achv-34",
+    "text": "datacamp ai-assisted coding for developers jul 2026"
+  },
+  {
+    "type": "achievement",
     "title": "KEC Music Club — Performer",
     "meta": "KEC Music Club · 2023–2026",
     "href": "achievements.html#achv-27",
