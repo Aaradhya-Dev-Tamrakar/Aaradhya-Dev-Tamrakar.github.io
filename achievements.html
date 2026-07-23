@@ -1321,7 +1321,7 @@
         </div>
 
         <div class="achievement-item reveal" id="achv-31" data-track="academic" data-category="certification"
-          data-date="23 Jul 2026">
+          data-date="23 Jul 2026 4:00 PM">
           <div class="achievement-org">DataCamp</div>
           <div>
             <h3 class="achievement-title">Introduction to Security in the World of AI</h3>
@@ -1372,7 +1372,7 @@
         </div>
 
         <div class="achievement-item reveal" id="achv-34" data-track="academic" data-category="certification"
-          data-date="23 Jul 2026">
+          data-date="23 Jul 2026 6:00 PM">
           <div class="achievement-org">DataCamp</div>
           <div>
             <h3 class="achievement-title">AI-Assisted Coding for Developers</h3>
@@ -1529,7 +1529,28 @@
           const month = monthMatch ? monthMap[monthMatch[1].toLowerCase()] : 0;
           const dayMatch = text.match(/\b(\d{1,2})(?:st|nd|rd|th)?\b/);
           const day = dayMatch ? Number(dayMatch[1]) : 1;
-          return new Date(year, month, day);
+
+          let hours = 0;
+          let minutes = 0;
+
+          const timeMatch = text.match(/(\d{1,2}):(\d{2})\s*(am|pm)?/i);
+          if (timeMatch) {
+            hours = Number(timeMatch[1]);
+            minutes = Number(timeMatch[2]);
+            const meridiem = (timeMatch[3] || '').toLowerCase();
+            if (meridiem === 'pm' && hours < 12) hours += 12;
+            if (meridiem === 'am' && hours === 12) hours = 0;
+          } else {
+            const meridiemMatch = text.match(/(\d{1,2})\s*(am|pm)/i);
+            if (meridiemMatch) {
+              hours = Number(meridiemMatch[1]);
+              const meridiem = meridiemMatch[2].toLowerCase();
+              if (meridiem === 'pm' && hours < 12) hours += 12;
+              if (meridiem === 'am' && hours === 12) hours = 0;
+            }
+          }
+
+          return new Date(year, month, day, hours, minutes, 0, 0);
         }
 
         const items = Array.from(timeline.querySelectorAll('.achievement-item'));
