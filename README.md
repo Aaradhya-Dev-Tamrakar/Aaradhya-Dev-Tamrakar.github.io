@@ -43,11 +43,13 @@ A personal portfolio website for **Aaradhya Dev Tamrakar**.
 ## Access Control & Security Model
 
 The site implements a 3-Tier Access Hierarchy:
+
 1. **Public Guest (Tier 0)**: Default visitor view. Standard portfolio content, locked GitHub links (`🔒 VIP Required`), hidden Master diagnostic controls.
 2. **Higher Tier VIP (Tier 1)**: Authenticated via VIP passcode (`vip2026`) or VIP Google Sign-In. Unlocks all 13+ GitHub repository links, extended benchmark metrics, and private project specifications.
 3. **Master Level Admin (Tier 2)**: Authenticated via Master passcode (`master2026`) or Master Google Sign-In (`aaradhyadevtmr@gmail.com`). Unlocks Master Diagnostic Console, simulated tier controls, and live VIP email allowlist manager.
 
 ### Security Highlights
+
 - **Zero Raw HTML Exposure**: Locked containers render empty DOM wrappers `<div data-payload-id="..."></div>`. No plain text or unencrypted HTML is visible in Chrome DevTools (`F12`).
 - **Web Crypto API**: Uses AES-256-GCM encryption with PBKDF2 key derivation (salt: `adt_salt_2026`).
 - **Git Safety**: Secrets directory `dev-logs/secrets/` is strictly `.gitignore`d to prevent any credential leaks.
@@ -57,6 +59,7 @@ The site implements a 3-Tier Access Hierarchy:
 Press `/` (or click the search button in the nav) to open a global command-palette search, unified across all pages. It searches page names plus every achievement and project.
 
 **How it stays accurate:** `buildSearchIndex()` in `assets/js/script.js` merges two sources —
+
 1. `SEARCH_STATIC_INDEX` — a full snapshot of every achievement/project, shipped on every page so search works even on pages with no live achievement/project list (`index.html`, `contact.html`, `experience.html`, `about.html`, `404.html`).
 2. A live DOM scan — only runs on `achievements.html` / `projects.html` themselves, so edits made there are searchable immediately, in the same session, before a commit.
 
@@ -84,15 +87,14 @@ To regenerate manually: `pip install beautifulsoup4 && python3 scripts/extract_i
 To prevent merge conflicts on `assets/js/last-commit.json` (which is updated automatically on GitHub by a commit-back bot on every push), use `sync.ps1`:
 
 - **Minor / Routine Changes** (Auto-generates a conventional commit message and updates tracker timestamp):
+
   ```powershell
   .\sync.ps1
-  ```
-- **Major Features / Architectural Changes**:
+  ```- **Major Features / Architectural Changes**:
   Update `dev-logs/PortfolioWebsite_TRACKER.md` with detailed release notes first, then pass a descriptive message:
   ```powershell
   .\sync.ps1 -m "feat(scope): detailed architectural summary"
-  ```
-- **Safe Pull Only** (Uses `--autostash` to safely pull remote updates):
+  ```- **Safe Pull Only** (Uses `--autostash` to safely pull remote updates):
   ```powershell
   .\sync.ps1 -PullOnly
   ```
