@@ -320,6 +320,13 @@ const SEARCH_STATIC_INDEX = {
   },
   {
     "type": "achievement",
+    "title": "Introduction to Python",
+    "meta": "DataCamp · May 2026",
+    "href": "achievements.html#achv-32",
+    "text": "datacamp introduction to python may 2026"
+  },
+  {
+    "type": "achievement",
     "title": "KEC Music Club — Performer",
     "meta": "KEC Music Club · 2023–2026",
     "href": "achievements.html#achv-27",
