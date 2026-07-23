@@ -313,6 +313,13 @@ const SEARCH_STATIC_INDEX = {
   },
   {
     "type": "achievement",
+    "title": "Introduction to Security in the World of AI",
+    "meta": "DataCamp · Jul 2026",
+    "href": "achievements.html#achv-31",
+    "text": "datacamp introduction to security in the world of ai jul 2026"
+  },
+  {
+    "type": "achievement",
     "title": "KEC Music Club — Performer",
     "meta": "KEC Music Club · 2023–2026",
     "href": "achievements.html#achv-27",
