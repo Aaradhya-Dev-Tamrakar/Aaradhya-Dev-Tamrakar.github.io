@@ -1,6 +1,6 @@
 {
-  "sha": "a39a304f1ccd080e28b55c6f2372e790f36d4c7b",
-  "shortSha": "a39a304",
-  "date": "2026-07-23T18:14:57+05:45",
-  "message": "feat(achievements): add DataCamp cert — AI-Assisted Coding for Developers (#48952793)\n"
+  "sha": "dec7009ae5e94ba52950572e499f0b1b2f08e7f1",
+  "shortSha": "dec7009",
+  "date": "2026-07-23T18:21:13+05:45",
+  "message": "feat(achievements): fix chronological sort for DataCamp entries\n"
 }
