@@ -1,6 +1,6 @@
 {
-  "sha": "dd557d39baea4343b570ed589c958e925af1a977",
-  "shortSha": "dd557d3",
-  "date": "2026-07-25T16:52:52+05:45",
-  "message": "fix(journey): raise z-index of timeline node icons above downward progress bar\n"
+  "sha": "53c5bf5b59dda53ebd2a2516d93ca3d311480f81",
+  "shortSha": "53c5bf5",
+  "date": "2026-07-25T16:53:53+05:45",
+  "message": "style(journey): refine animation light effects into classy ultra-thin accents\n"
 }
