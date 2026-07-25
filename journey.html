@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -92,6 +92,7 @@
       gap: 0;
     }
 
+    /* Base timeline background line */
     .journey-track::before {
       content: '';
       position: absolute;
@@ -100,6 +101,24 @@
       bottom: 10px;
       width: 1px;
       background: linear-gradient(to bottom, transparent, var(--accent) 4%, var(--accent) 96%, transparent);
+      opacity: 0.45;
+    }
+
+    /* Dynamic scroll-driven progress line fill */
+    .journey-track::after {
+      content: '';
+      position: absolute;
+      left: 10.5px;
+      top: 10px;
+      height: var(--track-progress, 0%);
+      max-height: calc(100% - 20px);
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2));
+      box-shadow: 0 0 10px var(--accent-a80), 0 0 20px var(--accent-a35);
+      transition: height 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      border-radius: 2px;
+      z-index: 1;
     }
 
     .journey-item {
@@ -111,6 +130,19 @@
       padding-bottom: 0;
     }
 
+    /* Staggered entrance scroll reveals */
+    .journey-item.reveal {
+      opacity: 0;
+      transform: translateY(28px) scale(0.98);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .journey-item.reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
     .journey-node {
       position: absolute;
       left: 0;
@@ -119,21 +151,31 @@
       height: 23px;
       border-radius: 50%;
       background: var(--bg2);
-      border: 1px solid var(--node-accent, var(--line));
+      border: 1.5px solid var(--node-accent, var(--line));
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: border-color .25s, box-shadow .25s;
+      transition: border-color 0.35s ease, box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.35s ease;
+      z-index: 2;
+      will-change: transform, box-shadow;
     }
 
-    .journey-item:hover .journey-node {
-      box-shadow: 0 0 10px var(--node-accent-a35, transparent);
+    .journey-item:hover .journey-node,
+    .journey-node.is-reached {
+      box-shadow: 0 0 14px var(--node-accent-a35, transparent), 0 0 4px var(--node-accent, transparent);
+      transform: scale(1.18);
     }
 
     .journey-node svg {
       width: 12px;
       height: 12px;
       color: var(--node-accent, var(--accent));
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.35s ease;
+    }
+
+    .journey-item:hover .journey-node svg,
+    .journey-node.is-reached svg {
+      transform: scale(1.15);
     }
 
     .journey-node-num {
@@ -151,7 +193,33 @@
       font-weight: 700;
       line-height: 1.05rem;
       text-align: center;
-      box-shadow: 0 0 5px var(--node-accent-a35, transparent), 0 0 0 2px var(--bg2);
+      box-shadow: 0 0 6px var(--node-accent-a35, transparent), 0 0 0 2px var(--bg2);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+    }
+
+    .journey-item:hover .journey-node-num,
+    .journey-node.is-reached .journey-node-num {
+      transform: scale(1.15);
+      box-shadow: 0 0 8px var(--node-accent-a35, transparent), 0 0 0 2px var(--bg2);
+    }
+
+    .journey-node--pulse {
+      animation: journeyNodePulse 0.75s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    @keyframes journeyNodePulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 var(--node-accent-a35, transparent);
+      }
+      40% {
+        transform: scale(1.32);
+        box-shadow: 0 0 18px 4px var(--node-accent-a35, transparent);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 transparent;
+      }
     }
 
     .journey-card {
@@ -160,15 +228,16 @@
       border: 1px solid var(--line);
       border-left: 3px solid var(--node-accent, var(--line));
       border-radius: 12px;
-      transition: border-color .25s, transform .25s, box-shadow .25s;
+      transition: border-color 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.35s ease;
       overflow: hidden;
+      will-change: transform, box-shadow;
     }
 
     .journey-card:hover {
       border-color: var(--node-accent, var(--glow-green));
       border-left-color: var(--node-accent, var(--glow-green));
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--node-accent-a35, var(--glow-green-a35));
+      transform: translateY(-4px) scale(1.003);
+      box-shadow: 0 10px 30px -4px rgba(0, 0, 0, .4), 0 0 20px var(--node-accent-a35, var(--glow-green-a35));
     }
 
     /* ── Checkpoint type → accent color (legend below) ───────── */
@@ -216,19 +285,20 @@
       background: transparent;
       cursor: pointer;
       flex-shrink: 0;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .journey-toggle-all:hover {
       color: var(--accent);
       border-color: var(--accent-a35);
+      transform: translateY(-1px);
     }
 
     .journey-toggle-all svg {
       width: 0.85em;
       height: 0.85em;
       flex-shrink: 0;
-      transition: transform 0.25s;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .journey-toggle-all.is-all-open svg {
@@ -239,6 +309,11 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5em;
+      transition: opacity 0.25s ease;
+    }
+
+    .journey-legend-item:hover {
+      opacity: 0.85;
     }
 
     .journey-legend-swatch {
@@ -263,6 +338,11 @@
       padding: 1.4rem 1.6rem;
       font: inherit;
       color: inherit;
+      transition: background-color 0.25s ease;
+    }
+
+    .journey-card-toggle:hover {
+      background-color: var(--glass-bg);
     }
 
     .journey-card-toggle-main {
@@ -275,7 +355,7 @@
       width: 18px;
       height: 18px;
       color: var(--muted);
-      transition: transform .3s ease, color .25s;
+      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
     }
 
     .journey-card[data-open="true"] .journey-chevron {
@@ -286,7 +366,7 @@
     .journey-card-body {
       display: grid;
       grid-template-rows: 0fr;
-      transition: grid-template-rows .35s ease;
+      transition: grid-template-rows 0.42s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .journey-card[data-open="true"] .journey-card-body {
@@ -299,6 +379,17 @@
 
     .journey-card-body-content {
       padding: 0 1.6rem 1.4rem;
+      opacity: 0;
+      transform: translateY(-8px);
+      filter: blur(2px);
+      transition: opacity 0.38s ease, transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), filter 0.38s ease;
+    }
+
+    .journey-card[data-open="true"] .journey-card-body-content {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0px);
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.05s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.05s, filter 0.35s ease 0.05s;
     }
 
     .journey-meta {
@@ -377,11 +468,12 @@
       text-decoration: none;
       border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
       padding-bottom: 1px;
-      transition: border-color 0.2s;
+      transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
     }
 
     .journey-link:hover {
       border-color: var(--accent);
+      transform: translateX(2px);
     }
 
     @media (max-width: 640px) {
@@ -395,6 +487,10 @@
 
       .journey-track::before {
         left: 10px;
+      }
+
+      .journey-track::after {
+        left: 9.5px;
       }
 
       .journey-list-controls {
@@ -456,44 +552,50 @@
       }
     }
 
-    /* ── Chronological card-border glow: the left accent border on one
-       journey-card at a time gets a bright glow bar hugging that edge,
-       in the card's own category color, at full opacity
-       (var(--node-accent)) for strong intensity, then eases back to
-       resting state. Kept as a card-height ::before positioned flush
-       against the left edge (rather than box-shadow) because
-       .journey-card has overflow:hidden and any blur radius large
-       enough to read as a bloom wraps around all 4 sides regardless
-       of shadow offset — this keeps the glow confined to the left
-       edge only. Document order, 18 -> 1 (newest to oldest), then
-       wraps instantly back to 18 — straight loop, no reverse, no
-       pause. 0.5s per card (half current speed = double duration,
-       from 0.25s). The next card's glow starts partway through the
-       current one's fade (see JS, scaled to match), so consecutive
-       cards crossfade rather than handing off edge-to-edge. ── */
+    /* ── Chronological liquid light sweep glow loop ─────────────────── */
     .journey-card--glow::before {
       content: '';
       position: absolute;
       inset: 0 auto 0 0;
-      width: 24px;
-      background: linear-gradient(to right, var(--node-accent, transparent), transparent);
+      width: 28px;
+      background: linear-gradient(180deg, transparent 0%, var(--node-accent, transparent) 40%, rgba(255, 255, 255, 0.9) 50%, var(--node-accent, transparent) 60%, transparent 100%);
       pointer-events: none;
       opacity: 0;
-      animation: journeyCardBorderFlash 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: journeyCardGlowGlide 0.75s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
-    @keyframes journeyCardBorderFlash {
+    @keyframes journeyCardGlowGlide {
       0% {
         opacity: 0;
+        transform: translateY(-80%);
       }
-      30% {
+      25% {
         opacity: 1;
       }
-      70% {
+      75% {
         opacity: 1;
       }
       100% {
         opacity: 0;
+        transform: translateY(80%);
+      }
+    }
+
+    /* ── Accessibility: Reduced motion fallbacks ────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .journey-card,
+      .journey-node,
+      .journey-chevron,
+      .journey-card-body,
+      .journey-card-body-content,
+      .journey-item.reveal,
+      .journey-track::after {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+      }
+      .journey-item.reveal {
+        opacity: 1 !important;
       }
     }
   </style>
@@ -1406,34 +1508,108 @@
       syncJourneyToggleAllLabel();
     }
 
-    // Chronological card-border glow — straight loop, document order
+    // Dynamic scroll-driven progress line & timeline node reach indicators
+    function initJourneyScrollProgress() {
+      const track = document.getElementById('journeyTrack');
+      const items = Array.from(document.querySelectorAll('#journeyTrack .journey-item'));
+      if (!track || !items.length) return;
+
+      let ticking = false;
+
+      function updateTrackProgress() {
+        const rect = track.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        // Progress reaches from top of timeline track to 65% down viewport height
+        const triggerPoint = viewportHeight * 0.65;
+        const totalHeight = rect.height;
+        const currentScroll = triggerPoint - rect.top;
+
+        let pct = Math.max(0, Math.min(100, (currentScroll / totalHeight) * 100));
+        track.style.setProperty('--track-progress', `${pct.toFixed(1)}%`);
+
+        // Highlight nodes reached by the scroll progress line
+        items.forEach(item => {
+          const node = item.querySelector('.journey-node');
+          if (!node) return;
+          const nodeRect = node.getBoundingClientRect();
+          if (nodeRect.top <= triggerPoint) {
+            node.classList.add('is-reached');
+          } else {
+            node.classList.remove('is-reached');
+          }
+        });
+
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(updateTrackProgress);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      updateTrackProgress();
+    }
+
+    // Staggered Intersection Observer for entrance reveal animations
+    function initJourneyScrollReveals() {
+      const items = document.querySelectorAll('#journeyTrack .journey-item.reveal');
+      if (!items.length) return;
+
+      if (!('IntersectionObserver' in window)) {
+        items.forEach(item => item.classList.add('is-visible'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('is-visible');
+            }, 60);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        rootMargin: '0px 0px -80px 0px',
+        threshold: 0.1
+      });
+
+      items.forEach(item => observer.observe(item));
+    }
+
+    // Chronological card-border liquid glow sweeper — straight loop, document order
     // 18 -> 1 (newest to oldest), then wraps instantly back to 18,
-    // forever, no pause, no reverse. 0.5s per card. The next card
-    // starts partway through the current one's animation (not after
-    // it finishes) so consecutive cards crossfade — each card cleans
-    // up its own glow class independently via its own animationend.
+    // forever, no pause, no reverse. 0.75s liquid glide per card.
     document.addEventListener('DOMContentLoaded', () => {
       initJourneyToggleAll();
+      initJourneyScrollProgress();
+      initJourneyScrollReveals();
 
-      const cards = Array.from(document.querySelectorAll('#journeyTrack .journey-card'));
-      if (!cards.length) return;
+      const items = Array.from(document.querySelectorAll('#journeyTrack .journey-item'));
+      if (!items.length) return;
 
-      // 0.5s CSS animation duration (must match journeyCardBorderFlash
-      // above); next card starts before it finishes for the crossfade.
-      // Kept at the same ~52% ratio as before (130ms / 250ms).
-      const OVERLAP_MS = 260;
-
+      // 0.75s CSS animation duration; next card sweep starts at 380ms for crossfade.
+      const OVERLAP_MS = 380;
       let index = 0;
 
       function glowNext() {
-        const card = cards[index];
+        const item = items[index];
+        const card = item.querySelector('.journey-card');
+        const node = item.querySelector('.journey-node');
 
-        card.classList.add('journey-card--glow');
-        card.addEventListener('animationend', () => {
-          card.classList.remove('journey-card--glow');
-        }, { once: true });
+        if (card) card.classList.add('journey-card--glow');
+        if (node) node.classList.add('journey-node--pulse');
 
-        index = (index + 1) % cards.length;
+        if (card) {
+          card.addEventListener('animationend', () => {
+            card.classList.remove('journey-card--glow');
+            if (node) node.classList.remove('journey-node--pulse');
+          }, { once: true });
+        }
+
+        index = (index + 1) % items.length;
         setTimeout(glowNext, OVERLAP_MS);
       }
 
