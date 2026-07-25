@@ -1,6 +1,6 @@
 {
-  "sha": "f51806b7a8d9bd265de0c51f72e69dba5be92423",
-  "shortSha": "f51806b",
-  "date": "2026-07-25T08:38:44+05:45",
-  "message": "docs(readme): clarify master level requires google oauth and passcode is disabled\n"
+  "sha": "3dc6842358a8fbee389e3ac060fe494210986ff6",
+  "shortSha": "3dc6842",
+  "date": "2026-07-25T08:43:09+05:45",
+  "message": "docs(readme): remove obsolete stealth trigger references\n"
 }
