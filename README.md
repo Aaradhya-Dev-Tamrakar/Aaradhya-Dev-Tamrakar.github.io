@@ -77,7 +77,7 @@ The site features an advanced **Zero-Leak Client-Side Access Control System** su
 | :--- | :--- | :--- |
 | **Tier 0** | **Public Guest** | Standard visitor view. Full portfolio, project descriptions, skills & certificates. GitHub source code links display as `🔒 GitHub Repo (VIP Access Required)`. |
 | **Tier 1** | **Higher Tier VIP** | Unlocked via passcode (`vip2026`) or Google Sign-In with an authorized email/domain. Grants direct access to all GitHub repository links, private project specs & extended metrics. |
-| **Tier 2** | **Master Admin** | Unlocked via passcode (`master2026`) or Google Sign-In with Master email (`aaradhyadevtmr@gmail.com`). Grants Master Control Panel modal, live VIP allowlist manager, simulated tier switching & diagnostic controls. |
+| **Tier 2** | **Master Admin** | Unlocked exclusively via Google Sign-In with Master email (`aaradhyadevtmr@gmail.com`). (Manual passcode authentication is disabled for Master Level). Grants Master Control Panel modal, live VIP allowlist manager, simulated tier switching & diagnostic controls. |
 
 ### 🔍 Technical Security Architecture
 
