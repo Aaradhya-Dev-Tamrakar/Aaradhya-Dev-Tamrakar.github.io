@@ -149,10 +149,12 @@ To prevent merge conflicts with GitHub Actions commit-back bots (which auto-upda
 
 ## 📈 Codebase Knowledge Graph (`Graphify`)
 
-This repository uses **Graphify** to maintain an AST-level knowledge graph of code abstractions, HTML components, script functions, and cross-file assets.
+This repository uses **Graphify** for local AST-level knowledge graph extraction, mapping code abstractions, script functions, HTML components, and cross-file dependencies.
 
-- View graph metrics & god nodes: [`graphify-out/GRAPH_REPORT.md`](graphify-out/GRAPH_REPORT.md)
-- Update knowledge graph after modifying code:
+> ℹ️ **Note**: `graphify-out/` is a local analysis directory (`.gitignore`d) generated during development.
+
+- **Local Report**: View metrics & god nodes locally at `graphify-out/GRAPH_REPORT.md`.
+- **Update Graph**: Regenerate the knowledge graph locally after modifying code:
   ```bash
   graphify update .
   ```
