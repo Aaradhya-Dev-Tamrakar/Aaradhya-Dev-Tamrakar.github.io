@@ -1,6 +1,6 @@
 {
-  "sha": "7d099405fb677c8723467894b6e06dbed82d6dcf",
-  "shortSha": "7d09940",
-  "date": "2026-07-25T17:06:11+05:45",
-  "message": "style(journey): optimize light mode colors and typography for high readability\n"
+  "sha": "d45634c136f839c988899bc2b424644f8684a303",
+  "shortSha": "d45634c",
+  "date": "2026-07-25T17:10:12+05:45",
+  "message": "style(typography): optimize site-wide font legibility, subpixel antialiasing, and WCAG AAA light/dark mode color contrast\n"
 }
