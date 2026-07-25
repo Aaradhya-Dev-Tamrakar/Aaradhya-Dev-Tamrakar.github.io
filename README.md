@@ -84,11 +84,7 @@ The site features an advanced **Zero-Leak Client-Side Access Control System** su
 - **Zero Raw HTML Leakage**: Gated HTML content blocks are pre-encrypted into hex ciphertexts (`ACCESS_CONTROL_PAYLOADS`). Public HTML source contains no unencrypted text or hidden DOM nodes inspectable via Chrome DevTools (`F12`).
 - **Web Crypto API Encryption**: Key derivation uses PBKDF2 with SHA-256 (100,000 iterations and salt `adt_salt_2026`). Content is encrypted using **AES-256-GCM** and decrypted dynamically into browser memory only upon successful authentication.
 - **In-Memory DOM Lifecycles**: Decrypted DOM fragments exist only while authenticated and are completely purged on logout or lock.
-- **Stealth Mode Activation**: Master Level options remain invisible to guests. Reveal triggers include:
-  - Keyboard shortcut: `Ctrl + Shift + M`
-  - Secret string typing anywhere on page: `master`, `admin`, or `root`
-  - 5 fast clicks on the Access Control modal header title
-  - Automatic reveal upon signing in with a VIP account
+- **Master Level Visibility**: Master Level controls and exclusive administrative panels (`#master-exclusive`) are hidden (`display: none`) from public guests and VIP users. They are unlocked exclusively upon signing in with the Master administrator Google account (`aaradhyadevtmr@gmail.com`).
 
 ---
 
