@@ -13,24 +13,25 @@
 }
 
 /* ── Token System ─────────────────────────────────────────── */
+/* ── Token System ─────────────────────────────────────────── */
 :root {
   --bg: #0f0e0c;
   --bg2: #161513;
   --bg3: #221c16;
   --line: rgba(255, 255, 255, 0.09);
-  --text: #ede9e0;
-  --muted: #9c9690;
+  --text: #eeeae2;
+  --muted: #a39d94;
   --accent: #d4a85a;
   --accent2: #6dbfaa;
   --accent-a07: rgba(212, 168, 90, 0.07);
   --accent-a12: rgba(212, 168, 90, 0.12);
-  --text-a10: rgba(237, 233, 224, 0.10);
-  --text-a40: rgba(237, 233, 224, 0.40);
+  --text-a10: rgba(238, 234, 226, 0.10);
+  --text-a40: rgba(238, 234, 226, 0.40);
   --accent-a35: rgba(212, 168, 90, 0.35);
   --accent-a40: rgba(212, 168, 90, 0.4);
   --accent-a45: rgba(212, 168, 90, 0.45);
   --accent-a80: rgba(212, 168, 90, 0.8);
-  --heading: #f7f3eb;
+  --heading: #f8f5ee;
   --serif: "Cormorant Garamond", Georgia, serif;
   --mono: "DM Mono", monospace;
   --sans: "Instrument Sans", sans-serif;
@@ -41,8 +42,7 @@
   --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   --nav-h: 76px;
   --surface: #171512;
-  /* Theme-invariant decorative glow — stays vivid gold/teal in both
-     themes (dividers, status indicators); do not override per-theme. */
+  /* Theme-invariant decorative glow */
   --glow-gold: #d4a85a;
   --glow-gold-a18: rgba(212, 168, 90, 0.18);
   --glow-gold-a30: rgba(212, 168, 90, 0.3);
@@ -73,26 +73,38 @@ html[data-theme="light"] {
   --bg: #f5f2ec;
   --bg2: #ede8de;
   --bg3: #e3dcd1;
-  --line: rgba(0, 0, 0, 0.1);
-  --text: #2a2420;
-  --muted: #6b5e55;
-  --accent: #7a4800;
-  --accent2: #0f5a47;
-  --accent-a07: rgba(122, 72, 0, 0.08);
-  --accent-a12: rgba(122, 72, 0, 0.12);
-  --text-a10: rgba(42, 36, 32, 0.10);
-  --text-a40: rgba(42, 36, 32, 0.40);
-  --accent-a35: rgba(122, 72, 0, 0.38);
-  --accent-a40: rgba(122, 72, 0, 0.44);
-  --accent-a45: rgba(122, 72, 0, 0.5);
-  --accent-a80: rgba(122, 72, 0, 0.85);
-  --heading: #0e0a06;
+  --line: rgba(0, 0, 0, 0.12);
+  --text: #1e1915;
+  --muted: #544a42;
+  --accent: #854d0e;
+  --accent2: #0f766e;
+  --accent-a07: rgba(133, 77, 14, 0.08);
+  --accent-a12: rgba(133, 77, 14, 0.14);
+  --text-a10: rgba(30, 25, 21, 0.10);
+  --text-a40: rgba(30, 25, 21, 0.45);
+  --accent-a35: rgba(133, 77, 14, 0.38);
+  --accent-a40: rgba(133, 77, 14, 0.44);
+  --accent-a45: rgba(133, 77, 14, 0.5);
+  --accent-a80: rgba(133, 77, 14, 0.85);
+  --heading: #0d0a06;
   --nav-scrolled-bg: rgba(245, 242, 236, 0.95);
-  --glass-bg: rgba(0, 0, 0, 0.015);
-  --glass-border: rgba(0, 0, 0, 0.07);
+  --glass-bg: rgba(0, 0, 0, 0.025);
+  --glass-border: rgba(0, 0, 0, 0.09);
   --glass-blur: 8px;
-  --card-shadow: none;
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   --surface: #fffdf9;
+  --glow-gold: #b45309;
+  --glow-teal: #0f766e;
+  --glow-green: #15803d;
+  --glow-green-a35: rgba(21, 128, 61, 0.25);
+  --glow-red: #dc2626;
+  --glow-red-a35: rgba(220, 38, 38, 0.25);
+  --glow-blue: #1d4ed8;
+  --glow-blue-a35: rgba(29, 78, 216, 0.25);
+  --glow-violet: #6d28d9;
+  --glow-violet-a35: rgba(109, 40, 217, 0.25);
+  --glow-coral: #c2410c;
+  --glow-coral-a35: rgba(194, 65, 12, 0.25);
 }
 
 /* ── Reset ────────────────────────────────────────────────── */
@@ -137,9 +149,14 @@ body {
   color: var(--text);
   font-family: var(--sans);
   font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   overflow-x: hidden;
   min-height: 100vh;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @media (pointer: fine) {
