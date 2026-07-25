@@ -644,6 +644,16 @@
       color: #4a423a;
     }
 
+    html[data-theme="light"] .journey-track::before {
+      background: linear-gradient(to bottom, transparent, var(--accent) 4%, var(--accent) 96%, transparent);
+      opacity: 0.3;
+    }
+
+    html[data-theme="light"] .journey-track::after {
+      background: linear-gradient(to bottom, #b45309, #d97706, #854d0e);
+      box-shadow: 0 0 8px rgba(180, 83, 9, 0.4);
+    }
+
     /* ── Accessibility: Reduced motion fallbacks ────────────────────── */
     @media (prefers-reduced-motion: reduce) {
       .journey-card,
