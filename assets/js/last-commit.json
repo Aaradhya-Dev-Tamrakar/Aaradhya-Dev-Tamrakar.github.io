@@ -1,6 +1,6 @@
 {
-  "sha": "3dc6842358a8fbee389e3ac060fe494210986ff6",
-  "shortSha": "3dc6842",
-  "date": "2026-07-25T08:43:09+05:45",
-  "message": "docs(readme): remove obsolete stealth trigger references\n"
+  "sha": "b4b81b0c46c0779f6dfe5f4393e213f5c8c99776",
+  "shortSha": "b4b81b0",
+  "date": "2026-07-25T08:44:44+05:45",
+  "message": "docs(readme): clarify graphify-out is a local gitignored analysis directory\n"
 }
