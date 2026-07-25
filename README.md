@@ -1,109 +1,177 @@
 # aaradhya-dev-tamrakar.github.io
 
-A personal portfolio website for **Aaradhya Dev Tamrakar**.
+Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronics Engineer & AI/ML Developer. Built as a high-performance, responsive static web app hosted on GitHub Pages, featuring zero-leak client-side AES-256-GCM encryption, Google OAuth 2.0 authentication, dynamic command-palette search, and an interactive milestone build log.
 
-## Repository Structure
+🌐 **Live Website**: [aaradhya-dev-tamrakar.github.io](https://aaradhya-dev-tamrakar.github.io)
 
-- `index.html` — homepage and main portfolio entry
-- `projects.html` — projects showcase page
-- `experience.html` — work and education experience page
-- `achievements.html` — achievements and certificates page
-- `journey.html` — build log of this portfolio site's own development, with applied skillset per milestone linked to real commits
-- `about.html` — personal introduction page
-- `contact.html` — contact and connect page
-- `404.html` — custom not-found page (excluded from `sitemap.xml`, marked `noindex`)
-- `robots.txt` — crawler directives
-- `sitemap.xml` — site map for GitHub Pages and search engines
-- `assets/certificates/` — certificate files linked from the achievements page
-- `assets/images/` — profile images and site preview images
-- `assets/docs/` — downloadable documents such as the CV
-- `assets/css/style.css` — shared CSS styles
-- `assets/js/script.js` — shared JavaScript behavior, including the global search / command palette
-- `scripts/extract_index.py` — regenerates the search index from `achievements.html` / `projects.html` (see [Site Search](#site-search))
-- `scripts/dev-serve.py` — local development HTTP testing server with no-cache headers
-- `sync.ps1` — PowerShell automation script for zero-conflict pulling, smart auto-commit message generation, pushing, and GitHub Actions bot synchronization
-- `.github/workflows/` — CI: commit-back bots that keep `assets/js/last-commit.json` and the search index in sync automatically on every push
+---
 
-## Current Status
+## 📁 Repository Structure & Directory Map
 
-- Static site structure is in place for GitHub Pages.
-- **v25 (2026-07-22)**: Implemented Zero-Leak Multi-Tier Access Control & Google OAuth 2.0 Sign-In. Features include:
-  - **Zero-Leak Client-Side AES-256-GCM Encryption**: Protected HTML blocks are stripped from raw DOM source and stored as pre-encrypted ciphertext hex payloads (`ACCESS_CONTROL_PAYLOADS`). Key derivation uses Web Crypto API PBKDF2 (100,000 iterations, SHA-256) with salted passcodes (`vip2026`, `master2026`). Unlocked payloads are decrypted into browser memory on demand and wiped completely on logout/lock.
-  - **Google Account Sign-In Integration**: Integrated official Google Identity Services SDK (`https://accounts.google.com/gsi/client?hl=en`) forced to English locale, featuring client-side JWT token decoding. Master emails (`aaradhyadevtmr@gmail.com`) grant Master Level (Tier 2); VIP allowlist emails/domains grant Higher Tier Access (Tier 1). User profile picture avatar renders in navigation bar upon sign-in.
-  - **Stealth Mode for Master Access**: Master Level tab in login modal and diagnostic console on `index.html` are 100% hidden from public visitors. Master tab automatically reveals for authenticated VIP users or via secret triggers (`Ctrl+Shift+M`, secret typing `master`/`admin`/`root`, or 5 fast clicks on modal title).
-  - **VIP Gated GitHub Repository Links**: All project cards remain visible to public visitors with descriptions and tags, while GitHub source code links (`data-vip-link`) are gated (`🔒 GitHub Repo (VIP Access Required)`). Unlocks direct links upon VIP/Master verification.
-  - **Live VIP Allowlist Manager**: Built-in allowlist management widget inside the Master Admin Control Panel popup to add/remove VIP user emails dynamically (persisted in `localStorage`).
-- **v24 (2026-07-21)**: Fixed stale global search — added `scripts/extract_index.py` and GitHub Actions workflow for search index auto-updates.
-- **v23 (2026-07-18)**: UI refinements applied — hero date toggle, navigation arrow consistency, card-arrow styling, keyboard shortcut update (`=` for scroll-to-top), and refined keymap wording.
-- Shared assets live under `assets/` for easier maintenance.
-- All main pages are present and included in `sitemap.xml`. `404.html` is intentionally excluded (not-found pages shouldn't be indexed) and is marked `noindex, nofollow`.
-- Certificate files are stored in `assets/certificates/` and loaded from the achievements page.
-- Navigation is centralized through shared JavaScript and the footer is shared site-wide.
+```text
+.
+├── 📄 HTML Pages (Root Deployment)
+│   ├── index.html              # Homepage, hero section, interactive stats & Master Control Panel trigger
+│   ├── about.html              # Personal background, engineering philosophy, timeline & biography
+│   ├── projects.html           # Technical showcase with VIP-gated GitHub source code links
+│   ├── experience.html         # Professional positions, leadership roles (IEEE KEC, EPC, Maker's Space) & education
+│   ├── achievements.html       # Certifications, credentials, filterable badges & PDF verification links
+│   ├── journey.html            # Development timeline & commit-linked evolution log of the website itself
+│   ├── contact.html            # Interactive contact form, channels & direct connection links
+│   ├── privacy.html            # Site privacy policy and data handling transparency
+│   ├── terms.html              # Terms of service and usage terms
+│   ├── 404.html                # Custom styled Not-Found page (excluded from sitemap, marked noindex)
+│   └── google3e772e11a3eb8313.html # Google Search Console site ownership verification file
+│
+├── 🎨 Assets (`assets/`)
+│   ├── certificates/          # PDF downloads and WebP image previews for all 35+ certifications
+│   ├── css/
+│   │   └── style.css          # Core CSS stylesheet: design tokens, dark theme palette, glassmorphism UI & responsive styles
+│   ├── docs/
+│   │   ├── AARADHYA_DEV_TAMRAKAR_CV.pdf # Official downloadable Curriculum Vitae
+│   │   └── ADT_LOGO.png        # Brand emblem and identity asset
+│   ├── events/                # Event photos, posters & vector graphics for workshops, hackathons & campus activities
+│   ├── images/
+│   │   ├── photo.webp / .png   # Profile headshots
+│   │   ├── og-image.jpg        # Open Graph social sharing preview card
+│   │   └── logos/              # Institutional logos (IEEE KEC, Fusemachines, EPC Club, Maker's Space, NSSR)
+│   ├── js/
+│   │   ├── script.js           # Core site engine: nav, theme toggle, access control, Google Sign-In & search
+│   │   └── last-commit.json    # Commit metadata stamped on push via GitHub Actions for live commit status display
+│   └── videos/                 # Project video demonstrations (e.g., GCSBR working demo) & poster stills
+│
+├── 🛠️ Scripts (`scripts/`)
+│   ├── extract_index.py        # Python script to extract searchable items into the static command palette index
+│   └── dev-serve.py            # Local HTTP development testing server with strict no-cache headers
+│
+├── 🤖 GitHub Workflows (`.github/workflows/`)
+│   ├── stamp-last-commit.yml   # CI bot stamping last commit hash, timestamp & message on every push
+│   └── update-search-index.yml # CI bot auto-regenerating search index on HTML content changes
+│
+├── 📊 Dev Logs & Knowledge Graph (`dev-logs/` & `graphify-out/`)
+│   ├── dev-logs/
+│   │   ├── PortfolioWebsite_TRACKER.md # Comprehensive release tracker & build log
+│   │   ├── og-image/           # Template & instructions for generating Open Graph social cards
+│   │   └── secrets/            # Git-ignored local development credentials
+│   └── graphify-out/           # Codebase knowledge graph analysis (community hubs, god nodes, AST report)
+│
+└── ⚙️ Configuration & Maintenance
+    ├── sync.ps1                # PowerShell script for zero-conflict pulls, conventional commit generation & pushing
+    ├── sitemap.xml             # XML sitemap for search engine crawlers (Google, Bing)
+    ├── robots.txt              # Search engine crawler directives
+    ├── AGENTS.md               # Codebase rules, Graphify instructions & Git workflow directives
+    ├── CLAUDE.md               # Context summary for AI pair programming
+    ├── LICENSE                 # Repository license
+    ├── .gitignore              # Excluded files (local secrets, bytecode, graph outputs)
+    ├── .gitattributes          # Git repository attribute definitions
+    └── .hintrc                 # Webhint linter configuration
+```
 
-## Access Control & Security Model
+---
 
-The site implements a 3-Tier Access Hierarchy:
+## 🔒 Multi-Tier Access Control & Security Model
 
-1. **Public Guest (Tier 0)**: Default visitor view. Standard portfolio content, locked GitHub links (`🔒 VIP Required`), hidden Master diagnostic controls.
-2. **Higher Tier VIP (Tier 1)**: Authenticated via VIP passcode (`vip2026`) or VIP Google Sign-In. Unlocks all 13+ GitHub repository links, extended benchmark metrics, and private project specifications.
-3. **Master Level Admin (Tier 2)**: Authenticated via Master passcode (`master2026`) or Master Google Sign-In (`aaradhyadevtmr@gmail.com`). Unlocks Master Diagnostic Console, simulated tier controls, and live VIP email allowlist manager.
+The site features an advanced **Zero-Leak Client-Side Access Control System** supporting 3 security tiers:
 
-### Security Highlights
+| Tier | Role | Access Level & Capabilities |
+| :--- | :--- | :--- |
+| **Tier 0** | **Public Guest** | Standard visitor view. Full portfolio, project descriptions, skills & certificates. GitHub source code links display as `🔒 GitHub Repo (VIP Access Required)`. |
+| **Tier 1** | **Higher Tier VIP** | Unlocked via passcode (`vip2026`) or Google Sign-In with an authorized email/domain. Grants direct access to all GitHub repository links, private project specs & extended metrics. |
+| **Tier 2** | **Master Admin** | Unlocked via passcode (`master2026`) or Google Sign-In with Master email (`aaradhyadevtmr@gmail.com`). Grants Master Control Panel modal, live VIP allowlist manager, simulated tier switching & diagnostic controls. |
 
-- **Zero Raw HTML Exposure**: Locked containers render empty DOM wrappers `<div data-payload-id="..."></div>`. No plain text or unencrypted HTML is visible in Chrome DevTools (`F12`).
-- **Web Crypto API**: Uses AES-256-GCM encryption with PBKDF2 key derivation (salt: `adt_salt_2026`).
-- **Git Safety**: Secrets directory `dev-logs/secrets/` is strictly `.gitignore`d to prevent any credential leaks.
+### 🔍 Technical Security Architecture
 
-## Site Search
+- **Zero Raw HTML Leakage**: Gated HTML content blocks are pre-encrypted into hex ciphertexts (`ACCESS_CONTROL_PAYLOADS`). Public HTML source contains no unencrypted text or hidden DOM nodes inspectable via Chrome DevTools (`F12`).
+- **Web Crypto API Encryption**: Key derivation uses PBKDF2 with SHA-256 (100,000 iterations and salt `adt_salt_2026`). Content is encrypted using **AES-256-GCM** and decrypted dynamically into browser memory only upon successful authentication.
+- **In-Memory DOM Lifecycles**: Decrypted DOM fragments exist only while authenticated and are completely purged on logout or lock.
+- **Stealth Mode Activation**: Master Level options remain invisible to guests. Reveal triggers include:
+  - Keyboard shortcut: `Ctrl + Shift + M`
+  - Secret string typing anywhere on page: `master`, `admin`, or `root`
+  - 5 fast clicks on the Access Control modal header title
+  - Automatic reveal upon signing in with a VIP account
 
-Press `/` (or click the search button in the nav) to open a global command-palette search, unified across all pages. It searches page names plus every achievement and project.
+---
 
-**How it stays accurate:** `buildSearchIndex()` in `assets/js/script.js` merges two sources —
+## 🔑 Google OAuth 2.0 Integration
 
-1. `SEARCH_STATIC_INDEX` — a full snapshot of every achievement/project, shipped on every page so search works even on pages with no live achievement/project list (`index.html`, `contact.html`, `experience.html`, `about.html`, `404.html`).
-2. A live DOM scan — only runs on `achievements.html` / `projects.html` themselves, so edits made there are searchable immediately, in the same session, before a commit.
+- Powered by the official **Google Identity Services SDK** (`https://accounts.google.com/gsi/client?hl=en`).
+- **Client-Side Verification**: Decodes Google ID tokens (JWT) to extract email, full name, and avatar picture.
+- **Automatic Tier Elevation**: Matches authenticated email against Master administrator account (`aaradhyadevtmr@gmail.com`) or the active VIP email allowlist to instantly elevate session privileges.
+- **Custom VIP Allowlist Management**: Master Admin control panel features a live allowlist manager widget to add/remove custom VIP user emails dynamically (stored locally in `localStorage`).
+- **User Navigation Avatar**: Displays the user's Google profile picture inside the navigation bar upon sign-in.
 
-The static snapshot is auto-regenerated on every push by `.github/workflows/update-search-index.yml`, which runs `scripts/extract_index.py` against the current `achievements.html` / `projects.html` and commits the result if it changed. This is fully automatic — no manual export step. (Previously the snapshot was hand-maintained and could go stale, e.g. a certificate added to `achievements.html` not showing up in search anywhere except `achievements.html` itself, until someone remembered to regenerate it by hand.)
+---
 
-To regenerate manually: `pip install beautifulsoup4 && python3 scripts/extract_index.py`
+## 🔍 Site Search & Unified Command Palette
 
-## Notes
+Press **`/`** (or click the **Search** button in the navigation bar) on any page to open the unified **Command Palette**.
 
-- This is a static site intended for GitHub Pages.
-- `sitemap.xml` contains the published page URLs used by search engines.
-- Add new HTML pages to `sitemap.xml` when they are created.
-- Keep shared CSS and JS changes centralized in `assets/css/style.css` and `assets/js/script.js`.
-- When adding new media, place images in `assets/images/`, downloadable documents in `assets/docs/`, and certificates in `assets/certificates/`.
-- The site now uses consistent asset paths across the homepage, about, projects, experience, achievements, and contact pages.
+### Key Features:
+- **Instant Cross-Page Search**: Searches across all 10 site pages, all 35+ achievements, all 13+ projects, and direct quick-navigation commands.
+- **Dual Index Strategy**:
+  1. `SEARCH_STATIC_INDEX`: Pre-compiled static snapshot bundled into `assets/js/script.js` so search works immediately on non-list pages (`index.html`, `contact.html`, `about.html`, etc.).
+  2. **Live DOM Scanning**: Real-time DOM fallback scanner on `achievements.html` and `projects.html` to instantly reflect any client-side content edits in search results.
+- **Automated CI Re-Indexing**: On every push, GitHub Actions workflow `.github/workflows/update-search-index.yml` runs `scripts/extract_index.py` to regenerate the static index automatically.
 
-## Development
+---
 
-1. Open `index.html` in a browser to preview the homepage.
-2. Edit CSS in `assets/css/style.css`.
-3. Edit JS in `assets/js/script.js`.
+## ⚡ Local Development & Git Workflow
 
-### Local Git Workflow & Auto-Sync (`sync.ps1`)
+### Local Development Server
 
-To prevent merge conflicts on `assets/js/last-commit.json` (which is updated automatically on GitHub by a commit-back bot on every push), use `sync.ps1`:
+To preview the portfolio locally with no-cache headers:
 
-- **Minor / Routine Changes** (Auto-generates a conventional commit message and updates tracker timestamp):
+```bash
+python scripts/extract_index.py   # Regenerates static search index
+python scripts/dev-serve.py        # Starts local server on http://localhost:8000
+```
 
+Alternatively, open `index.html` directly in any web browser.
+
+### Automated Git Workflow (`sync.ps1`)
+
+To prevent merge conflicts with GitHub Actions commit-back bots (which auto-update `assets/js/last-commit.json` and search index files), use `sync.ps1`:
+
+- **Routine & Minor Updates** (Auto-generates conventional commit message and syncs timestamps):
   ```powershell
   .\sync.ps1
-  ```- **Major Features / Architectural Changes**:
-  Update `dev-logs/PortfolioWebsite_TRACKER.md` with detailed release notes first, then pass a descriptive message:
+  ```
+
+- **Major Architectural & Feature Updates** (Passes descriptive commit summary):
   ```powershell
-  .\sync.ps1 -m "feat(scope): detailed architectural summary"
-  ```- **Safe Pull Only** (Uses `--autostash` to safely pull remote updates):
+  # 1. Update dev-logs/PortfolioWebsite_TRACKER.md with release notes first
+  # 2. Run sync script with detailed message:
+  .\sync.ps1 -m "feat(access-control): implement multi-tier OAuth security system"
+  ```
+
+- **Safe Remote Pull**:
   ```powershell
   .\sync.ps1 -PullOnly
   ```
 
-## Contact
+---
 
-- Email: `aaradhyadevtmr@gmail.com`
-- GitHub: `https://github.com/Aaradhya-Dev-Tamrakar`
+## 📈 Codebase Knowledge Graph (`Graphify`)
 
-## License
+This repository uses **Graphify** to maintain an AST-level knowledge graph of code abstractions, HTML components, script functions, and cross-file assets.
 
-See [LICENSE](LICENSE).
+- View graph metrics & god nodes: [`graphify-out/GRAPH_REPORT.md`](graphify-out/GRAPH_REPORT.md)
+- Update knowledge graph after modifying code:
+  ```bash
+  graphify update .
+  ```
+
+---
+
+## 📬 Contact & Connect
+
+- **Email**: `aaradhyadevtmr@gmail.com`
+- **GitHub**: [github.com/Aaradhya-Dev-Tamrakar](https://github.com/Aaradhya-Dev-Tamrakar)
+- **LinkedIn**: [Aaradhya Dev Tamrakar](https://www.linkedin.com/in/aaradhya-dev-tamrakar)
+- **Portfolio Site**: [aaradhya-dev-tamrakar.github.io](https://aaradhya-dev-tamrakar.github.io)
+
+---
+
+## 📄 License
+
+This project is open source and available under the terms of the [MIT License](LICENSE).
