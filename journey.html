@@ -109,16 +109,16 @@
     .journey-track::after {
       content: '';
       position: absolute;
-      left: 10.5px;
+      left: 11px;
       top: 10px;
       height: var(--track-progress, 0%);
       max-height: calc(100% - 20px);
-      width: 2px;
+      width: 1px;
       background: linear-gradient(to bottom, var(--accent), var(--accent2));
-      box-shadow: 0 0 10px var(--accent-a80), 0 0 20px var(--accent-a35);
+      box-shadow: 0 0 6px var(--accent-a40);
       transition: height 0.12s cubic-bezier(0.16, 1, 0.3, 1);
       pointer-events: none;
-      border-radius: 2px;
+      border-radius: 1px;
       z-index: 2;
     }
 
@@ -206,7 +206,7 @@
     }
 
     .journey-node--pulse {
-      animation: journeyNodePulse 0.75s cubic-bezier(0.25, 1, 0.5, 1);
+      animation: journeyNodePulse 0.85s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     @keyframes journeyNodePulse {
@@ -215,8 +215,8 @@
         box-shadow: 0 0 0 0 var(--node-accent-a35, transparent);
       }
       40% {
-        transform: scale(1.32);
-        box-shadow: 0 0 18px 4px var(--node-accent-a35, transparent);
+        transform: scale(1.15);
+        box-shadow: 0 0 10px var(--node-accent-a35, transparent);
       }
       100% {
         transform: scale(1);
@@ -559,11 +559,12 @@
       content: '';
       position: absolute;
       inset: 0 auto 0 0;
-      width: 28px;
-      background: linear-gradient(180deg, transparent 0%, var(--node-accent, transparent) 40%, rgba(255, 255, 255, 0.9) 50%, var(--node-accent, transparent) 60%, transparent 100%);
+      width: 3px;
+      background: linear-gradient(180deg, transparent 0%, var(--node-accent, var(--accent)) 50%, transparent 100%);
+      box-shadow: 0 0 8px var(--node-accent-a35, transparent);
       pointer-events: none;
       opacity: 0;
-      animation: journeyCardGlowGlide 0.75s cubic-bezier(0.25, 1, 0.5, 1);
+      animation: journeyCardGlowGlide 0.85s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     @keyframes journeyCardGlowGlide {
@@ -571,10 +572,10 @@
         opacity: 0;
         transform: translateY(-80%);
       }
-      25% {
+      30% {
         opacity: 1;
       }
-      75% {
+      70% {
         opacity: 1;
       }
       100% {
