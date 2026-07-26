@@ -1,6 +1,6 @@
-# Portfolio Website Tracker — v25
+# Portfolio Website Tracker — v26
 
-## *Last updated: 2026-07-27*
+## _Last updated: 2026-07-27_
 
 ## Meta
 
@@ -24,19 +24,19 @@
 
 **Open items:**
 
-| Item | Status |
-| --- | --- |
-| GitHub API direct commit/deployment count | Still blocked — sandbox shared-IP rate limit (confirmed v19). `last-commit.json` (SHA `43d99bd`) remains the fallback. |
-| Merge-pending: still separate from `AARADHYA_MASTER` | Unchanged, carried forward. |
+| Item                                                 | Status                                                                                                                 |
+| ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| GitHub API direct commit/deployment count            | Still blocked — sandbox shared-IP rate limit (confirmed v19). `last-commit.json` (SHA `43d99bd`) remains the fallback. |
+| Merge-pending: still separate from `AARADHYA_MASTER` | Unchanged, carried forward.                                                                                            |
 
-*Dropped from this table (v24): the two v20/v21 unmatched-PDF items and the `graphify-out/` stale-filename item — all resolved, all documented in their own dedicated sections below rather than carried indefinitely as "open."*
+_Dropped from this table (v24): the two v20/v21 unmatched-PDF items and the `graphify-out/` stale-filename item — all resolved, all documented in their own dedicated sections below rather than carried indefinitely as "open."_
 
 **Resolved this version:**
 
 - **Site-optimization pass** (`e7b6f8b`, `034ae1e`, `42d30e0`) — untracked `graphify-out/`+`dev-logs/` (~1MB no longer publicly served by GitHub Pages), regenerated `og-image.jpg` with the correct post-migration domain, converted 3 oversized logo PNGs to sized WebP pairs, added an LCP `fetchpriority` hint on `about.html`'s hero, rAF-throttled the scroll handler in `script.js`, plus `.hintrc`/template a11y follow-ups. Full breakdown below.
 - **Mobile legend line-break fix** (`8683db4`) — `achievements.html`'s category/year legend groups now stack as distinct blocks on mobile instead of an ambiguous inline wrap.
 
-*(Note: this bullet list had gone stale — it still described v20's cert-download work as of the v23 file. Replaced to actually describe v24's resolutions; v20's own summary remains intact in the Meta section above and isn't lost.)*
+_(Note: this bullet list had gone stale — it still described v20's cert-download work as of the v23 file. Replaced to actually describe v24's resolutions; v20's own summary remains intact in the Meta section above and isn't lost.)_
 
 ---
 
@@ -46,7 +46,7 @@
 - **Upload cross-reference**: `comm -23`/`comm -13`/`comm -12` between sorted basename lists (23 live `.webp`, 24 uploaded `.pdf`) — 23 exact matches, 0 webp-side misses, 2 pdf-side extras (both individually investigated by reading their corresponding HTML region in full, not assumed).
 - **Injection method**: Python string-replace keyed on the exact `data-cert="assets/certificates/{base}.webp"` substring per matched basename, with a pre-check guarding against double-injection (none occurred, single pass). Applied to `achievements.html` (22 replacements) and `experience.html` (1 replacement) — count matches the known 23-webp total exactly.
 - **JS edit**: `str_replace` on `assets/js/script.js`, two edits — the function signature/body (`downloadSrc` parameter, `lbDownload.href` fallback logic) and the event-listener call site (passing `btn.dataset.download` through). Both edits verified present via direct `sed`/`view` read of the final file, not assumed from the edit call's success alone.
-- **Post-edit verification script**: a dedicated Python regex pass over both touched HTML files, checking every `data-cert`/`data-download` pair for basename equality — this is a stronger check than "the file exists," since it also catches a cert-btn that has a `data-download` pointing at the *wrong* cert's PDF (a copy-paste-style error), not just a missing one. Zero fails.
+- **Post-edit verification script**: a dedicated Python regex pass over both touched HTML files, checking every `data-cert`/`data-download` pair for basename equality — this is a stronger check than "the file exists," since it also catches a cert-btn that has a `data-download` pointing at the _wrong_ cert's PDF (a copy-paste-style error), not just a missing one. Zero fails.
 - **CV button regression check**: read directly (`grep`), confirmed the CV's `cert-btn` in `index.html` has no `data-download` attribute post-edit, and its scope (`assets/docs/`) falls outside the injection script's target directory (`assets/certificates/`) — the CV's un-changed status is structural, not incidental.
 
 ---
@@ -90,19 +90,23 @@ Recent updates from the latest repository changes are now captured here:
 Four commits landed this round. Verified against a **fresh clone of `origin/main`** (current HEAD `b8c8014`) rather than trusted from session memory — each commit's actual `git show --stat`/diff pulled and checked against what follows, not assumed from the prior session's running narration.
 
 **`e7b6f8b`** — dead-weight untracking + OG image fix
+
 - `.gitignore`: added `graphify-out/` and `dev-logs/*` (with `!dev-logs/og-image/**` carved out). Neither directory is referenced by any page or the README's documented structure, yet both were being served live by GitHub Pages — a bloat issue and a minor info-exposure issue (internal dev notes/tracker docs publicly crawlable). Confirmed on the live clone: `graphify-out/` — 0 tracked files (fully untracked); `dev-logs/` — only `og-image/README.md` and `og-image/template.html` remain tracked.
 - `assets/images/og-image.jpg`: **40,361B → 56,595B** (confirmed exact, matches `git show --stat`). The old asset still showed the retired `aaradhyadtmr.github.io` domain from before the repo migration — surfaced by a WhatsApp share preview. No source template existed for the old flat JPG, so it was rebuilt as a reusable HTML/CSS template (`dev-logs/og-image/template.html`, tracked, pulls the site's actual `:root` design tokens) rendered via Playwright at 1200×630. `dev-logs/og-image/README.md` documents the regen steps plus each platform's cache-buster link (old shares need a manual re-scrape to pick up the new image).
 
 **`034ae1e`** — logo WebP conversion + LCP hint + scroll throttle (one commit, not split across two as first assumed mid-session — confirmed via diff)
+
 - `epc-club.png` 772K→105K (PNG) + **4,188B** (WebP); `fusemachines.png` 193K→19K (PNG) + **10,006B** (WebP); `makerspace.png` 118K→48K (PNG) + **14,488B** (WebP) — all confirmed present on disk at these exact sizes. All three were 10x+ oversized for their actual rendered footprint (`.exp-banner`, 120px/96px container, `object-fit: contain`). Wired via `<picture>` in `experience.html` (5 `<picture>` pairs, 8 logo `<img>` instances total, matching the pre-existing `photo.png`/`photo.webp` dual-source pattern). `ieee-kec.png`/`nssr.png` were already correctly sized (256×256) — no conversion needed, just `width`/`height`/`decoding="async"` added for CLS.
 - `about.html`: `fetchpriority="high"` confirmed present on the hero photo (line 628, alongside existing `decoding="async"`/`width`/`height`) — the known-LCP image now correctly hinted to the browser's preload scanner.
 - `assets/js/script.js`: `initScroll`'s scroll listener rAF-throttled — a `scrollTicking` flag gates a single `requestAnimationFrame` callback per scroll burst, replacing 4 unthrottled `classList.toggle` calls + a style write on every raw scroll event (which can fire dozens of times per frame). Confirmed present and correct on the live file; `passive: true` preserved.
 
 **`42d30e0`** — follow-up fixes (made directly by Aaradhya, on top of the above, before the pull-and-verify pass)
+
 - `.hintrc`: added an `ignore` rule for `img[fetchpriority]` under `compat-api/html` — suppresses a `webhint` false-positive (the attribute is newer than the linter's compat table). Correct call: kept the attribute, silenced the warning rather than removing the attribute.
 - `dev-logs/og-image/template.html`: added a viewport meta tag and `alt="Aaradhya Dev Tamrakar portrait"` on the portrait `<img>` — confirmed present.
 
 **`8683db4`** — mobile legend line-break fix
+
 - `achievements.html`, inside the existing `@media (max-width: 900px)` block:
   ```css
   .achv-legends {
@@ -135,18 +139,45 @@ Four commits landed this round. Verified against a **fresh clone of `origin/main
 Two sessions merged into this entry: a prior exported session (`index.html` check) plus the current session (`experience.html`, `achievements.html`). Repo re-cloned fresh for the current session; HEAD `b6c1aa4` (10 commits ahead of v24's `b8c8014` — all incremental UI/animation polish: card-arrow scaling, achievements track-button styling, keyboard nav for track toggling, hero caption rotation, schema.org credential markup; none altered by this check).
 
 **Page 1 — `index.html` (prior session, carried forward): no bugs found.**
+
 - Clean: tag balance (lxml strict, 0 errors), 0 duplicate ids, all `#anchor` refs resolve, all local `href`/`src` resolve, JSON-LD valid, `style.css` 0 parse errors, `script.js` + inline scripts `node --check` clean, every JS-targeted id exists exactly once, `last-commit.json` shape matches fetch handler.
 - VIP/Master gated-content system (initially flagged as suspicious) traced fully and confirmed **legitimate, not a vulnerability**: AES-GCM payloads baked into `script.js`, decrypted client-side via Web Crypto/PBKDF2, real Google Sign-In, Master gated to 4 of the owner's own Gmail addresses, VIP open to any signed-in account (recruiter gimmick), everything local-storage only — no exfiltration.
 - Cosmetic-only, not fixed: `style.css` L15–16 duplicated "Token System" comment; `CAPTIONS[]` in the hero-caption script has only 1 entry (the `Math.random()` pick is a no-op); `window.SEARCH_INDEX` declared/initialized but never populated or read (site-wide scaffold, not index-specific).
 - **One real finding, unresolved**: `script.js`'s `ACCESS_CONTROL_PAYLOADS` defines an `"achievements-vip"` key that no `.html` file references via `data-payload-id`/`data-payload-link-id` — dead ciphertext, no UI hookup. (Contrast: all 13 `proj-*` keys are correctly wired to `projects.html`.) Not actioned — flagging only.
 
 **Page 3 — `experience.html` (this session): no bugs found.**
+
 - Tag balance, 0 duplicate ids, all 10 referenced logo/certificate assets resolve on disk, all CSS custom properties used are defined, `E — 001`…`E — 008` numbering sequential with no gaps/dupes, `cert-btn` data attributes match `initLightbox()` consumption, `#quickNavGrid`/`#siteNav`/`#siteFooter`/`live-fuse-year` all match global init calls in `script.js`, nav/breadcrumb JSON-LD/canonical/og:url all consistent.
 
 **Page 4 — `achievements.html` (this session): one bug found.**
+
 - **Orphaned "Leadership" category in the Academic legend/filter.** `#legendAcademic` (the default view on page load — `applyTrack('academic')` runs on init) lists Workshop/Certification/Competition/**Leadership**, with `.achievement-item[data-category="leadership"]` and `.legend-swatch--leadership` both styled (teal, `--glow-teal`). But none of the 35 achievement items use `data-category="leadership"` — "leadership" only exists under the separate ECA taxonomy (`data-track="eca" data-eca-category="leadership"`, pink, `--eca-leadership`). Net effect: default Academic view shows a legend swatch that can never match a visible card — stale category left over from before the Academic/ECA track split. **Not yet fixed** — flagging for a decision (remove the Academic "Leadership" legend entry + its unused CSS rule, or tag an existing academic item into it — nothing currently qualifies).
 - Everything else clean: tag balance, 0 duplicate ids, in-page anchors resolve, all 96 local asset refs (images/certs) exist, all 52 `cert-btn`s have consistent `data-type`↔extension pairing, every item fully tagged (`data-track` + matching category attr), search-index regenerated via `scripts/extract_index.py` with **zero diff** (35 achievements / 20 projects — matches live DOM exactly), inline date-parsing/sort/year-bucketing script (`·` multi-date, year ranges, AM/PM times) resolves correctly on every tested case.
 
 **Open items carried forward, unchanged:** GitHub API rate-limit block, `AARADHYA_MASTER` merge-pending status (see State of Play table above).
 
 **New open items (v25):** orphaned `achievements-vip` payload key in `script.js`; orphaned "Leadership" category in `achievements.html`'s Academic legend/CSS.
+
+---
+
+## v26 addition — bug-check sweep, page 2 + about (2026-07-27)
+
+From a separately exported session (`projects.html` + `about.html` checks). Re-verified live against a fresh pull before filing — HEAD `4889ff9` (one commit ahead of v25's `b6c1aa4`: the v25 tracker commit itself, `127593a`; no source changes since).
+
+**Correction to v25's `achievements-vip` note**: re-checked ground truth in the live `script.js`/`achievements.html` rather than trusting recollection — `ACCESS_CONTROL_PAYLOADS["achievements-vip"]` still exists, and `data-payload-id=` still appears only twice, both in `index.html` (`index-vip`, `index-master`). **Still orphaned, not resolved** — v25's phrasing stands.
+
+**Page 2 — `projects.html`: no bugs found (one transient issue, self-resolved).**
+
+- Clean: tag balance, 0 duplicate ids, both in-page anchors resolve, all local asset refs exist (incl. `GCSBR_working_demo_poster.jpg`), JSON-LD valid, `script.js` syntax OK, search index in sync (35 achievements/20 projects, no stale entries), the 18 dynamically-`id`'d project cards (`proj-${i}`) deep-link correctly since `buildSearchIndex()` runs before `revealSearchTarget()`, all CSS classes resolve (shared stylesheet + inline block), progress-bar/legend consistency across all in-progress cards, all `target="_blank"` carry `rel="noopener"`, all 13 AES-gated project links decrypt and resolve 200 OK.
+- **Transient 404, self-resolved**: `AaradhyaDTmr/PulseLive` GitHub link returned 404 at check time (repo didn't exist under that account or `AaradhyaDT`). Flagged rather than auto-corrected. User made the repo public same session; re-verified again this session via direct fetch — **200 OK, confirmed live and public**. No code change was or is needed.
+
+**About page — `about.html`: one very minor, non-visual discrepancy, unresolved.**
+
+- Clean: tag balance, 0 duplicate ids, anchor integrity, local asset refs, JSON-LD, inline JS syntax, CSS class coverage, heading hierarchy; `live-about-year`/`live-edu-meta`/`live-subjects-title`/`live-edu-tags` correctly wired to `computeLiveDates()`/`applyLiveDates()`, `LIVE` object fields match 1:1, semester logic correctly resolves to IV/I for the current date; "15+ Projects" stat consistent with `index.html`.
+- **Stale intrinsic-size hint, re-confirmed still live**: `<img src="assets/images/photo.png" ... width="480" height="640">` (line 647–648) declares 480×640, but `photo.png`/`photo.webp` are both actually 720×960px (re-verified via `identify` both this session and the prior one). Aspect ratio is identical (3:4 either way) so there's no layout shift or visual distortion — purely a stale hint. Optional fix: update to `width="720" height="960"`.
+
+**Open items carried forward, unchanged:** GitHub API rate-limit block; `AARADHYA_MASTER` merge-pending status; orphaned `achievements-vip` payload; orphaned Academic "Leadership" legend category (`achievements.html`).
+
+**Closed this version:** PulseLive 404 (repo made public, re-verified 200 OK — no code change needed).
+
+**New open item (v26):** stale `width`/`height` on `about.html`'s profile photo (480×640 vs actual 720×960).
