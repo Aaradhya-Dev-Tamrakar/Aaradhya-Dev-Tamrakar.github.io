@@ -107,6 +107,42 @@ html[data-theme="light"] {
   --glow-coral-a35: rgba(194, 65, 12, 0.25);
 }
 
+/* ── Custom Scrollbar ──────────────────────────────────────── */
+/* Modern standard scrollbar styling (Firefox & modern browsers) */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-a45) var(--bg);
+}
+
+/* WebKit-based browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-a35);
+  border-radius: 5px;
+  border: 2px solid var(--bg);
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--accent2);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--bg);
+}
+
 /* ── Reset ────────────────────────────────────────────────── */
 *,
 *::before,
