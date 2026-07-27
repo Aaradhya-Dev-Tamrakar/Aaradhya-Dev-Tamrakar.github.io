@@ -621,10 +621,40 @@
        below are entangled with #stats in the same media queries, so they
        stay inline; #quick-nav's own numbers match style.css exactly. ── */
 
+    /* ── 16:9 Screen & Height-based Layout Optimization ───────── */
+    @media (min-width: 901px) and (max-height: 900px) {
+      #hero {
+        min-height: calc(100vh - var(--nav-h, 76px));
+        padding-top: calc(var(--nav-h, 76px) + 1.25rem);
+        padding-bottom: 2rem;
+        gap: 3rem;
+      }
+
+      .status-card {
+        padding: 1.25rem 1.5rem;
+      }
+
+      .status-label {
+        margin-bottom: 1rem;
+      }
+
+      .status-items {
+        gap: 0.65rem;
+      }
+
+      .status-item {
+        padding-bottom: 0.65rem;
+      }
+
+      .status-item-value {
+        font-size: 0.88rem;
+      }
+    }
+
     @media (max-width: 1100px) {
       #hero {
         gap: 2.5rem;
-        padding: 0 2rem;
+        padding: calc(var(--nav-h, 76px) + 1.5rem) 2rem 2.5rem;
       }
 
       #stats {
