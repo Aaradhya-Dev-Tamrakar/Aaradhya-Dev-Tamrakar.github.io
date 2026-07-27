@@ -1,6 +1,6 @@
 {
-  "sha": "dd6915cd9a4d14b6a08c36933e0ba6e398804de7",
-  "shortSha": "dd6915c",
-  "date": "2026-07-27T08:27:56+05:45",
-  "message": "style(nav): center signed-in profile icon when tier text overflows\n"
+  "sha": "501c45f1bf84c718fa5d9f971a17a6cca2cfd440",
+  "shortSha": "501c45f",
+  "date": "2026-07-27T08:30:06+05:45",
+  "message": "style(nav): remove tier text from header access icon and center profile avatar\n"
 }
