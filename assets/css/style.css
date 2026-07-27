@@ -573,12 +573,15 @@ html[data-theme="light"] .icon-moon {
   top: 0;
   left: 0;
   width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  z-index: 9999;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2), var(--glow-gold, #d4a85a));
+  box-shadow: 0 0 8px var(--accent), 0 0 14px var(--accent-a40);
+  z-index: 10000;
+  pointer-events: none;
   transform: scaleX(0);
   transform-origin: left;
   will-change: transform;
+  border-radius: 0 2px 2px 0;
 }
 
 /* ── Back-to-top + scroll % ───────────────────────────────── */
