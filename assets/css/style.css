@@ -2062,11 +2062,26 @@ html[data-theme="light"] #quick-nav::before {
   background: rgba(45, 212, 191, 0.1);
 }
 
+html[data-theme="light"] .nav-access-btn.tier-vip {
+  border-color: #0f766e;
+  color: #0f766e;
+  background: rgba(15, 118, 110, 0.12);
+  font-weight: 500;
+}
+
 .nav-access-btn.tier-master {
   border-color: #eab308;
   color: #eab308;
   background: rgba(234, 179, 8, 0.12);
   box-shadow: 0 0 10px rgba(234, 179, 8, 0.25);
+}
+
+html[data-theme="light"] .nav-access-btn.tier-master {
+  border-color: #b45309;
+  color: #92400e;
+  background: rgba(180, 83, 9, 0.14);
+  box-shadow: 0 0 10px rgba(180, 83, 9, 0.15);
+  font-weight: 500;
 }
 
 /* Badges */
@@ -2089,11 +2104,24 @@ html[data-theme="light"] #quick-nav::before {
   border: 1px solid rgba(45, 212, 191, 0.3);
 }
 
+html[data-theme="light"] .tier-badge-vip {
+  background: rgba(15, 118, 110, 0.12);
+  color: #0f766e;
+  border-color: rgba(15, 118, 110, 0.35);
+}
+
 .tier-badge-master {
   background: rgba(234, 179, 8, 0.15);
   color: #eab308;
   border: 1px solid rgba(234, 179, 8, 0.35);
   box-shadow: 0 0 8px rgba(234, 179, 8, 0.2);
+}
+
+html[data-theme="light"] .tier-badge-master {
+  background: rgba(180, 83, 9, 0.15);
+  color: #92400e;
+  border-color: rgba(180, 83, 9, 0.4);
+  box-shadow: 0 0 8px rgba(180, 83, 9, 0.15);
 }
 
 /* ── Access Control Modal ──────────────────────────────────────── */

@@ -1625,6 +1625,11 @@ function openAccessModal(defaultTier = 1) {
 
   closeBtn.addEventListener('click', closeAccessModal);
   overlay.addEventListener('click', e => { if (e.target === overlay) closeAccessModal(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) {
+      closeAccessModal();
+    }
+  });
 
   passToggle.addEventListener('click', () => {
     const isMasked = passInput.classList.contains('access-input-masked');
@@ -1764,6 +1769,12 @@ function renderMasterControlPanel() {
 
     toggleBtn.addEventListener('click', () => popup.classList.toggle('open'));
     closeBtn.addEventListener('click', () => popup.classList.remove('open'));
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && popup.classList.contains('open')) {
+        popup.classList.remove('open');
+      }
+    });
 
     simBtns.forEach(btn => {
       btn.addEventListener('click', () => {
