@@ -1,6 +1,6 @@
 {
-  "sha": "4b995deae595e4524325a3b9197acc8e734ed44a",
-  "shortSha": "4b995de",
-  "date": "2026-07-27T07:43:36+05:45",
-  "message": "style(about): dark mode filter on calendar iframe, remove box-shadow\n"
+  "sha": "1b04f97965e43cdf91cd941473f0d3678604be5c",
+  "shortSha": "1b04f97",
+  "date": "2026-07-27T07:47:35+05:45",
+  "message": "refactor: update style.css, script.js\n"
 }
