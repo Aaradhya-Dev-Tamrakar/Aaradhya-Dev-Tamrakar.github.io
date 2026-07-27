@@ -1309,6 +1309,10 @@ function getGoogleClientId() {
 }
 
 function promptForGoogleClientId() {
+  if (ACCESS_CONTROL.getEffectiveTier() !== ACCESS_CONTROL.TIER_MASTER) {
+    showToast('Only Master Admin can configure Google Client ID.');
+    return;
+  }
   const current = getGoogleClientId();
   const input = prompt('Enter your Google Cloud OAuth 2.0 Client ID (ends with .apps.googleusercontent.com):', current);
   if (input !== null) {
@@ -1595,7 +1599,7 @@ function renderAccessModal() {
 
       <div class="access-divider"><span>Or Sign In With Google</span></div>
       <div class="google-btn-wrap" id="googleSignInBtnWrap"></div>
-      <div style="text-align: center; margin-top: 0.25rem;">
+      <div id="masterGoogleClientWrap" style="text-align: center; margin-top: 0.25rem; display: none;">
         <button type="button" onclick="promptForGoogleClientId()" style="background: none; border: none; color: var(--muted); font-size: 0.68rem; font-family: var(--mono); cursor: pointer; text-decoration: underline;">
           ⚙️ Setup Google OAuth Client ID
         </button>
@@ -1621,6 +1625,11 @@ function openAccessModal(defaultTier = 1) {
 
   const actTier = ACCESS_CONTROL.getActualTier();
   const effTier = ACCESS_CONTROL.getEffectiveTier();
+
+  const masterGoogleClientWrap = document.getElementById('masterGoogleClientWrap');
+  if (masterGoogleClientWrap) {
+    masterGoogleClientWrap.style.display = (effTier === ACCESS_CONTROL.TIER_MASTER) ? 'block' : 'none';
+  }
 
   // Stealth Mode: Hide Master demo passcode in Guest mode!
   if (hintBox) {
@@ -1764,6 +1773,12 @@ function renderMasterControlPanel() {
             <button type="button" onclick="promptAddVipEmail()" style="background:rgba(45,212,191,0.15);border:1px solid #2dd4bf;color:#2dd4bf;padding:0.15rem 0.4rem;font-size:0.6rem;border-radius:4px;cursor:pointer;">+ Add Email</button>
           </div>
           <div id="masterVipListWrap" style="margin-top:0.3rem;max-height:80px;overflow-y:auto;font-family:var(--mono);font-size:0.65rem;color:var(--muted);display:flex;flex-direction:column;gap:0.2rem;"></div>
+        </div>
+
+        <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:0.5rem;">
+          <button type="button" onclick="promptForGoogleClientId()" style="background:rgba(250,204,21,0.12);border:1px solid rgba(250,204,21,0.4);color:#fef08a;padding:0.25rem 0.5rem;font-size:0.62rem;font-family:var(--mono);border-radius:4px;cursor:pointer;width:100%;">
+            ⚙️ Configure Google OAuth Client ID
+          </button>
         </div>
 
         <button type="button" class="access-btn-logout" id="masterLockBtn" style="padding:0.4rem;width:100%;">
