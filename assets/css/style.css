@@ -126,7 +126,7 @@ html[data-theme="light"] {
 /* Modern standard scrollbar styling (Firefox & modern browsers) */
 html {
   scrollbar-width: thin;
-  scrollbar-color: var(--accent-a80) var(--bg2);
+  scrollbar-color: var(--accent) var(--bg);
 }
 
 /* WebKit-based browsers (Chrome, Edge, Safari, Brave) */
@@ -137,27 +137,20 @@ html {
 
 ::-webkit-scrollbar-track {
   background: var(--bg);
-  border-left: 1px solid var(--glass-border);
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, var(--accent) 0%, var(--accent2) 100%);
-  border-radius: 20px;
+  border-radius: 99px;
   border: 2px solid var(--bg);
-  background-clip: padding-box;
-  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.2), 0 0 10px var(--accent-a35);
-  transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, var(--glow-gold, #d4a85a) 0%, var(--glow-teal, #6dbfaa) 100%);
-  border-width: 1px;
-  box-shadow: 0 0 16px var(--glow-gold-a90, rgba(212, 168, 90, 0.9)), 0 0 24px var(--glow-teal-a70, rgba(109, 191, 170, 0.7));
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background: linear-gradient(180deg, var(--glow-teal, #6dbfaa) 0%, var(--glow-gold, #d4a85a) 100%);
-  box-shadow: 0 0 20px var(--accent2);
+  background: var(--accent2);
 }
 
 ::-webkit-scrollbar-corner {
