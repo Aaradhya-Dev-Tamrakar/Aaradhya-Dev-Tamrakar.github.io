@@ -1,6 +1,6 @@
 {
-  "sha": "501c45f1bf84c718fa5d9f971a17a6cca2cfd440",
-  "shortSha": "501c45f",
-  "date": "2026-07-27T08:30:06+05:45",
-  "message": "style(nav): remove tier text from header access icon and center profile avatar\n"
+  "sha": "8c2a3a3e1abdc2d526ae356dc549aa87dcc81293",
+  "shortSha": "8c2a3a3",
+  "date": "2026-07-27T08:39:36+05:45",
+  "message": "security(access): restrict Google OAuth Client ID setup to Master Admin\n"
 }
