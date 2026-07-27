@@ -2235,8 +2235,8 @@ function initSiteScrollProgress() {
   function updateProgress() {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = scrollHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / scrollHeight) * 100)) : 0;
-    document.documentElement.style.setProperty('--site-scroll-progress', `${progress.toFixed(2)}%`);
+    const progress = scrollHeight > 0 ? Math.min(1, Math.max(0, scrollTop / scrollHeight)) : 0;
+    progressEl.style.transform = `scaleX(${progress})`;
     ticking = false;
   }
 

@@ -114,12 +114,14 @@ html[data-theme="light"] {
   top: 0;
   left: 0;
   height: 3px;
-  width: var(--site-scroll-progress, 0%);
+  width: 100%;
   background: linear-gradient(90deg, var(--accent), var(--accent2), var(--glow-gold, #d4a85a));
   box-shadow: 0 0 8px var(--accent), 0 0 14px var(--accent-a40);
   z-index: 10000;
   pointer-events: none;
-  transition: width 0.08s ease-out;
+  transform: scaleX(0);
+  transform-origin: left;
+  will-change: transform;
   border-radius: 0 2px 2px 0;
 }
 
@@ -592,7 +594,6 @@ html[data-theme="light"] .icon-moon {
   z-index: 9999;
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.1s linear;
   will-change: transform;
 }
 
