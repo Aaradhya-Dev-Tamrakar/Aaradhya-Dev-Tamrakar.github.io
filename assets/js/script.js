@@ -2221,3 +2221,35 @@ function initKeyNav() {
     window.location.href = PAGE_MAP[e.key];
   });
 }
+
+/* ── Global Scroll Progress Effect (Matching Journey style) ── */
+function initSiteScrollProgress() {
+  let progressEl = document.getElementById('siteScrollProgress');
+  if (!progressEl) {
+    progressEl = document.createElement('div');
+    progressEl.id = 'siteScrollProgress';
+    document.body.prepend(progressEl);
+  }
+
+  let ticking = false;
+  function updateProgress() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / scrollHeight) * 100)) : 0;
+    document.documentElement.style.setProperty('--site-scroll-progress', `${progress.toFixed(2)}%`);
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateProgress);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  updateProgress();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initSiteScrollProgress();
+});
