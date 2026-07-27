@@ -1,8 +1,18 @@
-# Portfolio Website Tracker — v26
+# Portfolio Website Tracker — v27
 
 ## _Last updated: 2026-07-27_
 
 ## Meta
+
+- **v27 — ambient particle-burst profile-photo effect (`about.html`), original design, not a Discord-asset port.** User referenced Discord Nitro profile-effect store items (Encom Grid/Tron, Ki Detonate, Vengeance frame, Entering Hyperspace) as visual inspiration; these are paid proprietary cosmetics and were **not** pulled/traced — flagged directly, then rebuilt as an original equivalent using the site's own design tokens. Implementation, scoped to `about.html` + `assets/js/script.js` only:
+  - `<canvas id="about-photo-fx" class="about-photo-fx" aria-hidden="true">` inserted as first child of `#about-photo-wrap`, before the existing `<picture>` — verified single insertion, not duplicated.
+  - CSS: `.about-photo-fx { position:absolute; inset:-24px; pointer-events:none; z-index:0; }` — sits behind `.about-photo` (`z-index:1`) and `.about-photo-ring` (`z-index:2`), confirmed the pre-existing ring block was read and left untouched (its own `inset`/`z-index`/`opacity` rules unchanged).
+  - JS: new self-contained IIFE appended to end of `script.js` (after the global keymap handler) — guards on `document.getElementById('about-photo-fx')` existing, so it's inert on every other page without a separate page-check. Spawns particles at the wrap's edges that drift inward toward center, fade in/out over their lifetime, capped at 34 concurrent, respawn-throttled via a frame counter.
+  - **Color**: reads `--accent` live via `getComputedStyle` on every animation frame (not cached at init) — so it tracks the light/dark theme toggle automatically, no separate light-mode branch needed.
+  - **Perf/battery guards**: `prefers-reduced-motion: reduce` check at IIFE start — returns immediately, no canvas/rAF loop ever starts (this is the first JS-side reduced-motion check in the codebase; prior motion — the ring's CSS `animation` — was already covered by the existing global `*` reduced-motion rule in `style.css`, which doesn't reach canvas/rAF work, so this was a genuine gap being closed, not a duplicate check). Also gated on the Page Visibility API (`visibilitychange`) — `cancelAnimationFrame` fires when the tab isn't visible, resumes on return.
+  - **Verification run**: `node -c script.js` — pass; `about.html` div-tag balance — 110 open / 110 close; `about-photo-fx` string count in `about.html` — exactly 2 (one CSS class rule, one element `id`+`class` — confirmed via `grep -n`, not just count, to rule out an accidental duplicate element); trailing-newline check on `script.js` post-append — present (file previously ended without one); CRLF check on both touched files — 0 in either, matching pre-edit LF-only state.
+  - **Trigger/behavior chosen this version**: always-on ambient loop (not hover-only, not click-toggle) — user selected this explicitly over the hover-only pattern the pre-existing `.about-photo-ring` uses.
+  - **Not committed/pushed from this side** — code delivered inline in-conversation (small/targeted edit, per output-delivery convention), `sync.ps1` is a local/user-side step and wasn't run this session.
 
 - **v1–v18**: see prior tracker versions. Two-repo architecture, nav/WebP/CSS-JS consolidation, domain-identity fix, GCSBR expansion — all confirmed delivered and live as of v18. 14-file orphaned-cert-PNG deletion landed in v18.
 - **v19**: 11 more orphaned raw PNGs (flagged in v18, out of scope there) deleted — 21 MB freed, verified zero broken references. Two open items resolved: `.achievement-title` h3 count (21, identified as a new DataCamp "Introduction to Git" entry, Jul 6 2026) and a re-attempted GitHub API query (still blocked, shared-IP rate limit, confirmed genuinely unresolved rather than newly broken). New low-priority finding: `graphify-out/` carries stale pre-WebP-conversion filenames, not actioned.
@@ -24,10 +34,11 @@
 
 **Open items:**
 
-| Item                                                 | Status                                                                                                                 |
-| ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| GitHub API direct commit/deployment count            | Still blocked — sandbox shared-IP rate limit (confirmed v19). `last-commit.json` (SHA `43d99bd`) remains the fallback. |
-| Merge-pending: still separate from `AARADHYA_MASTER` | Unchanged, carried forward.                                                                                            |
+| Item                                                              | Status                                                                                                                                                                                                                                                                                     |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Particle-fx trigger style — always-on vs. click/hover toggle**    | **Open, deferred by user this version (v27) — explicitly "continue later."** Currently shipped as always-on. If revisited: swap to click/hover would mean gating the rAF start/stop on a click/pointer listener instead of only `visibilitychange`; the reduced-motion check and 34-particle cap wouldn't need to change. |
+| GitHub API direct commit/deployment count                         | Still blocked — sandbox shared-IP rate limit (confirmed v19). `last-commit.json` (SHA `43d99bd`) remains the fallback.                                                                                                                                                                    |
+| Merge-pending: still separate from `AARADHYA_MASTER`                | Unchanged, carried forward.                                                                                                                                                                                                                                                                |
 
 _Dropped from this table (v24): the two v20/v21 unmatched-PDF items and the `graphify-out/` stale-filename item — all resolved, all documented in their own dedicated sections below rather than carried indefinitely as "open."_
 
