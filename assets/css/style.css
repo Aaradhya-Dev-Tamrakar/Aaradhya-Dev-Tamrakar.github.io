@@ -1211,29 +1211,7 @@ footer {
 }
 
 /* ── Responsive ───────────────────────────────────────────── */
-@media (max-width: 1300px) {
-  .nav-access-btn span {
-    display: none;
-  }
-
-  .nav-access-btn {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    padding: 0;
-    border-radius: 50%;
-    gap: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .nav-access-btn.has-avatar .nav-user-avatar,
-  .nav-access-btn.is-signed-in .nav-user-avatar {
-    width: 26px;
-    height: 26px;
-  }
-}
+/* (Header nav access button is circular icon-only by default) */
 
 @media (max-width: 1100px) {
   section {
@@ -1354,24 +1332,7 @@ footer {
   }
 
   .nav-access-btn {
-    display: none;
-  }
-
-  .nav-access-btn.is-signed-in,
-  .nav-access-btn.has-avatar {
     display: inline-flex !important;
-    width: 34px;
-    height: 34px;
-    min-width: 34px;
-    padding: 0;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .nav-access-btn.is-signed-in span,
-  .nav-access-btn.has-avatar span {
-    display: none !important;
   }
 
   .section-title {
@@ -2061,18 +2022,31 @@ html[data-theme="light"] #quick-nav::before {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
-  padding: 0.35rem 0.9rem 0.35rem 0.5rem;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
   font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
   color: var(--heading);
   background: var(--bg2);
   border: 1px solid var(--line);
-  border-radius: 20px;
   cursor: pointer;
-  white-space: nowrap;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  overflow: hidden;
   transition: all 0.25s ease;
+}
+
+#drawerAccessBtn {
+  width: calc(100% - 2rem) !important;
+  height: auto !important;
+  min-height: 42px;
+  border-radius: 20px !important;
+  padding: 0.6rem 1.2rem !important;
+  gap: 0.5rem;
 }
 
 .nav-access-btn:hover {
@@ -2082,9 +2056,11 @@ html[data-theme="light"] #quick-nav::before {
 }
 
 .nav-access-btn svg {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   stroke-width: 1.8;
+  display: block;
+  margin: 0;
 }
 
 .nav-access-btn.tier-vip {
@@ -2679,14 +2655,14 @@ html[data-theme="light"] .gated-overlay {
 }
 
 .nav-user-avatar {
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid var(--line);
+  border: none;
   flex-shrink: 0;
   display: block;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .project-link--locked {
