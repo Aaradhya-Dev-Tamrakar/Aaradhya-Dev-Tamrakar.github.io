@@ -1,6 +1,6 @@
 {
-  "sha": "e29c93fb49f780cddc678cc79a8eddc3c3d1080e",
-  "shortSha": "e29c93f",
-  "date": "2026-07-27T08:05:05+05:45",
-  "message": "refactor: update about.html, style.css\n"
+  "sha": "a4e8546127bbcc4b41062d5ef4daed07a1cf985e",
+  "shortSha": "a4e8546",
+  "date": "2026-07-27T08:09:25+05:45",
+  "message": "fix(ui): improve signed-in tier button contrast in light mode and add Esc key shortcut to close master admin panel\n"
 }
