@@ -111,32 +111,37 @@ html[data-theme="light"] {
 /* Modern standard scrollbar styling (Firefox & modern browsers) */
 html {
   scrollbar-width: thin;
-  scrollbar-color: var(--accent-a45) var(--bg);
+  scrollbar-color: var(--accent) var(--bg);
 }
 
 /* WebKit-based browsers (Chrome, Edge, Safari) */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
 }
 
 ::-webkit-scrollbar-track {
   background: var(--bg);
+  border-left: 1px solid var(--line);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent-a35);
-  border-radius: 5px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent2));
+  border-radius: 99px;
   border: 2px solid var(--bg);
-  transition: background 0.2s ease;
+  box-shadow: 0 0 10px var(--accent-a40);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+  background: linear-gradient(to bottom, var(--glow-gold, #d4a85a), var(--glow-teal, #6dbfaa));
+  box-shadow: 0 0 14px var(--accent), 0 0 20px var(--glow-teal-a35, rgba(109, 191, 170, 0.35));
+  border-width: 1px;
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background: var(--accent2);
+  background: linear-gradient(to bottom, var(--accent2), var(--accent));
+  box-shadow: 0 0 18px var(--accent2);
 }
 
 ::-webkit-scrollbar-corner {
