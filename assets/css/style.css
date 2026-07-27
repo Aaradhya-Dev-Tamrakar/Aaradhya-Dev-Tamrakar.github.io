@@ -127,6 +127,7 @@ html[data-theme="light"] {
 html {
   scrollbar-width: thin;
   scrollbar-color: var(--accent) var(--bg);
+  scrollbar-gutter: stable;
 }
 
 /* WebKit-based browsers (Chrome, Edge, Safari, Brave) */
