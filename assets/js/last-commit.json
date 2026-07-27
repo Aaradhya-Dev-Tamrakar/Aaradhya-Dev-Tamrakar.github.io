@@ -1,6 +1,6 @@
 {
-  "sha": "f0543f2c6250d81275e211215e698901e42ecf42",
-  "shortSha": "f0543f2",
-  "date": "2026-07-27T08:12:17+05:45",
-  "message": "fix(ui): enhance dark mode legibility and contrast for signed-in tier badges and nav button\n"
+  "sha": "dd6915cd9a4d14b6a08c36933e0ba6e398804de7",
+  "shortSha": "dd6915c",
+  "date": "2026-07-27T08:27:56+05:45",
+  "message": "style(nav): center signed-in profile icon when tier text overflows\n"
 }
