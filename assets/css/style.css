@@ -1217,7 +1217,21 @@ footer {
   }
 
   .nav-access-btn {
-    padding: 0.4rem 0.55rem;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    padding: 0;
+    border-radius: 50%;
+    gap: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-access-btn.has-avatar .nav-user-avatar,
+  .nav-access-btn.is-signed-in .nav-user-avatar {
+    width: 26px;
+    height: 26px;
   }
 }
 
@@ -1341,6 +1355,23 @@ footer {
 
   .nav-access-btn {
     display: none;
+  }
+
+  .nav-access-btn.is-signed-in,
+  .nav-access-btn.has-avatar {
+    display: inline-flex !important;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    padding: 0;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-access-btn.is-signed-in span,
+  .nav-access-btn.has-avatar span {
+    display: none !important;
   }
 
   .section-title {
@@ -2648,12 +2679,14 @@ html[data-theme="light"] .gated-overlay {
 }
 
 .nav-user-avatar {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid var(--line);
   flex-shrink: 0;
+  display: block;
+  margin: 0 auto;
 }
 
 .project-link--locked {
