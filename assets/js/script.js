@@ -1774,6 +1774,12 @@ function renderMasterControlPanel() {
       if (e.key === 'Escape' && popup.classList.contains('open')) {
         popup.classList.remove('open');
       }
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'M' || e.key === 'm')) {
+        if (ACCESS_CONTROL.getActualTier() === ACCESS_CONTROL.TIER_MASTER) {
+          e.preventDefault();
+          popup.classList.toggle('open');
+        }
+      }
     });
 
     simBtns.forEach(btn => {
