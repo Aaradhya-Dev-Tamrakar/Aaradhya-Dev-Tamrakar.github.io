@@ -605,10 +605,12 @@
     /* ── Google Calendar dark-mode filter ──────────────────── */
     .cal-iframe {
       filter: invert(0.92) hue-rotate(180deg) saturate(1.3);
+      border-radius: 3px;
     }
 
     html[data-theme="light"] .cal-iframe {
-      filter: none;
+      /* Warm the stark white iframe to match the cream palette */
+      filter: sepia(0.08) brightness(0.97) saturate(0.95);
     }
   </style>
 </head>
