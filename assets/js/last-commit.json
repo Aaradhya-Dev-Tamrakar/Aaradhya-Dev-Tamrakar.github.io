@@ -1,6 +1,6 @@
 {
-  "sha": "d5a64ed906b79f22d1cfd22606df021af93f5da2",
-  "shortSha": "d5a64ed",
-  "date": "2026-07-27T08:10:28+05:45",
-  "message": "feat(ui): add Ctrl+Shift+M keyboard shortcut to toggle master admin panel when in master admin mode\n"
+  "sha": "f0543f2c6250d81275e211215e698901e42ecf42",
+  "shortSha": "f0543f2",
+  "date": "2026-07-27T08:12:17+05:45",
+  "message": "fix(ui): enhance dark mode legibility and contrast for signed-in tier badges and nav button\n"
 }
