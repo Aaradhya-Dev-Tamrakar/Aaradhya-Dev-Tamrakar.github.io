@@ -1,6 +1,6 @@
 {
-  "sha": "3feb4e4868965346f70b1f1236702119e66b3b4b",
-  "shortSha": "3feb4e4",
-  "date": "2026-07-28T22:01:00+05:45",
-  "message": "refactor: update achievements.html (+1/-1)\n"
+  "sha": "f45c0ebf4476530a3394e676a1c07f7f94229b89",
+  "shortSha": "f45c0eb",
+  "date": "2026-07-28T22:02:35+05:45",
+  "message": "fix(sync): fall back to added-line snippet when diff has no hunk context\n"
 }
