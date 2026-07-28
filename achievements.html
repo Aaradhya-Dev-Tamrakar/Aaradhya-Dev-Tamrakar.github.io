@@ -1594,9 +1594,7 @@
           group.className = `year-group ${isCurrentYear ? 'year-group--current' : 'year-group--past'}`;
           if (index === 0) group.open = true;
 
-          const certCount = yearBuckets.get(year).reduce(
-            (sum, item) => sum + item.querySelectorAll('.cert-btn').length, 0
-          );
+          const certCount = yearBuckets.get(year).length;
           const summary = document.createElement('summary');
           summary.className = 'year-toggle';
           summary.innerHTML = `<span>${year}</span><span class="year-count">${certCount}</span>`;
