@@ -1,0 +1,62 @@
+name: Verify
+
+# Last updated: 2026-07-28
+
+# Runs scripts/verify.py (id integrity, tag balance, internal-href
+# resolution, search-index sync) and fails the run if any check errors.
+#
+# Trigger: workflow_run on completion of "Update search index", NOT
+# push. Two reasons push doesn't work here:
+#
+#   1. update-search-index.yml's commit-back uses "[skip ci]" in its
+#      message — GitHub suppresses push/pull_request-triggered workflows
+#      for that specific commit. A push-triggered verify.yml would only
+#      ever see the ORIGINAL push (pre-regen), never get a second run
+#      against the state after script.js is amended.
+#   2. Running push-triggered in parallel with update-search-index.yml
+#      means the search-index-sync check races the regeneration job and
+#      can false-positive-fail on a transient "stale" state that's about
+#      to be fixed a few seconds later — not a real problem, just bad
+#      sequencing.
+#
+# workflow_run fires only after the named workflow's job (including its
+# commit-and-push step) has fully finished, so by the time this runs,
+# assets/js/script.js already reflects any regeneration — no race, no
+# skip-ci ambiguity, no sleep/retry guess.
+#
+# Read-only check: no commit-back, so no bot-loop-guard needed here
+# (unlike stamp-last-commit.yml / update-search-index.yml).
+#
+# Caveat: workflow_run only fires for runs of the target workflow that
+# happen AFTER this file exists on the default branch — the push that
+# adds this file won't itself trigger a verify run; the next push will.
+on:
+  workflow_run:
+    workflows: ["Update search index"]
+    types:
+      - completed
+
+# Least-privilege: read-only, this workflow never writes to the repo.
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install beautifulsoup4
+
+      - name: Run verify.py
+        run: python3 scripts/verify.py
