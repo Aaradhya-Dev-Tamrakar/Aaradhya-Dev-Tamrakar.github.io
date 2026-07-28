@@ -1,6 +1,6 @@
 {
-  "sha": "922042b9c4199afbd75c724fec8cbf9168048c80",
-  "shortSha": "922042b",
-  "date": "2026-07-28T22:20:57+05:45",
-  "message": "feat(scripts): add verify.py — id integrity, tag balance, search-index sync checks\n"
+  "sha": "47fa3719306ac7683500e576dd7b9a7eb4f53e38",
+  "shortSha": "47fa371",
+  "date": "2026-07-28T22:30:11+05:45",
+  "message": "ci(workflows): add verify.yml gated on workflow_run — checks true post-regen state, no sleep race\n"
 }
