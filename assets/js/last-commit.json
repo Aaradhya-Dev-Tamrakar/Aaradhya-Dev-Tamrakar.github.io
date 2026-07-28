@@ -1,6 +1,6 @@
 {
-  "sha": "8a2a74aa4c165f638b7f0a0037aee2db449195ca",
-  "shortSha": "8a2a74a",
-  "date": "2026-07-28T21:46:12+05:45",
-  "message": "feat(achievements): academic totals count certificates issued, not cards\n"
+  "sha": "8a9c4e1a540342c3d562f700ee85a5cc6cf3644f",
+  "shortSha": "8a9c4e1",
+  "date": "2026-07-28T21:49:24+05:45",
+  "message": "fix(achievements): exclude photo-thumb from per-year and academic cert counts\n"
 }
