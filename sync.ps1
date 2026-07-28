@@ -45,9 +45,11 @@ function Get-AutoCommitMessage {
 
         if ($status -match 'A|\?\?') {
             $addedFiles += $fileName
-        } elseif ($status -match 'D') {
+        }
+        elseif ($status -match 'D') {
             $deletedFiles += $fileName
-        } else {
+        }
+        else {
             $modifiedFiles += $fileName
         }
     }
@@ -60,14 +62,16 @@ function Get-AutoCommitMessage {
     $prefix = "chore"
     if ($addedFiles.Count -gt 0) {
         $prefix = "feat"
-    } elseif ($modifiedFiles | Where-Object { $_ -match '\.(js|css|html)$' }) {
+    }
+    elseif ($modifiedFiles | Where-Object { $_ -match '\.(js|css|html)$' }) {
         $prefix = "refactor"
     }
 
     $summary = ""
     if ($allChanged.Count -le 3) {
         $summary = $allChanged -join ", "
-    } else {
+    }
+    else {
         $firstTwo = ($allChanged[0..1]) -join ", "
         $extraCount = $allChanged.Count - 2
         $summary = "$firstTwo +$extraCount more"
@@ -86,9 +90,26 @@ function Get-AutoCommitMessage {
     }
 
     $hunkContext = git diff -U0 HEAD -- 2>$null |
-        Select-String '^@@.*@@\s*(\S.*)$' |
-        ForEach-Object { $_.Matches[0].Groups[1].Value } |
+    Select-String '^@@.*@@\s*(\S.*)$' |
+    ForEach-Object { $_.Matches[0].Groups[1].Value } |
+    Select-Object -First 1
+
+    if (-not $hunkContext) {
+        # No preceding-code context on the hunk header (common for pure
+        # end-of-file appends) — fall back to the first actual added line's
+        # text so two different one-line edits still produce different
+        # messages instead of both collapsing to e.g. "(+1/-1)".
+        $addedLine = git diff -U0 HEAD -- 2>$null |
+        Select-String '^\+[^+]' |
+        ForEach-Object { $_.Line.Substring(1).Trim() } |
+        Where-Object { $_.Length -gt 0 } |
         Select-Object -First 1
+        if ($addedLine) {
+            $snippet = $addedLine
+            if ($snippet.Length -gt 50) { $snippet = $snippet.Substring(0, 50) + "…" }
+            $hunkContext = $snippet
+        }
+    }
 
     if ($hunkContext) {
         return "${prefix}: update ${summary} — ${hunkContext}${churn}"
@@ -176,7 +197,8 @@ if ($Message) {
 
     Write-Host "[Git Sync] Syncing bot stamp commit..." -ForegroundColor Cyan
     git pull --autostash origin main
-} else {
+}
+else {
     Write-Host "[Git Sync] No local changes detected to commit." -ForegroundColor Gray
 }
 
