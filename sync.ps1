@@ -73,7 +73,27 @@ function Get-AutoCommitMessage {
         $summary = "$firstTwo +$extraCount more"
     }
 
-    return "${prefix}: update ${summary}"
+    # Disambiguate repeated edits to the same file(s): filenames alone repeat
+    # verbatim across unrelated commits, so fold in line-churn stats and,
+    # where possible, the nearest changed identifier (function/selector/id)
+    # pulled straight from the diff hunk headers.
+    $diffStat = git diff --shortstat HEAD -- 2>$null
+    $churn = ""
+    if ($diffStat -match '(\d+) insertion') { $ins = $Matches[1] } else { $ins = 0 }
+    if ($diffStat -match '(\d+) deletion') { $del = $Matches[1] } else { $del = 0 }
+    if (($ins + 0) -gt 0 -or ($del + 0) -gt 0) {
+        $churn = " (+$ins/-$del)"
+    }
+
+    $hunkContext = git diff -U0 HEAD -- 2>$null |
+        Select-String '^@@.*@@\s*(\S.*)$' |
+        ForEach-Object { $_.Matches[0].Groups[1].Value } |
+        Select-Object -First 1
+
+    if ($hunkContext) {
+        return "${prefix}: update ${summary} — ${hunkContext}${churn}"
+    }
+    return "${prefix}: update ${summary}${churn}"
 }
 
 function Update-TrackerLog {
