@@ -1,6 +1,6 @@
 {
-  "sha": "458e4bc10e7f5592e2b4aca49f9a45149984694a",
-  "shortSha": "458e4bc",
-  "date": "2026-07-28T21:23:45+05:45",
-  "message": "fix(achievements): eca year badge counts total cards, not cert-thumbs\n"
+  "sha": "6c1c822edaadbcc13cdb215673c66ee47b57087c",
+  "shortSha": "6c1c822",
+  "date": "2026-07-28T21:24:20+05:45",
+  "message": "refactor: update achievements.html\n"
 }
