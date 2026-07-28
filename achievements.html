@@ -1708,7 +1708,7 @@
             group.style.display = visibleCount > 0 ? '' : 'none';
 
             const countEl = group.querySelector('.year-count');
-            if (countEl) countEl.textContent = String(visibleCertCount);
+            if (countEl) countEl.textContent = String(track === 'eca' ? visibleCount : visibleCertCount);
           });
 
           academicBtn.classList.toggle('is-active', track === 'academic');
