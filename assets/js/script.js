@@ -341,6 +341,13 @@ const SEARCH_STATIC_INDEX = {
   },
   {
     "type": "achievement",
+    "title": "Introduction to Claude Cowork",
+    "meta": "ANTHROPIC · Jul 2026",
+    "href": "achievements.html#achv-35",
+    "text": "anthropic introduction to claude cowork jul 2026"
+  },
+  {
+    "type": "achievement",
     "title": "KEC Music Club — Performer",
     "meta": "KEC Music Club · 2023–2026",
     "href": "achievements.html#achv-27",
