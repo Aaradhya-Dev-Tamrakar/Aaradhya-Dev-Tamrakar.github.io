@@ -494,8 +494,36 @@
       box-shadow: inset 0 0 0 2px var(--glow-green-a50), 0 0 14px var(--accent-a35);
     }
 
+    .achv-track-total {
+      display: inline-flex;
+      margin-left: 0.5em;
+      opacity: 0.75;
+    }
+
+    .achv-track-total::before {
+      content: "[";
+    }
+
+    .achv-track-total::after {
+      content: "]";
+    }
+
     .achv-legend[hidden] {
       display: none;
+    }
+
+    .achv-totals-summary {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0.75rem 0 1rem;
+    }
+
+    .achv-totals-summary strong {
+      color: var(--accent);
+      font-weight: 700;
     }
 
     .year-group {
@@ -732,8 +760,8 @@
       <div class="achv-list-controls">
         <div class="achv-track-toggle" role="group" aria-label="Filter by track">
           <button type="button" class="achv-track-btn is-active" id="trackAcademicBtn"
-            aria-pressed="true">Academic</button>
-          <button type="button" class="achv-track-btn" id="trackEcaBtn" aria-pressed="false">Extracurricular</button>
+            aria-pressed="true">Academic<span class="achv-track-total" id="academicTotal"></span></button>
+          <button type="button" class="achv-track-btn" id="trackEcaBtn" aria-pressed="false">Extracurricular<span class="achv-track-total" id="ecaTotal"></span></button>
         </div>
         <div class="achv-legends">
           <div class="achv-legend" id="legendAcademic" aria-label="Academic category legend">
@@ -764,6 +792,7 @@
           <span id="toggleAllLabel">Expand all</span>
         </button>
       </div>
+      <p class="achv-totals-summary" id="achvTotalsSummary"></p>
       <div class="achievements-list" id="achievementsList">
 
         <div class="achievement-item reveal" id="achv-0" data-track="academic" data-category="workshop">
@@ -1293,7 +1322,7 @@
           <div class="achievement-org">WiseBee</div>
           <div>
             <h3 class="achievement-title">Machine Learning Hackathon</h3>
-            <button class="cert-btn cert-thumb" data-cert="assets/events/machine-learning-hackathon-2024.webp"
+            <button class="cert-btn photo-thumb" data-cert="assets/events/machine-learning-hackathon-2024.webp"
               data-verify="https://www.wisebee.com.np/hackathon/kec/" data-label="Machine Learning Hackathon — WiseBee"
               data-type="image" aria-label="View photo: Machine Learning Hackathon — WiseBee">
               <img src="assets/events/machine-learning-hackathon-2024.webp" alt="Machine Learning Hackathon event photo"
@@ -1642,6 +1671,7 @@
 
         initToggleAll(timeline);
         initTrackToggle(timeline);
+        renderTotals(timeline);
       }
 
       function initToggleAll(timeline) {
@@ -1677,6 +1707,25 @@
         // filtering hides/shows year-groups (visible-group count changes).
         timeline.__syncToggleAllLabel = syncLabel;
         syncLabel();
+      }
+
+      // Grand totals across all years, computed once from the full item set —
+      // independent of applyTrack's per-year filtering so they don't shift
+      // when the user toggles Academic/Extracurricular.
+      function renderTotals(timeline) {
+        const items = Array.from(timeline.querySelectorAll('.achievement-item'));
+        const academicTotal = items.filter(item => item.dataset.track === 'academic').length;
+        const ecaTotal = items.filter(item => item.dataset.track === 'eca').length;
+
+        const academicBadge = document.getElementById('academicTotal');
+        const ecaBadge = document.getElementById('ecaTotal');
+        if (academicBadge) academicBadge.textContent = String(academicTotal);
+        if (ecaBadge) ecaBadge.textContent = String(ecaTotal);
+
+        const summary = document.getElementById('achvTotalsSummary');
+        if (summary) {
+          summary.innerHTML = `<strong>${academicTotal}</strong> academic &middot; <strong>${ecaTotal}</strong> extracurricular`;
+        }
       }
 
       // Academic / Extracurricular track filter. Runs after year-groups are
