@@ -1,6 +1,6 @@
 {
-  "sha": "d2fa72fda885d713a26f20510c30ac7b34d65c7f",
-  "shortSha": "d2fa72f",
-  "date": "2026-07-28T20:41:54+05:45",
-  "message": "fix(achievements): count year badge per card, not per cert-btn\n"
+  "sha": "369339837ddd35a43096c1216d5a2fffaa39c166",
+  "shortSha": "3693398",
+  "date": "2026-07-28T21:16:02+05:45",
+  "message": "fix(achievements): exclude event photo thumbs from track-filter cert count\n"
 }
