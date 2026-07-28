@@ -1743,21 +1743,19 @@
           groups.forEach(group => {
             const items = Array.from(group.querySelectorAll('.achievement-item'));
             let visibleCount = 0;
-            let visibleCertCount = 0;
 
             items.forEach(item => {
               const match = item.dataset.track === track;
               item.style.display = match ? '' : 'none';
               if (match) {
                 visibleCount += 1;
-                visibleCertCount += item.querySelectorAll('.cert-btn.cert-thumb').length;
               }
             });
 
             group.style.display = visibleCount > 0 ? '' : 'none';
 
             const countEl = group.querySelector('.year-count');
-            if (countEl) countEl.textContent = String(track === 'eca' ? visibleCount : visibleCertCount);
+            if (countEl) countEl.textContent = String(visibleCount);
           });
 
           academicBtn.classList.toggle('is-active', track === 'academic');
