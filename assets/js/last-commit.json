@@ -1,6 +1,6 @@
 {
-  "sha": "681988afa5de3300e5e6000c1e57b65583908413",
-  "shortSha": "681988a",
-  "date": "2026-07-28T21:32:12+05:45",
-  "message": "feat(achievements): show academic and extracurricular grand totals\n"
+  "sha": "f9b3e29d078ed6a237c3940ad396474f33c78bc1",
+  "shortSha": "f9b3e29",
+  "date": "2026-07-28T21:41:44+05:45",
+  "message": "fix(achievements): year badges count cards, not cert-thumbs, for academic track\n"
 }
