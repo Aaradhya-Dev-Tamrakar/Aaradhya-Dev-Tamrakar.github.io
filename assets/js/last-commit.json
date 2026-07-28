@@ -1,6 +1,6 @@
 {
-  "sha": "47fa3719306ac7683500e576dd7b9a7eb4f53e38",
-  "shortSha": "47fa371",
-  "date": "2026-07-28T22:30:11+05:45",
-  "message": "ci(workflows): add verify.yml gated on workflow_run — checks true post-regen state, no sleep race\n"
+  "sha": "264c49950f79a68eeb07127842bcd3ccb5a4f113",
+  "shortSha": "264c499",
+  "date": "2026-07-28T22:50:35+05:45",
+  "message": "refactor: update style.css — html[data-theme=\"light\"] { (+5/-3)\n"
 }
