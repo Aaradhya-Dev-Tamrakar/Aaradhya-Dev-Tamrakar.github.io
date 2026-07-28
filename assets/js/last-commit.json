@@ -1,6 +1,6 @@
 {
-  "sha": "369339837ddd35a43096c1216d5a2fffaa39c166",
-  "shortSha": "3693398",
-  "date": "2026-07-28T21:16:02+05:45",
-  "message": "fix(achievements): exclude event photo thumbs from track-filter cert count\n"
+  "sha": "1b485063aca43f6ff428db9556507e699caf5fb2",
+  "shortSha": "1b48506",
+  "date": "2026-07-28T21:21:41+05:45",
+  "message": "refactor: update achievements.html\n"
 }
