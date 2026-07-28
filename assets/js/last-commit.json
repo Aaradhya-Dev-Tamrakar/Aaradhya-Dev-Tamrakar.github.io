@@ -1,6 +1,6 @@
 {
-  "sha": "6c1c822edaadbcc13cdb215673c66ee47b57087c",
-  "shortSha": "6c1c822",
-  "date": "2026-07-28T21:24:20+05:45",
-  "message": "refactor: update achievements.html\n"
+  "sha": "681988afa5de3300e5e6000c1e57b65583908413",
+  "shortSha": "681988a",
+  "date": "2026-07-28T21:32:12+05:45",
+  "message": "feat(achievements): show academic and extracurricular grand totals\n"
 }
