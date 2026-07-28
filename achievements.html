@@ -1714,7 +1714,8 @@
       // when the user toggles Academic/Extracurricular.
       function renderTotals(timeline) {
         const items = Array.from(timeline.querySelectorAll('.achievement-item'));
-        const academicTotal = items.filter(item => item.dataset.track === 'academic').length;
+        const academicItems = items.filter(item => item.dataset.track === 'academic');
+        const academicTotal = academicItems.reduce((sum, item) => sum + item.querySelectorAll('.cert-btn, .verify-btn').length, 0);
         const ecaTotal = items.filter(item => item.dataset.track === 'eca').length;
 
         const academicBadge = document.getElementById('academicTotal');
@@ -1743,19 +1744,21 @@
           groups.forEach(group => {
             const items = Array.from(group.querySelectorAll('.achievement-item'));
             let visibleCount = 0;
+            let visibleCertCount = 0;
 
             items.forEach(item => {
               const match = item.dataset.track === track;
               item.style.display = match ? '' : 'none';
               if (match) {
                 visibleCount += 1;
+                visibleCertCount += item.querySelectorAll('.cert-btn, .verify-btn').length;
               }
             });
 
             group.style.display = visibleCount > 0 ? '' : 'none';
 
             const countEl = group.querySelector('.year-count');
-            if (countEl) countEl.textContent = String(visibleCount);
+            if (countEl) countEl.textContent = String(track === 'academic' ? visibleCertCount : visibleCount);
           });
 
           academicBtn.classList.toggle('is-active', track === 'academic');
