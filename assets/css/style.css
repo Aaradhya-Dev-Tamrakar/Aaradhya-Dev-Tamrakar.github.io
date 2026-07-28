@@ -110,9 +110,11 @@ html[data-theme="light"] {
 /* ── Custom Scrollbar & Scroll Progress Indicator ───────────── */
 
 /* Modern standard scrollbar styling (Firefox & modern browsers) */
-html {
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent) var(--bg);
+@supports (scrollbar-width: thin) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) var(--bg);
+  }
 }
 
 /* WebKit-based browsers (Chrome, Edge, Safari, Brave) */
