@@ -1,6 +1,6 @@
 {
-  "sha": "f45c0ebf4476530a3394e676a1c07f7f94229b89",
-  "shortSha": "f45c0eb",
-  "date": "2026-07-28T22:02:35+05:45",
-  "message": "fix(sync): fall back to added-line snippet when diff has no hunk context\n"
+  "sha": "458e63f321d162ce87f5201615487ddd7a8abd95",
+  "shortSha": "458e63f",
+  "date": "2026-07-28T22:03:49+05:45",
+  "message": "chore: update sync.ps1 — else { (+1/-1)\n"
 }
