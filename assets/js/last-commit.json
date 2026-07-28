@@ -1,6 +1,6 @@
 {
-  "sha": "47019e50355c13ab448e1f484065d1ab90e67002",
-  "shortSha": "47019e5",
-  "date": "2026-07-28T22:09:21+05:45",
-  "message": "fix(sync): guard against newline-only diffs collapsing hunk context; dedupe diff calls\n"
+  "sha": "922042b9c4199afbd75c724fec8cbf9168048c80",
+  "shortSha": "922042b",
+  "date": "2026-07-28T22:20:57+05:45",
+  "message": "feat(scripts): add verify.py — id integrity, tag balance, search-index sync checks\n"
 }
