@@ -1,6 +1,6 @@
 {
-  "sha": "45888313370364db1b7073121e8bcc81e7061b9d",
-  "shortSha": "4588831",
-  "date": "2026-07-28T20:34:55+05:45",
-  "message": "feat(achievements): add Introduction to Claude Cowork cert — ANTHROPIC\n"
+  "sha": "d2fa72fda885d713a26f20510c30ac7b34d65c7f",
+  "shortSha": "d2fa72f",
+  "date": "2026-07-28T20:41:54+05:45",
+  "message": "fix(achievements): count year badge per card, not per cert-btn\n"
 }
