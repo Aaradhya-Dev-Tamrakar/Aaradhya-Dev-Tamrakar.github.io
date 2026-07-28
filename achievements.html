@@ -1623,7 +1623,7 @@
           group.className = `year-group ${isCurrentYear ? 'year-group--current' : 'year-group--past'}`;
           if (index === 0) group.open = true;
 
-          const certCount = yearBuckets.get(year).length;
+          const certCount = yearBuckets.get(year).reduce((sum, item) => sum + Array.from(item.querySelectorAll('.cert-btn, .verify-btn')).filter(btn => !btn.classList.contains('photo-thumb')).length, 0);
           const summary = document.createElement('summary');
           summary.className = 'year-toggle';
           summary.innerHTML = `<span>${year}</span><span class="year-count">${certCount}</span>`;
@@ -1715,7 +1715,7 @@
       function renderTotals(timeline) {
         const items = Array.from(timeline.querySelectorAll('.achievement-item'));
         const academicItems = items.filter(item => item.dataset.track === 'academic');
-        const academicTotal = academicItems.reduce((sum, item) => sum + item.querySelectorAll('.cert-btn, .verify-btn').length, 0);
+        const academicTotal = academicItems.reduce((sum, item) => sum + Array.from(item.querySelectorAll('.cert-btn, .verify-btn')).filter(btn => !btn.classList.contains('photo-thumb')).length, 0);
         const ecaTotal = items.filter(item => item.dataset.track === 'eca').length;
 
         const academicBadge = document.getElementById('academicTotal');
@@ -1751,7 +1751,7 @@
               item.style.display = match ? '' : 'none';
               if (match) {
                 visibleCount += 1;
-                visibleCertCount += item.querySelectorAll('.cert-btn, .verify-btn').length;
+                visibleCertCount += Array.from(item.querySelectorAll('.cert-btn, .verify-btn')).filter(btn => !btn.classList.contains('photo-thumb')).length;
               }
             });
 
