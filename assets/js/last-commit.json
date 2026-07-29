@@ -1,6 +1,6 @@
 {
-  "sha": "dbc769c3c0e77810790fdf24ae1eabd52a69fe46",
-  "shortSha": "dbc769c",
-  "date": "2026-07-29T14:55:08+05:45",
-  "message": "fix(access-control): fully hide Master-tier repo links below Master (no locked teaser); VIP-tier links unchanged\n"
+  "sha": "03e7846d4fa51e2a0febdb18082d7a2b73df37a6",
+  "shortSha": "03e7846",
+  "date": "2026-07-29T15:00:53+05:45",
+  "message": "fix(content): correct GCSBR examiner score to 9.6/10 (72/75)\n"
 }
