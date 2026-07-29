@@ -84,6 +84,36 @@
       align-items: stretch;
     }
 
+    .projects-section-title {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: baseline;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin: 2.5rem 0 0.25rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--line);
+      font-family: var(--serif, Georgia, serif);
+      font-weight: 400;
+      font-size: 1.5rem;
+      color: var(--text);
+    }
+
+    .projects-grid > .projects-section-title:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .projects-section-sub {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
     details.project-card {
       display: flex;
       flex-direction: column;
@@ -649,7 +679,7 @@
         </button>
       </div>
       <div class="projects-grid" id="projectsGrid">
-        <!-- 1ST: Major Fusemachines Capstone -->
+      <h2 class="projects-section-title" id="section-projects">Projects<span class="projects-section-sub">Major, minor, and capstone builds</span></h2>
         <details class="project-card reveal project-card--major">
           <summary class="project-summary">
             <div class="project-index">P — 018 <span class="project-status">In Progress</span></div>
@@ -682,8 +712,6 @@
             </div>
           </div>
         </details>
-
-        <!-- 2ND: Minor Project (Gesture-Controlled Self-Balancing Robot) -->
         <details class="project-card reveal project-card--gold" id="p-001">
           <summary class="project-summary">
             <div class="project-index">P — 001 <span class="project-date">2024</span></div>
@@ -720,32 +748,6 @@
             </div>
           </div>
         </details>
-
-        <!-- 3RD: Latest Fusemachines Wk 11 -->
-        <details class="project-card reveal project-card--major">
-          <summary class="project-summary">
-            <div class="project-index">P — 019 <span class="project-date">Jul 2026</span></div>
-            <h3 class="project-title">Fusemachines Wk 11 — Vision Transformers</h3>
-          </summary>
-          <div class="project-card-body">
-            <ul class="project-desc-list">
-              <li>Five-module deep computer vision stack — ResNet-50 transfer learning + GradCAM, Faster R-CNN
-                object detection, DeepLabv3+ segmentation, a from-scratch VAE, and ViT patch embedding</li>
-              <li>CLIP zero-shot classification hit 92.0% on a 200-image slice, outscoring the fine-tuned ResNet-50
-                (74.1%) — deployment memo compares both for a 500-camera warehouse rollout, exported to ONNX</li>
-            </ul>
-            <div class="project-tags">
-              <span class="tag">Python</span><span class="tag">PyTorch</span>
-              <span class="tag">torchvision</span><span class="tag">timm</span>
-              <span class="tag">CLIP</span><span class="tag">ONNX</span>
-              <span class="tag">GradCAM</span><span class="tag">Vision Transformers</span>
-            </div>
-            <a class="project-link" data-payload-link-id="proj-fuse-wk11" target="_blank"
-              rel="noopener">View on GitHub ↗</a>
-          </div>
-        </details>
-
-        <!-- 4TH: Major SPARK -->
         <details class="project-card reveal project-card--major">
           <summary class="project-summary">
             <div class="project-index">P — 015 <span class="project-status">In Progress</span></div>
@@ -777,48 +779,117 @@
             </div>
           </div>
         </details>
-
-        <!-- CHRONOLOGICAL ORDER (NEWER TO OLDER) -->
-        <details class="project-card reveal" id="p-021">
+        <details class="project-card reveal">
           <summary class="project-summary">
-            <div class="project-index">P — 021 <span class="project-date">Jul 2026</span></div>
-            <h3 class="project-title">Claude Desktop Multi-Profile &amp; Sync Utilities</h3>
+            <div class="project-index">P — 013 <span class="project-date">Jun 2026</span></div>
+            <h3 class="project-title">Antenna Lab Data Analysis</h3>
           </summary>
           <div class="project-card-body">
             <ul class="project-desc-list">
-              <li>PowerShell 7 &amp; Windows Shell utility suite enabling multi-user profile isolation for Anthropic's Claude Desktop application</li>
-              <li>Features native profile session swapping, single-instance browser OAuth (`claude://`) deep-link routing, and automated Git repository synchronization with conventional commit messaging</li>
+              <li>Python data-analysis pipeline for antenna radiation pattern measurements from lab Excel sheets</li>
+              <li>SciPy cubic interpolation plus Matplotlib polar plots — Communication &amp; RF coursework
+                deliverable</li>
             </ul>
             <div class="project-tags">
-              <span class="tag">PowerShell 7</span><span class="tag">Windows Shell</span>
-              <span class="tag">Electron</span><span class="tag">MSIX / AppX</span>
-              <span class="tag">OAuth 2.0</span><span class="tag">Robocopy</span>
-              <span class="tag">Git Automation</span><span class="tag">Batch CLI</span>
+              <span class="tag">Python</span><span class="tag">Pandas</span>
+              <span class="tag">NumPy</span><span class="tag">SciPy</span>
+              <span class="tag">Matplotlib</span><span class="tag">Polar Plot</span>
             </div>
-            <a class="project-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Claude-Desktop" target="_blank" rel="noopener">View on GitHub ↗</a>
           </div>
         </details>
-
-        <details class="project-card reveal" id="p-020">
+        <details class="project-card reveal">
           <summary class="project-summary">
-            <div class="project-index">P — 020 <span class="project-date">Jul 2026</span></div>
-            <h3 class="project-title">Pulse Live — Real-Time Interactive Polling Platform</h3>
+            <div class="project-index">P — 012 <span class="project-date">Jun 2026</span></div>
+            <h3 class="project-title">Custom Processor FSM Design</h3>
           </summary>
           <div class="project-card-body">
             <ul class="project-desc-list">
-              <li>Real-time audience engagement platform featuring instant multi-mode polling (Choice, Q&amp;A, Word Cloud), presenter mode, and interactive voting synchronization</li>
-              <li>Built with React 19, TypeScript, and Supabase WebSockets / database for instant live response updates, presenter display controls, and QR code joining</li>
+              <li>VHDL implementation of a custom processor datapath and FSM supporting GCD and exponentiation
+                operations</li>
+              <li>Simulated and verified in Vivado 2023.2 as Embedded Systems coursework</li>
             </ul>
             <div class="project-tags">
-              <span class="tag">React 19</span><span class="tag">TypeScript</span>
-              <span class="tag">Vite</span><span class="tag">Supabase</span>
-              <span class="tag">WebSockets</span><span class="tag">React Router v7</span>
-              <span class="tag">Lucide Icons</span><span class="tag">QR Code</span>
+              <span class="tag">VHDL</span><span class="tag">Vivado</span>
+              <span class="tag">FSM</span><span class="tag">Datapath</span>
+              <span class="tag">FPGA</span>
             </div>
-            <a class="project-link" href="https://github.com/AaradhyaDTmr/PulseLive" target="_blank" rel="noopener">View on GitHub ↗</a>
           </div>
         </details>
-
+        <details class="project-card reveal project-card--archived">
+          <summary class="project-summary">
+            <div class="project-index">P — 010 <span class="project-status">Archived</span> <span class="project-date">Jun 2026</span></div>
+            <h3 class="project-title">PrakopNet — Multi-Hazard Early Warning System</h3>
+          </summary>
+          <div class="project-card-body">
+            <ul class="project-desc-list">
+              <li>Solar-powered LoRa mesh multi-hazard monitoring platform for remote regions of Nepal — ESP32 nodes to
+                a Raspberry Pi 4B gateway</li>
+              <li>Archived June 29, 2026 after RYLR890's import-only sourcing conflicted with department policy;
+                superseded by SPARK</li>
+            </ul>
+            <div class="project-tags">
+              <span class="tag">ESP32</span><span class="tag">RYLR890 LoRa 868 MHz</span>
+              <span class="tag">Raspberry Pi 4B</span><span class="tag">TFLite Micro</span>
+              <span class="tag">LSTM</span><span class="tag">GPS</span>
+              <span class="tag">FastAPI</span><span class="tag">Edge AI</span>
+            </div>
+          </div>
+        </details>
+      <h2 class="projects-section-title" id="section-fuseaif">Fuse AIF<span class="projects-section-sub">Fusemachines AI Fellowship — weekly coursework</span></h2>
+        <details class="project-card reveal project-card--major">
+          <summary class="project-summary">
+            <div class="project-index">P — 018 <span class="project-status">In Progress</span></div>
+            <h3 class="project-title">Fusemachines Capstone — Vision Fairness &amp; Bias Audit</h3>
+          </summary>
+          <div class="project-card-body">
+            <ul class="project-desc-list">
+              <li>Diagnostic tool for deployed vision classifiers — runs a multi-demographic test matrix, flags
+                statistical disparities, and outputs a compliance report; detects bias but doesn't correct it</li>
+              <li>Fellowship capstone, two-person team with <a class="proj-inline-link" href="https://github.com/tiixsha"
+                  target="_blank" rel="noopener">Tisha Manandhar</a> — full README to follow in-repo</li>
+            </ul>
+            <div class="project-progress">
+              <div class="project-progress-track">
+                <div class="project-progress-step done"></div>
+                <div class="project-progress-step"></div>
+                <div class="project-progress-step"></div>
+              </div>
+              <div class="project-progress-labels">
+                <span class="project-progress-label done">Feasibility &amp; Scope</span>
+                <span class="project-progress-label">Test Matrix &amp; Detection Engine</span>
+                <span class="project-progress-label">Report &amp; Compliance Output</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="tag">AIF360</span><span class="tag">Fairlearn</span>
+              <span class="tag">FairFace</span><span class="tag">UTKFace</span>
+              <span class="tag">Computer Vision</span><span class="tag">Bias Auditing</span>
+              <span class="tag">Statistical Testing</span><span class="tag">HTML/Jinja2</span>
+            </div>
+          </div>
+        </details>
+        <details class="project-card reveal project-card--major">
+          <summary class="project-summary">
+            <div class="project-index">P — 019 <span class="project-date">Jul 2026</span></div>
+            <h3 class="project-title">Fusemachines Wk 11 — Vision Transformers</h3>
+          </summary>
+          <div class="project-card-body">
+            <ul class="project-desc-list">
+              <li>Five-module deep computer vision stack — ResNet-50 transfer learning + GradCAM, Faster R-CNN
+                object detection, DeepLabv3+ segmentation, a from-scratch VAE, and ViT patch embedding</li>
+              <li>CLIP zero-shot classification hit 92.0% on a 200-image slice, outscoring the fine-tuned ResNet-50
+                (74.1%) — deployment memo compares both for a 500-camera warehouse rollout, exported to ONNX</li>
+            </ul>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">PyTorch</span>
+              <span class="tag">torchvision</span><span class="tag">timm</span>
+              <span class="tag">CLIP</span><span class="tag">ONNX</span>
+              <span class="tag">GradCAM</span><span class="tag">Vision Transformers</span>
+            </div>
+            <a class="project-link" data-payload-link-id="proj-fuse-wk11" target="_blank"
+              rel="noopener">View on GitHub ↗</a>
+          </div>
+        </details>
         <details class="project-card reveal">
           <summary class="project-summary">
             <div class="project-index">P — 017 <span class="project-date">16 Jul 2026</span></div>
@@ -842,7 +913,6 @@
               rel="noopener">View on GitHub ↗</a>
           </div>
         </details>
-
         <details class="project-card reveal">
           <summary class="project-summary">
             <div class="project-index">P — 016 <span class="project-date">9 Jul 2026</span></div>
@@ -864,7 +934,6 @@
               rel="noopener">View on GitHub ↗</a>
           </div>
         </details>
-
         <details class="project-card reveal">
           <summary class="project-summary">
             <div class="project-index">P — 014 <span class="project-date">1 Jul 2026</span></div>
@@ -887,45 +956,153 @@
               rel="noopener">View on GitHub ↗</a>
           </div>
         </details>
-
         <details class="project-card reveal">
           <summary class="project-summary">
-            <div class="project-index">P — 013 <span class="project-date">Jun 2026</span></div>
-            <h3 class="project-title">Antenna Lab Data Analysis</h3>
+            <div class="project-index">P — 009 <span class="project-date">21 Jun 2026</span></div>
+            <h3 class="project-title">Fusemachines Wk 7 — Customer Segmentation</h3>
           </summary>
           <div class="project-card-body">
             <ul class="project-desc-list">
-              <li>Python data-analysis pipeline for antenna radiation pattern measurements from lab Excel sheets</li>
-              <li>SciPy cubic interpolation plus Matplotlib polar plots — Communication &amp; RF coursework
-                deliverable</li>
+              <li>Market segmentation on UCI Online Retail II (~500,000 transactions) with RFM + category-ratio feature
+                engineering</li>
+              <li>Full clustering comparison — K-Means, Hierarchical, DBSCAN — validated via Silhouette and
+                Davies-Bouldin indices</li>
             </ul>
             <div class="project-tags">
-              <span class="tag">Python</span><span class="tag">Pandas</span>
-              <span class="tag">NumPy</span><span class="tag">SciPy</span>
-              <span class="tag">Matplotlib</span><span class="tag">Polar Plot</span>
+              <span class="tag">Python</span><span class="tag">scikit-learn</span>
+              <span class="tag">K-Means</span><span class="tag">Hierarchical Clustering</span>
+              <span class="tag">DBSCAN</span><span class="tag">RFM</span>
+              <span class="tag">Pandas</span><span class="tag">scipy</span>
             </div>
+            <a class="project-link" data-payload-link-id="proj-fuse-wk7" target="_blank"
+              rel="noopener">View on GitHub ↗</a>
           </div>
         </details>
-
         <details class="project-card reveal">
           <summary class="project-summary">
-            <div class="project-index">P — 012 <span class="project-date">Jun 2026</span></div>
-            <h3 class="project-title">Custom Processor FSM Design</h3>
+            <div class="project-index">P — 008 <span class="project-date">5 Jun 2026</span></div>
+            <h3 class="project-title">Fusemachines Wk 6 — Probabilistic Models</h3>
           </summary>
           <div class="project-card-body">
             <ul class="project-desc-list">
-              <li>VHDL implementation of a custom processor datapath and FSM supporting GCD and exponentiation
-                operations</li>
-              <li>Simulated and verified in Vivado 2023.2 as Embedded Systems coursework</li>
+              <li>Bayesian inference pipeline for Telco Churn using PyMC, ArviZ, and pgmpy</li>
+              <li>MLE/MAP estimation, Dirichlet-multinomial updating, and a fitted PyMC Bayesian logistic regression
+                artifact</li>
             </ul>
             <div class="project-tags">
-              <span class="tag">VHDL</span><span class="tag">Vivado</span>
-              <span class="tag">FSM</span><span class="tag">Datapath</span>
-              <span class="tag">FPGA</span>
+              <span class="tag">Python</span><span class="tag">PyMC</span>
+              <span class="tag">ArviZ</span><span class="tag">pgmpy</span>
+              <span class="tag">Bayesian Inference</span><span class="tag">scikit-learn</span>
+              <span class="tag">Pandas</span>
             </div>
+            <a class="project-link" data-payload-link-id="proj-fuse-wk6" target="_blank"
+              rel="noopener">View on GitHub ↗</a>
           </div>
         </details>
-
+        <details class="project-card reveal">
+          <summary class="project-summary">
+            <div class="project-index">P — 004 <span class="project-date">28 May 2026</span></div>
+            <h3 class="project-title">Fusemachines Wk 4 — Telco Churn &amp; CLV ML Pipeline</h3>
+          </summary>
+          <div class="project-card-body">
+            <ul class="project-desc-list">
+              <li>Classification and regression pipeline for churn prediction and Customer Lifetime Value modeling —
+                ROC-AUC 0.841 ± 0.005</li>
+              <li>Ridge Regression best for CLV (mean $1,304.70); full HTML report export via Papermill</li>
+            </ul>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">scikit-learn</span>
+              <span class="tag">Logistic Regression</span><span class="tag">Ridge</span>
+              <span class="tag">Lasso</span><span class="tag">Pandas</span>
+              <span class="tag">Papermill</span>
+            </div>
+            <a class="project-link" data-payload-link-id="proj-fuse-wk4" target="_blank"
+              rel="noopener">View on GitHub ↗</a>
+          </div>
+        </details>
+        <details class="project-card reveal">
+          <summary class="project-summary">
+            <div class="project-index">P — 003 <span class="project-date">31 May 2026</span></div>
+            <h3 class="project-title">Fusemachines Wk 5 — Telco Churn Tree-Based Ensemble Pipeline</h3>
+          </summary>
+          <div class="project-card-body">
+            <ul class="project-desc-list">
+              <li>End-to-end classification pipeline on Telco Customer Churn (7,043 rows) with SMOTE restricted to
+                training folds only</li>
+              <li>Random Forest + XGBoost with SHAP explainability; secondary tenure-prediction task with a Model Card
+              </li>
+            </ul>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">XGBoost</span>
+              <span class="tag">Random Forest</span><span class="tag">SHAP</span>
+              <span class="tag">ImbPipeline</span><span class="tag">SMOTE</span>
+              <span class="tag">Joblib</span><span class="tag">scikit-learn</span>
+            </div>
+            <a class="project-link" data-payload-link-id="proj-fuse-wk5" target="_blank"
+              rel="noopener">View on GitHub ↗</a>
+          </div>
+        </details>
+        <details class="project-card reveal">
+          <summary class="project-summary">
+            <div class="project-index">P — 002 <span class="project-date">20 May 2026</span></div>
+            <h3 class="project-title">Fusemachines Wk 3 — Text-to-SQL Agentic Pipeline</h3>
+          </summary>
+          <div class="project-card-body">
+            <ul class="project-desc-list">
+              <li>Five-stage agentic Text-to-SQL system over a PostgreSQL database — Planner → Generator → Validator →
+                Executor → Summarizer</li>
+              <li>100% execution success and 100% result accuracy across a 50-question benchmark, zero retries required
+              </li>
+            </ul>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">FastAPI</span>
+              <span class="tag">Streamlit</span><span class="tag">GPT-4o-mini</span>
+              <span class="tag">PostgreSQL</span><span class="tag">Docker</span>
+              <span class="tag">Prompt Chaining</span>
+            </div>
+            <a class="project-link" data-payload-link-id="proj-fuse-wk3" target="_blank"
+              rel="noopener">View on GitHub ↗</a>
+          </div>
+        </details>
+      <h2 class="projects-section-title" id="section-personal">Personal Tools &amp; Apps<span class="projects-section-sub">Side projects, utilities, and shipped tools</span></h2>
+        <details class="project-card reveal" id="p-021">
+          <summary class="project-summary">
+            <div class="project-index">P — 021 <span class="project-date">Jul 2026</span></div>
+            <h3 class="project-title">Claude Desktop Multi-Profile &amp; Sync Utilities</h3>
+          </summary>
+          <div class="project-card-body">
+            <ul class="project-desc-list">
+              <li>PowerShell 7 &amp; Windows Shell utility suite enabling multi-user profile isolation for Anthropic's Claude Desktop application</li>
+              <li>Features native profile session swapping, single-instance browser OAuth (`claude://`) deep-link routing, and automated Git repository synchronization with conventional commit messaging</li>
+            </ul>
+            <div class="project-tags">
+              <span class="tag">PowerShell 7</span><span class="tag">Windows Shell</span>
+              <span class="tag">Electron</span><span class="tag">MSIX / AppX</span>
+              <span class="tag">OAuth 2.0</span><span class="tag">Robocopy</span>
+              <span class="tag">Git Automation</span><span class="tag">Batch CLI</span>
+            </div>
+            <a class="project-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Claude-Desktop" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+        </details>
+        <details class="project-card reveal" id="p-020">
+          <summary class="project-summary">
+            <div class="project-index">P — 020 <span class="project-date">Jul 2026</span></div>
+            <h3 class="project-title">Pulse Live — Real-Time Interactive Polling Platform</h3>
+          </summary>
+          <div class="project-card-body">
+            <ul class="project-desc-list">
+              <li>Real-time audience engagement platform featuring instant multi-mode polling (Choice, Q&amp;A, Word Cloud), presenter mode, and interactive voting synchronization</li>
+              <li>Built with React 19, TypeScript, and Supabase WebSockets / database for instant live response updates, presenter display controls, and QR code joining</li>
+            </ul>
+            <div class="project-tags">
+              <span class="tag">React 19</span><span class="tag">TypeScript</span>
+              <span class="tag">Vite</span><span class="tag">Supabase</span>
+              <span class="tag">WebSockets</span><span class="tag">React Router v7</span>
+              <span class="tag">Lucide Icons</span><span class="tag">QR Code</span>
+            </div>
+            <a class="project-link" href="https://github.com/AaradhyaDTmr/PulseLive" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+        </details>
         <details class="project-card reveal project-card--in-progress">
           <summary class="project-summary">
             <div class="project-index">P — 011 <span class="project-status">In Progress</span></div>
@@ -957,52 +1134,6 @@
               GitHub ↗</a>
           </div>
         </details>
-
-        <details class="project-card reveal">
-          <summary class="project-summary">
-            <div class="project-index">P — 009 <span class="project-date">21 Jun 2026</span></div>
-            <h3 class="project-title">Fusemachines Wk 7 — Customer Segmentation</h3>
-          </summary>
-          <div class="project-card-body">
-            <ul class="project-desc-list">
-              <li>Market segmentation on UCI Online Retail II (~500,000 transactions) with RFM + category-ratio feature
-                engineering</li>
-              <li>Full clustering comparison — K-Means, Hierarchical, DBSCAN — validated via Silhouette and
-                Davies-Bouldin indices</li>
-            </ul>
-            <div class="project-tags">
-              <span class="tag">Python</span><span class="tag">scikit-learn</span>
-              <span class="tag">K-Means</span><span class="tag">Hierarchical Clustering</span>
-              <span class="tag">DBSCAN</span><span class="tag">RFM</span>
-              <span class="tag">Pandas</span><span class="tag">scipy</span>
-            </div>
-            <a class="project-link" data-payload-link-id="proj-fuse-wk7" target="_blank"
-              rel="noopener">View on GitHub ↗</a>
-          </div>
-        </details>
-
-        <details class="project-card reveal">
-          <summary class="project-summary">
-            <div class="project-index">P — 008 <span class="project-date">5 Jun 2026</span></div>
-            <h3 class="project-title">Fusemachines Wk 6 — Probabilistic Models</h3>
-          </summary>
-          <div class="project-card-body">
-            <ul class="project-desc-list">
-              <li>Bayesian inference pipeline for Telco Churn using PyMC, ArviZ, and pgmpy</li>
-              <li>MLE/MAP estimation, Dirichlet-multinomial updating, and a fitted PyMC Bayesian logistic regression
-                artifact</li>
-            </ul>
-            <div class="project-tags">
-              <span class="tag">Python</span><span class="tag">PyMC</span>
-              <span class="tag">ArviZ</span><span class="tag">pgmpy</span>
-              <span class="tag">Bayesian Inference</span><span class="tag">scikit-learn</span>
-              <span class="tag">Pandas</span>
-            </div>
-            <a class="project-link" data-payload-link-id="proj-fuse-wk6" target="_blank"
-              rel="noopener">View on GitHub ↗</a>
-          </div>
-        </details>
-
         <details class="project-card reveal">
           <summary class="project-summary">
             <div class="project-index">P — 007 <span class="project-date">May 2026</span></div>
@@ -1021,7 +1152,6 @@
             </div>
           </div>
         </details>
-
         <details class="project-card reveal">
           <summary class="project-summary">
             <div class="project-index">P — 006 <span class="project-date">May 2026</span></div>
@@ -1045,7 +1175,6 @@
               rel="noopener">View on GitHub ↗</a>
           </div>
         </details>
-
         <details class="project-card reveal project-card--in-progress">
           <summary class="project-summary">
             <div class="project-index">P — 005 <span class="project-status">In Progress</span></div>
@@ -1075,96 +1204,6 @@
             </div>
             <a class="project-link" data-payload-link-id="proj-alpha-superapp" target="_blank"
               rel="noopener">View on GitHub ↗</a>
-          </div>
-        </details>
-
-        <details class="project-card reveal">
-          <summary class="project-summary">
-            <div class="project-index">P — 004 <span class="project-date">28 May 2026</span></div>
-            <h3 class="project-title">Fusemachines Wk 4 — Telco Churn &amp; CLV ML Pipeline</h3>
-          </summary>
-          <div class="project-card-body">
-            <ul class="project-desc-list">
-              <li>Classification and regression pipeline for churn prediction and Customer Lifetime Value modeling —
-                ROC-AUC 0.841 ± 0.005</li>
-              <li>Ridge Regression best for CLV (mean $1,304.70); full HTML report export via Papermill</li>
-            </ul>
-            <div class="project-tags">
-              <span class="tag">Python</span><span class="tag">scikit-learn</span>
-              <span class="tag">Logistic Regression</span><span class="tag">Ridge</span>
-              <span class="tag">Lasso</span><span class="tag">Pandas</span>
-              <span class="tag">Papermill</span>
-            </div>
-            <a class="project-link" data-payload-link-id="proj-fuse-wk4" target="_blank"
-              rel="noopener">View on GitHub ↗</a>
-          </div>
-        </details>
-
-        <details class="project-card reveal">
-          <summary class="project-summary">
-            <div class="project-index">P — 003 <span class="project-date">31 May 2026</span></div>
-            <h3 class="project-title">Fusemachines Wk 5 — Telco Churn Tree-Based Ensemble Pipeline</h3>
-          </summary>
-          <div class="project-card-body">
-            <ul class="project-desc-list">
-              <li>End-to-end classification pipeline on Telco Customer Churn (7,043 rows) with SMOTE restricted to
-                training folds only</li>
-              <li>Random Forest + XGBoost with SHAP explainability; secondary tenure-prediction task with a Model Card
-              </li>
-            </ul>
-            <div class="project-tags">
-              <span class="tag">Python</span><span class="tag">XGBoost</span>
-              <span class="tag">Random Forest</span><span class="tag">SHAP</span>
-              <span class="tag">ImbPipeline</span><span class="tag">SMOTE</span>
-              <span class="tag">Joblib</span><span class="tag">scikit-learn</span>
-            </div>
-            <a class="project-link" data-payload-link-id="proj-fuse-wk5" target="_blank"
-              rel="noopener">View on GitHub ↗</a>
-          </div>
-        </details>
-
-        <details class="project-card reveal">
-          <summary class="project-summary">
-            <div class="project-index">P — 002 <span class="project-date">20 May 2026</span></div>
-            <h3 class="project-title">Fusemachines Wk 3 — Text-to-SQL Agentic Pipeline</h3>
-          </summary>
-          <div class="project-card-body">
-            <ul class="project-desc-list">
-              <li>Five-stage agentic Text-to-SQL system over a PostgreSQL database — Planner → Generator → Validator →
-                Executor → Summarizer</li>
-              <li>100% execution success and 100% result accuracy across a 50-question benchmark, zero retries required
-              </li>
-            </ul>
-            <div class="project-tags">
-              <span class="tag">Python</span><span class="tag">FastAPI</span>
-              <span class="tag">Streamlit</span><span class="tag">GPT-4o-mini</span>
-              <span class="tag">PostgreSQL</span><span class="tag">Docker</span>
-              <span class="tag">Prompt Chaining</span>
-            </div>
-            <a class="project-link" data-payload-link-id="proj-fuse-wk3" target="_blank"
-              rel="noopener">View on GitHub ↗</a>
-          </div>
-        </details>
-
-        <!-- LOWEST PRECEDENCE: Archived Projects at bottom -->
-        <details class="project-card reveal project-card--archived">
-          <summary class="project-summary">
-            <div class="project-index">P — 010 <span class="project-status">Archived</span> <span class="project-date">Jun 2026</span></div>
-            <h3 class="project-title">PrakopNet — Multi-Hazard Early Warning System</h3>
-          </summary>
-          <div class="project-card-body">
-            <ul class="project-desc-list">
-              <li>Solar-powered LoRa mesh multi-hazard monitoring platform for remote regions of Nepal — ESP32 nodes to
-                a Raspberry Pi 4B gateway</li>
-              <li>Archived June 29, 2026 after RYLR890's import-only sourcing conflicted with department policy;
-                superseded by SPARK</li>
-            </ul>
-            <div class="project-tags">
-              <span class="tag">ESP32</span><span class="tag">RYLR890 LoRa 868 MHz</span>
-              <span class="tag">Raspberry Pi 4B</span><span class="tag">TFLite Micro</span>
-              <span class="tag">LSTM</span><span class="tag">GPS</span>
-              <span class="tag">FastAPI</span><span class="tag">Edge AI</span>
-            </div>
           </div>
         </details>
       </div>
