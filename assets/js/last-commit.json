@@ -1,6 +1,6 @@
 {
-  "sha": "d4a62823e6a638b0d35dc1ea5192f679cd43d7a2",
-  "shortSha": "d4a6282",
-  "date": "2026-07-29T11:17:30+05:45",
-  "message": "fix(nav): left-align nav links after logo instead of centering in grid\n"
+  "sha": "393d69f4a40bd31587e7df05bc2abbe39f0d9c3b",
+  "shortSha": "393d69f",
+  "date": "2026-07-29T11:21:00+05:45",
+  "message": "style(index): place About Sign-In and VIP Tier sections side by side in a 2-col grid (1000px+), stacks below\n"
 }
