@@ -522,6 +522,42 @@
       height: auto;
     }
 
+    /* Text left, video right on wide screens; stacks on narrow ones. */
+    .project-media-row {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .project-media-row .project-media-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      min-width: 0;
+    }
+
+    @media (min-width: 900px) {
+      .project-media-row {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .project-media-row .project-media-text {
+        flex: 1 1 0;
+      }
+
+      .project-media-row .project-video {
+        flex: 1 1 0;
+        margin: 0;
+        align-self: stretch;
+      }
+
+      .project-media-row .project-video video {
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
     .project-links {
       display: flex;
       flex-wrap: wrap;
@@ -654,23 +690,27 @@
             <h3 class="project-title">Gesture-Controlled Self-Balancing Robot</h3>
           </summary>
           <div class="project-card-body">
-            <ul class="project-desc-list">
-              <li>Two-wheeled inverted pendulum robot with real-time dual-hand MediaPipe gesture control over HC-05
-                Bluetooth</li>
-              <li>Examiner rated major-project level — 9.4/10</li>
-            </ul>
-            <div class="project-tags">
-              <span class="tag">Arduino</span><span class="tag">HC-05</span>
-              <span class="tag">MPU-6050</span><span class="tag">NEMA-17</span>
-              <span class="tag">MediaPipe</span><span class="tag">PID</span>
-              <span class="tag">MATLAB</span>
-            </div>
-            <div class="project-video">
-              <video controls preload="none" poster="assets/videos/GCSBR_working_demo_poster.jpg" >
-                <source src="assets/videos/GCSBR_working_demo.mp4" type="video/mp4" />
-                Your browser doesn't support embedded video.
-                <a href="assets/videos/GCSBR_working_demo.mp4">Download the demo video</a>.
-              </video>
+            <div class="project-media-row">
+              <div class="project-media-text">
+                <ul class="project-desc-list">
+                  <li>Two-wheeled inverted pendulum robot with real-time dual-hand MediaPipe gesture control over HC-05
+                    Bluetooth</li>
+                  <li>Examiner rated major-project level — 9.4/10</li>
+                </ul>
+                <div class="project-tags">
+                  <span class="tag">Arduino</span><span class="tag">HC-05</span>
+                  <span class="tag">MPU-6050</span><span class="tag">NEMA-17</span>
+                  <span class="tag">MediaPipe</span><span class="tag">PID</span>
+                  <span class="tag">MATLAB</span>
+                </div>
+              </div>
+              <div class="project-video">
+                <video controls preload="none" poster="assets/videos/GCSBR_working_demo_poster.jpg" >
+                  <source src="assets/videos/GCSBR_working_demo.mp4" type="video/mp4" />
+                  Your browser doesn't support embedded video.
+                  <a href="assets/videos/GCSBR_working_demo.mp4">Download the demo video</a>.
+                </video>
+              </div>
             </div>
             <div class="project-links">
               <a class="project-link" data-payload-link-id="proj-gcsbr"
