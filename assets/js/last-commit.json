@@ -1,6 +1,6 @@
 {
-  "sha": "4f1b71f3be3975a37df12404c6d66bf620f0a83b",
-  "shortSha": "4f1b71f",
-  "date": "2026-07-29T10:49:26+05:45",
-  "message": "refactor: update script.js, projects.html - const SEARCH_STATIC_INDEX = { (+1272/-2259)\n"
+  "sha": "f852c9fc17f0adca23f4448e94dccb2f1a678f2e",
+  "shortSha": "f852c9f",
+  "date": "2026-07-29T11:09:34+05:45",
+  "message": "feat(projects): section cards into Projects / Fuse AIF / Personal Tools & Apps, capstone cross-listed under both Projects and Fuse AIF\n"
 }
