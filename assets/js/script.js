@@ -1477,16 +1477,27 @@ async function updateGatedContentVisibility() {
     const linkTierLabel = (linkTier === ACCESS_CONTROL.TIER_MASTER) ? 'Master' : 'VIP';
 
     if (effTier < linkTier) {
-      link.href = '#';
-      link.removeAttribute('target');
-      link.innerHTML = `🔒 GitHub Repo (${linkTierLabel} Access Required)`;
-      link.onclick = (e) => {
-        e.preventDefault();
-        openAccessModal(linkTier);
-        return false;
-      };
-      link.classList.add('project-link--locked');
+      if (linkTier === ACCESS_CONTROL.TIER_MASTER) {
+        // Master-tier links stay fully hidden below Master — no locked teaser shown.
+        link.style.display = 'none';
+        link.href = '#';
+        link.removeAttribute('target');
+        link.onclick = (e) => e.preventDefault();
+        link.classList.remove('project-link--locked');
+      } else {
+        link.style.display = '';
+        link.href = '#';
+        link.removeAttribute('target');
+        link.innerHTML = `🔒 GitHub Repo (${linkTierLabel} Access Required)`;
+        link.onclick = (e) => {
+          e.preventDefault();
+          openAccessModal(linkTier);
+          return false;
+        };
+        link.classList.add('project-link--locked');
+      }
     } else {
+      link.style.display = '';
       if (!link.dataset.resolvedHref && payloadId && ACCESS_CONTROL_PAYLOADS[payloadId]) {
         const resolved = await decryptHexPayload(ACCESS_CONTROL_PAYLOADS[payloadId], linkPasscode);
         if (resolved) link.dataset.resolvedHref = resolved;
