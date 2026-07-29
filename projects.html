@@ -103,6 +103,41 @@
       min-height: auto;
     }
 
+    .project-card-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .35s ease, margin-top .35s ease, padding-top .35s ease, opacity .25s ease;
+      opacity: 0;
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0 dashed var(--line);
+    }
+
+    details.project-card[open] .project-card-body {
+      grid-template-rows: 1fr;
+      opacity: 1;
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top-width: 1px;
+    }
+
+    details.project-card[open].closing .project-card-body {
+      grid-template-rows: 0fr;
+      opacity: 0;
+      margin-top: 0;
+      padding-top: 0;
+      border-top-width: 0;
+    }
+
+    details.project-card.closing {
+      padding-bottom: 1.5rem;
+    }
+
+    .project-card-body > * {
+      min-height: 0;
+      overflow: hidden;
+    }
+
     details.project-card:hover,
     .project-card:hover {
       border-color: var(--glow-green);
@@ -207,12 +242,6 @@
       line-clamp: unset;
       -webkit-line-clamp: unset;
       overflow: visible;
-    }
-
-    .project-card-body {
-      margin-top: 1.25rem;
-      padding-top: 1.25rem;
-      border-top: 1px dashed var(--line);
     }
 
     .projects-header-bar {
@@ -730,7 +759,7 @@
           </div>
         </details>
 
-        <details class="project-card reveal project-card--gold" id="p-020">
+        <details class="project-card reveal" id="p-020">
           <summary class="project-summary">
             <div class="project-index">P — 020 <span class="project-date">Jul 2026</span></div>
             <h3 class="project-title">Pulse Live — Real-Time Interactive Polling Platform</h3>
@@ -1132,7 +1161,7 @@
 
   <script src="assets/js/script.js" defer></script>
   <script>
-    // Project cards dropdown expand/collapse logic
+    // Project cards dropdown expand/collapse — fluid animation + scroll sync
     function syncProjectToggleAllLabel() {
       const btn = document.getElementById('projectToggleAllBtn');
       const label = document.getElementById('projectToggleAllLabel');
@@ -1145,6 +1174,59 @@
       btn.setAttribute('aria-label', allOpen ? 'Collapse all project cards' : 'Expand all project cards');
     }
 
+    const CARD_ANIM_MS = 350;
+    const navH = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 72;
+
+    function scrollCardToTop(card) {
+      const y = card.getBoundingClientRect().top + window.scrollY - navH() - 16;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+
+    function initProjectCardFluidity() {
+      const cards = document.querySelectorAll('#projectsGrid details.project-card');
+
+      cards.forEach(card => {
+        const summary = card.querySelector('.project-summary');
+        if (!summary) return;
+
+        card.dataset.animating = '0';
+
+        summary.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (card.dataset.animating === '1') return;
+
+          if (!card.hasAttribute('open')) {
+            animateCardOpen(card);
+            requestAnimationFrame(() => scrollCardToTop(card));
+          } else {
+            scrollCardToTop(card);
+            animateCardClose(card);
+          }
+        });
+
+        card.addEventListener('toggle', syncProjectToggleAllLabel);
+      });
+    }
+
+    function animateCardOpen(card) {
+      if (card.dataset.animating === '1' || card.hasAttribute('open')) return;
+      card.setAttribute('open', '');
+      card.dataset.animating = '1';
+      window.setTimeout(() => { card.dataset.animating = '0'; }, CARD_ANIM_MS);
+    }
+
+    function animateCardClose(card) {
+      if (card.dataset.animating === '1' || !card.hasAttribute('open')) return;
+      card.dataset.animating = '1';
+      card.classList.add('closing');
+      window.setTimeout(() => {
+        card.removeAttribute('open');
+        card.classList.remove('closing');
+        card.dataset.animating = '0';
+        syncProjectToggleAllLabel();
+      }, CARD_ANIM_MS);
+    }
+
     function initProjectToggleAll() {
       const btn = document.getElementById('projectToggleAllBtn');
       const cards = document.querySelectorAll('#projectsGrid details.project-card');
@@ -1152,24 +1234,17 @@
 
       btn.addEventListener('click', () => {
         const allOpen = Array.from(cards).every(card => card.hasAttribute('open'));
-        cards.forEach(card => {
-          if (allOpen) {
-            card.removeAttribute('open');
-          } else {
-            card.setAttribute('open', '');
-          }
-        });
+        cards.forEach(card => allOpen ? animateCardClose(card) : animateCardOpen(card));
         syncProjectToggleAllLabel();
-      });
-
-      cards.forEach(card => {
-        card.addEventListener('toggle', syncProjectToggleAllLabel);
       });
 
       syncProjectToggleAllLabel();
     }
 
-    document.addEventListener('DOMContentLoaded', initProjectToggleAll);
+    document.addEventListener('DOMContentLoaded', () => {
+      initProjectCardFluidity();
+      initProjectToggleAll();
+    });
   </script>
 </body>
 
