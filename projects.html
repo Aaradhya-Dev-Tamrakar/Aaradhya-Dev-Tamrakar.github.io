@@ -1196,10 +1196,10 @@
           if (card.dataset.animating === '1') return;
 
           if (!card.hasAttribute('open')) {
+            card.dataset.preOpenScrollY = String(window.scrollY);
             animateCardOpen(card);
             requestAnimationFrame(() => scrollCardToTop(card));
           } else {
-            scrollCardToTop(card);
             animateCardClose(card);
           }
         });
@@ -1219,6 +1219,15 @@
       if (card.dataset.animating === '1' || !card.hasAttribute('open')) return;
       card.dataset.animating = '1';
       card.classList.add('closing');
+
+      const restoreY = card.dataset.preOpenScrollY;
+      if (restoreY !== undefined) {
+        window.scrollTo({ top: parseFloat(restoreY), behavior: 'smooth' });
+        delete card.dataset.preOpenScrollY;
+      } else {
+        scrollCardToTop(card);
+      }
+
       window.setTimeout(() => {
         card.removeAttribute('open');
         card.classList.remove('closing');
