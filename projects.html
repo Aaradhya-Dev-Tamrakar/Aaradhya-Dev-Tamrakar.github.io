@@ -1245,6 +1245,9 @@
         const allOpen = Array.from(cards).every(card => card.hasAttribute('open'));
         cards.forEach(card => allOpen ? animateCardClose(card) : animateCardOpen(card));
         syncProjectToggleAllLabel();
+        if (allOpen) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       });
 
       syncProjectToggleAllLabel();

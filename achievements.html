@@ -1697,6 +1697,9 @@
           const allOpen = visible.length > 0 && visible.every(group => group.open);
           visible.forEach(group => { group.open = !allOpen; });
           syncLabel();
+          if (allOpen) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
         });
 
         // A manual click on any single year's <summary> should keep the

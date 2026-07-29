@@ -1576,6 +1576,9 @@
           if (toggle) toggle.setAttribute('aria-expanded', String(!allOpen));
         });
         syncJourneyToggleAllLabel();
+        if (allOpen) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       });
 
       syncJourneyToggleAllLabel();
