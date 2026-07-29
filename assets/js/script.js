@@ -382,7 +382,7 @@ const SEARCH_STATIC_INDEX = {
     "title": "Gesture-Controlled Self-Balancing Robot",
     "meta": "Arduino, HC-05, MPU-6050",
     "href": "projects.html#p-001",
-    "text": "gesture-controlled self-balancing robot two-wheeled inverted pendulum robot with real-time dual-hand mediapipe gesture control over hc-05 bluetooth examiner rated major-project level — 9.4/10 arduino hc-05 mpu-6050 nema-17 mediapipe pid matlab"
+    "text": "gesture-controlled self-balancing robot two-wheeled inverted pendulum robot with real-time dual-hand mediapipe gesture control over hc-05 bluetooth examiner rated major-project level — 9.6/10 arduino hc-05 mpu-6050 nema-17 mediapipe pid matlab"
   },
   {
     "type": "project",
