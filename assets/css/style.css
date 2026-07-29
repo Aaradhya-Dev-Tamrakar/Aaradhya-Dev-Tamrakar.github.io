@@ -691,6 +691,26 @@ html[data-theme="light"] .section-num {
   opacity: 1;
 }
 
+/* ── Access tier row (About Sign-In + VIP side by side) ─────── */
+.access-tier-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  padding: 4rem 3rem;
+}
+
+.access-tier-col {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1000px) {
+  .access-tier-row {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+}
+
 /* ── Dividers ─────────────────────────────────────────────── */
 .divider-wrap {
   position: relative;
