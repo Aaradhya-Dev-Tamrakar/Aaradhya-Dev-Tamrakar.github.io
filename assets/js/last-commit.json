@@ -1,6 +1,6 @@
 {
-  "sha": "5ad63cbde0c7280bea381e7a0577879d45c5ef59",
-  "shortSha": "5ad63cb",
-  "date": "2026-07-29T10:32:30+05:45",
-  "message": "feat(keymap): add Alt+2 for projects expand/collapse all; scroll to top on collapse-all across projects, achievements, journey\n"
+  "sha": "6c926c708e30b3e199fdb6f383a9d1f906bcf5ed",
+  "shortSha": "6c926c7",
+  "date": "2026-07-29T10:36:38+05:45",
+  "message": "style(projects): 1x2 layout for GCSBR card — text left, video right on wide screens (900px+), stacks on narrow\n"
 }
