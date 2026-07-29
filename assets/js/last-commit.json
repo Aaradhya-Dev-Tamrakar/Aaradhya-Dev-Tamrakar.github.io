@@ -1,6 +1,6 @@
 {
-  "sha": "393d69f4a40bd31587e7df05bc2abbe39f0d9c3b",
-  "shortSha": "393d69f",
-  "date": "2026-07-29T11:21:00+05:45",
-  "message": "style(index): place About Sign-In and VIP Tier sections side by side in a 2-col grid (1000px+), stacks below\n"
+  "sha": "0a6826991ad9ead1b3a7a8aefe262613e30c350d",
+  "shortSha": "0a68269",
+  "date": "2026-07-29T11:28:54+05:45",
+  "message": "content(vip): swap Nexus/Alpha/Edge AI for Fusemachines Wk11 (Vision Transformers) in VIP tier, keep GCSBR\n"
 }
