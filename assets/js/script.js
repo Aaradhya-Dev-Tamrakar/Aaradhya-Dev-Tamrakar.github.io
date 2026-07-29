@@ -494,21 +494,21 @@ const SEARCH_STATIC_INDEX = {
     "title": "Fusemachines Wk 4 — Telco Churn & CLV ML Pipeline",
     "meta": "Python, scikit-learn, Logistic Regression",
     "href": "projects.html#proj-17",
-    "text": "telco churn & clv ml pipeline classification and regression pipeline for churn prediction and customer lifetime value modeling — roc-auc 0.841 ± 0.005 ridge regression best for clv (mean $1,304.70); full html report export via papermill python scikit-learn logistic regression ridge lasso pandas papermill"
+    "text": "fusemachines wk 4 — telco churn & clv ml pipeline classification and regression pipeline for churn prediction and customer lifetime value modeling — roc-auc 0.841 ± 0.005 ridge regression best for clv (mean $1,304.70); full html report export via papermill python scikit-learn logistic regression ridge lasso pandas papermill"
   },
   {
     "type": "project",
     "title": "Fusemachines Wk 5 — Telco Churn Tree-Based Ensemble Pipeline",
     "meta": "Python, XGBoost, Random Forest",
     "href": "projects.html#proj-18",
-    "text": "telco churn tree-based ensemble pipeline end-to-end classification pipeline on telco customer churn (7,043 rows) with smote restricted to training folds only random forest + xgboost with shap explainability; secondary tenure-prediction task with a model card python xgboost random forest shap imbpipeline smote joblib scikit-learn"
+    "text": "fusemachines wk 5 — telco churn tree-based ensemble pipeline end-to-end classification pipeline on telco customer churn (7,043 rows) with smote restricted to training folds only random forest + xgboost with shap explainability; secondary tenure-prediction task with a model card python xgboost random forest shap imbpipeline smote joblib scikit-learn"
   },
   {
     "type": "project",
     "title": "Fusemachines Wk 3 — Text-to-SQL Agentic Pipeline",
     "meta": "Python, FastAPI, Streamlit",
     "href": "projects.html#proj-19",
-    "text": "text-to-sql agentic pipeline five-stage agentic text-to-sql system over a postgresql database — planner → generator → validator → executor → summarizer 100% execution success and 100% result accuracy across a 50-question benchmark, zero retries required python fastapi streamlit gpt-4o-mini postgresql docker prompt chaining"
+    "text": "fusemachines wk 3 — text-to-sql agentic pipeline five-stage agentic text-to-sql system over a postgresql database — planner → generator → validator → executor → summarizer 100% execution success and 100% result accuracy across a 50-question benchmark, zero retries required python fastapi streamlit gpt-4o-mini postgresql docker prompt chaining"
   },
   {
     "type": "project",
