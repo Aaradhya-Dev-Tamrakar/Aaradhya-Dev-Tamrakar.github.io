@@ -1077,7 +1077,8 @@ const ACCESS_CONTROL_PAYLOADS = {
   "proj-fuse-wk3": "9b2dd419e336c35dcc124b54e0e8d3b5fd48dd7b4f1ed9895ce35996b8a879f4fa8cc07c2bef3e74e8befff5852a669fe346ba694bb5b6c6e272ef7f2f8ff7d92b88c2a011393228413df0b307ad",
   "proj-nexus": "30f26e850c78aaa3931999990aa920ae222457b6e79053cb0249195d3ea2f155d720fa0534dc5b7412b7691e12a2137d52791a26174e1d4f4a5f481073c126",
   "proj-alpha-superapp": "2c5b90f50b5ef3637f0f20f3a4288c2613d128a05fc36748c7525837003b7b353bab6ad3c07f33518468e05307845e95680e0fd948c49369a77536a8d387534b68c27b4e210539ed",
-  "proj-stability-ai": "81e7def015666a332e375780bb742a193e7a8a98f5997087b81c0e11cb2f2e13cce5fd7fec99d714d842df7ff562b87cda03e35a019187bb63ed20b88fe88577ad8c83a6f30a3869222212ad38"
+  "proj-stability-ai": "81e7def015666a332e375780bb742a193e7a8a98f5997087b81c0e11cb2f2e13cce5fd7fec99d714d842df7ff562b87cda03e35a019187bb63ed20b88fe88577ad8c83a6f30a3869222212ad38",
+  "proj-claude-desktop": "ee4fc1b66bde33d12ebbe5c5f877012ab87e56ead3c03a48dd457cf12450eb550a369e6032d3e4390dfa4f3b8d9fb3db54d3de45958e856a17e8a5dc7db3d854891ff3b3675151c7a6646175666e6801ff13df"
 };
 
 async function getDecryptionKey(passcode) {
@@ -1464,23 +1465,30 @@ async function updateGatedContentVisibility() {
     masterDivider.style.display = isMasterActive ? 'flex' : 'none';
   }
 
-  // Dynamic VIP Links Processor (Gates GitHub Repo links for VIP Access)
+  // Dynamic VIP/Master Links Processor (Gates GitHub Repo links per-link tier; defaults to VIP)
   const vipLinks = document.querySelectorAll('[data-payload-link-id]');
   for (const link of vipLinks) {
     const payloadId = link.dataset.payloadLinkId;
-    if (effTier < ACCESS_CONTROL.TIER_VIP) {
+    const linkTierStr = (link.dataset.payloadTier || 'vip').toLowerCase();
+    const linkTier = (linkTierStr === 'master' || linkTierStr === '2')
+      ? ACCESS_CONTROL.TIER_MASTER
+      : ACCESS_CONTROL.TIER_VIP;
+    const linkPasscode = (linkTier === ACCESS_CONTROL.TIER_MASTER) ? 'master2026' : 'vip2026';
+    const linkTierLabel = (linkTier === ACCESS_CONTROL.TIER_MASTER) ? 'Master' : 'VIP';
+
+    if (effTier < linkTier) {
       link.href = '#';
       link.removeAttribute('target');
-      link.innerHTML = '🔒 GitHub Repo (VIP Access Required)';
+      link.innerHTML = `🔒 GitHub Repo (${linkTierLabel} Access Required)`;
       link.onclick = (e) => {
         e.preventDefault();
-        openAccessModal(ACCESS_CONTROL.TIER_VIP);
+        openAccessModal(linkTier);
         return false;
       };
       link.classList.add('project-link--locked');
     } else {
       if (!link.dataset.resolvedHref && payloadId && ACCESS_CONTROL_PAYLOADS[payloadId]) {
-        const resolved = await decryptHexPayload(ACCESS_CONTROL_PAYLOADS[payloadId], 'vip2026');
+        const resolved = await decryptHexPayload(ACCESS_CONTROL_PAYLOADS[payloadId], linkPasscode);
         if (resolved) link.dataset.resolvedHref = resolved;
       }
       link.href = link.dataset.resolvedHref || '#';
