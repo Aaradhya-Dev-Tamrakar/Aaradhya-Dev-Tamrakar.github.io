@@ -133,7 +133,7 @@ function Get-AutoCommitMessage {
     }
 
     if ($hunkContext) {
-        return "${prefix}: update ${summary} — ${hunkContext}${churn}"
+        return "${prefix}: update ${summary} - ${hunkContext}${churn}"
     }
     return "${prefix}: update ${summary}${churn}"
 }
