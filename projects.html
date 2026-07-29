@@ -103,20 +103,57 @@
       min-height: auto;
     }
 
-    details.project-card:hover {
+    details.project-card:hover,
+    .project-card:hover {
       border-color: var(--glow-green);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
       box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--glow-green-a35);
     }
 
-    details.project-card.project-card--gold:hover {
+    details.project-card.project-card--gold,
+    .project-card--gold {
+      border: 3px solid var(--glow-gold);
+      box-shadow: 0 0 0 1px var(--glow-gold-a35), 0 0 18px var(--glow-gold-a35);
+    }
+
+    details.project-card.project-card--gold:hover,
+    .project-card--gold:hover {
       border-color: var(--glow-gold);
       box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 0 1px var(--glow-gold-a35), 0 0 24px var(--glow-gold-a90);
     }
 
-    details.project-card.project-card--major:hover {
+    details.project-card.project-card--major,
+    .project-card--major {
+      border: 3px solid var(--glow-green);
+      box-shadow: 0 0 0 1px var(--glow-green-a35), 0 0 18px var(--glow-green-a35);
+    }
+
+    details.project-card.project-card--major:hover,
+    .project-card--major:hover {
       border-color: var(--glow-green);
       box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 0 1px var(--glow-green-a35), 0 0 24px var(--glow-green-a50);
+    }
+
+    details.project-card.project-card--in-progress,
+    .project-card--in-progress {
+      border: 1px solid var(--glow-green);
+    }
+
+    details.project-card.project-card--in-progress:hover,
+    .project-card--in-progress:hover {
+      border-color: var(--glow-green);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--glow-green-a35);
+    }
+
+    details.project-card.project-card--archived,
+    .project-card--archived {
+      border: 1px solid var(--glow-red);
+    }
+
+    details.project-card.project-card--archived:hover,
+    .project-card--archived:hover {
+      border-color: var(--glow-red);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--glow-red-a35);
     }
 
     summary.project-summary {
@@ -220,43 +257,6 @@
       transform: rotate(180deg);
     }
 
-    .project-card--gold {
-      border: 3px solid var(--glow-gold);
-      box-shadow: 0 0 0 1px var(--glow-gold-a35), 0 0 18px var(--glow-gold-a35);
-    }
-
-    .project-card--gold:hover {
-      border-color: var(--glow-gold);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 0 1px var(--glow-gold-a35), 0 0 24px var(--glow-gold-a90);
-    }
-
-    .project-card--major {
-      border: 3px solid var(--glow-green);
-      box-shadow: 0 0 0 1px var(--glow-green-a35), 0 0 18px var(--glow-green-a35);
-    }
-
-    .project-card--major:hover {
-      border-color: var(--glow-green);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 0 1px var(--glow-green-a35), 0 0 24px var(--glow-green-a50);
-    }
-
-    .project-card--in-progress {
-      border: 1px solid var(--glow-green);
-    }
-
-    .project-card--in-progress:hover {
-      border-color: var(--glow-green);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--glow-green-a35);
-    }
-
-    .project-card--archived {
-      border: 1px solid var(--glow-red);
-    }
-
-    .project-card--archived:hover {
-      border-color: var(--glow-red);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, .3), 0 0 16px var(--glow-red-a35);
-    }
 
     .color-legend {
       display: flex;
@@ -573,6 +573,7 @@
           <span class="color-legend-label">Archived</span>
         </div>
       </div>
+    </header>
     <section id="projects" aria-label="Projects grid">
       <div class="projects-header-bar">
         <button type="button" class="project-toggle-all" id="projectToggleAllBtn">
