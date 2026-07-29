@@ -1,6 +1,6 @@
 {
-  "sha": "b3118ac132c2a2e9ffa37eea7fc7a7d84e3a72fe",
-  "shortSha": "b3118ac",
-  "date": "2026-07-29T15:02:17+05:45",
-  "message": "fix(css): resolve webhint/Edge Tools diagnostics in projects.html — add -webkit-user-select prefix, fix line-clamp prefix order, replace min-height:auto with 0\n"
+  "sha": "184745ef4ceb38d8ca7df8d43fd5d10014b39f2b",
+  "shortSha": "184745e",
+  "date": "2026-07-29T15:11:06+05:45",
+  "message": "content(achievements): replace IEEE CLW 2026 card photo with full panel/whiteboard group shot\n"
 }
