@@ -18,4 +18,3 @@ To prevent merge conflicts on `assets/js/last-commit.json` (which is updated aut
 - **Major Features / Architectural Changes**:
   1. Update `dev-logs/PortfolioWebsite_TRACKER.md` with detailed release notes, state of play items, and verification build logs.
   2. Execute `.\sync.ps1 -m "type(scope): detailed commit summary"` with a descriptive message to ensure rich historical context is preserved.
-
