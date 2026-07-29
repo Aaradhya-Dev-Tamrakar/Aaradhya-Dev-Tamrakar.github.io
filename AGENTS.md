@@ -11,9 +11,11 @@ Rules:
 
 ## git-workflow
 
-To prevent merge conflicts on `assets/js/last-commit.json` (which is updated automatically on GitHub by a commit-back bot on every push):
+To prevent merge conflicts on `assets/js/last-commit.json` (which is updated automatically on GitHub by a commit-back bot on every push) and ensure index/graph updates run automatically:
 
-- **Minor / Routine Changes**: Use `.\sync.ps1` without arguments. It auto-generates a conventional commit message and updates the tracker timestamp.
+- **ALWAYS** execute `.\sync.ps1` for committing and pushing changes. NEVER run individual `git add`, `git commit`, or `git push` commands directly.
+- **Minor / Routine Changes**: Execute `.\sync.ps1` without arguments. It auto-runs index extraction, graph updates, auto-generates a conventional commit message, and pushes to origin main.
 - **Major Features / Architectural Changes**:
   1. Update `dev-logs/PortfolioWebsite_TRACKER.md` with detailed release notes, state of play items, and verification build logs.
   2. Execute `.\sync.ps1 -m "type(scope): detailed commit summary"` with a descriptive message to ensure rich historical context is preserved.
+
