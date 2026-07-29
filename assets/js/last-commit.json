@@ -1,6 +1,6 @@
 {
-  "sha": "8e362fc85d3bf52659d19fb0670a9b42e17fd24b",
-  "shortSha": "8e362fc",
-  "date": "2026-07-29T10:49:04+05:45",
-  "message": "rename(projects): Telco Churn x2 and Text-to-SQL cards to Fusemachines Wk 3/4/5 pattern, sync search index\n"
+  "sha": "4f1b71f3be3975a37df12404c6d66bf620f0a83b",
+  "shortSha": "4f1b71f",
+  "date": "2026-07-29T10:49:26+05:45",
+  "message": "refactor: update script.js, projects.html - const SEARCH_STATIC_INDEX = { (+1272/-2259)\n"
 }
