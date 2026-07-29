@@ -740,6 +740,282 @@
         <div class="journey-item reveal" data-card-type="feature">
           <div class="journey-node" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 19H5c-1.105 0-2-.895-2-2V7c0-1.105.895-2 2-2h3"/><path d="M16 5h3c1.105 0 2 .895 2 2v10c0 1.105-.895 2-2 2h-3"/><line x1="12" y1="4" x2="12" y2="20"/>
+            </svg>
+          <span class="journey-node-num">25</span></div>
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">v35 · Jul 2026</span><span>Feature</span></div>
+                <h3 class="journey-title">About Sign-In and VIP Tier sections placed side by side in a two-column grid</h3>
+                <div class="journey-tags">
+              <span class="tag">CSS Grid</span><span class="tag">Responsive design</span><span class="tag">Information architecture</span><span class="tag">Layout</span>
+            </div>
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+                            <li>Restructured the previously stacked “About / Sign in with Google” info card and “Exclusive Research &amp; Specs” VIP tier card into a responsive two-column grid on index.html, so both gated-access explainers sit at equal visual weight instead of one pushing the other down the page.</li>
+              <li>Grid activates at 1000px+ viewport width — below that, both columns stack in their original order. The Master Console section underneath was left untouched, still full-width.</li>
+              <li>Verified the <code>.reveal</code> scroll-fade class and <code>[data-access-tier]</code> attribute selectors are structure-agnostic before restructuring, since both cards’ gating and animation logic depends on class/attribute matching, not DOM nesting depth.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">CSS Grid</span><span class="tag">Responsive design</span><span class="tag">Information architecture</span><span class="tag">Layout</span>
+            </div>
+                  <div class="journey-links">
+                            <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/393d69f" target="_blank" rel="noopener">View commit ↗</a>
+            </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal" data-card-type="bug-fix">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="21" y1="6" x2="3" y2="6"/><line x1="15" y1="12" x2="3" y2="12"/><line x1="17" y1="18" x2="3" y2="18"/>
+            </svg>
+          <span class="journey-node-num">24</span></div>
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">v34 · Jul 2026</span><span>Bug fix</span></div>
+                <h3 class="journey-title">Left-aligned nav links after the logo instead of centering in the grid column</h3>
+                <div class="journey-tags">
+              <span class="tag">CSS</span><span class="tag">Navigation</span><span class="tag">Layout fix</span>
+            </div>
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+                            <li>Changed <code>.nav-links</code> from <code>justify-content: center</code> to <code>flex-start</code> so the Home/Projects/Achievements/Journey links start right after the ADT logo, instead of centering inside the middle track of the nav’s <code>auto 1fr auto</code> grid.</li>
+              <li>Confirmed the mobile hamburger-drawer breakpoint hides <code>.nav-links</code> entirely (<code>display: none</code>), so the fix is desktop-only and doesn’t touch the drawer layout.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">CSS</span><span class="tag">Navigation</span><span class="tag">Layout fix</span>
+            </div>
+                  <div class="journey-links">
+                            <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/d4a6282" target="_blank" rel="noopener">View commit ↗</a>
+            </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal" data-card-type="architecture">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/>
+            </svg>
+          <span class="journey-node-num">23</span></div>
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">v33 · Jul 2026</span><span>Architecture</span></div>
+                <h3 class="journey-title">Sectioned the 21-card project grid into Projects, Fuse AIF, and Personal Tools &amp; Apps</h3>
+                <div class="journey-tags">
+              <span class="tag">Information architecture</span><span class="tag">DOM restructuring</span><span class="tag">Content strategy</span>
+            </div>
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+                            <li>Grouped every project card on projects.html into three named sections — Projects (highest precedence, renders first), Fuse AIF (fellowship coursework), and Personal Tools &amp; Apps — using <code>&lt;h2&gt;</code> section headers spanning the full grid width (<code>grid-column: 1/-1</code>) rather than splitting into separate nested grids, so the existing toggle-all, keymap, and scroll-animation JS — all queried against a single flat <code>#projectsGrid details.project-card</code> list — needed zero changes.</li>
+              <li>The Fusemachines Capstone card is intentionally cross-listed: it renders once under Projects and again under Fuse AIF, a deliberate literal duplication rather than a single card referenced twice, since neither section outranks the other for that entry.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">Information architecture</span><span class="tag">DOM restructuring</span><span class="tag">Content strategy</span>
+            </div>
+                  <div class="journey-links">
+                            <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/f852c9f" target="_blank" rel="noopener">View commit ↗</a>
+            </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal" data-card-type="bug-fix">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          <span class="journey-node-num">22</span></div>
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">v32 · Jul 2026</span><span>Bug fix</span></div>
+                <h3 class="journey-title">Renamed Telco Churn and Text-to-SQL cards to the Fusemachines Wk N pattern, synced the search index</h3>
+                <div class="journey-tags">
+              <span class="tag">Content consistency</span><span class="tag">Search indexing</span><span class="tag">Naming convention</span>
+            </div>
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+                            <li>Cross-referenced the FuseAIF2026 coursework repo to confirm exact week numbers, then renamed three project cards to match the “Fusemachines Wk N — Topic” title pattern already used by the other fellowship cards: Text-to-SQL Agentic Pipeline → Wk 3, Telco Churn &amp; CLV ML Pipeline → Wk 4, Telco Churn Tree-Based Ensemble Pipeline → Wk 5.</li>
+              <li>Propagated the same title changes into the <code>SEARCH_STATIC_INDEX</code> object in script.js, so the command-palette search stays consistent with what’s actually rendered on the page instead of surfacing stale titles.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">Content consistency</span><span class="tag">Search indexing</span><span class="tag">Naming convention</span>
+            </div>
+                  <div class="journey-links">
+                            <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/8e362fc" target="_blank" rel="noopener">View commit ↗</a>
+            </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal" data-card-type="feature">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="18" rx="1"/>
+            </svg>
+          <span class="journey-node-num">21</span></div>
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">v31 · Jul 2026</span><span>Feature</span></div>
+                <h3 class="journey-title">Two-column media layout for the GCSBR project card — description left, video right</h3>
+                <div class="journey-tags">
+              <span class="tag">CSS Grid</span><span class="tag">Responsive design</span><span class="tag">Media layout</span>
+            </div>
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+                            <li>Split the Gesture-Controlled Self-Balancing Robot card’s body into a 1×2 layout at 900px+ — description list and tags on the left, embedded video on the right — instead of the video stacking full-width beneath the text like every other card.</li>
+              <li>Scoped the grid change to a new inner wrapper rather than <code>.project-card-body</code> itself, after confirming the existing single-track <code>grid-template-rows: 0fr → 1fr</code> open/close collapse animation on that element would conflict with adding <code>grid-template-columns</code> directly on the same node.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">CSS Grid</span><span class="tag">Responsive design</span><span class="tag">Media layout</span>
+            </div>
+                  <div class="journey-links">
+                            <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/6c926c7" target="_blank" rel="noopener">View commit ↗</a>
+            </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal" data-card-type="feature">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>
+            </svg>
+          <span class="journey-node-num">20</span></div>
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">v30 · Jul 2026</span><span>Feature</span></div>
+                <h3 class="journey-title">Alt+2 expand/collapse-all for Projects; collapse-all now scrolls to top everywhere</h3>
+                <div class="journey-tags">
+              <span class="tag">JavaScript</span><span class="tag">Keyboard shortcuts</span><span class="tag">UX consistency</span>
+            </div>
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+                            <li>Added an Alt+2 shortcut wired to the projects page’s toggle-all button, extending the site’s existing keymap pattern (Alt+4 → achievements, Alt+6 → journey).</li>
+              <li>Collapsing all cards via the toggle-all button now scrolls the page to top on all three timeline-style pages — projects, achievements, journey — instead of leaving the viewport wherever the last open card happened to be.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">JavaScript</span><span class="tag">Keyboard shortcuts</span><span class="tag">UX consistency</span>
+            </div>
+                  <div class="journey-links">
+                            <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/5ad63cb" target="_blank" rel="noopener">View commit ↗</a>
+            </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal" data-card-type="feature">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="8 9 12 5 16 9"/><polyline points="16 15 12 19 8 15"/>
+            </svg>
+          <span class="journey-node-num">19</span></div>
+          <div class="journey-card" data-open="false">
+            <button class="journey-card-toggle" type="button" aria-expanded="false" onclick="toggleJourneyCard(this)">
+              <div class="journey-card-toggle-main">
+                <div class="journey-meta"><span class="journey-period">v29 · Jul 2026</span><span>Feature</span></div>
+                <h3 class="journey-title">Fluid open/close animation and true scroll-position undo for project card dropdowns</h3>
+                <div class="journey-tags">
+              <span class="tag">CSS Grid</span><span class="tag">JavaScript</span><span class="tag">Animation</span><span class="tag">Scroll behavior</span>
+            </div>
+              </div>
+              <svg class="journey-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="journey-card-body">
+              <div class="journey-card-body-inner">
+                <div class="journey-card-body-content">
+                  <ul class="journey-desc">
+                            <li>Replaced the native <code>&lt;details&gt;</code> element’s instant snap-open/snap-closed toggling with a smooth height transition, using a single-child grid-rows trick (<code>0fr → 1fr</code>) plus a JS-intercepted click that delays removing the <code>open</code> attribute until the collapse animation finishes.</li>
+              <li>Opening a card scrolls it into view; closing a card now restores the exact scroll position that was active before the card was opened — true undo, not a re-align to the card’s current top position — captured via <code>window.scrollY</code> at open-time.</li>
+              <li>Also rewired the “Expand/Collapse all” button to reuse the same animation helpers instead of toggling <code>open</code> directly and snapping instantly, so the button and per-card clicks share one code path.</li>
+            </ul>
+                  <div class="journey-skill-label">Applied skillset</div>
+                  <div class="journey-tags">
+              <span class="tag">CSS Grid</span><span class="tag">JavaScript</span><span class="tag">Animation</span><span class="tag">Scroll behavior</span>
+            </div>
+                  <div class="journey-links">
+                            <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/1714948" target="_blank" rel="noopener">View commit ↗</a>
+              <a class="journey-link" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/cb222d6" target="_blank" rel="noopener">Scroll-undo fix ↗</a>
+            </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-item reveal" data-card-type="feature">
+          <div class="journey-node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
             </svg>
           <span class="journey-node-num">18</span></div>
