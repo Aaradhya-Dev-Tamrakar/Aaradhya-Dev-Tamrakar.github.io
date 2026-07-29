@@ -1,6 +1,6 @@
 {
-  "sha": "17149485c151e498574fd5d2c40bc69773b4af7c",
-  "shortSha": "1714948",
-  "date": "2026-07-29T10:24:46+05:45",
-  "message": "feat(projects): fluid open/close animation for project card dropdowns with scroll sync\n"
+  "sha": "cb222d6453cfca9badd1a3e11e65a92e1317cf79",
+  "shortSha": "cb222d6",
+  "date": "2026-07-29T10:27:40+05:45",
+  "message": "fix(projects): true scroll undo on card close instead of realigning to card top\n"
 }
