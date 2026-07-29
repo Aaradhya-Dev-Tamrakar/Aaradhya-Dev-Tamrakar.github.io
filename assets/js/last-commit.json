@@ -1,6 +1,6 @@
 {
-  "sha": "6c926c708e30b3e199fdb6f383a9d1f906bcf5ed",
-  "shortSha": "6c926c7",
-  "date": "2026-07-29T10:36:38+05:45",
-  "message": "style(projects): 1x2 layout for GCSBR card — text left, video right on wide screens (900px+), stacks on narrow\n"
+  "sha": "8e362fc85d3bf52659d19fb0670a9b42e17fd24b",
+  "shortSha": "8e362fc",
+  "date": "2026-07-29T10:49:04+05:45",
+  "message": "rename(projects): Telco Churn x2 and Text-to-SQL cards to Fusemachines Wk 3/4/5 pattern, sync search index\n"
 }
