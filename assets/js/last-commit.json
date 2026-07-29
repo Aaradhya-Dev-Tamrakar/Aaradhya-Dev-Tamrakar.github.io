@@ -1,6 +1,6 @@
 {
-  "sha": "908fefaec2d20c7937fe8b1e58dbdd83dd05b850",
-  "shortSha": "908fefa",
-  "date": "2026-07-29T11:35:28+05:45",
-  "message": "docs(journey): log v29-v35 checkpoints — fluid dropdowns, Alt+2 keymap, GCSBR 1x2 layout, Wk3-5 renames, project sectioning, nav align, About/VIP 2-col\n"
+  "sha": "5954f9c3467c26853b24c566a5d9008cc50a99db",
+  "shortSha": "5954f9c",
+  "date": "2026-07-29T14:52:41+05:45",
+  "message": "feat(access-control): gate Claude Desktop repo link to Master tier; generalize VIP payload-link processor to support per-link tiers via data-payload-tier\n"
 }
