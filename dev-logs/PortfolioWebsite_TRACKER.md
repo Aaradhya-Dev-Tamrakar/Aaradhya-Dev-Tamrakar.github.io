@@ -34,11 +34,11 @@
 
 **Open items:**
 
-| Item                                                              | Status                                                                                                                                                                                                                                                                                     |
-| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Particle-fx trigger style — always-on vs. click/hover toggle**    | **Open, deferred by user this version (v27) — explicitly "continue later."** Currently shipped as always-on. If revisited: swap to click/hover would mean gating the rAF start/stop on a click/pointer listener instead of only `visibilitychange`; the reduced-motion check and 34-particle cap wouldn't need to change. |
-| GitHub API direct commit/deployment count                         | Still blocked — sandbox shared-IP rate limit (confirmed v19). `last-commit.json` (SHA `43d99bd`) remains the fallback.                                                                                                                                                                    |
-| Merge-pending: still separate from `AARADHYA_MASTER`                | Unchanged, carried forward.                                                                                                                                                                                                                                                                |
+| Item                                                             | Status                                                                                                                                                                                                                                                                                                                    |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Particle-fx trigger style — always-on vs. click/hover toggle** | **Open, deferred by user this version (v27) — explicitly "continue later."** Currently shipped as always-on. If revisited: swap to click/hover would mean gating the rAF start/stop on a click/pointer listener instead of only `visibilitychange`; the reduced-motion check and 34-particle cap wouldn't need to change. |
+| GitHub API direct commit/deployment count                        | Still blocked — sandbox shared-IP rate limit (confirmed v19). `last-commit.json` (SHA `43d99bd`) remains the fallback.                                                                                                                                                                                                    |
+| Merge-pending: still separate from `AARADHYA_MASTER`             | Unchanged, carried forward.                                                                                                                                                                                                                                                                                               |
 
 _Dropped from this table (v24): the two v20/v21 unmatched-PDF items and the `graphify-out/` stale-filename item — all resolved, all documented in their own dedicated sections below rather than carried indefinitely as "open."_
 
@@ -47,7 +47,7 @@ _Dropped from this table (v24): the two v20/v21 unmatched-PDF items and the `gra
 - **Site-optimization pass** (`e7b6f8b`, `034ae1e`, `42d30e0`) — untracked `graphify-out/`+`dev-logs/` (~1MB no longer publicly served by GitHub Pages), regenerated `og-image.jpg` with the correct post-migration domain, converted 3 oversized logo PNGs to sized WebP pairs, added an LCP `fetchpriority` hint on `about.html`'s hero, rAF-throttled the scroll handler in `script.js`, plus `.hintrc`/template a11y follow-ups. Full breakdown below.
 - **Mobile legend line-break fix** (`8683db4`) — `achievements.html`'s category/year legend groups now stack as distinct blocks on mobile instead of an ambiguous inline wrap.
 
-_(Note: this bullet list had gone stale — it still described v20's cert-download work as of the v23 file. Replaced to actually describe v24's resolutions; v20's own summary remains intact in the Meta section above and isn't lost.)_
+**_(Note: this bullet list had gone stale — it still described v20's cert-download work as of the v23 file. Replaced to actually describe v24's resolutions; v20's own summary remains intact in the Meta section above and isn't lost.)_**
 
 ---
 
@@ -119,6 +119,7 @@ Four commits landed this round. Verified against a **fresh clone of `origin/main
 **`8683db4`** — mobile legend line-break fix
 
 - `achievements.html`, inside the existing `@media (max-width: 900px)` block:
+
   ```css
   .achv-legends {
     flex-direction: column;
@@ -129,6 +130,7 @@ Four commits landed this round. Verified against a **fresh clone of `origin/main
     display: none;
   }
   ```
+
 - The category-legend wrap (4 items — Workshop/Certification/Competition/Leadership — "Leadership" spilling to its own line under ~900px) was real but unstyled: it read as a designed second row sitting next to the Current-Year/Past-Years row below it, but wasn't one — the 1px `.achv-legend-sep` divider meant to separate the two legends was floating mid-flow with nothing anchoring it as a group boundary. Fix stacks both legend groups as distinct blocks with a real `0.6rem` gap instead of letting them contest space in one wrapped flex row. Verified via computed styles at a 375px viewport (two clean, non-overlapping vertical bands, ~9px gap between them) and against the live diff (matches exactly, plus one incidental editor line-wrap on the Certification `<span>` — whitespace only, no functional change). Confirmed working in simulation, then on Aaradhya's own device, before commit.
 
 **Lighthouse**: 87 mobile / 99 desktop, confirmed by Aaradhya against `f4373a2` — the commit immediately after `42d30e0`'s merge, i.e. reflects the full optimization pass but predates the legend fix. (An initially-reported 78/95 was a misread mid-session; corrected to 87/99 before being recorded here — the earlier figure was never actioned on.)
