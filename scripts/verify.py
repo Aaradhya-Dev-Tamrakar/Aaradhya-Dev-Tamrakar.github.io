@@ -51,7 +51,7 @@ PAGES = {
         "file": ROOT / "journey.html",
         "container": "#journeyTrack",
         "item": ".journey-node",
-        "id_prefix": None,  # journey nodes aren't currently deep-linked
+        "id_prefix": "j-",
     },
 }
 

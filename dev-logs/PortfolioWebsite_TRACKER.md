@@ -192,3 +192,17 @@ From a separately exported session (`projects.html` + `about.html` checks). Re-v
 **Closed this version:** PulseLive 404 (repo made public, re-verified 200 OK — no code change needed).
 
 **New open item (v26):** stale `width`/`height` on `about.html`'s profile photo (480×640 vs actual 720×960).
+
+---
+
+## v28 addition — site-wide bug audit & structural hardening pass (2026-08-04)
+
+Full site-wide audit completed and all open findings resolved:
+
+- **Deep-linking IDs**: Added explicit `id` attributes to all 22 `.project-card` elements (`p-001`…`p-022`) in `projects.html` and all 25 `.journey-node` elements (`j-001`…`j-025`) in `journey.html`. Updated `scripts/verify.py` with `id_prefix: "j-"`.
+- **Search index sync**: Regenerated `SEARCH_STATIC_INDEX` via `scripts/extract_index.py` (36 achievements, 22 projects indexed with clean deep-links).
+- **Academic legend clean-up**: Removed orphaned "Leadership" swatch from `#legendAcademic` in `achievements.html`.
+- **Image hint update**: Corrected profile photo intrinsic hints in `about.html` from `width="480" height="640"` to `width="720" height="960"`.
+- **Security hardening**: Added `rel="noopener"` to EmailJS and Formspree external links in `privacy.html`. Fixed internal links in `journey.html` (`contact.html`, `index.html`) to use standard same-tab navigation.
+- **Orphaned JS payload clean-up**: Removed unreferenced `"achievements-vip"` entry from `ACCESS_CONTROL_PAYLOADS` in `assets/js/script.js`.
+- **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings**. `graphify update .` executed cleanly.
