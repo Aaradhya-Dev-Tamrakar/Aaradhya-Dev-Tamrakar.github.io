@@ -1,6 +1,6 @@
 {
-  "sha": "e6c3dbced1041b8c9c9bfee74b2cfee13ce12f8b",
-  "shortSha": "e6c3dbc",
-  "date": "2026-08-04T00:56:51+05:45",
-  "message": "refactor: update PortfolioWebsite_TRACKER.md, privacy.html - _Dropped from this table (v24): the two v20/v21 unmatched-PDF items and the `gra (+11/-9)\n"
+  "sha": "11686772e58f2c1fd28b2b78eb0fea7b109e656d",
+  "shortSha": "1168677",
+  "date": "2026-08-04T00:58:47+05:45",
+  "message": "feat(upgrades): PWA manifest, theme-color script, video playsinline, async image decoding, print styles, and JSON-LD schemas\n"
 }
