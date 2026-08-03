@@ -208,3 +208,18 @@ Full site-wide audit completed and all open findings resolved:
 - **Security hardening**: Added `rel="noopener"` to EmailJS and Formspree external links in `privacy.html`. Fixed internal links in `journey.html` (`contact.html`, `index.html`) to use standard same-tab navigation.
 - **Orphaned JS payload clean-up**: Removed unreferenced `"achievements-vip"` entry from `ACCESS_CONTROL_PAYLOADS` in `assets/js/script.js`.
 - **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings**. `graphify update .` executed cleanly.
+
+---
+
+## v29 addition — site-wide performance, PWA, SEO & styling upgrades (2026-08-04)
+
+All proposed site upgrades implemented and verified across the portfolio:
+
+- **PWA & Manifest integration**: Created `site.webmanifest` with metadata (`standalone` display, dark theme `#0f0e0c`, maskable SVG icon). Added `<link rel="manifest" href="site.webmanifest" />` across all 10 HTML pages.
+- **Mobile video playsinline**: Added `playsinline=""` to the demonstration video element in `projects.html` to prevent iOS devices from forcing full-screen video player popups.
+- **Cross-page theme-color script**: Injected dynamic `<meta name="theme-color">` script in `<head>` of `about.html`, `achievements.html`, `experience.html`, `journey.html`, and `projects.html` for uniform address bar tinting across light/dark OS modes.
+- **Async image decoding**: Added `decoding="async"` across images in `achievements.html`, `experience.html`, `about.html`, and `journey.html` to prevent main-thread layout stalls during fast scrolling.
+- **SEO rich snippets (JSON-LD)**: Added structured JSON-LD schemas for `ItemList`/`SoftwareApplication` on `projects.html`, `Person`/`Organization` on `experience.html`, and `EducationalOccupationalCredential` on `achievements.html`.
+- **Print stylesheet optimization (`@media print`)**: Added `@media print` rules in `assets/css/style.css` to hide floating controls (`.cmdk-modal`, `.nav`, `.back-to-top`, `.about-photo-fx`, `.keymap-modal`, `footer`) and format content for crisp printing/PDF resume export.
+- **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings**. `graphify update .` executed cleanly.
+

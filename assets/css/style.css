@@ -2699,3 +2699,36 @@ html[data-theme="light"] .gated-overlay {
   border-color: #eab308 !important;
   background: rgba(234, 179, 8, 0.08) !important;
 }
+
+/* ==========================================================================
+   Print Stylesheet Optimization
+   ========================================================================== */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  .nav,
+  .back-to-top,
+  .cmdk-modal,
+  .lb-modal,
+  .about-photo-fx,
+  .keymap-modal,
+  footer {
+    display: none !important;
+  }
+
+  a {
+    color: #111111 !important;
+    text-decoration: underline !important;
+  }
+
+  .project-card,
+  .achievement-item,
+  .exp-card {
+    break-inside: avoid;
+    border: 1px solid #cccccc !important;
+    box-shadow: none !important;
+  }
+}
