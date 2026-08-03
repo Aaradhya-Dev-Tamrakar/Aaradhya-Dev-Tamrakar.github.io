@@ -222,4 +222,3 @@ All proposed site upgrades implemented and verified across the portfolio:
 - **SEO rich snippets (JSON-LD)**: Added structured JSON-LD schemas for `ItemList`/`SoftwareApplication` on `projects.html`, `Person`/`Organization` on `experience.html`, and `EducationalOccupationalCredential` on `achievements.html`.
 - **Print stylesheet optimization (`@media print`)**: Added `@media print` rules in `assets/css/style.css` to hide floating controls (`.cmdk-modal`, `.nav`, `.back-to-top`, `.about-photo-fx`, `.keymap-modal`, `footer`) and format content for crisp printing/PDF resume export.
 - **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings**. `graphify update .` executed cleanly.
-
