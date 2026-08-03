@@ -1,6 +1,6 @@
 {
-  "sha": "184745ef4ceb38d8ca7df8d43fd5d10014b39f2b",
-  "shortSha": "184745e",
-  "date": "2026-07-29T15:11:06+05:45",
-  "message": "content(achievements): replace IEEE CLW 2026 card photo with full panel/whiteboard group shot\n"
+  "sha": "47c06b23905a3d46a982b8f7ddc9252b0f39e41b",
+  "shortSha": "47c06b2",
+  "date": "2026-08-04T00:51:23+05:45",
+  "message": "fix(audit): site-wide structural integrity, deep-linking ids, security hardening, and index sync\n"
 }
