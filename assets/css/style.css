@@ -2867,3 +2867,29 @@ html[data-theme="light"] .gated-overlay {
     box-shadow: none !important;
   }
 }
+
+/* ==========================================================================
+   v32 Upgrade Utilities: Reading Progress Bar & Card 3D Tilt Hardware Acceleration
+   ========================================================================== */
+#readProgressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+  z-index: 10001;
+  transition: width 0.08s ease-out;
+  pointer-events: none;
+}
+
+.project-card,
+.achievement-item,
+.journey-node,
+.exp-card {
+  will-change: transform;
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+

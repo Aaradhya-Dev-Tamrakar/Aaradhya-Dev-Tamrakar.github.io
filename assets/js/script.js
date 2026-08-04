@@ -45,6 +45,18 @@ const SOCIAL_ICONS = {
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
   {
+    version: 'v32',
+    date: '2026-08-04',
+    sha: '032a76f',
+    title: 'PWA Resilience, Reading Progress Bar & 3D Card Tilt',
+    highlights: [
+      'PWA Service Worker v32 cache refresh with live network status toasts',
+      'Top viewport reading progress bar (#readProgressBar) on scroll',
+      '3D perspective card tilt micro-interactions on hover',
+      'Journey timeline milestone j-028 for v32 upgrade suite'
+    ]
+  },
+  {
     version: 'v31',
     date: '2026-08-04',
     sha: '8761335',
@@ -102,7 +114,7 @@ const CMDK_PAGES = [
   { title: 'Journey', href: '/journey.html' },
   { title: 'About', href: '/about.html' },
   { title: 'Contact', href: '/contact.html' },
-  { title: "What's New (v31 Major Releases)", href: "javascript:openWhatsNewModal()" },
+  { title: "What's New (v32 Major Releases)", href: "javascript:openWhatsNewModal()" },
 ];
 
 /* ── Quick-nav ("Explore") card data ──────────────────────────
@@ -813,7 +825,7 @@ function renderSiteFooter() {
       <div class="footer-socials">${socialsHtml}</div>
     </div>
     <div class="footer-rule"></div>
-    <div class="footer-copy">${SITE.footerCopy} · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a> · <button id="wnFooterBtn" type="button" class="footer-wn-btn">What's New (v31)</button></div>`;
+    <div class="footer-copy">${SITE.footerCopy} · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a> · <button id="wnFooterBtn" type="button" class="footer-wn-btn">What's New (v32)</button></div>`;
 
   const btn = document.getElementById('wnFooterBtn');
   if (btn) btn.addEventListener('click', openWhatsNewModal);
@@ -2049,6 +2061,9 @@ function initAccessControl() {
   initAccessControl();
   renderSiteFooter();
   initServiceWorker();
+  initReadingProgressBar();
+  initNetworkStatusListeners();
+  initCardTilt();
   window.addEventListener('load', loadGA4);
 })();
 
@@ -2060,6 +2075,57 @@ function initServiceWorker() {
       });
     });
   }
+}
+
+function initReadingProgressBar() {
+  const bar = document.getElementById('readProgressBar');
+  if (!bar) return;
+  function updateProgress() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = Math.min(100, Math.max(0, progress)) + '%';
+  }
+  window.addEventListener('scroll', () => {
+    requestAnimationFrame(updateProgress);
+  }, { passive: true });
+  updateProgress();
+}
+
+function initNetworkStatusListeners() {
+  window.addEventListener('online', () => {
+    showToast('Connection restored — back online');
+  });
+  window.addEventListener('offline', () => {
+    showToast('You are currently offline');
+  });
+}
+
+function initCardTilt() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+  const selector = '.project-card, .achievement-item, .journey-node, .exp-card';
+  document.addEventListener('mousemove', e => {
+    const card = e.target.closest(selector);
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -4;
+    const rotateY = ((x - centerX) / centerX) * 4;
+    card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(4px)`;
+  });
+
+  document.addEventListener('mouseout', e => {
+    const card = e.target.closest(selector);
+    if (!card) return;
+    if (!e.relatedTarget || !card.contains(e.relatedTarget)) {
+      card.style.transform = '';
+    }
+  });
 }
 
 /* ── Cert/CV lightbox (index, achievements, experience) ───── */

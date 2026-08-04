@@ -1,4 +1,4 @@
-# Portfolio Website Tracker — v31
+# Portfolio Website Tracker — v32
 
 ## _Last updated: 2026-08-04_
 
@@ -260,3 +260,16 @@ Full What's New major release feature implemented and verified:
 - **Footer Button & Storage**: Added `What's New (v31)` button in `siteFooter` and stored viewed version in `localStorage` (`adt_last_seen_release`).
 - **Journey Timeline Milestones (`journey.html`)**: Added milestone nodes `j-027` (What's New Feature) and `j-026` (v31 Upgrade Suite) to the engineering timeline.
 - **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings** (`achievements=36, projects=22, journey=27`).
+
+---
+
+## v32 addition — PWA offline resilience, reading progress bar, 3D card tilt & journey node j-028 (2026-08-04)
+
+Full v32 site upgrade suite implemented and verified across the portfolio:
+
+- **PWA Service Worker (`sw.js`)**: Upgraded service worker cache version to `aaradhya-portfolio-v32` and injected live online/offline network status toasts in `assets/js/script.js`.
+- **Scroll Reading Progress Bar (`#readProgressBar`)**: Added top viewport neon progress bar driven by `requestAnimationFrame` on scroll across all 10 site HTML pages (`index.html`, `about.html`, `projects.html`, `experience.html`, `achievements.html`, `journey.html`, `contact.html`, `privacy.html`, `terms.html`, `404.html`).
+- **Hardware-Accelerated 3D Card Tilt Micro-Interactions**: Implemented 3D perspective mousemove tilt handlers on `.project-card`, `.achievement-item`, `.journey-node`, and `.exp-card` in `assets/js/script.js`, styled in `assets/css/style.css` (gated on non-touch devices and `prefers-reduced-motion: no-preference`).
+- **"What's New (v32)" Release History & Footer**: Updated `SITE_RELEASES` history array, command palette item, and footer button to `What's New (v32)`.
+- **Journey Engineering Timeline (`journey.html`)**: Added milestone node `j-028` for the v32 upgrade suite.
+- **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings** (`achievements=36, projects=22, journey=28`). `graphify update .` executed cleanly.

@@ -660,6 +660,7 @@
   </style>
 </head>
 <body>
+<div id="readProgressBar" aria-hidden="true"></div>
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <div class="scroll-progress" id="scrollProgress"></div>
 <div class="cursor" id="cursor">
@@ -715,6 +716,46 @@
 </button>
 </div>
 <div class="journey-track" id="journeyTrack">
+<div class="journey-item reveal" data-card-type="feature">
+<div aria-hidden="true" class="journey-node" id="j-028">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+</svg>
+<span class="journey-node-num">28</span></div>
+<div class="journey-card" data-open="false">
+<button aria-expanded="false" class="journey-card-toggle" onclick="toggleJourneyCard(this)" type="button">
+<div class="journey-card-toggle-main">
+<div class="journey-meta"><span class="journey-period">v32 · Aug 2026</span><span>Feature</span></div>
+<h3 class="journey-title">PWA Offline Resilience, Scroll Reading Progress Bar &amp; 3D Card Tilt Micro-Interactions</h3>
+<div class="journey-tags">
+<span class="tag">PWA</span><span class="tag">Service Worker</span><span class="tag">3D Micro-Interactions</span><span class="tag">CSS Transforms</span>
+</div>
+</div>
+<svg aria-hidden="true" class="journey-chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<polyline points="6 9 12 15 18 9"></polyline>
+</svg>
+</button>
+<div class="journey-card-body">
+<div class="journey-card-body-inner">
+<div class="journey-card-body-content">
+<p class="journey-problem">
+<strong>The Problem:</strong> As the portfolio expanded into a multi-page progressive web app, reading position tracking was non-uniform and offline state switches went unnotified.
+</p>
+<p class="journey-solution">
+<strong>The Solution:</strong> Upgraded the Service Worker cache to <code>aaradhya-portfolio-v32</code> with live network status toasts, introduced a fixed neon reading progress bar (<code>#readProgressBar</code>) optimized via <code>requestAnimationFrame</code>, and added hardware-accelerated 3D perspective card tilt micro-interactions on hover.
+</p>
+<div class="journey-evidence">
+<span class="journey-evidence-label">Proof of Work</span>
+<ul class="journey-evidence-list">
+<li>Upgraded service worker cache in <code>sw.js</code> and added network online/offline toast notifications.</li>
+<li>Integrated scroll reading progress bar across all 10 HTML pages and added card 3D tilt handlers in <code>script.js</code>.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="journey-item reveal" data-card-type="feature">
 <div aria-hidden="true" class="journey-node" id="j-027">
 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
