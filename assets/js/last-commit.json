@@ -1,6 +1,6 @@
 {
-  "sha": "8761335e218486d5422cfc06349c78a9b193fb51",
-  "shortSha": "8761335",
-  "date": "2026-08-04T09:32:16+05:45",
-  "message": "feat(v31): site upgrade suite - PWA v31 cache bump, URL hash filter sync, screen reader accessibility, and SEO verification\n"
+  "sha": "d69f28aafa200c008bbe6b9dbd8df2be0b3f6763",
+  "shortSha": "d69f28a",
+  "date": "2026-08-04T09:40:29+05:45",
+  "message": "docs: update keymap section in index.html and directory map in README.md\n"
 }
