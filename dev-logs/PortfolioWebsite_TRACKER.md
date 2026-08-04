@@ -260,5 +260,3 @@ Full What's New major release feature implemented and verified:
 - **Footer Button & Storage**: Added `What's New (v31)` button in `siteFooter` and stored viewed version in `localStorage` (`adt_last_seen_release`).
 - **Journey Timeline Milestones (`journey.html`)**: Added milestone nodes `j-027` (What's New Feature) and `j-026` (v31 Upgrade Suite) to the engineering timeline.
 - **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings** (`achievements=36, projects=22, journey=27`).
-
-
