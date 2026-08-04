@@ -22,7 +22,7 @@ Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronic
 │   ├── terms.html              # Terms of service and usage terms
 │   ├── 404.html                # Custom styled Not-Found page (excluded from sitemap, marked noindex)
 │   ├── site.webmanifest        # Progressive Web App manifest metadata (standalone app, dark theme tokens)
-│   ├── sw.js                   # PWA Service Worker (v31 cache-first static assets & network-first HTML)
+│   ├── sw.js                   # PWA Service Worker (v33 cache-first static assets & network-first HTML)
 │   └── google3e772e11a3eb8313.html # Google Search Console site ownership verification file
 │
 ├── 🎨 Assets (`assets/`)
@@ -106,7 +106,7 @@ The site features an advanced **Zero-Leak Client-Side Access Control System** su
 Press **`/`** (or click the **Search** button in the navigation bar) on any page to open the unified **Command Palette**.
 
 ### Key Features:
-- **Instant Cross-Page Search**: Searches across all 10 site pages, all 35+ achievements, all 13+ projects, and direct quick-navigation commands.
+- **Instant Cross-Page Search**: Searches across all 10 site pages, all 36 achievements, all 22 projects, and direct quick-navigation commands.
 - **Dual Index Strategy**:
   1. `SEARCH_STATIC_INDEX`: Pre-compiled static snapshot bundled into `assets/js/script.js` so search works immediately on non-list pages (`index.html`, `contact.html`, `about.html`, etc.).
   2. **Live DOM Scanning**: Real-time DOM fallback scanner on `achievements.html` and `projects.html` to instantly reflect any client-side content edits in search results.
