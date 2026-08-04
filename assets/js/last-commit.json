@@ -1,6 +1,6 @@
 {
-  "sha": "a0b66a93584a65c7c3b0fc0beda9437640f5a469",
-  "shortSha": "a0b66a9",
-  "date": "2026-08-04T10:13:28+05:45",
-  "message": "docs(readme): document interactive dev terminal widget commands and features\n"
+  "sha": "e2d076a1c84c82d88f49b3b0610516483a985932",
+  "shortSha": "e2d076a",
+  "date": "2026-08-04T10:17:06+05:45",
+  "message": "chore: update README.md - The site features an advanced **Zero-Leak Client-Side Access Control System** su (+15/-8)\n"
 }
