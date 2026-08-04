@@ -1,6 +1,6 @@
 {
-  "sha": "d69f28aafa200c008bbe6b9dbd8df2be0b3f6763",
-  "shortSha": "d69f28a",
-  "date": "2026-08-04T09:40:29+05:45",
-  "message": "docs: update keymap section in index.html and directory map in README.md\n"
+  "sha": "fde29d64ddb1505520497bda311cce736df14099",
+  "shortSha": "fde29d6",
+  "date": "2026-08-04T09:42:15+05:45",
+  "message": "feat(cmdk): add Ctrl+K / Cmd+K shortcut binding for command palette search\n"
 }
