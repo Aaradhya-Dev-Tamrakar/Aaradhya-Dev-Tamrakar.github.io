@@ -1,4 +1,4 @@
-# Portfolio Website Tracker — v32
+# Portfolio Website Tracker — v33
 
 ## _Last updated: 2026-08-04_
 
@@ -273,3 +273,17 @@ Full v32 site upgrade suite implemented and verified across the portfolio:
 - **"What's New (v32)" Release History & Footer**: Updated `SITE_RELEASES` history array, command palette item, and footer button to `What's New (v32)`.
 - **Journey Engineering Timeline (`journey.html`)**: Added milestone node `j-028` for the v32 upgrade suite.
 - **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings** (`achievements=36, projects=22, journey=28`). `graphify update .` executed cleanly.
+
+---
+
+## v33 addition — interactive dev terminal, CMDK filter pills, cursor light trail & journey node j-029 (2026-08-04)
+
+Full v33 site upgrade suite implemented and verified across the portfolio:
+
+- **Interactive Dev Terminal Widget (`#adtTerminal`)**: Implemented a retro-futuristic interactive terminal section on the Home page (`index.html`) supporting live commands (`skills`, `projects`, `experience`, `achievements`, `contact`, `whatsnew`, `theme`, `matrix`, `clear`) with quick preset buttons and animated output formatting in `assets/js/script.js` and `assets/css/style.css`.
+- **Command Palette (`CMDK`) Quick Filters**: Integrated tab category filter pills into the command palette search engine for instant category filtering.
+- **Hardware-Accelerated Cursor Light Trail Micro-Interaction**: Added dynamic mousemove particle glow trails for the custom cursor (gated on non-touch devices and `prefers-reduced-motion: no-preference`).
+- **PWA Service Worker & Release History (`sw.js`)**: Upgraded service worker cache version to `aaradhya-portfolio-v33` and updated `SITE_RELEASES` history and footer release button to `What's New (v33)`.
+- **Journey Engineering Timeline (`journey.html`)**: Added milestone node `j-029` for the v33 upgrade suite.
+- **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings** (`achievements=36, projects=22, journey=29`). `graphify update .` executed cleanly.
+

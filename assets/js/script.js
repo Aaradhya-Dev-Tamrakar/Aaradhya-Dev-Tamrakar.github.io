@@ -45,6 +45,18 @@ const SOCIAL_ICONS = {
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
   {
+    version: 'v33',
+    date: '2026-08-04',
+    sha: 'fde29d6',
+    title: 'Interactive Dev Terminal Widget, CMDK Filters & Cursor Light Trail',
+    highlights: [
+      'Interactive retro-futuristic terminal widget (#adt-terminal) with live command execution',
+      'Quick category tab filter pills integrated into Command Palette (CMDK)',
+      'Hardware-accelerated custom cursor light trail micro-interaction',
+      'Journey milestone node j-029 for v33 upgrade suite'
+    ]
+  },
+  {
     version: 'v32',
     date: '2026-08-04',
     sha: 'c65d080',
@@ -114,7 +126,7 @@ const CMDK_PAGES = [
   { title: 'Journey', href: '/journey.html' },
   { title: 'About', href: '/about.html' },
   { title: 'Contact', href: '/contact.html' },
-  { title: "What's New (v32 Major Releases)", href: "javascript:openWhatsNewModal()" },
+  { title: "What's New (v33 Major Releases)", href: "javascript:openWhatsNewModal()" },
 ];
 
 /* ── Quick-nav ("Explore") card data ──────────────────────────
@@ -825,7 +837,7 @@ function renderSiteFooter() {
       <div class="footer-socials">${socialsHtml}</div>
     </div>
     <div class="footer-rule"></div>
-    <div class="footer-copy">${SITE.footerCopy} · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a> · <button id="wnFooterBtn" type="button" class="footer-wn-btn">What's New (v32)</button></div>`;
+    <div class="footer-copy">${SITE.footerCopy} · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a> · <button id="wnFooterBtn" type="button" class="footer-wn-btn">What's New (v33)</button></div>`;
 
   const btn = document.getElementById('wnFooterBtn');
   if (btn) btn.addEventListener('click', openWhatsNewModal);
@@ -2522,3 +2534,171 @@ function initKeyNav() {
     window.location.href = PAGE_MAP[e.key];
   });
 }
+
+/* ── Interactive Dev Terminal Widget (v33) ─────────────────── */
+(function initTerminalWidget() {
+  function setup() {
+    const term = document.getElementById('adtTerminal');
+    if (!term) return;
+
+    const body = term.querySelector('.terminal-body');
+    const input = term.querySelector('.terminal-input');
+    const quickBtns = term.querySelectorAll('.terminal-quick-cmd');
+    if (!body || !input) return;
+
+    const COMMANDS = {
+      help: () => `
+<span class="term-green">Available Commands:</span>
+  <span class="term-gold">skills</span>       - Overview of technical skillset & engineering tools
+  <span class="term-gold">projects</span>     - Key engineering & AI/ML projects
+  <span class="term-gold">experience</span>   - Leadership & technical roles
+  <span class="term-gold">achievements</span> - Credentials & competition milestones
+  <span class="term-gold">contact</span>      - Direct communication channels
+  <span class="term-gold">whatsnew</span>     - View v33 major release highlights
+  <span class="term-gold">theme</span>        - Toggle site color scheme (Dark / Light)
+  <span class="term-gold">matrix</span>       - Trigger cybernetic digital rain
+  <span class="term-gold">clear</span>        - Clear terminal screen output
+`,
+      skills: () => `
+<span class="term-green">▶ Core Technical Skillset:</span>
+  • <span class="term-cyan">Embedded & Firmware:</span> C, C++, Verilog, ARM Cortex-M, STM32, ESP32, KiCAD
+  • <span class="term-cyan">AI / ML & Vision:</span> Python, PyTorch, OpenCV, TensorFlow, Signal Processing
+  • <span class="term-cyan">Web Systems:</span> JavaScript (ES6+), HTML5/CSS3, Node.js, WebSockets, REST APIs
+`,
+      projects: () => `
+<span class="term-green">▶ Featured Projects:</span>
+  1. <span class="term-gold">PulseLive</span> — Real-Time Acoustic Patient Monitoring System
+  2. <span class="term-gold">GCSBR</span> — Ground Control Station for High-Altitude Rocketry
+  3. <span class="term-gold">Autonomous Rover</span> — LiDAR/Ultrasonic Obstacle Avoidance & Sensor Fusion
+  4. Type <span class="term-cyan">'2'</span> or navigate to <a href="/projects.html" class="term-link">/projects.html</a> for all 22 projects!
+`,
+      experience: () => `
+<span class="term-green">▶ Engineering Leadership & Experience:</span>
+  • <span class="term-gold">Vice Secretary</span> — IEEE KEC Student Branch (2025–2026)
+  • <span class="term-gold">Electronics Lead</span> — KEC Robotics Club
+  • <span class="term-gold">Mentor</span> — Electronics For All Workshop Series
+`,
+      achievements: () => `
+<span class="term-green">▶ Achievements & Credentials:</span>
+  • 36 verified credentials spanning AWS, DataCamp, IEEE, and GNOME
+  • Full verification suite: <a href="/achievements.html" class="term-link">/achievements.html</a>
+`,
+      contact: () => `
+<span class="term-green">▶ Connect Channels:</span>
+  • Email:    <a href="mailto:aaradhyadevtmr@gmail.com" class="term-link">aaradhyadevtmr@gmail.com</a>
+  • GitHub:   <a href="https://github.com/AaradhyaDT" target="_blank" class="term-link">github.com/AaradhyaDT</a>
+  • LinkedIn: <a href="https://www.linkedin.com/in/aaradhya-dev-tamrakar" target="_blank" class="term-link">linkedin.com/in/aaradhya-dev-tamrakar</a>
+`,
+      whatsnew: () => {
+        if (typeof openWhatsNewModal === 'function') openWhatsNewModal();
+        return '<span class="term-green">Opening What\'s New (v33) modal...</span>';
+      },
+      theme: () => {
+        if (typeof toggleTheme === 'function') toggleTheme();
+        return '<span class="term-green">Color theme toggled!</span>';
+      },
+      clear: () => {
+        body.innerHTML = '';
+        return '';
+      },
+      matrix: () => {
+        let lines = [];
+        const chars = '0110010101010101001010101010101001';
+        for (let i = 0; i < 6; i++) {
+          let row = '';
+          for (let j = 0; j < 36; j++) {
+            row += chars[Math.floor(Math.random() * chars.length)];
+          }
+          lines.push(`<span class="term-green" style="opacity:${(i+1)/6};">${row}</span>`);
+        }
+        return lines.join('<br>');
+      }
+    };
+
+    function appendOutput(cmd, res) {
+      const line = document.createElement('div');
+      line.className = 'term-line';
+      line.innerHTML = `
+        <div class="term-cmd-prompt"><span class="term-user">visitor@adt</span>:<span class="term-path">~</span>$ ${escapeHtml(cmd)}</div>
+        ${res ? `<div class="term-cmd-res">${res}</div>` : ''}
+      `;
+      body.appendChild(line);
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function execCommand(rawCmd) {
+      const cmd = rawCmd.trim().toLowerCase();
+      if (!cmd) return;
+      if (cmd === 'clear') {
+        COMMANDS.clear();
+        return;
+      }
+      const handler = COMMANDS[cmd];
+      if (handler) {
+        appendOutput(rawCmd, handler());
+      } else {
+        appendOutput(rawCmd, `<span class="term-red">Command not found: '${escapeHtml(cmd)}'. Type <span class="term-gold">'help'</span> for a list of available commands.</span>`);
+      }
+    }
+
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const val = input.value;
+        input.value = '';
+        execCommand(val);
+      }
+    });
+
+    quickBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cmd = btn.dataset.cmd;
+        if (cmd) execCommand(cmd);
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setup);
+  } else {
+    setup();
+  }
+})();
+
+/* ── Hardware-Accelerated Cursor Light Trail (v33) ──────────── */
+(function initCursorTrail() {
+  if (typeof window === 'undefined') return;
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  let lastX = 0, lastY = 0;
+  let ticking = false;
+
+  document.addEventListener('mousemove', e => {
+    lastX = e.clientX;
+    lastY = e.clientY;
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        if (Math.random() < 0.22) {
+          spawnParticle(lastX, lastY);
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  function spawnParticle(x, y) {
+    const p = document.createElement('div');
+    p.className = 'cursor-trail-particle';
+    p.style.left = `${x}px`;
+    p.style.top = `${y}px`;
+    document.body.appendChild(p);
+
+    setTimeout(() => p.remove(), 450);
+  }
+})();
