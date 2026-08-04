@@ -286,4 +286,3 @@ Full v33 site upgrade suite implemented and verified across the portfolio:
 - **PWA Service Worker & Release History (`sw.js`)**: Upgraded service worker cache version to `aaradhya-portfolio-v33` and updated `SITE_RELEASES` history and footer release button to `What's New (v33)`.
 - **Journey Engineering Timeline (`journey.html`)**: Added milestone node `j-029` for the v33 upgrade suite.
 - **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings** (`achievements=36, projects=22, journey=29`). `graphify update .` executed cleanly.
-
