@@ -76,11 +76,11 @@ Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronic
 
 The site features an advanced **Zero-Leak Client-Side Access Control System** supporting 3 security tiers:
 
-| Tier | Role | Access Level & Capabilities |
-| :--- | :--- | :--- |
-| **Tier 0** | **Public Guest** | Standard visitor view. Full portfolio, project descriptions, skills & certificates. GitHub source code links display as `🔒 GitHub Repo (VIP Access Required)`. |
-| **Tier 1** | **Higher Tier VIP** | Unlocked via passcode (`vip2026`) or Google Sign-In with an authorized email/domain. Grants direct access to all GitHub repository links, private project specs & extended metrics. |
-| **Tier 2** | **Master Admin** | Unlocked exclusively via Google Sign-In with Master email (`aaradhyadevtmr@gmail.com`). (Manual passcode authentication is disabled for Master Level). Grants Master Control Panel modal, live VIP allowlist manager, simulated tier switching & diagnostic controls. |
+| Tier       | Role                | Access Level & Capabilities                                                                                                                                                                                                                                           |
+| :--------- | :------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Tier 0** | **Public Guest**    | Standard visitor view. Full portfolio, project descriptions, skills & certificates. GitHub source code links display as `🔒 GitHub Repo (VIP Access Required)`.                                                                                                       |
+| **Tier 1** | **Higher Tier VIP** | Unlocked via passcode (`vip2026`) or Google Sign-In with an authorized email/domain. Grants direct access to all GitHub repository links, private project specs & extended metrics.                                                                                   |
+| **Tier 2** | **Master Admin**    | Unlocked exclusively via Google Sign-In with Master email (`aaradhyadevtmr@gmail.com`). (Manual passcode authentication is disabled for Master Level). Grants Master Control Panel modal, live VIP allowlist manager, simulated tier switching & diagnostic controls. |
 
 ### 🔍 Technical Security Architecture
 
@@ -105,7 +105,8 @@ The site features an advanced **Zero-Leak Client-Side Access Control System** su
 
 Press **`/`** (or click the **Search** button in the navigation bar) on any page to open the unified **Command Palette**.
 
-### Key Features:
+### Key Features
+
 - **Instant Cross-Page Search**: Searches across all 10 site pages, all 36 achievements, all 22 projects, and direct quick-navigation commands.
 - **Dual Index Strategy**:
   1. `SEARCH_STATIC_INDEX`: Pre-compiled static snapshot bundled into `assets/js/script.js` so search works immediately on non-list pages (`index.html`, `contact.html`, `about.html`, etc.).
@@ -118,7 +119,8 @@ Press **`/`** (or click the **Search** button in the navigation bar) on any page
 
 Located directly on the Home page (`index.html`), the **Interactive Dev Terminal** (`adt-shell`) allows visitors to explore Aaradhya's technical profile via a CLI-style interface.
 
-### Terminal Commands:
+### Terminal Commands
+
 - `skills`: Overview of core firmware, AI/ML, robotics, and software toolstacks.
 - `projects`: Summary of featured projects (PulseLive, GCSBR, Autonomous Rover).
 - `experience`: Engineering leadership roles (IEEE KEC Vice Secretary, Robotics Lead).
@@ -129,7 +131,8 @@ Located directly on the Home page (`index.html`), the **Interactive Dev Terminal
 - `matrix`: Renders cybernetic digital rain animation stream.
 - `clear`: Clears terminal screen.
 
-### UX Features:
+### UX Features
+
 - **1-Click Quick Preset Pills**: Clickable command buttons (`help`, `skills`, `projects`, etc.) for instant command execution without typing.
 - **HTML Output Formatting**: Color-coded text (`.term-green`, `.term-gold`, `.term-cyan`), prompt indicators (`visitor@adt:~$&nbsp;`), and clickable links.
 - **Keyboard-Friendly**: Binds to `Enter` for execution and auto-scrolls to latest prompt output.
@@ -154,11 +157,13 @@ Alternatively, open `index.html` directly in any web browser.
 To prevent merge conflicts with GitHub Actions commit-back bots (which auto-update `assets/js/last-commit.json` and search index files), use `sync.ps1`:
 
 - **Routine & Minor Updates** (Auto-generates conventional commit message and syncs timestamps):
+
   ```powershell
   .\sync.ps1
   ```
 
 - **Major Architectural & Feature Updates** (Passes descriptive commit summary):
+
   ```powershell
   # 1. Update dev-logs/PortfolioWebsite_TRACKER.md with release notes first
   # 2. Run sync script with detailed message:
@@ -166,6 +171,7 @@ To prevent merge conflicts with GitHub Actions commit-back bots (which auto-upda
   ```
 
 - **Safe Remote Pull**:
+
   ```powershell
   .\sync.ps1 -PullOnly
   ```
@@ -180,6 +186,7 @@ This repository uses **Graphify** for local AST-level knowledge graph extraction
 
 - **Local Report**: View metrics & god nodes locally at `graphify-out/GRAPH_REPORT.md`.
 - **Update Graph**: Regenerate the knowledge graph locally after modifying code:
+
   ```bash
   graphify update .
   ```
