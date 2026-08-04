@@ -47,7 +47,7 @@ const SITE_RELEASES = [
   {
     version: 'v32',
     date: '2026-08-04',
-    sha: '032a76f',
+    sha: 'c65d080',
     title: 'PWA Resilience, Reading Progress Bar & 3D Card Tilt',
     highlights: [
       'PWA Service Worker v32 cache refresh with live network status toasts',
