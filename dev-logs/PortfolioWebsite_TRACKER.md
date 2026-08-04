@@ -235,4 +235,3 @@ Full v30 site upgrade suite implemented and verified across the portfolio:
 - **CSS content-visibility optimization**: Added `.content-visibility-auto` utility class to `assets/css/style.css` with `contain-intrinsic-size` to reduce main-thread layout rendering overhead on long card grids and timelines.
 - **Expanded verification script (`scripts/verify.py`)**: Added `check_pwa_and_a11y_metadata()` to `scripts/verify.py` to automatically validate manifest linkage, skip links, main-content targets, and font hints across all site HTML files.
 - **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings**. `graphify update .` executed cleanly (280 nodes, 269 edges, 82 communities).
-
