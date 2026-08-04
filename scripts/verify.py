@@ -227,7 +227,7 @@ def check_search_index_sync():
 
 
 def check_pwa_and_a11y_metadata():
-    """Verify site.webmanifest, skip-links, and preconnect font links across all 10 site HTML pages."""
+    """Verify site.webmanifest, skip-links, preconnect font links, and social metadata across all 10 site HTML pages."""
     site_files = sorted([f for f in ROOT.glob("*.html") if not f.name.startswith("google")])
     for f in site_files:
         text = f.read_text(encoding="utf-8")
@@ -239,6 +239,10 @@ def check_pwa_and_a11y_metadata():
             errors.append(f"[a11y] {f.name} missing <main id=\"main-content\"> target")
         if 'fonts.googleapis.com' not in text:
             warnings.append(f"[performance] {f.name} missing Google Fonts preconnect/link")
+        if 'property="og:image"' not in text and 'name="og:image"' not in text and "property='og:image'" not in text:
+            errors.append(f"[seo] {f.name} missing og:image social preview tag")
+        if 'name="twitter:card"' not in text and "name='twitter:card'" not in text:
+            errors.append(f"[seo] {f.name} missing twitter:card tag")
 
 
 def main():

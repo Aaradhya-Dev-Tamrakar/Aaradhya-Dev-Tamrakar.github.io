@@ -1757,7 +1757,16 @@
         const legendEca = document.getElementById('legendEca');
         if (!academicBtn || !ecaBtn) return;
 
-        function applyTrack(track) {
+        let liveStatus = document.getElementById('achvLiveStatus');
+        if (!liveStatus) {
+          liveStatus = document.createElement('div');
+          liveStatus.id = 'achvLiveStatus';
+          liveStatus.className = 'sr-only';
+          liveStatus.setAttribute('aria-live', 'polite');
+          timeline.parentNode.insertBefore(liveStatus, timeline);
+        }
+
+        function applyTrack(track, updateHash = true) {
           const groups = Array.from(timeline.querySelectorAll('.year-group'));
 
           groups.forEach(group => {
@@ -1788,6 +1797,14 @@
           if (legendAcademic) legendAcademic.hidden = track !== 'academic';
           if (legendEca) legendEca.hidden = track !== 'eca';
 
+          if (updateHash && history.replaceState) {
+            history.replaceState(null, '', '#track=' + track);
+          }
+
+          if (liveStatus) {
+            liveStatus.textContent = 'Showing ' + (track === 'academic' ? 'Academic' : 'Extracurricular') + ' track achievements.';
+          }
+
           if (typeof timeline.__syncToggleAllLabel === 'function') {
             timeline.__syncToggleAllLabel();
           }
@@ -1796,7 +1813,8 @@
         academicBtn.addEventListener('click', () => applyTrack('academic'));
         ecaBtn.addEventListener('click', () => applyTrack('eca'));
 
-        applyTrack('academic'); // default view on page load
+        const initialTrack = location.hash.includes('track=eca') ? 'eca' : 'academic';
+        applyTrack(initialTrack, false);
       }
 
     })();

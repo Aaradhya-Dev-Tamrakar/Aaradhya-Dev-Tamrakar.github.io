@@ -1,4 +1,4 @@
-# Portfolio Website Tracker — v30
+# Portfolio Website Tracker — v31
 
 ## _Last updated: 2026-08-04_
 
@@ -235,3 +235,17 @@ Full v30 site upgrade suite implemented and verified across the portfolio:
 - **CSS content-visibility optimization**: Added `.content-visibility-auto` utility class to `assets/css/style.css` with `contain-intrinsic-size` to reduce main-thread layout rendering overhead on long card grids and timelines.
 - **Expanded verification script (`scripts/verify.py`)**: Added `check_pwa_and_a11y_metadata()` to `scripts/verify.py` to automatically validate manifest linkage, skip links, main-content targets, and font hints across all site HTML files.
 - **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings**. `graphify update .` executed cleanly (280 nodes, 269 edges, 82 communities).
+
+---
+
+## v31 addition — URL hash filter sync, screen reader accessibility, PWA v31 cache bump & SEO verification (2026-08-04)
+
+Full v31 site upgrade suite implemented and verified across the portfolio:
+
+- **PWA Service Worker (`sw.js`)**: Upgraded service worker cache version to `aaradhya-portfolio-v31` for immediate static asset update pickup and clean client cache invalidation.
+- **Dynamic Filter & URL Hash Synchronization**: Enhanced track filtering logic on `achievements.html` to synchronize active filter state with `window.location.hash` (`#track=academic`, `#track=eca`) via `history.replaceState` and restore state on page load.
+- **Screen Reader Accessibility Live Regions**: Added `#achvLiveStatus` dynamic `aria-live="polite"` status region on `achievements.html` for real-time assistive tech feedback when switching achievement tracks.
+- **Social & OpenGraph Metadata Sweep**: Added missing `og:image` and `twitter:card` tags to `404.html` for consistent social sharing card rendering across all site pages.
+- **Extended Automated Verification (`scripts/verify.py`)**: Updated `check_pwa_and_a11y_metadata()` in `scripts/verify.py` to automatically audit social image metadata (`og:image`, `twitter:card`) across all 10 site HTML pages.
+- **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings**.
+
