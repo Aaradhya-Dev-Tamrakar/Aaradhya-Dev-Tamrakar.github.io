@@ -605,7 +605,7 @@ function renderSiteNav() {
           </svg>
           <span id="navAccessLabel">Access</span>
         </button>
-        <button class="nav-search-btn" id="navSearchBtn" aria-label="Search (press /)" title="Search (press /)">
+        <button class="nav-search-btn" id="navSearchBtn" aria-label="Search (press / or Ctrl+K)" title="Search (press / or Ctrl+K)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8" />
             <line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -2331,9 +2331,13 @@ function initGlobalSearch() {
 
   document.addEventListener('keydown', e => {
     if (cmdk.classList.contains('open')) return;
-    if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;
+    const isSlash = (e.key === '/') && !e.metaKey && !e.ctrlKey && !e.altKey;
+    const isCmdK = (e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'K');
+    if (!isSlash && !isCmdK) return;
+
     const tag = (document.activeElement || {}).tagName || '';
-    if (/^(INPUT|TEXTAREA|SELECT)$/i.test(tag) || document.activeElement?.isContentEditable) return;
+    if (isSlash && (/^(INPUT|TEXTAREA|SELECT)$/i.test(tag) || document.activeElement?.isContentEditable)) return;
+
     e.preventDefault();
     openCmdk();
   });
