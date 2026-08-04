@@ -42,6 +42,57 @@ const SOCIAL_ICONS = {
   Instagram: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
 };
 
+/* ── Site release history ─────────────────────────────────── */
+const SITE_RELEASES = [
+  {
+    version: 'v31',
+    date: '2026-08-04',
+    sha: '8761335',
+    title: 'Site Upgrade Suite — Hash Sync, Accessibility & PWA Refresh',
+    highlights: [
+      'Dynamic URL hash filter state sync (#track=academic, #track=eca) on achievements',
+      'Screen reader aria-live=polite status announcements for item filtering',
+      'PWA Service Worker cache version upgrade to v31',
+      'Comprehensive social preview metadata audit (og:image, twitter:card)'
+    ]
+  },
+  {
+    version: 'v30',
+    date: '2026-08-04',
+    sha: 'b146fa5',
+    title: 'PWA Service Worker, Skip-Links & Font Preconnects',
+    highlights: [
+      'Offline PWA Service Worker (sw.js) integration',
+      'Keyboard accessibility skip-links across all 10 site HTML pages',
+      'Font preconnect hints for faster typography handshakes',
+      'CSS content-visibility optimization for rendering speed'
+    ]
+  },
+  {
+    version: 'v29',
+    date: '2026-08-04',
+    sha: '43d99bd',
+    title: 'PWA WebManifest & Performance Upgrades',
+    highlights: [
+      'Created site.webmanifest with dark theme metadata (#0f0e0c)',
+      'Playsinline video mobile attributes for iOS devices',
+      'Dynamic cross-page theme-color address bar tinting',
+      'SEO JSON-LD structured schemas across projects & experience'
+    ]
+  },
+  {
+    version: 'v28',
+    date: '2026-08-04',
+    sha: 'fdbf5b2',
+    title: 'Site-Wide Audit & Deep-Linking Hardening',
+    highlights: [
+      'Explicit deep-link IDs for project cards and journey nodes',
+      'Automated search index sync verification in scripts/verify.py',
+      'Security hardening (rel=noopener, clean same-tab nav)'
+    ]
+  }
+];
+
 /* ── Command palette data ─────────────────────────────────── */
 const CMDK_PAGES = [
   { title: 'Home', href: '/index.html' },
@@ -51,6 +102,7 @@ const CMDK_PAGES = [
   { title: 'Journey', href: '/journey.html' },
   { title: 'About', href: '/about.html' },
   { title: 'Contact', href: '/contact.html' },
+  { title: "What's New (v31 Major Releases)", href: "javascript:openWhatsNewModal()" },
 ];
 
 /* ── Quick-nav ("Explore") card data ──────────────────────────
@@ -677,6 +729,74 @@ function closeLogoutModal() {
   setTimeout(() => overlay.remove(), 250);
 }
 
+/* ── What's New modal ───────────────────────────────────────── */
+function openWhatsNewModal() {
+  let modal = document.getElementById('whatsNewModal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'whatsNewModal';
+    modal.className = 'access-modal-overlay';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', "What's New — Major Releases");
+    document.body.appendChild(modal);
+  }
+
+  const releasesHtml = SITE_RELEASES.map(rel => `
+    <div class="wn-card">
+      <div class="wn-card-header">
+        <span class="wn-badge">${rel.version}</span>
+        <span class="wn-title">${rel.title}</span>
+        <div class="wn-meta">
+          <span class="wn-date">${rel.date}</span> · 
+          <a class="wn-sha" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/${rel.sha}" target="_blank" rel="noopener">${rel.sha} ↗</a>
+        </div>
+      </div>
+      <ul class="wn-highlights">
+        ${rel.highlights.map(h => `<li>${h}</li>`).join('')}
+      </ul>
+    </div>
+  `).join('');
+
+  modal.innerHTML = `
+    <div class="access-modal-card wn-modal-card">
+      <div class="access-modal-header">
+        <div class="access-modal-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          <span>What's New — Major Releases</span>
+        </div>
+        <button type="button" class="access-modal-close" id="wnModalClose" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="wn-modal-body">
+        ${releasesHtml}
+      </div>
+      <div class="wn-modal-footer">
+        <span>Press <kbd>Shift+N</kbd> anytime to open What's New</span>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('wnModalClose').addEventListener('click', closeWhatsNewModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeWhatsNewModal(); });
+
+  localStorage.setItem('adt_last_seen_release', SITE_RELEASES[0].version);
+  requestAnimationFrame(() => modal.classList.add('open'));
+  document.body.style.overflow = 'hidden';
+}
+
+function closeWhatsNewModal() {
+  const modal = document.getElementById('whatsNewModal');
+  if (!modal) return;
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 /* ── Footer injection ─────────────────────────────────────── */
 function renderSiteFooter() {
   const el = document.getElementById('siteFooter');
@@ -693,7 +813,10 @@ function renderSiteFooter() {
       <div class="footer-socials">${socialsHtml}</div>
     </div>
     <div class="footer-rule"></div>
-    <div class="footer-copy">${SITE.footerCopy} · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a></div>`;
+    <div class="footer-copy">${SITE.footerCopy} · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a> · <button id="wnFooterBtn" type="button" class="footer-wn-btn">What's New (v31)</button></div>`;
+
+  const btn = document.getElementById('wnFooterBtn');
+  if (btn) btn.addEventListener('click', openWhatsNewModal);
 }
 
 /* ── Explore ("quick-nav") grid injection ─────────────────────
@@ -2308,6 +2431,11 @@ function initKeyNav() {
 
     if (e.key === '`' || e.code === 'Backquote') {
       toggleStatusDate();
+      return;
+    }
+
+    if (e.shiftKey && (e.key === 'N' || e.key === 'n')) {
+      openWhatsNewModal();
       return;
     }
 

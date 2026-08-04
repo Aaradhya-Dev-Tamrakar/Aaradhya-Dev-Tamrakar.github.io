@@ -249,3 +249,16 @@ Full v31 site upgrade suite implemented and verified across the portfolio:
 - **Extended Automated Verification (`scripts/verify.py`)**: Updated `check_pwa_and_a11y_metadata()` in `scripts/verify.py` to automatically audit social image metadata (`og:image`, `twitter:card`) across all 10 site HTML pages.
 - **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings**.
 
+---
+
+## v31.1 addition — Interactive "What's New" Major Commit Showcase & Journey Nodes (2026-08-04)
+
+Full What's New major release feature implemented and verified:
+
+- **Site-Wide "What's New" Modal (`assets/js/script.js`)**: Implemented `openWhatsNewModal()` & `closeWhatsNewModal()` rendering version badges, dates, GitHub commit links, and bulleted highlights for major releases (v31, v30, v29, v28).
+- **Command Palette & Shortcut Integration**: Added "What's New (v31 Major Releases)" to `CMDK_PAGES` and bound `Shift+N` shortcut in `initKeyNav()`.
+- **Footer Button & Storage**: Added `What's New (v31)` button in `siteFooter` and stored viewed version in `localStorage` (`adt_last_seen_release`).
+- **Journey Timeline Milestones (`journey.html`)**: Added milestone nodes `j-027` (What's New Feature) and `j-026` (v31 Upgrade Suite) to the engineering timeline.
+- **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings** (`achievements=36, projects=22, journey=27`).
+
+

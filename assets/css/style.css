@@ -2728,6 +2728,113 @@ html[data-theme="light"] .gated-overlay {
   background: rgba(234, 179, 8, 0.08) !important;
 }
 
+/* ── What's New Modal & Footer Button ──────────────────────────── */
+.footer-wn-btn {
+  background: transparent;
+  border: 1px solid var(--accent-a35);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.footer-wn-btn:hover {
+  background: var(--accent-a20);
+}
+
+.wn-modal-card {
+  max-width: 600px;
+  width: 90%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.wn-modal-body {
+  padding: 1.25rem 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.wn-card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+}
+
+.wn-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.6rem;
+}
+
+.wn-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-a20);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
+.wn-title {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.wn-meta {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+.wn-sha {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.wn-sha:hover {
+  text-decoration: underline;
+}
+
+.wn-highlights {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.wn-modal-footer {
+  padding: 0.75rem 1.5rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.wn-modal-footer kbd {
+  background: var(--bg3);
+  color: var(--heading);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  border: 1px solid var(--line);
+}
+
 /* ==========================================================================
    Print Stylesheet Optimization
    ========================================================================== */
