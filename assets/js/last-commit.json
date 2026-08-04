@@ -1,6 +1,6 @@
 {
-  "sha": "66be0a3d1d6cce9d6bda0b1c928e186343ccbf4f",
-  "shortSha": "66be0a3",
-  "date": "2026-08-04T09:57:37+05:45",
-  "message": "fix(script): update v32 release sha in WhatsNew modal\n"
+  "sha": "4b80ac5b9d99226ec1b605e7f027a86b7994e12b",
+  "shortSha": "4b80ac5",
+  "date": "2026-08-04T10:06:16+05:45",
+  "message": "feat(v33): upgrade site with interactive dev terminal, cmdk filters, pwa v33 & journey timeline node j-029\n"
 }
