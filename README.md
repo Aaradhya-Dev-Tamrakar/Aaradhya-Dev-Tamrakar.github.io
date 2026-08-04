@@ -11,7 +11,7 @@ Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronic
 ```text
 .
 ├── 📄 HTML Pages & Web App Manifest (Root Deployment)
-│   ├── index.html              # Homepage, hero section, interactive stats & Master Control Panel trigger
+│   ├── index.html              # Homepage, hero section, interactive dev terminal, stats & Master Control Panel
 │   ├── about.html              # Personal background, engineering philosophy, timeline & biography
 │   ├── projects.html           # Technical showcase with VIP-gated GitHub source code links
 │   ├── experience.html         # Professional positions, leadership roles (IEEE KEC, EPC, Maker's Space) & education
@@ -111,6 +111,28 @@ Press **`/`** (or click the **Search** button in the navigation bar) on any page
   1. `SEARCH_STATIC_INDEX`: Pre-compiled static snapshot bundled into `assets/js/script.js` so search works immediately on non-list pages (`index.html`, `contact.html`, `about.html`, etc.).
   2. **Live DOM Scanning**: Real-time DOM fallback scanner on `achievements.html` and `projects.html` to instantly reflect any client-side content edits in search results.
 - **Automated CI Re-Indexing**: On every push, GitHub Actions workflow `.github/workflows/update-search-index.yml` runs `scripts/extract_index.py` to regenerate the static index automatically.
+
+---
+
+## 💻 Interactive Developer Terminal Widget (`#adtTerminal`)
+
+Located directly on the Home page (`index.html`), the **Interactive Dev Terminal** (`adt-shell`) allows visitors to explore Aaradhya's technical profile via a CLI-style interface.
+
+### Terminal Commands:
+- `skills`: Overview of core firmware, AI/ML, robotics, and software toolstacks.
+- `projects`: Summary of featured projects (PulseLive, GCSBR, Autonomous Rover).
+- `experience`: Engineering leadership roles (IEEE KEC Vice Secretary, Robotics Lead).
+- `achievements`: Overview of 36+ verified certifications and competition awards.
+- `contact`: Direct email, GitHub, and LinkedIn links.
+- `whatsnew`: Triggers the **What's New (v33)** major releases modal.
+- `theme`: Toggles site light/dark color scheme.
+- `matrix`: Renders cybernetic digital rain animation stream.
+- `clear`: Clears terminal screen.
+
+### UX Features:
+- **1-Click Quick Preset Pills**: Clickable command buttons (`help`, `skills`, `projects`, etc.) for instant command execution without typing.
+- **HTML Output Formatting**: Color-coded text (`.term-green`, `.term-gold`, `.term-cyan`), prompt indicators (`visitor@adt:~$&nbsp;`), and clickable links.
+- **Keyboard-Friendly**: Binds to `Enter` for execution and auto-scrolls to latest prompt output.
 
 ---
 
