@@ -1,6 +1,6 @@
 {
-  "sha": "fde29d64ddb1505520497bda311cce736df14099",
-  "shortSha": "fde29d6",
-  "date": "2026-08-04T09:42:15+05:45",
-  "message": "feat(cmdk): add Ctrl+K / Cmd+K shortcut binding for command palette search\n"
+  "sha": "c65d08037968b3ef91c4ed76b3b4073d79b562b8",
+  "shortSha": "c65d080",
+  "date": "2026-08-04T09:54:52+05:45",
+  "message": "feat(site): upgrade site to v32 with PWA resilience, reading progress bar, 3D card tilt, and journey updates\n"
 }
