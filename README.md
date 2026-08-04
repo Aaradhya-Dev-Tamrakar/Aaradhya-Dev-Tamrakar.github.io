@@ -10,7 +10,7 @@ Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronic
 
 ```text
 .
-├── 📄 HTML Pages (Root Deployment)
+├── 📄 HTML Pages & Web App Manifest (Root Deployment)
 │   ├── index.html              # Homepage, hero section, interactive stats & Master Control Panel trigger
 │   ├── about.html              # Personal background, engineering philosophy, timeline & biography
 │   ├── projects.html           # Technical showcase with VIP-gated GitHub source code links
@@ -21,6 +21,8 @@ Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronic
 │   ├── privacy.html            # Site privacy policy and data handling transparency
 │   ├── terms.html              # Terms of service and usage terms
 │   ├── 404.html                # Custom styled Not-Found page (excluded from sitemap, marked noindex)
+│   ├── site.webmanifest        # Progressive Web App manifest metadata (standalone app, dark theme tokens)
+│   ├── sw.js                   # PWA Service Worker (v31 cache-first static assets & network-first HTML)
 │   └── google3e772e11a3eb8313.html # Google Search Console site ownership verification file
 │
 ├── 🎨 Assets (`assets/`)
@@ -41,6 +43,7 @@ Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronic
 │   └── videos/                 # Project video demonstrations (e.g., GCSBR working demo) & poster stills
 │
 ├── 🛠️ Scripts (`scripts/`)
+│   ├── verify.py               # Structural integrity check: HTML tag balance, search index sync, PWA & metadata audit
 │   ├── extract_index.py        # Python script to extract searchable items into the static command palette index
 │   └── dev-serve.py            # Local HTTP development testing server with strict no-cache headers
 │
