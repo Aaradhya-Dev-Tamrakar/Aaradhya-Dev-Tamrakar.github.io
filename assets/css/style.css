@@ -12,7 +12,35 @@
   navigation: auto;
 }
 
-/* ── Token System ─────────────────────────────────────────── */
+/* ── Skip Link for Keyboard Accessibility ─────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 10000;
+  padding: 0.75rem 1.25rem;
+  background: var(--heading);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: top 0.2s ease-in-out;
+}
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── Content Visibility Optimization ─────────────────────── */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 300px;
+}
+
 /* ── Token System ─────────────────────────────────────────── */
 :root {
   --bg: #0f0e0c;

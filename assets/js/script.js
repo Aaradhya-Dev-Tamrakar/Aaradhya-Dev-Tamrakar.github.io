@@ -1925,8 +1925,19 @@ function initAccessControl() {
   initGlobalSearch();
   initAccessControl();
   renderSiteFooter();
+  initServiceWorker();
   window.addEventListener('load', loadGA4);
 })();
+
+function initServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(err => {
+        console.debug('ServiceWorker registration skipped or failed:', err);
+      });
+    });
+  }
+}
 
 /* ── Cert/CV lightbox (index, achievements, experience) ───── */
 // Shared across the three pages that render #cert-lightbox markup.

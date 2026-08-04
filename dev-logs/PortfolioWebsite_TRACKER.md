@@ -1,6 +1,6 @@
-# Portfolio Website Tracker — v27
+# Portfolio Website Tracker — v30
 
-## _Last updated: 2026-07-27_
+## _Last updated: 2026-08-04_
 
 ## Meta
 
@@ -222,3 +222,17 @@ All proposed site upgrades implemented and verified across the portfolio:
 - **SEO rich snippets (JSON-LD)**: Added structured JSON-LD schemas for `ItemList`/`SoftwareApplication` on `projects.html`, `Person`/`Organization` on `experience.html`, and `EducationalOccupationalCredential` on `achievements.html`.
 - **Print stylesheet optimization (`@media print`)**: Added `@media print` rules in `assets/css/style.css` to hide floating controls (`.cmdk-modal`, `.nav`, `.back-to-top`, `.about-photo-fx`, `.keymap-modal`, `footer`) and format content for crisp printing/PDF resume export.
 - **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings**. `graphify update .` executed cleanly.
+
+---
+
+## v30 addition — PWA service worker, skip-links, font preconnects, content-visibility optimization & expanded verification (2026-08-04)
+
+Full v30 site upgrade suite implemented and verified across the portfolio:
+
+- **PWA Service Worker (`sw.js`)**: Created versioned `sw.js` with cache-first strategy for static assets (CSS, JS, images, webmanifest) and network-first strategy for HTML navigation requests. Registered automatically in `assets/js/script.js`.
+- **Keyboard accessibility skip-links**: Standardized `<a href="#main-content" class="skip-link">Skip to main content</a>` and `<main id="main-content">` targets across all 10 HTML pages, styled with focus transitions in `assets/css/style.css`.
+- **Font preconnect hints**: Added `<link rel="preconnect" href="https://fonts.googleapis.com" />` and `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />` hints across site pages for faster typography connection handshakes.
+- **CSS content-visibility optimization**: Added `.content-visibility-auto` utility class to `assets/css/style.css` with `contain-intrinsic-size` to reduce main-thread layout rendering overhead on long card grids and timelines.
+- **Expanded verification script (`scripts/verify.py`)**: Added `check_pwa_and_a11y_metadata()` to `scripts/verify.py` to automatically validate manifest linkage, skip links, main-content targets, and font hints across all site HTML files.
+- **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings**. `graphify update .` executed cleanly (280 nodes, 269 edges, 82 communities).
+

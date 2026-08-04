@@ -226,6 +226,21 @@ def check_search_index_sync():
                        "before committing")
 
 
+def check_pwa_and_a11y_metadata():
+    """Verify site.webmanifest, skip-links, and preconnect font links across all 10 site HTML pages."""
+    site_files = sorted([f for f in ROOT.glob("*.html") if not f.name.startswith("google")])
+    for f in site_files:
+        text = f.read_text(encoding="utf-8")
+        if 'href="site.webmanifest"' not in text and "href='site.webmanifest'" not in text:
+            errors.append(f"[pwa] {f.name} missing <link rel=\"manifest\" href=\"site.webmanifest\">")
+        if 'class="skip-link"' not in text and "class='skip-link'" not in text:
+            errors.append(f"[a11y] {f.name} missing skip-link navigation")
+        if 'id="main-content"' not in text and "id='main-content'" not in text:
+            errors.append(f"[a11y] {f.name} missing <main id=\"main-content\"> target")
+        if 'fonts.googleapis.com' not in text:
+            warnings.append(f"[performance] {f.name} missing Google Fonts preconnect/link")
+
+
 def main():
     id_results = {}
     for name, cfg in PAGES.items():
@@ -238,6 +253,7 @@ def main():
             check_internal_hrefs(name, cfg, res["ids"])
 
     check_search_index_sync()
+    check_pwa_and_a11y_metadata()
 
     if warnings:
         print("WARNINGS:")
