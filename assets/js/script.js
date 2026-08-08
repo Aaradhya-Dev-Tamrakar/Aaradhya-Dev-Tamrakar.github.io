@@ -727,7 +727,7 @@ function renderSiteNav() {
       </ul>
       <div class="nav-right">
         <a href="/contact.html" class="nav-cta" aria-label="Connect with Aaradhya">Connect</a>
-        <button class="nav-access-btn" id="navTourBtn" aria-label="Start guided site tour" title="Take a tour (Shift+T)">
+        <button class="nav-tour-btn" id="navTourBtn" aria-label="Start guided site tour" title="Take a tour (Shift+T)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/><path d="M9.5 9.5a2.5 2.5 0 0 1 4.6-1.4c0 1.6-2.1 1.9-2.1 3.4"/><circle cx="12" cy="16.2" r="0.4" fill="currentColor" stroke="none"/>
           </svg>
