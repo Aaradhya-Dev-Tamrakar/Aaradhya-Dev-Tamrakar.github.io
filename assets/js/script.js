@@ -3414,12 +3414,25 @@ function tourReducedMotion() {
   return typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
+function getTourPageUrl(pageName) {
+  const path = location.pathname;
+  const lastSlash = path.lastIndexOf('/');
+  if (lastSlash === -1) return pageName;
+  return path.substring(0, lastSlash + 1) + pageName;
+}
+
+function getTourCurrentPage() {
+  let file = location.pathname.split('/').pop() || 'index.html';
+  if (!file || file === '') file = 'index.html';
+  return file;
+}
+
 function startTour() {
   localStorage.setItem('adt_tour_active', '1');
   localStorage.setItem('adt_tour_step', '0');
-  const page = location.pathname.split('/').pop() || 'index.html';
+  const page = getTourCurrentPage();
   if (page !== TOUR_PAGE_ORDER[0]) {
-    window.location.href = '/' + TOUR_PAGE_ORDER[0];
+    window.location.href = getTourPageUrl(TOUR_PAGE_ORDER[0]);
     return;
   }
   renderTourStep(0);
@@ -3432,7 +3445,7 @@ function exitTour() {
 }
 
 function tourAdvance() {
-  const page = location.pathname.split('/').pop() || 'index.html';
+  const page = getTourCurrentPage();
   const steps = TOUR_STEPS[page] || [];
   const cur = parseInt(localStorage.getItem('adt_tour_step') || '0', 10);
   if (cur + 1 < steps.length) {
@@ -3447,11 +3460,11 @@ function tourAdvance() {
     return;
   }
   localStorage.setItem('adt_tour_step', '0');
-  window.location.href = '/' + TOUR_PAGE_ORDER[pageIdx + 1];
+  window.location.href = getTourPageUrl(TOUR_PAGE_ORDER[pageIdx + 1]);
 }
 
 function tourBack() {
-  const page = location.pathname.split('/').pop() || 'index.html';
+  const page = getTourCurrentPage();
   const cur = parseInt(localStorage.getItem('adt_tour_step') || '0', 10);
   if (cur > 0) {
     localStorage.setItem('adt_tour_step', String(cur - 1));
@@ -3463,11 +3476,11 @@ function tourBack() {
   const prevPage = TOUR_PAGE_ORDER[pageIdx - 1];
   const prevSteps = TOUR_STEPS[prevPage] || [];
   localStorage.setItem('adt_tour_step', String(Math.max(prevSteps.length - 1, 0)));
-  window.location.href = '/' + prevPage;
+  window.location.href = getTourPageUrl(prevPage);
 }
 
 function renderTourStep(idx) {
-  const page = location.pathname.split('/').pop() || 'index.html';
+  const page = getTourCurrentPage();
   const steps = TOUR_STEPS[page] || [];
   const step = steps[idx];
   if (!step) { exitTour(); return; }
@@ -3532,22 +3545,36 @@ function renderTourStep(idx) {
 function positionTourCard(target) {
   const card = document.getElementById('tourCard');
   if (!card) return;
+
   if (!target || target === document.body || window.innerWidth < 720) {
-    card.style.position = '';
-    card.style.top = '';
-    card.style.left = '';
+    card.style.position = 'fixed';
+    card.style.top = '50%';
+    card.style.left = '50%';
+    card.style.transform = 'translate(-50%, -50%)';
     return;
   }
+
   const rect = target.getBoundingClientRect();
-  const cardH = card.offsetHeight;
+  const cardH = card.offsetHeight || 220;
+  const cardW = card.offsetWidth || 340;
   const spaceBelow = window.innerHeight - rect.bottom;
-  card.style.position = 'fixed';
-  card.style.left = Math.max(16, Math.min(rect.left, window.innerWidth - card.offsetWidth - 16)) + 'px';
+
+  let left = rect.left;
+  left = Math.max(16, Math.min(left, window.innerWidth - cardW - 16));
+
+  let top;
   if (spaceBelow > cardH + 24) {
-    card.style.top = (rect.bottom + 16) + 'px';
+    top = rect.bottom + 16;
+  } else if (rect.top > cardH + 24) {
+    top = rect.top - cardH - 16;
   } else {
-    card.style.top = Math.max(16, rect.top - cardH - 16) + 'px';
+    top = Math.max(16, (window.innerHeight - cardH) / 2);
   }
+
+  card.style.position = 'fixed';
+  card.style.left = left + 'px';
+  card.style.top = top + 'px';
+  card.style.transform = 'none';
 }
 
 function closeTourOverlay() {
@@ -3559,10 +3586,13 @@ function closeTourOverlay() {
 }
 
 function initTour() {
-  const btn = document.getElementById('navTourBtn');
-  if (btn) btn.addEventListener('click', startTour);
-  const drawerBtn = document.getElementById('drawerTourBtn');
-  if (drawerBtn) drawerBtn.addEventListener('click', startTour);
+  document.addEventListener('click', e => {
+    const tourTrigger = e.target.closest('#navTourBtn, #drawerTourBtn, [data-action="start-tour"]');
+    if (tourTrigger) {
+      e.preventDefault();
+      startTour();
+    }
+  });
 
   if (localStorage.getItem('adt_tour_active') === '1') {
     const step = parseInt(localStorage.getItem('adt_tour_step') || '0', 10);

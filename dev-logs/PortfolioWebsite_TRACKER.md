@@ -354,6 +354,5 @@ Full v38 site upgrade suite implemented and verified across the portfolio:
 - **Dynamic Reading Time & Word Count Badges**: Client-side content metric engine generating glassmorphic reading time badges (`⏱️ X min read · Y words`) across `about.html`, `journey.html`, `experience.html`, `achievements.html`, and `projects.html`.
 - **Real-Time Filter Result Counters**: Live status indicator badges (`Showing N of M items`) for search and category filtering on projects and achievements lists.
 - **Timeline & Versioning Alignment**: Milestone nodes `j-033` (v37 Guided Tour) and `j-034` (v38 Upgrade Suite) added to `journey.html`, `sw.js` cache bumped to `v38`, and release history updated across `SITE_RELEASES`, command palette (`CMDK`), and footer controls (`What's New (v38)`).
-- **Expanded Verification Script**: Automated HTML tag balance auditing extended to all 10 site pages in `scripts/verify.py`.
+- **Tour Button & Positioning Fix**: Fixed `positionTourCard()` transform collision bug that previously pushed the tour card off-screen when setting fixed top/left coordinates. Added robust global click event delegation for `#navTourBtn`/`#drawerTourBtn` and relative path calculation (`getTourPageUrl()`) for subpath and Live Server deployments.
 - **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings** (`achievements=36, projects=22, journey=34`).
-
