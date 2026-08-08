@@ -76,6 +76,10 @@ const TOUR_STEPS = {
   ],
 };
 const TOUR_PAGE_ORDER = ['index.html', 'projects.html', 'experience.html', 'achievements.html', 'about.html', 'journey.html', 'contact.html'];
+// Flattened once from TOUR_STEPS/TOUR_PAGE_ORDER above — the engine walks
+// this single ordered list by index; TOUR_STEPS stays the per-page authoring
+// format, this is purely derived from it.
+const TOUR_FLAT_STEPS = TOUR_PAGE_ORDER.flatMap(page => (TOUR_STEPS[page] || []).map(step => ({ ...step, page })));
 
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
@@ -2346,11 +2350,11 @@ function initAccessControl() {
   initReadingProgressBar();
   initNetworkStatusListeners();
   initCardTilt();
+  initTour();
   initTouchGestures();
   initSkillBars();
   initScrollParallax();
   initSwipeNav();
-  initTour();
   initAudioCues();
   initReadingMetrics();
   initFilterCountIndicators();
@@ -3403,14 +3407,22 @@ function initSwipeNav() {
 }
 
 /* ── Guided Site Tour (v37) ────────────────────────────────
-   Cross-page spotlight walkthrough. Steps are keyed by page
-   filename; "Next" on a page's last step navigates to the next
-   page in TOUR_STEPS order and auto-resumes via localStorage
-   (adt_tour_active + adt_tour_step). Reuses access-modal-overlay
-   visual language, respects prefers-reduced-motion, and closes
-   on Escape / overlay click / swipe-down (added to the existing
-   modals list in initTouchGestures). Opened via the "Tour" nav
-   button or Shift+T. */
+   Cross-page spotlight walkthrough over TOUR_FLAT_STEPS (built
+   above from TOUR_STEPS/TOUR_PAGE_ORDER). Progress is a single
+   global index in localStorage (TOUR_LS_ACTIVE + TOUR_LS_INDEX);
+   "Next" past a page's last step navigates to the next page and
+   auto-resumes there. Reuses access-modal-overlay visual
+   language, respects prefers-reduced-motion, moves focus into
+   the card on open and restores it on close (same pattern as
+   initLightbox/initGlobalSearch), and closes on Escape / overlay
+   click / swipe-down (modals list in initTouchGestures — the
+   overlay is created eagerly in initTour(), before
+   initTouchGestures() runs, so that listener has a real node to
+   attach to). Opened via the "Tour" nav button or Shift+T. */
+
+const TOUR_LS_ACTIVE = 'adt_tour_active';
+const TOUR_LS_INDEX = 'adt_tour_index';
+let tourLastFocus = null;
 
 function tourReducedMotion() {
   return typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -3429,67 +3441,7 @@ function getTourCurrentPage() {
   return file;
 }
 
-function startTour() {
-  localStorage.setItem('adt_tour_active', '1');
-  localStorage.setItem('adt_tour_step', '0');
-  const page = getTourCurrentPage();
-  if (page !== TOUR_PAGE_ORDER[0]) {
-    window.location.href = getTourPageUrl(TOUR_PAGE_ORDER[0]);
-    return;
-  }
-  renderTourStep(0);
-}
-
-function exitTour() {
-  localStorage.removeItem('adt_tour_active');
-  localStorage.removeItem('adt_tour_step');
-  closeTourOverlay();
-}
-
-function tourAdvance() {
-  const page = getTourCurrentPage();
-  const steps = TOUR_STEPS[page] || [];
-  const cur = parseInt(localStorage.getItem('adt_tour_step') || '0', 10);
-  if (cur + 1 < steps.length) {
-    localStorage.setItem('adt_tour_step', String(cur + 1));
-    renderTourStep(cur + 1);
-    return;
-  }
-  const pageIdx = TOUR_PAGE_ORDER.indexOf(page);
-  if (pageIdx === -1 || pageIdx + 1 >= TOUR_PAGE_ORDER.length) {
-    exitTour();
-    showToast('Tour complete.');
-    return;
-  }
-  localStorage.setItem('adt_tour_step', '0');
-  window.location.href = getTourPageUrl(TOUR_PAGE_ORDER[pageIdx + 1]);
-}
-
-function tourBack() {
-  const page = getTourCurrentPage();
-  const cur = parseInt(localStorage.getItem('adt_tour_step') || '0', 10);
-  if (cur > 0) {
-    localStorage.setItem('adt_tour_step', String(cur - 1));
-    renderTourStep(cur - 1);
-    return;
-  }
-  const pageIdx = TOUR_PAGE_ORDER.indexOf(page);
-  if (pageIdx <= 0) return;
-  const prevPage = TOUR_PAGE_ORDER[pageIdx - 1];
-  const prevSteps = TOUR_STEPS[prevPage] || [];
-  localStorage.setItem('adt_tour_step', String(Math.max(prevSteps.length - 1, 0)));
-  window.location.href = getTourPageUrl(prevPage);
-}
-
-function renderTourStep(idx) {
-  const page = getTourCurrentPage();
-  const steps = TOUR_STEPS[page] || [];
-  const step = steps[idx];
-  if (!step) { exitTour(); return; }
-
-  let target = document.querySelector(step.sel);
-  if (!target) target = document.body;
-
+function ensureTourOverlay() {
   let overlay = document.getElementById('tourOverlay');
   if (!overlay) {
     overlay = document.createElement('div');
@@ -3500,27 +3452,83 @@ function renderTourStep(idx) {
     overlay.setAttribute('aria-label', 'Site tour');
     document.body.appendChild(overlay);
   }
+  return overlay;
+}
 
-  const pageIdx = TOUR_PAGE_ORDER.indexOf(page);
-  const totalSteps = TOUR_PAGE_ORDER.reduce((n, p) => n + (TOUR_STEPS[p] || []).length, 0);
-  const stepsBefore = TOUR_PAGE_ORDER.slice(0, pageIdx).reduce((n, p) => n + (TOUR_STEPS[p] || []).length, 0);
-  const globalStep = stepsBefore + idx + 1;
-  const isLast = pageIdx === TOUR_PAGE_ORDER.length - 1 && idx === steps.length - 1;
-  const isFirst = pageIdx === 0 && idx === 0;
+function tourCurrentIndex() {
+  return parseInt(localStorage.getItem(TOUR_LS_INDEX) || '0', 10);
+}
+
+function tourGoTo(idx) {
+  localStorage.setItem(TOUR_LS_INDEX, String(idx));
+  const entry = TOUR_FLAT_STEPS[idx];
+  if (!entry) { exitTour(); return; }
+  if (entry.page !== getTourCurrentPage()) {
+    window.location.href = getTourPageUrl(entry.page);
+    return;
+  }
+  renderTourStep(idx);
+}
+
+function startTour() {
+  tourLastFocus = document.activeElement;
+  localStorage.setItem(TOUR_LS_ACTIVE, '1');
+  localStorage.setItem(TOUR_LS_INDEX, '0');
+  const page = getTourCurrentPage();
+  if (page !== TOUR_PAGE_ORDER[0]) {
+    window.location.href = getTourPageUrl(TOUR_PAGE_ORDER[0]);
+    return;
+  }
+  renderTourStep(0);
+}
+
+function exitTour() {
+  localStorage.removeItem(TOUR_LS_ACTIVE);
+  localStorage.removeItem(TOUR_LS_INDEX);
+  closeTourOverlay();
+}
+
+function tourAdvance() {
+  const next = tourCurrentIndex() + 1;
+  if (next >= TOUR_FLAT_STEPS.length) {
+    exitTour();
+    showToast('Tour complete.');
+    return;
+  }
+  tourGoTo(next);
+}
+
+function tourBack() {
+  const prev = tourCurrentIndex() - 1;
+  if (prev < 0) return;
+  tourGoTo(prev);
+}
+
+function renderTourStep(idx) {
+  const entry = TOUR_FLAT_STEPS[idx];
+  if (!entry) { exitTour(); return; }
+
+  let target = document.querySelector(entry.sel);
+  if (!target) target = document.body;
+
+  const overlay = ensureTourOverlay();
+
+  const isFirst = idx === 0;
+  const isLast = idx === TOUR_FLAT_STEPS.length - 1;
 
   overlay.innerHTML = `
     <div class="tour-scrim"></div>
     <div class="tour-card" id="tourCard" role="document">
       <div class="tour-card-head">
-        <span class="tour-progress">${globalStep} / ${totalSteps}</span>
+        <span class="tour-progress">${idx + 1} / ${TOUR_FLAT_STEPS.length}</span>
         <button type="button" class="tour-close" id="tourCloseBtn" aria-label="End tour">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
             <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
           </svg>
         </button>
       </div>
-      <div class="tour-title">${step.title}</div>
-      <div class="tour-body">${step.body}</div>
+      <div class="tour-title">${entry.title}</div>
+      <div class="tour-body">${entry.body}</div>
       <div class="tour-actions">
         <button type="button" class="tour-btn-secondary" id="tourBackBtn" ${isFirst ? 'disabled' : ''}>Back</button>
         <button type="button" class="tour-btn-primary" id="tourNextBtn">${isLast ? 'Finish' : 'Next'}</button>
@@ -3560,7 +3568,14 @@ function renderTourStep(idx) {
 
   requestAnimationFrame(() => {
     overlay.classList.add('open');
-    waitForScrollSettle(() => positionTourCard(target));
+    waitForScrollSettle(() => {
+      positionTourCard(target);
+      // Focus the primary action each render — lands SR users on the new
+      // step content and lets keyboard users glide through by pressing
+      // Enter repeatedly, same as clicking Next each time.
+      const nextBtn = document.getElementById('tourNextBtn');
+      if (nextBtn) nextBtn.focus();
+    });
   });
 }
 
@@ -3607,12 +3622,17 @@ function positionTourCard(target) {
 function closeTourOverlay() {
   const overlay = document.getElementById('tourOverlay');
   document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
-  if (!overlay) return;
-  overlay.classList.remove('open');
-  setTimeout(() => overlay.remove(), 200);
+  if (tourLastFocus) { tourLastFocus.focus(); tourLastFocus = null; }
+  // Toggle .open off only — the node is created once in initTour() and
+  // reused for every open/close cycle (matches openWhatsNewModal's
+  // persistent-node convention). Removing it here would orphan the
+  // swipe-close listener initTouchGestures() attached to this exact node.
+  if (overlay) overlay.classList.remove('open');
 }
 
 function initTour() {
+  ensureTourOverlay();
+
   document.addEventListener('click', e => {
     const tourTrigger = e.target.closest('#navTourBtn, #drawerTourBtn, [data-action="start-tour"]');
     if (tourTrigger) {
@@ -3621,15 +3641,16 @@ function initTour() {
     }
   });
 
-  if (localStorage.getItem('adt_tour_active') === '1') {
-    const step = parseInt(localStorage.getItem('adt_tour_step') || '0', 10);
+  if (localStorage.getItem(TOUR_LS_ACTIVE) === '1') {
+    tourLastFocus = document.activeElement;
+    const idx = tourCurrentIndex();
     // Resuming on page load races initReveal()'s IntersectionObserver
     // (fires async, after this synchronous boot chain) and any other
     // deferred page setup — rendering the overlay this early highlights
     // a not-yet-revealed target and can visually double up with content
     // still mid-transition. Defer to window 'load' + a frame so the
     // page has actually settled before the tour paints over it.
-    const resume = () => requestAnimationFrame(() => renderTourStep(step));
+    const resume = () => requestAnimationFrame(() => renderTourStep(idx));
     if (document.readyState === 'complete') resume();
     else window.addEventListener('load', resume, { once: true });
   }
