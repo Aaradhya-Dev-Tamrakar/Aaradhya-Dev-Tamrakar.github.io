@@ -1,6 +1,6 @@
 {
-  "sha": "570329bd7db2f19c0540f6397c828258ce6a38d5",
-  "shortSha": "570329b",
-  "date": "2026-08-08T13:14:45+05:45",
-  "message": "feat(v37): guided cross-page site tour with spotlight overlay\n"
+  "sha": "c665db36427483ac76d0f5a23419b7fb96be3bc9",
+  "shortSha": "c665db3",
+  "date": "2026-08-08T13:16:08+05:45",
+  "message": "fix(css): add standard mask property alongside -webkit-mask for compatibility\n"
 }
