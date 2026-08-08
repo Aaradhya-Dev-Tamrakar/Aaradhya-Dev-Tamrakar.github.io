@@ -332,4 +332,3 @@ Full v36 site upgrade suite implemented and verified across the portfolio:
 - **PWA Service Worker & Release History (`sw.js`)**: Upgraded service worker cache version to `aaradhya-portfolio-v36` and updated `SITE_RELEASES` history, CMDK entries, and footer release button to `What's New (v36)`.
 - **Journey Engineering Timeline (`journey.html`)**: Added milestone node `j-032` for the v36 upgrade suite.
 - **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings** (`achievements=36, projects=22, journey=32`). `graphify update .` executed cleanly.
-
