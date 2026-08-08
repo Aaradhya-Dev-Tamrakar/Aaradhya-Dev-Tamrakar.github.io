@@ -1,6 +1,6 @@
 {
-  "sha": "fa35c30087fa4e297d64d62c24bb3d2453106506",
-  "shortSha": "fa35c30",
-  "date": "2026-08-08T12:14:41+05:45",
-  "message": "feat(mobile): v34 upgrade suite — iOS safe area insets, touch gesture dismiss, web haptics & journey node j-030\n"
+  "sha": "d4956f023672bb4875ff58d88a0eeb1b29520a82",
+  "shortSha": "d4956f0",
+  "date": "2026-08-08T12:28:40+05:45",
+  "message": "chore: update README.md - To prevent merge conflicts with GitHub Actions commit-back bots (which auto-upda (+5/-5)\n"
 }
