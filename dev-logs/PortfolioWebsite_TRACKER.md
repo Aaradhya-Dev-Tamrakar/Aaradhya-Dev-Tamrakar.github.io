@@ -316,3 +316,20 @@ Full v35 site upgrade suite implemented and verified across the portfolio:
 - **PWA Service Worker & Release History (`sw.js`)**: Upgraded service worker cache version to `aaradhya-portfolio-v35` and updated `SITE_RELEASES` history, CMDK entries, and footer release button to `What's New (v35)`.
 - **Journey Engineering Timeline (`journey.html`)**: Added milestone node `j-031` for the v35 upgrade suite.
 - **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings** (`achievements=36, projects=22, journey=31`). `graphify update .` executed cleanly.
+
+---
+
+## v36 addition — visual polish, performance, skill matrix & mobile UX suite, journey node j-032 (2026-08-08)
+
+Full v36 site upgrade suite implemented and verified across the portfolio:
+
+- **Glassmorphism & Rotating Gradient Borders**: Added frosted-glass card finishes with hardware-accelerated `@property` conic-gradient rotating borders on card hovers across home status card, project cards, and experience items in `assets/css/style.css`.
+- **Typography Hierarchy Upgrade**: Integrated Google Font `Playfair Display` across all 10 HTML pages and added `--display-serif` font token for elegant display headings.
+- **Interactive Skill & Tech Matrix**: Embedded scroll-triggered animated skill proficiency progress bars with gradient fills inside the status card in `index.html`, `assets/css/style.css`, and `assets/js/script.js`.
+- **Mobile Bottom Sheet Navigation**: Upgraded mobile navigation drawer to a spring-physics bottom sheet (`nav-drawer`) with a drag handle, backdrop blur overlay (`nav-drawer-backdrop`), and smooth slide-up animation in `assets/css/style.css` & `assets/js/script.js`.
+- **Horizontal Swipe-to-Navigate Gesture**: Added horizontal touch swipe gesture navigation across pages (Home ↔ Projects ↔ Experience ↔ Achievements ↔ About ↔ Journey ↔ Contact) with animated edge indicator toasts (`.swipe-indicator`).
+- **Scroll-Linked Parallax Depth Effects**: Implemented rAF-throttled scroll parallax for hero glow elements, background grid lines, and section headings (`initScrollParallax()`).
+- **PWA Service Worker & Release History (`sw.js`)**: Upgraded service worker cache version to `aaradhya-portfolio-v36` and updated `SITE_RELEASES` history, CMDK entries, and footer release button to `What's New (v36)`.
+- **Journey Engineering Timeline (`journey.html`)**: Added milestone node `j-032` for the v36 upgrade suite.
+- **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings** (`achievements=36, projects=22, journey=32`). `graphify update .` executed cleanly.
+

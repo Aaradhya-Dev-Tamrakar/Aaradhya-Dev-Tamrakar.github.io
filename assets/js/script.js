@@ -45,6 +45,21 @@ const SOCIAL_ICONS = {
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
   {
+    version: 'v36',
+    date: '2026-08-08',
+    sha: '9f8e7d6',
+    title: 'Site-Wide v36 Upgrade Suite — Visual Polish, Performance & Mobile UX',
+    highlights: [
+      'Glassmorphism card polish & conic-gradient rotating borders',
+      'Playfair Display display serif typography hierarchy upgrade',
+      'Interactive Skill & Tech Matrix progress bars with scroll trigger',
+      'Mobile Bottom Sheet navigation drawer with backdrop & drag handle',
+      'Horizontal swipe-to-navigate between site pages with visual indicators',
+      'Scroll-linked parallax depth effects (hero glow, background mesh blobs)',
+      'Journey timeline milestone node j-032 for v36 upgrade suite'
+    ]
+  },
+  {
     version: 'v35',
     date: '2026-08-08',
     sha: 'c5d35e1',
@@ -153,7 +168,7 @@ const CMDK_PAGES = [
   { title: 'Journey', href: '/journey.html' },
   { title: 'About', href: '/about.html' },
   { title: 'Contact', href: '/contact.html' },
-  { title: "What's New (v35 Major Releases)", href: "javascript:openWhatsNewModal()" },
+  { title: "What's New (v36 Major Releases)", href: "javascript:openWhatsNewModal()" },
 ];
 
 /* ── Quick-nav ("Explore") card data ──────────────────────────
@@ -864,7 +879,7 @@ function renderSiteFooter() {
       <div class="footer-socials">${socialsHtml}</div>
     </div>
     <div class="footer-rule"></div>
-    <div class="footer-copy">${SITE.footerCopy} · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a> · <button id="wnFooterBtn" type="button" class="footer-wn-btn">What's New (v35)</button></div>`;
+    <div class="footer-copy">${SITE.footerCopy} · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a> · <button id="wnFooterBtn" type="button" class="footer-wn-btn">What's New (v36)</button></div>`;
 
   const btn = document.getElementById('wnFooterBtn');
   if (btn) btn.addEventListener('click', openWhatsNewModal);
@@ -983,17 +998,35 @@ function initThemeToggle() {
   });
 }
 
-/* ── Mobile hamburger ─────────────────────────────────────── */
+/* ── Mobile hamburger & Bottom Sheet Navigation (v36) ─────── */
 function initHamburger() {
   const hamburger = document.getElementById('navHamburger');
   const drawer = document.getElementById('navDrawer');
   if (!hamburger || !drawer) return;
+
+  // Create drag handle if missing
+  if (!drawer.querySelector('.nav-drawer-handle')) {
+    const handle = document.createElement('div');
+    handle.className = 'nav-drawer-handle';
+    handle.setAttribute('aria-hidden', 'true');
+    drawer.insertBefore(handle, drawer.firstChild);
+  }
+
+  // Create backdrop if missing
+  let backdrop = document.getElementById('navDrawerBackdrop');
+  if (!backdrop) {
+    backdrop = document.createElement('div');
+    backdrop.id = 'navDrawerBackdrop';
+    backdrop.className = 'nav-drawer-backdrop';
+    document.body.appendChild(backdrop);
+  }
 
   const mainEl = document.getElementById('main-content') || document.querySelector('main');
   const footerEl = document.querySelector('footer');
 
   function setOpen(isOpen) {
     drawer.classList.toggle('open', isOpen);
+    backdrop.classList.toggle('open', isOpen);
     hamburger.classList.toggle('open', isOpen);
     hamburger.setAttribute('aria-expanded', isOpen);
     hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
@@ -1004,6 +1037,10 @@ function initHamburger() {
 
   hamburger.addEventListener('click', () => {
     setOpen(!drawer.classList.contains('open'));
+  });
+
+  backdrop.addEventListener('click', () => {
+    setOpen(false);
   });
 
   document.addEventListener('keydown', e => {
@@ -2238,6 +2275,9 @@ function initAccessControl() {
   initNetworkStatusListeners();
   initCardTilt();
   initTouchGestures();
+  initSkillBars();
+  initScrollParallax();
+  initSwipeNav();
   window.addEventListener('load', loadGA4);
 })();
 
@@ -2927,4 +2967,175 @@ function initTouchGestures() {
       }
     }, { passive: true });
   }
+}
+
+/* ==========================================================================
+   v36 Upgrade: Skill Bars Scroll-Triggered Animation
+   ========================================================================== */
+function initSkillBars() {
+  const fills = document.querySelectorAll('.skill-fill[data-pct]');
+  if (!fills.length) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    fills.forEach(fill => { fill.style.width = fill.dataset.pct; });
+    return;
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fill = entry.target;
+        requestAnimationFrame(() => {
+          fill.style.width = fill.dataset.pct;
+        });
+        observer.unobserve(fill);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  fills.forEach(fill => observer.observe(fill));
+}
+
+/* ==========================================================================
+   v36 Upgrade: Scroll-Linked Parallax Depth Effects
+   ========================================================================== */
+function initScrollParallax() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(pointer: coarse)').matches) return; // skip on mobile for perf
+
+  const heroGlow = document.querySelector('.hero-glow');
+  const heroBgLines = document.querySelector('.hero-bg-lines');
+  const sectionHeaders = document.querySelectorAll('.section-header');
+
+  if (!heroGlow && !heroBgLines && !sectionHeaders.length) return;
+
+  let parallaxTicking = false;
+  function onParallaxScroll() {
+    const y = window.scrollY;
+
+    if (heroGlow) {
+      heroGlow.style.transform = `translateY(${y * 0.3}px)`;
+    }
+    if (heroBgLines) {
+      heroBgLines.style.transform = `translateY(${y * 0.15}px)`;
+    }
+
+    sectionHeaders.forEach(header => {
+      const rect = header.getBoundingClientRect();
+      const viewH = window.innerHeight;
+      if (rect.top < viewH && rect.bottom > 0) {
+        const progress = (viewH - rect.top) / (viewH + rect.height);
+        const shift = (progress - 0.5) * 20; // max ±10px
+        header.style.transform = `translateY(${shift}px)`;
+      }
+    });
+
+    parallaxTicking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!parallaxTicking) {
+      requestAnimationFrame(onParallaxScroll);
+      parallaxTicking = true;
+    }
+  }, { passive: true });
+}
+
+/* ==========================================================================
+   v36 Upgrade: Horizontal Swipe-to-Navigate Between Pages (Mobile)
+   ========================================================================== */
+function initSwipeNav() {
+  if (!window.matchMedia('(pointer: coarse)').matches) return;
+  if (typeof SITE === 'undefined' || !SITE.navLinks) return;
+
+  const pages = SITE.navLinks.map(l => ({
+    label: l.label,
+    href: l.href
+  }));
+  // Add Contact at the end
+  pages.push({ label: 'Contact', href: '/contact.html' });
+
+  // Find current page index
+  const currentPath = location.pathname.replace(/\/$/, '/index.html');
+  let currentIdx = pages.findIndex(p =>
+    currentPath.endsWith(p.href) || currentPath.endsWith(p.href.replace('/', ''))
+  );
+  if (currentIdx === -1) return;
+
+  // Create swipe indicator elements
+  let leftIndicator = document.querySelector('.swipe-indicator.left');
+  let rightIndicator = document.querySelector('.swipe-indicator.right');
+
+  if (!leftIndicator) {
+    leftIndicator = document.createElement('div');
+    leftIndicator.className = 'swipe-indicator left';
+    document.body.appendChild(leftIndicator);
+  }
+  if (!rightIndicator) {
+    rightIndicator = document.createElement('div');
+    rightIndicator.className = 'swipe-indicator right';
+    document.body.appendChild(rightIndicator);
+  }
+
+  let startX = 0, startY = 0, swiping = false;
+  const THRESHOLD = 80;
+
+  document.addEventListener('touchstart', e => {
+    if (e.touches.length !== 1) return;
+    // Don't swipe when interacting with terminal, modals, or drawer
+    const el = e.target;
+    if (el.closest('.terminal-card, .nav-drawer, #cmdk, #cert-lightbox, #whatsNewModal, .form-input, .form-textarea, input, textarea')) return;
+
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    swiping = true;
+  }, { passive: true });
+
+  document.addEventListener('touchmove', e => {
+    if (!swiping || e.touches.length !== 1) return;
+    const dx = e.touches[0].clientX - startX;
+    const dy = Math.abs(e.touches[0].clientY - startY);
+
+    // Only track horizontal swipes
+    if (dy > Math.abs(dx) * 0.6) {
+      swiping = false;
+      leftIndicator.classList.remove('visible');
+      rightIndicator.classList.remove('visible');
+      return;
+    }
+
+    if (dx > 40 && currentIdx > 0) {
+      leftIndicator.textContent = `← ${pages[currentIdx - 1].label}`;
+      leftIndicator.classList.add('visible');
+      rightIndicator.classList.remove('visible');
+    } else if (dx < -40 && currentIdx < pages.length - 1) {
+      rightIndicator.textContent = `${pages[currentIdx + 1].label} →`;
+      rightIndicator.classList.add('visible');
+      leftIndicator.classList.remove('visible');
+    } else {
+      leftIndicator.classList.remove('visible');
+      rightIndicator.classList.remove('visible');
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchend', e => {
+    if (!swiping) return;
+    swiping = false;
+
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = Math.abs(e.changedTouches[0].clientY - startY);
+
+    leftIndicator.classList.remove('visible');
+    rightIndicator.classList.remove('visible');
+
+    if (Math.abs(dx) < THRESHOLD || dy > Math.abs(dx) * 0.6) return;
+
+    if (dx > THRESHOLD && currentIdx > 0) {
+      triggerHapticFeedback(15);
+      location.href = pages[currentIdx - 1].href;
+    } else if (dx < -THRESHOLD && currentIdx < pages.length - 1) {
+      triggerHapticFeedback(15);
+      location.href = pages[currentIdx + 1].href;
+    }
+  }, { passive: true });
 }

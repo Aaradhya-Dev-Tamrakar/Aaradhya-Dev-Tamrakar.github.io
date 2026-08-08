@@ -87,6 +87,7 @@
   --accent-a45: rgba(212, 168, 90, 0.45);
   --accent-a80: rgba(212, 168, 90, 0.8);
   --heading: #f8f5ee;
+  --display-serif: "Playfair Display", Georgia, serif;
   --serif: "Cormorant Garamond", Georgia, serif;
   --mono: "DM Mono", monospace;
   --sans: "Instrument Sans", sans-serif;
@@ -210,6 +211,13 @@ html[data-theme="light"] {
 }
 
 /* ── Font-face fallbacks (reduce FOUT/CLS) ────────────────── */
+@font-face {
+  font-family: "Playfair Display";
+  font-display: swap;
+  src: local("Georgia");
+  size-adjust: 100%;
+}
+
 @font-face {
   font-family: "Cormorant Garamond";
   font-display: swap;
@@ -3148,3 +3156,246 @@ html[data-theme="light"] .gated-overlay {
   0% { transform: scale(0.9); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
 }
+
+/* ==========================================================================
+   v36 Upgrade Utilities: Conic Gradient Borders, Skill Bars & Bottom Sheet Nav
+   ========================================================================== */
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotateBorderAngle {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+.card-gradient-border {
+  position: relative;
+}
+
+.card-gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 65%,
+    var(--accent) 85%,
+    var(--accent2) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 2;
+  animation: rotateBorderAngle 4s linear infinite;
+}
+
+.card-gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* Glassmorphism card glow */
+.glass-card-glow {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.glass-card-glow:hover {
+  border-color: var(--accent-a45);
+  box-shadow: var(--card-shadow), 0 0 25px var(--accent-a12);
+}
+
+/* Section Mesh Blobs */
+.section-mesh-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.mesh-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.12;
+  transition: transform 0.5s ease-out;
+  will-change: transform;
+}
+
+.mesh-blob--gold {
+  width: 450px;
+  height: 450px;
+  background: var(--accent);
+}
+
+.mesh-blob--teal {
+  width: 400px;
+  height: 400px;
+  background: var(--accent2);
+}
+
+/* Interactive Skill & Tech Matrix Bars */
+.skill-matrix {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 1.25rem;
+  width: 100%;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+}
+
+.skill-name {
+  color: var(--heading);
+  font-weight: 500;
+}
+
+.skill-pct {
+  color: var(--accent);
+  font-size: 0.68rem;
+}
+
+.skill-track {
+  width: 100%;
+  height: 5px;
+  background: var(--line);
+  border-radius: 99px;
+  overflow: hidden;
+  position: relative;
+}
+
+.skill-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  box-shadow: 0 0 8px var(--accent-a40);
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.skill-fill--teal {
+  background: linear-gradient(90deg, var(--accent2), var(--glow-teal));
+  box-shadow: 0 0 8px var(--glow-teal-a35);
+}
+
+.skill-fill--violet {
+  background: linear-gradient(90deg, var(--glow-violet), var(--accent));
+  box-shadow: 0 0 8px var(--glow-violet-a35);
+}
+
+/* Mobile Bottom Sheet Drawer Upgrade */
+.nav-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  z-index: 98;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.nav-drawer-backdrop.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.nav-drawer-handle {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .nav-drawer {
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: auto !important;
+    max-height: 85vh !important;
+    border-radius: 24px 24px 0 0 !important;
+    border-top: 1px solid var(--line) !important;
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.6) !important;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.3s ease !important;
+    padding-top: 1.2rem !important;
+    padding-bottom: max(2rem, env(safe-area-inset-bottom, 2rem)) !important;
+    background: var(--bg2) !important;
+  }
+
+  .nav-drawer.open {
+    transform: translateY(0%) !important;
+  }
+
+  .nav-drawer-handle {
+    display: block;
+    width: 44px;
+    height: 5px;
+    background: var(--muted);
+    border-radius: 99px;
+    margin: 0 auto 1.2rem;
+    opacity: 0.6;
+  }
+}
+
+/* Page Swipe Navigation Edge Indicator */
+.swipe-indicator {
+  position: fixed;
+  top: 50%;
+  z-index: 9990;
+  transform: translateY(-50%);
+  padding: 0.65rem 1.1rem;
+  background: var(--bg2);
+  border: 1px solid var(--accent);
+  border-radius: 30px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4), 0 0 15px var(--accent-a35);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.swipe-indicator.left {
+  left: 1rem;
+  transform: translateY(-50%) translateX(-20px);
+}
+
+.swipe-indicator.right {
+  right: 1rem;
+  transform: translateY(-50%) translateX(20px);
+}
+
+.swipe-indicator.visible {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
