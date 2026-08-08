@@ -731,12 +731,6 @@ function renderSiteNav() {
       </ul>
       <div class="nav-right">
         <a href="/contact.html" class="nav-cta" aria-label="Connect with Aaradhya">Connect</a>
-        <button class="nav-tour-btn" id="navTourBtn" aria-label="Start guided site tour" title="Take a tour (Shift+T)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><path d="M9.5 9.5a2.5 2.5 0 0 1 4.6-1.4c0 1.6-2.1 1.9-2.1 3.4"/><circle cx="12" cy="16.2" r="0.4" fill="currentColor" stroke="none"/>
-          </svg>
-          <span>Tour</span>
-        </button>
         <button class="nav-access-btn" id="navAccessBtn" aria-label="Access Control" title="Access Control">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
@@ -774,9 +768,6 @@ function renderSiteNav() {
 
     <div class="nav-drawer" id="navDrawer" role="navigation" aria-label="Mobile navigation">
       ${drawerLinks}
-      <button class="nav-access-btn" id="drawerTourBtn" style="margin: 1rem 0; width: calc(100% - 2rem); justify-content: center;" aria-label="Start guided site tour">
-        Take a Tour
-      </button>
       <button class="nav-access-btn" id="drawerAccessBtn" style="margin: 0 0 1rem; width: calc(100% - 2rem); justify-content: center;" aria-label="Access Control">
         Access Control / Login
       </button>
@@ -3418,7 +3409,8 @@ function initSwipeNav() {
    click / swipe-down (modals list in initTouchGestures — the
    overlay is created eagerly in initTour(), before
    initTouchGestures() runs, so that listener has a real node to
-   attach to). Opened via the "Tour" nav button or Shift+T. */
+   attach to). Opened via Shift+T, the cmdk command palette, or the
+   terminal `tour` command — no dedicated nav button (removed). */
 
 const TOUR_LS_ACTIVE = 'adt_tour_active';
 const TOUR_LS_INDEX = 'adt_tour_index';
@@ -3592,10 +3584,48 @@ function positionTourCard(target) {
   const targetTooLarge = rect && (rect.height > window.innerHeight * 0.75 || rect.width > window.innerWidth * 0.9);
 
   if (!rect || window.innerWidth < 720 || targetTooLarge) {
+    // Dead-center can still land on top of large in-flow content the
+    // target wraps (e.g. #hero contains .status-card on index.html) —
+    // if the centered spot would overlap something like that, slide to
+    // whichever side has more clear room instead of covering it.
+    const obstacle = document.querySelector('.status-card');
+    const obsRect = obstacle ? obstacle.getBoundingClientRect() : null;
+    const centeredRect = obsRect ? {
+      top: window.innerHeight / 2 - cardH / 2,
+      bottom: window.innerHeight / 2 + cardH / 2,
+      left: window.innerWidth / 2 - cardW / 2,
+      right: window.innerWidth / 2 + cardW / 2,
+    } : null;
+    const overlaps = centeredRect && obsRect &&
+      centeredRect.left < obsRect.right && centeredRect.right > obsRect.left &&
+      centeredRect.top < obsRect.bottom && centeredRect.bottom > obsRect.top;
+
     card.style.position = 'fixed';
-    card.style.top = '50%';
-    card.style.left = '50%';
-    card.style.transform = 'translate(-50%, -50%)';
+    if (overlaps) {
+      const roomLeft = obsRect.left;
+      const roomRight = window.innerWidth - obsRect.right;
+      card.style.top = '50%';
+      card.style.transform = 'translateY(-50%)';
+      if (roomLeft >= cardW + 32) {
+        card.style.left = '16px';
+        card.style.right = 'auto';
+      } else if (roomRight >= cardW + 32) {
+        card.style.right = '16px';
+        card.style.left = 'auto';
+      } else {
+        // Neither side has clearance (narrow viewport where the status
+        // card also spans wide) — drop below it instead of overlapping.
+        card.style.top = (obsRect.bottom + 16) + 'px';
+        card.style.left = '50%';
+        card.style.right = 'auto';
+        card.style.transform = 'translateX(-50%)';
+      }
+    } else {
+      card.style.top = '50%';
+      card.style.left = '50%';
+      card.style.right = 'auto';
+      card.style.transform = 'translate(-50%, -50%)';
+    }
     return;
   }
 
@@ -3615,6 +3645,7 @@ function positionTourCard(target) {
 
   card.style.position = 'fixed';
   card.style.left = left + 'px';
+  card.style.right = 'auto';
   card.style.top = top + 'px';
   card.style.transform = 'none';
 }
