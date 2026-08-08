@@ -1,6 +1,6 @@
 {
-  "sha": "c665db36427483ac76d0f5a23419b7fb96be3bc9",
-  "shortSha": "c665db3",
-  "date": "2026-08-08T13:16:08+05:45",
-  "message": "fix(css): add standard mask property alongside -webkit-mask for compatibility\n"
+  "sha": "3511f2d3224d957badb6b01348edee8e889df267",
+  "shortSha": "3511f2d",
+  "date": "2026-08-08T14:10:14+05:45",
+  "message": "feat(v38): site-wide v38 upgrade suite — web audio micro-sounds, reading time & verification\n"
 }
