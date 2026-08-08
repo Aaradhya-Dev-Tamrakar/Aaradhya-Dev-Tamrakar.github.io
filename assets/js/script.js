@@ -42,6 +42,41 @@ const SOCIAL_ICONS = {
   Instagram: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
 };
 
+/* ── Guided Site Tour data (v37) ─────────────────────────── */
+const TOUR_STEPS = {
+  'index.html': [
+    { sel: '#hero', title: 'Welcome', body: 'This is the homepage — start here on any visit. The tour walks through all 7 pages; use Next/Back or Esc anytime.' },
+    { sel: '#adtTerminal', title: 'Dev Terminal', body: 'A live command widget — type "help" for a full command list, or try the quick-command buttons.' },
+    { sel: '#keymap', title: 'Keyboard Shortcuts', body: 'Power-user shortcuts: 1–7 to jump pages, 0 for theme, / or Ctrl+K for search, Shift+N for release notes.' },
+  ],
+  'projects.html': [
+    { sel: '#page-header', title: 'Projects', body: '22 projects, from firmware to full ML pipelines. Each card expands for the full write-up.' },
+    { sel: '#p-001', title: 'Featured build', body: 'Cards are individually expandable — click any title to see stack, metrics, and links.' },
+  ],
+  'experience.html': [
+    { sel: '#page-header', title: 'Experience', body: 'Leadership and technical roles, in reverse-chronological order.' },
+    { sel: '#experience', title: 'Role detail', body: 'Each entry includes scope and, where applicable, a linked certificate — click a cert badge to open it.' },
+  ],
+  'achievements.html': [
+    { sel: '#page-header', title: 'Achievements', body: '36 credentials and competition milestones. Filter by category or year using the legend above the list.' },
+    { sel: '#achievementsList', title: 'Certificates', body: 'Entries with a certificate button open a lightbox viewer — most also offer the original PDF as a direct download.' },
+  ],
+  'about.html': [
+    { sel: '#about-intro', title: 'About', body: 'Background, education, and how this site\u2019s design choices reflect a working engineer\u2019s toolkit.' },
+    { sel: '#skills', title: 'Skills', body: 'A breakdown of tools and technical areas of focus.' },
+    { sel: '#education', title: 'Education', body: 'Academic timeline through KEC, IOE, Tribhuvan University.' },
+  ],
+  'journey.html': [
+    { sel: '#page-header', title: 'Journey', body: 'A 34-node timeline of milestones — the fullest narrative view of the work behind this site.' },
+    { sel: '#j-001', title: 'Timeline nodes', body: 'Each node expands individually, or use the toggle-all shortcut (Alt+6) to open everything at once.' },
+  ],
+  'contact.html': [
+    { sel: '#contact-intro', title: 'Contact', body: 'That\u2019s the full tour. This page has a direct message form plus social links in the footer.' },
+    { sel: '#contactForm', title: 'Get in touch', body: 'Messages go straight through — no account needed. Thanks for visiting.' },
+  ],
+};
+const TOUR_PAGE_ORDER = ['index.html', 'projects.html', 'experience.html', 'achievements.html', 'about.html', 'journey.html', 'contact.html'];
+
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
   {
@@ -3376,39 +3411,6 @@ function initSwipeNav() {
    on Escape / overlay click / swipe-down (added to the existing
    modals list in initTouchGestures). Opened via the "Tour" nav
    button or Shift+T. */
-const TOUR_STEPS = {
-  'index.html': [
-    { sel: '#hero', title: 'Welcome', body: 'This is the homepage — start here on any visit. The tour walks through all 7 pages; use Next/Back or Esc anytime.' },
-    { sel: '#adtTerminal', title: 'Dev Terminal', body: 'A live command widget — type "help" for a full command list, or try the quick-command buttons.' },
-    { sel: '#keymap', title: 'Keyboard Shortcuts', body: 'Power-user shortcuts: 1–7 to jump pages, 0 for theme, / or Ctrl+K for search, Shift+N for release notes.' },
-  ],
-  'projects.html': [
-    { sel: '#page-header', title: 'Projects', body: '22 projects, from firmware to full ML pipelines. Each card expands for the full write-up.' },
-    { sel: '#p-001', title: 'Featured build', body: 'Cards are individually expandable — click any title to see stack, metrics, and links.' },
-  ],
-  'experience.html': [
-    { sel: '#page-header', title: 'Experience', body: 'Leadership and technical roles, in reverse-chronological order.' },
-    { sel: '#experience', title: 'Role detail', body: 'Each entry includes scope and, where applicable, a linked certificate — click a cert badge to open it.' },
-  ],
-  'achievements.html': [
-    { sel: '#page-header', title: 'Achievements', body: '36 credentials and competition milestones. Filter by category or year using the legend above the list.' },
-    { sel: '#achievementsList', title: 'Certificates', body: 'Entries with a certificate button open a lightbox viewer — most also offer the original PDF as a direct download.' },
-  ],
-  'about.html': [
-    { sel: '#about-intro', title: 'About', body: 'Background, education, and how this site\u2019s design choices reflect a working engineer\u2019s toolkit.' },
-    { sel: '#skills', title: 'Skills', body: 'A breakdown of tools and technical areas of focus.' },
-    { sel: '#education', title: 'Education', body: 'Academic timeline through KEC, IOE, Tribhuvan University.' },
-  ],
-  'journey.html': [
-    { sel: '#page-header', title: 'Journey', body: 'A 32-node timeline of milestones — the fullest narrative view of the work behind this site.' },
-    { sel: '#j-001', title: 'Timeline nodes', body: 'Each node expands individually, or use the toggle-all shortcut (Alt+6) to open everything at once.' },
-  ],
-  'contact.html': [
-    { sel: '#contact-intro', title: 'Contact', body: 'That\u2019s the full tour. This page has a direct message form plus social links in the footer.' },
-    { sel: '#contactForm', title: 'Get in touch', body: 'Messages go straight through — no account needed. Thanks for visiting.' },
-  ],
-};
-const TOUR_PAGE_ORDER = ['index.html', 'projects.html', 'experience.html', 'achievements.html', 'about.html', 'journey.html', 'contact.html'];
 
 function tourReducedMotion() {
   return typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
