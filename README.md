@@ -178,7 +178,7 @@ To prevent merge conflicts with GitHub Actions commit-back bots (which auto-upda
 
 ---
 
-## 📈 Codebase Knowledge Graph (`Graphify`)
+## 📈 Codebase Knowledge Graph (`Graphify`)..
 
 This repository uses **Graphify** for local AST-level knowledge graph extraction, mapping code abstractions, script functions, HTML components, and cross-file dependencies.
 
