@@ -1,6 +1,6 @@
 {
-  "sha": "efa88b8671f0dce6cffe10038a070665a625c82e",
-  "shortSha": "efa88b8",
-  "date": "2026-08-08T14:42:44+05:45",
-  "message": "fix(tour): navTourBtn was rendering inert — icon+label clipped inside circular access-btn class; split into dedicated .nav-tour-btn\n"
+  "sha": "6587c61033f0d3c1bac798c5f10e8013aaa59df1",
+  "shortSha": "6587c61",
+  "date": "2026-08-08T14:44:26+05:45",
+  "message": "fix(tour): raise tour z-index stack above readProgressBar/access-modal — was tied or losing at 10000/10001\n"
 }
