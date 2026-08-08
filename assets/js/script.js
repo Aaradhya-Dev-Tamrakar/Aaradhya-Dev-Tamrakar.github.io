@@ -664,6 +664,12 @@ function renderSiteNav() {
       </ul>
       <div class="nav-right">
         <a href="/contact.html" class="nav-cta" aria-label="Connect with Aaradhya">Connect</a>
+        <button class="nav-access-btn" id="navTourBtn" aria-label="Start guided site tour" title="Take a tour (Shift+T)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><path d="M9.5 9.5a2.5 2.5 0 0 1 4.6-1.4c0 1.6-2.1 1.9-2.1 3.4"/><circle cx="12" cy="16.2" r="0.4" fill="currentColor" stroke="none"/>
+          </svg>
+          <span>Tour</span>
+        </button>
         <button class="nav-access-btn" id="navAccessBtn" aria-label="Access Control" title="Access Control">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
@@ -701,7 +707,10 @@ function renderSiteNav() {
 
     <div class="nav-drawer" id="navDrawer" role="navigation" aria-label="Mobile navigation">
       ${drawerLinks}
-      <button class="nav-access-btn" id="drawerAccessBtn" style="margin: 1rem 0; width: calc(100% - 2rem); justify-content: center;" aria-label="Access Control">
+      <button class="nav-access-btn" id="drawerTourBtn" style="margin: 1rem 0; width: calc(100% - 2rem); justify-content: center;" aria-label="Start guided site tour">
+        Take a Tour
+      </button>
+      <button class="nav-access-btn" id="drawerAccessBtn" style="margin: 0 0 1rem; width: calc(100% - 2rem); justify-content: center;" aria-label="Access Control">
         Access Control / Login
       </button>
     </div>`;
@@ -2278,6 +2287,7 @@ function initAccessControl() {
   initSkillBars();
   initScrollParallax();
   initSwipeNav();
+  initTour();
   window.addEventListener('load', loadGA4);
 })();
 
@@ -2723,6 +2733,11 @@ function initKeyNav() {
       return;
     }
 
+    if (e.shiftKey && (e.key === 'T' || e.key === 't')) {
+      startTour();
+      return;
+    }
+
     if (e.shiftKey && (e.key === '4' || e.key === '$')) {
       const academicBtn = document.getElementById('trackAcademicBtn');
       const ecaBtn = document.getElementById('trackEcaBtn');
@@ -2919,7 +2934,7 @@ function triggerHapticFeedback(pattern = 10) {
 function initTouchGestures() {
   if (typeof window === 'undefined') return;
 
-  const modals = ['cert-lightbox', 'cmdk', 'whatsNewModal', 'accessModalOverlay'];
+  const modals = ['cert-lightbox', 'cmdk', 'whatsNewModal', 'accessModalOverlay', 'tourOverlay'];
   modals.forEach(id => {
     const modal = document.getElementById(id);
     if (!modal) return;
@@ -2944,6 +2959,7 @@ function initTouchGestures() {
           else if (id === 'cmdk' && typeof closeCmdk === 'function') closeCmdk();
           else if (id === 'whatsNewModal' && typeof closeWhatsNewModal === 'function') closeWhatsNewModal();
           else if (id === 'accessModalOverlay' && typeof closeAccessModal === 'function') closeAccessModal();
+          else if (id === 'tourOverlay') exitTour();
         }
       }
     }, { passive: true });
@@ -3138,4 +3154,222 @@ function initSwipeNav() {
       location.href = pages[currentIdx + 1].href;
     }
   }, { passive: true });
+}
+
+/* ── Guided Site Tour (v37) ────────────────────────────────
+   Cross-page spotlight walkthrough. Steps are keyed by page
+   filename; "Next" on a page's last step navigates to the next
+   page in TOUR_STEPS order and auto-resumes via localStorage
+   (adt_tour_active + adt_tour_step). Reuses access-modal-overlay
+   visual language, respects prefers-reduced-motion, and closes
+   on Escape / overlay click / swipe-down (added to the existing
+   modals list in initTouchGestures). Opened via the "Tour" nav
+   button or Shift+T. */
+const TOUR_STEPS = {
+  'index.html': [
+    { sel: '#hero', title: 'Welcome', body: 'This is the homepage — start here on any visit. The tour walks through all 7 pages; use Next/Back or Esc anytime.' },
+    { sel: '#adtTerminal', title: 'Dev Terminal', body: 'A live command widget — type "help" for a full command list, or try the quick-command buttons.' },
+    { sel: '#keymap', title: 'Keyboard Shortcuts', body: 'Power-user shortcuts: 1–7 to jump pages, 0 for theme, / or Ctrl+K for search, Shift+N for release notes.' },
+  ],
+  'projects.html': [
+    { sel: '#page-header', title: 'Projects', body: '22 projects, from firmware to full ML pipelines. Each card expands for the full write-up.' },
+    { sel: '#p-001', title: 'Featured build', body: 'Cards are individually expandable — click any title to see stack, metrics, and links.' },
+  ],
+  'experience.html': [
+    { sel: '#page-header', title: 'Experience', body: 'Leadership and technical roles, in reverse-chronological order.' },
+    { sel: '#experience', title: 'Role detail', body: 'Each entry includes scope and, where applicable, a linked certificate — click a cert badge to open it.' },
+  ],
+  'achievements.html': [
+    { sel: '#page-header', title: 'Achievements', body: '36 credentials and competition milestones. Filter by category or year using the legend above the list.' },
+    { sel: '#achievementsList', title: 'Certificates', body: 'Entries with a certificate button open a lightbox viewer — most also offer the original PDF as a direct download.' },
+  ],
+  'about.html': [
+    { sel: '#about-intro', title: 'About', body: 'Background, education, and how this site\u2019s design choices reflect a working engineer\u2019s toolkit.' },
+    { sel: '#skills', title: 'Skills', body: 'A breakdown of tools and technical areas of focus.' },
+    { sel: '#education', title: 'Education', body: 'Academic timeline through KEC, IOE, Tribhuvan University.' },
+  ],
+  'journey.html': [
+    { sel: '#page-header', title: 'Journey', body: 'A 32-node timeline of milestones — the fullest narrative view of the work behind this site.' },
+    { sel: '#j-001', title: 'Timeline nodes', body: 'Each node expands individually, or use the toggle-all shortcut (Alt+6) to open everything at once.' },
+  ],
+  'contact.html': [
+    { sel: '#contact-intro', title: 'Contact', body: 'That\u2019s the full tour. This page has a direct message form plus social links in the footer.' },
+    { sel: '#contactForm', title: 'Get in touch', body: 'Messages go straight through — no account needed. Thanks for visiting.' },
+  ],
+};
+const TOUR_PAGE_ORDER = ['index.html', 'projects.html', 'experience.html', 'achievements.html', 'about.html', 'journey.html', 'contact.html'];
+
+function tourReducedMotion() {
+  return typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function startTour() {
+  localStorage.setItem('adt_tour_active', '1');
+  localStorage.setItem('adt_tour_step', '0');
+  const page = location.pathname.split('/').pop() || 'index.html';
+  if (page !== TOUR_PAGE_ORDER[0]) {
+    window.location.href = '/' + TOUR_PAGE_ORDER[0];
+    return;
+  }
+  renderTourStep(0);
+}
+
+function exitTour() {
+  localStorage.removeItem('adt_tour_active');
+  localStorage.removeItem('adt_tour_step');
+  closeTourOverlay();
+}
+
+function tourAdvance() {
+  const page = location.pathname.split('/').pop() || 'index.html';
+  const steps = TOUR_STEPS[page] || [];
+  const cur = parseInt(localStorage.getItem('adt_tour_step') || '0', 10);
+  if (cur + 1 < steps.length) {
+    localStorage.setItem('adt_tour_step', String(cur + 1));
+    renderTourStep(cur + 1);
+    return;
+  }
+  const pageIdx = TOUR_PAGE_ORDER.indexOf(page);
+  if (pageIdx === -1 || pageIdx + 1 >= TOUR_PAGE_ORDER.length) {
+    exitTour();
+    showToast('Tour complete.');
+    return;
+  }
+  localStorage.setItem('adt_tour_step', '0');
+  window.location.href = '/' + TOUR_PAGE_ORDER[pageIdx + 1];
+}
+
+function tourBack() {
+  const page = location.pathname.split('/').pop() || 'index.html';
+  const cur = parseInt(localStorage.getItem('adt_tour_step') || '0', 10);
+  if (cur > 0) {
+    localStorage.setItem('adt_tour_step', String(cur - 1));
+    renderTourStep(cur - 1);
+    return;
+  }
+  const pageIdx = TOUR_PAGE_ORDER.indexOf(page);
+  if (pageIdx <= 0) return;
+  const prevPage = TOUR_PAGE_ORDER[pageIdx - 1];
+  const prevSteps = TOUR_STEPS[prevPage] || [];
+  localStorage.setItem('adt_tour_step', String(Math.max(prevSteps.length - 1, 0)));
+  window.location.href = '/' + prevPage;
+}
+
+function renderTourStep(idx) {
+  const page = location.pathname.split('/').pop() || 'index.html';
+  const steps = TOUR_STEPS[page] || [];
+  const step = steps[idx];
+  if (!step) { exitTour(); return; }
+
+  let target = document.querySelector(step.sel);
+  if (!target) target = document.body;
+
+  let overlay = document.getElementById('tourOverlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'tourOverlay';
+    overlay.className = 'tour-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Site tour');
+    document.body.appendChild(overlay);
+  }
+
+  const pageIdx = TOUR_PAGE_ORDER.indexOf(page);
+  const totalSteps = TOUR_PAGE_ORDER.reduce((n, p) => n + (TOUR_STEPS[p] || []).length, 0);
+  const stepsBefore = TOUR_PAGE_ORDER.slice(0, pageIdx).reduce((n, p) => n + (TOUR_STEPS[p] || []).length, 0);
+  const globalStep = stepsBefore + idx + 1;
+  const isLast = pageIdx === TOUR_PAGE_ORDER.length - 1 && idx === steps.length - 1;
+  const isFirst = pageIdx === 0 && idx === 0;
+
+  overlay.innerHTML = `
+    <div class="tour-scrim"></div>
+    <div class="tour-card" id="tourCard" role="document">
+      <div class="tour-card-head">
+        <span class="tour-progress">${globalStep} / ${totalSteps}</span>
+        <button type="button" class="tour-close" id="tourCloseBtn" aria-label="End tour">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="tour-title">${step.title}</div>
+      <div class="tour-body">${step.body}</div>
+      <div class="tour-actions">
+        <button type="button" class="tour-btn-secondary" id="tourBackBtn" ${isFirst ? 'disabled' : ''}>Back</button>
+        <button type="button" class="tour-btn-primary" id="tourNextBtn">${isLast ? 'Finish' : 'Next'}</button>
+      </div>
+    </div>`;
+
+  document.getElementById('tourCloseBtn').addEventListener('click', () => { exitTour(); });
+  document.getElementById('tourNextBtn').addEventListener('click', tourAdvance);
+  document.getElementById('tourBackBtn').addEventListener('click', tourBack);
+  overlay.querySelector('.tour-scrim').addEventListener('click', () => { exitTour(); });
+
+  document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
+  if (target !== document.body) {
+    target.classList.add('tour-highlight');
+    target.scrollIntoView({ block: 'center', behavior: tourReducedMotion() ? 'auto' : 'smooth' });
+  }
+
+  requestAnimationFrame(() => {
+    overlay.classList.add('open');
+    positionTourCard(target);
+  });
+}
+
+function positionTourCard(target) {
+  const card = document.getElementById('tourCard');
+  if (!card) return;
+  if (!target || target === document.body || window.innerWidth < 720) {
+    card.style.position = '';
+    card.style.top = '';
+    card.style.left = '';
+    return;
+  }
+  const rect = target.getBoundingClientRect();
+  const cardH = card.offsetHeight;
+  const spaceBelow = window.innerHeight - rect.bottom;
+  card.style.position = 'fixed';
+  card.style.left = Math.max(16, Math.min(rect.left, window.innerWidth - card.offsetWidth - 16)) + 'px';
+  if (spaceBelow > cardH + 24) {
+    card.style.top = (rect.bottom + 16) + 'px';
+  } else {
+    card.style.top = Math.max(16, rect.top - cardH - 16) + 'px';
+  }
+}
+
+function closeTourOverlay() {
+  const overlay = document.getElementById('tourOverlay');
+  document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
+  if (!overlay) return;
+  overlay.classList.remove('open');
+  setTimeout(() => overlay.remove(), 200);
+}
+
+function initTour() {
+  const btn = document.getElementById('navTourBtn');
+  if (btn) btn.addEventListener('click', startTour);
+  const drawerBtn = document.getElementById('drawerTourBtn');
+  if (drawerBtn) drawerBtn.addEventListener('click', startTour);
+
+  if (localStorage.getItem('adt_tour_active') === '1') {
+    const step = parseInt(localStorage.getItem('adt_tour_step') || '0', 10);
+    renderTourStep(step);
+  }
+
+  window.addEventListener('resize', () => {
+    const overlay = document.getElementById('tourOverlay');
+    if (!overlay || !overlay.classList.contains('open')) return;
+    const highlighted = document.querySelector('.tour-highlight');
+    positionTourCard(highlighted);
+  });
+
+  document.addEventListener('keydown', e => {
+    const overlay = document.getElementById('tourOverlay');
+    if (!overlay || !overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') { exitTour(); }
+    else if (e.key === 'ArrowRight') { tourAdvance(); }
+    else if (e.key === 'ArrowLeft') { tourBack(); }
+  });
 }
