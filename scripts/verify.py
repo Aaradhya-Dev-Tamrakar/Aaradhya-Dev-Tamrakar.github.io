@@ -182,7 +182,56 @@ def check_tag_balance(name, cfg):
                 self.issues.append(f"closing tag </{tag}> does not match "
                                     f"any open tag on the stack")
 
-    text = cfg["file"].read_text(encoding="utf-8")
+def check_tag_balance(name, file_path):
+    from html.parser import HTMLParser
+
+    void_elements = {
+        "area", "base", "br", "col", "embed", "hr", "img", "input",
+        "link", "meta", "param", "source", "track", "wbr",
+    }
+
+    class BalanceChecker(HTMLParser):
+        def __init__(self):
+            super().__init__(convert_charrefs=True)
+            self.stack = []
+            self.issues = []
+            self._in_raw = None
+
+        def handle_starttag(self, tag, attrs):
+            if self._in_raw:
+                return
+            if tag in ("script", "style"):
+                self._in_raw = tag
+                return
+            if tag in void_elements:
+                return
+            self.stack.append(tag)
+
+        def handle_startendtag(self, tag, attrs):
+            pass
+
+        def handle_endtag(self, tag):
+            if self._in_raw:
+                if tag == self._in_raw:
+                    self._in_raw = None
+                return
+            if not self.stack:
+                self.issues.append(f"stray closing tag </{tag}> with no open tag")
+                return
+            if self.stack[-1] == tag:
+                self.stack.pop()
+            elif tag in self.stack:
+                unclosed = []
+                while self.stack and self.stack[-1] != tag:
+                    unclosed.append(self.stack.pop())
+                self.stack.pop()
+                self.issues.append(f"</{tag}> closed out of order — "
+                                    f"unclosed tag(s) in between: {unclosed}")
+            else:
+                self.issues.append(f"closing tag </{tag}> does not match "
+                                    f"any open tag on the stack")
+
+    text = file_path.read_text(encoding="utf-8")
     checker = BalanceChecker()
     checker.feed(text)
     checker.close()
@@ -227,7 +276,7 @@ def check_search_index_sync():
 
 
 def check_pwa_and_a11y_metadata():
-    """Verify site.webmanifest, skip-links, preconnect font links, and social metadata across all 10 site HTML pages."""
+    """Verify site.webmanifest, skip-links, preconnect font links, sw.js version, and social metadata across all 10 site HTML pages."""
     site_files = sorted([f for f in ROOT.glob("*.html") if not f.name.startswith("google")])
     for f in site_files:
         text = f.read_text(encoding="utf-8")
@@ -244,12 +293,22 @@ def check_pwa_and_a11y_metadata():
         if 'name="twitter:card"' not in text and "name='twitter:card'" not in text:
             errors.append(f"[seo] {f.name} missing twitter:card tag")
 
+    sw_path = ROOT / "sw.js"
+    if sw_path.exists():
+        sw_text = sw_path.read_text(encoding="utf-8")
+        if "aaradhya-portfolio-v38" not in sw_text:
+            errors.append("[pwa] sw.js CACHE_NAME is not updated to aaradhya-portfolio-v38")
+
 
 def main():
     id_results = {}
     for name, cfg in PAGES.items():
         id_results[name] = check_ids(name, cfg)
-        check_tag_balance(name, cfg)
+
+    # Check tag balance for all site HTML files
+    site_files = sorted([f for f in ROOT.glob("*.html") if not f.name.startswith("google")])
+    for f in site_files:
+        check_tag_balance(f.name, f)
 
     for name, cfg in PAGES.items():
         res = id_results.get(name)

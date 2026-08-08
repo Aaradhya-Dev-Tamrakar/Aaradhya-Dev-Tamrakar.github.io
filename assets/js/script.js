@@ -45,6 +45,32 @@ const SOCIAL_ICONS = {
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
   {
+    version: 'v38',
+    date: '2026-08-08',
+    sha: 'a7b8c9d',
+    title: 'Site-Wide v38 Upgrade Suite — Web Audio Micro-Sounds, Reading Time & Verification',
+    highlights: [
+      'Web Audio API synthesized sound cues (clicks, pops, chimes) with Shift+A toggle',
+      'Dynamic reading time & word count badges across all main content pages',
+      'Real-time filter result count indicators on projects and achievements list',
+      'PWA Service Worker cache version upgraded to aaradhya-portfolio-v38',
+      'Site-wide HTML tag balance & structural integrity verification in verify.py',
+      'Journey engineering timeline milestone nodes j-033 (v37) and j-034 (v38)'
+    ]
+  },
+  {
+    version: 'v37',
+    date: '2026-08-08',
+    sha: '570329b',
+    title: 'Guided Cross-Page Site Tour with Spotlight Overlay',
+    highlights: [
+      'Interactive cross-page spotlight tour traversed across all 7 main pages',
+      'Remembers tour progress across page transitions via localStorage',
+      'Keyboard navigation (Arrow keys, Esc, Shift+T shortcut) & reduced-motion support',
+      'Journey engineering timeline milestone node j-033 for v37 tour release'
+    ]
+  },
+  {
     version: 'v36',
     date: '2026-08-08',
     sha: '9f8e7d6',
@@ -168,7 +194,9 @@ const CMDK_PAGES = [
   { title: 'Journey', href: '/journey.html' },
   { title: 'About', href: '/about.html' },
   { title: 'Contact', href: '/contact.html' },
-  { title: "What's New (v36 Major Releases)", href: "javascript:openWhatsNewModal()" },
+  { title: "Guided Site Tour (Shift+T)", href: "javascript:startTour()" },
+  { title: "Toggle Audio Micro-Sounds (Shift+A)", href: "javascript:toggleAudioCues()" },
+  { title: "What's New (v38 Major Releases)", href: "javascript:openWhatsNewModal()" },
 ];
 
 /* ── Quick-nav ("Explore") card data ──────────────────────────
@@ -888,7 +916,7 @@ function renderSiteFooter() {
       <div class="footer-socials">${socialsHtml}</div>
     </div>
     <div class="footer-rule"></div>
-    <div class="footer-copy">${SITE.footerCopy} · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a> · <button id="wnFooterBtn" type="button" class="footer-wn-btn">What's New (v36)</button></div>`;
+    <div class="footer-copy">${SITE.footerCopy} · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a> · <button id="wnFooterBtn" type="button" class="footer-wn-btn">What's New (v38)</button></div>`;
 
   const btn = document.getElementById('wnFooterBtn');
   if (btn) btn.addEventListener('click', openWhatsNewModal);
@@ -2288,6 +2316,9 @@ function initAccessControl() {
   initScrollParallax();
   initSwipeNav();
   initTour();
+  initAudioCues();
+  initReadingMetrics();
+  initFilterCountIndicators();
   window.addEventListener('load', loadGA4);
 })();
 
@@ -2323,6 +2354,169 @@ function initNetworkStatusListeners() {
   window.addEventListener('offline', () => {
     showToast('You are currently offline');
   });
+}
+
+/* ── Web Audio Micro-Sounds (v38) ─────────────────────────── */
+let audioCtx = null;
+
+function getAudioContext() {
+  if (!audioCtx && typeof window !== 'undefined' && (window.AudioContext || window.webkitAudioContext)) {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    audioCtx = new AudioContextClass();
+  }
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+  return audioCtx;
+}
+
+function playAudioCue(type = 'click') {
+  if (localStorage.getItem('adt_audio_enabled') !== '1') return;
+  const ctx = getAudioContext();
+  if (!ctx) return;
+
+  try {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    const now = ctx.currentTime;
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    if (type === 'click') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(800, now);
+      gain.gain.setValueAtTime(0.04, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+      osc.start(now);
+      osc.stop(now + 0.04);
+    } else if (type === 'pop') {
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(300, now);
+      osc.frequency.exponentialRampToValueAtTime(650, now + 0.06);
+      gain.gain.setValueAtTime(0.05, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+      osc.start(now);
+      osc.stop(now + 0.06);
+    } else if (type === 'chime') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(523.25, now);
+      osc.frequency.setValueAtTime(659.25, now + 0.05);
+      gain.gain.setValueAtTime(0.05, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+      osc.start(now);
+      osc.stop(now + 0.2);
+    } else if (type === 'toggle') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(440, now);
+      osc.frequency.exponentialRampToValueAtTime(880, now + 0.08);
+      gain.gain.setValueAtTime(0.05, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+      osc.start(now);
+      osc.stop(now + 0.08);
+    }
+  } catch (e) {}
+}
+
+function toggleAudioCues() {
+  const current = localStorage.getItem('adt_audio_enabled') === '1';
+  const next = !current;
+  localStorage.setItem('adt_audio_enabled', next ? '1' : '0');
+  if (next) {
+    getAudioContext();
+    playAudioCue('toggle');
+    showToast('🔊 Audio micro-sounds enabled (Shift+A)');
+  } else {
+    showToast('蓄 Audio micro-sounds muted (Shift+A)');
+  }
+}
+
+function initAudioCues() {
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('button, a.nav-link, a.nav-cta, .cert-btn, .project-card-link, .cmdk-tab');
+    if (btn) playAudioCue('click');
+  }, { passive: true });
+}
+
+/* ── Reading Time & Word Count Metrics (v38) ──────────────── */
+function initReadingMetrics() {
+  const main = document.getElementById('main-content');
+  const header = document.getElementById('page-header') || document.querySelector('.hero-header');
+  if (!main || !header || header.querySelector('.reading-time-badge')) return;
+
+  const page = location.pathname.split('/').pop() || 'index.html';
+  if (!['about.html', 'journey.html', 'experience.html', 'achievements.html', 'projects.html'].includes(page)) return;
+
+  const textNodes = main.querySelectorAll('p, li, .achievement-desc, .project-desc, .journey-desc');
+  let fullText = '';
+  textNodes.forEach(node => { fullText += ' ' + node.textContent; });
+
+  const words = fullText.trim().split(/\s+/).filter(w => w.length > 0);
+  const wordCount = words.length;
+  if (wordCount < 50) return;
+
+  const readMins = Math.max(1, Math.ceil(wordCount / 200));
+
+  const badge = document.createElement('div');
+  badge.className = 'reading-time-badge';
+  badge.setAttribute('aria-label', `Estimated reading time: ${readMins} minute${readMins > 1 ? 's' : ''}`);
+  badge.innerHTML = `
+    <span class="reading-time-badge-icon">⏱️</span>
+    <span>${readMins} min read</span>
+    <span style="opacity:0.4;">·</span>
+    <span style="opacity:0.75;">${wordCount.toLocaleString()} words</span>
+  `;
+  header.appendChild(badge);
+}
+
+/* ── Live Result Count & Filter Indicators (v38) ───────────── */
+function initFilterCountIndicators() {
+  const page = location.pathname.split('/').pop() || 'index.html';
+
+  if (page === 'projects.html') {
+    const header = document.getElementById('page-header');
+    const grid = document.getElementById('projectsGrid');
+    if (!header || !grid) return;
+
+    let badge = header.querySelector('.filter-count-badge');
+    if (!badge) {
+      badge = document.createElement('span');
+      badge.className = 'filter-count-badge';
+      const title = header.querySelector('.page-title') || header;
+      title.appendChild(badge);
+    }
+
+    function updateProjectCount() {
+      const cards = grid.querySelectorAll('.project-card');
+      const visible = Array.from(cards).filter(c => getComputedStyle(c).display !== 'none');
+      badge.textContent = `${visible.length} of ${cards.length} projects`;
+    }
+
+    const observer = new MutationObserver(updateProjectCount);
+    observer.observe(grid, { attributes: true, subtree: true, attributeFilter: ['style', 'class'] });
+    updateProjectCount();
+
+  } else if (page === 'achievements.html') {
+    const legend = document.querySelector('.achv-legends') || document.getElementById('page-header');
+    const list = document.getElementById('achievementsList');
+    if (!legend || !list) return;
+
+    let badge = legend.querySelector('.filter-count-badge');
+    if (!badge) {
+      badge = document.createElement('span');
+      badge.className = 'filter-count-badge';
+      legend.appendChild(badge);
+    }
+
+    function updateAchvCount() {
+      const items = list.querySelectorAll('.achievement-item');
+      const visible = Array.from(items).filter(item => getComputedStyle(item).display !== 'none');
+      badge.textContent = `${visible.length} of ${items.length} achievements`;
+    }
+
+    const observer = new MutationObserver(updateAchvCount);
+    observer.observe(list, { attributes: true, subtree: true, attributeFilter: ['style', 'class'] });
+    updateAchvCount();
+  }
 }
 
 function initCardTilt() {
@@ -2733,6 +2927,11 @@ function initKeyNav() {
       return;
     }
 
+    if (e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+      toggleAudioCues();
+      return;
+    }
+
     if (e.shiftKey && (e.key === 'T' || e.key === 't')) {
       startTour();
       return;
@@ -2808,7 +3007,19 @@ function initKeyNav() {
 `,
       whatsnew: () => {
         if (typeof openWhatsNewModal === 'function') openWhatsNewModal();
-        return '<span class="term-green">Opening What\'s New (v34) modal...</span>';
+        return '<span class="term-green">Opening What\'s New (v38) modal...</span>';
+      },
+      sound: () => {
+        toggleAudioCues();
+        return '<span class="term-green">Audio micro-sounds toggled!</span>';
+      },
+      audio: () => {
+        toggleAudioCues();
+        return '<span class="term-green">Audio micro-sounds toggled!</span>';
+      },
+      tour: () => {
+        if (typeof startTour === 'function') startTour();
+        return '<span class="term-green">Starting guided site tour...</span>';
       },
       theme: () => {
         if (typeof toggleTheme === 'function') toggleTheme();

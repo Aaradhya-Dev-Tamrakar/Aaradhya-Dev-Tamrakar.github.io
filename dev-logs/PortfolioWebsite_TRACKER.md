@@ -1,4 +1,4 @@
-# Portfolio Website Tracker — v35
+# Portfolio Website Tracker — v38
 
 ## _Last updated: 2026-08-08_
 
@@ -332,3 +332,28 @@ Full v36 site upgrade suite implemented and verified across the portfolio:
 - **PWA Service Worker & Release History (`sw.js`)**: Upgraded service worker cache version to `aaradhya-portfolio-v36` and updated `SITE_RELEASES` history, CMDK entries, and footer release button to `What's New (v36)`.
 - **Journey Engineering Timeline (`journey.html`)**: Added milestone node `j-032` for the v36 upgrade suite.
 - **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings** (`achievements=36, projects=22, journey=32`). `graphify update .` executed cleanly.
+
+---
+
+## v37 addition — guided cross-page site tour with spotlight overlay, journey node j-033 (2026-08-08)
+
+Full v37 guided tour feature implemented and verified:
+
+- **Guided Cross-Page Site Tour**: Step-by-step spotlight overlay traversing all 7 main site pages with target element highlighting.
+- **State Persistence & Navigation**: Remembers tour progression across page transitions via `localStorage` (`adt_tour_active` + `adt_tour_step`).
+- **Shortcuts & Accessibility**: Full keyboard control (`Shift+T` to trigger, Arrow keys to navigate, `Esc` to exit) and `prefers-reduced-motion` compliance.
+- **Journey Engineering Timeline (`journey.html`)**: Added milestone node `j-033` for the v37 guided tour release.
+
+---
+
+## v38 addition — Web Audio micro-sounds, reading metrics, live result indicators & verification suite, journey node j-034 (2026-08-08)
+
+Full v38 site upgrade suite implemented and verified across the portfolio:
+
+- **Synthesized Web Audio Micro-Sounds**: Zero-dependency Web Audio API sound synthesizer for interactive UI feedback (clicks, pops, chimes) with persistent audio toggle (`adt_audio_enabled`) and `Shift+A` shortcut.
+- **Dynamic Reading Time & Word Count Badges**: Client-side content metric engine generating glassmorphic reading time badges (`⏱️ X min read · Y words`) across `about.html`, `journey.html`, `experience.html`, `achievements.html`, and `projects.html`.
+- **Real-Time Filter Result Counters**: Live status indicator badges (`Showing N of M items`) for search and category filtering on projects and achievements lists.
+- **Timeline & Versioning Alignment**: Milestone nodes `j-033` (v37 Guided Tour) and `j-034` (v38 Upgrade Suite) added to `journey.html`, `sw.js` cache bumped to `v38`, and release history updated across `SITE_RELEASES`, command palette (`CMDK`), and footer controls (`What's New (v38)`).
+- **Expanded Verification Script**: Automated HTML tag balance auditing extended to all 10 site pages in `scripts/verify.py`.
+- **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings** (`achievements=36, projects=22, journey=34`).
+
