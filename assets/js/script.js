@@ -3548,7 +3548,15 @@ function positionTourCard(target) {
   const card = document.getElementById('tourCard');
   if (!card) return;
 
-  if (!target || target === document.body || window.innerWidth < 720) {
+  const rect = target && target !== document.body ? target.getBoundingClientRect() : null;
+  const cardH = card.offsetHeight || 220;
+  const cardW = card.offsetWidth || 340;
+  // A target covering most of the viewport (e.g. #hero) leaves no side
+  // with enough clearance to place the card without overlapping it —
+  // fall back to the centered modal instead of computing a colliding spot.
+  const targetTooLarge = rect && (rect.height > window.innerHeight * 0.75 || rect.width > window.innerWidth * 0.9);
+
+  if (!rect || window.innerWidth < 720 || targetTooLarge) {
     card.style.position = 'fixed';
     card.style.top = '50%';
     card.style.left = '50%';
@@ -3556,9 +3564,6 @@ function positionTourCard(target) {
     return;
   }
 
-  const rect = target.getBoundingClientRect();
-  const cardH = card.offsetHeight || 220;
-  const cardW = card.offsetWidth || 340;
   const spaceBelow = window.innerHeight - rect.bottom;
 
   let left = rect.left;
