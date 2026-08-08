@@ -1,6 +1,6 @@
 {
-  "sha": "e0d4be6a137ea67ab301ee37d33152e323fc76ad",
-  "shortSha": "e0d4be6",
-  "date": "2026-08-08T14:25:42+05:45",
-  "message": "fix(tour): resolve tour card transform positioning & nav click event delegation\n"
+  "sha": "83198bff7ca40bcc9c27dc2f6d8b7b5cf6f8f12a",
+  "shortSha": "83198bf",
+  "date": "2026-08-08T14:35:37+05:45",
+  "message": "refactor: update script.js - const SOCIAL_ICONS = { (+35/-33)\n"
 }
