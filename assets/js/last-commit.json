@@ -1,6 +1,6 @@
 {
-  "sha": "84f7a2a028b2de8456e0c00fd6063cf35f870833",
-  "shortSha": "84f7a2a",
-  "date": "2026-08-08T14:54:44+05:45",
-  "message": "fix(tour): resume-on-refresh rendered before page reveal settled — ghosted content + duplicate visual, deferred to load+rAF\n"
+  "sha": "90491f82ebf248c2f27b1acd7ef572d5756eb0b4",
+  "shortSha": "90491f8",
+  "date": "2026-08-08T15:11:18+05:45",
+  "message": "refactor(tour): flatten per-page step lookup to single TOUR_FLAT_STEPS index; fix dead swipe-close listener (initTouchGestures ran before overlay existed); add focus trap/restore matching lightbox/cmdk pattern; stop destroying overlay node on close\n"
 }
