@@ -1,6 +1,6 @@
 {
-  "sha": "3511f2d3224d957badb6b01348edee8e889df267",
-  "shortSha": "3511f2d",
-  "date": "2026-08-08T14:10:14+05:45",
-  "message": "feat(v38): site-wide v38 upgrade suite — web audio micro-sounds, reading time & verification\n"
+  "sha": "e0d4be6a137ea67ab301ee37d33152e323fc76ad",
+  "shortSha": "e0d4be6",
+  "date": "2026-08-08T14:25:42+05:45",
+  "message": "fix(tour): resolve tour card transform positioning & nav click event delegation\n"
 }
