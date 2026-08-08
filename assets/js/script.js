@@ -45,6 +45,19 @@ const SOCIAL_ICONS = {
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
   {
+    version: 'v34',
+    date: '2026-08-08',
+    sha: 'a4b8c9d',
+    title: 'Mobile Touch UX & Safe Area Overhaul Suite',
+    highlights: [
+      'iOS safe area inset (env(safe-area-inset-*)) & viewport-fit=cover integration',
+      'Web Touch Gestures: swipe-to-close on mobile nav drawer, lightboxes & modals',
+      'Haptic Touch Feedback API (navigator.vibrate) on micro-interactions',
+      'Mobile Dev Terminal auto-scroll & touch preset enhancements',
+      'Journey milestone node j-030 for v34 upgrade suite'
+    ]
+  },
+  {
     version: 'v33',
     date: '2026-08-04',
     sha: 'fde29d6',
@@ -126,7 +139,7 @@ const CMDK_PAGES = [
   { title: 'Journey', href: '/journey.html' },
   { title: 'About', href: '/about.html' },
   { title: 'Contact', href: '/contact.html' },
-  { title: "What's New (v33 Major Releases)", href: "javascript:openWhatsNewModal()" },
+  { title: "What's New (v34 Major Releases)", href: "javascript:openWhatsNewModal()" },
 ];
 
 /* ── Quick-nav ("Explore") card data ──────────────────────────
@@ -837,7 +850,7 @@ function renderSiteFooter() {
       <div class="footer-socials">${socialsHtml}</div>
     </div>
     <div class="footer-rule"></div>
-    <div class="footer-copy">${SITE.footerCopy} · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a> · <button id="wnFooterBtn" type="button" class="footer-wn-btn">What's New (v33)</button></div>`;
+    <div class="footer-copy">${SITE.footerCopy} · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a> · <button id="wnFooterBtn" type="button" class="footer-wn-btn">What's New (v34)</button></div>`;
 
   const btn = document.getElementById('wnFooterBtn');
   if (btn) btn.addEventListener('click', openWhatsNewModal);
@@ -918,7 +931,10 @@ function initTheme() {
 function initThemeToggle() {
   const btn = document.getElementById('themeToggle');
   if (!btn) return;
-  btn.addEventListener('click', toggleTheme);
+  btn.addEventListener('click', () => {
+    triggerHapticFeedback(12);
+    toggleTheme();
+  });
 }
 
 /* ── Mobile hamburger ─────────────────────────────────────── */
@@ -2076,6 +2092,7 @@ function initAccessControl() {
   initReadingProgressBar();
   initNetworkStatusListeners();
   initCardTilt();
+  initTouchGestures();
   window.addEventListener('load', loadGA4);
 })();
 
@@ -2591,7 +2608,7 @@ function initKeyNav() {
 `,
       whatsnew: () => {
         if (typeof openWhatsNewModal === 'function') openWhatsNewModal();
-        return '<span class="term-green">Opening What\'s New (v33) modal...</span>';
+        return '<span class="term-green">Opening What\'s New (v34) modal...</span>';
       },
       theme: () => {
         if (typeof toggleTheme === 'function') toggleTheme();
@@ -2623,7 +2640,7 @@ function initKeyNav() {
         ${res ? `<div class="term-cmd-res">${res}</div>` : ''}
       `;
       body.appendChild(line);
-      body.scrollTop = body.scrollHeight;
+      requestAnimationFrame(() => { body.scrollTop = body.scrollHeight; });
     }
 
     function escapeHtml(str) {
@@ -2633,6 +2650,7 @@ function initKeyNav() {
     function execCommand(rawCmd) {
       const cmd = rawCmd.trim().toLowerCase();
       if (!cmd) return;
+      triggerHapticFeedback(10);
       if (cmd === 'clear') {
         COMMANDS.clear();
         return;
@@ -2656,6 +2674,7 @@ function initKeyNav() {
 
     quickBtns.forEach(btn => {
       btn.addEventListener('click', () => {
+        triggerHapticFeedback(10);
         const cmd = btn.dataset.cmd;
         if (cmd) execCommand(cmd);
       });
@@ -2702,3 +2721,65 @@ function initKeyNav() {
     setTimeout(() => p.remove(), 450);
   }
 })();
+
+/* ── Haptic Feedback & Touch Gesture Micro-Interactions (v34) ── */
+function triggerHapticFeedback(pattern = 10) {
+  if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
+    try {
+      navigator.vibrate(pattern);
+    } catch (e) {}
+  }
+}
+
+function initTouchGestures() {
+  if (typeof window === 'undefined') return;
+
+  const modals = ['cert-lightbox', 'cmdk', 'whatsNewModal', 'accessModalOverlay'];
+  modals.forEach(id => {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    let startY = 0;
+    let startX = 0;
+
+    modal.addEventListener('touchstart', e => {
+      if (e.touches.length === 1) {
+        startY = e.touches[0].clientY;
+        startX = e.touches[0].clientX;
+      }
+    }, { passive: true });
+
+    modal.addEventListener('touchend', e => {
+      if (e.changedTouches.length === 1 && modal.classList.contains('open')) {
+        const deltaY = e.changedTouches[0].clientY - startY;
+        const deltaX = Math.abs(e.changedTouches[0].clientX - startX);
+
+        if (deltaY > 80 && deltaX < 60) {
+          triggerHapticFeedback(15);
+          if (id === 'cert-lightbox' && typeof closeLightbox === 'function') closeLightbox();
+          else if (id === 'cmdk' && typeof closeCmdk === 'function') closeCmdk();
+          else if (id === 'whatsNewModal' && typeof closeWhatsNewModal === 'function') closeWhatsNewModal();
+          else if (id === 'accessModalOverlay' && typeof closeAccessModal === 'function') closeAccessModal();
+        }
+      }
+    }, { passive: true });
+  });
+
+  const drawer = document.getElementById('navDrawer');
+  const hamburger = document.getElementById('navHamburger');
+  if (drawer && hamburger) {
+    let startX = 0;
+    drawer.addEventListener('touchstart', e => {
+      if (e.touches.length === 1) startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    drawer.addEventListener('touchend', e => {
+      if (e.changedTouches.length === 1 && drawer.classList.contains('open')) {
+        const deltaX = e.changedTouches[0].clientX - startX;
+        if (deltaX < -60) {
+          triggerHapticFeedback(15);
+          hamburger.click();
+        }
+      }
+    }, { passive: true });
+  }
+}

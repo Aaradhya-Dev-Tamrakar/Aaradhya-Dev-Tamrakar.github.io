@@ -345,7 +345,7 @@ nav {
   grid-template-columns: auto 1fr auto;
   column-gap: 1.5rem;
   align-items: center;
-  padding: 1.25rem 2.5rem 1.25rem 3rem;
+  padding: max(1.25rem, env(safe-area-inset-top, 1.25rem)) max(2.5rem, env(safe-area-inset-right, 2.5rem)) 1.25rem max(3rem, env(safe-area-inset-left, 3rem));
   border-bottom: 1px solid transparent;
   transition:
     border-color 0.3s,
@@ -572,7 +572,10 @@ html[data-theme="light"] .icon-moon {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2.5rem;
+  gap: 2.2rem;
+  padding-top: max(2.5rem, env(safe-area-inset-top, 2.5rem));
+  padding-bottom: max(2.5rem, env(safe-area-inset-bottom, 2.5rem));
+  overscroll-behavior: contain;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -618,8 +621,8 @@ html[data-theme="light"] .icon-moon {
 /* ── Back-to-top + scroll % ───────────────────────────────── */
 .back-top {
   position: fixed;
-  bottom: 5rem;
-  right: 2rem;
+  bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+  right: calc(2rem + env(safe-area-inset-right, 0px));
   z-index: 200;
   width: 42px;
   height: 42px;
@@ -660,8 +663,8 @@ html[data-theme="light"] .icon-moon {
 
 .scroll-pct {
   position: fixed;
-  bottom: 2.9rem;
-  right: 2rem;
+  bottom: calc(2.9rem + env(safe-area-inset-bottom, 0px));
+  right: calc(2rem + env(safe-area-inset-right, 0px));
   z-index: 200;
   width: 42px;
   text-align: center;
@@ -1106,7 +1109,7 @@ footer {
   box-sizing: border-box;
   /* extra right padding so fixed bottom widgets and the centered "goto" control
       do not overlap the social icons on the right. Reduced on small screens. */
-  padding: 2.5rem 6rem 2rem;
+  padding: 2.5rem max(6rem, env(safe-area-inset-right, 6rem)) max(2rem, env(safe-area-inset-bottom, 2rem)) max(6rem, env(safe-area-inset-left, 6rem));
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -2560,8 +2563,8 @@ html[data-theme="light"] .gated-overlay {
 /* ── Master Control Panel Widget ───────────────────────────────── */
 .master-panel-widget {
   position: fixed;
-  bottom: 1.5rem;
-  left: 1.5rem;
+  bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  left: calc(1.5rem + env(safe-area-inset-left, 0px));
   z-index: 9999;
   font-family: var(--mono);
 }
@@ -3031,5 +3034,44 @@ html[data-theme="light"] .gated-overlay {
     transform: translate(-50%, -50%) scale(0.2);
   }
 }
+
+/* ==========================================================================
+   v34 Upgrade Utilities: Touch Active States & Mobile Responsive Overhaul
+   ========================================================================== */
+@media (pointer: coarse) {
+  .btn-primary:active,
+  .btn-ghost:active,
+  .quick-nav-card:active,
+  .terminal-quick-cmd:active,
+  .nav-access-btn:active,
+  .theme-toggle:active,
+  .nav-search-btn:active {
+    transform: scale(0.96);
+    opacity: 0.9;
+    transition: transform 0.1s ease;
+  }
+
+  .project-card:active,
+  .achievement-item:active,
+  .journey-node:active,
+  .exp-card:active {
+    transform: scale(0.985);
+    transition: transform 0.15s ease;
+  }
+}
+
+@media (max-width: 600px) {
+  .terminal-quick-cmds {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+  }
+
+  .terminal-quick-cmds::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 
 

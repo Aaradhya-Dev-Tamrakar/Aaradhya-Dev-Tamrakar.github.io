@@ -1,6 +1,6 @@
-# Portfolio Website Tracker — v33
+# Portfolio Website Tracker — v34
 
-## _Last updated: 2026-08-04_
+## _Last updated: 2026-08-08_
 
 ## Meta
 
@@ -286,3 +286,17 @@ Full v33 site upgrade suite implemented and verified across the portfolio:
 - **PWA Service Worker & Release History (`sw.js`)**: Upgraded service worker cache version to `aaradhya-portfolio-v33` and updated `SITE_RELEASES` history and footer release button to `What's New (v33)`.
 - **Journey Engineering Timeline (`journey.html`)**: Added milestone node `j-029` for the v33 upgrade suite.
 - **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings** (`achievements=36, projects=22, journey=29`). `graphify update .` executed cleanly.
+
+---
+
+## v34 addition — mobile touch UX, iOS safe area & web haptics suite, journey node j-030 (2026-08-08)
+
+Full v34 site upgrade suite implemented and verified across the portfolio:
+
+- **iOS Safe Area Insets (`viewport-fit=cover`)**: Added `viewport-fit=cover` across all 10 site HTML pages (`index.html`, `about.html`, `projects.html`, `experience.html`, `achievements.html`, `journey.html`, `contact.html`, `privacy.html`, `terms.html`, `404.html`) and updated CSS with `env(safe-area-inset-*)` rules for fixed navigation bars (`nav`), mobile drawer (`.nav-drawer`), floating widgets (`.back-top`, `.scroll-pct`, `.master-panel-widget`), and footer padding.
+- **Mobile Touch Gesture Controls**: Added touch swipe listeners for modal dismiss (swipe down for cert lightbox, search command palette, release modal) and drawer close (swipe left for navigation drawer).
+- **Web Haptic Feedback API**: Integrated `triggerHapticFeedback()` micro-vibrations across theme toggle, button actions, and terminal quick commands (gated on touch/haptic support).
+- **Mobile Terminal UX & Touch active states**: Added custom horizontal overflow scroll for terminal quick command buttons and `:active` scale states for touch devices.
+- **PWA Service Worker & Release History (`sw.js`)**: Upgraded service worker cache version to `aaradhya-portfolio-v34` and updated `SITE_RELEASES` history, CMDK entries, and footer release button to `What's New (v34)`.
+- **Journey Engineering Timeline (`journey.html`)**: Added milestone node `j-030` for the v34 upgrade suite.
+- **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings** (`achievements=36, projects=22, journey=30`). `graphify update .` executed cleanly.
