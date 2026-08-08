@@ -1,6 +1,6 @@
 {
-  "sha": "e2d076a1c84c82d88f49b3b0610516483a985932",
-  "shortSha": "e2d076a",
-  "date": "2026-08-04T10:17:06+05:45",
-  "message": "chore: update README.md - The site features an advanced **Zero-Leak Client-Side Access Control System** su (+15/-8)\n"
+  "sha": "fa35c30087fa4e297d64d62c24bb3d2453106506",
+  "shortSha": "fa35c30",
+  "date": "2026-08-08T12:14:41+05:45",
+  "message": "feat(mobile): v34 upgrade suite — iOS safe area insets, touch gesture dismiss, web haptics & journey node j-030\n"
 }
