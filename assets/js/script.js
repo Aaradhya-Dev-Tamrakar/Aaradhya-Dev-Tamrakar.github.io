@@ -3538,9 +3538,29 @@ function renderTourStep(idx) {
     target.scrollIntoView({ block: 'center', behavior: tourReducedMotion() ? 'auto' : 'smooth' });
   }
 
+  // scrollIntoView with smooth behavior spans multiple frames — a single
+  // rAF still measures the target mid-scroll, producing a stale rect and
+  // a card positioned/sized against a target that hasn't settled yet.
+  // Wait for two consecutive frames with an unchanged rect (or a hard
+  // cap) before positioning, and use instant scroll under reduced motion.
+  const waitForScrollSettle = (cb) => {
+    if (tourReducedMotion() || target === document.body) { cb(); return; }
+    let last = null, stableFrames = 0, tries = 0;
+    const check = () => {
+      const r = target.getBoundingClientRect();
+      const key = `${r.top}:${r.bottom}:${r.left}:${r.right}`;
+      if (key === last) stableFrames++; else stableFrames = 0;
+      last = key;
+      tries++;
+      if (stableFrames >= 2 || tries > 30) { cb(); return; }
+      requestAnimationFrame(check);
+    };
+    requestAnimationFrame(check);
+  };
+
   requestAnimationFrame(() => {
     overlay.classList.add('open');
-    positionTourCard(target);
+    waitForScrollSettle(() => positionTourCard(target));
   });
 }
 
@@ -3603,7 +3623,15 @@ function initTour() {
 
   if (localStorage.getItem('adt_tour_active') === '1') {
     const step = parseInt(localStorage.getItem('adt_tour_step') || '0', 10);
-    renderTourStep(step);
+    // Resuming on page load races initReveal()'s IntersectionObserver
+    // (fires async, after this synchronous boot chain) and any other
+    // deferred page setup — rendering the overlay this early highlights
+    // a not-yet-revealed target and can visually double up with content
+    // still mid-transition. Defer to window 'load' + a frame so the
+    // page has actually settled before the tour paints over it.
+    const resume = () => requestAnimationFrame(() => renderTourStep(step));
+    if (document.readyState === 'complete') resume();
+    else window.addEventListener('load', resume, { once: true });
   }
 
   window.addEventListener('resize', () => {
