@@ -1,6 +1,6 @@
 {
-  "sha": "83198bff7ca40bcc9c27dc2f6d8b7b5cf6f8f12a",
-  "shortSha": "83198bf",
-  "date": "2026-08-08T14:35:37+05:45",
-  "message": "refactor: update script.js - const SOCIAL_ICONS = { (+35/-33)\n"
+  "sha": "0c8b7534d56e4ca23cfb491da8f801cb0e7556cb",
+  "shortSha": "0c8b753",
+  "date": "2026-08-08T14:38:10+05:45",
+  "message": "fix(tour): eliminate TDZ ReferenceError and bump sw.js cache\n"
 }
