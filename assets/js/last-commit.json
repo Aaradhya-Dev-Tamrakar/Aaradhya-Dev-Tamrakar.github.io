@@ -1,6 +1,6 @@
 {
-  "sha": "d4956f023672bb4875ff58d88a0eeb1b29520a82",
-  "shortSha": "d4956f0",
-  "date": "2026-08-08T12:28:40+05:45",
-  "message": "chore: update README.md - To prevent merge conflicts with GitHub Actions commit-back bots (which auto-upda (+5/-5)\n"
+  "sha": "2d6a395b5f9ae0e9a64c55126a8c6f35476b0709",
+  "shortSha": "2d6a395",
+  "date": "2026-08-08T12:44:19+05:45",
+  "message": "feat(v36): visual polish, skill matrix, bottom sheet nav & mobile swipe suite\n"
 }
