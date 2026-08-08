@@ -45,6 +45,20 @@ const SOCIAL_ICONS = {
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
   {
+    version: 'v35',
+    date: '2026-08-08',
+    sha: 'c5d35e1',
+    title: 'Site-Wide v35 Upgrade Suite — Motion, Interactions & Performance',
+    highlights: [
+      'Staggered card entrance animations across grid sections',
+      'Typed hero caption animation with expanded rotating pool',
+      'Scroll-triggered animated stat counters (15+ Projects, 4th Year, etc.)',
+      'Enhanced View Transitions API with element morphing & circular theme wipe',
+      'Form focus glow rings & animated checkmark success state',
+      'Journey timeline milestone node j-031 for v35 upgrade suite'
+    ]
+  },
+  {
     version: 'v34',
     date: '2026-08-08',
     sha: 'a4b8c9d',
@@ -139,7 +153,7 @@ const CMDK_PAGES = [
   { title: 'Journey', href: '/journey.html' },
   { title: 'About', href: '/about.html' },
   { title: 'Contact', href: '/contact.html' },
-  { title: "What's New (v34 Major Releases)", href: "javascript:openWhatsNewModal()" },
+  { title: "What's New (v35 Major Releases)", href: "javascript:openWhatsNewModal()" },
 ];
 
 /* ── Quick-nav ("Explore") card data ──────────────────────────
@@ -850,7 +864,7 @@ function renderSiteFooter() {
       <div class="footer-socials">${socialsHtml}</div>
     </div>
     <div class="footer-rule"></div>
-    <div class="footer-copy">${SITE.footerCopy} · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a> · <button id="wnFooterBtn" type="button" class="footer-wn-btn">What's New (v34)</button></div>`;
+    <div class="footer-copy">${SITE.footerCopy} · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a> · <button id="wnFooterBtn" type="button" class="footer-wn-btn">What's New (v35)</button></div>`;
 
   const btn = document.getElementById('wnFooterBtn');
   if (btn) btn.addEventListener('click', openWhatsNewModal);
@@ -916,11 +930,43 @@ function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
 }
 
-function toggleTheme() {
+function toggleTheme(event) {
   const html = document.documentElement;
   const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  applyTheme(next);
-  localStorage.setItem('adt-theme', next);
+
+  if (!document.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    applyTheme(next);
+    localStorage.setItem('adt-theme', next);
+    return;
+  }
+
+  const x = event?.clientX ?? window.innerWidth / 2;
+  const y = event?.clientY ?? 0;
+  const endRadius = Math.hypot(
+    Math.max(x, window.innerWidth - x),
+    Math.max(y, window.innerHeight - y)
+  );
+
+  const transition = document.startViewTransition(() => {
+    applyTheme(next);
+    localStorage.setItem('adt-theme', next);
+  });
+
+  transition.ready.then(() => {
+    document.documentElement.animate(
+      {
+        clipPath: [
+          `circle(0px at ${x}px ${y}px)`,
+          `circle(${endRadius}px at ${x}px ${y}px)`
+        ]
+      },
+      {
+        duration: 400,
+        easing: 'ease-in-out',
+        pseudoElement: '::view-transition-new(root)'
+      }
+    );
+  });
 }
 
 function initTheme() {
@@ -931,9 +977,9 @@ function initTheme() {
 function initThemeToggle() {
   const btn = document.getElementById('themeToggle');
   if (!btn) return;
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', (e) => {
     triggerHapticFeedback(12);
-    toggleTheme();
+    toggleTheme(e);
   });
 }
 
@@ -978,10 +1024,6 @@ function initScroll() {
   const backTop = document.getElementById('backTop');
   const scrollPct = document.getElementById('scrollPct');
   const progressBar = document.getElementById('scrollProgress');
-  // Both backTop and scrollPct are fixed to the same bottom-right corner
-  // as .footer-socials. Once the page is scrolled within one button's
-  // height of the very bottom, hide them so they don't sit on top of
-  // the last social icon.
   const NEAR_BOTTOM_PX = 96;
 
   let scrollTicking = false;
@@ -1025,13 +1067,114 @@ function initScroll() {
   });
 }
 
-/* ── Reveal on scroll ─────────────────────────────────────── */
+/* ── Reveal on scroll & Stagger (v35) ─────────────────────── */
 function initReveal() {
+  // Auto-assign staggered delays to card grid children
+  document.querySelectorAll('.quick-nav-grid, .projects-grid, .achievements-grid, #quickNavGrid').forEach(grid => {
+    const children = grid.querySelectorAll('.reveal');
+    children.forEach((child, i) => {
+      child.classList.add(`reveal-stagger-${(i % 8) + 1}`);
+    });
+  });
+
   const obs = new IntersectionObserver(
     entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
     { threshold: 0.05 }
   );
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+}
+
+/* ── Scroll-Triggered Count-Up Animation (v35) ─────────────── */
+function initCountUp() {
+  const statCells = document.querySelectorAll('.stat-cell');
+  if (!statCells.length) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const cell = entry.target;
+        const numEl = cell.querySelector('.stat-num');
+        if (numEl && !numEl.classList.contains('counted')) {
+          numEl.classList.add('counted');
+          animateNum(numEl);
+        }
+        observer.unobserve(cell);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  statCells.forEach(cell => observer.observe(cell));
+
+  function animateNum(el) {
+    const rawText = el.getAttribute('data-count-target') || el.textContent.trim();
+    const match = rawText.match(/^(\d+)(.*)$/);
+    if (!match) return;
+
+    const targetVal = parseInt(match[1], 10);
+    const suffix = match[2] || '';
+    const spanSuffix = el.querySelector('span')?.outerHTML || (suffix ? `<span>${suffix}</span>` : '');
+    const startTime = performance.now();
+    const duration = 1200;
+
+    function step(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(1, elapsed / duration);
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(easeOut * targetVal);
+
+      el.innerHTML = `${current}${spanSuffix}`;
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.innerHTML = `${targetVal}${spanSuffix}`;
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+}
+
+/* ── Typed Hero Subtitle Animation (v35) ───────────────────── */
+function initTypedCaption() {
+  const el = document.getElementById('hero-caption');
+  if (!el) return;
+
+  const CAPTIONS = [
+    'No subscriptions — just time, iteration, and a lot of debugging.',
+    'Building at the convergence of embedded firmware & applied ML.',
+    'Designing resilient systems from PCB traces to edge neural nets.',
+    'Engineered for clarity, speed, and real-time responsiveness.',
+    'Exploring robotics, LoRa mesh networks, and IoT telemetry.',
+    'Continuously benchmarking, testing, and shipping upgrades.'
+  ];
+
+  const caption = CAPTIONS[Math.floor(Math.random() * CAPTIONS.length)];
+  el.textContent = '';
+  el.style.opacity = '1';
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    el.textContent = caption;
+    return;
+  }
+
+  let i = 0;
+  const cursor = document.createElement('span');
+  cursor.className = 'typed-cursor';
+  cursor.textContent = '|';
+
+  function typeChar() {
+    if (i < caption.length) {
+      el.textContent = caption.substring(0, i + 1);
+      el.appendChild(cursor);
+      i++;
+      setTimeout(typeChar, 25 + Math.random() * 20);
+    } else {
+      setTimeout(() => cursor.remove(), 2800);
+    }
+  }
+
+  setTimeout(typeChar, 600);
 }
 
 /* ── Custom cursor (pointer: fine only) ───────────────────── */
@@ -2083,6 +2226,8 @@ function initAccessControl() {
   initHamburger();
   initScroll();
   initReveal();
+  initCountUp();
+  initTypedCaption();
   initCursor();
   initLightbox();
   initGlobalSearch();

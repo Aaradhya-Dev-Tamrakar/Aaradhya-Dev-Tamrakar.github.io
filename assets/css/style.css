@@ -12,6 +12,33 @@
   navigation: auto;
 }
 
+.nav-logo {
+  view-transition-name: site-logo;
+}
+.page-title {
+  view-transition-name: page-title;
+}
+
+::view-transition-old(site-logo),
+::view-transition-new(site-logo) {
+  animation-duration: 0.3s;
+}
+
+::view-transition-old(root) {
+  animation: themeWipeOld 0.35s ease-in-out forwards;
+}
+::view-transition-new(root) {
+  animation: themeWipeNew 0.35s ease-in-out forwards;
+}
+
+@keyframes themeWipeOld {
+  to { opacity: 0; }
+}
+@keyframes themeWipeNew {
+  from { opacity: 0; transform: scale(0.995); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 /* ── Skip Link for Keyboard Accessibility ─────────────────── */
 .skip-link {
   position: absolute;
@@ -1088,17 +1115,26 @@ html[data-theme="light"] .tag {
 /* ── Reveal on scroll ─────────────────────────────────────── */
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(18px) scale(0.975);
   transition:
-    opacity 0.45s ease,
-    transform 0.45s ease;
+    opacity 0.48s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.48s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .reveal.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
+
+.reveal-stagger-1 { transition-delay: 0.05s; }
+.reveal-stagger-2 { transition-delay: 0.10s; }
+.reveal-stagger-3 { transition-delay: 0.15s; }
+.reveal-stagger-4 { transition-delay: 0.20s; }
+.reveal-stagger-5 { transition-delay: 0.25s; }
+.reveal-stagger-6 { transition-delay: 0.30s; }
+.reveal-stagger-7 { transition-delay: 0.35s; }
+.reveal-stagger-8 { transition-delay: 0.40s; }
 
 /* ── Footer ───────────────────────────────────────────────── */
 footer {
@@ -3073,5 +3109,42 @@ html[data-theme="light"] .gated-overlay {
   }
 }
 
+/* ==========================================================================
+   v35 Upgrade Utilities: Form Focus Glow, Typed Cursor & Stagger Polish
+   ========================================================================== */
+.form-input:focus,
+.form-textarea:focus {
+  box-shadow: 0 0 0 3px var(--accent-a12), 0 0 12px var(--accent-a07);
+}
 
+.typed-cursor {
+  display: inline-block;
+  color: var(--accent);
+  font-weight: 400;
+  margin-left: 2px;
+  animation: typedBlink 0.9s infinite;
+}
 
+@keyframes typedBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.form-success-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--accent2);
+  background: var(--accent-a07);
+  border: 1px solid var(--accent2);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  animation: successPop 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes successPop {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}

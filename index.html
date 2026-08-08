@@ -898,19 +898,19 @@
     <section id="stats" aria-label="At a glance">
       <div class="stats-strip reveal">
         <div class="stat-cell">
-          <div class="stat-num">15<span>+</span></div>
+          <div class="stat-num" data-count-target="15+">15<span>+</span></div>
           <div class="stat-label">Engineering Projects</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-num">4<span>th</span></div>
+          <div class="stat-num" data-count-target="4th">4<span>th</span></div>
           <div class="stat-label" id="live-stat-sem">Year at KEC, IOE</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-num">2</div>
+          <div class="stat-num" data-count-target="2">2</div>
           <div class="stat-label">Fellowships &amp; Grants</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-num">8</div>
+          <div class="stat-num" data-count-target="8">8</div>
           <div class="stat-label">Roles &amp; Contributions</div>
         </div>
       </div>
@@ -1350,17 +1350,7 @@
   <script src="assets/js/script.js" defer></script>
 
 
-  <!-- Rotating hero caption — one random line per page load, pool grows over time -->
-  <script>
-    (function () {
-      var el = document.getElementById('hero-caption');
-      if (!el) return;
-      var CAPTIONS = [
-        'No subscriptions — just time, iteration, and a lot of debugging.'
-      ];
-      el.textContent = CAPTIONS[Math.floor(Math.random() * CAPTIONS.length)];
-    })();
-  </script>
+
 
   <!-- Digital clock — Kathmandu local time, status card -->
   <script>

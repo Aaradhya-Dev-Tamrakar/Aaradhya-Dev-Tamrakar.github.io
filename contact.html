@@ -42,26 +42,40 @@
     content="Open to project collaborations, research discussions, internship opportunities, and IEEE-related engagements." />
   <meta name="twitter:image" content="https://aaradhya-dev-tamrakar.github.io/assets/images/og-image.jpg" />
 
-  <!-- JSON-LD: Breadcrumb -->
+  <!-- JSON-LD: Breadcrumb & ContactPage -->
   <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://aaradhya-dev-tamrakar.github.io/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Contact",
-            "item": "https://aaradhya-dev-tamrakar.github.io/contact.html"
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://aaradhya-dev-tamrakar.github.io/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Contact",
+              "item": "https://aaradhya-dev-tamrakar.github.io/contact.html"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "name": "Contact Aaradhya Dev Tamrakar",
+          "description": "Direct contact page for research, internship, and project collaborations.",
+          "url": "https://aaradhya-dev-tamrakar.github.io/contact.html",
+          "mainEntity": {
+            "@type": "Person",
+            "name": "Aaradhya Dev Tamrakar",
+            "email": "aaradhyadevtmr@gmail.com"
           }
-        ]
-      }
+        }
+      ]
     </script>
 
   <link rel="manifest" href="site.webmanifest" />
@@ -661,8 +675,7 @@
               message: formData.message,
               time: new Date().toLocaleString(),
             });
-            status.textContent = "✓ Message sent. I'll respond within 48 hours.";
-            status.style.color = "var(--accent2)";
+            status.innerHTML = '<div class="form-success-badge"><span>✓</span> Message sent! I\'ll respond within 48 hours.</div>';
             if (window.gtag) {
               gtag("event", "form_submit", {
                 event_category: "engagement",
@@ -685,8 +698,7 @@
               body: JSON.stringify(formData),
             });
             if (res.ok) {
-              status.textContent = "✓ Message sent. I'll respond within 48 hours.";
-              status.style.color = "var(--accent2)";
+              status.innerHTML = '<div class="form-success-badge"><span>✓</span> Message sent! I\'ll respond within 48 hours.</div>';
               if (window.gtag) {
                 gtag("event", "form_submit", {
                   event_category: "engagement",

@@ -1,4 +1,4 @@
-# Portfolio Website Tracker — v34
+# Portfolio Website Tracker — v35
 
 ## _Last updated: 2026-08-08_
 
@@ -300,3 +300,19 @@ Full v34 site upgrade suite implemented and verified across the portfolio:
 - **PWA Service Worker & Release History (`sw.js`)**: Upgraded service worker cache version to `aaradhya-portfolio-v34` and updated `SITE_RELEASES` history, CMDK entries, and footer release button to `What's New (v34)`.
 - **Journey Engineering Timeline (`journey.html`)**: Added milestone node `j-030` for the v34 upgrade suite.
 - **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings** (`achievements=36, projects=22, journey=30`). `graphify update .` executed cleanly.
+
+---
+
+## v35 addition — motion, typed captions, count-up counters, view transitions & journey node j-031 (2026-08-08)
+
+Full v35 site upgrade suite implemented and verified across the portfolio:
+
+- **Staggered Card Entrance Animations**: Implemented `reveal-stagger-1` through `reveal-stagger-8` CSS utilities in `assets/css/style.css` and enhanced `initReveal()` in `assets/js/script.js` to automatically cascade entrance motion across card grids.
+- **Typed Hero Subtitle Animation**: Added character-by-character typewriter animation for `#hero-caption` with a 6-caption random rotation pool and blinking cursor in `assets/js/script.js` & `assets/css/style.css`.
+- **Scroll-Triggered Animated Stat Counters**: Implemented `initCountUp()` in `assets/js/script.js` using `IntersectionObserver` to count up target values (15+ projects, 4th year, 2 fellowships, 8 roles) when scrolled into view.
+- **Enhanced View Transitions API**: Added element-level view transition names (`site-logo`, `page-title`) and circular clip-path theme wipe transition on theme toggle in `assets/js/script.js` & `assets/css/style.css`.
+- **Contact Form Focus Glow & Animated Success Badge**: Added glow ring shadow on focused form fields and animated checkmark badge (`.form-success-badge`) on form submission in `contact.html` & `assets/css/style.css`.
+- **SEO & Sitemap Refresh**: Expanded JSON-LD schema with `ContactPage` object in `contact.html` and updated `<lastmod>` dates to `2026-08-08` across `sitemap.xml`.
+- **PWA Service Worker & Release History (`sw.js`)**: Upgraded service worker cache version to `aaradhya-portfolio-v35` and updated `SITE_RELEASES` history, CMDK entries, and footer release button to `What's New (v35)`.
+- **Journey Engineering Timeline (`journey.html`)**: Added milestone node `j-031` for the v35 upgrade suite.
+- **Verification status**: `python scripts/verify.py` passes with **0 errors and 0 warnings** (`achievements=36, projects=22, journey=31`). `graphify update .` executed cleanly.
