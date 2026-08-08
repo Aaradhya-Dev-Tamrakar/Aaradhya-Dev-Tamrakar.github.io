@@ -3,7 +3,7 @@
    Provides offline capability & asset caching for fast return visits.
    ========================================================================== */
 
-const CACHE_NAME = 'aaradhya-portfolio-v38';
+const CACHE_NAME = 'aaradhya-portfolio-v38.1';
 
 const STATIC_ASSETS = [
   './',
