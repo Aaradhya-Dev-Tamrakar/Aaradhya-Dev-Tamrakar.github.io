@@ -1,6 +1,6 @@
 {
-  "sha": "6587c61033f0d3c1bac798c5f10e8013aaa59df1",
-  "shortSha": "6587c61",
-  "date": "2026-08-08T14:44:26+05:45",
-  "message": "fix(tour): raise tour z-index stack above readProgressBar/access-modal — was tied or losing at 10000/10001\n"
+  "sha": "af7f14ef613a54b380cf0a71dda709cad8ee5a75",
+  "shortSha": "af7f14e",
+  "date": "2026-08-08T14:47:57+05:45",
+  "message": "fix(tour): step 1 card overlapped hero CTAs — positionTourCard had no clearance fallback for full-viewport targets\n"
 }
