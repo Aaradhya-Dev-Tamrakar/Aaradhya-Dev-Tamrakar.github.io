@@ -47,7 +47,7 @@ const TOUR_STEPS = {
   'index.html': [
     { sel: '#hero', title: 'Welcome', body: 'This is the homepage — start here on any visit. The tour walks through all 7 pages; use Next/Back or Esc anytime.' },
     { sel: '#adtTerminal', title: 'Dev Terminal', body: 'A live command widget — type "help" for a full command list, or try the quick-command buttons.' },
-    { sel: '#keymap', title: 'Keyboard Shortcuts', body: 'Power-user shortcuts: 1–7 to jump pages, 0 for theme, / or Ctrl+K for search, Shift+N for release notes.' },
+    { sel: '#keymap', title: 'Keyboard Shortcuts', body: 'Power-user shortcuts: 1–7 to jump pages, 0 for theme, / or Ctrl+K for search, Shift+N for release notes, Shift+T to restart this tour anytime.' },
   ],
   'projects.html': [
     { sel: '#page-header', title: 'Projects', body: '22 projects, from firmware to full ML pipelines. Each card expands for the full write-up.' },
