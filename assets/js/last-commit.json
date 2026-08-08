@@ -1,6 +1,6 @@
 {
-  "sha": "90491f82ebf248c2f27b1acd7ef572d5756eb0b4",
-  "shortSha": "90491f8",
-  "date": "2026-08-08T15:11:18+05:45",
-  "message": "refactor(tour): flatten per-page step lookup to single TOUR_FLAT_STEPS index; fix dead swipe-close listener (initTouchGestures ran before overlay existed); add focus trap/restore matching lightbox/cmdk pattern; stop destroying overlay node on close\n"
+  "sha": "c806607fe3123b0fee061752c3b455918f8443e5",
+  "shortSha": "c806607",
+  "date": "2026-08-08T15:19:04+05:45",
+  "message": "fix(tour): step-1 centered fallback landed on .status-card — detect collision, slide to clear side/below; fix stale right/left leak between renders; remove nav Tour trigger button (desktop+drawer+CSS), Shift+T/cmdk/terminal entry points unaffected\n"
 }
