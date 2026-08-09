@@ -536,6 +536,13 @@ const SEARCH_STATIC_INDEX = {
   },
   {
     "type": "achievement",
+    "title": "NEC License Exam Mock Test (BCT)",
+    "meta": "Nepal Engineering Council (NEC) · 10 May 2026",
+    "href": "achievements.html#achv-36",
+    "text": "nepal engineering council (nec) nec license exam mock test (bct) scored 97/100 on the computer engineering (bct) format licensure preparation assessment. 10 may 2026"
+  },
+  {
+    "type": "achievement",
     "title": "KEC Music Club — Performer",
     "meta": "KEC Music Club · 2023–2026",
     "href": "achievements.html#achv-27",
@@ -577,7 +584,7 @@ const SEARCH_STATIC_INDEX = {
     "title": "SPARK — Two-Layer Fall Detection Wearable",
     "meta": "In Progress · MPU6050, TFLite Micro, 1D CNN",
     "href": "projects.html#p-015",
-    "text": "spark — two-layer fall detection wearable on-device, two-layer fall-detection wearable for eldercare — threshold gate plus a tflite micro cnn gateway, zero imports, zero custom pcb bei major project, four-person team — proposal defended jul 10, 2026 mpu6050 tflite micro 1d cnn raspberry pi 4b shap fastapi streamlit telegram in progress"
+    "text": "spark — two-layer fall detection wearable on-device, two-layer fall-detection wearable for eldercare — threshold gate plus a tflite micro cnn gateway, zero imports, zero custom pcb bei major project, four-person team — proposal defended jul 9, 2026 mpu6050 tflite micro 1d cnn shap fastapi streamlit telegram in progress"
   },
   {
     "type": "project",
