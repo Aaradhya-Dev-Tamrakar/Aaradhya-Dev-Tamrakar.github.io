@@ -1,6 +1,6 @@
 {
-  "sha": "b125da3eb1996ff5f8a9c159b33e14fb19921cc6",
-  "shortSha": "b125da3",
-  "date": "2026-08-09T08:50:51+05:45",
-  "message": "style(ui): enforce site-wide disabling of all box-shadows, text-shadows, and background glows in light mode\n"
+  "sha": "1ea611c408ae48fee89347f8b5aabd113a0a8713",
+  "shortSha": "1ea611c",
+  "date": "2026-08-09T08:56:42+05:45",
+  "message": "style(ui): optimize light theme palette with high contrast, bright amber accent, and crisp readable typography\n"
 }
