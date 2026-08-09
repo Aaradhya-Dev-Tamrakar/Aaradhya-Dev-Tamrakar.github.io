@@ -3194,17 +3194,22 @@ html[data-theme="light"] .gated-overlay {
 
 .card-gradient-border {
   position: relative;
+  border-radius: inherit;
 }
 
 .card-gradient-border::before {
   content: "";
   position: absolute;
   inset: -1px;
+  width: auto;
+  height: auto;
+  border: none;
   border-radius: inherit;
-  padding: 1px;
+  padding: 1.5px;
   background: conic-gradient(
     from var(--border-angle),
-    transparent 65%,
+    transparent 40%,
+    rgba(212, 168, 90, 0.25) 65%,
     var(--accent) 85%,
     var(--accent2) 100%
   );
@@ -3212,11 +3217,11 @@ html[data-theme="light"] .gated-overlay {
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.35s ease;
+  opacity: 0.35;
+  transition: opacity 0.5s ease;
   pointer-events: none;
   z-index: 2;
-  animation: rotateBorderAngle 4s linear infinite;
+  animation: rotateBorderAngle 7s linear infinite;
 }
 
 .card-gradient-border:hover::before {

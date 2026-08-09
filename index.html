@@ -357,47 +357,19 @@
     }
 
     .status-card {
-      border-radius: 4px;
+      border-radius: 8px;
       padding: 2rem;
       position: relative;
       background: var(--bg2);
       border: 1px solid rgba(255, 255, 255, .14);
       box-shadow: 0 16px 40px -16px rgba(0, 0, 0, .5);
-      transition: box-shadow .35s ease, border-color .35s ease;
+      transition: box-shadow .35s ease, border-color .35s ease, transform .35s ease;
+      overflow: hidden;
     }
 
     .status-card:hover {
       box-shadow: 0 16px 40px -16px rgba(0, 0, 0, .5), 0 0 30px -8px var(--glow-gold-a30);
-    }
-
-    .status-card::before,
-    .status-card::after {
-      content: "";
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      pointer-events: none;
-      opacity: .55;
-      transition: opacity .35s ease;
-    }
-
-    .status-card::before {
-      top: -1px;
-      left: -1px;
-      border-top: 1.5px solid var(--glow-gold-a90);
-      border-left: 1.5px solid var(--glow-gold-a90);
-    }
-
-    .status-card::after {
-      bottom: -1px;
-      right: -1px;
-      border-bottom: 1.5px solid var(--glow-teal-a70);
-      border-right: 1.5px solid var(--glow-teal-a70);
-    }
-
-    .status-card:hover::before,
-    .status-card:hover::after {
-      opacity: 1;
+      transform: translateY(-2px);
     }
 
     .status-card .status-label,
