@@ -1,6 +1,6 @@
 {
-  "sha": "ecb39859f605cfb74199f511d5c7c32f9e241053",
-  "shortSha": "ecb3985",
-  "date": "2026-08-09T09:19:09+05:45",
-  "message": "style(ui): bold tag pills globally; remove sepia/warm filter from Google Calendar in light mode\n"
+  "sha": "9fb06a91095c839fe5ee28a6001eaabec406f565",
+  "shortSha": "9fb06a9",
+  "date": "2026-08-09T14:44:48+05:45",
+  "message": "fix(audio): add visible audio-toggle button to all pages — Web Audio cues were undiscoverable, gated only behind Shift+A with no UI control\n"
 }
