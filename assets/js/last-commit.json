@@ -1,6 +1,6 @@
 {
-  "sha": "3558fb734167d725c4c01daad4fdbecb850090f9",
-  "shortSha": "3558fb7",
-  "date": "2026-08-09T07:37:57+05:45",
-  "message": "fix(projects): remove inaccurate LoRa/RYLR890 references across codebase\n"
+  "sha": "0039321e12c4d59d02f5fd952ea25ac42c7a2cb4",
+  "shortSha": "0039321",
+  "date": "2026-08-09T07:41:33+05:45",
+  "message": "feat(ui): add multiline formatting for terminal outputs and universal master Escape key listener\n"
 }
