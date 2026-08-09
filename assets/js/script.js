@@ -603,9 +603,9 @@ const SEARCH_STATIC_INDEX = {
   {
     "type": "project",
     "title": "PrakopNet — Multi-Hazard Early Warning System",
-    "meta": "Archived · ESP32, RYLR890 LoRa 868 MHz, Raspberry Pi 4B",
+    "meta": "Archived · ESP32, Wireless Mesh, Raspberry Pi 4B",
     "href": "projects.html#p-010",
-    "text": "prakopnet — multi-hazard early warning system solar-powered lora mesh multi-hazard monitoring platform for remote regions of nepal — esp32 nodes to a raspberry pi 4b gateway archived june 29, 2026 after rylr890's import-only sourcing conflicted with department policy; superseded by spark esp32 rylr890 lora 868 mhz raspberry pi 4b tflite micro lstm gps fastapi edge ai archived"
+    "text": "prakopnet — multi-hazard early warning system solar-powered wireless mesh multi-hazard monitoring platform for remote regions of nepal — esp32 nodes to a raspberry pi 4b gateway archived june 29, 2026; superseded by spark esp32 wireless mesh raspberry pi 4b tflite micro lstm gps fastapi edge ai archived"
   },
   {
     "type": "project",
@@ -1259,7 +1259,7 @@ function initTypedCaption() {
     'Building at the convergence of embedded firmware & applied ML.',
     'Designing resilient systems from PCB traces to edge neural nets.',
     'Engineered for clarity, speed, and real-time responsiveness.',
-    'Exploring robotics, LoRa mesh networks, and IoT telemetry.',
+    'Exploring robotics, wireless mesh networks, and IoT telemetry.',
     'Continuously benchmarking, testing, and shipping upgrades.'
   ];
 
