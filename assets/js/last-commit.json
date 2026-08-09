@@ -1,6 +1,6 @@
 {
-  "sha": "9fb06a91095c839fe5ee28a6001eaabec406f565",
-  "shortSha": "9fb06a9",
-  "date": "2026-08-09T14:44:48+05:45",
-  "message": "fix(audio): add visible audio-toggle button to all pages — Web Audio cues were undiscoverable, gated only behind Shift+A with no UI control\n"
+  "sha": "19c098929c61558fc302b5b1acc58b6576f8c8b9",
+  "shortSha": "19c0989",
+  "date": "2026-08-09T14:49:47+05:45",
+  "message": "feat(audio): extend Web Audio micro-sounds to modals, tour, and contact form — new open/close/tick/step/error cues matching existing sonic palette\n"
 }
