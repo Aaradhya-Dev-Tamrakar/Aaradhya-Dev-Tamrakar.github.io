@@ -1,6 +1,6 @@
 {
-  "sha": "dcbd677adf895640d6fb86b7dc43147911ff2a4d",
-  "shortSha": "dcbd677",
-  "date": "2026-08-09T08:45:29+05:45",
-  "message": "style(ui): remove all glow effects for light mode\n"
+  "sha": "fda37d75d345152b7cf4b62d8da2a45f686df63b",
+  "shortSha": "fda37d7",
+  "date": "2026-08-09T08:46:44+05:45",
+  "message": "fix(css): clean up orphaned keyframe blocks and restore missing light mode overrides in index.html\n"
 }
