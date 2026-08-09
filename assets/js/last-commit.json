@@ -1,6 +1,6 @@
 {
-  "sha": "d7a37cef9bd0483e9efad6691b1ff00494c26cd1",
-  "shortSha": "d7a37ce",
-  "date": "2026-08-09T08:24:32+05:45",
-  "message": "style(ui): fit Best Viewing box to content height with align-items start\n"
+  "sha": "6e6dba11f3f038dc0ca3c71a21d2af59ae9fa9e0",
+  "shortSha": "6e6dba1",
+  "date": "2026-08-09T08:29:55+05:45",
+  "message": "style(ui): replace static green dot with glowing circular profile photo avatar and live status badge\n"
 }
