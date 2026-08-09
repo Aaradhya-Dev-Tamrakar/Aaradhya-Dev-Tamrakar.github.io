@@ -1,6 +1,6 @@
 {
-  "sha": "fda37d75d345152b7cf4b62d8da2a45f686df63b",
-  "shortSha": "fda37d7",
-  "date": "2026-08-09T08:46:44+05:45",
-  "message": "fix(css): clean up orphaned keyframe blocks and restore missing light mode overrides in index.html\n"
+  "sha": "d3a41d5f21ddb81821e59cbf17e7a2d9c778e289",
+  "shortSha": "d3a41d5",
+  "date": "2026-08-09T08:49:01+05:45",
+  "message": "style(ui): remove all box shadows and glows in light mode for clean flat aesthetic\n"
 }
