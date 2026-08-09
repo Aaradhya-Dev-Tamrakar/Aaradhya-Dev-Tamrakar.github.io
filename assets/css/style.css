@@ -163,6 +163,21 @@ html[data-theme="light"] {
   --glow-coral-a35: rgba(194, 65, 12, 0.25);
 }
 
+/* ── Site-wide Light Mode Glow & Shadow Disabling ────────────── */
+html[data-theme="light"] *,
+html[data-theme="light"] *::before,
+html[data-theme="light"] *::after {
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .hero-glow,
+html[data-theme="light"] .glow-orb,
+html[data-theme="light"] .ambient-glow,
+html[data-theme="light"] .card-gradient-border::before {
+  display: none !important;
+}
+
 /* ── Custom Scrollbar & Scroll Progress Indicator ───────────── */
 
 /* Modern standard scrollbar styling (Firefox & modern browsers) */
