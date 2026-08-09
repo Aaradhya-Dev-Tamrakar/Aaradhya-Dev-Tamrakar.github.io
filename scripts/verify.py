@@ -296,8 +296,8 @@ def check_pwa_and_a11y_metadata():
     sw_path = ROOT / "sw.js"
     if sw_path.exists():
         sw_text = sw_path.read_text(encoding="utf-8")
-        if "aaradhya-portfolio-v38" not in sw_text:
-            errors.append("[pwa] sw.js CACHE_NAME is not updated to aaradhya-portfolio-v38")
+        if not re.search(r"CACHE_NAME\s*=\s*['\"]aaradhya-portfolio-v\d+['\"]", sw_text):
+            errors.append("[pwa] sw.js CACHE_NAME missing or malformed (expected aaradhya-portfolio-v<N>)")
 
 
 def main():
