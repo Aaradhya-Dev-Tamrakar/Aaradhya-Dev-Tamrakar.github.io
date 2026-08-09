@@ -1,6 +1,6 @@
 {
-  "sha": "50f3455119710a4e23503a6c4d84bff035c40205",
-  "shortSha": "50f3455",
-  "date": "2026-08-09T07:00:12+05:45",
-  "message": "fix(skills): replace stale active LoRa references with current SPARK hardware stack\n"
+  "sha": "b2b7aea903d7d21ecb12677d28036c5b95c669c3",
+  "shortSha": "b2b7aea",
+  "date": "2026-08-09T07:13:22+05:45",
+  "message": "feat(seo): upgrade SEO/AEO metadata and establish ADT brand identity\n"
 }
