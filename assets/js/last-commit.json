@@ -1,6 +1,6 @@
 {
-  "sha": "5ce9be05aabd11dceb719286ada58bb8cb99aaef",
-  "shortSha": "5ce9be0",
-  "date": "2026-08-09T08:08:20+05:45",
-  "message": "feat(tour): add 3.5s automatic guided tour invitation banner for first-time visitors\n"
+  "sha": "4169a949146140b3da01c6ca95478968d489c17f",
+  "shortSha": "4169a94",
+  "date": "2026-08-09T08:22:22+05:45",
+  "message": "feat(tour): expand tour steps across all site sections, enforce site-wide auto-prompting, and reformat keymap section for readability\n"
 }
