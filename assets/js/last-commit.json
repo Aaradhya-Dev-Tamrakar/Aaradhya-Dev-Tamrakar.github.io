@@ -1,6 +1,6 @@
 {
-  "sha": "ce9365d35d08bc1eae871d9bb0ac44ff8bb6ad0b",
-  "shortSha": "ce9365d",
-  "date": "2026-08-09T09:15:19+05:45",
-  "message": "style(ui): bold hero-tag for both dark and light modes\n"
+  "sha": "ecb39859f605cfb74199f511d5c7c32f9e241053",
+  "shortSha": "ecb3985",
+  "date": "2026-08-09T09:19:09+05:45",
+  "message": "style(ui): bold tag pills globally; remove sepia/warm filter from Google Calendar in light mode\n"
 }
