@@ -80,6 +80,9 @@ const TOUR_PAGE_ORDER = ['index.html', 'projects.html', 'experience.html', 'achi
 // this single ordered list by index; TOUR_STEPS stays the per-page authoring
 // format, this is purely derived from it.
 const TOUR_FLAT_STEPS = TOUR_PAGE_ORDER.flatMap(page => (TOUR_STEPS[page] || []).map(step => ({ ...step, page })));
+const TOUR_LS_ACTIVE = 'adt_tour_active';
+const TOUR_LS_INDEX = 'adt_tour_index';
+let tourLastFocus = null;
 
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
@@ -3411,10 +3414,6 @@ function initSwipeNav() {
    initTouchGestures() runs, so that listener has a real node to
    attach to). Opened via Shift+T, the cmdk command palette, or the
    terminal `tour` command — no dedicated nav button (removed). */
-
-const TOUR_LS_ACTIVE = 'adt_tour_active';
-const TOUR_LS_INDEX = 'adt_tour_index';
-let tourLastFocus = null;
 
 function tourReducedMotion() {
   return typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
