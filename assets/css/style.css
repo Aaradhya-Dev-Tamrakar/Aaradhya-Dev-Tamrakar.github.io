@@ -3225,7 +3225,7 @@ html[data-theme="light"] .gated-overlay {
   background: conic-gradient(
     from var(--border-angle),
     transparent 40%,
-    rgba(212, 168, 90, 0.25) 65%,
+    rgba(255, 215, 0, 0.35) 65%,
     var(--accent) 85%,
     var(--accent2) 100%
   );
@@ -3242,6 +3242,16 @@ html[data-theme="light"] .gated-overlay {
 
 .card-gradient-border:hover::before {
   opacity: 1;
+}
+html[data-theme="light"] .card-gradient-border::before {
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 40%,
+    rgba(255, 230, 120, 0.5) 65%,
+    var(--accent) 85%,
+    var(--accent2) 100%
+  );
+  opacity: 0.6;
 }
 
 /* ── Guided Tour Auto-Prompt Banner ──────────────────────────── */

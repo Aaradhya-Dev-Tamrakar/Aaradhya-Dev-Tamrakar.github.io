@@ -381,14 +381,23 @@
 
     .status-label {
       font-family: var(--mono);
-      font-size: 0.62rem;
+      font-size: 0.75rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--text);
       margin-bottom: 1.5rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      font-weight: 800;
+      color: var(--accent2);
+      text-shadow: 0 0 8px var(--glow-teal-a70);
+      animation: label-glow 2.4s ease-in-out infinite;
+    }
+
+    html[data-theme="light"] .status-label {
+      color: var(--accent2);
+      text-shadow: none;
+      animation: none;
     }
 
     .status-clock {
@@ -428,76 +437,7 @@
       color: var(--accent2);
     }
 
-    .status-avatar-wrap {
-      position: relative;
-      width: 28px;
-      height: 28px;
-      flex-shrink: 0;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 0.25rem;
-    }
 
-    .status-avatar-img {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 1.5px solid var(--accent);
-      box-shadow: 0 0 10px var(--glow-gold-a30), 0 0 4px var(--accent);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .status-avatar-wrap::before {
-      content: "";
-      position: absolute;
-      inset: -3px;
-      border-radius: 50%;
-      border: 1px solid var(--accent);
-      opacity: 0.6;
-      animation: avatar-pulse 2.6s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    .status-online-badge {
-      position: absolute;
-      bottom: -1px;
-      right: -1px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #10b981;
-      border: 1.5px solid var(--bg2);
-      box-shadow: 0 0 6px #10b981;
-      animation: online-dot-breathe 2s ease-in-out infinite;
-    }
-
-    @keyframes avatar-pulse {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 0.6;
-        box-shadow: 0 0 6px var(--accent);
-      }
-      50% {
-        transform: scale(1.22);
-        opacity: 0;
-        box-shadow: 0 0 14px var(--accent);
-      }
-    }
-
-    @keyframes online-dot-breathe {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      50% {
-        transform: scale(1.15);
-        opacity: 0.85;
-      }
-    }
-
-    @keyframes dot-breathe {
 
       0%,
       100% {
@@ -570,9 +510,8 @@
       box-shadow: 0 16px 32px -18px rgba(0, 0, 0, .22), 0 0 26px -8px var(--glow-gold-a30);
     }
 
-    html[data-theme="light"] .status-item-label,
-    html[data-theme="light"] .status-label {
-      color: var(--text);
+    html[data-theme="light"] .status-item-label {
+      color: var(--muted);
     }
 
     html[data-theme="light"] .hero-tag {
@@ -894,13 +833,6 @@
       <div class="hero-right">
         <div class="status-card card-gradient-border">
           <div class="status-label">
-            <div class="status-avatar-wrap" aria-hidden="true">
-              <picture>
-                <source srcset="assets/images/photo.webp" type="image/webp" />
-                <img src="assets/images/photo.png" alt="Aaradhya Dev Tamrakar" class="status-avatar-img" width="28" height="28" />
-              </picture>
-              <span class="status-online-badge"></span>
-            </div>
             Currently Active
             <span class="status-clock" id="statusClock" aria-label="Current date and time in Kathmandu, Nepal">
               <span id="statusClockDate">-- --- ----</span><span id="statusClockTime">--:--:--</span><span
