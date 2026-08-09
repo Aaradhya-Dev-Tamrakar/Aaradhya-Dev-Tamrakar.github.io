@@ -1,6 +1,6 @@
 {
-  "sha": "4169a949146140b3da01c6ca95478968d489c17f",
-  "shortSha": "4169a94",
-  "date": "2026-08-09T08:22:22+05:45",
-  "message": "feat(tour): expand tour steps across all site sections, enforce site-wide auto-prompting, and reformat keymap section for readability\n"
+  "sha": "d7a37cef9bd0483e9efad6691b1ff00494c26cd1",
+  "shortSha": "d7a37ce",
+  "date": "2026-08-09T08:24:32+05:45",
+  "message": "style(ui): fit Best Viewing box to content height with align-items start\n"
 }
