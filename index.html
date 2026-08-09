@@ -428,38 +428,73 @@
       color: var(--accent2);
     }
 
-    .status-dot {
+    .status-avatar-wrap {
       position: relative;
-      width: 8px;
-      height: 8px;
+      width: 28px;
+      height: 28px;
       flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 0.25rem;
     }
 
-    .status-dot::before,
-    .status-dot::after {
+    .status-avatar-img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--accent);
+      box-shadow: 0 0 10px var(--glow-gold-a30), 0 0 4px var(--accent);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .status-avatar-wrap::before {
       content: "";
       position: absolute;
-      inset: 0;
+      inset: -3px;
       border-radius: 50%;
+      border: 1px solid var(--accent);
+      opacity: 0.6;
+      animation: avatar-pulse 2.6s ease-in-out infinite;
+      pointer-events: none;
     }
 
-    .status-dot::before {
-      background: var(--accent2);
-      box-shadow: 0 0 5px var(--accent2);
-      animation: dot-breathe 2.4s ease-in-out infinite;
-    }
-
-    .status-dot::after {
-      border: 1.5px solid var(--accent2);
-      animation: dot-ripple 2.4s ease-out infinite;
-    }
-
-    .status-dot-ring2 {
+    .status-online-badge {
       position: absolute;
-      inset: 0;
+      bottom: -1px;
+      right: -1px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      border: 1px solid var(--accent2);
-      animation: dot-ripple 2.4s ease-out .9s infinite;
+      background: #10b981;
+      border: 1.5px solid var(--bg2);
+      box-shadow: 0 0 6px #10b981;
+      animation: online-dot-breathe 2s ease-in-out infinite;
+    }
+
+    @keyframes avatar-pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.6;
+        box-shadow: 0 0 6px var(--accent);
+      }
+      50% {
+        transform: scale(1.22);
+        opacity: 0;
+        box-shadow: 0 0 14px var(--accent);
+      }
+    }
+
+    @keyframes online-dot-breathe {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.15);
+        opacity: 0.85;
+      }
     }
 
     @keyframes dot-breathe {
@@ -552,17 +587,9 @@
       color: var(--text);
     }
 
-    html[data-theme="light"] .status-dot::before {
-      background: var(--glow-teal);
-      box-shadow: 0 0 5px var(--glow-teal);
-    }
-
-    html[data-theme="light"] .status-dot::after {
-      border-color: var(--glow-teal);
-    }
-
-    html[data-theme="light"] .status-dot-ring2 {
-      border-color: var(--glow-teal);
+    html[data-theme="light"] .status-avatar-img {
+      border-color: var(--accent);
+      box-shadow: 0 0 8px rgba(184, 134, 11, 0.35);
     }
 
     html[data-theme="light"] .status-clock-tz {
@@ -867,7 +894,13 @@
       <div class="hero-right">
         <div class="status-card card-gradient-border">
           <div class="status-label">
-            <span class="status-dot"><span class="status-dot-ring2"></span></span>
+            <div class="status-avatar-wrap" aria-hidden="true">
+              <picture>
+                <source srcset="assets/images/photo.webp" type="image/webp" />
+                <img src="assets/images/photo.png" alt="Aaradhya Dev Tamrakar" class="status-avatar-img" width="28" height="28" />
+              </picture>
+              <span class="status-online-badge"></span>
+            </div>
             Currently Active
             <span class="status-clock" id="statusClock" aria-label="Current date and time in Kathmandu, Nepal">
               <span id="statusClockDate">-- --- ----</span><span id="statusClockTime">--:--:--</span><span
