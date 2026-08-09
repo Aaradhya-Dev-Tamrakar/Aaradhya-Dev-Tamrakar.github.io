@@ -5,7 +5,7 @@
 ## Meta
 
 - **v39 — SEO, AEO & ADT Brand Identity Upgrade across all site pages.** Established "ADT" (Aaradhya Dev Tamrakar) as a clear personal brand identity across search engines, LLM answer engines (ChatGPT, Gemini, Perplexity, Copilot), and social previews.
-  - **ADT Branding in Titles & Descriptions**: Added `ADT | ` prefix to `<title>` and `og:title`/`twitter:title` tags across all 10 HTML pages. Updated meta descriptions to naturally incorporate "ADT (Aaradhya Dev Tamrakar)".
+  - **ADT Branding in Titles & Descriptions**: Added `ADT |` prefix to `<title>` and `og:title`/`twitter:title` tags across all 10 HTML pages. Updated meta descriptions to naturally incorporate "ADT (Aaradhya Dev Tamrakar)".
   - **Structured Data Enhancements (JSON-LD)**:
     - Updated `Person` schema on `index.html`: added `alternateName: ["ADT", "Aaradhya Tamrakar"]`, `nationality`, `knowsLanguage`, `speakable` selector (`.hero-desc`, `.hero-name`), and updated `jobTitle`.
     - Added new `WebSite` schema block on `index.html` with `alternateName: ["ADT Portfolio", "ADT Website"]`.
