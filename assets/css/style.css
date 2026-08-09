@@ -700,6 +700,34 @@ html[data-theme="light"] .icon-moon {
   transform: translateY(0);
 }
 
+.audio-toggle {
+  bottom: calc(9rem + env(safe-area-inset-bottom, 0px));
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.audio-icon-off {
+  display: none;
+}
+
+.audio-toggle.is-active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.audio-toggle.is-active .audio-icon-on {
+  display: block;
+}
+
+.audio-toggle:not(.is-active) .audio-icon-on {
+  display: none;
+}
+
+.audio-toggle:not(.is-active) .audio-icon-off {
+  display: block;
+}
+
 .back-top:hover {
   border-color: var(--accent);
   color: var(--accent);
@@ -1418,6 +1446,11 @@ footer {
 
   .back-top {
     bottom: 4.5rem;
+    right: 1.5rem;
+  }
+
+  .audio-toggle {
+    bottom: 8.5rem;
     right: 1.5rem;
   }
 

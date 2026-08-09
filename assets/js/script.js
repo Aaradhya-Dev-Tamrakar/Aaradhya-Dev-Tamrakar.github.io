@@ -2474,23 +2474,39 @@ function playAudioCue(type = 'click') {
   } catch (e) {}
 }
 
+function syncAudioToggleUI() {
+  const enabled = localStorage.getItem('adt_audio_enabled') === '1';
+  document.querySelectorAll('#audioToggle').forEach(btn => {
+    btn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+    btn.classList.toggle('is-active', enabled);
+  });
+}
+
 function toggleAudioCues() {
   const current = localStorage.getItem('adt_audio_enabled') === '1';
   const next = !current;
   localStorage.setItem('adt_audio_enabled', next ? '1' : '0');
+  syncAudioToggleUI();
   if (next) {
     getAudioContext();
     playAudioCue('toggle');
     showToast('🔊 Audio micro-sounds enabled (Shift+A)');
   } else {
-    showToast('蓄 Audio micro-sounds muted (Shift+A)');
+    showToast('🔇 Audio micro-sounds muted (Shift+A)');
   }
 }
 
 function initAudioCues() {
+  syncAudioToggleUI();
+  document.querySelectorAll('#audioToggle').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      toggleAudioCues();
+    });
+  });
   document.addEventListener('click', e => {
     const btn = e.target.closest('button, a.nav-link, a.nav-cta, .cert-btn, .project-card-link, .cmdk-tab');
-    if (btn) playAudioCue('click');
+    if (btn && btn.id !== 'audioToggle') playAudioCue('click');
   }, { passive: true });
 }
 
