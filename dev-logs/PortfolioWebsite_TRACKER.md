@@ -1,8 +1,20 @@
-# Portfolio Website Tracker — v38
+# Portfolio Website Tracker — v39
 
-## _Last updated: 2026-08-08_
+## _Last updated: 2026-08-09_
 
 ## Meta
+
+- **v39 — SEO, AEO & ADT Brand Identity Upgrade across all site pages.** Established "ADT" (Aaradhya Dev Tamrakar) as a clear personal brand identity across search engines, LLM answer engines (ChatGPT, Gemini, Perplexity, Copilot), and social previews.
+  - **ADT Branding in Titles & Descriptions**: Added `ADT | ` prefix to `<title>` and `og:title`/`twitter:title` tags across all 10 HTML pages. Updated meta descriptions to naturally incorporate "ADT (Aaradhya Dev Tamrakar)".
+  - **Structured Data Enhancements (JSON-LD)**:
+    - Updated `Person` schema on `index.html`: added `alternateName: ["ADT", "Aaradhya Tamrakar"]`, `nationality`, `knowsLanguage`, `speakable` selector (`.hero-desc`, `.hero-name`), and updated `jobTitle`.
+    - Added new `WebSite` schema block on `index.html` with `alternateName: ["ADT Portfolio", "ADT Website"]`.
+    - Added `ProfilePage` schema and `FAQPage` schema (with 6 Q&As) to `about.html`.
+    - Added `ItemList` schema for featured projects to `projects.html`.
+  - **AEO & LLM Crawler Allowlist**: Updated `robots.txt` to explicitly allow AI bots (`GPTBot`, `Google-Extended`, `anthropic-ai`, `ClaudeBot`, `PerplexityBot`, `Applebot-Extended`).
+  - **Visible FAQ Section**: Added a responsive, accessible FAQ section to `about.html` covering core background, SPARK project, specialization, and contact options.
+  - **Metadata Sync**: Added `keywords`, `twitter:site`, and `twitter:creator` (`@AaradhyaDT`) tags across subpages. Updated `site.webmanifest` name and description to incorporate ADT branding. Updated `sitemap.xml` dates to `2026-08-09`.
+  - **Verification**: Python script validated 100% tag balance (`<div>` open/close equality) and JSON-LD syntax across all 10 HTML pages with 0 errors.
 
 - **v27 — ambient particle-burst profile-photo effect (`about.html`), original design, not a Discord-asset port.** User referenced Discord Nitro profile-effect store items (Encom Grid/Tron, Ki Detonate, Vengeance frame, Entering Hyperspace) as visual inspiration; these are paid proprietary cosmetics and were **not** pulled/traced — flagged directly, then rebuilt as an original equivalent using the site's own design tokens. Implementation, scoped to `about.html` + `assets/js/script.js` only:
   - `<canvas id="about-photo-fx" class="about-photo-fx" aria-hidden="true">` inserted as first child of `#about-photo-wrap`, before the existing `<picture>` — verified single insertion, not duplicated.
