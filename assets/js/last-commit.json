@@ -1,6 +1,6 @@
 {
-  "sha": "4f386f43d782317d3c79bea4fca63bced0724279",
-  "shortSha": "4f386f4",
-  "date": "2026-08-09T06:56:35+05:45",
-  "message": "feat(spark,achievements): update SPARK proposal date/tags/progress & add NEC mock test achievement\n"
+  "sha": "50f3455119710a4e23503a6c4d84bff035c40205",
+  "shortSha": "50f3455",
+  "date": "2026-08-09T07:00:12+05:45",
+  "message": "fix(skills): replace stale active LoRa references with current SPARK hardware stack\n"
 }
