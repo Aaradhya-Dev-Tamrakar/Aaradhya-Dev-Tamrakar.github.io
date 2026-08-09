@@ -400,6 +400,15 @@
       animation: none;
     }
 
+    @keyframes label-glow {
+      0%, 100% {
+        text-shadow: 0 0 8px var(--glow-teal-a70);
+      }
+      50% {
+        text-shadow: 0 0 16px var(--glow-teal);
+      }
+    }
+
     .status-clock {
       margin-left: auto;
       display: flex;
@@ -435,32 +444,6 @@
       font-size: 0.55rem;
       letter-spacing: 0.12em;
       color: var(--accent2);
-    }
-
-
-
-      0%,
-      100% {
-        transform: scale(1);
-        opacity: 1
-      }
-
-      50% {
-        transform: scale(1.2);
-        opacity: .85
-      }
-    }
-
-    @keyframes dot-ripple {
-      0% {
-        transform: scale(1);
-        opacity: .65
-      }
-
-      100% {
-        transform: scale(3.8);
-        opacity: 0
-      }
     }
 
     .status-items {
@@ -508,6 +491,22 @@
 
     html[data-theme="light"] .status-card:hover {
       box-shadow: 0 16px 32px -18px rgba(0, 0, 0, .22);
+    }
+
+    html[data-theme="light"] .status-item-label {
+      color: var(--muted);
+    }
+
+    html[data-theme="light"] .hero-tag {
+      color: var(--accent);
+    }
+
+    html[data-theme="light"] .hero-tag::before {
+      background: var(--accent);
+    }
+
+    html[data-theme="light"] .hero-desc {
+      color: var(--text);
     }
 
     html[data-theme="light"] .status-clock-tz {
