@@ -87,6 +87,19 @@ let tourLastFocus = null;
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
   {
+    version: 'v39',
+    date: '2026-08-09',
+    sha: '0039321',
+    title: 'SEO, AEO & ADT Brand Identity Upgrade Suite',
+    highlights: [
+      'ADT (Aaradhya Dev Tamrakar) brand identity integration across all 10 site page titles & metadata',
+      'Enhanced JSON-LD structured schemas (Person alternate names, WebSite, ProfilePage & FAQPage)',
+      'AEO allowlist for AI search bots (GPTBot, ClaudeBot, PerplexityBot) in robots.txt',
+      'Interactive Dev Terminal multiline output formatting & master Esc key overlay handler',
+      'PWA Service Worker cache version upgraded to aaradhya-portfolio-v39'
+    ]
+  },
+  {
     version: 'v38',
     date: '2026-08-08',
     sha: 'a7b8c9d',
@@ -238,7 +251,7 @@ const CMDK_PAGES = [
   { title: 'Contact', href: '/contact.html' },
   { title: "Guided Site Tour (Shift+T)", href: "javascript:startTour()" },
   { title: "Toggle Audio Micro-Sounds (Shift+A)", href: "javascript:toggleAudioCues()" },
-  { title: "What's New (v38 Major Releases)", href: "javascript:openWhatsNewModal()" },
+  { title: "What's New (v39 Major Releases)", href: "javascript:openWhatsNewModal()" },
 ];
 
 /* ── Quick-nav ("Explore") card data ──────────────────────────
@@ -3001,6 +3014,12 @@ function initKeyNav() {
     const input = term.querySelector('.terminal-input');
     const quickBtns = term.querySelectorAll('.terminal-quick-cmd');
     if (!body || !input) return;
+
+    // Dynamically set terminal welcome banner version from latest SITE_RELEASES
+    const welcomeSpan = body.querySelector('.term-green');
+    if (welcomeSpan && typeof SITE_RELEASES !== 'undefined' && SITE_RELEASES[0]) {
+      welcomeSpan.textContent = `Welcome to Aaradhya Dev Tamrakar's Interactive Developer Terminal (${SITE_RELEASES[0].version}).`;
+    }
 
     const COMMANDS = {
       help: () => `
