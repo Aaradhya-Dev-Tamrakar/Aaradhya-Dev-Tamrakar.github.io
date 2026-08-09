@@ -7,8 +7,9 @@
 - **v39 — SEO, AEO & ADT Brand Identity Upgrade across all site pages.** Established "ADT" (Aaradhya Dev Tamrakar) as a clear personal brand identity across search engines, LLM answer engines (ChatGPT, Gemini, Perplexity, Copilot), and social previews.
   - **ADT Branding in Titles & Descriptions**: Added `ADT |` prefix to `<title>` and `og:title`/`twitter:title` tags across all 10 HTML pages. Updated meta descriptions to naturally incorporate "ADT (Aaradhya Dev Tamrakar)".
   - **Structured Data Enhancements (JSON-LD)**:
-    - Updated `Person` schema on `index.html`: added `alternateName: ["ADT", "Aaradhya Tamrakar"]`, `nationality`, `knowsLanguage`, `speakable` selector (`.hero-desc`, `.hero-name`), and updated `jobTitle`.
-    - Added new `WebSite` schema block on `index.html` with `alternateName: ["ADT Portfolio", "ADT Website"]`.
+    - Updated `Person` schema on `index.html`: added comprehensive `alternateName` array (`["Aaradhya", "ADT", "Aaradhya Dev", "Aaradhya Tamrakar", "Aaradhya Dev Tamrakar", "Aaradhya D. Tamrakar", "A. D. Tamrakar", "A. Dev Tamrakar", "AaradhyaDT", "aaradhyadevtamrakar", "Aaradhya Nepal", "Aaradhya Engineer"]`), `nationality`, `knowsLanguage`, `speakable` selector (`.hero-desc`, `.hero-name`), and updated `jobTitle`.
+    - Added new `WebSite` schema block on `index.html` with `alternateName` array (`["Aaradhya", "ADT", "Aaradhya Portfolio", "Aaradhya Dev Tamrakar Portfolio", "Aaradhya Dev Tamrakar Website", "Aaradhya Website", "ADT Portfolio", "ADT Website", "ADT Games"]`).
+    - Expanded meta keywords across all 10 site pages to include every combination and permutation of Aaradhya / ADT / Aaradhya Dev Tamrakar.
     - Added `ProfilePage` schema and `FAQPage` schema (with 6 Q&As) to `about.html`.
     - Added `ItemList` schema for featured projects to `projects.html`.
   - **AEO & LLM Crawler Allowlist**: Updated `robots.txt` to explicitly allow AI bots (`GPTBot`, `Google-Extended`, `anthropic-ai`, `ClaudeBot`, `PerplexityBot`, `Applebot-Extended`).
