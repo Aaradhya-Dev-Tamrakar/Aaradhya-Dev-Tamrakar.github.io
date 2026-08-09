@@ -656,18 +656,21 @@
             status.textContent = "Please enter a valid email address.";
             status.style.color = "var(--accent)";
             emailInput.focus();
+            if (window.playAudioCue) playAudioCue('error');
             return;
           }
           if (!nameInput.value.trim()) {
             status.textContent = "Please enter your name.";
             status.style.color = "var(--accent)";
             nameInput.focus();
+            if (window.playAudioCue) playAudioCue('error');
             return;
           }
           if (!messageInput.value.trim()) {
             status.textContent = "Please enter a message.";
             status.style.color = "var(--accent)";
             messageInput.focus();
+            if (window.playAudioCue) playAudioCue('error');
             return;
           }
 
@@ -692,6 +695,7 @@
               time: new Date().toLocaleString(),
             });
             status.innerHTML = '<div class="form-success-badge"><span>✓</span> Message sent! I\'ll respond within 48 hours.</div>';
+            if (window.playAudioCue) playAudioCue('chime');
             if (window.gtag) {
               gtag("event", "form_submit", {
                 event_category: "engagement",
@@ -715,6 +719,7 @@
             });
             if (res.ok) {
               status.innerHTML = '<div class="form-success-badge"><span>✓</span> Message sent! I\'ll respond within 48 hours.</div>';
+              if (window.playAudioCue) playAudioCue('chime');
               if (window.gtag) {
                 gtag("event", "form_submit", {
                   event_category: "engagement",

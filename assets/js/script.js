@@ -948,6 +948,7 @@ function openWhatsNewModal() {
   localStorage.setItem('adt_last_seen_release', SITE_RELEASES[0].version);
   requestAnimationFrame(() => modal.classList.add('open'));
   document.body.style.overflow = 'hidden';
+  playAudioCue('open');
 }
 
 function closeWhatsNewModal() {
@@ -955,6 +956,7 @@ function closeWhatsNewModal() {
   if (!modal) return;
   modal.classList.remove('open');
   document.body.style.overflow = '';
+  playAudioCue('close');
 }
 
 /* ── Footer injection ─────────────────────────────────────── */
@@ -2169,6 +2171,7 @@ function openAccessModal(defaultTier = 1) {
   document.body.style.overflow = 'hidden';
   if (passInput) passInput.focus();
   renderGoogleSignInButton();
+  playAudioCue('open');
 }
 
 function closeAccessModal() {
@@ -2176,6 +2179,7 @@ function closeAccessModal() {
   if (overlay) {
     overlay.classList.remove('open');
     document.body.style.overflow = '';
+    playAudioCue('close');
   }
 }
 
@@ -2185,6 +2189,7 @@ function showError(msg) {
     el.textContent = msg;
     el.classList.add('visible');
   }
+  playAudioCue('error');
 }
 
 function showToast(msg) {
@@ -2470,6 +2475,45 @@ function playAudioCue(type = 'click') {
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
       osc.start(now);
       osc.stop(now + 0.08);
+    } else if (type === 'open') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(392, now);
+      osc.frequency.exponentialRampToValueAtTime(587.33, now + 0.09);
+      gain.gain.setValueAtTime(0.045, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+      osc.start(now);
+      osc.stop(now + 0.1);
+    } else if (type === 'close') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(523.25, now);
+      osc.frequency.exponentialRampToValueAtTime(329.63, now + 0.09);
+      gain.gain.setValueAtTime(0.04, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+      osc.start(now);
+      osc.stop(now + 0.1);
+    } else if (type === 'tick') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(1000, now);
+      gain.gain.setValueAtTime(0.02, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.02);
+      osc.start(now);
+      osc.stop(now + 0.02);
+    } else if (type === 'step') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(660, now);
+      osc.frequency.exponentialRampToValueAtTime(880, now + 0.05);
+      gain.gain.setValueAtTime(0.04, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+      osc.start(now);
+      osc.stop(now + 0.06);
+    } else if (type === 'error') {
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(220, now);
+      osc.frequency.setValueAtTime(180, now + 0.09);
+      gain.gain.setValueAtTime(0.05, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+      osc.start(now);
+      osc.stop(now + 0.18);
     }
   } catch (e) {}
 }
@@ -2506,7 +2550,7 @@ function initAudioCues() {
   });
   document.addEventListener('click', e => {
     const btn = e.target.closest('button, a.nav-link, a.nav-cta, .cert-btn, .project-card-link, .cmdk-tab');
-    if (btn && btn.id !== 'audioToggle') playAudioCue('click');
+    if (btn && btn.id !== 'audioToggle' && !btn.classList.contains('cert-btn')) playAudioCue('click');
   }, { passive: true });
 }
 
@@ -2664,6 +2708,7 @@ function initLightbox() {
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
     lbClose.focus();
+    playAudioCue('open');
   }
 
   function closeLightbox() {
@@ -2676,6 +2721,7 @@ function initLightbox() {
       lbVerify.href = '#';
     }
     if (lastFocus) lastFocus.focus();
+    playAudioCue('close');
   }
 
   document.querySelectorAll('.cert-btn').forEach(btn => {
@@ -2876,12 +2922,14 @@ function initGlobalSearch() {
     cmdk.classList.add('open');
     document.body.style.overflow = 'hidden';
     input.focus();
+    playAudioCue('open');
   }
 
   function closeCmdk() {
     cmdk.classList.remove('open');
     document.body.style.overflow = '';
     if (lastFocus) lastFocus.focus();
+    playAudioCue('close');
   }
 
   if (navBtn) navBtn.addEventListener('click', openCmdk);
@@ -2913,6 +2961,7 @@ function initGlobalSearch() {
         ? (activeIndex + 1) % max
         : (activeIndex - 1 + max) % max;
       setActiveResult();
+      playAudioCue('tick');
       return;
     }
     if (e.key === 'Enter') {
@@ -3534,9 +3583,11 @@ function tourAdvance() {
   if (next >= TOUR_FLAT_STEPS.length) {
     exitTour();
     showToast('Tour complete.');
+    playAudioCue('chime');
     return;
   }
   tourGoTo(next);
+  playAudioCue('step');
 }
 
 function tourBack() {
