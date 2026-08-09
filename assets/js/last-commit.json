@@ -1,6 +1,6 @@
 {
-  "sha": "5bd84b941a256f774b0f74667265157d3885e427",
-  "shortSha": "5bd84b9",
-  "date": "2026-08-09T06:27:55+05:45",
-  "message": "fix(tour): resolve stacking, clickability, transparency and mobile positioning bugs\n"
+  "sha": "34cd0522bad8ac9c97c90ee5297c8a56e1457e71",
+  "shortSha": "34cd052",
+  "date": "2026-08-09T06:44:45+05:45",
+  "message": "fix(tour): move TOUR_LS_ACTIVE/INDEX constants before init() to fix temporal dead zone crash\n"
 }
