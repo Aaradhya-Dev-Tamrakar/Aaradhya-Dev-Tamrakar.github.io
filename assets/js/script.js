@@ -45,34 +45,38 @@ const SOCIAL_ICONS = {
 /* ── Guided Site Tour data (v37) ─────────────────────────── */
 const TOUR_STEPS = {
   'index.html': [
-    { sel: '#hero', title: 'Welcome', body: 'This is the homepage — start here on any visit. The tour walks through all 7 pages; use Next/Back or Esc anytime.' },
-    { sel: '#adtTerminal', title: 'Dev Terminal', body: 'A live command widget — type "help" for a full command list, or try the quick-command buttons.' },
-    { sel: '#keymap', title: 'Keyboard Shortcuts', body: 'Power-user shortcuts: 1–7 to jump pages, 0 for theme, / or Ctrl+K for search, Shift+N for release notes, Shift+T to restart this tour anytime.' },
+    { sel: '#hero', title: 'Welcome & Status', body: 'Welcome to ADT Portfolio — start here on any visit. Track real-time focus, role, and NPT clock in the live status widget.' },
+    { sel: '#stats', title: 'Impact & Metrics', body: 'Stat counters tracking 15+ built engineering projects, 4th-year BEI student status, and fellowship milestones.' },
+    { sel: '#adtTerminal', title: 'Dev Terminal', body: 'A live interactive command line — type "help" for a full command list, or try quick preset buttons like "skills", "projects", and "matrix".' },
+    { sel: '#exploreGrid', title: 'Quick Navigation', body: 'Explore hub to jump straight into Projects, Experience, Achievements, Journey, and About.' },
+    { sel: '#about-sign-in', title: 'Access Control', body: 'Optional browser-only Google Sign-In to unlock additional technical research notes and VIP specs.' },
+    { sel: '#keymap', title: 'Keymap & Display Guide', body: 'Complete keyboard shortcuts (1-7, 0, Shift+N, Shift+T, /, Esc) and 400-nit OLED display calibration benchmarks.' },
   ],
   'projects.html': [
-    { sel: '#page-header', title: 'Projects', body: '22 projects, from firmware to full ML pipelines. Each card expands for the full write-up.' },
-    { sel: '#p-001', title: 'Featured build', body: 'Cards are individually expandable — click any title to see stack, metrics, and links.' },
+    { sel: '#page-header', title: 'Projects Portfolio', body: 'Explore 22 engineering projects across firmware, robotics, and ML with real-time tag search and count indicators.' },
+    { sel: '#p-001', title: 'Featured Build (SPARK)', body: 'Deep-dive into SPARK — Intelligent Elderly Fall Detection Wearable with ESP32-S3, PyTorch, and 98.4% precision.' },
   ],
   'experience.html': [
-    { sel: '#page-header', title: 'Experience', body: 'Leadership and technical roles, in reverse-chronological order.' },
-    { sel: '#experience', title: 'Role detail', body: 'Each entry includes scope and, where applicable, a linked certificate — click a cert badge to open it.' },
+    { sel: '#page-header', title: 'Leadership & Experience', body: 'Chronological roles across Fusemachines, DataCamp, IEEE Student Branch, and EPC Club.' },
+    { sel: '#experience', title: 'Role Details & Certs', body: 'Scope descriptions and verified credentials — click any cert badge to view or download the original PDF.' },
   ],
   'achievements.html': [
-    { sel: '#page-header', title: 'Achievements', body: '36 credentials and competition milestones. Filter by category or year using the legend above the list.' },
-    { sel: '#achievementsList', title: 'Certificates', body: 'Entries with a certificate button open a lightbox viewer — most also offer the original PDF as a direct download.' },
+    { sel: '#page-header', title: 'Achievements & Credentials', body: '36 competition milestones and industry certifications. Filter by Academic or Extracurricular categories.' },
+    { sel: '#achievementsList', title: 'Certificate Viewer', body: 'Interactive credentials grid with integrated lightbox viewer and direct PDF downloads.' },
   ],
   'about.html': [
-    { sel: '#about-intro', title: 'About', body: 'Background, education, and how this site\u2019s design choices reflect a working engineer\u2019s toolkit.' },
-    { sel: '#skills', title: 'Skills', body: 'A breakdown of tools and technical areas of focus.' },
-    { sel: '#education', title: 'Education', body: 'Academic timeline through KEC, IOE, Tribhuvan University.' },
+    { sel: '#about-intro', title: 'About ADT', body: 'Engineering background, specialization, and design philosophy behind this site.' },
+    { sel: '#skills', title: 'Technical Skillset', body: 'Skill matrix breakdown across Embedded & Firmware, AI/ML & Vision, and Web Systems.' },
+    { sel: '#education', title: 'Academic Timeline', body: 'Degree timeline through Kathmandu Engineering College, IOE, Tribhuvan University.' },
+    { sel: '#faq', title: 'Frequently Asked Questions', body: 'Interactive FAQ section covering core background, SPARK major project, and direct contact options.' },
   ],
   'journey.html': [
-    { sel: '#page-header', title: 'Journey', body: 'A 34-node timeline of milestones — the fullest narrative view of the work behind this site.' },
-    { sel: '#j-001', title: 'Timeline nodes', body: 'Each node expands individually, or use the toggle-all shortcut (Alt+6) to open everything at once.' },
+    { sel: '#page-header', title: 'Engineering Journey', body: 'A 34-node narrative timeline tracing site architecture, commit milestones, and engineering releases.' },
+    { sel: '#j-001', title: 'Milestone Checkpoints', body: 'Expandable checkpoint nodes — press Alt+6 anytime to toggle all timeline nodes at once.' },
   ],
   'contact.html': [
-    { sel: '#contact-intro', title: 'Contact', body: 'That\u2019s the full tour. This page has a direct message form plus social links in the footer.' },
-    { sel: '#contactForm', title: 'Get in touch', body: 'Messages go straight through — no account needed. Thanks for visiting.' },
+    { sel: '#contact-intro', title: 'Contact Channels', body: 'Direct communication channels for research, collaborations, internships, and IEEE engagements.' },
+    { sel: '#contactForm', title: 'Get In Touch', body: 'Send direct messages with real-time field validation — no account needed. Thanks for visiting!' },
   ],
 };
 const TOUR_PAGE_ORDER = ['index.html', 'projects.html', 'experience.html', 'achievements.html', 'about.html', 'journey.html', 'contact.html'];
@@ -3503,6 +3507,7 @@ function startTour() {
 }
 
 function exitTour() {
+  localStorage.setItem('adt_tour_prompted', 'true');
   localStorage.removeItem(TOUR_LS_ACTIVE);
   localStorage.removeItem(TOUR_LS_INDEX);
   closeTourOverlay();
