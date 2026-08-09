@@ -3748,6 +3748,59 @@ function initTour() {
     else if (e.key === 'ArrowRight') { tourAdvance(); }
     else if (e.key === 'ArrowLeft') { tourBack(); }
   });
+
+  // Auto-prompt visitor for guided site tour after 3.5s on first visit
+  const PROMPT_LS_KEY = 'adt_tour_prompted';
+  if (!localStorage.getItem(PROMPT_LS_KEY) && !localStorage.getItem(TOUR_LS_ACTIVE)) {
+    setTimeout(() => {
+      if (localStorage.getItem(PROMPT_LS_KEY) || localStorage.getItem(TOUR_LS_ACTIVE)) return;
+      promptGuidedTour();
+    }, 3500);
+  }
+}
+
+function promptGuidedTour() {
+  const PROMPT_LS_KEY = 'adt_tour_prompted';
+  localStorage.setItem(PROMPT_LS_KEY, 'true');
+
+  let banner = document.getElementById('tourPromptBanner');
+  if (!banner) {
+    banner = document.createElement('div');
+    banner.id = 'tourPromptBanner';
+    banner.className = 'tour-prompt-banner';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-label', 'Guided tour invitation');
+    banner.innerHTML = `
+      <div class="tour-prompt-content">
+        <span class="tour-prompt-icon">🗺️</span>
+        <div class="tour-prompt-text">
+          <strong>New to ADT Portfolio?</strong>
+          <span>Would you like a quick guided tour of the site?</span>
+        </div>
+      </div>
+      <div class="tour-prompt-actions">
+        <button type="button" id="tourPromptStartBtn" class="tour-prompt-btn primary">Start Tour</button>
+        <button type="button" id="tourPromptDismissBtn" class="tour-prompt-btn secondary">No thanks</button>
+      </div>
+    `;
+    document.body.appendChild(banner);
+
+    const dismiss = () => {
+      banner.classList.remove('open');
+      setTimeout(() => banner.remove(), 450);
+    };
+
+    document.getElementById('tourPromptStartBtn').addEventListener('click', () => {
+      dismiss();
+      startTour();
+    });
+
+    document.getElementById('tourPromptDismissBtn').addEventListener('click', () => {
+      dismiss();
+    });
+  }
+
+  requestAnimationFrame(() => banner.classList.add('open'));
 }
 
 /* ── Universal Master Escape Key Listener ────────────────────
@@ -3757,6 +3810,14 @@ function initTour() {
 (function initMasterEscapeHandler() {
   document.addEventListener('keydown', e => {
     if (e.key !== 'Escape') return;
+
+    // 0. Tour Prompt Banner
+    const tourPrompt = document.getElementById('tourPromptBanner');
+    if (tourPrompt && tourPrompt.classList.contains('open')) {
+      tourPrompt.classList.remove('open');
+      setTimeout(() => tourPrompt.remove(), 400);
+      return;
+    }
 
     // 1. Guided Site Tour
     const tourOverlay = document.getElementById('tourOverlay');
