@@ -3004,47 +3004,50 @@ function initKeyNav() {
 
     const COMMANDS = {
       help: () => `
-<span class="term-green">Available Commands:</span>
-  <span class="term-gold">skills</span>       - Overview of technical skillset & engineering tools
-  <span class="term-gold">projects</span>     - Key engineering & AI/ML projects
-  <span class="term-gold">experience</span>   - Leadership & technical roles
-  <span class="term-gold">achievements</span> - Credentials & competition milestones
-  <span class="term-gold">contact</span>      - Direct communication channels
-  <span class="term-gold">whatsnew</span>     - View v33 major release highlights
-  <span class="term-gold">theme</span>        - Toggle site color scheme (Dark / Light)
-  <span class="term-gold">matrix</span>       - Trigger cybernetic digital rain
+<span class="term-green">Available Commands:</span><br>
+  <span class="term-gold">skills</span>       - Overview of technical skillset &amp; engineering tools<br>
+  <span class="term-gold">projects</span>     - Key engineering &amp; AI/ML projects<br>
+  <span class="term-gold">experience</span>   - Leadership &amp; technical roles<br>
+  <span class="term-gold">achievements</span> - Credentials &amp; competition milestones<br>
+  <span class="term-gold">contact</span>      - Direct communication channels<br>
+  <span class="term-gold">whatsnew</span>     - View v39 major release highlights<br>
+  <span class="term-gold">theme</span>        - Toggle site color scheme (Dark / Light)<br>
+  <span class="term-gold">matrix</span>       - Trigger cybernetic digital rain<br>
   <span class="term-gold">clear</span>        - Clear terminal screen output
-`,
+`.trim(),
       skills: () => `
-<span class="term-green">▶ Core Technical Skillset:</span>
-  • <span class="term-cyan">Embedded & Firmware:</span> C, C++, Verilog, ARM Cortex-M, STM32, ESP32, KiCAD
-  • <span class="term-cyan">AI / ML & Vision:</span> Python, PyTorch, OpenCV, TensorFlow, Signal Processing
+<span class="term-green">▶ Core Technical Skillset:</span><br>
+  • <span class="term-cyan">Embedded &amp; Firmware:</span> C, C++, Verilog, ARM Cortex-M, STM32, ESP32, KiCAD<br>
+  • <span class="term-cyan">AI / ML &amp; Vision:</span> Python, PyTorch, OpenCV, TensorFlow, Signal Processing<br>
   • <span class="term-cyan">Web Systems:</span> JavaScript (ES6+), HTML5/CSS3, Node.js, WebSockets, REST APIs
-`,
+`.trim(),
       projects: () => `
-<span class="term-green">▶ Featured Projects:</span>
-  1. <span class="term-gold">PulseLive</span> — Real-Time Acoustic Patient Monitoring System
-  2. <span class="term-gold">GCSBR</span> — Ground Control Station for High-Altitude Rocketry
-  3. <span class="term-gold">Autonomous Rover</span> — LiDAR/Ultrasonic Obstacle Avoidance & Sensor Fusion
-  4. Type <span class="term-cyan">'2'</span> or navigate to <a href="/projects.html" class="term-link">/projects.html</a> for all 22 projects!
-`,
+<span class="term-green">▶ Featured Projects:</span><br>
+  1. <span class="term-gold">PulseLive</span> — Real-Time Acoustic Patient Monitoring System<br>
+  2. <span class="term-gold">SPARK</span> — Intelligent Elderly Fall Detection Wearable<br>
+  3. <span class="term-gold">GCSBR</span> — Ground Control Station for High-Altitude Rocketry<br>
+  4. <span class="term-gold">Autonomous Rover</span> — LiDAR/Ultrasonic Obstacle Avoidance &amp; Sensor Fusion<br>
+  5. Type <span class="term-cyan">'2'</span> or navigate to <a href="projects.html" class="term-link">projects.html</a> for all 22 projects!
+`.trim(),
       experience: () => `
-<span class="term-green">▶ Engineering Leadership & Experience:</span>
-  • <span class="term-gold">Vice Secretary</span> — IEEE KEC Student Branch (2025–2026)
-  • <span class="term-gold">Electronics Lead</span> — KEC Robotics Club
-  • <span class="term-gold">Mentor</span> — Electronics For All Workshop Series
-`,
+<span class="term-green">▶ Engineering Leadership &amp; Experience:</span><br>
+  • <span class="term-gold">Vice Chair</span> — IEEE KEC Student Branch (2025–2026)<br>
+  • <span class="term-gold">Fuse AI Fellow</span> — Fusemachines (2026)<br>
+  • <span class="term-gold">NSSR Fellow</span> — DataCamp (Cohort 2)<br>
+  • <span class="term-gold">Event Manager</span> — Electronics &amp; Propagation Club (EPC)<br>
+  • <span class="term-gold">Ambassador</span> — KEC Makerspace
+`.trim(),
       achievements: () => `
-<span class="term-green">▶ Achievements & Credentials:</span>
-  • 36 verified credentials spanning AWS, DataCamp, IEEE, and GNOME
-  • Full verification suite: <a href="/achievements.html" class="term-link">/achievements.html</a>
-`,
+<span class="term-green">▶ Achievements &amp; Credentials:</span><br>
+  • 37 verified credentials spanning AWS, DataCamp, IEEE, and GNOME<br>
+  • Full verification suite: <a href="achievements.html" class="term-link">achievements.html</a>
+`.trim(),
       contact: () => `
-<span class="term-green">▶ Connect Channels:</span>
-  • Email:    <a href="mailto:aaradhyadevtmr@gmail.com" class="term-link">aaradhyadevtmr@gmail.com</a>
-  • GitHub:   <a href="https://github.com/AaradhyaDT" target="_blank" class="term-link">github.com/AaradhyaDT</a>
+<span class="term-green">▶ Connect Channels:</span><br>
+  • Email:    <a href="mailto:aaradhyadevtmr@gmail.com" class="term-link">aaradhyadevtmr@gmail.com</a><br>
+  • GitHub:   <a href="https://github.com/AaradhyaDT" target="_blank" class="term-link">github.com/AaradhyaDT</a><br>
   • LinkedIn: <a href="https://www.linkedin.com/in/aaradhya-dev-tamrakar" target="_blank" class="term-link">linkedin.com/in/aaradhya-dev-tamrakar</a>
-`,
+`.trim(),
       whatsnew: () => {
         if (typeof openWhatsNewModal === 'function') openWhatsNewModal();
         return '<span class="term-green">Opening What\'s New (v38) modal...</span>';
@@ -3727,3 +3730,90 @@ function initTour() {
     else if (e.key === 'ArrowLeft') { tourBack(); }
   });
 }
+
+/* ── Universal Master Escape Key Listener ────────────────────
+   Guarantees that pressing the Escape key closes ANY overlay,
+   modal, popup, drawer, lightbox, tour step, open details card,
+   or active input focus anywhere across the site. */
+(function initMasterEscapeHandler() {
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+
+    // 1. Guided Site Tour
+    const tourOverlay = document.getElementById('tourOverlay');
+    if (tourOverlay && tourOverlay.classList.contains('open')) {
+      if (typeof exitTour === 'function') exitTour();
+      return;
+    }
+
+    // 2. Certificate / CV Lightbox
+    const certLb = document.getElementById('cert-lightbox') || document.getElementById('certLightbox');
+    if (certLb && certLb.classList.contains('open')) {
+      if (typeof closeLightbox === 'function') closeLightbox();
+      return;
+    }
+
+    // 3. Global Search Palette (CMDK)
+    const cmdk = document.getElementById('cmdk');
+    if (cmdk && cmdk.classList.contains('open')) {
+      if (typeof closeCmdk === 'function') closeCmdk();
+      return;
+    }
+
+    // 4. What's New Modal
+    const wnModal = document.getElementById('whatsNewModal');
+    if (wnModal && wnModal.classList.contains('open')) {
+      if (typeof closeWhatsNewModal === 'function') closeWhatsNewModal();
+      return;
+    }
+
+    // 5. Access Control / VIP Modal
+    const accessOverlay = document.getElementById('accessModalOverlay');
+    if (accessOverlay && accessOverlay.classList.contains('open')) {
+      if (typeof closeAccessModal === 'function') closeAccessModal();
+      return;
+    }
+
+    // 6. Logout Confirmation Modal
+    const logoutOverlay = document.getElementById('logoutModalOverlay');
+    if (logoutOverlay && (logoutOverlay.classList.contains('open') || logoutOverlay.classList.contains('visible'))) {
+      if (typeof closeLogoutModal === 'function') closeLogoutModal();
+      else logoutOverlay.remove();
+      return;
+    }
+
+    // 7. Mobile Navigation Drawer
+    const drawer = document.getElementById('navDrawer');
+    const backdrop = document.getElementById('navDrawerBackdrop');
+    const hamburger = document.getElementById('navHamburger');
+    if (drawer && drawer.classList.contains('open')) {
+      drawer.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('open');
+      if (hamburger) {
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open menu');
+      }
+      document.body.style.overflow = '';
+      return;
+    }
+
+    // 8. Open <details> cards (close active/focused or open details elements)
+    const active = document.activeElement;
+    if (active && active.closest('details[open]')) {
+      active.closest('details[open]').removeAttribute('open');
+      return;
+    }
+    const openDetails = document.querySelectorAll('details[open]');
+    if (openDetails.length > 0) {
+      openDetails[openDetails.length - 1].removeAttribute('open');
+      return;
+    }
+
+    // 9. Interactive Dev Terminal (blur input focus)
+    if (active && active.closest('#adtTerminal')) {
+      active.blur();
+      return;
+    }
+  }, true);
+})();
