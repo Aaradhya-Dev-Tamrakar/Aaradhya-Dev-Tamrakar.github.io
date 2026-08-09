@@ -1,6 +1,6 @@
 {
-  "sha": "6e6dba11f3f038dc0ca3c71a21d2af59ae9fa9e0",
-  "shortSha": "6e6dba1",
-  "date": "2026-08-09T08:29:55+05:45",
-  "message": "style(ui): replace static green dot with glowing circular profile photo avatar and live status badge\n"
+  "sha": "54d53a4dc29ccf96d1e017e536bd5b9492185c67",
+  "shortSha": "54d53a4",
+  "date": "2026-08-09T08:44:04+05:45",
+  "message": "style(ui): remove glow text-shadow for status label in light mode\n"
 }
