@@ -3508,9 +3508,20 @@ function renderTourStep(idx) {
   const isFirst = idx === 0;
   const isLast = idx === TOUR_FLAT_STEPS.length - 1;
 
-  overlay.innerHTML = `
-    <div class="tour-scrim"></div>
-    <div class="tour-card" id="tourCard" role="document">
+  // Scrim lives inside the overlay — inherits its stacking context at z-10010.
+  overlay.innerHTML = `<div class="tour-scrim"></div>`;
+
+  // Card is a direct child of <body> so its z-index: 10012 is in the root
+  // stacking context — always above the highlight (10011) and scrim (10010).
+  let card = document.getElementById('tourCard');
+  if (!card) {
+    card = document.createElement('div');
+    card.className = 'tour-card';
+    card.id = 'tourCard';
+    card.setAttribute('role', 'document');
+    document.body.appendChild(card);
+  }
+  card.innerHTML = `
       <div class="tour-card-head">
         <span class="tour-progress">${idx + 1} / ${TOUR_FLAT_STEPS.length}</span>
         <button type="button" class="tour-close" id="tourCloseBtn" aria-label="End tour">
@@ -3524,8 +3535,7 @@ function renderTourStep(idx) {
       <div class="tour-actions">
         <button type="button" class="tour-btn-secondary" id="tourBackBtn" ${isFirst ? 'disabled' : ''}>Back</button>
         <button type="button" class="tour-btn-primary" id="tourNextBtn">${isLast ? 'Finish' : 'Next'}</button>
-      </div>
-    </div>`;
+      </div>`;
 
   document.getElementById('tourCloseBtn').addEventListener('click', () => { exitTour(); });
   document.getElementById('tourNextBtn').addEventListener('click', tourAdvance);
@@ -3575,6 +3585,13 @@ function positionTourCard(target) {
   const card = document.getElementById('tourCard');
   if (!card) return;
 
+  // On narrow viewports, clear any previous inline positioning so the CSS
+  // @media (max-width: 720px) rule pins the card to the bottom of the screen.
+  if (window.innerWidth < 720) {
+    card.style.cssText = '';
+    return;
+  }
+
   const rect = target && target !== document.body ? target.getBoundingClientRect() : null;
   const cardH = card.offsetHeight || 220;
   const cardW = card.offsetWidth || 340;
@@ -3583,7 +3600,7 @@ function positionTourCard(target) {
   // fall back to the centered modal instead of computing a colliding spot.
   const targetTooLarge = rect && (rect.height > window.innerHeight * 0.75 || rect.width > window.innerWidth * 0.9);
 
-  if (!rect || window.innerWidth < 720 || targetTooLarge) {
+  if (!rect || targetTooLarge) {
     // Dead-center can still land on top of large in-flow content the
     // target wraps (e.g. #hero contains .status-card on index.html) —
     // if the centered spot would overlap something like that, slide to
@@ -3659,6 +3676,9 @@ function closeTourOverlay() {
   // persistent-node convention). Removing it here would orphan the
   // swipe-close listener initTouchGestures() attached to this exact node.
   if (overlay) overlay.classList.remove('open');
+  // Card now lives outside the overlay — clean it up on close.
+  const card = document.getElementById('tourCard');
+  if (card) card.remove();
 }
 
 function initTour() {

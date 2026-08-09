@@ -3427,13 +3427,17 @@ html[data-theme="light"] .gated-overlay {
 }
 
 .tour-highlight {
-  position: relative;
-  z-index: 10011;
+  position: relative !important;
+  z-index: 10011 !important;
   outline: 2px solid var(--accent);
   outline-offset: 6px;
   border-radius: 10px;
-  box-shadow: 0 0 0 9999px rgba(10, 10, 12, 0.55);
+  /* box-shadow scrim removed — it painted at the highlight's z-level (10011)
+     and covered the card (inside overlay at 10010), causing double-dimming,
+     transparent-looking backgrounds, and unclickable buttons. The .tour-scrim
+     element now handles all backdrop dimming instead. */
   transition: outline-color 0.2s ease;
+  pointer-events: auto !important;
 }
 
 .tour-card {
@@ -3448,7 +3452,7 @@ html[data-theme="light"] .gated-overlay {
   width: 100%;
   max-width: 340px;
   padding: 1.4rem 1.5rem 1.5rem;
-  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5), 0 0 2px 1px var(--accent-a20);
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5), 0 0 2px 1px var(--accent-a12);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), top 0.3s ease, left 0.3s ease;
 }
 
@@ -3479,7 +3483,7 @@ html[data-theme="light"] .gated-overlay {
 
 .tour-close:hover,
 .tour-close:focus-visible {
-  color: var(--fg);
+  color: var(--heading);
   background: var(--accent-a07);
 }
 
@@ -3487,7 +3491,7 @@ html[data-theme="light"] .gated-overlay {
   font-weight: 600;
   font-size: 1.02rem;
   margin-bottom: 0.4rem;
-  color: var(--fg);
+  color: var(--heading);
 }
 
 .tour-body {
@@ -3526,7 +3530,7 @@ html[data-theme="light"] .gated-overlay {
 
 .tour-btn-secondary {
   background: transparent;
-  color: var(--fg);
+  color: var(--text);
   border: 1px solid var(--line);
 }
 
