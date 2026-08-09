@@ -147,7 +147,7 @@ html[data-theme="light"] {
   --glass-bg: rgba(0, 0, 0, 0.025);
   --glass-border: rgba(0, 0, 0, 0.09);
   --glass-blur: 8px;
-  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  --card-shadow: none;
   --surface: #fffdf9;
   --glow-gold: #b45309;
   --glow-teal: #0f766e;
