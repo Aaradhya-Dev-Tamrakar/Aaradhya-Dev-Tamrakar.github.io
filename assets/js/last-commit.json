@@ -1,6 +1,6 @@
 {
-  "sha": "19c098929c61558fc302b5b1acc58b6576f8c8b9",
-  "shortSha": "19c0989",
-  "date": "2026-08-09T14:49:47+05:45",
-  "message": "feat(audio): extend Web Audio micro-sounds to modals, tour, and contact form — new open/close/tick/step/error cues matching existing sonic palette\n"
+  "sha": "a408a6bf4bde505240e09e3bbdc069859ff2d98e",
+  "shortSha": "a408a6b",
+  "date": "2026-08-09T18:12:41+05:45",
+  "message": "fix(ci): verify.py cache-name check hardcoded v38, breaks on every sw.js bump — match aaradhya-portfolio-v\\d+ instead\n"
 }
