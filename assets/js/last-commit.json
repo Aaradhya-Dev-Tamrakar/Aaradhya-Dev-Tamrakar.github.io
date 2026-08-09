@@ -1,6 +1,6 @@
 {
-  "sha": "a13f3ec7a97b55d1a8b77058e050587ce902f6f3",
-  "shortSha": "a13f3ec",
-  "date": "2026-08-09T09:10:08+05:45",
-  "message": "style(ui): keep hero-caption on single line with nowrap, ellipsis and clamp font-size\n"
+  "sha": "ce9365d35d08bc1eae871d9bb0ac44ff8bb6ad0b",
+  "shortSha": "ce9365d",
+  "date": "2026-08-09T09:15:19+05:45",
+  "message": "style(ui): bold hero-tag for both dark and light modes\n"
 }
