@@ -1,6 +1,6 @@
 {
-  "sha": "eda909ec10739ab8f1745b17f978304cbcb6600d",
-  "shortSha": "eda909e",
-  "date": "2026-08-12T19:23:22+05:45",
-  "message": "refactor(colors): relocate accent palette switcher to Dev Terminal and CMDK easter egg\n"
+  "sha": "c1d8cde2aea3065c8735c869f20120765c7148b1",
+  "shortSha": "c1d8cde",
+  "date": "2026-08-12T19:37:24+05:45",
+  "message": "refactor: update style.css, index.html - html[data-theme=light][data-accent=prism] { (+46/-1)\n"
 }
