@@ -1035,9 +1035,28 @@ html[data-theme="light"] .section-num {
   padding: 4rem 3rem;
 }
 
-.access-tier-col {
+.access-card-inner {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 2.25rem 2.5rem;
   display: flex;
-  flex-direction: column;
+  gap: 1.5rem;
+  align-items: flex-start;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.master-exclusive-section {
+  padding: 4rem 3rem;
+}
+
+.master-card-inner {
+  background: rgba(234, 179, 8, 0.04);
+  border: 1px solid rgba(234, 179, 8, 0.25);
+  border-radius: 12px;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 @media (min-width: 1000px) {
@@ -1673,25 +1692,112 @@ footer {
     flex-wrap: wrap;
   }
 
+  .access-tier-row {
+    padding: 2.5rem 1.25rem;
+    gap: 2rem;
+  }
+
+  .access-card-inner {
+    flex-direction: column;
+    padding: 1.5rem 1.25rem;
+    gap: 1rem;
+  }
+
+  .access-card-inner > svg {
+    margin-top: 0;
+  }
+
+  .master-exclusive-section {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .master-card-inner {
+    padding: 1.5rem 1.25rem;
+  }
+
+  #keymap {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .keymap-card {
+    padding: 1.5rem 1.1rem;
+  }
+
+  .keymap-list li {
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .keymap-mode {
+    min-width: auto;
+  }
+
   .back-top {
     bottom: 4.5rem;
-    right: 1.5rem;
+    right: 1.25rem;
   }
 
   .audio-toggle {
     bottom: 8.5rem;
-    right: 1.5rem;
+    right: 1.25rem;
   }
 
   .scroll-pct {
     bottom: 2.4rem;
-    right: 1.5rem;
+    right: 1.25rem;
   }
 }
 
 @media (max-width: 480px) {
   :root {
     --nav-h: 60px;
+  }
+
+  .access-tier-row {
+    padding: 2rem 0.85rem;
+    gap: 1.5rem;
+  }
+
+  .access-card-inner {
+    padding: 1.25rem 0.9rem;
+  }
+
+  .master-exclusive-section {
+    padding: 2rem 0.85rem;
+  }
+
+  .master-card-inner {
+    padding: 1.25rem 0.9rem;
+  }
+
+  #keymap {
+    padding: 2rem 0.85rem;
+    padding-bottom: 5.5rem;
+  }
+
+  .keymap-card {
+    padding: 1.25rem 0.9rem;
+  }
+
+  .back-top {
+    bottom: 4.2rem;
+    right: 0.85rem;
+    width: 36px;
+    height: 36px;
+  }
+
+  .audio-toggle {
+    bottom: 7.6rem;
+    right: 0.85rem;
+    width: 36px;
+    height: 36px;
+  }
+
+  .scroll-pct {
+    bottom: 2.4rem;
+    right: 0.85rem;
+    width: 36px;
+    font-size: 0.52rem;
   }
 
   nav {
