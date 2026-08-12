@@ -3439,6 +3439,16 @@ html[data-theme="light"] .gated-overlay {
   animation: typedBlink 0.9s infinite;
 }
 
+@media (max-width: 768px) {
+  .hero-caption {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
 @keyframes typedBlink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
