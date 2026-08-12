@@ -1,6 +1,6 @@
 {
-  "sha": "a408a6bf4bde505240e09e3bbdc069859ff2d98e",
-  "shortSha": "a408a6b",
-  "date": "2026-08-09T18:12:41+05:45",
-  "message": "fix(ci): verify.py cache-name check hardcoded v38, breaks on every sw.js bump — match aaradhya-portfolio-v\\d+ instead\n"
+  "sha": "dbd80492de284f385aa393bd1372a5da86b3e82c",
+  "shortSha": "dbd8049",
+  "date": "2026-08-12T18:56:49+05:45",
+  "message": "feat(v40): Inter typography modernization & performance core suite\n"
 }
