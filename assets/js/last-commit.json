@@ -1,6 +1,6 @@
 {
-  "sha": "0255803b1b3ff54495b819c33bdd5951c987dce3",
-  "shortSha": "0255803",
-  "date": "2026-08-12T19:01:37+05:45",
-  "message": "feat(colors): upgrade visual accent depth & add interactive 6-theme accent palette switcher\n"
+  "sha": "eda909ec10739ab8f1745b17f978304cbcb6600d",
+  "shortSha": "eda909e",
+  "date": "2026-08-12T19:23:22+05:45",
+  "message": "refactor(colors): relocate accent palette switcher to Dev Terminal and CMDK easter egg\n"
 }
