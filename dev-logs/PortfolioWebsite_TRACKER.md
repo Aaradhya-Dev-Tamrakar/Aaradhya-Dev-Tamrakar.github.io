@@ -1,8 +1,15 @@
-# Portfolio Website Tracker — v40
+# Portfolio Website Tracker — v41
 
 ## _Last updated: 2026-08-12_
 
 ## Meta
+
+- **v41 — Color Upgrades & Multi-Theme Accent Customization Suite.** Upgraded site visual depth, dynamic radial color glows, glassmorphic card borders, and added an interactive 6-theme accent color palette switcher in navigation.
+  - **Interactive Accent Switcher**: Introduced 6 curated color themes: Gold 👑 (`#d4a85a` default signature), Cyber Emerald ⚡ (`#10b981`), Electric Violet 🔮 (`#a855f7`), Ocean Cyan 🌊 (`#06b6d4`), Ruby Flame 🔴 (`#f43f5e`), and Midnight Prism 🌌 (`#cbd5e1`).
+  - **Dynamic Theme Token System**: Created CSS data-attribute overrides (`html[data-accent="..."]`) supporting both Dark & Light modes with dynamic variable inheritance across scrollbars, buttons, hero ambient glows, and terminal highlights.
+  - **Navigation Integration**: Rendered interactive color picker popup menu in the header navbar and mobile navigation drawer with tactile haptic feedback.
+  - **Persistence & PWA**: Saved choice to `localStorage['adt-accent']`, updated Service Worker cache to `aaradhya-portfolio-v41`, and appended release v41 history in `script.js`.
+  - **Verification**: `python scripts/verify.py` passed with 0 errors (37 achievements, 22 projects, 34 journey nodes); `node -c assets/js/script.js` verified clean syntax.
 
 - **v40 — Inter Typography Modernization & Performance Core Suite.** Upgraded site typography system and overall rendering performance while preserving gold/teal identity.
   - **Typography Modernization**: Replaced Cormorant Garamond & Instrument Sans with Inter variable font (`Inter:wght@300;400;500;600;700`) for body/UI text across all 10 HTML pages; kept Playfair Display for signature headings and DM Mono for terminal/code.

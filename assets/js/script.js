@@ -91,6 +91,19 @@ let tourLastFocus = null;
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
   {
+    version: 'v41',
+    date: '2026-08-12',
+    sha: 'c0l0r41',
+    title: 'Color Upgrades & Multi-Theme Accent Customization Suite',
+    highlights: [
+      'Interactive 6-theme Accent Color Palette Switcher (Gold 👑, Emerald ⚡, Violet 🔮, Cyan 🌊, Ruby 🔴, Prism 🌌)',
+      'Dynamic CSS accent token inheritance across dark and light themes with local storage persistence',
+      'Upgraded ambient radial color glows, card glassmorphic hover borders, and terminal widget accents',
+      'Tactile haptic feedback integration for swatch toggles & popover navigation',
+      'PWA Service Worker cache version upgraded to aaradhya-portfolio-v41'
+    ]
+  },
+  {
     version: 'v40',
     date: '2026-08-12',
     sha: '94bef09',
@@ -784,6 +797,37 @@ function renderSiteNav() {
             <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
         </button>
+        <div class="color-picker-wrap" id="colorPickerWrap">
+          <button class="color-picker-toggle" id="colorPickerToggle" aria-label="Choose accent theme" aria-expanded="false" title="Choose Accent Color Theme">
+            <span class="picker-dot"></span>
+          </button>
+          <div class="color-picker-popover" id="colorPickerPopover" role="menu" aria-label="Accent Color Palettes">
+            <button type="button" class="color-swatch-btn" data-accent-swatch="gold" role="menuitem" title="Amber Gold (Default)">
+              <span class="color-swatch-circle gold"></span>
+              <span>Gold</span>
+            </button>
+            <button type="button" class="color-swatch-btn" data-accent-swatch="emerald" role="menuitem" title="Cyber Emerald">
+              <span class="color-swatch-circle emerald"></span>
+              <span>Emerald</span>
+            </button>
+            <button type="button" class="color-swatch-btn" data-accent-swatch="violet" role="menuitem" title="Electric Violet">
+              <span class="color-swatch-circle violet"></span>
+              <span>Violet</span>
+            </button>
+            <button type="button" class="color-swatch-btn" data-accent-swatch="cyan" role="menuitem" title="Ocean Cyan">
+              <span class="color-swatch-circle cyan"></span>
+              <span>Cyan</span>
+            </button>
+            <button type="button" class="color-swatch-btn" data-accent-swatch="ruby" role="menuitem" title="Ruby Flame">
+              <span class="color-swatch-circle ruby"></span>
+              <span>Ruby</span>
+            </button>
+            <button type="button" class="color-swatch-btn" data-accent-swatch="prism" role="menuitem" title="Midnight Prism">
+              <span class="color-swatch-circle prism"></span>
+              <span>Prism</span>
+            </button>
+          </div>
+        </div>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
@@ -808,6 +852,29 @@ function renderSiteNav() {
 
     <div class="nav-drawer" id="navDrawer" role="navigation" aria-label="Mobile navigation">
       ${drawerLinks}
+      <div style="margin: 0.5rem 1rem 1rem; padding: 0.75rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 12px;">
+        <div style="font-size: 0.72rem; color: var(--muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; text-align: center;">Accent Color Theme</div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
+          <button type="button" class="color-swatch-btn" data-accent-swatch="gold">
+            <span class="color-swatch-circle gold"></span><span>Gold</span>
+          </button>
+          <button type="button" class="color-swatch-btn" data-accent-swatch="emerald">
+            <span class="color-swatch-circle emerald"></span><span>Emerald</span>
+          </button>
+          <button type="button" class="color-swatch-btn" data-accent-swatch="violet">
+            <span class="color-swatch-circle violet"></span><span>Violet</span>
+          </button>
+          <button type="button" class="color-swatch-btn" data-accent-swatch="cyan">
+            <span class="color-swatch-circle cyan"></span><span>Cyan</span>
+          </button>
+          <button type="button" class="color-swatch-btn" data-accent-swatch="ruby">
+            <span class="color-swatch-circle ruby"></span><span>Ruby</span>
+          </button>
+          <button type="button" class="color-swatch-btn" data-accent-swatch="prism">
+            <span class="color-swatch-circle prism"></span><span>Prism</span>
+          </button>
+        </div>
+      </div>
       <button class="nav-access-btn" id="drawerAccessBtn" style="margin: 0 0 1rem; width: calc(100% - 2rem); justify-content: center;" aria-label="Access Control">
         Access Control / Login
       </button>
@@ -1104,6 +1171,67 @@ function initThemeToggle() {
   btn.addEventListener('click', (e) => {
     triggerHapticFeedback(12);
     toggleTheme(e);
+  });
+}
+
+/* ── Accent Color Theme Management ───────────────────────── */
+function applyAccent(accent) {
+  const validAccents = ['gold', 'emerald', 'violet', 'cyan', 'ruby', 'prism'];
+  const target = validAccents.includes(accent) ? accent : 'gold';
+  if (target === 'gold') {
+    document.documentElement.removeAttribute('data-accent');
+  } else {
+    document.documentElement.setAttribute('data-accent', target);
+  }
+  localStorage.setItem('adt-accent', target);
+
+  document.querySelectorAll('[data-accent-swatch]').forEach(btn => {
+    if (btn.dataset.accentSwatch === target) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+}
+
+function initAccent() {
+  const savedAccent = localStorage.getItem('adt-accent') || 'gold';
+  applyAccent(savedAccent);
+}
+
+function initAccentPicker() {
+  const toggleBtn = document.getElementById('colorPickerToggle');
+  const popover = document.getElementById('colorPickerPopover');
+
+  const togglePopover = (show) => {
+    if (!popover || !toggleBtn) return;
+    const isExpanded = show !== undefined ? show : !popover.classList.contains('active');
+    popover.classList.toggle('active', isExpanded);
+    toggleBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+  };
+
+  if (toggleBtn && popover) {
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      triggerHapticFeedback(10);
+      togglePopover();
+    });
+  }
+
+  document.querySelectorAll('[data-accent-swatch]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      triggerHapticFeedback(14);
+      const chosen = btn.dataset.accentSwatch;
+      applyAccent(chosen);
+      togglePopover(false);
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('#colorPickerWrap')) {
+      togglePopover(false);
+    }
   });
 }
 
@@ -2365,11 +2493,13 @@ function initAccessControl() {
 /* ── Boot ─────────────────────────────────────────────────── */
 (function init() {
   initTheme();        // must run first — sets data-theme before paint
+  initAccent();       // sets data-accent before paint
   computeLiveDates(); // compute before any page script reads LIVE
   renderSiteNav();
   setActiveNav();
   renderQuickNav();
   initThemeToggle();
+  initAccentPicker();
   initKeyNav();
   initStatusDate();
   initHamburger();

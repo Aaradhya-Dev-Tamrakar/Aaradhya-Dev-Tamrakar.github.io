@@ -140,6 +140,262 @@ html[data-theme="light"] {
   --glow-coral-a35: rgba(234, 88, 12, 0.25);
 }
 
+/* ── Dynamic Accent Color Themes ───────────────────────────── */
+
+/* Cyber Emerald ⚡ */
+html[data-accent="emerald"] {
+  --accent: #10b981;
+  --accent2: #3b82f6;
+  --accent-a07: rgba(16, 185, 129, 0.07);
+  --accent-a12: rgba(16, 185, 129, 0.12);
+  --accent-a35: rgba(16, 185, 129, 0.35);
+  --accent-a40: rgba(16, 185, 129, 0.4);
+  --accent-a45: rgba(16, 185, 129, 0.45);
+  --accent-a80: rgba(16, 185, 129, 0.8);
+  --glow-gold: #10b981;
+  --glow-gold-a18: rgba(16, 185, 129, 0.18);
+  --glow-gold-a30: rgba(16, 185, 129, 0.3);
+  --glow-gold-a35: rgba(16, 185, 129, 0.35);
+  --glow-gold-a90: rgba(16, 185, 129, 0.9);
+  --glow-teal: #3b82f6;
+  --glow-teal-a15: rgba(59, 130, 246, 0.15);
+  --glow-teal-a25: rgba(59, 130, 246, 0.25);
+  --glow-teal-a35: rgba(59, 130, 246, 0.35);
+  --glow-teal-a70: rgba(59, 130, 246, 0.7);
+}
+
+/* Electric Violet 🔮 */
+html[data-accent="violet"] {
+  --accent: #a855f7;
+  --accent2: #ec4899;
+  --accent-a07: rgba(168, 85, 247, 0.07);
+  --accent-a12: rgba(168, 85, 247, 0.12);
+  --accent-a35: rgba(168, 85, 247, 0.35);
+  --accent-a40: rgba(168, 85, 247, 0.4);
+  --accent-a45: rgba(168, 85, 247, 0.45);
+  --accent-a80: rgba(168, 85, 247, 0.8);
+  --glow-gold: #a855f7;
+  --glow-gold-a18: rgba(168, 85, 247, 0.18);
+  --glow-gold-a30: rgba(168, 85, 247, 0.3);
+  --glow-gold-a35: rgba(168, 85, 247, 0.35);
+  --glow-gold-a90: rgba(168, 85, 247, 0.9);
+  --glow-teal: #ec4899;
+  --glow-teal-a15: rgba(236, 72, 153, 0.15);
+  --glow-teal-a25: rgba(236, 72, 153, 0.25);
+  --glow-teal-a35: rgba(236, 72, 153, 0.35);
+  --glow-teal-a70: rgba(236, 72, 153, 0.7);
+}
+
+/* Ocean Cyan 🌊 */
+html[data-accent="cyan"] {
+  --accent: #06b6d4;
+  --accent2: #6366f1;
+  --accent-a07: rgba(6, 182, 212, 0.07);
+  --accent-a12: rgba(6, 182, 212, 0.12);
+  --accent-a35: rgba(6, 182, 212, 0.35);
+  --accent-a40: rgba(6, 182, 212, 0.4);
+  --accent-a45: rgba(6, 182, 212, 0.45);
+  --accent-a80: rgba(6, 182, 212, 0.8);
+  --glow-gold: #06b6d4;
+  --glow-gold-a18: rgba(6, 182, 212, 0.18);
+  --glow-gold-a30: rgba(6, 182, 212, 0.3);
+  --glow-gold-a35: rgba(6, 182, 212, 0.35);
+  --glow-gold-a90: rgba(6, 182, 212, 0.9);
+  --glow-teal: #6366f1;
+  --glow-teal-a15: rgba(99, 102, 241, 0.15);
+  --glow-teal-a25: rgba(99, 102, 241, 0.25);
+  --glow-teal-a35: rgba(99, 102, 241, 0.35);
+  --glow-teal-a70: rgba(99, 102, 241, 0.7);
+}
+
+/* Ruby Flame 🔴 */
+html[data-accent="ruby"] {
+  --accent: #f43f5e;
+  --accent2: #fb923c;
+  --accent-a07: rgba(244, 63, 94, 0.07);
+  --accent-a12: rgba(244, 63, 94, 0.12);
+  --accent-a35: rgba(244, 63, 94, 0.35);
+  --accent-a40: rgba(244, 63, 94, 0.4);
+  --accent-a45: rgba(244, 63, 94, 0.45);
+  --accent-a80: rgba(244, 63, 94, 0.8);
+  --glow-gold: #f43f5e;
+  --glow-gold-a18: rgba(244, 63, 94, 0.18);
+  --glow-gold-a30: rgba(244, 63, 94, 0.3);
+  --glow-gold-a35: rgba(244, 63, 94, 0.35);
+  --glow-gold-a90: rgba(244, 63, 94, 0.9);
+  --glow-teal: #fb923c;
+  --glow-teal-a15: rgba(251, 146, 60, 0.15);
+  --glow-teal-a25: rgba(251, 146, 60, 0.25);
+  --glow-teal-a35: rgba(251, 146, 60, 0.35);
+  --glow-teal-a70: rgba(251, 146, 60, 0.7);
+}
+
+/* Midnight Prism 🌌 */
+html[data-accent="prism"] {
+  --accent: #cbd5e1;
+  --accent2: #94a3b8;
+  --accent-a07: rgba(203, 213, 225, 0.07);
+  --accent-a12: rgba(203, 213, 225, 0.12);
+  --accent-a35: rgba(203, 213, 225, 0.35);
+  --accent-a40: rgba(203, 213, 225, 0.4);
+  --accent-a45: rgba(203, 213, 225, 0.45);
+  --accent-a80: rgba(203, 213, 225, 0.8);
+  --glow-gold: #cbd5e1;
+  --glow-gold-a18: rgba(203, 213, 225, 0.18);
+  --glow-gold-a30: rgba(203, 213, 225, 0.3);
+  --glow-gold-a35: rgba(203, 213, 225, 0.35);
+  --glow-gold-a90: rgba(203, 213, 225, 0.9);
+  --glow-teal: #94a3b8;
+  --glow-teal-a15: rgba(148, 163, 184, 0.15);
+  --glow-teal-a25: rgba(148, 163, 184, 0.25);
+  --glow-teal-a35: rgba(148, 163, 184, 0.35);
+  --glow-teal-a70: rgba(148, 163, 184, 0.7);
+}
+
+/* Light theme overrides for accent presets */
+html[data-theme="light"][data-accent="emerald"] {
+  --accent: #059669;
+  --accent2: #2563eb;
+  --glow-gold: #059669;
+  --glow-teal: #2563eb;
+}
+html[data-theme="light"][data-accent="violet"] {
+  --accent: #9333ea;
+  --accent2: #db2777;
+  --glow-gold: #9333ea;
+  --glow-teal: #db2777;
+}
+html[data-theme="light"][data-accent="cyan"] {
+  --accent: #0891b2;
+  --accent2: #4f46e5;
+  --glow-gold: #0891b2;
+  --glow-teal: #4f46e5;
+}
+html[data-theme="light"][data-accent="ruby"] {
+  --accent: #e11d48;
+  --accent2: #ea580c;
+  --glow-gold: #e11d48;
+  --glow-teal: #ea580c;
+}
+html[data-theme="light"][data-accent="prism"] {
+  --accent: #475569;
+  --accent2: #64748b;
+  --glow-gold: #475569;
+  --glow-teal: #64748b;
+}
+
+/* ── Color Accent Picker Component ───────────────────────────── */
+.color-picker-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.color-picker-toggle {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 9999px;
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s ease, background-color 0.2s ease;
+  padding: 0;
+  position: relative;
+}
+
+.color-picker-toggle:hover,
+.color-picker-toggle[aria-expanded="true"] {
+  border-color: var(--accent);
+  background: var(--accent-a12);
+  transform: scale(1.08);
+}
+
+.color-picker-toggle .picker-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+  box-shadow: 0 0 10px var(--accent-a45);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.color-picker-popover {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  min-width: 200px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.96);
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s;
+}
+
+.color-picker-popover.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.color-swatch-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 6px;
+  background: var(--glass-bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--text);
+  font-size: 0.7rem;
+  font-family: var(--sans);
+  font-weight: 500;
+  transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+
+.color-swatch-btn:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  background: var(--accent-a07);
+}
+
+.color-swatch-btn.active {
+  border-color: var(--accent);
+  background: var(--accent-a12);
+  box-shadow: 0 0 8px var(--accent-a35);
+}
+
+.color-swatch-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.color-swatch-circle.gold { background: linear-gradient(135deg, #d4a85a, #6dbfaa); }
+.color-swatch-circle.emerald { background: linear-gradient(135deg, #10b981, #3b82f6); }
+.color-swatch-circle.violet { background: linear-gradient(135deg, #a855f7, #ec4899); }
+.color-swatch-circle.cyan { background: linear-gradient(135deg, #06b6d4, #6366f1); }
+.color-swatch-circle.ruby { background: linear-gradient(135deg, #f43f5e, #fb923c); }
+.color-swatch-circle.prism { background: linear-gradient(135deg, #cbd5e1, #94a3b8); }
+}
+
 /* ── Site-wide Light Mode Glow & Shadow Disabling ────────────── */
 html[data-theme="light"] *,
 html[data-theme="light"] *::before,
