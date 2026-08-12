@@ -1,6 +1,6 @@
 {
-  "sha": "c1d8cde2aea3065c8735c869f20120765c7148b1",
-  "shortSha": "c1d8cde",
-  "date": "2026-08-12T19:37:24+05:45",
-  "message": "refactor: update style.css, index.html - html[data-theme=light][data-accent=prism] { (+46/-1)\n"
+  "sha": "8be36aa1fc2ba009bdaeddd0f7d51767e71989b3",
+  "shortSha": "8be36aa",
+  "date": "2026-08-12T19:43:19+05:45",
+  "message": "style(hero): enable responsive multi-line wrapping for animated caption text on small screens\n"
 }
