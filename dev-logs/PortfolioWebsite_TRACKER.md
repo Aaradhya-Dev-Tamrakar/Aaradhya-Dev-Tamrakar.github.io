@@ -4,10 +4,10 @@
 
 ## Meta
 
-- **v41 — Color Upgrades & Multi-Theme Accent Customization Suite.** Upgraded site visual depth, dynamic radial color glows, glassmorphic card borders, and added an interactive 6-theme accent color palette switcher in navigation.
-  - **Interactive Accent Switcher**: Introduced 6 curated color themes: Gold 👑 (`#d4a85a` default signature), Cyber Emerald ⚡ (`#10b981`), Electric Violet 🔮 (`#a855f7`), Ocean Cyan 🌊 (`#06b6d4`), Ruby Flame 🔴 (`#f43f5e`), and Midnight Prism 🌌 (`#cbd5e1`).
+- **v41 — Color Upgrades & Developer Easter Egg Accent Customization Suite.** Upgraded site visual depth, dynamic radial color glows, glassmorphic card borders, while maintaining clean signature Amber Gold brand identity in header navigation.
+  - **Signature Brand Identity Preserved**: Kept header navbar & mobile drawer clean, unified, and strictly focused on signature Amber Gold (`#d4a85a`) & Cyber Teal (`#6dbfaa`).
+  - **Developer Easter Egg Customization**: Relocated the 6-theme accent color palette switcher (Gold 👑, Emerald ⚡, Violet 🔮, Cyan 🌊, Ruby 🔴, Prism 🌌) to the Interactive Dev Terminal (`accent [theme]`) and CMDK Command Palette (`Ctrl+K`).
   - **Dynamic Theme Token System**: Created CSS data-attribute overrides (`html[data-accent="..."]`) supporting both Dark & Light modes with dynamic variable inheritance across scrollbars, buttons, hero ambient glows, and terminal highlights.
-  - **Navigation Integration**: Rendered interactive color picker popup menu in the header navbar and mobile navigation drawer with tactile haptic feedback.
   - **Persistence & PWA**: Saved choice to `localStorage['adt-accent']`, updated Service Worker cache to `aaradhya-portfolio-v41`, and appended release v41 history in `script.js`.
   - **Verification**: `python scripts/verify.py` passed with 0 errors (37 achievements, 22 projects, 34 journey nodes); `node -c assets/js/script.js` verified clean syntax.
 

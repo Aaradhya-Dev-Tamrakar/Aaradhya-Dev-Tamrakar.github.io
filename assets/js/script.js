@@ -281,7 +281,13 @@ const CMDK_PAGES = [
   { title: 'Contact', href: '/contact.html' },
   { title: "Guided Site Tour (Shift+T)", href: "javascript:startTour()" },
   { title: "Toggle Audio Micro-Sounds (Shift+A)", href: "javascript:toggleAudioCues()" },
-  { title: "What's New (v40 Major Releases)", href: "javascript:openWhatsNewModal()" },
+  { title: "What's New (v41 Major Releases)", href: "javascript:openWhatsNewModal()" },
+  { title: "Accent Color: Amber Gold (Default 👑)", href: "javascript:applyAccent('gold')" },
+  { title: "Accent Color: Cyber Emerald (⚡)", href: "javascript:applyAccent('emerald')" },
+  { title: "Accent Color: Electric Violet (🔮)", href: "javascript:applyAccent('violet')" },
+  { title: "Accent Color: Ocean Cyan (🌊)", href: "javascript:applyAccent('cyan')" },
+  { title: "Accent Color: Ruby Flame (🔴)", href: "javascript:applyAccent('ruby')" },
+  { title: "Accent Color: Midnight Prism (🌌)", href: "javascript:applyAccent('prism')" },
 ];
 
 /* ── Quick-nav ("Explore") card data ──────────────────────────
@@ -797,37 +803,6 @@ function renderSiteNav() {
             <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
         </button>
-        <div class="color-picker-wrap" id="colorPickerWrap">
-          <button class="color-picker-toggle" id="colorPickerToggle" aria-label="Choose accent theme" aria-expanded="false" title="Choose Accent Color Theme">
-            <span class="picker-dot"></span>
-          </button>
-          <div class="color-picker-popover" id="colorPickerPopover" role="menu" aria-label="Accent Color Palettes">
-            <button type="button" class="color-swatch-btn" data-accent-swatch="gold" role="menuitem" title="Amber Gold (Default)">
-              <span class="color-swatch-circle gold"></span>
-              <span>Gold</span>
-            </button>
-            <button type="button" class="color-swatch-btn" data-accent-swatch="emerald" role="menuitem" title="Cyber Emerald">
-              <span class="color-swatch-circle emerald"></span>
-              <span>Emerald</span>
-            </button>
-            <button type="button" class="color-swatch-btn" data-accent-swatch="violet" role="menuitem" title="Electric Violet">
-              <span class="color-swatch-circle violet"></span>
-              <span>Violet</span>
-            </button>
-            <button type="button" class="color-swatch-btn" data-accent-swatch="cyan" role="menuitem" title="Ocean Cyan">
-              <span class="color-swatch-circle cyan"></span>
-              <span>Cyan</span>
-            </button>
-            <button type="button" class="color-swatch-btn" data-accent-swatch="ruby" role="menuitem" title="Ruby Flame">
-              <span class="color-swatch-circle ruby"></span>
-              <span>Ruby</span>
-            </button>
-            <button type="button" class="color-swatch-btn" data-accent-swatch="prism" role="menuitem" title="Midnight Prism">
-              <span class="color-swatch-circle prism"></span>
-              <span>Prism</span>
-            </button>
-          </div>
-        </div>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
@@ -852,29 +827,6 @@ function renderSiteNav() {
 
     <div class="nav-drawer" id="navDrawer" role="navigation" aria-label="Mobile navigation">
       ${drawerLinks}
-      <div style="margin: 0.5rem 1rem 1rem; padding: 0.75rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 12px;">
-        <div style="font-size: 0.72rem; color: var(--muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; text-align: center;">Accent Color Theme</div>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
-          <button type="button" class="color-swatch-btn" data-accent-swatch="gold">
-            <span class="color-swatch-circle gold"></span><span>Gold</span>
-          </button>
-          <button type="button" class="color-swatch-btn" data-accent-swatch="emerald">
-            <span class="color-swatch-circle emerald"></span><span>Emerald</span>
-          </button>
-          <button type="button" class="color-swatch-btn" data-accent-swatch="violet">
-            <span class="color-swatch-circle violet"></span><span>Violet</span>
-          </button>
-          <button type="button" class="color-swatch-btn" data-accent-swatch="cyan">
-            <span class="color-swatch-circle cyan"></span><span>Cyan</span>
-          </button>
-          <button type="button" class="color-swatch-btn" data-accent-swatch="ruby">
-            <span class="color-swatch-circle ruby"></span><span>Ruby</span>
-          </button>
-          <button type="button" class="color-swatch-btn" data-accent-swatch="prism">
-            <span class="color-swatch-circle prism"></span><span>Prism</span>
-          </button>
-        </div>
-      </div>
       <button class="nav-access-btn" id="drawerAccessBtn" style="margin: 0 0 1rem; width: calc(100% - 2rem); justify-content: center;" aria-label="Access Control">
         Access Control / Login
       </button>
@@ -3243,6 +3195,7 @@ function initKeyNav() {
   <span class="term-gold">contact</span>      - Direct communication channels<br>
   <span class="term-gold">whatsnew</span>     - View v39 major release highlights<br>
   <span class="term-gold">theme</span>        - Toggle site color scheme (Dark / Light)<br>
+  <span class="term-gold">accent [name]</span> - Easter egg color themes (gold, emerald, violet, cyan, ruby, prism)<br>
   <span class="term-gold">matrix</span>       - Trigger cybernetic digital rain<br>
   <span class="term-gold">clear</span>        - Clear terminal screen output
 `.trim(),
@@ -3299,6 +3252,22 @@ function initKeyNav() {
         if (typeof toggleTheme === 'function') toggleTheme();
         return '<span class="term-green">Color theme toggled!</span>';
       },
+      accent: (arg) => {
+        const val = (arg || '').toLowerCase().trim();
+        const themes = ['gold', 'emerald', 'violet', 'cyan', 'ruby', 'prism'];
+        if (!val) {
+          const current = localStorage.getItem('adt-accent') || 'gold';
+          return `<span class="term-green">▶ Available Accent Themes (Easter Egg):</span><br>` +
+            themes.map(t => `  • <span class="term-gold">${t}</span>${t === current ? ' <span class="term-cyan">(active)</span>' : ''}`).join('<br>') +
+            `<br><br>Type <span class="term-cyan">'accent [theme]'</span> (e.g. <span class="term-gold">accent emerald</span>, <span class="term-gold">accent violet</span>) to activate!`;
+        }
+        if (themes.includes(val)) {
+          applyAccent(val);
+          return `<span class="term-green">Accent color theme updated to: <strong>${val}</strong></span>`;
+        }
+        return `<span class="term-gold">Unknown accent: '${val}'. Available options: ${themes.join(', ')}</span>`;
+      },
+      color: (arg) => COMMANDS.accent(arg),
       clear: () => {
         body.innerHTML = '';
         return '';
@@ -3333,18 +3302,22 @@ function initKeyNav() {
     }
 
     function execCommand(rawCmd) {
-      const cmd = rawCmd.trim().toLowerCase();
-      if (!cmd) return;
+      const trimmed = rawCmd.trim();
+      if (!trimmed) return;
       triggerHapticFeedback(10);
-      if (cmd === 'clear') {
+      const parts = trimmed.split(/\s+/);
+      const baseCmd = parts[0].toLowerCase();
+      const arg = parts.slice(1).join(' ');
+
+      if (baseCmd === 'clear') {
         COMMANDS.clear();
         return;
       }
-      const handler = COMMANDS[cmd];
+      const handler = COMMANDS[baseCmd];
       if (handler) {
-        appendOutput(rawCmd, handler());
+        appendOutput(rawCmd, handler(arg));
       } else {
-        appendOutput(rawCmd, `<span class="term-red">Command not found: '${escapeHtml(cmd)}'. Type <span class="term-gold">'help'</span> for a list of available commands.</span>`);
+        appendOutput(rawCmd, `<span class="term-red">Command not found: '${escapeHtml(trimmed)}'. Type <span class="term-gold">'help'</span> for a list of available commands.</span>`);
       }
     }
 
