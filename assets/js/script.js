@@ -91,6 +91,19 @@ let tourLastFocus = null;
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
   {
+    version: 'v40',
+    date: '2026-08-12',
+    sha: '94bef09',
+    title: 'Site-Wide v40 Upgrade Suite — Inter Typography & Performance Core',
+    highlights: [
+      'Inter variable font typography system modernization with optimized font fallbacks',
+      'IntersectionObserver & Visibility API canvas rendering lifecycle optimization',
+      'Spring-eased count-up milestone stat counters & card transform hardware scoping',
+      'Scrolled nav saturation/blur (saturate 180% + blur 20px) visual upgrade',
+      'PWA Service Worker cache version upgraded to aaradhya-portfolio-v40'
+    ]
+  },
+  {
     version: 'v39',
     date: '2026-08-09',
     sha: '0039321',
@@ -255,7 +268,7 @@ const CMDK_PAGES = [
   { title: 'Contact', href: '/contact.html' },
   { title: "Guided Site Tour (Shift+T)", href: "javascript:startTour()" },
   { title: "Toggle Audio Micro-Sounds (Shift+A)", href: "javascript:toggleAudioCues()" },
-  { title: "What's New (v39 Major Releases)", href: "javascript:openWhatsNewModal()" },
+  { title: "What's New (v40 Major Releases)", href: "javascript:openWhatsNewModal()" },
 ];
 
 /* ── Quick-nav ("Explore") card data ──────────────────────────
@@ -1252,8 +1265,8 @@ function initCountUp() {
     function step(now) {
       const elapsed = now - startTime;
       const progress = Math.min(1, elapsed / duration);
-      const easeOut = 1 - Math.pow(1 - progress, 3);
-      const current = Math.floor(easeOut * targetVal);
+      const spring = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress) * Math.cos((progress * 10 - 0.75) * ((2 * Math.PI) / 3));
+      const current = Math.min(targetVal, Math.floor(spring * targetVal));
 
       el.innerHTML = `${current}${spanSuffix}`;
 

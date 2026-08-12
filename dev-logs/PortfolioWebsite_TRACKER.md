@@ -1,8 +1,16 @@
-# Portfolio Website Tracker — v39
+# Portfolio Website Tracker — v40
 
-## _Last updated: 2026-08-09_
+## _Last updated: 2026-08-12_
 
 ## Meta
+
+- **v40 — Inter Typography Modernization & Performance Core Suite.** Upgraded site typography system and overall rendering performance while preserving gold/teal identity.
+  - **Typography Modernization**: Replaced Cormorant Garamond & Instrument Sans with Inter variable font (`Inter:wght@300;400;500;600;700`) for body/UI text across all 10 HTML pages; kept Playfair Display for signature headings and DM Mono for terminal/code.
+  - **Canvas Animation Lifecycle Optimization**: Added `VisibilityAPI` (`document.hidden`) and `IntersectionObserver` pause hooks to `SignalWaveBackground` and `PCBTraces` in `index.html` — eliminates background rAF CPU/GPU overhead when offscreen or tab hidden.
+  - **CSS Cleanup & Optimization**: Consolidated duplicate `.skip-link` declarations, removed unused `#readProgressBar` CSS rule, scoped `will-change: transform` to `:hover` active states across cards.
+  - **Visual & Interaction Polish**: Upgraded scrolled navbar backdrop filter (`saturate(180%) blur(20px)`), added tactile spring curve overshoot easing to stat counters count-up, updated `.btn-primary` spring transition on hover.
+  - **Service Worker & Metadata**: Updated SW cache to `aaradhya-portfolio-v40`, terminal welcome header to v40, and appended v40 release history item in `assets/js/script.js`.
+  - **Verification**: `python scripts/verify.py` passed with 0 errors (37 achievements, 22 projects, 34 journey nodes); `node -c assets/js/script.js` verified clean syntax.
 
 - **v39 — SEO, AEO & ADT Brand Identity Upgrade across all site pages.** Established "ADT" (Aaradhya Dev Tamrakar) as a clear personal brand identity across search engines, LLM answer engines (ChatGPT, Gemini, Perplexity, Copilot), and social previews.
   - **ADT Branding in Titles & Descriptions**: Added `ADT |` prefix to `<title>` and `og:title`/`twitter:title` tags across all 10 HTML pages. Updated meta descriptions to naturally incorporate "ADT (Aaradhya Dev Tamrakar)".

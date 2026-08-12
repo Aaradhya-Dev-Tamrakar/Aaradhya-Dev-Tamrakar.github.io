@@ -39,29 +39,6 @@
   to { opacity: 1; transform: scale(1); }
 }
 
-/* ── Skip Link for Keyboard Accessibility ─────────────────── */
-.skip-link {
-  position: absolute;
-  top: -100px;
-  left: 1rem;
-  z-index: 10000;
-  padding: 0.75rem 1.25rem;
-  background: var(--heading);
-  color: var(--bg);
-  font-family: var(--mono);
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 0 0 6px 6px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: top 0.2s ease-in-out;
-}
-.skip-link:focus {
-  top: 0;
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
 /* ── Content Visibility Optimization ─────────────────────── */
 .content-visibility-auto {
   content-visibility: auto;
@@ -88,9 +65,9 @@
   --accent-a80: rgba(212, 168, 90, 0.8);
   --heading: #f8f5ee;
   --display-serif: "Playfair Display", Georgia, serif;
-  --serif: "Cormorant Garamond", Georgia, serif;
+  --serif: "Playfair Display", Georgia, serif;
   --mono: "DM Mono", monospace;
-  --sans: "Instrument Sans", sans-serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --nav-scrolled-bg: rgba(15, 14, 12, 0.88);
   --glass-bg: rgba(255, 255, 255, 0.03);
   --glass-border: rgba(255, 255, 255, 0.08);
@@ -234,13 +211,6 @@ html[data-theme="light"] .card-gradient-border::before {
 }
 
 @font-face {
-  font-family: "Cormorant Garamond";
-  font-display: swap;
-  src: local("Georgia");
-  size-adjust: 103%;
-}
-
-@font-face {
   font-family: "DM Mono";
   font-display: swap;
   src: local("Courier New");
@@ -248,9 +218,9 @@ html[data-theme="light"] .card-gradient-border::before {
 }
 
 @font-face {
-  font-family: "Instrument Sans";
+  font-family: "Inter";
   font-display: swap;
-  src: local("Arial");
+  src: local("Arial"), local("Helvetica");
   size-adjust: 100%;
 }
 
@@ -265,8 +235,8 @@ body {
   color: var(--text);
   font-family: var(--sans);
   font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: 1.0625rem;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -407,8 +377,8 @@ nav {
 nav.scrolled {
   border-color: var(--line);
   background: var(--nav-scrolled-bg);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
 }
 
 .nav-logo {
@@ -1018,7 +988,8 @@ html[data-theme="light"] .divider-node {
   transition:
     color 0.25s,
     box-shadow 0.3s,
-    background 0.25s;
+    background 0.25s,
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .btn-primary::before {
@@ -1043,6 +1014,7 @@ html[data-theme="light"] .divider-node {
   background: var(--accent);
   color: var(--bg);
   box-shadow: 0 0 18px var(--accent-a35);
+  transform: translateY(-1px);
 }
 
 .btn-primary:hover::before {
@@ -2984,28 +2956,21 @@ html[data-theme="light"] .gated-overlay {
 }
 
 /* ==========================================================================
-   v32 Upgrade Utilities: Reading Progress Bar & Card 3D Tilt Hardware Acceleration
+   v32 Upgrade Utilities: Card 3D Tilt Hardware Acceleration
    ========================================================================== */
-#readProgressBar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  width: 0%;
-  background: var(--accent);
-  box-shadow: 0 0 10px var(--accent-glow);
-  z-index: 10001;
-  transition: width 0.08s ease-out;
-  pointer-events: none;
-}
-
 .project-card,
 .achievement-item,
 .journey-node,
 .exp-card {
-  will-change: transform;
   transform-style: preserve-3d;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover,
+.achievement-item:hover,
+.journey-node:hover,
+.exp-card:hover {
+  will-change: transform;
 }
 
 /* ==========================================================================

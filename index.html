@@ -174,12 +174,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" />
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" />
   <link rel="stylesheet" media="print" onload="this.media='all'"
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" />
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" />
   <noscript>
     <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" />
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" />
   </noscript>
 
   <!-- Shared site stylesheet -->
@@ -999,7 +999,7 @@
         <div class="terminal-body">
           <div class="term-line">
             <span class="term-green">Welcome to Aaradhya Dev Tamrakar's Interactive Developer Terminal
-              (v39).</span><br />
+              (v40).</span><br />
             Type <span class="term-gold">'help'</span> or click the preset buttons above to explore.
           </div>
         </div>
@@ -1230,6 +1230,9 @@
         this.ctx = this.canvas.getContext("2d");
         this.t = 0;
         this._resizeTimer = null;
+        this.isVis = true;
+        this.isObs = true;
+        this.animating = false;
         this.waveDefs = [
           { y: .18, amp: 28, freq: .008, speed: .003, phase: 0, useAccent2: false },
           { y: .38, amp: 18, freq: .012, speed: .0022, phase: Math.PI, useAccent2: true },
@@ -1238,17 +1241,41 @@
           { y: .92, amp: 22, freq: .01, speed: .002, phase: Math.PI * 0.7, useAccent2: false },
         ];
         this.resize();
-        this.animate();
+        this.initObserver();
+        this.start();
         window.addEventListener("resize", () => {
           clearTimeout(this._resizeTimer);
           this._resizeTimer = setTimeout(() => this.resize(), 120);
         });
+      }
+      initObserver() {
+        document.addEventListener("visibilitychange", () => {
+          this.isVis = !document.hidden;
+          if (this.isVis && this.isObs) this.start();
+        });
+        if ("IntersectionObserver" in window) {
+          const obs = new IntersectionObserver(([e]) => {
+            this.isObs = e.isIntersecting;
+            if (this.isVis && this.isObs) this.start();
+          });
+          obs.observe(this.canvas);
+        }
+      }
+      start() {
+        if (!this.animating && this.isVis && this.isObs) {
+          this.animating = true;
+          this.animate();
+        }
       }
       resize() {
         this.W = this.canvas.width = window.innerWidth;
         this.H = this.canvas.height = window.innerHeight;
       }
       animate() {
+        if (!this.isVis || !this.isObs) {
+          this.animating = false;
+          return;
+        }
         const { W, H, ctx } = this;
         ctx.clearRect(0, 0, W, H);
         this.t += 1;
@@ -1296,12 +1323,35 @@
         this.t = 0;
         this._resizeTimer = null;
         this.traces = [];
+        this.isVis = true;
+        this.isObs = true;
+        this.animating = false;
         this.resize();
-        this.animate();
+        this.initObserver();
+        this.start();
         window.addEventListener("resize", () => {
           clearTimeout(this._resizeTimer);
           this._resizeTimer = setTimeout(() => { this.resize(); this.buildTraces(); }, 150);
         });
+      }
+      initObserver() {
+        document.addEventListener("visibilitychange", () => {
+          this.isVis = !document.hidden;
+          if (this.isVis && this.isObs) this.start();
+        });
+        if ("IntersectionObserver" in window) {
+          const obs = new IntersectionObserver(([e]) => {
+            this.isObs = e.isIntersecting;
+            if (this.isVis && this.isObs) this.start();
+          });
+          obs.observe(this.canvas);
+        }
+      }
+      start() {
+        if (!this.animating && this.isVis && this.isObs) {
+          this.animating = true;
+          this.animate();
+        }
       }
       resize() {
         this.W = this.canvas.width = window.innerWidth;
@@ -1364,6 +1414,10 @@
         });
       }
       animate() {
+        if (!this.isVis || !this.isObs) {
+          this.animating = false;
+          return;
+        }
         const { W, H, ctx } = this;
         ctx.clearRect(0, 0, W, H);
         this.t += 1;
