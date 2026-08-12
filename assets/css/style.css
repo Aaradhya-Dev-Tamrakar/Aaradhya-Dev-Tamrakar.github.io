@@ -394,7 +394,7 @@ html[data-theme="light"][data-accent="prism"] {
 .color-swatch-circle.cyan { background: linear-gradient(135deg, #06b6d4, #6366f1); }
 .color-swatch-circle.ruby { background: linear-gradient(135deg, #f43f5e, #fb923c); }
 .color-swatch-circle.prism { background: linear-gradient(135deg, #cbd5e1, #94a3b8); }
-}
+
 
 /* ── Site-wide Light Mode Glow & Shadow Disabling ────────────── */
 html[data-theme="light"] *,
@@ -484,6 +484,7 @@ html[data-theme="light"] .card-gradient-border::before {
 html {
   scroll-behavior: smooth;
   background: var(--bg);
+  overflow-x: clip;
 }
 
 body {

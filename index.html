@@ -688,16 +688,42 @@
         gap: 2.5rem;
       }
 
+      .hero-left,
+      .hero-right {
+        min-width: 0;
+      }
+
       .hero-right {
         order: 1;
+      }
+
+      .hero-tag {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        min-width: 0;
       }
 
       .hero-name {
         font-size: clamp(2.4rem, 9vw, 3.5rem);
       }
 
+      .hero-desc {
+        max-width: 100%;
+      }
+
+      .hero-caption {
+        max-width: calc(100vw - 3rem);
+      }
+
       .status-card {
         padding: 1.5rem;
+      }
+
+      .status-item-value {
+        max-width: 55%;
+        word-break: break-word;
+        overflow-wrap: break-word;
       }
 
       #stats {
@@ -718,6 +744,19 @@
     }
 
     @media (max-width: 480px) {
+      #hero {
+        padding: 6rem 1rem 3rem;
+      }
+
+      .hero-tag {
+        font-size: 0.58rem;
+        max-width: calc(100vw - 2rem);
+      }
+
+      .hero-caption {
+        max-width: calc(100vw - 2rem);
+      }
+
       .hero-actions {
         flex-wrap: wrap;
         gap: 0.6rem;
@@ -734,6 +773,11 @@
 
       .status-clock {
         margin-left: 1.25rem;
+      }
+
+      .status-item-value {
+        font-size: 0.88rem;
+        max-width: 50%;
       }
     }
 
