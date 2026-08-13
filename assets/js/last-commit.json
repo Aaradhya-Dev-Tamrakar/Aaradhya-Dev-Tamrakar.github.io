@@ -1,6 +1,6 @@
 {
-  "sha": "d24b9c02464040f81a98e8bc33630fe88700bc9f",
-  "shortSha": "d24b9c0",
-  "date": "2026-08-12T19:48:48+05:45",
-  "message": "style(mobile): fix squished access control card columns and keymap floating button overlaps\n"
+  "sha": "aa6bd010f1e30d1ebfaa52e7e5def3498352bbb6",
+  "shortSha": "aa6bd01",
+  "date": "2026-08-13T11:17:51+05:45",
+  "message": "feat(arch): upgrade site to v42 with modular JS architecture and performance core\n"
 }
