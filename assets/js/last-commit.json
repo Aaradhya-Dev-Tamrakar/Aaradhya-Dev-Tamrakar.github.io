@@ -1,6 +1,6 @@
 {
-  "sha": "47a7e9b30986a2082aad8fd0b6773b8ff2be2c28",
-  "shortSha": "47a7e9b",
-  "date": "2026-08-13T17:34:46+05:45",
-  "message": "feat(v45): ship robust troubleshooting infrastructure, pre-commit gate & terminal healthcheck\n"
+  "sha": "de79f2552963bc2d1bfec5834e4f2eb187db548b",
+  "shortSha": "de79f25",
+  "date": "2026-08-13T17:35:20+05:45",
+  "message": "docs(readme): update README.md to document v45 troubleshooting suite & pre-commit gate\n"
 }
