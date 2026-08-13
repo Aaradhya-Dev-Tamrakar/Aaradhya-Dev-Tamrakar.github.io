@@ -1,6 +1,6 @@
 {
-  "sha": "5ce3e5484602b10926f7c7643d6870612893f8fe",
-  "shortSha": "5ce3e54",
-  "date": "2026-08-13T17:06:22+05:45",
-  "message": "refactor: update script.js - const SEARCH_STATIC_INDEX = { (+2/-0)\n"
+  "sha": "343225bbd6dfa7cfa920e3f573479eeca8666174",
+  "shortSha": "343225b",
+  "date": "2026-08-13T17:09:48+05:45",
+  "message": "refactor: update about.html, script.js, index.html - window.SEARCH_STATIC_INDEX = SEARCH_STATIC_INDEX; (+68/-40)\n"
 }
