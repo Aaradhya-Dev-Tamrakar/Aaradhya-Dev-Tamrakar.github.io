@@ -22,7 +22,7 @@ Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronic
 │   ├── terms.html              # Terms of service and usage terms
 │   ├── 404.html                # Custom styled Not-Found page (excluded from sitemap, marked noindex)
 │   ├── site.webmanifest        # Progressive Web App manifest metadata (standalone app, dark theme tokens)
-│   ├── sw.js                   # PWA Service Worker (v33 cache-first static assets & network-first HTML)
+│   ├── sw.js                   # PWA Service Worker (v45 cache-first static assets & network-first HTML)
 │   └── google3e772e11a3eb8313.html # Google Search Console site ownership verification file
 │
 ├── 🎨 Assets (`assets/`)
@@ -38,18 +38,20 @@ Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronic
 │   │   ├── og-image.jpg        # Open Graph social sharing preview card
 │   │   └── logos/              # Institutional logos (IEEE KEC, Fusemachines, EPC Club, Maker's Space, NSSR)
 │   ├── js/
-│   │   ├── script.js           # Core site engine: nav, theme toggle, access control, Google Sign-In & search
+│   │   ├── script.js           # Core site engine: nav, theme toggle, access control, Google Sign-In & search (v45)
+│   │   ├── modules/            # Decoupled ES/IIFE JavaScript modules (core, ui, cmdk, access, tour, audio, terminal, haptics)
 │   │   └── last-commit.json    # Commit metadata stamped on push via GitHub Actions for live commit status display
 │   └── videos/                 # Project video demonstrations (e.g., GCSBR working demo) & poster stills
 │
 ├── 🛠️ Scripts (`scripts/`)
-│   ├── verify.py               # Structural integrity check: HTML tag balance, search index sync, PWA & metadata audit
+│   ├── verify.py               # 17-category diagnostic suite: cross-page links, asset references, JS syntax, versions, JSON-LD, size budgets
 │   ├── extract_index.py        # Python script to extract searchable items into the static command palette index
-│   └── dev-serve.py            # Local HTTP development testing server with strict no-cache headers
+│   └── dev-serve.py            # Local HTTP dev testing server with project root resolution, CORS headers & MIME type handling
 │
 ├── 🤖 GitHub Workflows (`.github/workflows/`)
 │   ├── stamp-last-commit.yml   # CI bot stamping last commit hash, timestamp & message on every push
-│   └── update-search-index.yml # CI bot auto-regenerating search index on HTML content changes
+│   ├── update-search-index.yml # CI bot auto-regenerating search index on HTML content changes
+│   └── verify.yml              # CI workflow running Node.js syntax checks & Python verification suite
 │
 ├── 📊 Dev Logs & Knowledge Graph (`dev-logs/` & `graphify-out/`)
 │   ├── dev-logs/
@@ -122,11 +124,17 @@ Located directly on the Home page (`index.html`), the **Interactive Dev Terminal
 ### Terminal Commands
 
 - `skills`: Overview of core firmware, AI/ML, robotics, and software toolstacks.
+- `radar`: Opens the interactive 5-axis Skill Radar visualizer.
+- `resume`: Opens the recruiter ATS Resume Generator & PDF Exporter.
 - `projects`: Summary of featured projects (PulseLive, GCSBR, Autonomous Rover).
+- `run [spark|gcsbr]`: Runs interactive hardware telemetry simulation.
+- `glossary [term]`: Looks up technical engineering acronyms.
 - `experience`: Engineering leadership roles (IEEE KEC Vice Secretary, Robotics Lead).
 - `achievements`: Overview of 36+ verified certifications and competition awards.
 - `contact`: Direct email, GitHub, and LinkedIn links.
-- `whatsnew`: Triggers the **What's New (v33)** major releases modal.
+- `whatsnew`: Triggers the **What's New** major releases modal.
+- `healthcheck`: Runs **client-side site diagnostics** (modules, SW, version, timing, nav links).
+- `accent [theme]`: Easter egg color theme switcher (gold, emerald, violet, cyan, ruby, prism).
 - `theme`: Toggles site light/dark color scheme.
 - `matrix`: Renders cybernetic digital rain animation stream.
 - `clear`: Clears terminal screen.
@@ -141,22 +149,24 @@ Located directly on the Home page (`index.html`), the **Interactive Dev Terminal
 
 ## ⚡ Local Development & Git Workflow
 
-### Local Development Server
+### Verification & Diagnostic Suite
 
-To preview the portfolio locally with no-cache headers:
+To run the complete 17-category diagnostic verification engine locally:
 
 ```bash
+python scripts/verify.py            # Standard verification check
+python scripts/verify.py --verbose  # Detailed check report with passes
 python scripts/extract_index.py   # Regenerates static search index
-python scripts/dev-serve.py        # Starts local server on http://localhost:8000
+python scripts/dev-serve.py        # Starts local server on http://127.0.0.1:5500
 ```
 
 Alternatively, open `index.html` directly in any web browser.
 
-### Automated Git Workflow (`sync.ps1`)
+### Automated Git Workflow & Pre-Commit Gate (`sync.ps1`)
 
-To prevent merge conflicts with GitHub Actions commit-back bots (which auto-update `assets/js/last-commit.json` and search index files), use `sync.ps1`:
+To prevent merge conflicts with GitHub Actions commit-back bots and ensure code quality:
 
-- **Routine & Minor Updates** (Auto-generates conventional commit message and syncs timestamps):
+- **Routine & Minor Updates** (Auto-runs index extraction, graphify knowledge update, `verify.py` pre-commit gate, conventional commit generation & push):
 
   ```powershell
   .\sync.ps1
@@ -167,7 +177,13 @@ To prevent merge conflicts with GitHub Actions commit-back bots (which auto-upda
   ```powershell
   # 1. Update dev-logs/PortfolioWebsite_TRACKER.md with release notes first
   # 2. Run sync script with detailed message:
-  .\sync.ps1 -m "feat(access-control): implement multi-tier OAuth security system"
+  .\sync.ps1 -m "feat(v45): ship robust troubleshooting infrastructure & pre-commit gate"
+  ```
+
+- **Emergency Push (Bypass Verification Gate)**:
+
+  ```powershell
+  .\sync.ps1 -SkipVerify
   ```
 
 - **Safe Remote Pull**:
