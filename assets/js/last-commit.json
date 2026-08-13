@@ -1,6 +1,6 @@
 {
-  "sha": "aa6bd010f1e30d1ebfaa52e7e5def3498352bbb6",
-  "shortSha": "aa6bd01",
-  "date": "2026-08-13T11:17:51+05:45",
-  "message": "feat(arch): upgrade site to v42 with modular JS architecture and performance core\n"
+  "sha": "93afdac362fb5a650ec6ec01c0a3fdbf672db643",
+  "shortSha": "93afdac",
+  "date": "2026-08-13T11:23:26+05:45",
+  "message": "feat(site): v43 upgrade suite - skill radar, ATS resume generator, project media code inspector & interactive sandbox\n"
 }
