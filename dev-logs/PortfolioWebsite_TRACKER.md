@@ -1,8 +1,14 @@
-# Portfolio Website Tracker — v45
+# Portfolio Website Tracker — v46
 
 ## _Last updated: 2026-08-13_
 
 ## Meta
+- **v46 — Site-Wide Hyper-Automation Suite & Custom Site MCP Server Integration.** Shipped site-wide hyper-automation suite & custom site mcp server integration.
+  - Shipped unified hyper-automation CLI engine (scripts/site_automation.py) supporting site telemetry, automated audits, version syncing, and search index extraction.
+  - Built custom Site Model Context Protocol (MCP) server (mcp-server/site_mcp.py) exposing site:// projects, experience, achievements, tracker, graph, and health resources over stdio.
+  - Added mcp_config.json configuration for instant registration in Antigravity IDE, Claude Desktop, and Cursor.
+  - Added .github/workflows/lighthouse-audit.yml for automated Lighthouse CI accessibility and performance testing.
+
 
 - **v45 — Site-Wide Upgrade Suite: Robust Troubleshooting Infrastructure, Pre-Commit Gate & Client Diagnostics.** Shipped major architectural upgrade to diagnostic suite and DevEx pipeline. Expanded `verify.py` from 5 to 17 check categories, added automated pre-commit verification gate to `sync.ps1`, fixed `dev-serve.py` ROOT path bug with CORS & MIME support, added interactive `healthcheck` command to Dev Terminal, updated GitHub Actions CI workflow with Node.js syntax checks, and bumped PWA Service Worker cache to `aaradhya-portfolio-v45`.
   - **17-Category Diagnostic Suite**: Rewrote `scripts/verify.py` into a modular verification engine checking cross-page links, asset references, JS syntax, version consistency, module paths, sitemap sync, web manifest JSON, JSON-LD schemas, file size budgets, SW cache completeness, robots.txt, and global ID uniqueness with color-coded categorized reporting.

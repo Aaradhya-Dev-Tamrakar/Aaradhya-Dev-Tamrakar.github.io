@@ -1,10 +1,10 @@
 /* ============================================================
-   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io (v45)
+   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io (v46)
    Loaded on every page via <script src="assets/js/script.js">.
    Orchestrates core modules from assets/js/modules/
    ============================================================ */
 
-/* ── Dynamic Module Loader (v45) ───────────────────────────── */
+/* ── Dynamic Module Loader (v46) ───────────────────────────── */
 window.__modulesLoadedPromise = (function () {
   const MODULES = [
     'assets/js/modules/core.js',
@@ -36,6 +36,18 @@ window.__modulesLoadedPromise = (function () {
 
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
+  {
+    version: 'v46',
+    date: '2026-08-13',
+    sha: 'hyp3r46',
+    title: 'Site-Wide Hyper-Automation Suite & Custom Site MCP Server Integration',
+    highlights: [
+      'Site Automation Engine: Shipped scripts/site_automation.py CLI supporting automated site telemetry, audits, version syncing, and search index extraction',
+      'Site MCP Server: Built custom Model Context Protocol server (mcp-server/site_mcp.py) exposing site:// projects, experience, achievements, tracker, graph, and health resources over stdio',
+      'MCP Configuration: Created mcp_config.json for instant registration in Antigravity IDE, Claude Desktop, and Cursor',
+      'Lighthouse CI Automation: Added .github/workflows/lighthouse-audit.yml for automated Lighthouse accessibility and performance testing'
+    ]
+  },
   {
     version: 'v45',
     date: '2026-08-13',

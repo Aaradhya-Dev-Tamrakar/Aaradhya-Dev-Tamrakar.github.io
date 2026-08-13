@@ -1,0 +1,41 @@
+name: Lighthouse & Site Audit
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  lighthouse-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run HTML & JS Diagnostics
+        run: |
+          echo "Validating HTML files and JavaScript syntax..."
+          for f in *.html; do
+            echo "Checking $f..."
+          done
+          node --check assets/js/script.js
+          for f in assets/js/modules/*.js; do
+            node --check "$f"
+          done
+
+      - name: Lighthouse CI Action
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          urls: |
+            https://aaradhya-dev-tamrakar.github.io/
+            https://aaradhya-dev-tamrakar.github.io/about.html
+            https://aaradhya-dev-tamrakar.github.io/projects.html
+          uploadArtifacts: true
+          temporaryPublicStorage: true

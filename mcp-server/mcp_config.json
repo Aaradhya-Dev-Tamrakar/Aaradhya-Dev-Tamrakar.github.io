@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "site-mcp": {
+      "command": "python",
+      "args": [
+        "d:/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/mcp-server/site_mcp.py"
+      ],
+      "env": {
+        "PYTHONIOENCODING": "utf-8"
+      },
+      "disabled": false,
+      "alwaysAllow": [
+        "get_site_telemetry",
+        "run_verification",
+        "rebuild_search_index",
+        "update_knowledge_graph"
+      ]
+    }
+  }
+}
