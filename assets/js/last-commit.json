@@ -1,6 +1,6 @@
 {
-  "sha": "e3af5bd056d3523d4d0ed558812cc3e277f19383",
-  "shortSha": "e3af5bd",
-  "date": "2026-08-13T12:18:36+05:45",
-  "message": "feat(v44): site-wide upgrade — perf hardening, a11y/SEO & visual polish\n"
+  "sha": "c2b061352cc409cc06563da4b189c72f00728d23",
+  "shortSha": "c2b0613",
+  "date": "2026-08-13T12:34:04+05:45",
+  "message": "fix(core): remove duplicate SEARCH_STATIC_INDEX block causing SyntaxError\n"
 }
