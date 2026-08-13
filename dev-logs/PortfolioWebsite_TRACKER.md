@@ -1,8 +1,14 @@
-# Portfolio Website Tracker — v41
+# Portfolio Website Tracker — v42
 
-## _Last updated: 2026-08-12_
+## _Last updated: 2026-08-13_
 
 ## Meta
+
+- **v42 — Site-Wide Performance & Modular Architecture Upgrade Suite.** Refactored monolithic `script.js` (4,080+ lines) into 8 decoupled modular components while hardening site bug items and static search index synchronization.
+  - **Modular Architecture Refactoring**: Split monolithic `script.js` into 8 clean, isolated JS modules in `assets/js/modules/` (`core.js`, `ui.js`, `cmdk.js`, `access.js`, `tour.js`, `audio.js`, `terminal.js`, `haptics.js`).
+  - **Dynamic Module Loader & Fallbacks**: Created dynamic module orchestrator in `script.js` ensuring backward compatibility across static server deployments and offline local files.
+  - **PWA Service Worker & Cache Refresh**: Upgraded PWA Service Worker cache to `aaradhya-portfolio-v42` and cached all 8 modular JS files in `sw.js`.
+  - **Verification & CI Compliance**: `python scripts/verify.py` passed with 0 errors and 0 warnings (`achievements=37, projects=22, journey=34`); `python scripts/extract_index.py` regenerated static search index; `node -c` validated clean syntax across all JS files.
 
 - **v41 — Color Upgrades & Developer Easter Egg Accent Customization Suite.** Upgraded site visual depth, dynamic radial color glows, glassmorphic card borders, while maintaining clean signature Amber Gold brand identity in header navigation.
   - **Signature Brand Identity Preserved**: Kept header navbar & mobile drawer clean, unified, and strictly focused on signature Amber Gold (`#d4a85a`) & Cyber Teal (`#6dbfaa`).

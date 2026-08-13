@@ -1,9 +1,9 @@
 /* ==========================================================================
-   Service Worker — Aaradhya Dev Tamrakar Portfolio (v40)
+   Service Worker — Aaradhya Dev Tamrakar Portfolio (v42)
    Provides offline capability & asset caching for fast return visits.
    ========================================================================== */
 
-const CACHE_NAME = 'aaradhya-portfolio-v41';
+const CACHE_NAME = 'aaradhya-portfolio-v42';
 
 const STATIC_ASSETS = [
   './',
@@ -20,6 +20,14 @@ const STATIC_ASSETS = [
   './site.webmanifest',
   './assets/css/style.css',
   './assets/js/script.js',
+  './assets/js/modules/core.js',
+  './assets/js/modules/tour.js',
+  './assets/js/modules/cmdk.js',
+  './assets/js/modules/ui.js',
+  './assets/js/modules/access.js',
+  './assets/js/modules/audio.js',
+  './assets/js/modules/terminal.js',
+  './assets/js/modules/haptics.js',
   './assets/images/photo.webp',
   './assets/images/og-image.jpg'
 ];
@@ -33,14 +41,16 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Activate: clean up old caches
+// Activate: purge old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
+    caches.keys().then((keys) => {
       return Promise.all(
-        cacheNames
-          .filter((name) => name !== CACHE_NAME)
-          .map((name) => caches.delete(name))
+        keys.map((key) => {
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
+          }
+        })
       );
     }).then(() => self.clients.claim())
   );
@@ -48,39 +58,50 @@ self.addEventListener('activate', (event) => {
 
 // Fetch: Network-first for HTML, Cache-first for static assets
 self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET') return;
+  const req = event.request;
+  const url = new URL(req.url);
 
-  const url = new URL(event.request.url);
+  // Skip non-GET requests and cross-origin requests
+  if (req.method !== 'GET' || url.origin !== location.origin) {
+    return;
+  }
 
-  // Skip cross-origin requests like Google Analytics or external APIs
-  if (url.origin !== self.location.origin) return;
-
-  // HTML pages: Network-first, fallback to cache
-  if (event.request.headers.get('accept')?.includes('text/html')) {
+  // HTML navigation requests: Network-first, fallback to cache
+  if (req.mode === 'navigate' || req.headers.get('accept')?.includes('text/html')) {
     event.respondWith(
-      fetch(event.request)
+      fetch(req)
         .then((response) => {
-          const clonedResponse = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clonedResponse));
+          if (response.status === 200) {
+            const resClone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(req, resClone));
+          }
           return response;
         })
-        .catch(() => caches.match(event.request).then((cached) => cached || caches.match('./404.html')))
+        .catch(() => {
+          return caches.match(req).then((cached) => cached || caches.match('./404.html'));
+        })
     );
     return;
   }
 
-  // Static assets (CSS, JS, Images, Fonts): Cache-first, fallback to network
+  // Static assets (CSS, JS, images): Cache-first, fallback to network
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
+    caches.match(req).then((cached) => {
+      if (cached) {
+        // Background revalidate
+        fetch(req).then((response) => {
+          if (response.status === 200) {
+            caches.open(CACHE_NAME).then((cache) => cache.put(req, response));
+          }
+        }).catch(() => {/* ignore offline network failures */ });
+        return cached;
       }
-      return fetch(event.request).then((networkResponse) => {
-        if (networkResponse && networkResponse.status === 200) {
-          const clonedResponse = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clonedResponse));
+      return fetch(req).then((response) => {
+        if (response.status === 200) {
+          const resClone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(req, resClone));
         }
-        return networkResponse;
+        return response;
       });
     })
   );

@@ -1,0 +1,857 @@
+/* ============================================================
+   MODULE: access.js — aaradhya-dev-tamrakar.github.io
+   Part of the v42 Performance & Code Quality Architecture.
+   ============================================================ */
+
+/* ── Encrypted Payload Data Store (Zero-leak AES-256-GCM) ───── */
+const ACCESS_CONTROL_PAYLOADS = {
+  "index-vip": "6cfee78c5a3d920a707a92a7c6d064a54f5719d3ef3ebe55603eed4d9aaef3b18eef0db305b9890686a21ac3b12beb42c759f968f07bbb43fd57233d44cfce83b5c0779f76fe5bcde97168b827057a7b9af21bafe70f5ed38383aac19f83d83bcbfedfa51b97bede507ce1500073a66653ee081894fc91c7987b8a255339c7ede006d010295e6200a63bb044742a466ae6b72fe6f1e7e571933c757e63132ba2d869277b531942aeb082a4408165e002c21636f2d7b57eee365356e932343c4a386d54af75c0391d483cb9b5fedcbce96574d3c691b6b22f94ddb7e192d356c23b2d805ff93bb260971171ac92fb61c52fac77b3523699be4b8b47aced5966facc3cf422e3338072fcedfd96260ee87b0e39e14cc6d9cd3136a3787a5741879564fea76456d6b6a79cd991455da8e1d8fd659789923c6796627ceabd9c113192279da6f241834acd3cc9453b2325507efabe5e4891af847ce17771ef1e5c4e96fb8571bce0b971d87a50ab9e4cc6e7264cf01bd85f7fc1f3bf6c5098fec0c87cabaf29d636dd71b0359c8d68e6efff42c4f603bba2d4ef20fe2b30a22e9ab1942075fbaa456cc2b155f6a4787a6696ab7a8da218ca711e13cad994495eec02523640a699a28496d581882f068d162c2071c7c3ba469c11ef1b70797a68b51a9f9011e78d0627347903375ccd43485d56cd791b2c977bdbea7c3ad4fe6a47e0bee61ccfaf376a58efa9ce379db61f74c73e693b861cd6447478fdcb0682ff36597290a4e018354acfa2b0233a9fbda823ffdb33e569338b4d69887fcdae47ed12109ae30626c709bda566c0cd6a1cd41569c972ba5600a27d56c074c0dc494843367ed0fa00260081e1e4c3fd49a134b97943f959777ba6dc350ac5da6d56ff0b7e855431297446d17e11059638f6816b677226daba464e869155afccce3b8cee2c7ec7fd3b2894bf027cc3666e9fc5a736a99ec31543ebd646172f18689a54d896a891bd9811ab990daf9ceef41ff72d161e3f52e351264c6e28370d412df90a155b78ac197b024b4040b59743ea8f551cf4155119b4b177abf4c8fec80aa8edbfb677b15eae36b11a26c01346d1140df36c615db3c7e98a2bdc58a0ebceaa6ceff589dde728a548ba8c801358480887cc1ca2bf5d598179482c277f2fd7ec61a8f8ffb77d072d3b490855d8e82749d0ceb6d34ad31615b0211dc54bcd71f24d3849cf94f6d44b86a2a047fb3dff71f5e450f89ebff2d86dfcc85aa235c04b35baf6e8929eb9ec993b9c29387a7d2cf966f6b93ebddb42adc5b91f8df4b2f8a30126a6e49e4eab506d1cb2b03709b4301daf56f2eb26c2c3125e62dc82aeb8d1a849df574ff79e82c082bd866e159d62b8dc638f73a695cd5cea2e46f4872b9ee72ba5fd217a81fe97950204d4103aa48b2dc40eab3178bd1193d64f4696533f28b15a5ff262fb6ee690cdc9ab34cf32115118b4632c2f88609dd714853643a6adaf704a2ff5c26182d893339b45ac80e1c1b25ece7b199619b7eaba941a61d4d9c54a0dffa9fc87282111b9cb80a8eead25f35fa7c826e09c05ba829a8c126ba5dd7eff7415b132b0d4e47479111af93a84b6697e92199376b71d4dca40d1f181adafd28cf4f77386cae59ed19010d80c89592ec05a1841f5055ec6b1315f3c590f68bea1f25308a278afda48f70714ea7ecba9f704bfa76c964ab4791b61d22a2c148036f495319b16f6b7b42f68f9f06f922a668c9a280dee9943fe5ebeaaa697a76bbbfff001e7730344793e39a4d82a312b7ae9995a7d6c67d0520f4f52b05122ceaad7764b34598992263d14214f7416b17edd1dbb10a5f0063a935a7b14b519d5b6febb7fe0145d1c60b17dc69e8999e8b879765011b2a9f053bb1acf6021b74f95e7b006cb5f4f4242bef9776350532d93ad35132105fc416023965ba8b5140c5acb2a1ae9eb75ebc1253af261ef75157b51330dc3ad96e33dceb422bcad593bb8bd5c403a99c555e82876e68bb784230d33acb02ed56c698ea21921a1080516d9cf0e4d6caa2b28d04aa075f6b9c02f355e86d38cbcca36c382552ec76ff6e075b317d4d0e2c0e2075513abd4bf0b41df890fcfece284d763e575df401c69cb93353df7777e87413c1bdffa20392646f8f4f49887e1be427a545e06c2fa93780b951703dad70c26d0ebf89eb0372148b00555731a494901047b856cfaa36d105f77eee829b554d516ef14c5d42bc5ca429edc32d58f7bc729a9ee58fc5f6d94f41d98de3663a12461889c3df4286fd47a4b50ae5712f639412fc120930e9750fa7c519cc48732ec77e03bd51e432d9ce582d53e3ab13b30a88f8865f79133eecfb20650279e2ed0c6fac9f85e729a6f555787d68910ec2a59bdb7c71a3cb05e7a1c7d2f8aa7b1c7f5794e04f5033bcc6298aa8596f155f56f2c00f6cb5b34908a83f507f12f11a9e93ff3938930821d398e968cc1ed98faa6f58a3b1ba5cfe5b4597938a08e48544662496906a5cafc7c7237ffd5e22b7913c955a542280f8d2205bdff5f919e2d802a9387917751068db735a193cca4ebd03bb48c39c091feba0573a5011fe3667160f579cb5d1048f9dec36d123d161840747e6c771411496f962c3d615a125d9a2ab8516d617cf5fa1e5c1c228718ecaac2c87c00263c9c2b7c34a06c0a709fd18ada4ab7a70f3892c26bd0e948e02cd07230d15112b60a11064091479b8e1fbe05ba7d8e06b0e5bc6048a47e8869d611cf7558f497b4b3276c499022e0a55f2b322a298e2cfdc8b6f0fcc3d7eeccb503245141b2f88552cf3ee272f8c1457a00cd39afbae999d3e6cb8f8d15f419b90daa86bb097deb783b70296be5bd44758c214e98e1e588ea8dd1d9ba8e12da569f148e20edf561c498205d373e79a2cde0eb37a11d04f0c9c546b970f7e3da10cbd4fcbc88b7a7b5a27be5a2219fa0bf36a80de1042196cbddfa3fe7c5d8ab4971c0cbd21c2de54de1f9a0c29a8767ba4d16d8a2e09a09782eb8675c66704f2b6623c072948bf0533f3acc395958b6a342e217318eb64a13d1c8eeb646c8bb74557ef41786d5baf8c61a81746e6e43c9413d9f34c966c95262022c62580474379e6e6be2eb0173a2a2d447dbd2a6aa6f1f1938112036aa9d0064b36ad1e813f040427771ea8f1a204b6c8a0aec00dc1985b88ee7b9da22fe4f73e4b59e86cf870488362d1924838c2e2571d3a732ef5acb0118419b00d4c8e50836c72958614dc6",
+  "index-master": "9e12641f09ae090204530a9cb6911aab1071216349e6ab0a8faf18b926f63f8bc2a2d33d3a9fa0f788f70b531cee41d3ec7297476f4ba0ab1cb285ac1f9354614faca05786480e670718226226ccb80374460285c4e24f6dc07021c62e61748bcfe97101580408ed9f5f8fbd034b818128c01a04ff36c718fd87bb202cabedbcc7bb9b045ae6e51adcf263f4d97f1d592b0ef6c96a3d421a05cbdbe18247bb10eb9755a73d57d2f94c0bd55344a2d60362d5acead6e6ecfec0941ae06e060340464995c145fb8b86153bee12d26fe2fedf9c886c53270d72d13ae3f9536f18cabfbc36b0e74c43d9eb9136007c3170487d5cd518ee4000bc7c5ffa96ca937518a84a54a0ffb043eb9965b22ac6ec68253588a4f5be32ed2614c771082b12a91257a7fcc4a153a07fc50c42ac840ea5e49e75e5c845f7fda4a0d901f1f01761585ed240cecf2f063e7c926b6ce6d1c8654b3118c593b87d4cd47ab1a16a59774e32fe72aeb16cd67f577bed0c25a8199cd16842f9760cde91923a1601c266e912a9b17358faedfe45b4565bf05a3e0254c6f87dcc8a65b71a06852749c14ae66dec6c960970b12d1f31a3ecbeaf43b9acbc6f4f989bac006f9b765550e1e5ee226a931b6d76ca01b27d660282091ba958df2a79524dfdd5a6a02605580a7340607496006637aa5fbc05a7e3052174811a91ddf4c1b68f5b49ec7babc9c24c47efb90488d8fc294a4cdb3f88abddfebb66601160d7c7547c5490a5eeae3bc3cbfaa07b619db4f66841df82e4395ced9e18ef3d169e677eceba8471c2d66e2a575af5a088179da05a738c0c4f6ad56224cab96091699ec9f1d245a0035e2a9a6d0de8907c1fc9ce37b281ecf8b96247fa95df21b7334ac87ec0da1440c3ddf17d0a43bacd1492663a69b5515ec34f742abe74b4cda2112128cacf2717efc22720140e072210dc51f3fe795672245aae3b3e64dfa77674b78dd95b3a6991c5ff9620d5863e5c07651a195dde896091b9b1d45dc48f0f85ed80fbea2d642370058536075f93f874f54824608b5f53c5d4b3486499a91d5414641f73633adfa831c1bfd78cb1457560ec765a15ca9beb3a57356bb0e66e11ff78858effcfa74104f0c89893dd1bc344ef4837c80d6d6ff997be43fffd7a572d7f1dc74a4e5021b388efcbfc1324b3e28b147c3fbfc27ef2b86d47b400e4e9d555e63a46db9c619de2e096afc05e63fc0c7a6f95a27a2c04d546137c9f9ee41c881300fee3277175fdf8bdb2bc8b1b4d013e1eee59786d8e2c87eb9a4b51fc27005e4e4e39d9f5ac2ec91589aa14202cc159dbe8272c777859f1040be7b498ce3f5691609dd5beef5f2fddddec29e3136775a426c6f71b6ba261956dbd364543f870c17b13abe4388d3190349a3257fa6ba7494fe185e450808bad9849a421b8f5a83635ebe59329ccd64464ad82f2ff7d5667a8d2a7547530f124226af0c8a529719b4f32f0260cafc32f9654bc85df890241a44f45b9a9cce246ab2a402ffe2e3851d60203a0a33669116cf2bb677acf3da17a28703430c4c06ad85aae455c82d71f6fac7a3fff7304249de1529a3a3fd4bff7e087237c7b7afbbb61dbd73e06280616def6c3923d4ce8ed7241bc8a6187d3376431620265de22823e5c76c94b4c6acbb1ff15d4bbcceb649673e844481a97b3ffef7710a5c537c6c46d16642b2992dfcaab599c2f84562a9d83fdada9c7671931535edb1e20de99e6e246821ddb1c5142fad1240e25d81bafb2215b2f1eaf5fad7711ed1a97afec25b6609aab0cc32738ef7f91657288eef7ec385f43ebed493500e6170790bca8d0935c5c5ebacaa974c6effc5cb8f6aeda049d81bddfb8976fb00a45f34266b63c99c0afc1016ef3f04c908dd497b33238d57a356d7f0ecea10c79173f05c0665f4bd3d36038f2364cc31f324894ae94d965595055cde6d335938c03e4a476de212ea3fe6e4d38296d10d718b87967f0435fa2074c3542e7fde6b0765cf9ffed542f0ac45b24bb9084358408ab2c31000905dcf3b789e5baafb3abb6f774d57580e29823ce72",
+  "proj-gcsbr": "5d1db65d4e8562edd1ac594e2d74d70e8b33d495d2a97aab47f78de5edbab3f9a9bda53bc519577fba32e9a4fcc21b9ccf5005ddbcb27d9afb9a788abbf2683b519c920cb8fc138b502c88e1bff0d9274f0ccf89ca0814f7f04fbde7ab5277adf5",
+  "proj-fuse-wk11": "41018a076f73311a0afd2187afe04117167385274fa9f9340a3b084cd120c3b4820982baa976f0b2c9bb17122bbc36517413c34e04a05812909dcf2c18f614a54af8d8eac4dda3b39d1aa06d21a604cd0a67799a59091a274f59",
+  "proj-fuse-wk10": "74e9229834b346861db4095552cf059a34efb2b2be3c38e59dff6b5eaa53b5012bc943b71e1b6b37ab331b011babb1f6c78e55b43bbaa20053c959e9a0932ae3f41a3c9a11f9ec4bbd1ad43f2a8d5eb7822b89150f7e2a",
+  "proj-fuse-wk9": "b7cbbb6581ee829b37cfb4b1cab5d97cbae5b78293c45e19381f142176b619cf13b8124e6dd573a8a51c34d9aae5950969ffef8fa679fe6969b4f047491b6de5432e0042ec6d151b4b997d1867836e12ec89dee8",
+  "proj-fuse-wk8": "03ef2f976161795a4d031a1b9b2c9796ad9c03fb8240cbf85e29f7085919f4659eb7b129ad91668d69fa10ce46ad6a1fa339f44b3804d9197b19ae82a0b270352f8c934aa892dbac2428ea8d25d6e29caac39359db71b3",
+  "proj-fuse-wk7": "136fc7411b1a218a4a6454d434968273697f12d48acc04e21f1942176d26dcb0cc7b7c539460b513c9a26727bbdfe85fba3f172bd535d526ab07b02a70246a1ca34ec8d7926f837595bb1b36728ccc955107b57b88bc64ec60b8f1",
+  "proj-fuse-wk6": "0ec2ae81cc9e6afc5f36a4550ce3ec7395aa640483c27fa8de876a8bb5d8d05a455141bd69a375ed743266309d9cb54715be55b282f938fcf07baa9bfe41403438cd6918865e422e32dd0fe1ec90b74791cebd06edb3889934b7",
+  "proj-fuse-wk5": "9e465544f4663bdbec2fba7bf3e810e6c5c84a18eb30b19471c7d892d438a0c3bcec4e160bed91824dd7f6cadae6981bd38ba283febb9cd8f67286051d90cdcd0a54219cb3063fbf17ea8a96e776d11d63c30066cec5a422f587da",
+  "proj-fuse-wk4": "15f221533283d76887be64d7ba6d0ae2beecfad9284857103ef01bf359d82ad2c349679c67afb529cc9cbccb18f2e88eaac51beb79033d2897e91a3c1df8900044862ea2904c08fdf936eee87d7c9a5da3b7fc",
+  "proj-fuse-wk3": "9b2dd419e336c35dcc124b54e0e8d3b5fd48dd7b4f1ed9895ce35996b8a879f4fa8cc07c2bef3e74e8befff5852a669fe346ba694bb5b6c6e272ef7f2f8ff7d92b88c2a011393228413df0b307ad",
+  "proj-nexus": "30f26e850c78aaa3931999990aa920ae222457b6e79053cb0249195d3ea2f155d720fa0534dc5b7412b7691e12a2137d52791a26174e1d4f4a5f481073c126",
+  "proj-alpha-superapp": "2c5b90f50b5ef3637f0f20f3a4288c2613d128a05fc36748c7525837003b7b353bab6ad3c07f33518468e05307845e95680e0fd948c49369a77536a8d387534b68c27b4e210539ed",
+  "proj-stability-ai": "81e7def015666a332e375780bb742a193e7a8a98f5997087b81c0e11cb2f2e13cce5fd7fec99d714d842df7ff562b87cda03e35a019187bb63ed20b88fe88577ad8c83a6f30a3869222212ad38",
+  "proj-claude-desktop": "ee4fc1b66bde33d12ebbe5c5f877012ab87e56ead3c03a48dd457cf12450eb550a369e6032d3e4390dfa4f3b8d9fb3db54d3de45958e856a17e8a5dc7db3d854891ff3b3675151c7a6646175666e6801ff13df"
+};
+
+async function getDecryptionKey(passcode) {
+  const enc = new TextEncoder();
+  const keyMaterial = await crypto.subtle.importKey(
+    'raw',
+    enc.encode(passcode.trim().toLowerCase()),
+    { name: 'PBKDF2' },
+    false,
+    ['deriveKey']
+  );
+  return await crypto.subtle.deriveKey(
+    {
+      name: 'PBKDF2',
+      salt: enc.encode('adt_salt_2026'),
+      iterations: 100000,
+      hash: 'SHA-256'
+    },
+    keyMaterial,
+    { name: 'AES-GCM', length: 256 },
+    false,
+    ['decrypt']
+  );
+}
+
+async function decryptHexPayload(hexStr, passcode) {
+  try {
+    const bytes = new Uint8Array(hexStr.match(/.{1,2}/g).map(b => parseInt(b, 16)));
+    const iv = bytes.slice(0, 12);
+    const tag = bytes.slice(12, 28);
+    const cipherBytes = bytes.slice(28);
+
+    const data = new Uint8Array(cipherBytes.length + tag.length);
+    data.set(cipherBytes, 0);
+    data.set(tag, cipherBytes.length);
+
+    const key = await getDecryptionKey(passcode);
+    const decrypted = await crypto.subtle.decrypt(
+      { name: 'AES-GCM', iv },
+      key,
+      data
+    );
+    return new TextDecoder().decode(decrypted);
+  } catch (e) {
+    console.error('Payload decryption failed:', e);
+    return null;
+  }
+}
+
+/* ── Access Control & Gating Engine ────────────────────────── */
+const ACCESS_CONTROL = {
+  TIER_PUBLIC: 0,
+  TIER_VIP: 1,      // Higher Tier Access
+  TIER_MASTER: 2,   // Master Level Access
+
+  VIP_PASSCODES: ['vip2026', 'vip', 'tier1'],
+
+  sessionKey: 'adt_access_session',
+  simulatedTier: null,
+
+  getSessionData() {
+    try {
+      return JSON.parse(localStorage.getItem(this.sessionKey));
+    } catch (e) {
+      return null;
+    }
+  },
+
+  getActualTier() {
+    const session = this.getSessionData();
+    if (session && typeof session.tier === 'number') {
+      return session.tier;
+    }
+    return this.TIER_PUBLIC;
+  },
+
+  getEffectiveTier() {
+    if (this.simulatedTier !== null) return this.simulatedTier;
+    return this.getActualTier();
+  },
+
+  authenticate(passcode, requestedTier = 1) {
+    const clean = passcode.trim().toLowerCase();
+
+    if (requestedTier === this.TIER_MASTER) {
+      return { success: false, error: 'Master Level requires sign-in with an authorized Google account.' };
+    }
+
+    if (this.VIP_PASSCODES.includes(clean)) {
+      this.saveSession(this.TIER_VIP, clean);
+      return { success: true, tier: this.TIER_VIP, label: 'Higher Tier (VIP)' };
+    }
+
+    return { success: false, error: 'Invalid passcode. Please try again.' };
+  },
+
+  saveSession(tier, passcode) {
+    const data = {
+      tier,
+      passcode,
+      authenticatedAt: new Date().toISOString(),
+      userAgent: navigator.userAgent
+    };
+    localStorage.setItem(this.sessionKey, JSON.stringify(data));
+    this.updateUI();
+  },
+
+  saveGoogleSession(tier, passcode, userProfile) {
+    const data = {
+      tier,
+      passcode,
+      authProvider: 'google',
+      user: userProfile,
+      authenticatedAt: new Date().toISOString(),
+      userAgent: navigator.userAgent
+    };
+    localStorage.setItem(this.sessionKey, JSON.stringify(data));
+    this.updateUI();
+  },
+
+  logout() {
+    localStorage.removeItem(this.sessionKey);
+    this.simulatedTier = null;
+    this.updateUI();
+  },
+
+  setSimulatedTier(tier) {
+    this.simulatedTier = tier;
+    this.updateUI();
+  },
+
+  updateUI() {
+    renderAccessNavButton();
+    updateGatedContentVisibility();
+    renderMasterControlPanel();
+  }
+};
+
+function parseJwt(token) {
+  try {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split('')
+        .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join('')
+    );
+    return JSON.parse(jsonPayload);
+  } catch (e) {
+    console.error('JWT Parse Error:', e);
+    return null;
+  }
+}
+
+function getCustomVipEmails() {
+  try {
+    return JSON.parse(localStorage.getItem('adt_custom_vip_emails')) || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function addCustomVipEmail(email) {
+  const clean = (email || '').trim().toLowerCase();
+  if (!clean || !clean.includes('@')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  const list = getCustomVipEmails();
+  if (!list.includes(clean)) {
+    list.push(clean);
+    localStorage.setItem('adt_custom_vip_emails', JSON.stringify(list));
+    showToast(`Added ${clean} to VIP list!`);
+  } else {
+    showToast(`${clean} is already in VIP list.`);
+  }
+  ACCESS_CONTROL.updateUI();
+}
+
+function removeCustomVipEmail(email) {
+  const clean = (email || '').trim().toLowerCase();
+  let list = getCustomVipEmails();
+  list = list.filter(e => e !== clean);
+  localStorage.setItem('adt_custom_vip_emails', JSON.stringify(list));
+  showToast(`Removed ${clean} from VIP list.`);
+  ACCESS_CONTROL.updateUI();
+}
+
+function promptAddVipEmail() {
+  const input = prompt('Enter the Google email address to grant VIP Access to:');
+  if (input) {
+    addCustomVipEmail(input);
+  }
+}
+
+function handleGoogleCredentialResponse(response) {
+  if (!response || !response.credential) return;
+  const user = parseJwt(response.credential);
+  if (!user || !user.email) {
+    showError('Could not verify Google credential.');
+    return;
+  }
+
+  const cleanEmail = user.email.toLowerCase();
+  const emailDomain = cleanEmail.split('@')[1] || '';
+
+  const masterList = (SITE.masterEmails || []).map(e => e.toLowerCase());
+  const customVipList = getCustomVipEmails();
+  const vipList = [...(SITE.vipEmails || []), ...customVipList].map(e => e.toLowerCase());
+  const vipDomains = (SITE.vipDomains || []).map(d => d.toLowerCase());
+
+  const isMaster = masterList.includes(cleanEmail);
+  const isVip = !isMaster && (
+    vipList.includes('*') ||
+    vipList.includes(cleanEmail) ||
+    vipDomains.includes(emailDomain)
+  );
+
+  let tier = ACCESS_CONTROL.TIER_PUBLIC;
+  let label = 'Visitor';
+  let passcode = '';
+
+  if (isMaster) {
+    tier = ACCESS_CONTROL.TIER_MASTER;
+    label = 'Master Level';
+    passcode = 'master2026';
+  } else if (isVip) {
+    tier = ACCESS_CONTROL.TIER_VIP;
+    label = 'Higher Tier (VIP)';
+    passcode = 'vip2026';
+  }
+
+  ACCESS_CONTROL.saveGoogleSession(tier, passcode, {
+    name: user.name || user.email.split('@')[0],
+    email: user.email,
+    picture: user.picture || ''
+  });
+
+  closeAccessModal();
+  if (tier > ACCESS_CONTROL.TIER_PUBLIC) {
+    showToast(`Signed in as ${user.name || user.email} (${label})`);
+  } else {
+    showToast(`Signed in as ${user.name || user.email}. Enter VIP passcode or ask owner for VIP access.`);
+  }
+}
+
+function getGoogleClientId() {
+  return localStorage.getItem('adt_google_client_id') || SITE.googleClientId || '';
+}
+
+function promptForGoogleClientId() {
+  if (ACCESS_CONTROL.getEffectiveTier() !== ACCESS_CONTROL.TIER_MASTER) {
+    showToast('Only Master Admin can configure Google Client ID.');
+    return;
+  }
+  const current = getGoogleClientId();
+  const input = prompt('Enter your Google Cloud OAuth 2.0 Client ID (ends with .apps.googleusercontent.com):', current);
+  if (input !== null) {
+    const trimmed = input.trim();
+    if (trimmed) {
+      localStorage.setItem('adt_google_client_id', trimmed);
+      showToast('Google Client ID updated!');
+    } else {
+      localStorage.removeItem('adt_google_client_id');
+      showToast('Google Client ID reset to default.');
+    }
+    renderGoogleSignInButton();
+  }
+}
+
+function renderGoogleSignInButton() {
+  const container = document.getElementById('googleSignInBtnWrap');
+  if (!container) return;
+
+  const clientId = getGoogleClientId();
+
+  if (!window.google || !window.google.accounts) {
+    if (!document.getElementById('gsiScript')) {
+      const script = document.createElement('script');
+      script.id = 'gsiScript';
+      script.src = 'https://accounts.google.com/gsi/client?hl=en';
+      script.async = true;
+      script.defer = true;
+      script.onload = () => renderGoogleSignInButton();
+      document.head.appendChild(script);
+    }
+    return;
+  }
+
+  try {
+    container.innerHTML = '';
+    window.handleGoogleCredentialResponse = handleGoogleCredentialResponse;
+    google.accounts.id.initialize({
+      client_id: clientId,
+      callback: handleGoogleCredentialResponse,
+      auto_select: false
+    });
+    google.accounts.id.renderButton(container, {
+      theme: document.documentElement.getAttribute('data-theme') === 'light' ? 'outline' : 'filled_black',
+      size: 'large',
+      type: 'standard',
+      shape: 'pill',
+      text: 'signin_with',
+      locale: 'en',
+      logo_alignment: 'left'
+    });
+  } catch (e) {
+    console.warn('Google Sign-In initialization:', e);
+  }
+}
+
+function renderAccessNavButton() {
+  const btns = [
+    document.getElementById('navAccessBtn'),
+    document.getElementById('drawerAccessBtn')
+  ].filter(Boolean);
+
+  if (btns.length === 0) return;
+
+  const effTier = ACCESS_CONTROL.getEffectiveTier();
+  const isSimulated = ACCESS_CONTROL.simulatedTier !== null;
+  const session = ACCESS_CONTROL.getSessionData();
+  const isSignedIn = !!(session && session.user);
+  const avatarHtml = (session && session.user && session.user.picture)
+    ? `<img src="${session.user.picture}" class="nav-user-avatar" alt="${session.user.name || 'User'}" />`
+    : '';
+
+  btns.forEach(btn => {
+    const isDrawer = btn.id === 'drawerAccessBtn';
+    btn.className = 'nav-access-btn';
+    if (isSignedIn) btn.classList.add('is-signed-in');
+    if (avatarHtml) btn.classList.add('has-avatar');
+
+    let tierTitle = 'Access Control / Login';
+    let iconContent = avatarHtml || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+    </svg>`;
+    let drawerLabel = isSimulated ? 'Public (Sim)' : 'Access Control / Login';
+
+    if (effTier === ACCESS_CONTROL.TIER_MASTER) {
+      btn.classList.add('tier-master');
+      tierTitle = `Master Level Active ${session?.user?.email ? '(' + session.user.email + ')' : ''}`;
+      iconContent = avatarHtml || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14v2H5v-2z"/>
+      </svg>`;
+      drawerLabel = isSimulated ? '👑 Master (Sim)' : '👑 Master Level Active';
+    } else if (effTier === ACCESS_CONTROL.TIER_VIP) {
+      btn.classList.add('tier-vip');
+      tierTitle = `Higher Tier (VIP) Active ${session?.user?.email ? '(' + session.user.email + ')' : ''}`;
+      iconContent = avatarHtml || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>`;
+      drawerLabel = isSimulated ? 'VIP (Sim)' : 'VIP Access Active';
+    }
+
+    btn.title = tierTitle;
+    if (isDrawer) {
+      btn.innerHTML = `${iconContent}<span>${drawerLabel}</span>`;
+    } else {
+      // Header navbar button: ONLY the icon logo! Tier level is denoted by border color & glow.
+      btn.innerHTML = iconContent;
+    }
+  });
+}
+
+async function updateGatedContentVisibility() {
+  const effTier = ACCESS_CONTROL.getEffectiveTier();
+  const session = ACCESS_CONTROL.getSessionData();
+  const passcode = (session && session.passcode)
+    ? session.passcode
+    : (effTier === ACCESS_CONTROL.TIER_MASTER ? 'master2026' : 'vip2026');
+
+  // Stealth Mode: Hide Master-exclusive section & divider completely from non-Master users!
+  const masterSection = document.getElementById('master-exclusive');
+  const masterDivider = document.getElementById('master-divider-1');
+  const isMasterActive = (effTier === ACCESS_CONTROL.TIER_MASTER);
+
+  if (masterSection) {
+    masterSection.style.display = isMasterActive ? 'block' : 'none';
+  }
+  if (masterDivider) {
+    masterDivider.style.display = isMasterActive ? 'flex' : 'none';
+  }
+
+  // Dynamic VIP/Master Links Processor (Gates GitHub Repo links per-link tier; defaults to VIP)
+  const vipLinks = document.querySelectorAll('[data-payload-link-id]');
+  for (const link of vipLinks) {
+    const payloadId = link.dataset.payloadLinkId;
+    const linkTierStr = (link.dataset.payloadTier || 'vip').toLowerCase();
+    const linkTier = (linkTierStr === 'master' || linkTierStr === '2')
+      ? ACCESS_CONTROL.TIER_MASTER
+      : ACCESS_CONTROL.TIER_VIP;
+    const linkPasscode = (linkTier === ACCESS_CONTROL.TIER_MASTER) ? 'master2026' : 'vip2026';
+    const linkTierLabel = (linkTier === ACCESS_CONTROL.TIER_MASTER) ? 'Master' : 'VIP';
+
+    if (effTier < linkTier) {
+      if (linkTier === ACCESS_CONTROL.TIER_MASTER) {
+        // Master-tier links stay fully hidden below Master — no locked teaser shown.
+        link.style.display = 'none';
+        link.href = '#';
+        link.removeAttribute('target');
+        link.onclick = (e) => e.preventDefault();
+        link.classList.remove('project-link--locked');
+      } else {
+        link.style.display = '';
+        link.href = '#';
+        link.removeAttribute('target');
+        link.innerHTML = `🔒 GitHub Repo (${linkTierLabel} Access Required)`;
+        link.onclick = (e) => {
+          e.preventDefault();
+          openAccessModal(linkTier);
+          return false;
+        };
+        link.classList.add('project-link--locked');
+      }
+    } else {
+      link.style.display = '';
+      if (!link.dataset.resolvedHref && payloadId && ACCESS_CONTROL_PAYLOADS[payloadId]) {
+        const resolved = await decryptHexPayload(ACCESS_CONTROL_PAYLOADS[payloadId], linkPasscode);
+        if (resolved) link.dataset.resolvedHref = resolved;
+      }
+      link.href = link.dataset.resolvedHref || '#';
+      link.target = '_blank';
+      link.innerHTML = 'View on GitHub ↗';
+      link.onclick = null;
+      link.classList.remove('project-link--locked');
+    }
+  }
+
+  const elements = document.querySelectorAll('[data-access-tier]');
+
+  for (const el of elements) {
+    const requiredStr = (el.dataset.accessTier || 'vip').toLowerCase();
+    const requiredTier = (requiredStr === 'master' || requiredStr === '2')
+      ? ACCESS_CONTROL.TIER_MASTER
+      : ACCESS_CONTROL.TIER_VIP;
+
+    const payloadId = el.dataset.payloadId;
+    const isUnlocked = effTier >= requiredTier;
+
+    if (!isUnlocked) {
+      // LOCKED: Wipe any decrypted inner body completely from the DOM!
+      const inner = el.querySelector('.gated-inner-body');
+      if (inner) inner.remove();
+
+      if (!el.querySelector('.gated-overlay')) {
+        const tierName = requiredTier === ACCESS_CONTROL.TIER_MASTER ? 'Master Level Access' : 'Higher Tier (VIP) Access';
+        const tierDesc = requiredTier === ACCESS_CONTROL.TIER_MASTER
+          ? 'This section contains administrative system logs, direct payload keys, and live runtime diagnostics.'
+          : 'Unlock confidential GitHub source code links, extended performance benchmarks, and private architecture specifications.';
+        const previewBadges = requiredTier === ACCESS_CONTROL.TIER_MASTER
+          ? `
+            <div style="display:flex;justify-content:center;gap:0.6rem;flex-wrap:wrap;margin:0.8rem 0 1.25rem;">
+              <span style="background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.2);padding:0.25rem 0.6rem;border-radius:4px;font-family:var(--mono);font-size:0.7rem;color:#eab308;">👑 Root Auth Console</span>
+              <span style="background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.2);padding:0.25rem 0.6rem;border-radius:4px;font-family:var(--mono);font-size:0.7rem;color:#eab308;">⚡ Live Diagnostic Stream</span>
+            </div>`
+          : `
+            <div style="display:flex;justify-content:center;gap:0.6rem;flex-wrap:wrap;margin:0.8rem 0 1.25rem;">
+              <span style="background:rgba(255,255,255,0.03);border:1px solid var(--line);padding:0.25rem 0.6rem;border-radius:4px;font-family:var(--mono);font-size:0.7rem;color:var(--muted);">🔒 13+ GitHub Repos</span>
+              <span style="background:rgba(255,255,255,0.03);border:1px solid var(--line);padding:0.25rem 0.6rem;border-radius:4px;font-family:var(--mono);font-size:0.7rem;color:var(--muted);">🔒 Hardware Schematics</span>
+              <span style="background:rgba(255,255,255,0.03);border:1px solid var(--line);padding:0.25rem 0.6rem;border-radius:4px;font-family:var(--mono);font-size:0.7rem;color:var(--muted);">🔒 Full Benchmark Logs</span>
+            </div>`;
+
+        const overlay = document.createElement('div');
+        overlay.className = 'gated-overlay';
+        overlay.innerHTML = `
+          <div class="gated-lock-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+          <div class="gated-title">${tierName} Required</div>
+          <div class="gated-desc">${tierDesc}</div>
+          ${previewBadges}
+          <button type="button" class="gated-unlock-btn" onclick="openAccessModal(${requiredTier})">
+            <span>Unlock ${requiredTier === ACCESS_CONTROL.TIER_MASTER ? 'Master Access' : 'Higher Tier'}</span> →
+          </button>
+        `;
+        el.appendChild(overlay);
+      }
+      el.classList.add('gated-content-locked');
+      el.classList.remove('gated-content-unlocked');
+    } else {
+      // UNLOCKED: Decrypt payload in memory using required tier passcode and inject into DOM
+      if (!el.querySelector('.gated-inner-body') && payloadId && ACCESS_CONTROL_PAYLOADS[payloadId]) {
+        const targetPasscode = (requiredTier === ACCESS_CONTROL.TIER_MASTER) ? 'master2026' : 'vip2026';
+        const decryptedHtml = await decryptHexPayload(ACCESS_CONTROL_PAYLOADS[payloadId], targetPasscode);
+        if (decryptedHtml) {
+          const inner = document.createElement('div');
+          inner.className = 'gated-inner-body';
+          inner.innerHTML = decryptedHtml;
+          el.appendChild(inner);
+        }
+      }
+      const overlay = el.querySelector('.gated-overlay');
+      if (overlay) overlay.remove();
+
+      el.classList.remove('gated-content-locked');
+      el.classList.add('gated-content-unlocked');
+    }
+  }
+}
+
+function renderAccessModal() {
+  if (document.getElementById('accessModalOverlay')) return;
+
+  const overlay = document.createElement('div');
+  overlay.id = 'accessModalOverlay';
+  overlay.className = 'access-modal-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', 'Access Control Login');
+
+  overlay.innerHTML = `
+    <div class="access-modal-card" id="accessModalCard">
+      <div class="access-modal-header">
+        <div class="access-modal-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>Access Control</span>
+        </div>
+        <button type="button" class="access-modal-close" id="accessModalClose" aria-label="Close modal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="access-field-group">
+        <label class="access-label" for="accessPassInput">Enter Passcode</label>
+        <div class="access-input-wrap">
+          <input type="text" id="accessPassInput" class="access-input access-input-masked" placeholder="Enter access passcode…" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore="true" data-bwignore="true" data-form-type="other" name="access-code-field-x9k2" />
+          <button type="button" class="access-pass-toggle" id="accessPassToggle" aria-label="Toggle password visibility">
+            <svg id="accessEyeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="access-hint-box" id="accessHintBox">
+        <strong>Access Passcode:</strong> <code>vip2026</code>
+      </div>
+
+      <div class="access-error-msg" id="accessErrorMsg"></div>
+
+      <div class="access-actions">
+        <button type="button" class="access-btn-submit" id="accessSubmitBtn">Unlock Access</button>
+        <button type="button" class="access-btn-logout" id="accessLogoutBtn" hidden>Lock Session</button>
+      </div>
+
+      <div class="access-divider"><span>Or Sign In With Google</span></div>
+      <div class="google-btn-wrap" id="googleSignInBtnWrap"></div>
+      <div id="masterGoogleClientWrap" style="text-align: center; margin-top: 0.25rem; display: none;">
+        <button type="button" onclick="promptForGoogleClientId()" style="background: none; border: none; color: var(--muted); font-size: 0.68rem; font-family: var(--mono); cursor: pointer; text-decoration: underline;">
+          ⚙️ Setup Google OAuth Client ID
+        </button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+  renderGoogleSignInButton();
+}
+
+function openAccessModal(defaultTier = 1) {
+  renderAccessModal();
+  const overlay = document.getElementById('accessModalOverlay');
+  const passInput = document.getElementById('accessPassInput');
+  const errorMsg = document.getElementById('accessErrorMsg');
+  const logoutBtn = document.getElementById('accessLogoutBtn');
+  const hintBox = document.getElementById('accessHintBox');
+  const card = document.getElementById('accessModalCard');
+
+  if (errorMsg) errorMsg.classList.remove('visible');
+  if (passInput) passInput.value = '';
+
+  const actTier = ACCESS_CONTROL.getActualTier();
+  const effTier = ACCESS_CONTROL.getEffectiveTier();
+
+  const masterGoogleClientWrap = document.getElementById('masterGoogleClientWrap');
+  if (masterGoogleClientWrap) {
+    masterGoogleClientWrap.style.display = (effTier === ACCESS_CONTROL.TIER_MASTER) ? 'block' : 'none';
+  }
+
+  // Stealth Mode: Hide Master demo passcode in Guest mode!
+  if (hintBox) {
+    hintBox.innerHTML = `
+      <strong>Access Passcode:</strong> <code>vip2026</code>
+    `;
+  }
+
+  // Secret 5-click trigger on modal title
+  const closeBtn = document.getElementById('accessModalClose');
+  const submitBtn = document.getElementById('accessSubmitBtn');
+  const passToggle = document.getElementById('accessPassToggle');
+  const eyeIcon = document.getElementById('accessEyeIcon');
+
+  closeBtn.addEventListener('click', closeAccessModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeAccessModal(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) {
+      closeAccessModal();
+    }
+  });
+
+  passToggle.addEventListener('click', () => {
+    const isMasked = passInput.classList.contains('access-input-masked');
+    passInput.classList.toggle('access-input-masked', !isMasked);
+    eyeIcon.style.opacity = isMasked ? '1' : '0.6';
+  });
+
+  function handleAuthenticate() {
+    const val = passInput.value;
+    const activeTab = document.querySelector('.access-tab-btn.active');
+    const activeTabTier = activeTab ? parseInt(activeTab.dataset.tier, 10) : 1;
+    if (!val) {
+      showError('Please enter a passcode.');
+      return;
+    }
+
+    const res = ACCESS_CONTROL.authenticate(val, activeTabTier);
+    if (res.success) {
+      closeAccessModal();
+      passInput.value = '';
+      showToast(`Unlocked ${res.label} successfully!`);
+    } else {
+      showError(res.error);
+      card.classList.add('shake');
+      setTimeout(() => card.classList.remove('shake'), 400);
+    }
+  }
+
+  submitBtn.addEventListener('click', handleAuthenticate);
+  passInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleAuthenticate(); });
+
+  if (logoutBtn) logoutBtn.hidden = (actTier === ACCESS_CONTROL.TIER_PUBLIC);
+  logoutBtn.addEventListener('click', () => {
+    ACCESS_CONTROL.logout();
+    closeAccessModal();
+    showToast('Session locked. Reverted to public guest access.');
+  });
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (passInput) passInput.focus();
+  renderGoogleSignInButton();
+  playAudioCue('open');
+}
+
+function closeAccessModal() {
+  const overlay = document.getElementById('accessModalOverlay');
+  if (overlay) {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    playAudioCue('close');
+  }
+}
+
+function showError(msg) {
+  const el = document.getElementById('accessErrorMsg');
+  if (el) {
+    el.textContent = msg;
+    el.classList.add('visible');
+  }
+  playAudioCue('error');
+}
+
+function showToast(msg) {
+  let toast = document.getElementById('accessToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'accessToast';
+    toast.style.cssText = 'position:fixed;bottom:2rem;right:2rem;z-index:10001;background:var(--heading);color:var(--bg);padding:0.75rem 1.2rem;border-radius:8px;font-family:var(--mono);font-size:0.78rem;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:opacity 0.3s, transform 0.3s;opacity:0;transform:translateY(10px);pointer-events:none;';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.style.opacity = '1';
+  toast.style.transform = 'translateY(0)';
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(10px)';
+  }, 2800);
+}
+
+function renderMasterControlPanel() {
+  const actTier = ACCESS_CONTROL.getActualTier();
+  let panel = document.getElementById('masterPanelWidget');
+
+  if (actTier !== ACCESS_CONTROL.TIER_MASTER) {
+    if (panel) panel.style.display = 'none';
+    return;
+  }
+
+  if (!panel) {
+    panel = document.createElement('div');
+    panel.id = 'masterPanelWidget';
+    panel.className = 'master-panel-widget';
+    panel.innerHTML = `
+      <button type="button" class="master-toggle-btn" id="masterToggleBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14v2H5v-2z"/>
+        </svg>
+        <span>Master Control</span>
+      </button>
+      <div class="master-card-popup" id="masterCardPopup">
+        <div class="master-pop-header">
+          <span class="master-pop-title">👑 Master Admin Panel</span>
+          <button type="button" class="access-modal-close" id="masterPopClose" style="padding:0.2rem;">✕</button>
+        </div>
+        <div>
+          <div class="master-sim-label">Simulate Visitor Tier</div>
+          <div class="master-sim-group">
+            <button type="button" class="master-sim-btn" data-sim="0">Public</button>
+            <button type="button" class="master-sim-btn" data-sim="1">VIP</button>
+            <button type="button" class="master-sim-btn" data-sim="2">Master</button>
+          </div>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:0.6rem;display:flex;flex-direction:column;gap:0.4rem;">
+          <div class="master-stat-row"><span>Session:</span> <span>Active Master</span></div>
+          <div class="master-stat-row"><span>Gated Nodes:</span> <span id="masterGatedCount">0</span></div>
+          <div class="master-stat-row"><span>Search Index:</span> <span id="masterSearchCount">0</span></div>
+        </div>
+
+        <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:0.6rem;">
+          <div class="master-sim-label" style="display:flex;justify-content:space-between;align-items:center;">
+            <span>VIP Email Allowlist</span>
+            <button type="button" onclick="promptAddVipEmail()" style="background:rgba(45,212,191,0.15);border:1px solid #2dd4bf;color:#2dd4bf;padding:0.15rem 0.4rem;font-size:0.6rem;border-radius:4px;cursor:pointer;">+ Add Email</button>
+          </div>
+          <div id="masterVipListWrap" style="margin-top:0.3rem;max-height:80px;overflow-y:auto;font-family:var(--mono);font-size:0.65rem;color:var(--muted);display:flex;flex-direction:column;gap:0.2rem;"></div>
+        </div>
+
+        <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:0.5rem;">
+          <button type="button" onclick="promptForGoogleClientId()" style="background:rgba(250,204,21,0.12);border:1px solid rgba(250,204,21,0.4);color:#fef08a;padding:0.25rem 0.5rem;font-size:0.62rem;font-family:var(--mono);border-radius:4px;cursor:pointer;width:100%;">
+            ⚙️ Configure Google OAuth Client ID
+          </button>
+        </div>
+
+        <button type="button" class="access-btn-logout" id="masterLockBtn" style="padding:0.4rem;width:100%;">
+          Lock Master Session
+        </button>
+      </div>
+    `;
+    document.body.appendChild(panel);
+
+    const toggleBtn = document.getElementById('masterToggleBtn');
+    const popup = document.getElementById('masterCardPopup');
+    const closeBtn = document.getElementById('masterPopClose');
+    const lockBtn = document.getElementById('masterLockBtn');
+    const simBtns = popup.querySelectorAll('.master-sim-btn');
+
+    toggleBtn.addEventListener('click', () => popup.classList.toggle('open'));
+    closeBtn.addEventListener('click', () => popup.classList.remove('open'));
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && popup.classList.contains('open')) {
+        popup.classList.remove('open');
+      }
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'M' || e.key === 'm')) {
+        if (ACCESS_CONTROL.getActualTier() === ACCESS_CONTROL.TIER_MASTER) {
+          e.preventDefault();
+          popup.classList.toggle('open');
+        }
+      }
+    });
+
+    simBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetSim = parseInt(btn.dataset.sim, 10);
+        ACCESS_CONTROL.setSimulatedTier(targetSim === ACCESS_CONTROL.TIER_MASTER ? null : targetSim);
+        showToast(`Simulating Tier: ${targetSim === 0 ? 'Public' : targetSim === 1 ? 'VIP' : 'Master'}`);
+      });
+    });
+
+    lockBtn.addEventListener('click', () => {
+      ACCESS_CONTROL.logout();
+      showToast('Master session locked.');
+    });
+  }
+
+  panel.style.display = 'block';
+
+  const popup = document.getElementById('masterCardPopup');
+  const simBtns = popup.querySelectorAll('.master-sim-btn');
+  const effTier = ACCESS_CONTROL.getEffectiveTier();
+
+  simBtns.forEach(btn => {
+    const bTier = parseInt(btn.dataset.sim, 10);
+    btn.classList.toggle('active', bTier === effTier);
+  });
+
+  const gatedCount = document.querySelectorAll('[data-access-tier]').length;
+  const masterGatedCount = document.getElementById('masterGatedCount');
+  if (masterGatedCount) masterGatedCount.textContent = gatedCount;
+
+  const masterSearchCount = document.getElementById('masterSearchCount');
+  if (masterSearchCount && window.SEARCH_STATIC_INDEX) {
+    const total = (SEARCH_STATIC_INDEX.achievement || []).length + (SEARCH_STATIC_INDEX.project || []).length;
+    masterSearchCount.textContent = total;
+  }
+
+  // Render Custom VIP Emails List
+  const vipWrap = document.getElementById('masterVipListWrap');
+  if (vipWrap) {
+    const customList = getCustomVipEmails();
+    if (customList.length === 0) {
+      vipWrap.innerHTML = `<span style="color:#71717a;font-style:italic;">No custom VIP emails added yet (Wildcard '*' active).</span>`;
+    } else {
+      vipWrap.innerHTML = customList.map(email => `
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.03);padding:0.2rem 0.4rem;border-radius:4px;">
+          <span>${email}</span>
+          <button type="button" onclick="removeCustomVipEmail('${email}')" style="background:none;border:none;color:#ef4444;cursor:pointer;font-size:0.65rem;" title="Remove VIP Access">✕</button>
+        </div>
+      `).join('');
+    }
+  }
+}
+
+
+function initAccessControl() {
+  renderAccessNavButton();
+  updateGatedContentVisibility();
+  renderMasterControlPanel();
+}
+
+
+
