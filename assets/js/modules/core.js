@@ -1208,5 +1208,10 @@ function initStatusDate() {
   renderStatusDate();
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof initSkillRadar === 'function') initSkillRadar();
+});
+
+
 
 

@@ -1,8 +1,15 @@
-# Portfolio Website Tracker — v42
+# Portfolio Website Tracker — v43
 
 ## _Last updated: 2026-08-13_
 
 ## Meta
+
+- **v43 — Interactive Skill Radar, ATS Resume Builder & Interactive Code Sandbox Suite.** Shipped interactive canvas competency radar visualizer, role-tailored ATS resume generator with one-click PDF print export, multi-tab project code inspector, dev terminal interactive sandbox, and PWA v43 cache release.
+  - **Interactive Skill Radar Visualizer**: Canvas/SVG 5-axis competency chart on `about.html` featuring interactive score nodes, gradient fill, and live toolstack detail filters.
+  - **Tailored ATS Resume Generator**: Recruiter-focused interactive resume builder modal on `experience.html` (and accessible via CMDK / Dev Terminal) with role-based filtering (Master CV, AI/ML, Embedded, Full-Stack) and ATS-optimized `@media print` PDF export styling.
+  - **Dev Terminal Interactive Sandbox**: Expanded `#adtTerminal` with `radar`, `resume`, `run spark`, `run gcsbr`, and `glossary [term]` interactive simulation and acronym lookup commands.
+  - **PWA Service Worker & Cache Refresh**: Upgraded PWA Service Worker cache version to `aaradhya-portfolio-v43`.
+  - **Verification & CI Compliance**: `python scripts/verify.py` passed with 0 errors and 0 warnings (`achievements=37, projects=22, journey=35`); `python scripts/extract_index.py` regenerated static search index; `graphify update .` executed cleanly.
 
 - **v42 — Site-Wide Performance & Modular Architecture Upgrade Suite.** Refactored monolithic `script.js` (4,080+ lines) into 8 decoupled modular components while hardening site bug items and static search index synchronization.
   - **Modular Architecture Refactoring**: Split monolithic `script.js` into 8 clean, isolated JS modules in `assets/js/modules/` (`core.js`, `ui.js`, `cmdk.js`, `access.js`, `tour.js`, `audio.js`, `terminal.js`, `haptics.js`).

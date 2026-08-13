@@ -970,6 +970,103 @@
       </div>
     </section>
 
+    <section id="skill-radar" class="skill-radar-section" aria-label="Interactive Skill Radar" style="padding: 0 3rem 4rem;">
+      <div class="section-header reveal">
+        <div class="section-num">Radar</div>
+        <h2 class="section-title">Domain Competency <em>Radar</em></h2>
+      </div>
+      <div class="skill-radar-card reveal">
+        <div class="skill-radar-header">
+          <div class="skill-radar-title-group">
+            <h2>Interactive Skill Radar</h2>
+            <p>5-Axis Breakdown of Engineering Competency, Toolstacks &amp; Signal Processing</p>
+          </div>
+          <button type="button" class="resume-print-btn" onclick="if(typeof openResumeGenerator==='function')openResumeGenerator()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+            <span>Generate ATS Resume</span>
+          </button>
+        </div>
+        <div class="radar-layout-grid">
+          <div class="radar-canvas-container">
+            <canvas id="skillRadarCanvas" class="radar-canvas" width="300" height="300"></canvas>
+          </div>
+          <div class="radar-domains-list">
+            <div class="domain-item active" data-domain="0">
+              <div class="domain-item-head">
+                <span>AI/ML &amp; GenAI</span>
+                <span class="domain-score">94%</span>
+              </div>
+              <div class="domain-desc">Transformers, PyTorch, Agentic AI, RAG Pipelines, SHAP Explainability, Scikit-Learn</div>
+              <div class="domain-tech-tags">
+                <span class="domain-tech-tag">PyTorch</span>
+                <span class="domain-tech-tag">Agentic RAG</span>
+                <span class="domain-tech-tag">Transformers</span>
+                <span class="domain-tech-tag">FastAPI</span>
+              </div>
+            </div>
+            <div class="domain-item" data-domain="1">
+              <div class="domain-item-head">
+                <span>Embedded C/C++</span>
+                <span class="domain-score">90%</span>
+              </div>
+              <div class="domain-desc">FreeRTOS multi-threading, ESP32, STM32, ARM Cortex-M, SPI/I2C/UART bus tuning</div>
+              <div class="domain-tech-tags">
+                <span class="domain-tech-tag">FreeRTOS</span>
+                <span class="domain-tech-tag">ESP32</span>
+                <span class="domain-tech-tag">C++20</span>
+                <span class="domain-tech-tag">Micro-Controllers</span>
+              </div>
+            </div>
+            <div class="domain-item" data-domain="2">
+              <div class="domain-item-head">
+                <span>Electronics &amp; PCB</span>
+                <span class="domain-score">92%</span>
+              </div>
+              <div class="domain-desc">KiCAD Multi-Layer PCB layout, Active analog signal filters, IMU MPU6050 calibration</div>
+              <div class="domain-tech-tags">
+                <span class="domain-tech-tag">KiCAD</span>
+                <span class="domain-tech-tag">SPARK</span>
+                <span class="domain-tech-tag">Analog Circuits</span>
+                <span class="domain-tech-tag">PCB Design</span>
+              </div>
+            </div>
+            <div class="domain-item" data-domain="3">
+              <div class="domain-item-head">
+                <span>Full-Stack Web</span>
+                <span class="domain-score">88%</span>
+              </div>
+              <div class="domain-desc">Modern JS (ES6+), PWA Offline Caching, Web Audio API synthesis, Web Crypto PBKDF2</div>
+              <div class="domain-tech-tags">
+                <span class="domain-tech-tag">JavaScript</span>
+                <span class="domain-tech-tag">PWA</span>
+                <span class="domain-tech-tag">Web Audio API</span>
+                <span class="domain-tech-tag">REST API</span>
+              </div>
+            </div>
+            <div class="domain-item" data-domain="4">
+              <div class="domain-item-head">
+                <span>Data Science &amp; Omics</span>
+                <span class="domain-score">89%</span>
+              </div>
+              <div class="domain-desc">Pandas/NumPy, GCSBR high-dimensional biological array modeling, statistical inference</div>
+              <div class="domain-tech-tags">
+                <span class="domain-tech-tag">Pandas</span>
+                <span class="domain-tech-tag">NumPy</span>
+                <span class="domain-tech-tag">GCSBR</span>
+                <span class="domain-tech-tag">Bioinformatics</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div class="divider-wrap" aria-hidden="true">
       <div class="divider-edge divider-edge--left"></div>
       <div class="divider"></div>

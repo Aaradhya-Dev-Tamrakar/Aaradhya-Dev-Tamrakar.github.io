@@ -24,16 +24,68 @@
       help: () => `
 <span class="term-green">Available Commands:</span><br>
   <span class="term-gold">skills</span>       - Overview of technical skillset &amp; engineering tools<br>
+  <span class="term-gold">radar</span>        - Interactive 5-Domain Skill Radar visualizer<br>
+  <span class="term-gold">resume</span>       - Open Tailored ATS Resume Generator &amp; PDF Exporter<br>
   <span class="term-gold">projects</span>     - Key engineering &amp; AI/ML projects<br>
+  <span class="term-gold">run [name]</span>   - Run interactive simulation ('run spark', 'run gcsbr')<br>
+  <span class="term-gold">glossary</span>     - Technical acronym glossary ('glossary spark')<br>
   <span class="term-gold">experience</span>   - Leadership &amp; technical roles<br>
   <span class="term-gold">achievements</span> - Credentials &amp; competition milestones<br>
   <span class="term-gold">contact</span>      - Direct communication channels<br>
-  <span class="term-gold">whatsnew</span>     - View v39 major release highlights<br>
+  <span class="term-gold">whatsnew</span>     - View v43 major release highlights<br>
   <span class="term-gold">theme</span>        - Toggle site color scheme (Dark / Light)<br>
   <span class="term-gold">accent [name]</span> - Easter egg color themes (gold, emerald, violet, cyan, ruby, prism)<br>
   <span class="term-gold">matrix</span>       - Trigger cybernetic digital rain<br>
   <span class="term-gold">clear</span>        - Clear terminal screen output
 `.trim(),
+      radar: () => {
+        if (typeof initSkillRadar === 'function') initSkillRadar();
+        return '<span class="term-green">Interactive Skill Radar rendered.</span>';
+      },
+      resume: () => {
+        if (typeof openResumeGenerator === 'function') openResumeGenerator();
+        return '<span class="term-green">Opening Tailored ATS Resume Generator modal...</span>';
+      },
+      run: (arg) => {
+        const sub = (arg || '').toLowerCase().trim();
+        if (sub === 'spark') {
+          return `
+<span class="term-green">[SPARK TELEMETRY SIMULATOR v43]</span><br>
+  [00:00:01] Initializing ESP32 I2C bus @ 400kHz... <span class="term-cyan">OK</span><br>
+  [00:00:02] Calibrating PPG Optical Pulse Sensor... <span class="term-cyan">STABLE</span><br>
+  [00:00:03] Bio-Signal Filter: Bandpass 0.5Hz–5.0Hz... <span class="term-gold">ACTIVE</span><br>
+  [00:00:04] Heart Rate BPM: 72 bpm | SpO2: 98% | BLE Status: <span class="term-green">CONNECTED</span>
+`.trim();
+        } else if (sub === 'gcsbr') {
+          return `
+<span class="term-green">[GCSBR PID &amp; SENSOR FUSION SIMULATOR v43]</span><br>
+  [00:00:01] MPU6050 Accelerometer/Gyro Init... <span class="term-cyan">OK</span><br>
+  [00:00:02] Complementary Filter α=0.98, Tilt Angle: +0.12°... <span class="term-cyan">BALANCED</span><br>
+  [00:00:03] PID Loop Output: Kp=14.5 Ki=0.8 Kd=1.2 -&gt; Motor PWM: <span class="term-gold">142 / 255</span>
+`.trim();
+        }
+        return `<span class="term-gold">Usage: 'run spark' or 'run gcsbr'</span>`;
+      },
+      glossary: (arg) => {
+        const term = (arg || '').toLowerCase().trim();
+        const dict = {
+          spark: 'SPARK: Smart Pulse & Activity Recognition Kit — Biomedical wearable monitor.',
+          gcsbr: 'GCSBR: Gesture-Controlled Self-Balancing Robot — 2-wheeled inverted pendulum PID robotics system.',
+          pcb: 'PCB: Printed Circuit Board — Custom hardware layout designed in KiCAD.',
+          adt: 'ADT: Aaradhya Dev Tamrakar — Personal brand identity & engineering portfolio.',
+          fpga: 'FPGA: Field-Programmable Gate Array — Hardware logic synthesis.',
+          eqtl: 'eQTL: Expression Quantitative Trait Loci — Genetic variant analysis in genomics.'
+        };
+        if (!term) {
+          return `<span class="term-green">▶ Engineering Acronym Glossary:</span><br>` +
+            Object.keys(dict).map(k => `  • <span class="term-gold">${k}</span>: ${dict[k]}`).join('<br>') +
+            `<br><br>Type <span class="term-cyan">'glossary [term]'</span> for quick lookup.`;
+        }
+        if (dict[term]) {
+          return `<span class="term-green">▶ ${dict[term]}</span>`;
+        }
+        return `<span class="term-gold">Term '${escapeHtml(term)}' not found. Available terms: ${Object.keys(dict).join(', ')}</span>`;
+      },
       skills: () => `
 <span class="term-green">▶ Core Technical Skillset:</span><br>
   • <span class="term-cyan">Embedded &amp; Firmware:</span> C, C++, Verilog, ARM Cortex-M, STM32, ESP32, KiCAD<br>

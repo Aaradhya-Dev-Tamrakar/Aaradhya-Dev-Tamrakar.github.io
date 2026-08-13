@@ -526,6 +526,13 @@ function initKeyNav() {
       return;
     }
 
+    // 4.5. ATS Resume Generator Modal (v43)
+    const resumeModal = document.getElementById('resumeModalOverlay');
+    if (resumeModal && resumeModal.classList.contains('open')) {
+      if (typeof closeResumeGenerator === 'function') closeResumeGenerator();
+      return;
+    }
+
     // 4. What's New Modal
     const wnModal = document.getElementById('whatsNewModal');
     if (wnModal && wnModal.classList.contains('open')) {
@@ -583,4 +590,445 @@ function initKeyNav() {
     }
   }, true);
 })();
+
+/* ── Interactive Skill Radar & Domain Competency Visualizer (v43) ── */
+function initSkillRadar() {
+  const canvas = document.getElementById('skillRadarCanvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  const domains = [
+    { label: 'AI/ML & GenAI', score: 0.94, tags: ['PyTorch', 'Transformers', 'Agentic AI', 'RAG', 'LLMs', 'Scikit-Learn'] },
+    { label: 'Embedded C/C++', score: 0.90, tags: ['FreeRTOS', 'ESP32', 'STM32', 'I2C/SPI', 'Firmware Tuning', 'C++20'] },
+    { label: 'Electronics & PCB', score: 0.92, tags: ['KiCAD', 'EasyEDA', 'Circuit Design', 'IMU Calibration', 'Sensors', 'SPARK'] },
+    { label: 'Full-Stack Web', score: 0.88, tags: ['JavaScript', 'HTML5/CSS3', 'PWA', 'REST APIs', 'Node.js', 'Web Crypto'] },
+    { label: 'Data Science & Omics', score: 0.89, tags: ['Pandas/NumPy', 'GCSBR', 'Genomic Data', 'Bioinformatics', 'Statistical Analysis'] }
+  ];
+
+  const numSides = domains.length;
+  const size = 300;
+  canvas.width = size;
+  canvas.height = size;
+
+  const centerX = size / 2;
+  const centerY = size / 2;
+  const radius = size * 0.38;
+
+  let activeIndex = 0;
+
+  function getPointCoordinates(index, scale) {
+    const angle = (Math.PI * 2 / numSides) * index - Math.PI / 2;
+    return {
+      x: centerX + Math.cos(angle) * (radius * scale),
+      y: centerY + Math.sin(angle) * (radius * scale)
+    };
+  }
+
+  function renderRadar() {
+    ctx.clearRect(0, 0, size, size);
+
+    // Render Concentric Web Grids
+    const levels = 4;
+    for (let l = 1; l <= levels; l++) {
+      const levelScale = l / levels;
+      ctx.beginPath();
+      for (let i = 0; i < numSides; i++) {
+        const pt = getPointCoordinates(i, levelScale);
+        if (i === 0) ctx.moveTo(pt.x, pt.y);
+        else ctx.lineTo(pt.x, pt.y);
+      }
+      ctx.closePath();
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Render Radial Spokes
+    for (let i = 0; i < numSides; i++) {
+      const pt = getPointCoordinates(i, 1);
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.lineTo(pt.x, pt.y);
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+      ctx.stroke();
+    }
+
+    // Draw Filled Data Polygon
+    ctx.beginPath();
+    for (let i = 0; i < numSides; i++) {
+      const pt = getPointCoordinates(i, domains[i].score);
+      if (i === 0) ctx.moveTo(pt.x, pt.y);
+      else ctx.lineTo(pt.x, pt.y);
+    }
+    ctx.closePath();
+
+    // Accent Gradient Fill
+    const grad = ctx.createRadialGradient(centerX, centerY, 10, centerX, centerY, radius);
+    grad.addColorStop(0, 'rgba(212, 168, 90, 0.45)');
+    grad.addColorStop(1, 'rgba(109, 191, 170, 0.15)');
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    ctx.strokeStyle = '#d4a85a';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Draw Data Point Nodes
+    for (let i = 0; i < numSides; i++) {
+      const pt = getPointCoordinates(i, domains[i].score);
+      const isSelected = (i === activeIndex);
+
+      ctx.beginPath();
+      ctx.arc(pt.x, pt.y, isSelected ? 6 : 4, 0, Math.PI * 2);
+      ctx.fillStyle = isSelected ? '#ffffff' : '#d4a85a';
+      ctx.fill();
+      ctx.strokeStyle = isSelected ? '#d4a85a' : '#000000';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+  }
+
+  renderRadar();
+
+  // Wire domain list hover & clicks
+  const domainItems = document.querySelectorAll('.domain-item');
+  domainItems.forEach((item, idx) => {
+    item.addEventListener('mouseenter', () => {
+      activeIndex = idx;
+      domainItems.forEach(d => d.classList.remove('active'));
+      item.classList.add('active');
+      renderRadar();
+    });
+    item.addEventListener('click', () => {
+      activeIndex = idx;
+      domainItems.forEach(d => d.classList.remove('active'));
+      item.classList.add('active');
+      renderRadar();
+      if (typeof triggerHapticFeedback === 'function') triggerHapticFeedback('light');
+    });
+  });
+}
+
+/* ── Tailored ATS Resume Generator & Exporter (v43) ── */
+const RESUME_DATA = {
+  name: "Aaradhya Dev Tamrakar",
+  subtitle: "Electronics Engineer | AI/ML Developer & Embedded Systems Specialist",
+  contact: "Kathmandu, Nepal · aaradhya.dev.tamrakar@gmail.com · github.com/Aaradhya-Dev-Tamrakar · linkedin.com/in/aaradhya-dev-tamrakar",
+  summary: "Final-year Electronics, Communication & Information Engineering student with hands-on expertise in Agentic AI, Deep Learning pipelines, Embedded C/C++ firmware (ESP32/STM32), and custom PCB design. Fusemachines AI Fellow (2026) and active tech lead in robotics, embedded systems, and machine learning research.",
+  roles: {
+    all: {
+      title: "Master CV — Electronics, Embedded & AI Engineering",
+      sections: [
+        {
+          title: "Education",
+          items: [
+            {
+              header: "Kathmandu Engineering College (Tribhuvan University)",
+              sub: "Bachelor of Engineering in Electronics, Communication & Information Engineering (2022 – 2026)",
+              bullets: [
+                "Curriculum: Embedded Systems, Signal Processing, Microprocessors, Control Systems, Machine Learning, Communication Networks.",
+                "Vice Secretary of IEEE KEC Student Branch (2025–2026); Executive Member & Mentor at Electronics & Propagation Club (EPC)."
+              ]
+            }
+          ]
+        },
+        {
+          title: "Fellowships & Leadership",
+          items: [
+            {
+              header: "Fusemachines AI Fellowship (AIF 2026)",
+              sub: "AI Fellow (Computer Vision, NLP & Agentic Systems) | Jan 2026 – Present",
+              bullets: [
+                "Architected 20+ ML/DL projects spanning Telco Churn trees, Text-to-SQL Agentic RAG, and multimodal computer vision pipelines.",
+                "Engineered scalable PyTorch models and deployed production-grade REST APIs."
+              ]
+            },
+            {
+              header: "IEEE KEC Student Branch & EPC Club",
+              sub: "Vice Secretary & Electronics Mentor | 2024 – Present",
+              bullets: [
+                "Organized PCB design workshops (KiCAD), micro-controller bootcamps, and mentored 100+ junior engineering students in embedded hardware."
+              ]
+            }
+          ]
+        },
+        {
+          title: "Key Projects",
+          items: [
+            {
+              header: "SPARK — Smart Pulse & Activity Recognition Kit",
+              sub: "Embedded C/C++, KiCAD PCB, ESP32, FreeRTOS, Signal Processing (2025–2026)",
+              bullets: [
+                "Designed a wearable biomedical monitor with custom PCB, active analog filtering, and real-time ESP32 digital signal processing.",
+                "Achieved ultra-low latency sensor telemetry and wireless streaming via Bluetooth Low Energy (BLE)."
+              ]
+            },
+            {
+              header: "Gesture-Controlled Self-Balancing Robot (GCSBR)",
+              sub: "Micro-controllers, IMU 6-DOF PID Control, RF Wireless, Robotics (2025)",
+              bullets: [
+                "Engineered a two-wheeled self-balancing inverted pendulum robot using MPU6050 IMU sensor fusion and real-time PID motor tuning."
+              ]
+            }
+          ]
+        },
+        {
+          title: "Technical Skills",
+          items: [
+            {
+              header: "Hardware & Embedded Systems",
+              sub: "KiCAD, ESP32, STM32, Arduino, FreeRTOS, I2C/SPI/UART, PCB Layout, Circuit Analysis, Signal Integrity"
+            },
+            {
+              header: "AI / Machine Learning & Software",
+              sub: "Python, PyTorch, Scikit-Learn, Transformers, OpenCV, SQL, Agentic AI, JavaScript (ES6+), C/C++20, Git, Linux"
+            }
+          ]
+        }
+      ]
+    },
+    aiml: {
+      title: "AI / Machine Learning Engineer Resume",
+      sections: [
+        {
+          title: "Summary",
+          items: [
+            {
+              header: "AI/ML Focus",
+              sub: "Specialized in Computer Vision, LLM Agentic Pipelines, PyTorch, and NLP Systems.",
+              bullets: [
+                "Fusemachines AI Fellow (2026) with deep practical experience in RAG pipelines, tree ensembles, and deep neural networks.",
+                "Proven track record building end-to-end ML workflows from data preprocessing to API deployment."
+              ]
+            }
+          ]
+        },
+        {
+          title: "AI/ML Experience & Projects",
+          items: [
+            {
+              header: "Fusemachines AI Fellowship (AIF 2026)",
+              sub: "AI Fellow (2026)",
+              bullets: [
+                "Built Text-to-SQL Agentic Pipeline using LangChain and LLMs for dynamic relational database querying.",
+                "Developed Telco Churn & CLV ensemble pipelines using XGBoost and LightGBM with automated hyperparameter tuning."
+              ]
+            },
+            {
+              header: "Genomic Data Processing & Machine Learning (GCSBR/Omics)",
+              sub: "Data Science & Bioinformatics",
+              bullets: [
+                "Applied statistical modeling and ML classification on high-dimensional biological dataset arrays."
+              ]
+            }
+          ]
+        },
+        {
+          title: "Technical Skills",
+          items: [
+            {
+              header: "Core AI Toolstack",
+              sub: "PyTorch, Python, Scikit-Learn, Transformers, OpenCV, SQL, Pandas, NumPy, Agentic RAG, Git, Linux"
+            }
+          ]
+        }
+      ]
+    },
+    hardware: {
+      title: "Electronics & Embedded Systems Engineer Resume",
+      sections: [
+        {
+          title: "Summary",
+          items: [
+            {
+              header: "Embedded & Hardware Focus",
+              sub: "Specialized in PCB Layout (KiCAD), Firmware Engineering (C/C++), and Sensor Fusion.",
+              bullets: [
+                "Proven track record building custom ESP32/STM32 hardware, biomedical sensor platforms, and robotics control systems."
+              ]
+            }
+          ]
+        },
+        {
+          title: "Hardware Projects & Mentorship",
+          items: [
+            {
+              header: "SPARK Biomedical Hardware Monitor",
+              sub: "Lead Embedded & Hardware Developer",
+              bullets: [
+                "Designed multi-layer PCB in KiCAD with active analog signal conditioning for bio-pulse extraction.",
+                "Developed FreeRTOS multi-threaded firmware on ESP32 micro-controller."
+              ]
+            },
+            {
+              header: "Gesture-Controlled Self-Balancing Robot",
+              sub: "Robotics & Control Engineer",
+              bullets: [
+                "Implemented 6-DOF IMU complementary filter and PID loop running at 100Hz control frequency."
+              ]
+            }
+          ]
+        },
+        {
+          title: "Technical Skills",
+          items: [
+            {
+              header: "Hardware & Tools",
+              sub: "KiCAD, ESP32, STM32, Arduino, C/C++20, FreeRTOS, Oscilloscopes, Multimeters, SPI/I2C/UART, Soldering"
+            }
+          ]
+        }
+      ]
+    },
+    fullstack: {
+      title: "Full-Stack Web & Software Engineer Resume",
+      sections: [
+        {
+          title: "Summary",
+          items: [
+            {
+              header: "Software Engineering Focus",
+              sub: "Specialized in Modern JavaScript (ES6+), PWA, Responsive UI Systems, and Web Security.",
+              bullets: [
+                "Creator of high-performance web applications featuring Web Crypto PBKDF2 encryption, Web Audio API, and PWA offline caching."
+              ]
+            }
+          ]
+        },
+        {
+          title: "Software & Web Projects",
+          items: [
+            {
+              header: "Personal Developer Portfolio & Web App Platform",
+              sub: "Full-Stack Architecture & Design",
+              bullets: [
+                "Engineered modular JS architecture across 8 decoupled modules, Service Worker offline caching (PWA v43), and custom CMDK palette."
+              ]
+            }
+          ]
+        },
+        {
+          title: "Technical Skills",
+          items: [
+            {
+              header: "Web & Software Toolstack",
+              sub: "JavaScript (ES6+), HTML5, CSS3, Node.js, Web Crypto, PWA, Service Workers, REST APIs, Git, Python"
+            }
+          ]
+        }
+      ]
+    }
+  }
+};
+
+function openResumeGenerator() {
+  let modal = document.getElementById('resumeModalOverlay');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'resumeModalOverlay';
+    modal.className = 'resume-modal-overlay';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Tailored ATS Resume Generator');
+    document.body.appendChild(modal);
+  }
+
+  modal.innerHTML = `
+    <div class="resume-modal-card">
+      <div class="resume-modal-header">
+        <div class="resume-modal-title">
+          <span>Tailored ATS Resume Generator</span>
+        </div>
+        <button type="button" class="access-modal-close" id="resumeModalClose" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="resume-role-selector">
+        <button type="button" class="resume-role-btn active" data-role="all">Master CV</button>
+        <button type="button" class="resume-role-btn" data-role="aiml">AI / ML Engineer</button>
+        <button type="button" class="resume-role-btn" data-role="hardware">Electronics & Embedded</button>
+        <button type="button" class="resume-role-btn" data-role="fullstack">Full-Stack Software</button>
+      </div>
+      <div class="resume-preview-body">
+        <div class="resume-preview-sheet" id="resumeSheet"></div>
+      </div>
+      <div class="resume-modal-footer">
+        <span style="font-family: var(--mono); font-size: 0.72rem; color: var(--muted)">ATS-Optimized Printable Format</span>
+        <button type="button" class="resume-print-btn" id="resumePrintBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <polyline points="6 9 6 2 18 2 18 9"/>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+            <rect x="6" y="14" width="12" height="8"/>
+          </svg>
+          <span>Print / Save PDF</span>
+        </button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('resumeModalClose').addEventListener('click', closeResumeGenerator);
+  modal.addEventListener('click', e => { if (e.target === modal) closeResumeGenerator(); });
+  document.getElementById('resumePrintBtn').addEventListener('click', () => { window.print(); });
+
+  const roleBtns = modal.querySelectorAll('.resume-role-btn');
+  roleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      roleBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderTailoredResumePreview(btn.getAttribute('data-role'));
+      if (typeof triggerHapticFeedback === 'function') triggerHapticFeedback('light');
+    });
+  });
+
+  renderTailoredResumePreview('all');
+  requestAnimationFrame(() => modal.classList.add('open'));
+  document.body.style.overflow = 'hidden';
+  playAudioCue('open');
+}
+
+function closeResumeGenerator() {
+  const modal = document.getElementById('resumeModalOverlay');
+  if (!modal) return;
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+  playAudioCue('close');
+}
+
+function renderTailoredResumePreview(roleKey) {
+  const sheet = document.getElementById('resumeSheet');
+  if (!sheet) return;
+
+  const roleData = RESUME_DATA.roles[roleKey] || RESUME_DATA.roles.all;
+  
+  let sectionsHtml = roleData.sections.map(sec => `
+    <div class="resume-sheet-section">
+      <div class="resume-sheet-sec-title">${sec.title}</div>
+      ${sec.items.map(item => `
+        <div class="resume-item-row">
+          <div class="resume-item-header">
+            <span>${item.header}</span>
+          </div>
+          ${item.sub ? `<div class="resume-item-sub">${item.sub}</div>` : ''}
+          ${item.bullets ? `<ul class="resume-bullet-list">${item.bullets.map(b => `<li>${b}</li>`).join('')}</ul>` : ''}
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+
+  sheet.innerHTML = `
+    <div class="resume-sheet-head">
+      <div class="resume-sheet-name">${RESUME_DATA.name}</div>
+      <div class="resume-sheet-subtitle">${roleData.title}</div>
+      <div class="resume-sheet-contact">${RESUME_DATA.contact}</div>
+    </div>
+    <div class="resume-sheet-section">
+      <div class="resume-sheet-sec-title">Professional Summary</div>
+      <p style="font-size: 0.84rem; color: #333;">${RESUME_DATA.summary}</p>
+    </div>
+    ${sectionsHtml}
+  `;
+}
+
 

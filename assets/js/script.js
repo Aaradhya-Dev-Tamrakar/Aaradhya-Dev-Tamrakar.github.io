@@ -29,6 +29,19 @@
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
   {
+    version: 'v43',
+    date: '2026-08-13',
+    sha: 'r4d4r43',
+    title: 'Site-Wide v43 Upgrade Suite — Skill Radar, ATS Resume Builder & Interactive Sandbox',
+    highlights: [
+      'Interactive Skill & Domain Radar visualizer with 5 core competency nodes, score metrics, and toolstacks on about.html',
+      'Tailored ATS Resume Generator & Exporter modal with role-based filtering (Master CV, AI/ML, Embedded, Full-Stack) and one-click print/PDF export',
+      'Multi-Tab Project Code & Architecture Inspector with syntax highlighting and copy code capabilities',
+      'Interactive Dev Terminal sandbox commands (radar, resume, run spark, run gcsbr, glossary)',
+      'PWA Service Worker cache version upgraded to aaradhya-portfolio-v43'
+    ]
+  },
+  {
     version: 'v42',
     date: '2026-08-13',
     sha: 'm0du42l',
