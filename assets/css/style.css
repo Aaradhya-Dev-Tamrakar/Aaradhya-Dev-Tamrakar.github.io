@@ -1065,7 +1065,6 @@ html[data-theme="light"] .section-num {
   display: flex;
   gap: 1.5rem;
   align-items: flex-start;
-  height: 100%;
   box-sizing: border-box;
 }
 
@@ -1084,7 +1083,7 @@ html[data-theme="light"] .section-num {
 @media (min-width: 1000px) {
   .access-tier-row {
     grid-template-columns: 1fr 1fr;
-    align-items: stretch;
+    align-items: start;
   }
 }
 
