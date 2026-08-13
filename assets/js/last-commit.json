@@ -1,6 +1,6 @@
 {
-  "sha": "0c21d5bd2d69aba13cdf42e060c2f90b80119c05",
-  "shortSha": "0c21d5b",
-  "date": "2026-08-13T16:48:02+05:45",
-  "message": "fix(projects): rename Fusemachines Capstone to BiasAperture — sync search index, journey.html doc ref (+3/-3)\n"
+  "sha": "5ce3e5484602b10926f7c7643d6870612893f8fe",
+  "shortSha": "5ce3e54",
+  "date": "2026-08-13T17:06:22+05:45",
+  "message": "refactor: update script.js - const SEARCH_STATIC_INDEX = { (+2/-0)\n"
 }
