@@ -1,6 +1,6 @@
 {
-  "sha": "e665b5f3ab8c769b97e587357ae178d39fe37907",
-  "shortSha": "e665b5f",
-  "date": "2026-08-13T17:39:24+05:45",
-  "message": "feat(mcp): add site hyper-automation engine and site-mcp server (v46)\n"
+  "sha": "24d622a29c213f8ef6a67cc4434056fc9089179d",
+  "shortSha": "24d622a",
+  "date": "2026-08-13T17:40:04+05:45",
+  "message": "fix(mcp): remove non-standard alwaysAllow property from mcp_config.json\n"
 }
