@@ -1,6 +1,6 @@
 {
-  "sha": "343225bbd6dfa7cfa920e3f573479eeca8666174",
-  "shortSha": "343225b",
-  "date": "2026-08-13T17:09:48+05:45",
-  "message": "refactor: update about.html, script.js, index.html - window.SEARCH_STATIC_INDEX = SEARCH_STATIC_INDEX; (+68/-40)\n"
+  "sha": "968e8849b18ada96f03037c2d563a92394f14287",
+  "shortSha": "968e884",
+  "date": "2026-08-13T17:14:53+05:45",
+  "message": "feat(access): gate all remaining GitHub repo links behind VIP access (vip2026)\\n\\n- Encrypted 9 previously-unencrypted GitHub repo URLs with AES-256-GCM/PBKDF2\\n- Added proj-fuse-wk14, wk13, wk12, wk2, wk1, proj-onm, proj-react-ws, proj-crypto, proj-pulselive payloads to ACCESS_CONTROL_PAYLOADS\\n- Replaced all raw href attributes in projects.html with data-payload-link-id references\\n- Zero raw GitHub URLs now exist in the HTML source for project repos\n"
 }
