@@ -5,7 +5,7 @@
    ============================================================ */
 
 /* ── Dynamic Module Loader (v44) ───────────────────────────── */
-(function () {
+window.__modulesLoadedPromise = (function () {
   const MODULES = [
     'assets/js/modules/core.js',
     'assets/js/modules/tour.js',
@@ -16,15 +16,23 @@
     'assets/js/modules/terminal.js',
     'assets/js/modules/haptics.js'
   ];
-  MODULES.forEach(function (src) {
-    if (!document.querySelector('script[src="' + src + '"]')) {
+
+  const promises = MODULES.map(function (src) {
+    var existing = document.querySelector('script[src="' + src + '"]');
+    if (existing) return Promise.resolve();
+    return new Promise(function (resolve) {
       var s = document.createElement('script');
       s.src = src;
       s.async = false;
+      s.onload = resolve;
+      s.onerror = resolve;
       document.head.appendChild(s);
-    }
+    });
   });
+
+  return Promise.all(promises);
 })();
+
 
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
@@ -734,41 +742,58 @@ window.SEARCH_STATIC_INDEX = SEARCH_STATIC_INDEX;
 
 
 /* ── Boot ─────────────────────────────────────────────────── */
-(function init() {
-  initTheme();        // must run first — sets data-theme before paint
-  initAccent();       // sets data-accent before paint
-  computeLiveDates(); // compute before any page script reads LIVE
-  renderSiteNav();
-  setActiveNav();
-  renderQuickNav();
-  initThemeToggle();
-  initAccentPicker();
-  initKeyNav();
-  initStatusDate();
-  initHamburger();
-  initScroll();
-  initReveal();
-  initCountUp();
-  initTypedCaption();
-  initCursor();
-  initLightbox();
-  initGlobalSearch();
-  initAccessControl();
-  renderSiteFooter();
-  initServiceWorker();
-  initReadingProgressBar();
-  initNetworkStatusListeners();
-  initCardTilt();
-  initTour();
-  initTouchGestures();
-  initSkillBars();
-  initScrollParallax();
-  initSwipeNav();
-  initAudioCues();
-  initReadingMetrics();
-  initFilterCountIndicators();
-  window.addEventListener('load', loadGA4);
-})();
+function bootSite() {
+  if (typeof initTheme === 'function') initTheme();        // must run first — sets data-theme before paint
+  if (typeof initAccent === 'function') initAccent();       // sets data-accent before paint
+  if (typeof computeLiveDates === 'function') computeLiveDates(); // compute before any page script reads LIVE
+  if (typeof renderSiteNav === 'function') renderSiteNav();
+  if (typeof setActiveNav === 'function') setActiveNav();
+  if (typeof renderQuickNav === 'function') renderQuickNav();
+  if (typeof initThemeToggle === 'function') initThemeToggle();
+  if (typeof initAccentPicker === 'function') initAccentPicker();
+  if (typeof initKeyNav === 'function') initKeyNav();
+  if (typeof initStatusDate === 'function') initStatusDate();
+  if (typeof initHamburger === 'function') initHamburger();
+  if (typeof initScroll === 'function') initScroll();
+  if (typeof initReveal === 'function') initReveal();
+  if (typeof initCountUp === 'function') initCountUp();
+  if (typeof initTypedCaption === 'function') initTypedCaption();
+  if (typeof initCursor === 'function') initCursor();
+  if (typeof initLightbox === 'function') initLightbox();
+  if (typeof initGlobalSearch === 'function') initGlobalSearch();
+  if (typeof initAccessControl === 'function') initAccessControl();
+  if (typeof renderSiteFooter === 'function') renderSiteFooter();
+  if (typeof initServiceWorker === 'function') initServiceWorker();
+  if (typeof initReadingProgressBar === 'function') initReadingProgressBar();
+  if (typeof initNetworkStatusListeners === 'function') initNetworkStatusListeners();
+  if (typeof initCardTilt === 'function') initCardTilt();
+  if (typeof initTour === 'function') initTour();
+  if (typeof initTouchGestures === 'function') initTouchGestures();
+  if (typeof initSkillBars === 'function') initSkillBars();
+  if (typeof initScrollParallax === 'function') initScrollParallax();
+  if (typeof initSwipeNav === 'function') initSwipeNav();
+  if (typeof initAudioCues === 'function') initAudioCues();
+  if (typeof initReadingMetrics === 'function') initReadingMetrics();
+  if (typeof initFilterCountIndicators === 'function') initFilterCountIndicators();
+  if (typeof loadGA4 === 'function') window.addEventListener('load', loadGA4);
+}
+
+if (window.__modulesLoadedPromise) {
+  window.__modulesLoadedPromise.then(function () {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootSite);
+    } else {
+      bootSite();
+    }
+  });
+} else {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootSite);
+  } else {
+    bootSite();
+  }
+}
+
 
 function initServiceWorker() {
   if ('serviceWorker' in navigator) {
