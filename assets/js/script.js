@@ -560,6 +560,27 @@ const SEARCH_STATIC_INDEX = {
   },
   {
     "type": "project",
+    "title": "Fusemachines Wk 14 — Agentic Intent Routing",
+    "meta": "Python, BERT, Fine-Tuning",
+    "href": "projects.html#p-030",
+    "text": "fusemachines wk 14 — agentic intent routing two candidate routing strategies for a shopassist ai support platform — fine-tuned bert-family encoder vs. fine-tuned llm/slm — classifying customer messages into 11 specialized agent categories benchmarked on 26,872 bitext customer-support examples with a group-aware stratified split to prevent instruction-text leakage across train/val/test python bert fine-tuning slm intent classification stratified split"
+  },
+  {
+    "type": "project",
+    "title": "Fusemachines Wk 13 — LSTM Text Classification",
+    "meta": "Python, PyTorch, LSTM",
+    "href": "projects.html#p-029",
+    "text": "fusemachines wk 13 — lstm text classification lstm headline classifier on ag_news (world / sports / business / sci-tech) — embedding → lstm → fc, trained top-to-bottom from a skeleton notebook pytorch training loop with vocabulary building from scratch and a short conceptual-reflection section python pytorch lstm ag_news nlp"
+  },
+  {
+    "type": "project",
+    "title": "Fusemachines Wk 12 — NER for Customer Support",
+    "meta": "Python, NER, CoNLL-2003",
+    "href": "projects.html#p-028",
+    "text": "fusemachines wk 12 — ner for customer support end-to-end named entity recognition pipeline on conll-2003 for automated customer-support ticket triage and crm routing text preprocessing, eda (sentence-length / word-frequency / entity distributions), and `word2features` feature engineering ahead of model training python ner conll-2003 feature engineering nlp"
+  },
+  {
+    "type": "project",
     "title": "Fusemachines Capstone — Vision Fairness & Bias Audit",
     "meta": "In Progress · AIF360, Fairlearn, FairFace",
     "href": "projects.html#p-018-fuse",
@@ -630,10 +651,45 @@ const SEARCH_STATIC_INDEX = {
   },
   {
     "type": "project",
+    "title": "Fusemachines Wk 2 — Customer API App",
+    "meta": "FastAPI, PostgreSQL, SQLAlchemy",
+    "href": "projects.html#p-027",
+    "text": "fusemachines wk 2 — customer api app 12-factor app compliant restful api for customer, order, and payment management, refactored to full 12-factor compliance with a statistics module fastapi + sqlalchemy over postgresql, dockerized with environment-based config and centralized logging fastapi postgresql sqlalchemy pydantic docker 12-factor app"
+  },
+  {
+    "type": "project",
+    "title": "Fusemachines Wk 1 — Cardiac Event Data Wrangling",
+    "meta": "Python, Pandas, EDA",
+    "href": "projects.html#p-026",
+    "text": "fusemachines wk 1 — cardiac event data wrangling data wrangling and preparation pipeline for cardiac event analysis on a synthetic heart-attack-risk dataset eda, correlation heatmap, and class-imbalance analysis ahead of downstream modeling python pandas eda data wrangling"
+  },
+  {
+    "type": "project",
+    "title": "ONM Case Study — Fusemachines Inc.",
+    "meta": "LaTeX, Organizational Analysis, Case Study",
+    "href": "projects.html#p-025",
+    "text": "onm case study — fusemachines inc. organization & management coursework case study on fusemachines inc.'s org structure, hr practices, and cross-functional operations based on a direct interview with the company's talent acquisition and pr managers; latex source plus compiled report latex organizational analysis case study coursework"
+  },
+  {
+    "type": "project",
     "title": "Claude Desktop Multi-Profile & Sync Utilities",
     "meta": "PowerShell 7, Windows Shell, Electron",
     "href": "projects.html#p-021",
     "text": "claude desktop multi-profile & sync utilities powershell 7 & windows shell utility suite enabling multi-user profile isolation for anthropic's claude desktop application features native profile session swapping, single-instance browser oauth (`claude://`) deep-link routing, and automated git repository synchronization with conventional commit messaging powershell 7 windows shell electron msix / appx oauth 2.0 robocopy git automation batch cli"
+  },
+  {
+    "type": "project",
+    "title": "IEEE KEC React Workshop",
+    "meta": "React, Vite, JavaScript",
+    "href": "projects.html#p-023",
+    "text": "ieee kec react workshop progressive react teaching material built for an ieee kec student-branch workshop — numbered lesson components from a basic greeting through props, a counter, and a live clock vite-scaffolded, structured as a self-contained follow-along app for first-time react learners react vite javascript teaching material"
+  },
+  {
+    "type": "project",
+    "title": "Cryptarithmetic Solver & API",
+    "meta": "Python, FastAPI, Backtracking",
+    "href": "projects.html#p-022",
+    "text": "cryptarithmetic solver & api column-by-column backtracking solver for alphametic puzzles (send + more = money style) — prunes invalid branches immediately on column-arithmetic failure instead of naive generate-and-test fastapi wrapper with a `metrics` mode for solve-time/branch stats, plus a powershell helper and a no-pytest unit test runner python fastapi backtracking docker algorithm design"
   },
   {
     "type": "project",
@@ -745,4 +801,3 @@ function initNetworkStatusListeners() {
     showToast('You are currently offline');
   });
 }
-
