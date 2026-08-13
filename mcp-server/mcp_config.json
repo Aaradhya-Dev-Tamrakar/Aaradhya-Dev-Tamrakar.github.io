@@ -8,13 +8,7 @@
       "env": {
         "PYTHONIOENCODING": "utf-8"
       },
-      "disabled": false,
-      "alwaysAllow": [
-        "get_site_telemetry",
-        "run_verification",
-        "rebuild_search_index",
-        "update_knowledge_graph"
-      ]
+      "disabled": false
     }
   }
 }
