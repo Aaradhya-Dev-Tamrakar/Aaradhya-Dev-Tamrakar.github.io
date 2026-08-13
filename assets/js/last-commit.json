@@ -1,6 +1,6 @@
 {
-  "sha": "93afdac362fb5a650ec6ec01c0a3fdbf672db643",
-  "shortSha": "93afdac",
-  "date": "2026-08-13T11:23:26+05:45",
-  "message": "feat(site): v43 upgrade suite - skill radar, ATS resume generator, project media code inspector & interactive sandbox\n"
+  "sha": "e3af5bd056d3523d4d0ed558812cc3e277f19383",
+  "shortSha": "e3af5bd",
+  "date": "2026-08-13T12:18:36+05:45",
+  "message": "feat(v44): site-wide upgrade — perf hardening, a11y/SEO & visual polish\n"
 }
