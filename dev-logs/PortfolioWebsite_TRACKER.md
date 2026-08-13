@@ -1,8 +1,16 @@
-# Portfolio Website Tracker — v44
+# Portfolio Website Tracker — v45
 
 ## _Last updated: 2026-08-13_
 
 ## Meta
+
+- **v45 — Site-Wide Upgrade Suite: Robust Troubleshooting Infrastructure, Pre-Commit Gate & Client Diagnostics.** Shipped major architectural upgrade to diagnostic suite and DevEx pipeline. Expanded `verify.py` from 5 to 17 check categories, added automated pre-commit verification gate to `sync.ps1`, fixed `dev-serve.py` ROOT path bug with CORS & MIME support, added interactive `healthcheck` command to Dev Terminal, updated GitHub Actions CI workflow with Node.js syntax checks, and bumped PWA Service Worker cache to `aaradhya-portfolio-v45`.
+  - **17-Category Diagnostic Suite**: Rewrote `scripts/verify.py` into a modular verification engine checking cross-page links, asset references, JS syntax, version consistency, module paths, sitemap sync, web manifest JSON, JSON-LD schemas, file size budgets, SW cache completeness, robots.txt, and global ID uniqueness with color-coded categorized reporting.
+  - **Pre-Commit Verification Gate**: Integrated `verify.py` into `sync.ps1` before committing — blocks pushes on errors (exit code 1) with `-SkipVerify` escape hatch.
+  - **Dev Server & CORS Fix**: Fixed `scripts/dev-serve.py` ROOT path to resolve to project root instead of `scripts/`; added CORS `Access-Control-Allow-Origin: *` headers, `no-cache` headers, and `.webmanifest`/`.webp` MIME types.
+  - **Dev Terminal Healthcheck**: Added `healthcheck` client-side diagnostic command to `#adtTerminal` reporting module status, Service Worker controller state, version alignment, theme/accent tokens, local storage health, DOMReady/Load performance timing, nav link counts, and search index metrics.
+  - **CI & SW Refresh**: Upgraded `.github/workflows/verify.yml` with Node.js syntax check step; bumped PWA Service Worker cache to `aaradhya-portfolio-v45`.
+  - **Verification & Compliance**: `python scripts/verify.py` passed with 0 errors (`achievements=37, projects=30, journey=35`); `node --check` validated clean syntax across all 9 JS files.
 
 - **v44 — Site-Wide Upgrade Suite: Performance Hardening, Accessibility/SEO & Visual Polish.** Shipped comprehensive site upgrade covering dark-mode scoped grain overlay, double-ring `:focus-visible` contrast, refined light mode elevation shadows, animated section title underlines, circuit node pulse animations, button active scale micro-interactions, LCP image preloads, updated sitemap dates, web manifest enhancement, and PWA v44 cache release.
   - **Performance Hardening**: Scoped high-overhead `body::before` fractal noise grain overlay to dark mode only (`html:not([data-theme="light"])`), removed static `will-change` declarations from cursor ring, reveal cards, and magnetic wraps to eliminate unnecessary compositing layer allocations. Added LCP `fetchpriority="high"` preload hint for hero photo in `index.html`.

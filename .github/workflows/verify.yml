@@ -1,9 +1,11 @@
 name: Verify
 
-# Last updated: 2026-07-28
+# Last updated: 2026-08-13 (v45)
 
-# Runs scripts/verify.py (id integrity, tag balance, internal-href
-# resolution, search-index sync) and fails the run if any check errors.
+# Runs scripts/verify.py (17 check categories: ids, tags, links, assets,
+# JS syntax, version consistency, modules, sitemap, manifest, JSON-LD,
+# file sizes, SW cache, robots.txt, global ID uniqueness, and more) and
+# fails the run if any check errors.
 #
 # Trigger: workflow_run on completion of "Update search index", NOT
 # push. Two reasons push doesn't work here:
@@ -58,5 +60,17 @@ jobs:
       - name: Install dependencies
         run: pip install beautifulsoup4
 
-      - name: Run verify.py
-        run: python3 scripts/verify.py
+      - name: JS syntax check (Node.js)
+        run: |
+          echo "Checking JavaScript syntax..."
+          node --check assets/js/script.js
+          for f in assets/js/modules/*.js; do
+            echo "  node --check $f"
+            node --check "$f"
+          done
+          echo "All JS files pass syntax check."
+
+      - name: Run verify.py (full suite)
+        run: python3 scripts/verify.py --verbose
+        env:
+          FORCE_COLOR: "1"

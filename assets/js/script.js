@@ -1,10 +1,10 @@
 /* ============================================================
-   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io (v44)
+   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io (v45)
    Loaded on every page via <script src="assets/js/script.js">.
    Orchestrates core modules from assets/js/modules/
    ============================================================ */
 
-/* ── Dynamic Module Loader (v44) ───────────────────────────── */
+/* ── Dynamic Module Loader (v45) ───────────────────────────── */
 window.__modulesLoadedPromise = (function () {
   const MODULES = [
     'assets/js/modules/core.js',
@@ -36,6 +36,19 @@ window.__modulesLoadedPromise = (function () {
 
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
+  {
+    version: 'v45',
+    date: '2026-08-13',
+    sha: 'v3r1fy45',
+    title: 'Robust Troubleshooting Infrastructure & Site Hardening Upgrade',
+    highlights: [
+      'Verification Engine: Expanded verify.py from 5 to 17 check categories — cross-page links, asset validation, JS syntax, version consistency, JSON-LD schemas, file size budgets, and more',
+      'Pre-Commit Gate: sync.ps1 now runs verify.py before every commit — blocks pushes with errors, -SkipVerify escape hatch for emergencies',
+      'Dev Server Fix: Fixed ROOT path bug in dev-serve.py, added CORS headers and MIME type support for .webmanifest/.webp',
+      'Dev Terminal: New healthcheck command for client-side diagnostics — module loading, SW status, performance metrics, nav link validation',
+      'CI Enhancement: verify.yml now includes Node.js syntax checking step alongside Python structural checks'
+    ]
+  },
   {
     version: 'v44',
     date: '2026-08-13',

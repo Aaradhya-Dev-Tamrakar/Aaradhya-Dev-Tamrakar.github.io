@@ -23,7 +23,8 @@ param (
     [string]$Message,
 
     [switch]$PullOnly,
-    [switch]$SkipGraph
+    [switch]$SkipGraph,
+    [switch]$SkipVerify
 )
 
 $ErrorActionPreference = "Continue"
@@ -183,7 +184,33 @@ if (-not $SkipGraph) {
     }
 }
 
-# 3. Determine commit message
+# 3. Pre-commit verification gate (v45)
+if (-not $SkipVerify) {
+    if (Test-Path "scripts/verify.py") {
+        $pythonCmd = Get-Command python -ErrorAction SilentlyContinue
+        if (-not $pythonCmd) { $pythonCmd = Get-Command python3 -ErrorAction SilentlyContinue }
+        if ($pythonCmd) {
+            Write-Host "[Git Sync] Running verification suite (scripts/verify.py)..." -ForegroundColor Cyan
+            & $pythonCmd.Source scripts/verify.py 2>$null
+            $verifyExit = $LASTEXITCODE
+            if ($verifyExit -eq 1) {
+                Write-Host "`n[Git Sync] VERIFICATION FAILED — commit aborted. Fix errors above or use -SkipVerify to bypass." -ForegroundColor Red
+                exit 1
+            }
+            elseif ($verifyExit -eq 2) {
+                Write-Host "[Git Sync] Verification passed with warnings — proceeding with commit." -ForegroundColor Yellow
+            }
+            else {
+                Write-Host "[Git Sync] Verification passed." -ForegroundColor Green
+            }
+        }
+    }
+}
+else {
+    Write-Host "[Git Sync] Skipping verification (SkipVerify flag set)." -ForegroundColor Yellow
+}
+
+# 4. Determine commit message
 if (-not $Message) {
     $Message = Get-AutoCommitMessage
     if ($Message) {

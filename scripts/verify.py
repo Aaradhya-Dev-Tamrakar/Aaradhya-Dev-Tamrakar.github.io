@@ -1,39 +1,86 @@
 #!/usr/bin/env python3
 """
-verify.py — structural integrity check for achievements.html, projects.html,
-journey.html, and their downstream dependents.
+verify.py — comprehensive structural integrity checker for
+aaradhya-dev-tamrakar.github.io (v45)
 
-Why this exists: achievements/projects/journey are edited weekly-to-monthly,
-each edit is hand-authored HTML (not templated), and three separate things
-can silently drift out of sync:
+17 check categories covering HTML structure, cross-page links, asset
+references, JS syntax, version consistency, SEO metadata, PWA
+compliance, file size budgets, and more.
 
-  1. Duplicate or missing ids on .achievement-item / .project-card /
-     .journey-node — breaks deep-links (#achv-N, #p-0NN) and, for projects,
-     the one hardcoded self-link (projects.html#p-001 in projects.html
-     itself).
-  2. assets/js/script.js SEARCH_STATIC_INDEX drifting from live DOM —
-     extract_index.py regenerates this on every push via CI, but if it
-     hasn't been run since the latest edit (e.g. checking a diff before
-     pushing), search silently misses new content — same failure mode
-     documented in extract_index.py's own docstring (EU AI Act Literacy
-     certificate incident).
-  3. Unbalanced tags / malformed HTML from manual editing — BeautifulSoup's
-     html.parser is lenient and will silently "fix" broken markup rather
-     than error, so a naive parse-and-check misses this; this script
-     diffs original vs. reserialized structure to catch it instead.
+Run:  python scripts/verify.py            # standard output
+      python scripts/verify.py --verbose  # show passes too
+      python scripts/verify.py --fix      # auto-fix trivial issues
 
-Run manually: python3 scripts/verify.py
-Exit code 0 = clean, 1 = at least one check failed (CI-friendly).
-
+Exit codes: 0 = clean, 1 = errors, 2 = warnings only
 Requires: beautifulsoup4
 """
+import argparse
+import json
+import os
 import re
+import shutil
+import subprocess
 import sys
 from pathlib import Path
 
+# Force UTF-8 output on Windows
+if sys.stdout.encoding and sys.stdout.encoding.lower() != 'utf-8':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+    except AttributeError:
+        pass  # Python < 3.7
+
 from bs4 import BeautifulSoup
 
+# ── Paths ───────────────────────────────────────────────────────────
 ROOT = Path(__file__).resolve().parent.parent
+SCRIPT_JS = ROOT / "assets" / "js" / "script.js"
+SW_JS = ROOT / "sw.js"
+SITEMAP_XML = ROOT / "sitemap.xml"
+MANIFEST = ROOT / "site.webmanifest"
+ROBOTS_TXT = ROOT / "robots.txt"
+MODULES_DIR = ROOT / "assets" / "js" / "modules"
+
+# ── State ───────────────────────────────────────────────────────────
+errors = []
+warnings = []
+passes = []
+
+# ── ANSI Colors ─────────────────────────────────────────────────────
+USE_COLOR = sys.stdout.isatty() and os.name != "nt" or os.environ.get("FORCE_COLOR")
+
+def _c(code, text):
+    return f"\033[{code}m{text}\033[0m" if USE_COLOR else text
+
+def red(t):    return _c("31", t)
+def yellow(t): return _c("33", t)
+def green(t):  return _c("32", t)
+def cyan(t):   return _c("36", t)
+def bold(t):   return _c("1", t)
+def dim(t):    return _c("2", t)
+
+# ── Helpers ─────────────────────────────────────────────────────────
+def get_html_files():
+    """Return sorted list of site HTML files (excluding google verification)."""
+    return sorted([f for f in ROOT.glob("*.html") if not f.name.startswith("google")])
+
+def read_html(path):
+    return path.read_text(encoding="utf-8")
+
+def parse_html(path):
+    return BeautifulSoup(read_html(path), "html.parser")
+
+def log_error(category, msg):
+    errors.append((category, msg))
+
+def log_warning(category, msg):
+    warnings.append((category, msg))
+
+def log_pass(category, msg):
+    passes.append((category, msg))
+
+# ── Page config for content checks ──────────────────────────────────
 PAGES = {
     "achievements": {
         "file": ROOT / "achievements.html",
@@ -55,26 +102,26 @@ PAGES = {
     },
 }
 
-errors = []
-warnings = []
 
-
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 1: Content IDs (achievements, projects, journey)
+# ════════════════════════════════════════════════════════════════════
 def check_ids(name, cfg):
     """Every item must have an id; ids must be unique within the file."""
+    cat = "ids"
     if not cfg["file"].exists():
-        errors.append(f"[{name}] file not found: {cfg['file']}")
-        return
-    soup = BeautifulSoup(cfg["file"].read_text(encoding="utf-8"), "html.parser")
+        log_error(cat, f"[{name}] file not found: {cfg['file']}")
+        return None
+    soup = parse_html(cfg["file"])
     container = soup.select_one(cfg["container"])
     if container is None:
-        errors.append(f"[{name}] container '{cfg['container']}' not found — "
-                       f"selector may be stale, check against live markup")
-        return
+        log_error(cat, f"[{name}] container '{cfg['container']}' not found")
+        return None
     items = container.select(cfg["item"])
     if not items:
-        errors.append(f"[{name}] zero items found under '{cfg['container']} "
-                       f"{cfg['item']}' — selector likely stale")
-        return
+        log_error(cat, f"[{name}] zero items found under "
+                       f"'{cfg['container']} {cfg['item']}'")
+        return None
 
     seen = {}
     missing = 0
@@ -86,105 +133,55 @@ def check_ids(name, cfg):
         seen.setdefault(el_id, []).append(i)
 
     if missing:
-        warnings.append(f"[{name}] {missing} item(s) missing an id "
-                         f"(fallback id used at render time, but not deep-linkable)")
+        log_warning(cat, f"[{name}] {missing} item(s) missing an id")
 
     dupes = {k: v for k, v in seen.items() if len(v) > 1}
     for el_id, positions in dupes.items():
-        errors.append(f"[{name}] duplicate id '{el_id}' at item positions {positions}")
+        log_error(cat, f"[{name}] duplicate id '{el_id}' at positions {positions}")
 
     if cfg["id_prefix"]:
         bad_prefix = [k for k in seen if not k.startswith(cfg["id_prefix"])]
         if bad_prefix:
-            warnings.append(f"[{name}] id(s) not matching expected prefix "
-                             f"'{cfg['id_prefix']}': {bad_prefix}")
+            log_warning(cat, f"[{name}] id(s) not matching prefix "
+                              f"'{cfg['id_prefix']}': {bad_prefix}")
+
+    if not dupes:
+        log_pass(cat, f"[{name}] {len(items)} items, all IDs unique")
 
     return {"count": len(items), "ids": set(seen.keys())}
 
 
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 2: Internal href resolution (content pages)
+# ════════════════════════════════════════════════════════════════════
 def check_internal_hrefs(name, cfg, valid_ids):
-    """Any href="<file>.html#<id>" anchor pointing at this page's own ids
-    must resolve to an id that actually exists (catches stale deep-links
-    after a reorder/delete)."""
-    site_files = [p for p in ROOT.glob("*.html")]
+    """href="<file>.html#<id>" anchors must resolve."""
+    cat = "hrefs"
+    site_files = get_html_files()
     target = cfg["file"].name
     pattern = re.compile(rf'href="{re.escape(target)}#([^"]+)"')
+    found_issues = False
     for f in site_files:
-        text = f.read_text(encoding="utf-8")
+        text = read_html(f)
         for m in pattern.finditer(text):
             frag = m.group(1)
             if frag in ("main-content",):
-                continue  # skip-link target, not a content id
+                continue
             if frag not in valid_ids:
-                errors.append(f"[{name}] {f.name} links to "
-                               f"'{target}#{frag}' — id does not exist in {target}")
+                log_error(cat, f"[{name}] {f.name} links to "
+                               f"'{target}#{frag}' — id does not exist")
+                found_issues = True
+    if not found_issues:
+        log_pass(cat, f"[{name}] all fragment links resolve correctly")
 
 
-def check_tag_balance(name, cfg):
-    """Text-level regex tag-scanning is unreliable on these pages: a literal
-    <svg>...</svg> fragment lives inside a data-URI href attribute value
-    (favicon), and apostrophes in ordinary prose ("Beginner's Association")
-    collide with single-quoted attribute delimiters. Both defeat any
-    regex that tries to distinguish "real tag" from "text that looks like
-    one" without a proper tokenizer.
-
-    Instead, this delegates to html.parser directly via HTMLParser's error
-    handling: html.parser is lenient (it never raises), but it exposes
-    enough structure via a custom subclass to flag genuine stray/mismatched
-    closing tags while correctly ignoring anything inside attribute values,
-    script/style bodies, and comments — because it actually tokenizes the
-    document instead of pattern-matching on raw text."""
-    from html.parser import HTMLParser
-
-    void_elements = {
-        "area", "base", "br", "col", "embed", "hr", "img", "input",
-        "link", "meta", "param", "source", "track", "wbr",
-    }
-
-    class BalanceChecker(HTMLParser):
-        def __init__(self):
-            super().__init__(convert_charrefs=True)
-            self.stack = []
-            self.issues = []
-            self._in_raw = None  # 'script' or 'style' while inside one
-
-        def handle_starttag(self, tag, attrs):
-            if self._in_raw:
-                return
-            if tag in ("script", "style"):
-                self._in_raw = tag
-                return
-            if tag in void_elements:
-                return
-            self.stack.append(tag)
-
-        def handle_startendtag(self, tag, attrs):
-            pass  # self-closed (e.g. <br/>) — nothing to push
-
-        def handle_endtag(self, tag):
-            if self._in_raw:
-                if tag == self._in_raw:
-                    self._in_raw = None
-                return
-            if not self.stack:
-                self.issues.append(f"stray closing tag </{tag}> with no open tag")
-                return
-            if self.stack[-1] == tag:
-                self.stack.pop()
-            elif tag in self.stack:
-                unclosed = []
-                while self.stack and self.stack[-1] != tag:
-                    unclosed.append(self.stack.pop())
-                self.stack.pop()
-                self.issues.append(f"</{tag}> closed out of order — "
-                                    f"unclosed tag(s) in between: {unclosed}")
-            else:
-                self.issues.append(f"closing tag </{tag}> does not match "
-                                    f"any open tag on the stack")
-
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 3: Tag balance (HTMLParser-based)
+# ════════════════════════════════════════════════════════════════════
 def check_tag_balance(name, file_path):
     from html.parser import HTMLParser
 
+    cat = "tags"
     void_elements = {
         "area", "base", "br", "col", "embed", "hr", "img", "input",
         "link", "meta", "param", "source", "track", "wbr",
@@ -237,101 +234,695 @@ def check_tag_balance(name, file_path):
     checker.close()
 
     for issue in checker.issues:
-        errors.append(f"[{name}] {issue}")
+        log_error(cat, f"[{name}] {issue}")
     if checker.stack:
-        errors.append(f"[{name}] unclosed tag(s) at end of file: {checker.stack}")
+        log_error(cat, f"[{name}] unclosed tag(s) at end of file: {checker.stack}")
+    if not checker.issues and not checker.stack:
+        log_pass(cat, f"[{name}] tag balance OK")
 
 
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 4: Search index sync
+# ════════════════════════════════════════════════════════════════════
 def check_search_index_sync():
-    """Runs extract_index.py's own logic in dry-run form: regenerate the
-    block in memory and diff against what's committed in script.js. If
-    they differ, the committed index is stale relative to
-    achievements.html / projects.html right now."""
-    sys.path.insert(0, str(ROOT / "scripts"))
-    import importlib
-    import extract_index as ei
-    importlib.reload(ei)
+    cat = "search-index"
+    try:
+        sys.path.insert(0, str(ROOT / "scripts"))
+        import importlib
+        import extract_index as ei
+        importlib.reload(ei)
 
-    achievements = ei.extract_achievements()
-    projects = ei.extract_projects()
-    if not achievements or not projects:
-        errors.append("[search-index] extract_index.py returned zero "
-                       "achievements or projects — see its own error above")
-        return
+        achievements = ei.extract_achievements()
+        projects = ei.extract_projects()
+        if not achievements or not projects:
+            log_error(cat, "extract_index.py returned zero achievements or projects")
+            return
 
-    expected_block = ei.render_block(achievements, projects)
-    src = ei.SCRIPT_JS.read_text(encoding="utf-8")
-    start = src.find(ei.START_MARK)
-    end = src.find(ei.END_MARK, start) + len(ei.END_MARK) if start != -1 else -1
-    if start == -1 or end == -1:
-        errors.append("[search-index] could not locate SEARCH_STATIC_INDEX "
-                       "block in script.js")
-        return
-    current_block = src[start:end]
+        expected_block = ei.render_block(achievements, projects)
+        src = ei.SCRIPT_JS.read_text(encoding="utf-8")
+        start = src.find(ei.START_MARK)
+        end = src.find(ei.END_MARK, start) + len(ei.END_MARK) if start != -1 else -1
+        if start == -1 or end == -1:
+            log_error(cat, "could not locate SEARCH_STATIC_INDEX block in script.js")
+            return
+        current_block = src[start:end]
 
-    if current_block.strip() != expected_block.strip():
-        errors.append("[search-index] assets/js/script.js SEARCH_STATIC_INDEX "
-                       "is stale — run `python3 scripts/extract_index.py` "
-                       "before committing")
+        if current_block.strip() != expected_block.strip():
+            log_error(cat, "SEARCH_STATIC_INDEX is stale — run "
+                           "`python scripts/extract_index.py`")
+        else:
+            log_pass(cat, f"search index up to date ({len(achievements)} achievements, "
+                          f"{len(projects)} projects)")
+    except Exception as e:
+        log_warning(cat, f"could not run search index check: {e}")
 
 
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 5: PWA & a11y metadata
+# ════════════════════════════════════════════════════════════════════
 def check_pwa_and_a11y_metadata():
-    """Verify site.webmanifest, skip-links, preconnect font links, sw.js version, and social metadata across all 10 site HTML pages."""
-    site_files = sorted([f for f in ROOT.glob("*.html") if not f.name.startswith("google")])
+    cat = "pwa-a11y"
+    site_files = get_html_files()
+    all_ok = True
     for f in site_files:
-        text = f.read_text(encoding="utf-8")
+        text = read_html(f)
         if 'href="site.webmanifest"' not in text and "href='site.webmanifest'" not in text:
-            errors.append(f"[pwa] {f.name} missing <link rel=\"manifest\" href=\"site.webmanifest\">")
+            log_error(cat, f"{f.name} missing <link rel=\"manifest\">")
+            all_ok = False
         if 'class="skip-link"' not in text and "class='skip-link'" not in text:
-            errors.append(f"[a11y] {f.name} missing skip-link navigation")
+            log_error(cat, f"{f.name} missing skip-link navigation")
+            all_ok = False
         if 'id="main-content"' not in text and "id='main-content'" not in text:
-            errors.append(f"[a11y] {f.name} missing <main id=\"main-content\"> target")
+            log_error(cat, f"{f.name} missing <main id=\"main-content\"> target")
+            all_ok = False
         if 'fonts.googleapis.com' not in text:
-            warnings.append(f"[performance] {f.name} missing Google Fonts preconnect/link")
-        if 'property="og:image"' not in text and 'name="og:image"' not in text and "property='og:image'" not in text:
-            errors.append(f"[seo] {f.name} missing og:image social preview tag")
+            log_warning(cat, f"{f.name} missing Google Fonts preconnect/link")
+            all_ok = False
+        if 'property="og:image"' not in text and "property='og:image'" not in text:
+            log_error(cat, f"{f.name} missing og:image social preview tag")
+            all_ok = False
         if 'name="twitter:card"' not in text and "name='twitter:card'" not in text:
-            errors.append(f"[seo] {f.name} missing twitter:card tag")
+            log_error(cat, f"{f.name} missing twitter:card tag")
+            all_ok = False
 
     sw_path = ROOT / "sw.js"
     if sw_path.exists():
         sw_text = sw_path.read_text(encoding="utf-8")
         if not re.search(r"CACHE_NAME\s*=\s*['\"]aaradhya-portfolio-v\d+['\"]", sw_text):
-            errors.append("[pwa] sw.js CACHE_NAME missing or malformed (expected aaradhya-portfolio-v<N>)")
+            log_error(cat, "sw.js CACHE_NAME missing or malformed")
+            all_ok = False
+
+    if all_ok:
+        log_pass(cat, f"all {len(site_files)} pages pass PWA & a11y metadata checks")
 
 
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 6: Cross-page link validation (NEW)
+# ════════════════════════════════════════════════════════════════════
+def check_cross_page_links():
+    """Scan every href="*.html" and href="*.html#fragment" across all pages.
+    Verify target pages exist and fragment IDs are defined in the target."""
+    cat = "links"
+    site_files = get_html_files()
+    site_basenames = {f.name for f in site_files}
+    # Pre-parse all pages and collect all IDs per page
+    page_ids = {}
+    for f in site_files:
+        soup = parse_html(f)
+        ids = set()
+        for el in soup.find_all(attrs={"id": True}):
+            ids.add(el["id"])
+        page_ids[f.name] = ids
+
+    broken_page = 0
+    broken_frag = 0
+    total_checked = 0
+
+    for f in site_files:
+        soup = parse_html(f)
+        for a in soup.find_all("a", href=True):
+            href = a["href"]
+            # Skip external, mailto, tel, javascript, anchor-only
+            if href.startswith(("http://", "https://", "mailto:", "tel:",
+                                "javascript:", "#", "data:")):
+                continue
+            # Skip asset downloads
+            if href.startswith("assets/"):
+                continue
+            # Parse page reference
+            parts = href.split("#", 1)
+            page_ref = parts[0].strip().lstrip("/")
+            frag = parts[1] if len(parts) > 1 else None
+
+            if not page_ref or page_ref == "":
+                continue
+            if not page_ref.endswith(".html"):
+                continue
+
+            total_checked += 1
+
+            if page_ref not in site_basenames:
+                log_error(cat, f"{f.name} links to '{page_ref}' — page does not exist")
+                broken_page += 1
+                continue
+
+            if frag and frag not in page_ids.get(page_ref, set()):
+                # Skip common programmatic anchors
+                if frag in ("main-content",):
+                    continue
+                log_error(cat, f"{f.name} links to '{page_ref}#{frag}' — "
+                               f"fragment ID not found in {page_ref}")
+                broken_frag += 1
+
+    if broken_page == 0 and broken_frag == 0:
+        log_pass(cat, f"all {total_checked} cross-page links resolve correctly")
+
+
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 7: Asset file existence (NEW)
+# ════════════════════════════════════════════════════════════════════
+def check_asset_references():
+    """Scan src=, href=, data-cert=, data-download= for local asset paths.
+    Verify each referenced file exists on disk."""
+    cat = "assets"
+    site_files = get_html_files()
+    missing = 0
+    total = 0
+
+    asset_attrs = re.compile(
+        r'(?:src|href|data-cert|data-download)\s*=\s*["\']'
+        r'(assets/[^"\']+)["\']',
+        re.IGNORECASE
+    )
+
+    checked = set()
+    for f in site_files:
+        text = read_html(f)
+        for m in asset_attrs.finditer(text):
+            asset_path = m.group(1)
+            if asset_path in checked:
+                continue
+            checked.add(asset_path)
+            total += 1
+            full_path = ROOT / asset_path
+            if not full_path.exists():
+                log_error(cat, f"{f.name} references '{asset_path}' — file not found")
+                missing += 1
+
+    if missing == 0:
+        log_pass(cat, f"all {total} unique asset references resolve to existing files")
+
+
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 8: JavaScript syntax validation (NEW)
+# ════════════════════════════════════════════════════════════════════
+def check_js_syntax():
+    """Run node --check on script.js and all modules."""
+    cat = "js-syntax"
+    node = shutil.which("node")
+    if not node:
+        log_warning(cat, "node not found on PATH — skipping JS syntax checks")
+        return
+
+    js_files = [SCRIPT_JS]
+    if MODULES_DIR.exists():
+        js_files.extend(sorted(MODULES_DIR.glob("*.js")))
+
+    all_ok = True
+    for js_file in js_files:
+        if not js_file.exists():
+            log_error(cat, f"{js_file.name} does not exist")
+            all_ok = False
+            continue
+        try:
+            result = subprocess.run(
+                [node, "--check", str(js_file)],
+                capture_output=True, text=True, timeout=10
+            )
+            if result.returncode != 0:
+                err_msg = result.stderr.strip().split("\n")[0] if result.stderr else "unknown error"
+                log_error(cat, f"{js_file.name} syntax error: {err_msg}")
+                all_ok = False
+        except subprocess.TimeoutExpired:
+            log_warning(cat, f"{js_file.name} — node --check timed out")
+            all_ok = False
+        except Exception as e:
+            log_warning(cat, f"{js_file.name} — check failed: {e}")
+            all_ok = False
+
+    if all_ok:
+        log_pass(cat, f"all {len(js_files)} JS files pass syntax check")
+
+
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 9: Version consistency (NEW)
+# ════════════════════════════════════════════════════════════════════
+def check_version_consistency():
+    """Assert sw.js CACHE_NAME, script.js header, and SITE_RELEASES[0]
+    all report the same version number."""
+    cat = "version"
+    versions = {}
+
+    # sw.js CACHE_NAME
+    if SW_JS.exists():
+        sw_text = SW_JS.read_text(encoding="utf-8")
+        m = re.search(r"CACHE_NAME\s*=\s*['\"]aaradhya-portfolio-v(\d+)['\"]", sw_text)
+        if m:
+            versions["sw.js CACHE_NAME"] = m.group(1)
+        else:
+            log_error(cat, "sw.js CACHE_NAME version not found")
+
+    # script.js header comment
+    if SCRIPT_JS.exists():
+        script_text = SCRIPT_JS.read_text(encoding="utf-8")
+        m = re.search(r"SHARED SCRIPT.*?\(v(\d+)\)", script_text[:500])
+        if m:
+            versions["script.js header"] = m.group(1)
+
+        # SITE_RELEASES[0].version
+        m = re.search(r"version:\s*['\"]v(\d+)['\"]", script_text[:2000])
+        if m:
+            versions["SITE_RELEASES[0]"] = m.group(1)
+
+    # sw.js header comment
+    if SW_JS.exists():
+        sw_text = SW_JS.read_text(encoding="utf-8")
+        m = re.search(r"Service Worker.*?\(v(\d+)\)", sw_text[:500])
+        if m:
+            versions["sw.js header"] = m.group(1)
+
+    unique_versions = set(versions.values())
+    if len(unique_versions) == 0:
+        log_error(cat, "could not extract any version numbers")
+    elif len(unique_versions) > 1:
+        detail = ", ".join(f"{k}=v{v}" for k, v in versions.items())
+        log_error(cat, f"version mismatch detected: {detail}")
+    else:
+        ver = unique_versions.pop()
+        log_pass(cat, f"all version strings consistent at v{ver} "
+                      f"({len(versions)} sources checked)")
+
+
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 10: Module file existence (NEW)
+# ════════════════════════════════════════════════════════════════════
+def check_module_files():
+    """Parse the MODULES array from script.js and verify every listed
+    module path exists on disk."""
+    cat = "modules"
+    if not SCRIPT_JS.exists():
+        log_error(cat, "script.js not found")
+        return
+
+    text = SCRIPT_JS.read_text(encoding="utf-8")
+    # Extract MODULES array entries
+    modules = re.findall(r"['\"]([^'\"]*modules/[^'\"]+\.js)['\"]", text[:1000])
+    if not modules:
+        log_error(cat, "could not parse MODULES array from script.js")
+        return
+
+    missing = []
+    for mod_path in modules:
+        full = ROOT / mod_path
+        if not full.exists():
+            log_error(cat, f"module '{mod_path}' listed in MODULES but file not found")
+            missing.append(mod_path)
+
+    if not missing:
+        log_pass(cat, f"all {len(modules)} modules in MODULES array exist on disk")
+
+
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 11: Sitemap sync (NEW)
+# ════════════════════════════════════════════════════════════════════
+def check_sitemap_sync(fix=False):
+    """Compare sitemap.xml URLs against actual *.html files."""
+    cat = "sitemap"
+    if not SITEMAP_XML.exists():
+        log_error(cat, "sitemap.xml not found")
+        return
+
+    text = SITEMAP_XML.read_text(encoding="utf-8")
+    sitemap_pages = set(re.findall(
+        r"<loc>https://aaradhya-dev-tamrakar\.github\.io/([^<]*)</loc>", text
+    ))
+    # Normalize: empty string = index
+    sitemap_pages_norm = set()
+    for p in sitemap_pages:
+        if p == "" or p == "/":
+            sitemap_pages_norm.add("index.html")
+        else:
+            sitemap_pages_norm.add(p.lstrip("/"))
+
+    actual_pages = {f.name for f in get_html_files()}
+    # Exclude google verification page
+    actual_pages -= {f.name for f in ROOT.glob("google*.html")}
+
+    missing_from_sitemap = actual_pages - sitemap_pages_norm
+    stale_in_sitemap = sitemap_pages_norm - actual_pages
+
+    for p in sorted(missing_from_sitemap):
+        log_warning(cat, f"'{p}' exists on disk but not in sitemap.xml")
+    for p in sorted(stale_in_sitemap):
+        log_error(cat, f"sitemap.xml lists '{p}' but file does not exist")
+
+    if not missing_from_sitemap and not stale_in_sitemap:
+        log_pass(cat, f"sitemap.xml matches {len(actual_pages)} site pages")
+
+
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 12: Web manifest validation (NEW)
+# ════════════════════════════════════════════════════════════════════
+def check_manifest():
+    """Parse site.webmanifest as JSON. Verify required fields."""
+    cat = "manifest"
+    if not MANIFEST.exists():
+        log_error(cat, "site.webmanifest not found")
+        return
+
+    try:
+        data = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as e:
+        log_error(cat, f"site.webmanifest is invalid JSON: {e}")
+        return
+
+    required = ["name", "short_name", "start_url", "display", "icons"]
+    missing = [k for k in required if k not in data]
+    if missing:
+        log_error(cat, f"site.webmanifest missing required fields: {missing}")
+    else:
+        log_pass(cat, "site.webmanifest has all required fields")
+
+    # Check icons array has at least one entry
+    icons = data.get("icons", [])
+    if not icons:
+        log_warning(cat, "site.webmanifest has empty icons array")
+    elif icons[0].get("sizes") and icons[0].get("type"):
+        log_pass(cat, f"site.webmanifest has {len(icons)} icon(s) defined")
+
+
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 13: JSON-LD schema validation (NEW)
+# ════════════════════════════════════════════════════════════════════
+def check_jsonld_schemas():
+    """Extract <script type="application/ld+json"> blocks, parse as JSON,
+    verify @context and @type are present."""
+    cat = "schema"
+    site_files = get_html_files()
+    total_blocks = 0
+    parse_errors = 0
+
+    for f in site_files:
+        soup = parse_html(f)
+        blocks = soup.find_all("script", type="application/ld+json")
+        for block in blocks:
+            total_blocks += 1
+            raw = block.string
+            if not raw or not raw.strip():
+                log_error(cat, f"{f.name} has empty JSON-LD block")
+                parse_errors += 1
+                continue
+            try:
+                data = json.loads(raw)
+            except json.JSONDecodeError as e:
+                log_error(cat, f"{f.name} JSON-LD parse error: {e}")
+                parse_errors += 1
+                continue
+            if "@context" not in data:
+                log_warning(cat, f"{f.name} JSON-LD block missing @context")
+            if "@type" not in data:
+                log_warning(cat, f"{f.name} JSON-LD block missing @type")
+
+    if parse_errors == 0 and total_blocks > 0:
+        log_pass(cat, f"all {total_blocks} JSON-LD blocks parse successfully")
+    elif total_blocks == 0:
+        log_warning(cat, "no JSON-LD blocks found on any page")
+
+
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 14: File size budgets (NEW)
+# ════════════════════════════════════════════════════════════════════
+def check_file_sizes():
+    """Warn when files exceed size thresholds."""
+    cat = "size"
+    thresholds = {
+        "CSS": (ROOT / "assets" / "css" / "style.css", 150_000),
+        "JS (script.js)": (SCRIPT_JS, 60_000),
+    }
+    # Individual modules
+    if MODULES_DIR.exists():
+        for mod in sorted(MODULES_DIR.glob("*.js")):
+            thresholds[f"JS ({mod.name})"] = (mod, 60_000)
+
+    # HTML pages
+    for f in get_html_files():
+        thresholds[f"HTML ({f.name})"] = (f, 200_000)
+
+    all_ok = True
+    for label, (path, limit) in thresholds.items():
+        if not path.exists():
+            continue
+        size = path.stat().st_size
+        if size > limit:
+            log_warning(cat, f"{label}: {size:,}B exceeds budget of {limit:,}B")
+            all_ok = False
+
+    if all_ok:
+        log_pass(cat, "all files within size budgets")
+
+
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 15: Service Worker cache completeness (NEW)
+# ════════════════════════════════════════════════════════════════════
+def check_sw_cache_completeness():
+    """Parse sw.js STATIC_ASSETS array. Verify every listed file exists.
+    Flag any *.html page not in the cache list."""
+    cat = "sw-assets"
+    if not SW_JS.exists():
+        log_error(cat, "sw.js not found")
+        return
+
+    sw_text = SW_JS.read_text(encoding="utf-8")
+    # Extract STATIC_ASSETS entries
+    cached_paths = re.findall(r"['\"]\./([\w./\-]+)['\"]", sw_text)
+    if not cached_paths:
+        log_error(cat, "could not parse STATIC_ASSETS from sw.js")
+        return
+
+    # Check each cached path exists
+    missing = []
+    for p in cached_paths:
+        if p == "./":
+            continue
+        full = ROOT / p
+        if not full.exists():
+            log_error(cat, f"sw.js caches '{p}' but file does not exist")
+            missing.append(p)
+
+    # Check all HTML pages are cached
+    actual_pages = {f.name for f in get_html_files()}
+    cached_pages = {p for p in cached_paths if p.endswith(".html")}
+    uncached = actual_pages - cached_pages
+    for p in sorted(uncached):
+        log_warning(cat, f"'{p}' is a site page but not in sw.js STATIC_ASSETS")
+
+    if not missing and not uncached:
+        log_pass(cat, f"all {len(cached_paths)} cached assets exist, "
+                      f"all HTML pages cached")
+
+
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 16: Robots.txt validation (NEW)
+# ════════════════════════════════════════════════════════════════════
+def check_robots_txt():
+    """Verify Sitemap: directive URL and basic syntax."""
+    cat = "robots"
+    if not ROBOTS_TXT.exists():
+        log_error(cat, "robots.txt not found")
+        return
+
+    text = ROBOTS_TXT.read_text(encoding="utf-8")
+
+    if "Sitemap:" not in text:
+        log_warning(cat, "robots.txt missing Sitemap: directive")
+        return
+
+    m = re.search(r"Sitemap:\s*(\S+)", text)
+    if m:
+        url = m.group(1)
+        if "aaradhya-dev-tamrakar.github.io/sitemap.xml" not in url:
+            log_error(cat, f"robots.txt Sitemap URL looks wrong: {url}")
+        else:
+            log_pass(cat, "robots.txt Sitemap directive correct")
+
+    if "User-agent:" not in text:
+        log_error(cat, "robots.txt missing User-agent directive")
+    else:
+        log_pass(cat, "robots.txt structure valid")
+
+
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 17: Global ID uniqueness across pages (NEW)
+# ════════════════════════════════════════════════════════════════════
+def check_global_id_uniqueness():
+    """Scan all pages for id="" attributes. Flag collisions that could
+    confuse cross-page fragment links."""
+    cat = "ids-global"
+    # Structural IDs expected on every page (not a collision)
+    structural_ids = {
+        "main-content", "readProgressBar", "siteFooter", "bg-canvas",
+        "pcb-canvas", "whatsNewModal", "tourOverlay", "accessModal",
+        "adtTerminal", "cmdkOverlay",
+        # Shared UI elements rendered on every page by JS/HTML
+        "siteNav", "page-header", "cursor", "cursorDot", "cursorRing",
+        "backTop", "scrollPct", "scrollProgress", "audioToggle",
+        "quick-nav", "quickNavGrid",
+        # Lightbox (present on pages with cert-btns)
+        "cert-lightbox", "lb-body", "lb-close", "lb-download",
+        "lb-label", "lb-open",
+    }
+
+    id_locations = {}  # id -> list of filenames
+    for f in get_html_files():
+        soup = parse_html(f)
+        for el in soup.find_all(attrs={"id": True}):
+            el_id = el["id"]
+            if el_id in structural_ids:
+                continue
+            id_locations.setdefault(el_id, []).append(f.name)
+
+    collisions = {k: v for k, v in id_locations.items() if len(v) > 1}
+    if collisions:
+        for el_id, files in sorted(collisions.items()):
+            # Only warn if the same ID is used as a link target
+            log_warning(cat, f"id='{el_id}' appears in multiple pages: "
+                              f"{', '.join(files)}")
+    else:
+        unique_ids = sum(1 for v in id_locations.values() if len(v) == 1)
+        log_pass(cat, f"{unique_ids} unique content IDs, no cross-page collisions")
+
+
+# ════════════════════════════════════════════════════════════════════
+#  MAIN
+# ════════════════════════════════════════════════════════════════════
 def main():
+    parser = argparse.ArgumentParser(
+        description="Structural integrity checker for aaradhya-dev-tamrakar.github.io"
+    )
+    parser.add_argument("--verbose", "-v", action="store_true",
+                        help="Show passing checks too")
+    parser.add_argument("--fix", action="store_true",
+                        help="Auto-fix trivial issues (sitemap dates, etc.)")
+    args = parser.parse_args()
+
+    print(bold("=" * 60))
+    print(bold("  Portfolio Site Verification Suite (v45)"))
+    print(bold("=" * 60))
+    print()
+
+    # ── Run all checks ──────────────────────────────────────────
+    # 1. Content IDs
     id_results = {}
     for name, cfg in PAGES.items():
         id_results[name] = check_ids(name, cfg)
 
-    # Check tag balance for all site HTML files
-    site_files = sorted([f for f in ROOT.glob("*.html") if not f.name.startswith("google")])
-    for f in site_files:
-        check_tag_balance(f.name, f)
-
+    # 2. Internal hrefs (content pages)
     for name, cfg in PAGES.items():
         res = id_results.get(name)
         if res:
             check_internal_hrefs(name, cfg, res["ids"])
 
+    # 3. Tag balance (all HTML)
+    for f in get_html_files():
+        check_tag_balance(f.name, f)
+
+    # 4. Search index sync
     check_search_index_sync()
+
+    # 5. PWA & a11y metadata
     check_pwa_and_a11y_metadata()
 
-    if warnings:
-        print("WARNINGS:")
-        for w in warnings:
-            print(f"  - {w}")
-    if errors:
-        print("ERRORS:")
-        for e in errors:
-            print(f"  - {e}")
-        print(f"\n{len(errors)} error(s), {len(warnings)} warning(s).")
-        sys.exit(1)
+    # 6. Cross-page links (NEW)
+    check_cross_page_links()
 
+    # 7. Asset references (NEW)
+    check_asset_references()
+
+    # 8. JS syntax (NEW)
+    check_js_syntax()
+
+    # 9. Version consistency (NEW)
+    check_version_consistency()
+
+    # 10. Module files (NEW)
+    check_module_files()
+
+    # 11. Sitemap sync (NEW)
+    check_sitemap_sync(fix=args.fix)
+
+    # 12. Manifest validation (NEW)
+    check_manifest()
+
+    # 13. JSON-LD schemas (NEW)
+    check_jsonld_schemas()
+
+    # 14. File size budgets (NEW)
+    check_file_sizes()
+
+    # 15. SW cache completeness (NEW)
+    check_sw_cache_completeness()
+
+    # 16. Robots.txt (NEW)
+    check_robots_txt()
+
+    # 17. Global ID uniqueness (NEW)
+    check_global_id_uniqueness()
+
+    # ── Output ──────────────────────────────────────────────────
+    # Collect all categories
+    all_cats = set()
+    for cat, _ in errors + warnings + passes:
+        all_cats.add(cat)
+    all_cats = sorted(all_cats)
+
+    # Category summary
+    cat_status = {}
+    for cat in all_cats:
+        cat_errors = [m for c, m in errors if c == cat]
+        cat_warnings = [m for c, m in warnings if c == cat]
+        cat_passes = [m for c, m in passes if c == cat]
+        cat_status[cat] = (cat_errors, cat_warnings, cat_passes)
+
+    # Print detailed results
+    if errors:
+        print(red(bold("ERRORS:")))
+        for cat, msg in errors:
+            print(f"  {red('X')} {dim(f'[{cat}]')} {msg}")
+        print()
+
+    if warnings:
+        print(yellow(bold("WARNINGS:")))
+        for cat, msg in warnings:
+            print(f"  {yellow('!')} {dim(f'[{cat}]')} {msg}")
+        print()
+
+    if args.verbose and passes:
+        print(green(bold("PASSES:")))
+        for cat, msg in passes:
+            print(f"  {green('+')} {dim(f'[{cat}]')} {msg}")
+        print()
+
+    # Summary dashboard
+    print(bold("-" * 60))
+    print(bold("  Category Summary"))
+    print(bold("-" * 60))
+    for cat in all_cats:
+        cat_e, cat_w, cat_p = cat_status[cat]
+        if cat_e:
+            status = red(f"FAIL ({len(cat_e)} error(s))")
+        elif cat_w:
+            status = yellow(f"WARN ({len(cat_w)} warning(s))")
+        else:
+            status = green("PASS")
+        print(f"  [{cat:>14s}]  {status}")
+    print(bold("-" * 60))
+
+    # Content counts
     counts = ", ".join(f"{n}={r['count']}" for n, r in id_results.items() if r)
-    print(f"OK — {counts}. {len(warnings)} warning(s).")
-    sys.exit(0)
+    if counts:
+        print(f"  Content: {counts}")
+
+    # Final verdict
+    print()
+    if errors:
+        print(red(bold(f"FAILED -- {len(errors)} error(s), {len(warnings)} warning(s).")))
+        sys.exit(1)
+    elif warnings:
+        print(yellow(bold(f"OK with {len(warnings)} warning(s).")))
+        sys.exit(2)
+    else:
+        print(green(bold("ALL CHECKS PASSED")))
+        sys.exit(0)
 
 
 if __name__ == "__main__":

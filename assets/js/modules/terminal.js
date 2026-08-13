@@ -32,7 +32,8 @@
   <span class="term-gold">experience</span>   - Leadership &amp; technical roles<br>
   <span class="term-gold">achievements</span> - Credentials &amp; competition milestones<br>
   <span class="term-gold">contact</span>      - Direct communication channels<br>
-  <span class="term-gold">whatsnew</span>     - View v43 major release highlights<br>
+  <span class="term-gold">whatsnew</span>     - View latest major release highlights<br>
+  <span class="term-gold">healthcheck</span> - Run client-side site diagnostics<br>
   <span class="term-gold">theme</span>        - Toggle site color scheme (Dark / Light)<br>
   <span class="term-gold">accent [name]</span> - Easter egg color themes (gold, emerald, violet, cyan, ruby, prism)<br>
   <span class="term-gold">matrix</span>       - Trigger cybernetic digital rain<br>
@@ -121,7 +122,65 @@
 `.trim(),
       whatsnew: () => {
         if (typeof openWhatsNewModal === 'function') openWhatsNewModal();
-        return '<span class="term-green">Opening What\'s New (v38) modal...</span>';
+        return '<span class="term-green">Opening What\'s New modal...</span>';
+      },
+      healthcheck: () => {
+        const checks = [];
+        // 1. Module loading status
+        const expectedModules = ['core.js', 'tour.js', 'cmdk.js', 'ui.js', 'access.js', 'audio.js', 'terminal.js', 'haptics.js'];
+        const loadedScripts = Array.from(document.querySelectorAll('script[src*="modules/"]')).map(s => s.src.split('/').pop());
+        const missingModules = expectedModules.filter(m => !loadedScripts.includes(m));
+        if (missingModules.length === 0) {
+          checks.push('<span class="term-green">\u2713</span> Modules: all ' + expectedModules.length + ' loaded');
+        } else {
+          checks.push('<span class="term-red">\u2717</span> Modules: missing ' + missingModules.join(', '));
+        }
+        // 2. Service Worker status
+        if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+          checks.push('<span class="term-green">\u2713</span> Service Worker: active');
+        } else if ('serviceWorker' in navigator) {
+          checks.push('<span class="term-gold">\u25CB</span> Service Worker: registered but no controller');
+        } else {
+          checks.push('<span class="term-red">\u2717</span> Service Worker: not supported');
+        }
+        // 3. Cache version
+        if (typeof SITE_RELEASES !== 'undefined' && SITE_RELEASES[0]) {
+          checks.push('<span class="term-green">\u2713</span> Site version: ' + SITE_RELEASES[0].version + ' (' + SITE_RELEASES[0].date + ')');
+        } else {
+          checks.push('<span class="term-red">\u2717</span> Site version: SITE_RELEASES not found');
+        }
+        // 4. Theme/Accent state
+        const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+        const accent = localStorage.getItem('adt-accent') || 'gold';
+        checks.push('<span class="term-green">\u2713</span> Theme: ' + theme + ' / Accent: ' + accent);
+        // 5. LocalStorage health
+        try {
+          const keys = Object.keys(localStorage).filter(k => k.startsWith('adt'));
+          checks.push('<span class="term-green">\u2713</span> LocalStorage: ' + keys.length + ' adt-* keys');
+        } catch (e) {
+          checks.push('<span class="term-red">\u2717</span> LocalStorage: blocked or unavailable');
+        }
+        // 6. Performance metrics
+        if (window.performance && performance.getEntriesByType) {
+          const nav = performance.getEntriesByType('navigation')[0];
+          if (nav) {
+            const domReady = Math.round(nav.domContentLoadedEventEnd - nav.startTime);
+            const fullLoad = Math.round(nav.loadEventEnd - nav.startTime);
+            checks.push('<span class="term-green">\u2713</span> DOMContentLoaded: ' + domReady + 'ms / Full load: ' + fullLoad + 'ms');
+          }
+        }
+        // 7. Page count via nav links
+        const navLinks = document.querySelectorAll('.nav-links a');
+        checks.push('<span class="term-green">\u2713</span> Navigation: ' + navLinks.length + ' nav links rendered');
+        // 8. Search index
+        if (typeof SEARCH_STATIC_INDEX !== 'undefined') {
+          const achvCount = (SEARCH_STATIC_INDEX.achievement || []).length;
+          const projCount = (SEARCH_STATIC_INDEX.project || []).length;
+          checks.push('<span class="term-green">\u2713</span> Search index: ' + achvCount + ' achievements, ' + projCount + ' projects');
+        } else {
+          checks.push('<span class="term-red">\u2717</span> Search index: SEARCH_STATIC_INDEX not found');
+        }
+        return '<span class="term-green">[SITE HEALTHCHECK v45]</span><br>' + checks.map(c => '  ' + c).join('<br>');
       },
       sound: () => {
         toggleAudioCues();
