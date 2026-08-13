@@ -1,6 +1,6 @@
 {
-  "sha": "24d622a29c213f8ef6a67cc4434056fc9089179d",
-  "shortSha": "24d622a",
-  "date": "2026-08-13T17:40:04+05:45",
-  "message": "fix(mcp): remove non-standard alwaysAllow property from mcp_config.json\n"
+  "sha": "8bd39bc1564d844b5bdfe3ae1be25f2e5d5716ab",
+  "shortSha": "8bd39bc",
+  "date": "2026-08-13T17:43:23+05:45",
+  "message": "fix(css): adjust access-card-inner height and grid alignment to prevent box stretching\n"
 }
