@@ -729,6 +729,8 @@ const SEARCH_STATIC_INDEX = {
 
   ]
 };
+window.SEARCH_STATIC_INDEX = SEARCH_STATIC_INDEX;
+
 
 
 /* ── Boot ─────────────────────────────────────────────────── */
