@@ -518,10 +518,10 @@ const SEARCH_STATIC_INDEX = {
   project: [
   {
     "type": "project",
-    "title": "Fusemachines Capstone — Vision Fairness & Bias Audit",
+    "title": "BiasAperture — Vision Fairness & Bias Audit",
     "meta": "In Progress · AIF360, Fairlearn, FairFace",
     "href": "projects.html#p-018",
-    "text": "fusemachines capstone — vision fairness & bias audit diagnostic tool for deployed vision classifiers — runs a multi-demographic test matrix, flags statistical disparities, and outputs a compliance report; detects bias but doesn't correct it fellowship capstone, two-person team with tisha manandhar — full readme to follow in-repo aif360 fairlearn fairface utkface computer vision bias auditing statistical testing html/jinja2 in progress"
+    "text": "biasaperture — vision fairness & bias audit diagnostic tool for deployed vision classifiers — runs a multi-demographic test matrix, flags statistical disparities, and outputs a compliance report; detects bias but doesn't correct it fellowship capstone, two-person team with tisha manandhar — full readme to follow in-repo aif360 fairlearn fairface utkface computer vision bias auditing statistical testing html/jinja2 in progress"
   },
   {
     "type": "project",
@@ -581,10 +581,10 @@ const SEARCH_STATIC_INDEX = {
   },
   {
     "type": "project",
-    "title": "Fusemachines Capstone — Vision Fairness & Bias Audit",
+    "title": "BiasAperture — Vision Fairness & Bias Audit",
     "meta": "In Progress · AIF360, Fairlearn, FairFace",
     "href": "projects.html#p-018-fuse",
-    "text": "fusemachines capstone — vision fairness & bias audit diagnostic tool for deployed vision classifiers — runs a multi-demographic test matrix, flags statistical disparities, and outputs a compliance report; detects bias but doesn't correct it fellowship capstone, two-person team with tisha manandhar — full readme to follow in-repo aif360 fairlearn fairface utkface computer vision bias auditing statistical testing html/jinja2 in progress"
+    "text": "biasaperture — vision fairness & bias audit diagnostic tool for deployed vision classifiers — runs a multi-demographic test matrix, flags statistical disparities, and outputs a compliance report; detects bias but doesn't correct it fellowship capstone, two-person team with tisha manandhar — full readme to follow in-repo aif360 fairlearn fairface utkface computer vision bias auditing statistical testing html/jinja2 in progress"
   },
   {
     "type": "project",
