@@ -1,8 +1,15 @@
-# Portfolio Website Tracker — v43
+# Portfolio Website Tracker — v44
 
 ## _Last updated: 2026-08-13_
 
 ## Meta
+
+- **v44 — Site-Wide Upgrade Suite: Performance Hardening, Accessibility/SEO & Visual Polish.** Shipped comprehensive site upgrade covering dark-mode scoped grain overlay, double-ring `:focus-visible` contrast, refined light mode elevation shadows, animated section title underlines, circuit node pulse animations, button active scale micro-interactions, LCP image preloads, updated sitemap dates, web manifest enhancement, and PWA v44 cache release.
+  - **Performance Hardening**: Scoped high-overhead `body::before` fractal noise grain overlay to dark mode only (`html:not([data-theme="light"])`), removed static `will-change` declarations from cursor ring, reveal cards, and magnetic wraps to eliminate unnecessary compositing layer allocations. Added LCP `fetchpriority="high"` preload hint for hero photo in `index.html`.
+  - **Accessibility & SEO**: Replaced blanket `box-shadow: none !important` light mode rule with component-targeted elevation overrides to preserve focus indicators, cards elevation, and button states. Upgraded `:focus-visible` with high-contrast double-ring styling, added reduced-motion cursor reset, updated `sitemap.xml` timestamps to `2026-08-13`, and enriched `site.webmanifest` with `id` and `categories`.
+  - **Visual Aesthetics & Polish**: Added dynamic viewport-triggered animated underlines to `.section-title` headers, pulsing glow keyframes to circuit `.divider-node` elements, scale active states (`scale(0.97)`) on primary & ghost buttons, and glassmorphic top-edge highlight on scrolled navigation bar.
+  - **Service Worker & Cache Refresh**: Upgraded Service Worker cache version to `aaradhya-portfolio-v44` in `sw.js`.
+  - **Verification & CI Compliance**: Executed `python scripts/verify.py`, `python scripts/extract_index.py`, and verified clean syntax across JS modules and HTML documents.
 
 - **v43 — Interactive Skill Radar, ATS Resume Builder & Interactive Code Sandbox Suite.** Shipped interactive canvas competency radar visualizer, role-tailored ATS resume generator with one-click PDF print export, multi-tab project code inspector, dev terminal interactive sandbox, and PWA v43 cache release.
   - **Interactive Skill Radar Visualizer**: Canvas/SVG 5-axis competency chart on `about.html` featuring interactive score nodes, gradient fill, and live toolstack detail filters.

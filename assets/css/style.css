@@ -396,19 +396,20 @@ html[data-theme="light"][data-accent="prism"] {
 .color-swatch-circle.prism { background: linear-gradient(135deg, #cbd5e1, #94a3b8); }
 
 
-/* ── Site-wide Light Mode Glow & Shadow Disabling ────────────── */
-html[data-theme="light"] *,
-html[data-theme="light"] *::before,
-html[data-theme="light"] *::after {
-  box-shadow: none !important;
-  text-shadow: none !important;
-}
-
+/* ── Site-wide Light Mode Glow & Shadow Refinements ────────────── */
 html[data-theme="light"] .hero-glow,
 html[data-theme="light"] .glow-orb,
 html[data-theme="light"] .ambient-glow,
 html[data-theme="light"] .card-gradient-border::before {
   display: none !important;
+}
+
+/* Light mode card elevation & interactive shadow overrides */
+html[data-theme="light"] .status-card,
+html[data-theme="light"] .glass-card,
+html[data-theme="light"] .quick-nav-card,
+html[data-theme="light"] .access-card-inner {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
 /* ── Custom Scrollbar & Scroll Progress Indicator ───────────── */
@@ -508,8 +509,8 @@ body {
   }
 }
 
-/* Grain overlay */
-body::before {
+/* Grain overlay — dark mode performance optimization */
+html:not([data-theme="light"]) body::before {
   content: "";
   position: fixed;
   inset: -100px;
@@ -579,7 +580,6 @@ body::before {
     width 0.2s,
     height 0.2s,
     opacity 0.2s;
-  will-change: transform, width, height;
 }
 
 body:has(a:hover) .cursor-ring,
@@ -636,6 +636,7 @@ nav.scrolled {
   background: var(--nav-scrolled-bg);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
+  box-shadow: inset 0 -1px 0 0 var(--line), 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .nav-logo {
@@ -668,7 +669,10 @@ nav.scrolled {
   font-weight: 500;
   text-decoration: none;
   transition: color 0.2s;
-  padding: 0.5rem 0.25rem;
+  padding: 0.6rem 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 .nav-links a:hover,
@@ -1015,6 +1019,24 @@ section {
   font-weight: 300;
   color: var(--heading);
   line-height: 1.1;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2), transparent);
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+  border-radius: 2px;
+}
+
+.reveal.visible .section-title::after {
+  width: 100%;
 }
 
 .section-title em {
@@ -1098,6 +1120,16 @@ html[data-theme="light"] .section-num {
   position: relative;
   z-index: 1;
   box-shadow: 0 0 6px var(--accent-a35);
+  animation: divider-node-pulse 4s ease-in-out infinite;
+}
+
+@keyframes divider-node-pulse {
+  0%, 100% {
+    box-shadow: 0 0 4px var(--accent-a35), 0 0 0 0 var(--accent-a12);
+  }
+  50% {
+    box-shadow: 0 0 10px var(--accent-a80), 0 0 0 4px var(--accent-a12);
+  }
 }
 
 .divider-wrap .divider {
@@ -1293,6 +1325,11 @@ html[data-theme="light"] .divider-node {
   transform: translateY(-1px);
 }
 
+.btn-primary:active,
+.btn-ghost:active {
+  transform: scale(0.97);
+}
+
 .btn-primary:hover::before {
   transform: translateX(100%);
 }
@@ -1319,7 +1356,8 @@ html[data-theme="light"] .divider-node {
   overflow: hidden;
   transition:
     color 0.25s,
-    border-color 0.25s;
+    border-color 0.25s,
+    transform 0.2s ease;
 }
 
 .btn-ghost::before {
@@ -1357,8 +1395,11 @@ html[data-theme="light"] .divider-node {
   transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   padding: 10px;
   margin: -10px;
-  will-change: transform;
   isolation: isolate;
+}
+
+.magnetic-wrap:hover {
+  will-change: transform;
 }
 
 @media (pointer: fine) {
@@ -1418,7 +1459,6 @@ html[data-theme="light"] .tag {
   transition:
     opacity 0.48s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.48s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
 }
 
 .reveal.visible {
@@ -1560,6 +1600,7 @@ footer {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
+  box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--accent);
   border-radius: 2px;
 }
 
@@ -1575,6 +1616,13 @@ footer {
 
 /* ── Reduced motion ───────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
+
+  body {
+    cursor: auto !important;
+  }
+  .cursor {
+    display: none !important;
+  }
 
   @view-transition {
     navigation: none;

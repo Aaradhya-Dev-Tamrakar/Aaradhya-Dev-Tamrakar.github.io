@@ -1,10 +1,10 @@
 /* ============================================================
-   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io (v42)
+   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io (v44)
    Loaded on every page via <script src="assets/js/script.js">.
    Orchestrates core modules from assets/js/modules/
    ============================================================ */
 
-/* ── Dynamic Module Loader (v42) ───────────────────────────── */
+/* ── Dynamic Module Loader (v44) ───────────────────────────── */
 (function () {
   const MODULES = [
     'assets/js/modules/core.js',
@@ -28,6 +28,18 @@
 
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
+  {
+    version: 'v44',
+    date: '2026-08-13',
+    sha: 'u7g7r44',
+    title: 'Site-Wide v44 Upgrade Suite — Performance Hardening, A11y/SEO & Visual Polish',
+    highlights: [
+      'Performance Optimization: Scoped background grain overlay to dark mode only, eliminated static will-change compositing bloat, added LCP preloads',
+      'Accessibility Hardening: Refined light-mode card shadows & focus-visible rings with double-ring contrast technique; fixed reduced motion cursor fallback',
+      'Visual Aesthetics Polish: Added animated section title underlines, pulse animations on circuit divider nodes, and tactile button active micro-interactions',
+      'SEO & PWA Hardening: Updated sitemap lastmod timestamps, enhanced web manifest with ID and categories, and bumped SW cache to aaradhya-portfolio-v44'
+    ]
+  },
   {
     version: 'v43',
     date: '2026-08-13',
