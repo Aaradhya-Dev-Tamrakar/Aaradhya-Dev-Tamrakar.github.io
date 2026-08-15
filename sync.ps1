@@ -418,9 +418,9 @@ function Update-TrackerLog {
     $todayDate = Get-Date -Format "yyyy-MM-dd"
     $content = Get-Content $trackerFile -Raw -Encoding UTF8
     
-    # Support both _Last updated: ..._ and *Last updated: ...* Markdown formats
-    if ($content -match '##\s*[_*]Last updated:.*?[_*]') {
-        $newContent = [regex]::Replace($content, '##\s*[_*]Last updated:.*?[_*]', "## _Last updated: $todayDate_")
+    # Support all _Last updated..._ and *Last updated...* Markdown formats
+    if ($content -match '##\s*[_*]Last updated.*') {
+        $newContent = [regex]::Replace($content, '##\s*[_*]Last updated.*', "## _Last updated: $todayDate_")
         Set-Content -Path $trackerFile -Value $newContent -NoNewline -Encoding UTF8
         Write-Badge "Tracker" "Updated $trackerFile timestamp to $todayDate" "Cyan" "Green"
     }
