@@ -1,6 +1,6 @@
 {
-  "sha": "d6bf4234469419d3b25f6af38e7a25fd70c43dda",
-  "shortSha": "d6bf423",
-  "date": "2026-08-15T21:40:46+05:45",
-  "message": "fix(ui): repair tour spotlight target, harden cert lightbox binding, animate matrix rain\n"
+  "sha": "9783fab03aa386889ba172404bff0f8cf25c5219",
+  "shortSha": "9783fab",
+  "date": "2026-08-15T21:45:39+05:45",
+  "message": "fix(ui): stop card-tilt transform fighting CSS transition, causing hover flicker\n"
 }
