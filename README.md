@@ -40,6 +40,7 @@ Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronic
 │   │   └── logos/              # Institutional logos (IEEE KEC, Fusemachines, EPC Club, Maker's Space, NSSR)
 │   ├── js/
 │   │   ├── script.js           # Core site engine: nav, theme toggle, access control, Google Sign-In & search (v47)
+│   │   ├── bg-animations.js    # Standalone SignalWave and PCBTraces background canvas animations
 │   │   ├── modules/            # Decoupled ES/IIFE JavaScript modules (core, ui, cmdk, access, tour, audio, terminal, haptics)
 │   │   └── last-commit.json    # Commit metadata stamped on push via GitHub Actions for live commit status display
 │   └── videos/                 # Project video demonstrations (e.g., GCSBR working demo) & poster stills
@@ -55,6 +56,7 @@ Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronic
 │       └── dev-serve.py        # Local HTTP dev testing server with project root resolution, CORS headers & MIME type handling
 │
 ├── 🤖 GitHub Workflows (`.github/workflows/`)
+│   ├── deploy-pages.yml        # Automated GitHub Pages deployment with Git LFS media asset resolution
 │   ├── stamp-last-commit.yml   # CI bot stamping last commit hash, timestamp & message on every push (with retry loop)
 │   ├── update-search-index.yml # CI bot auto-regenerating search index on HTML content changes
 │   ├── verify.yml              # CI workflow running Node.js syntax checks & Python verification suite

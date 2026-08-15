@@ -124,7 +124,7 @@ TOOLS = [
             "properties": {
                 "version": {
                     "type": "string",
-                    "description": "Version string e.g. v46"
+                    "description": "Version string e.g. v47"
                 }
             },
             "required": ["version"]
@@ -138,7 +138,7 @@ TOOLS = [
             "properties": {
                 "version": {
                     "type": "string",
-                    "description": "Version string (e.g. v46)"
+                    "description": "Version string (e.g. v47)"
                 },
                 "title": {
                     "type": "string",
@@ -171,7 +171,7 @@ PROMPTS = [
         "arguments": [
             {
                 "name": "version",
-                "description": "Target version string e.g. v46",
+                "description": "Target version string e.g. v47",
                 "required": True
             },
             {
@@ -384,7 +384,7 @@ def process_request(request):
     elif method == "prompts/get":
         prompt_name = params.get("name")
         if prompt_name == "draft-release-notes":
-            v = params.get("arguments", {}).get("version", "v46")
+            v = params.get("arguments", {}).get("version", "v47")
             c = params.get("arguments", {}).get("changes", "Details of update")
             prompt_text = f"Draft a detailed release note for {v} covering:\n{c}\nFormat as standard PortfolioWebsite_TRACKER.md entry."
         elif prompt_name == "audit-seo-metadata":

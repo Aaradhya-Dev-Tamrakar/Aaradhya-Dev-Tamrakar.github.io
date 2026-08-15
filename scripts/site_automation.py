@@ -13,7 +13,7 @@ Provides automated workflows for:
 Usage:
   python scripts/site_automation.py audit
   python scripts/site_automation.py stats
-  python scripts/site_automation.py sync-metadata --version v46
+  python scripts/site_automation.py sync-metadata --version v47
   python scripts/site_automation.py rebuild-index
   python scripts/site_automation.py update-graph
   python scripts/site_automation.py add-project --title "..." --desc "..." --tags "Python,AI"
@@ -198,10 +198,10 @@ def main():
     subparsers.add_parser("update-graph", help="Update Graphify AST knowledge graph")
 
     sync_p = subparsers.add_parser("sync-metadata", help="Sync metadata & SW cache version")
-    sync_p.add_argument("--version", required=True, help="Version tag (e.g. v46)")
+    sync_p.add_argument("--version", required=True, help="Version tag (e.g. v47)")
 
     tracker_p = subparsers.add_parser("update-tracker", help="Add entry to Portfolio Tracker")
-    tracker_p.add_argument("--version", required=True, help="Version string (e.g. v46)")
+    tracker_p.add_argument("--version", required=True, help="Version string (e.g. v47)")
     tracker_p.add_argument("--title", required=True, help="Title of release")
     tracker_p.add_argument("--highlights", nargs="+", required=True, help="List of highlights")
 
