@@ -807,7 +807,6 @@ function bootSite() {
   if (typeof initServiceWorker === 'function') initServiceWorker();
   if (typeof initReadingProgressBar === 'function') initReadingProgressBar();
   if (typeof initNetworkStatusListeners === 'function') initNetworkStatusListeners();
-  if (typeof initCardTilt === 'function') initCardTilt();
   if (typeof initTour === 'function') initTour();
   if (typeof initTouchGestures === 'function') initTouchGestures();
   if (typeof initSkillBars === 'function') initSkillBars();

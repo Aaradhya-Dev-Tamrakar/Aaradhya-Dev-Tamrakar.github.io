@@ -3349,24 +3349,6 @@ html[data-theme="light"] .gated-overlay {
 }
 
 /* ==========================================================================
-   v32 Upgrade Utilities: Card 3D Tilt Hardware Acceleration
-   ========================================================================== */
-.project-card,
-.achievement-item,
-.journey-node,
-.exp-card {
-  transform-style: preserve-3d;
-  transition: box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.project-card:hover,
-.achievement-item:hover,
-.journey-node:hover,
-.exp-card:hover {
-  will-change: transform;
-}
-
-/* ==========================================================================
    v33 Upgrade Utilities: Interactive Dev Terminal & Cursor Trail
    ========================================================================== */
 .terminal-section {

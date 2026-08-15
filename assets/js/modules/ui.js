@@ -256,35 +256,7 @@ function initFilterCountIndicators() {
   }
 }
 
-function initCardTilt() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
 
-  const selector = '.project-card, .achievement-item, .journey-node, .exp-card';
-  document.addEventListener('mousemove', e => {
-    const card = e.target.closest(selector);
-    if (!card) return;
-    card.style.transition = 'none';
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -4;
-    const rotateY = ((x - centerX) / centerX) * 4;
-    card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(4px)`;
-  });
-
-  document.addEventListener('mouseout', e => {
-    const card = e.target.closest(selector);
-    if (!card) return;
-    if (!e.relatedTarget || !card.contains(e.relatedTarget)) {
-      card.style.transition = 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)';
-      card.style.transform = '';
-      card.addEventListener('transitionend', () => { card.style.transition = ''; }, { once: true });
-    }
-  });
-}
 
 
 
