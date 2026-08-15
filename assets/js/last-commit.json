@@ -1,6 +1,6 @@
 {
-  "sha": "b0eae20fc642411424351fab6cf6d5450b40e8cf",
-  "shortSha": "b0eae20",
-  "date": "2026-08-14T12:35:49+05:45",
-  "message": "feat: update graphify-out, .gitignore - __pycache__/ (+0/-1)\n"
+  "sha": "c81c9606bd7f109326a829bb628e5e05811e5f04",
+  "shortSha": "c81c960",
+  "date": "2026-08-15T12:38:14+05:45",
+  "message": "fix(site): remediate 8-track audit findings across blockers, security, mcp, and a11y\n"
 }
