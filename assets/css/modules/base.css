@@ -822,3 +822,14 @@ html[data-theme="light"] .divider-node {
   }
 }
 
+/* ── Content Visibility & Rendering Optimization ───────────── */
+.content-visibility-auto,
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+.cv-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 280px;
+}

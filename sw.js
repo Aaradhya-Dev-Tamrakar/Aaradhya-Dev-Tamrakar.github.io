@@ -29,6 +29,7 @@ const STATIC_ASSETS = [
   './assets/css/modules/tour.css',
   './assets/css/modules/print.css',
   './assets/js/script.js',
+  './assets/js/bg-animations.js',
   './assets/js/modules/core.js',
   './assets/js/modules/tour.js',
   './assets/js/modules/cmdk.js',
@@ -38,7 +39,12 @@ const STATIC_ASSETS = [
   './assets/js/modules/terminal.js',
   './assets/js/modules/haptics.js',
   './assets/images/photo.webp',
-  './assets/images/og-image.jpg'
+  './assets/images/og-image.jpg',
+  './assets/images/logos/ieee-kec.webp',
+  './assets/images/logos/nssr.webp',
+  './assets/images/logos/epc-club.webp',
+  './assets/images/logos/fusemachines.webp',
+  './assets/images/logos/makerspace.webp'
 ];
 
 // Install: precache static assets

@@ -105,7 +105,18 @@
 <noscript>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet"/>
 </noscript>
-<link href="assets/css/style.css" rel="stylesheet"/>
+  <!-- Critical CSS modules — loaded in parallel (eliminates @import waterfall) -->
+  <link rel="stylesheet" href="assets/css/modules/tokens.css" />
+  <link rel="stylesheet" href="assets/css/modules/base.css" />
+  <link rel="stylesheet" href="assets/css/modules/layout.css" />
+  <link rel="stylesheet" href="assets/css/modules/components.css" />
+
+  <!-- Non-critical interactive CSS modules — deferred via print/onload swap -->
+  <link rel="stylesheet" href="assets/css/modules/cmdk.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="assets/css/modules/access.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="assets/css/modules/terminal.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="assets/css/modules/tour.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="assets/css/modules/print.css" media="print" />
 <!-- Page-specific: projects grid -->
 <style>
     html,
@@ -1406,6 +1417,10 @@
 <footer role="contentinfo">
 <div id="siteFooter"></div>
 </footer>
+  <!-- Early discovery for dynamically-loaded JS modules -->
+  <link rel="preload" href="assets/js/modules/core.js" as="script" />
+  <link rel="preload" href="assets/js/modules/ui.js" as="script" />
+
 <script defer="" src="assets/js/script.js"></script>
 <script>
     // Project cards dropdown expand/collapse — fluid animation + scroll sync

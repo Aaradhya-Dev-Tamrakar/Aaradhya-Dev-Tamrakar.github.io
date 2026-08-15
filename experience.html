@@ -85,8 +85,18 @@
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" />
   </noscript>
 
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- Critical CSS modules — loaded in parallel (eliminates @import waterfall) -->
+  <link rel="stylesheet" href="assets/css/modules/tokens.css" />
+  <link rel="stylesheet" href="assets/css/modules/base.css" />
+  <link rel="stylesheet" href="assets/css/modules/layout.css" />
+  <link rel="stylesheet" href="assets/css/modules/components.css" />
 
+  <!-- Non-critical interactive CSS modules — deferred via print/onload swap -->
+  <link rel="stylesheet" href="assets/css/modules/cmdk.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="assets/css/modules/access.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="assets/css/modules/terminal.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="assets/css/modules/tour.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="assets/css/modules/print.css" media="print" />
   <!-- Page-specific: experience cards -->
   <style>
     html,
@@ -485,8 +495,11 @@
 
         <div class="exp-item exp-item--ieee reveal">
           <a class="exp-banner" href="https://www.instagram.com/ieee.kecktm/" target="_blank" rel="noopener"
-            aria-label="IEEE KEC KTM Student Branch website"><img src="assets/images/logos/ieee-kec.png" alt="" width="256" height="256"
-              loading="lazy" decoding="async" /></a>
+            aria-label="IEEE KEC KTM Student Branch website"><picture>
+              <source srcset="assets/images/logos/ieee-kec.webp" type="image/webp" />
+              <img src="assets/images/logos/ieee-kec.png" alt="" width="256" height="256"
+                loading="lazy" decoding="async" />
+            </picture></a>
           <div class="exp-body">
             <div class="exp-org"><span class="exp-num">E — 002</span><span class="exp-org-name">IEEE KEC KTM Student
                 Branch</span></div>
@@ -504,8 +517,11 @@
 
         <div class="exp-item exp-item--nssr reveal">
           <a class="exp-banner" href="https://nssrnepal.org" target="_blank" rel="noopener"
-            aria-label="NSSR Nepal website"><img src="assets/images/logos/nssr.png" alt="" width="256" height="256"
-            loading="lazy" decoding="async" /></a>
+            aria-label="NSSR Nepal website"><picture>
+              <source srcset="assets/images/logos/nssr.webp" type="image/webp" />
+              <img src="assets/images/logos/nssr.png" alt="" width="256" height="256"
+                loading="lazy" decoding="async" />
+            </picture></a>
           <div class="exp-body">
             <div class="exp-org"><span class="exp-num">E — 003</span><span class="exp-org-name">NSSR — Nepalese Society
                 of
@@ -572,8 +588,11 @@
 
         <div class="exp-item exp-item--ieee reveal">
           <a class="exp-banner" href="https://www.instagram.com/ieee.kecktm/" target="_blank" rel="noopener"
-            aria-label="IEEE KEC KTM Student Branch website"><img src="assets/images/logos/ieee-kec.png" alt="" width="256" height="256"
-              loading="lazy" decoding="async" /></a>
+            aria-label="IEEE KEC KTM Student Branch website"><picture>
+              <source srcset="assets/images/logos/ieee-kec.webp" type="image/webp" />
+              <img src="assets/images/logos/ieee-kec.png" alt="" width="256" height="256"
+                loading="lazy" decoding="async" />
+            </picture></a>
           <div class="exp-body">
             <div class="exp-org"><span class="exp-num">E — 006</span><span class="exp-org-name">IEEE KEC KTM
                 Student Branch</span></div>
@@ -683,6 +702,10 @@
   <footer role="contentinfo">
     <div id="siteFooter"></div>
   </footer>
+
+  <!-- Early discovery for dynamically-loaded JS modules -->
+  <link rel="preload" href="assets/js/modules/core.js" as="script" />
+  <link rel="preload" href="assets/js/modules/ui.js" as="script" />
 
   <script src="assets/js/script.js" defer></script>
 

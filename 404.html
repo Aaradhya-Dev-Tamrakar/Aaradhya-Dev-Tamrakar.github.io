@@ -52,6 +52,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="style"
     href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" />
+  <link rel="preload" href="assets/css/modules/tokens.css" as="style" />
+  <link rel="preload" href="assets/css/modules/base.css" as="style" />
+  <link rel="preload" href="assets/js/script.js" as="script" />
   <link rel="stylesheet" media="print" onload="this.media='all'"
     href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" />
   <noscript>
@@ -59,7 +62,18 @@
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" />
   </noscript>
 
-  <link rel="stylesheet" href="/assets/css/style.css" />
+  <!-- Critical CSS modules — loaded in parallel (eliminates @import waterfall) -->
+  <link rel="stylesheet" href="/assets/css/modules/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/modules/base.css" />
+  <link rel="stylesheet" href="/assets/css/modules/layout.css" />
+  <link rel="stylesheet" href="/assets/css/modules/components.css" />
+
+  <!-- Non-critical interactive CSS modules — deferred via print/onload swap -->
+  <link rel="stylesheet" href="/assets/css/modules/cmdk.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="/assets/css/modules/access.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="/assets/css/modules/terminal.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="/assets/css/modules/tour.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="/assets/css/modules/print.css" media="print" />
 
   <!-- Page-specific: 404 (numeral + quick-nav, copied per the site's existing per-page style pattern) -->
   <style>
@@ -262,6 +276,10 @@
       }
     })();
   </script>
+  <!-- Early discovery for dynamically-loaded JS modules -->
+  <link rel="preload" href="assets/js/modules/core.js" as="script" />
+  <link rel="preload" href="assets/js/modules/ui.js" as="script" />
+
   <script src="/assets/js/script.js" defer></script>
 </body>
 
