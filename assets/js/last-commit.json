@@ -1,6 +1,6 @@
 {
-  "sha": "2f0556da325ec5ce5238d59cbeff7626c254e24d",
-  "shortSha": "2f0556d",
-  "date": "2026-08-15T12:45:04+05:45",
-  "message": "feat(v47): comprehensive upgrade suite — diagnostics fix, terminal expansion, visual polish\n"
+  "sha": "421c8a45a6a2b2319a1de5a5f5026ff23984b6cb",
+  "shortSha": "421c8a4",
+  "date": "2026-08-15T12:55:42+05:45",
+  "message": "fix(site): standardize cross-site navigation, theme-color, og:locale and release version bindings\n"
 }
