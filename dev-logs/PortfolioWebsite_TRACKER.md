@@ -1,14 +1,22 @@
-# Portfolio Website Tracker — v46
+# Portfolio Website Tracker — v47
 
-## _Last updated: 2026-08-13_
+## _Last updated: 2026-08-15_
 
 ## Meta
+
+- **v47 — Comprehensive Upgrade Suite: Diagnostics, 8-Track Remediation & Stability Hardening.** Fixed verify.py diagnostic false warnings, remediated all 8-track audit findings (blockers B1/B2, security hardening, MCP server fixes, tour lifecycle & contrast compliance), expanded Dev Terminal with 4 new interactive commands and history navigation, enhanced glassmorphic card aesthetics, and bumped PWA cache to v47.
+  - **8-Track Deep Remediation**: Corrected ATS resume generator contact email (`aaradhyadevtmr@gmail.com`), added 5-attempt retry-with-rebase loop to `stamp-last-commit.yml`, sanitized terminal command dispatch with XSS escaping & execution error boundaries, memoized PBKDF2 Web Crypto keys, added module loader 5s fallback timeout, updated light mode `--accent` to `#b45309` for WCAG AA 4.7:1 contrast, added cert lightbox focus trap, fixed SPARK tour step target (`#p-015`) & cross-page resume lifecycle, corrected JSON-LD project anchors, removed duplicate project card (`#p-018-fuse`), added `import re` and JSON-RPC error codes to MCP server (`mcp-server/site_mcp.py`), and fixed site automation telemetry selectors.
+  - **Diagnostics Fix**: Fixed `check_jsonld_schemas()` in `scripts/verify.py` to handle JSON-LD blocks with array root (`[{...}, {...}]`) — previously flagged valid `BreadcrumbList` + `ProfilePage`/`FAQPage` blocks on `about.html`, `contact.html`, and `projects.html` as missing `@context`/`@type`. Also excluded `404.html` from `check_sitemap_sync()` missing-page warnings since error pages should not appear in sitemaps. Suite now passes **0 errors, 0 warnings** across all 17 categories.
+  - **Dev Terminal v47**: Added `stats` (site telemetry summary), `benchmark` (client DOM/memory/hardware metrics), `run prakopnet` (PrakopNet disaster telemetry simulator), and `run pulselive` (PulseLive acoustic diagnostics simulator) commands. Implemented ArrowUp/ArrowDown command history traversal. Updated help text, simulator version tags from v43→v47, and healthcheck header to v47.
+  - **Visual Polish**: Enhanced `.glass-card` with inset top-edge highlight (`inset 0 1px 0 0 rgba(255,255,255,0.06)`), spring-curve hover lift transition, and accent glow border on hover.
+  - **PWA Service Worker & Cache**: Bumped cache version to `aaradhya-portfolio-v47` in `sw.js`.
+  - **Verification & CI Compliance**: `python scripts/verify.py` passed with 0 errors 0 warnings (`achievements=37, projects=29, journey=35`); `node --check` validated clean syntax across all JS files.
+
 - **v46 — Site-Wide Hyper-Automation Suite & Custom Site MCP Server Integration.** Shipped site-wide hyper-automation suite & custom site mcp server integration.
   - Shipped unified hyper-automation CLI engine (scripts/site_automation.py) supporting site telemetry, automated audits, version syncing, and search index extraction.
   - Built custom Site Model Context Protocol (MCP) server (mcp-server/site_mcp.py) exposing site:// projects, experience, achievements, tracker, graph, and health resources over stdio.
   - Added mcp_config.json configuration for instant registration in Antigravity IDE, Claude Desktop, and Cursor.
   - Added .github/workflows/lighthouse-audit.yml for automated Lighthouse CI accessibility and performance testing.
-
 
 - **v45 — Site-Wide Upgrade Suite: Robust Troubleshooting Infrastructure, Pre-Commit Gate & Client Diagnostics.** Shipped major architectural upgrade to diagnostic suite and DevEx pipeline. Expanded `verify.py` from 5 to 17 check categories, added automated pre-commit verification gate to `sync.ps1`, fixed `dev-serve.py` ROOT path bug with CORS & MIME support, added interactive `healthcheck` command to Dev Terminal, updated GitHub Actions CI workflow with Node.js syntax checks, and bumped PWA Service Worker cache to `aaradhya-portfolio-v45`.
   - **17-Category Diagnostic Suite**: Rewrote `scripts/verify.py` into a modular verification engine checking cross-page links, asset references, JS syntax, version consistency, module paths, sitemap sync, web manifest JSON, JSON-LD schemas, file size budgets, SW cache completeness, robots.txt, and global ID uniqueness with color-coded categorized reporting.

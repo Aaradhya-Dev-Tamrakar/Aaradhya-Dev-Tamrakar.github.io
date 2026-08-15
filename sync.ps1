@@ -180,7 +180,7 @@ if (-not $SkipGraph) {
     $graphifyCmd = Get-Command graphify -ErrorAction SilentlyContinue
     if ($graphifyCmd) {
         Write-Host "[Git Sync] Updating codebase knowledge graph (graphify update .)..." -ForegroundColor Cyan
-        & $graphifyCmd.Source update . 2>$null
+        & $graphifyCmd.Source update .
     }
 }
 
@@ -191,7 +191,7 @@ if (-not $SkipVerify) {
         if (-not $pythonCmd) { $pythonCmd = Get-Command python3 -ErrorAction SilentlyContinue }
         if ($pythonCmd) {
             Write-Host "[Git Sync] Running verification suite (scripts/verify.py)..." -ForegroundColor Cyan
-            & $pythonCmd.Source scripts/verify.py 2>$null
+            & $pythonCmd.Source scripts/verify.py
             $verifyExit = $LASTEXITCODE
             if ($verifyExit -eq 1) {
                 Write-Host "`n[Git Sync] VERIFICATION FAILED — commit aborted. Fix errors above or use -SkipVerify to bypass." -ForegroundColor Red

@@ -14,8 +14,8 @@ const TOUR_STEPS = {
     { sel: '#keymap', title: 'Keymap & Display Guide', body: 'Complete keyboard shortcuts (1-7, 0, Shift+N, Shift+T, /, Esc) and 400-nit OLED display calibration benchmarks.' },
   ],
   'projects.html': [
-    { sel: '#page-header', title: 'Projects Portfolio', body: 'Explore 22 engineering projects across firmware, robotics, and ML with real-time tag search and count indicators.' },
-    { sel: '#p-001', title: 'Featured Build (SPARK)', body: 'Deep-dive into SPARK — Intelligent Elderly Fall Detection Wearable with ESP32-S3, PyTorch, and 98.4% precision.' },
+    { sel: '#page-header', title: 'Projects Portfolio', body: 'Explore 29 engineering projects across firmware, robotics, and ML with real-time tag search and count indicators.' },
+    { sel: '#p-015', title: 'Featured Build (SPARK)', body: 'Deep-dive into SPARK — Intelligent Elderly Fall Detection Wearable with ESP32-S3, PyTorch, and TFLite Micro on-device inference.' },
   ],
   'experience.html': [
     { sel: '#page-header', title: 'Leadership & Experience', body: 'Chronological roles across Fusemachines, DataCamp, IEEE Student Branch, and EPC Club.' },
@@ -348,15 +348,28 @@ function initTour() {
   if (localStorage.getItem(TOUR_LS_ACTIVE) === '1') {
     tourLastFocus = document.activeElement;
     const idx = tourCurrentIndex();
-    // Resuming on page load races initReveal()'s IntersectionObserver
-    // (fires async, after this synchronous boot chain) and any other
-    // deferred page setup — rendering the overlay this early highlights
-    // a not-yet-revealed target and can visually double up with content
-    // still mid-transition. Defer to window 'load' + a frame so the
-    // page has actually settled before the tour paints over it.
-    const resume = () => requestAnimationFrame(() => renderTourStep(idx));
-    if (document.readyState === 'complete') resume();
-    else window.addEventListener('load', resume, { once: true });
+    const entry = TOUR_FLAT_STEPS[idx];
+    const currentPage = getTourCurrentPage();
+
+    if (!entry || entry.page !== currentPage) {
+      if (TOUR_PAGE_ORDER.includes(currentPage)) {
+        const pageStepIdx = TOUR_FLAT_STEPS.findIndex(s => s.page === currentPage);
+        if (pageStepIdx !== -1) {
+          localStorage.setItem(TOUR_LS_INDEX, pageStepIdx);
+          const resume = () => requestAnimationFrame(() => renderTourStep(pageStepIdx));
+          if (document.readyState === 'complete') resume();
+          else window.addEventListener('load', resume, { once: true });
+        } else {
+          exitTour();
+        }
+      } else {
+        exitTour();
+      }
+    } else {
+      const resume = () => requestAnimationFrame(() => renderTourStep(idx));
+      if (document.readyState === 'complete') resume();
+      else window.addEventListener('load', resume, { once: true });
+    }
   }
 
   window.addEventListener('resize', () => {

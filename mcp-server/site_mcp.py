@@ -27,6 +27,7 @@ Standard Usage:
 
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -227,7 +228,7 @@ def handle_resource_read(uri):
         return json.dumps({"count": len(certs), "achievements": certs}, indent=2), "application/json"
 
     else:
-        return f"Unknown resource URI: {uri}", "text/plain"
+        return None, None
 
 
 def handle_tool_call(name, args):
@@ -262,7 +263,7 @@ def handle_tool_call(name, args):
         return json.dumps(res, indent=2)
 
     else:
-        return f"Unknown tool: {name}"
+        return None
 
 
 def process_request(request):
@@ -305,6 +306,15 @@ def process_request(request):
     elif method == "resources/read":
         uri = params.get("uri", "")
         content, mime = handle_resource_read(uri)
+        if content is None:
+            return {
+                "jsonrpc": "2.0",
+                "id": req_id,
+                "error": {
+                    "code": -32602,
+                    "message": f"Resource URI '{uri}' not found"
+                }
+            }
         return {
             "jsonrpc": "2.0",
             "id": req_id,
@@ -329,6 +339,27 @@ def process_request(request):
     elif method == "tools/call":
         tool_name = params.get("name")
         arguments = params.get("arguments", {})
+        tool_def = next((t for t in TOOLS if t["name"] == tool_name), None)
+        if not tool_def:
+            return {
+                "jsonrpc": "2.0",
+                "id": req_id,
+                "error": {
+                    "code": -32601,
+                    "message": f"Tool '{tool_name}' not found"
+                }
+            }
+        required = tool_def.get("inputSchema", {}).get("required", [])
+        missing = [r for r in required if r not in arguments]
+        if missing:
+            return {
+                "jsonrpc": "2.0",
+                "id": req_id,
+                "error": {
+                    "code": -32602,
+                    "message": f"Missing required argument(s): {', '.join(missing)}"
+                }
+            }
         result_text = handle_tool_call(tool_name, arguments)
         return {
             "jsonrpc": "2.0",
@@ -356,8 +387,17 @@ def process_request(request):
             v = params.get("arguments", {}).get("version", "v46")
             c = params.get("arguments", {}).get("changes", "Details of update")
             prompt_text = f"Draft a detailed release note for {v} covering:\n{c}\nFormat as standard PortfolioWebsite_TRACKER.md entry."
-        else:
+        elif prompt_name == "audit-seo-metadata":
             prompt_text = "Perform SEO and structured metadata audit across HTML files."
+        else:
+            return {
+                "jsonrpc": "2.0",
+                "id": req_id,
+                "error": {
+                    "code": -32602,
+                    "message": f"Prompt '{prompt_name}' not found"
+                }
+            }
             
         return {
             "jsonrpc": "2.0",
@@ -418,9 +458,10 @@ def run_stdio_server():
             sys.stdout.write(json.dumps(err_resp) + "\n")
             sys.stdout.flush()
         except Exception as e:
+            req_id = request.get("id") if (request and isinstance(request, dict)) else None
             err_resp = {
                 "jsonrpc": "2.0",
-                "id": None,
+                "id": req_id,
                 "error": {"code": -32603, "message": f"Internal error: {str(e)}"}
             }
             sys.stdout.write(json.dumps(err_resp) + "\n")

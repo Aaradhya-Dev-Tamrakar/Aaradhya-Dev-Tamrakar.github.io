@@ -28,6 +28,7 @@ __pycache__/
 *$py.class
 
 # Local dev tooling / analysis output — not part of the deployed site
+graphify-out/cache/**
 dev-logs/*
 !dev-logs/og-image/
 !dev-logs/og-image/**

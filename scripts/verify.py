@@ -555,8 +555,9 @@ def check_sitemap_sync(fix=False):
             sitemap_pages_norm.add(p.lstrip("/"))
 
     actual_pages = {f.name for f in get_html_files()}
-    # Exclude google verification page
+    # Exclude google verification page and 404 error page (which should not be in sitemap)
     actual_pages -= {f.name for f in ROOT.glob("google*.html")}
+    actual_pages -= {"404.html"}
 
     missing_from_sitemap = actual_pages - sitemap_pages_norm
     stale_in_sitemap = sitemap_pages_norm - actual_pages
@@ -628,10 +629,14 @@ def check_jsonld_schemas():
                 log_error(cat, f"{f.name} JSON-LD parse error: {e}")
                 parse_errors += 1
                 continue
-            if "@context" not in data:
-                log_warning(cat, f"{f.name} JSON-LD block missing @context")
-            if "@type" not in data:
-                log_warning(cat, f"{f.name} JSON-LD block missing @type")
+
+            items = data if isinstance(data, list) else [data]
+            for item in items:
+                if isinstance(item, dict):
+                    if "@context" not in item:
+                        log_warning(cat, f"{f.name} JSON-LD block missing @context")
+                    if "@type" not in item:
+                        log_warning(cat, f"{f.name} JSON-LD block missing @type")
 
     if parse_errors == 0 and total_blocks > 0:
         log_pass(cat, f"all {total_blocks} JSON-LD blocks parse successfully")

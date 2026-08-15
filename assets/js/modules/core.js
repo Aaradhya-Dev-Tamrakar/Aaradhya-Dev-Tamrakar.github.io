@@ -594,12 +594,27 @@ function initReveal() {
 /* ── Custom cursor (pointer: fine only) ───────────────────── */
 function initCursor() {
   if (!window.matchMedia('(pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const dot = document.getElementById('cursorDot');
   const ring = document.getElementById('cursorRing');
   if (!dot || !ring) return;
   let mx = 0, my = 0, rx = 0, ry = 0;
+  let running = true;
   document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  (function tick() {
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      running = false;
+    } else {
+      if (!running) {
+        running = true;
+        requestAnimationFrame(tick);
+      }
+    }
+  });
+
+  function tick() {
+    if (!running) return;
     dot.style.left = mx + 'px';
     dot.style.top = my + 'px';
     rx += (mx - rx) * 0.12;
@@ -607,7 +622,8 @@ function initCursor() {
     ring.style.left = rx + 'px';
     ring.style.top = ry + 'px';
     requestAnimationFrame(tick);
-  })();
+  }
+  requestAnimationFrame(tick);
 }
 
 

@@ -1,10 +1,10 @@
 /* ============================================================
-   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io (v46)
+   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io (v47)
    Loaded on every page via <script src="assets/js/script.js">.
    Orchestrates core modules from assets/js/modules/
    ============================================================ */
 
-/* ── Dynamic Module Loader (v46) ───────────────────────────── */
+/* ── Dynamic Module Loader (v47) ───────────────────────────── */
 window.__modulesLoadedPromise = (function () {
   const MODULES = [
     'assets/js/modules/core.js',
@@ -24,8 +24,19 @@ window.__modulesLoadedPromise = (function () {
       var s = document.createElement('script');
       s.src = src;
       s.async = false;
-      s.onload = resolve;
-      s.onerror = resolve;
+      var timer = setTimeout(function () {
+        console.warn('Module load timed out after 5s:', src);
+        resolve();
+      }, 5000);
+      s.onload = function () {
+        clearTimeout(timer);
+        resolve();
+      };
+      s.onerror = function (err) {
+        clearTimeout(timer);
+        console.error('Failed to load module:', src, err);
+        resolve();
+      };
       document.head.appendChild(s);
     });
   });
@@ -36,6 +47,18 @@ window.__modulesLoadedPromise = (function () {
 
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
+  {
+    version: 'v47',
+    date: '2026-08-14',
+    sha: 'upg47',
+    title: 'Comprehensive Upgrade Suite — Diagnostics, Terminal Expansion & Visual Polish',
+    highlights: [
+      'Diagnostics: Fixed verify.py JSON-LD schema validation to handle array-wrapped structured data blocks; excluded 404.html from sitemap sync warnings — suite now passes 0 errors, 0 warnings',
+      'Dev Terminal v47: Added stats, benchmark, run prakopnet, run pulselive commands; implemented ArrowUp/ArrowDown command history traversal',
+      'Visual Polish: Enhanced glass-card glassmorphism with inset top-edge highlight, hover lift spring transition, and accent glow border',
+      'PWA & Cache: Bumped Service Worker cache to aaradhya-portfolio-v47 with full asset manifest'
+    ]
+  },
   {
     version: 'v46',
     date: '2026-08-13',
@@ -611,13 +634,6 @@ const SEARCH_STATIC_INDEX = {
     "meta": "Python, NER, CoNLL-2003",
     "href": "projects.html#p-028",
     "text": "fusemachines wk 12 — ner for customer support end-to-end named entity recognition pipeline on conll-2003 for automated customer-support ticket triage and crm routing text preprocessing, eda (sentence-length / word-frequency / entity distributions), and `word2features` feature engineering ahead of model training python ner conll-2003 feature engineering nlp"
-  },
-  {
-    "type": "project",
-    "title": "BiasAperture — Vision Fairness & Bias Audit",
-    "meta": "In Progress · AIF360, Fairlearn, FairFace",
-    "href": "projects.html#p-018-fuse",
-    "text": "biasaperture — vision fairness & bias audit diagnostic tool for deployed vision classifiers — runs a multi-demographic test matrix, flags statistical disparities, and outputs a compliance report; detects bias but doesn't correct it fellowship capstone, two-person team with tisha manandhar — full readme to follow in-repo aif360 fairlearn fairface utkface computer vision bias auditing statistical testing html/jinja2 in progress"
   },
   {
     "type": "project",

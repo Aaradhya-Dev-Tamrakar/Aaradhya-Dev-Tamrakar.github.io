@@ -32,16 +32,20 @@ const ACCESS_CONTROL_PAYLOADS = {
   "proj-pulselive": "4d66884d0fa7de8841678e42cf97971ec47b03bd58a8ffc099877e6308595b4b0cc13200e88cd0dece842195913a715299d294ecc6cd0790347d698f90cf4956cb9ed2e2a0"
 };
 
+const KEY_CACHE = new Map();
+
 async function getDecryptionKey(passcode) {
+  const norm = (passcode || '').trim().toLowerCase();
+  if (KEY_CACHE.has(norm)) return KEY_CACHE.get(norm);
   const enc = new TextEncoder();
   const keyMaterial = await crypto.subtle.importKey(
     'raw',
-    enc.encode(passcode.trim().toLowerCase()),
+    enc.encode(norm),
     { name: 'PBKDF2' },
     false,
     ['deriveKey']
   );
-  return await crypto.subtle.deriveKey(
+  const derived = await crypto.subtle.deriveKey(
     {
       name: 'PBKDF2',
       salt: enc.encode('adt_salt_2026'),
@@ -53,6 +57,8 @@ async function getDecryptionKey(passcode) {
     false,
     ['decrypt']
   );
+  KEY_CACHE.set(norm, derived);
+  return derived;
 }
 
 async function decryptHexPayload(hexStr, passcode) {
@@ -237,10 +243,11 @@ function handleGoogleCredentialResponse(response) {
   const cleanEmail = user.email.toLowerCase();
   const emailDomain = cleanEmail.split('@')[1] || '';
 
-  const masterList = (SITE.masterEmails || []).map(e => e.toLowerCase());
+  const siteObj = (typeof SITE !== 'undefined' && SITE) ? SITE : {};
+  const masterList = (siteObj.masterEmails || []).map(e => e.toLowerCase());
   const customVipList = getCustomVipEmails();
-  const vipList = [...(SITE.vipEmails || []), ...customVipList].map(e => e.toLowerCase());
-  const vipDomains = (SITE.vipDomains || []).map(d => d.toLowerCase());
+  const vipList = [...(siteObj.vipEmails || []), ...customVipList].map(e => e.toLowerCase());
+  const vipDomains = (siteObj.vipDomains || []).map(d => d.toLowerCase());
 
   const isMaster = masterList.includes(cleanEmail);
   const isVip = !isMaster && (
@@ -845,10 +852,11 @@ function renderMasterControlPanel() {
     if (customList.length === 0) {
       vipWrap.innerHTML = `<span style="color:#71717a;font-style:italic;">No custom VIP emails added yet (Wildcard '*' active).</span>`;
     } else {
+      const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
       vipWrap.innerHTML = customList.map(email => `
         <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.03);padding:0.2rem 0.4rem;border-radius:4px;">
-          <span>${email}</span>
-          <button type="button" onclick="removeCustomVipEmail('${email}')" style="background:none;border:none;color:#ef4444;cursor:pointer;font-size:0.65rem;" title="Remove VIP Access">✕</button>
+          <span>${esc(email)}</span>
+          <button type="button" onclick="removeCustomVipEmail('${esc(email)}')" style="background:none;border:none;color:#ef4444;cursor:pointer;font-size:0.65rem;" title="Remove VIP Access">✕</button>
         </div>
       `).join('');
     }

@@ -98,11 +98,11 @@ def get_site_stats():
     
     if PROJECTS_HTML.exists():
         content = PROJECTS_HTML.read_text(encoding="utf-8")
-        projects_count = len(re.findall(r'class="project-card', content)) or len(re.findall(r'class="card', content))
+        projects_count = len(re.findall(r'<h3[^>]*class="[^"]*project-title', content)) or len(re.findall(r'<details[^>]*class="[^"]*project-card', content))
         
     if ACHIEVEMENTS_HTML.exists():
         content = ACHIEVEMENTS_HTML.read_text(encoding="utf-8")
-        achievements_count = len(re.findall(r'class="achievement-card', content)) or len(re.findall(r'class="cert-btn', content))
+        achievements_count = len(re.findall(r'<h3[^>]*class="[^"]*achievement-title', content)) or len(re.findall(r'class="[^"]*achievement-item', content))
 
     sw_version = "unknown"
     if SW_JS.exists():
@@ -143,7 +143,11 @@ def sync_metadata(version_tag):
         if not clean_v.startswith("v"):
             clean_v = f"v{clean_v}"
         cache_name = f"aaradhya-portfolio-{clean_v}"
-        new_sw = re.sub(r"(CACHE_NAME\s*=\s*['\"])[^'\"]+(['\"])", rf"\g<1>{cache_name}\g<2>", sw_text)
+        new_sw = re.sub(
+            r"(CACHE_NAME\s*=\s*['\"])[^'\"]+(['\"])",
+            lambda m: f"{m.group(1)}{cache_name}{m.group(2)}",
+            sw_text
+        )
         SW_JS.write_text(new_sw, encoding="utf-8")
         results.append(f"Updated sw.js cache name to '{cache_name}'")
 
@@ -164,22 +168,23 @@ def update_tracker(version, title, highlights):
         return {"success": False, "error": "Tracker file not found."}
     
     today = datetime.date.today().strftime("%Y-%m-%d")
-    highlights_md = "\n".join([f"  - {h}" for h in highlights])
-    entry = f"\n- **{version} — {title}.** Shipped {title.lower()}.\n{highlights_md}\n"
+    clean_highlights = [h.replace("\r", " ").replace("\n", " ").strip() for h in highlights if h.strip()]
+    highlights_md = "\n".join([f"  - {h}" for h in clean_highlights])
+    entry = f"- **{version} — {title}.** Shipped {title.lower()}.\n{highlights_md}\n\n"
     
     content = TRACKER_MD.read_text(encoding="utf-8")
     meta_idx = content.find("## Meta")
     if meta_idx != -1:
-        insert_pos = content.find("\n\n- **", meta_idx)
-        if insert_pos == -1:
-            insert_pos = meta_idx + len("## Meta\n")
-        new_content = content[:insert_pos] + entry + content[insert_pos:]
-        
-        new_content = re.sub(r"# Portfolio Website Tracker — v\d+", f"# Portfolio Website Tracker — {version}", new_content)
-        new_content = re.sub(r"## _Last updated: [^_]+_", f"## _Last updated: {today}_", new_content)
-        
-        TRACKER_MD.write_text(new_content, encoding="utf-8")
-        return {"success": True, "entry": entry.strip()}
+        header_end = content.find("\n", meta_idx)
+        if header_end != -1:
+            insert_pos = header_end + 1
+            new_content = content[:insert_pos] + entry + content[insert_pos:]
+            
+            new_content = re.sub(r"# Portfolio Website Tracker — v\d+", f"# Portfolio Website Tracker — {version}", new_content)
+            new_content = re.sub(r"## _Last updated: [^_]+_", f"## _Last updated: {today}_", new_content)
+            
+            TRACKER_MD.write_text(new_content, encoding="utf-8")
+            return {"success": True, "entry": entry.strip()}
     return {"success": False, "error": "Failed to locate ## Meta section in tracker."}
 
 

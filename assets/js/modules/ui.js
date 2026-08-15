@@ -346,6 +346,31 @@ function initLightbox() {
     playAudioCue('close');
   }
 
+  lb.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeLightbox();
+      return;
+    }
+    if (e.key === 'Tab') {
+      const focusables = lb.querySelectorAll('button:not([disabled]), [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      const focusableArr = Array.prototype.slice.call(focusables).filter(el => !el.hidden && el.offsetParent !== null);
+      if (focusableArr.length === 0) return;
+      const first = focusableArr[0];
+      const last = focusableArr[focusableArr.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          last.focus();
+          e.preventDefault();
+        }
+      } else {
+        if (document.activeElement === last) {
+          first.focus();
+          e.preventDefault();
+        }
+      }
+    }
+  });
+
   document.querySelectorAll('.cert-btn').forEach(btn => {
     btn.addEventListener('click', event => {
       event.preventDefault();
@@ -713,7 +738,7 @@ function initSkillRadar() {
 const RESUME_DATA = {
   name: "Aaradhya Dev Tamrakar",
   subtitle: "Electronics Engineer | AI/ML Developer & Embedded Systems Specialist",
-  contact: "Kathmandu, Nepal · aaradhya.dev.tamrakar@gmail.com · github.com/Aaradhya-Dev-Tamrakar · linkedin.com/in/aaradhya-dev-tamrakar",
+  contact: "Kathmandu, Nepal · aaradhyadevtmr@gmail.com · github.com/Aaradhya-Dev-Tamrakar · linkedin.com/in/aaradhya-dev-tamrakar",
   summary: "Final-year Electronics, Communication & Information Engineering student with hands-on expertise in Agentic AI, Deep Learning pipelines, Embedded C/C++ firmware (ESP32/STM32), and custom PCB design. Fusemachines AI Fellow (2026) and active tech lead in robotics, embedded systems, and machine learning research.",
   roles: {
     all: {

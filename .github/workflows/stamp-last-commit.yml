@@ -54,4 +54,13 @@ jobs:
           # (won't happen in practice since SHA always changes, but cheap
           # to guard anyway).
           git diff --staged --quiet || git commit -m "chore: stamp last commit [skip ci]"
+          # update-search-index.yml also triggers on this same push and
+          # commits back to main in parallel — retry with rebase in case
+          # it pushed first and this push would otherwise be rejected as
+          # non-fast-forward.
+          for i in 1 2 3 4 5; do
+            git push && exit 0
+            git pull --rebase origin main
+            sleep $((RANDOM % 5 + 1))
+          done
           git push

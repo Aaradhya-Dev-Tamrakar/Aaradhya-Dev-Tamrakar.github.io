@@ -20,14 +20,19 @@
       welcomeSpan.textContent = `Welcome to Aaradhya Dev Tamrakar's Interactive Developer Terminal (${SITE_RELEASES[0].version}).`;
     }
 
+    const history = [];
+    let historyIndex = -1;
+
     const COMMANDS = {
       help: () => `
-<span class="term-green">Available Commands:</span><br>
+<span class="term-green">Available Commands (v47):</span><br>
   <span class="term-gold">skills</span>       - Overview of technical skillset &amp; engineering tools<br>
   <span class="term-gold">radar</span>        - Interactive 5-Domain Skill Radar visualizer<br>
   <span class="term-gold">resume</span>       - Open Tailored ATS Resume Generator &amp; PDF Exporter<br>
   <span class="term-gold">projects</span>     - Key engineering &amp; AI/ML projects<br>
-  <span class="term-gold">run [name]</span>   - Run interactive simulation ('run spark', 'run gcsbr')<br>
+  <span class="term-gold">run [name]</span>   - Run simulation ('run spark', 'run gcsbr', 'run prakopnet', 'run pulselive')<br>
+  <span class="term-gold">stats</span>        - Site telemetry summary (projects, achievements, milestones)<br>
+  <span class="term-gold">benchmark</span>    - Client runtime performance &amp; DOM metrics<br>
   <span class="term-gold">glossary</span>     - Technical acronym glossary ('glossary spark')<br>
   <span class="term-gold">experience</span>   - Leadership &amp; technical roles<br>
   <span class="term-gold">achievements</span> - Credentials &amp; competition milestones<br>
@@ -36,6 +41,8 @@
   <span class="term-gold">healthcheck</span> - Run client-side site diagnostics<br>
   <span class="term-gold">theme</span>        - Toggle site color scheme (Dark / Light)<br>
   <span class="term-gold">accent [name]</span> - Easter egg color themes (gold, emerald, violet, cyan, ruby, prism)<br>
+  <span class="term-gold">sound / audio</span> - Toggle UI micro-sound cues<br>
+  <span class="term-gold">tour</span>         - Launch interactive guided site tour<br>
   <span class="term-gold">matrix</span>       - Trigger cybernetic digital rain<br>
   <span class="term-gold">clear</span>        - Clear terminal screen output
 `.trim(),
@@ -47,11 +54,42 @@
         if (typeof openResumeGenerator === 'function') openResumeGenerator();
         return '<span class="term-green">Opening Tailored ATS Resume Generator modal...</span>';
       },
+      stats: () => {
+        const achvCount = typeof SEARCH_STATIC_INDEX !== 'undefined' ? (SEARCH_STATIC_INDEX.achievement || []).length : 37;
+        const projCount = typeof SEARCH_STATIC_INDEX !== 'undefined' ? (SEARCH_STATIC_INDEX.project || []).length : 30;
+        return `
+<span class="term-green">[ADT PORTFOLIO TELEMETRY v47]</span><br>
+  • <span class="term-gold">Published Projects:</span> ${projCount} verified repositories &amp; systems<br>
+  • <span class="term-gold">Certifications:</span> ${achvCount} verifiable credentials<br>
+  • <span class="term-gold">Journey Milestones:</span> 35 chronological commits<br>
+  • <span class="term-gold">Architecture:</span> Modular ES6 + Zero-Build + Service Worker Cache-First<br>
+  • <span class="term-gold">Target Hardware:</span> ESP32-S3, STM32, ARM Cortex-M, NVIDIA Edge AI
+`.trim();
+      },
+      benchmark: () => {
+        const totalNodes = document.getElementsByTagName('*').length;
+        const scriptCount = document.scripts.length;
+        const styleSheetCount = document.styleSheets.length;
+        let memoryInfo = '';
+        if (window.performance && performance.memory) {
+          const usedMB = Math.round(performance.memory.usedJSHeapSize / (1024 * 1024));
+          const totalMB = Math.round(performance.memory.totalJSHeapSize / (1024 * 1024));
+          memoryInfo = ` | Heap: ${usedMB}MB / ${totalMB}MB`;
+        }
+        return `
+<span class="term-green">[BROWSER RUNTIME BENCHMARK]</span><br>
+  • <span class="term-cyan">DOM Elements:</span> ${totalNodes} nodes active<br>
+  • <span class="term-cyan">Loaded Scripts:</span> ${scriptCount} scripts (${document.querySelectorAll('script[src*="modules/"]').length} modular)<br>
+  • <span class="term-cyan">Active Stylesheets:</span> ${styleSheetCount} loaded<br>
+  • <span class="term-cyan">Memory Footprint:</span> ${memoryInfo || 'Protected in current browser'}<br>
+  • <span class="term-cyan">Hardware Concurrency:</span> ${navigator.hardwareConcurrency || 'N/A'} cores detected
+`.trim();
+      },
       run: (arg) => {
         const sub = (arg || '').toLowerCase().trim();
         if (sub === 'spark') {
           return `
-<span class="term-green">[SPARK TELEMETRY SIMULATOR v43]</span><br>
+<span class="term-green">[SPARK TELEMETRY SIMULATOR v47]</span><br>
   [00:00:01] Initializing ESP32 I2C bus @ 400kHz... <span class="term-cyan">OK</span><br>
   [00:00:02] Calibrating PPG Optical Pulse Sensor... <span class="term-cyan">STABLE</span><br>
   [00:00:03] Bio-Signal Filter: Bandpass 0.5Hz–5.0Hz... <span class="term-gold">ACTIVE</span><br>
@@ -59,13 +97,29 @@
 `.trim();
         } else if (sub === 'gcsbr') {
           return `
-<span class="term-green">[GCSBR PID &amp; SENSOR FUSION SIMULATOR v43]</span><br>
+<span class="term-green">[GCSBR PID &amp; SENSOR FUSION SIMULATOR v47]</span><br>
   [00:00:01] MPU6050 Accelerometer/Gyro Init... <span class="term-cyan">OK</span><br>
   [00:00:02] Complementary Filter α=0.98, Tilt Angle: +0.12°... <span class="term-cyan">BALANCED</span><br>
   [00:00:03] PID Loop Output: Kp=14.5 Ki=0.8 Kd=1.2 -&gt; Motor PWM: <span class="term-gold">142 / 255</span>
 `.trim();
+        } else if (sub === 'prakopnet') {
+          return `
+<span class="term-green">[PRAKOPNET DISASTER TELEMETRY ENGINE v47]</span><br>
+  [00:00:01] LoRaWAN Mesh Network Node 0x7F... <span class="term-cyan">SYNCED</span><br>
+  [00:00:02] Seismic Geophone Ingestion: 250 SPS... <span class="term-cyan">NOMINAL</span><br>
+  [00:00:03] Flash Flood Level Sensor: Normal Basin Threshold... <span class="term-gold">MONITORING</span><br>
+  [00:00:04] Real-Time WebSocket Broadcast to Emergency Dispatch: <span class="term-green">ONLINE</span>
+`.trim();
+        } else if (sub === 'pulselive') {
+          return `
+<span class="term-green">[PULSELIVE DIAGNOSTIC HUB SIMULATOR v47]</span><br>
+  [00:00:01] Audio DSP Pipeline: 44.1kHz 24-bit Stream Ingest... <span class="term-cyan">LOCKED</span><br>
+  [00:00:02] Wavelet Transform Acoustic Feature Extractor... <span class="term-cyan">ACTIVE</span><br>
+  [00:00:03] Inference Model: Edge-Optimized Neural Classifier... <span class="term-gold">RUNNING (1.4ms)</span><br>
+  [00:00:04] Diagnostic Anomaly Score: 0.02 (Healthy)... <span class="term-green">VERIFIED</span>
+`.trim();
         }
-        return `<span class="term-gold">Usage: 'run spark' or 'run gcsbr'</span>`;
+        return `<span class="term-gold">Usage: 'run spark', 'run gcsbr', 'run prakopnet', or 'run pulselive'</span>`;
       },
       glossary: (arg) => {
         const term = (arg || '').toLowerCase().trim();
@@ -183,11 +237,11 @@
         return '<span class="term-green">[SITE HEALTHCHECK v45]</span><br>' + checks.map(c => '  ' + c).join('<br>');
       },
       sound: () => {
-        toggleAudioCues();
+        if (typeof toggleAudioCues === 'function') toggleAudioCues();
         return '<span class="term-green">Audio micro-sounds toggled!</span>';
       },
       audio: () => {
-        toggleAudioCues();
+        if (typeof toggleAudioCues === 'function') toggleAudioCues();
         return '<span class="term-green">Audio micro-sounds toggled!</span>';
       },
       tour: () => {
@@ -208,10 +262,10 @@
             `<br><br>Type <span class="term-cyan">'accent [theme]'</span> (e.g. <span class="term-gold">accent emerald</span>, <span class="term-gold">accent violet</span>) to activate!`;
         }
         if (themes.includes(val)) {
-          applyAccent(val);
-          return `<span class="term-green">Accent color theme updated to: <strong>${val}</strong></span>`;
+          if (typeof applyAccent === 'function') applyAccent(val);
+          return `<span class="term-green">Accent color theme updated to: <strong>${escapeHtml(val)}</strong></span>`;
         }
-        return `<span class="term-gold">Unknown accent: '${val}'. Available options: ${themes.join(', ')}</span>`;
+        return `<span class="term-gold">Unknown accent: '${escapeHtml(val)}'. Available options: ${themes.join(', ')}</span>`;
       },
       color: (arg) => COMMANDS.accent(arg),
       clear: () => {
@@ -250,7 +304,9 @@
     function execCommand(rawCmd) {
       const trimmed = rawCmd.trim();
       if (!trimmed) return;
-      triggerHapticFeedback(10);
+      if (typeof triggerHapticFeedback === 'function') triggerHapticFeedback(10);
+      history.push(rawCmd);
+      historyIndex = history.length;
       const parts = trimmed.split(/\s+/);
       const baseCmd = parts[0].toLowerCase();
       const arg = parts.slice(1).join(' ');
@@ -261,7 +317,11 @@
       }
       const handler = COMMANDS[baseCmd];
       if (handler) {
-        appendOutput(rawCmd, handler(arg));
+        try {
+          appendOutput(rawCmd, handler(arg));
+        } catch (err) {
+          appendOutput(rawCmd, `<span class="term-red">Error executing '${escapeHtml(baseCmd)}': ${escapeHtml(err.message || String(err))}</span>`);
+        }
       } else {
         appendOutput(rawCmd, `<span class="term-red">Command not found: '${escapeHtml(trimmed)}'. Type <span class="term-gold">'help'</span> for a list of available commands.</span>`);
       }
@@ -273,6 +333,23 @@
         const val = input.value;
         input.value = '';
         execCommand(val);
+      } else if (e.key === 'ArrowUp') {
+        if (history.length > 0) {
+          e.preventDefault();
+          if (historyIndex > 0) historyIndex--;
+          input.value = history[historyIndex] || '';
+        }
+      } else if (e.key === 'ArrowDown') {
+        if (history.length > 0) {
+          e.preventDefault();
+          if (historyIndex < history.length - 1) {
+            historyIndex++;
+            input.value = history[historyIndex] || '';
+          } else {
+            historyIndex = history.length;
+            input.value = '';
+          }
+        }
       }
     });
 
