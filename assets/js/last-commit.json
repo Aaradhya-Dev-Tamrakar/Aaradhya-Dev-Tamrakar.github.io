@@ -1,6 +1,6 @@
 {
-  "sha": "10b983898382824c97a4188517c39db8f3ec41b2",
-  "shortSha": "10b9838",
-  "date": "2026-08-15T12:58:37+05:45",
-  "message": "chore(git): ignore graphify-out/cache/ and python virtual environments\n"
+  "sha": "b300d5bab4d586cee04ba91860a1c406fd91e65f",
+  "shortSha": "b300d5b",
+  "date": "2026-08-15T13:01:36+05:45",
+  "message": "docs(rules): create GEMINI.md and unify agent workflow rulebooks\n"
 }
