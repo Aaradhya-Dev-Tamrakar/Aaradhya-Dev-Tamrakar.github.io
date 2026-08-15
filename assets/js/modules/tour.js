@@ -22,7 +22,7 @@ const TOUR_STEPS = {
     { sel: '#experience', title: 'Role Details & Certs', body: 'Scope descriptions and verified credentials — click any cert badge to view or download the original PDF.' },
   ],
   'achievements.html': [
-    { sel: '#page-header', title: 'Achievements & Credentials', body: '36 competition milestones and industry certifications. Filter by Academic or Extracurricular categories.' },
+    { sel: '#page-header', title: 'Achievements & Credentials', body: '37 competition milestones and industry certifications. Filter by Academic or Extracurricular categories.' },
     { sel: '#achievementsList', title: 'Certificate Viewer', body: 'Interactive credentials grid with integrated lightbox viewer and direct PDF downloads.' },
   ],
   'about.html': [
@@ -32,7 +32,7 @@ const TOUR_STEPS = {
     { sel: '#faq', title: 'Frequently Asked Questions', body: 'Interactive FAQ section covering core background, SPARK major project, and direct contact options.' },
   ],
   'journey.html': [
-    { sel: '#page-header', title: 'Engineering Journey', body: 'A 34-node narrative timeline tracing site architecture, commit milestones, and engineering releases.' },
+    { sel: '#page-header', title: 'Engineering Journey', body: 'A 35-node narrative timeline tracing site architecture, commit milestones, and engineering releases.' },
     { sel: '#j-001', title: 'Milestone Checkpoints', body: 'Expandable checkpoint nodes — press Alt+6 anytime to toggle all timeline nodes at once.' },
   ],
   'contact.html': [

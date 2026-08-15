@@ -22,13 +22,13 @@ Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronic
 │   ├── terms.html              # Terms of service and usage terms
 │   ├── 404.html                # Custom styled Not-Found page (excluded from sitemap, marked noindex)
 │   ├── site.webmanifest        # Progressive Web App manifest metadata (standalone app, dark theme tokens)
-│   ├── sw.js                   # PWA Service Worker (v45 cache-first static assets & network-first HTML)
+│   ├── sw.js                   # PWA Service Worker (v47 cache-first static assets & network-first HTML)
 │   └── google3e772e11a3eb8313.html # Google Search Console site ownership verification file
 │
 ├── 🎨 Assets (`assets/`)
-│   ├── certificates/          # PDF downloads and WebP image previews for all 35+ certifications
+│   ├── certificates/          # PDF downloads and WebP image previews for all 37 certifications
 │   ├── css/
-│   │   └── style.css          # Core CSS stylesheet: design tokens, dark theme palette, glassmorphism UI & responsive styles
+│   │   └── style.css          # Core CSS stylesheet: design tokens, dark/light theme palette, glassmorphic UI & responsive styles
 │   ├── docs/
 │   │   ├── AARADHYA_DEV_TAMRAKAR_CV.pdf # Official downloadable Curriculum Vitae
 │   │   └── ADT_LOGO.png        # Brand emblem and identity asset
@@ -38,20 +38,26 @@ Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronic
 │   │   ├── og-image.jpg        # Open Graph social sharing preview card
 │   │   └── logos/              # Institutional logos (IEEE KEC, Fusemachines, EPC Club, Maker's Space, NSSR)
 │   ├── js/
-│   │   ├── script.js           # Core site engine: nav, theme toggle, access control, Google Sign-In & search (v45)
+│   │   ├── script.js           # Core site engine: nav, theme toggle, access control, Google Sign-In & search (v47)
 │   │   ├── modules/            # Decoupled ES/IIFE JavaScript modules (core, ui, cmdk, access, tour, audio, terminal, haptics)
 │   │   └── last-commit.json    # Commit metadata stamped on push via GitHub Actions for live commit status display
 │   └── videos/                 # Project video demonstrations (e.g., GCSBR working demo) & poster stills
 │
-├── 🛠️ Scripts (`scripts/`)
-│   ├── verify.py               # 17-category diagnostic suite: cross-page links, asset references, JS syntax, versions, JSON-LD, size budgets
-│   ├── extract_index.py        # Python script to extract searchable items into the static command palette index
-│   └── dev-serve.py            # Local HTTP dev testing server with project root resolution, CORS headers & MIME type handling
+├── 🤖 MCP Server & Automation (`mcp-server/` & `scripts/`)
+│   ├── mcp-server/
+│   │   └── site_mcp.py         # Standard Model Context Protocol (MCP) server exposing site resources, telemetry & tools
+│   ├── mcp_config.json         # MCP server registration config for AI IDEs & desktop clients
+│   └── scripts/
+│       ├── site_automation.py  # Hyper-automation engine: site telemetry, version syncing & tracker logging
+│       ├── verify.py           # 17-category diagnostic suite: cross-page links, asset references, JS syntax, versions, JSON-LD, size budgets
+│       ├── extract_index.py    # Python script to extract searchable items into the static command palette index
+│       └── dev-serve.py        # Local HTTP dev testing server with project root resolution, CORS headers & MIME type handling
 │
 ├── 🤖 GitHub Workflows (`.github/workflows/`)
-│   ├── stamp-last-commit.yml   # CI bot stamping last commit hash, timestamp & message on every push
+│   ├── stamp-last-commit.yml   # CI bot stamping last commit hash, timestamp & message on every push (with retry loop)
 │   ├── update-search-index.yml # CI bot auto-regenerating search index on HTML content changes
-│   └── verify.yml              # CI workflow running Node.js syntax checks & Python verification suite
+│   ├── verify.yml              # CI workflow running Node.js syntax checks & Python verification suite
+│   └── lighthouse-audit.yml    # CI automated Lighthouse accessibility and performance audit
 │
 ├── 📊 Dev Logs & Knowledge Graph (`dev-logs/` & `graphify-out/`)
 │   ├── dev-logs/
@@ -63,11 +69,11 @@ Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronic
 └── ⚙️ Configuration & Maintenance
     ├── sync.ps1                # PowerShell script for zero-conflict pulls, conventional commit generation & pushing
     ├── sitemap.xml             # XML sitemap for search engine crawlers (Google, Bing)
-    ├── robots.txt              # Search engine crawler directives
+    ├── robots.txt              # Search engine crawler directives (including modern AI crawlers)
     ├── AGENTS.md               # Codebase rules, Graphify instructions & Git workflow directives
     ├── CLAUDE.md               # Context summary for AI pair programming
     ├── LICENSE                 # Repository license
-    ├── .gitignore              # Excluded files (local secrets, bytecode, graph outputs)
+    ├── .gitignore              # Excluded files (local secrets, bytecode, graph cache)
     ├── .gitattributes          # Git repository attribute definitions
     └── .hintrc                 # Webhint linter configuration
 ```
@@ -87,9 +93,9 @@ The site features an advanced **Zero-Leak Client-Side Access Control System** su
 ### 🔍 Technical Security Architecture
 
 - **Zero Raw HTML Leakage**: Gated HTML content blocks are pre-encrypted into hex ciphertexts (`ACCESS_CONTROL_PAYLOADS`). Public HTML source contains no unencrypted text or hidden DOM nodes inspectable via Chrome DevTools (`F12`).
-- **Web Crypto API Encryption**: Key derivation uses PBKDF2 with SHA-256 (100,000 iterations and salt `adt_salt_2026`). Content is encrypted using **AES-256-GCM** and decrypted dynamically into browser memory only upon successful authentication.
+- **Web Crypto API Encryption**: Key derivation uses PBKDF2 with SHA-256 (100,000 iterations and salt `adt_salt_2026`) with in-memory key memoization (`KEY_CACHE`). Content is encrypted using **AES-256-GCM** and decrypted dynamically into browser memory only upon successful authentication.
 - **In-Memory DOM Lifecycles**: Decrypted DOM fragments exist only while authenticated and are completely purged on logout or lock.
-- **Master Level Visibility**: Master Level controls and exclusive administrative panels (`#master-exclusive`) are hidden (`display: none`) from public guests and VIP users. They are unlocked exclusively upon signing in with the Master administrator Google account (`aaradhyadevtmr@gmail.com`).
+- **Fail-Closed Master Level Visibility**: Master Level controls and exclusive administrative panels (`#master-exclusive`) are styled with default `display: none` in CSS (failing closed) and unlocked exclusively upon signing in with the Master administrator Google account (`aaradhyadevtmr@gmail.com`).
 
 ---
 
@@ -109,9 +115,9 @@ Press **`/`** (or click the **Search** button in the navigation bar) on any page
 
 ### Key Features
 
-- **Instant Cross-Page Search**: Searches across all 10 site pages, all 36 achievements, all 22 projects, and direct quick-navigation commands.
+- **Instant Cross-Page Search**: Searches across all 10 site pages, all 37 achievements, all 29 projects, and direct quick-navigation commands.
 - **Dual Index Strategy**:
-  1. `SEARCH_STATIC_INDEX`: Pre-compiled static snapshot bundled into `assets/js/script.js` so search works immediately on non-list pages (`index.html`, `contact.html`, `about.html`, etc.).
+  1. `SEARCH_STATIC_INDEX`: Pre-compiled static snapshot bundled into `assets/js/script.js` and `assets/js/modules/cmdk.js` so search works immediately on non-list pages (`index.html`, `contact.html`, `about.html`, etc.).
   2. **Live DOM Scanning**: Real-time DOM fallback scanner on `achievements.html` and `projects.html` to instantly reflect any client-side content edits in search results.
 - **Automated CI Re-Indexing**: On every push, GitHub Actions workflow `.github/workflows/update-search-index.yml` runs `scripts/extract_index.py` to regenerate the static index automatically.
 
@@ -126,16 +132,20 @@ Located directly on the Home page (`index.html`), the **Interactive Dev Terminal
 - `skills`: Overview of core firmware, AI/ML, robotics, and software toolstacks.
 - `radar`: Opens the interactive 5-axis Skill Radar visualizer.
 - `resume`: Opens the recruiter ATS Resume Generator & PDF Exporter.
-- `projects`: Summary of featured projects (PulseLive, GCSBR, Autonomous Rover).
-- `run [spark|gcsbr]`: Runs interactive hardware telemetry simulation.
+- `projects`: Summary of featured engineering projects (SPARK, GCSBR, Pulse Live, PrakopNet).
+- `run [name]`: Runs interactive hardware telemetry simulations (`run spark`, `run gcsbr`, `run prakopnet`, `run pulselive`).
+- `stats`: Structured site telemetry summary (projects, achievements, milestones, target hardware).
+- `benchmark`: Client browser runtime performance, DOM elements, loaded scripts, and heap metrics.
 - `glossary [term]`: Looks up technical engineering acronyms.
 - `experience`: Engineering leadership roles (IEEE KEC Vice Secretary, Robotics Lead).
-- `achievements`: Overview of 36+ verified certifications and competition awards.
+- `achievements`: Overview of 37 verified certifications and competition awards.
 - `contact`: Direct email, GitHub, and LinkedIn links.
 - `whatsnew`: Triggers the **What's New** major releases modal.
 - `healthcheck`: Runs **client-side site diagnostics** (modules, SW, version, timing, nav links).
-- `accent [theme]`: Easter egg color theme switcher (gold, emerald, violet, cyan, ruby, prism).
 - `theme`: Toggles site light/dark color scheme.
+- `accent [theme]`: Easter egg color theme switcher (gold, emerald, violet, cyan, ruby, prism).
+- `sound / audio`: Toggles UI micro-sound audio cues.
+- `tour`: Launches the interactive guided spotlight tour across the site.
 - `matrix`: Renders cybernetic digital rain animation stream.
 - `clear`: Clears terminal screen.
 

@@ -2217,7 +2217,7 @@
       "label": "\ud83d\udd12 Multi-Tier Access Control & Security Model",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L77",
+      "source_location": "L83",
       "_origin": "ast",
       "id": "readme_multi_tier_access_control_security_model",
       "community": 9,
@@ -2227,7 +2227,7 @@
       "label": "\ud83d\udd0d Technical Security Architecture",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L87",
+      "source_location": "L93",
       "_origin": "ast",
       "id": "readme_technical_security_architecture",
       "community": 9,
@@ -2237,7 +2237,7 @@
       "label": "\ud83d\udd11 Google OAuth 2.0 Integration",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L96",
+      "source_location": "L102",
       "_origin": "ast",
       "id": "readme_google_oauth_2_0_integration",
       "community": 9,
@@ -2247,7 +2247,7 @@
       "label": "\ud83d\udd0d Site Search & Unified Command Palette",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L106",
+      "source_location": "L112",
       "_origin": "ast",
       "id": "readme_site_search_unified_command_palette",
       "community": 9,
@@ -2257,7 +2257,7 @@
       "label": "Key Features",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L110",
+      "source_location": "L116",
       "_origin": "ast",
       "id": "readme_key_features",
       "community": 9,
@@ -2267,7 +2267,7 @@
       "label": "\ud83d\udcbb Interactive Developer Terminal Widget (`#adtTerminal`)",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L120",
+      "source_location": "L126",
       "_origin": "ast",
       "id": "readme_interactive_developer_terminal_widget_adtterminal",
       "community": 9,
@@ -2277,7 +2277,7 @@
       "label": "Terminal Commands",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L124",
+      "source_location": "L130",
       "_origin": "ast",
       "id": "readme_terminal_commands",
       "community": 9,
@@ -2287,7 +2287,7 @@
       "label": "UX Features",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L142",
+      "source_location": "L152",
       "_origin": "ast",
       "id": "readme_ux_features",
       "community": 9,
@@ -2297,7 +2297,7 @@
       "label": "\u26a1 Local Development & Git Workflow",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L150",
+      "source_location": "L160",
       "_origin": "ast",
       "id": "readme_local_development_git_workflow",
       "community": 9,
@@ -2307,7 +2307,7 @@
       "label": "Verification & Diagnostic Suite",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L152",
+      "source_location": "L162",
       "_origin": "ast",
       "id": "readme_verification_diagnostic_suite",
       "community": 9,
@@ -2317,7 +2317,7 @@
       "label": "Automated Git Workflow & Pre-Commit Gate (`sync.ps1`)",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L165",
+      "source_location": "L175",
       "_origin": "ast",
       "id": "readme_automated_git_workflow_pre_commit_gate_sync_ps1",
       "community": 9,
@@ -2327,7 +2327,7 @@
       "label": "\ud83d\udcc8 Codebase Knowledge Graph (`Graphify`)",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L197",
+      "source_location": "L207",
       "_origin": "ast",
       "id": "readme_codebase_knowledge_graph_graphify",
       "community": 9,
@@ -2337,7 +2337,7 @@
       "label": "\ud83d\udcec Contact & Connect",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L212",
+      "source_location": "L222",
       "_origin": "ast",
       "id": "readme_contact_connect",
       "community": 9,
@@ -2347,7 +2347,7 @@
       "label": "\ud83d\udcc4 License",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L221",
+      "source_location": "L231",
       "_origin": "ast",
       "id": "readme_license",
       "community": 9,
@@ -4513,9 +4513,9 @@
       "source_file": "assets/js/modules/access.js",
       "source_location": "L35",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "modules_access",
-      "target": "modules_access_key_cache",
-      "confidence_score": 1.0
+      "target": "modules_access_key_cache"
     },
     {
       "relation": "contains",
@@ -6159,9 +6159,9 @@
       "source_file": "assets/js/modules/tour.js",
       "source_location": "L352",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "modules_tour_inittour",
-      "target": "modules_tour_gettourcurrentpage",
-      "confidence_score": 1.0
+      "target": "modules_tour_gettourcurrentpage"
     },
     {
       "relation": "calls",
@@ -6313,9 +6313,9 @@
       "source_file": "assets/js/modules/tour.js",
       "source_location": "L363",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "modules_tour_inittour",
-      "target": "modules_tour_exittour",
-      "confidence_score": 1.0
+      "target": "modules_tour_exittour"
     },
     {
       "relation": "calls",
@@ -6758,9 +6758,9 @@
       "source_file": "mcp-server/site_mcp.py",
       "source_location": "L193",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "mcp_server_site_mcp_rationale_193",
-      "target": "mcp_server_site_mcp_handle_resource_read",
-      "confidence_score": 1.0
+      "target": "mcp_server_site_mcp_handle_resource_read"
     },
     {
       "relation": "calls",
@@ -6779,9 +6779,9 @@
       "source_file": "mcp-server/site_mcp.py",
       "source_location": "L235",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "mcp_server_site_mcp_rationale_235",
-      "target": "mcp_server_site_mcp_handle_tool_call",
-      "confidence_score": 1.0
+      "target": "mcp_server_site_mcp_handle_tool_call"
     },
     {
       "relation": "rationale_for",
@@ -6789,9 +6789,9 @@
       "source_file": "mcp-server/site_mcp.py",
       "source_location": "L270",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "mcp_server_site_mcp_rationale_270",
-      "target": "mcp_server_site_mcp_process_request",
-      "confidence_score": 1.0
+      "target": "mcp_server_site_mcp_process_request"
     },
     {
       "relation": "calls",
@@ -6810,9 +6810,9 @@
       "source_file": "mcp-server/site_mcp.py",
       "source_location": "L429",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "mcp_server_site_mcp_rationale_429",
-      "target": "mcp_server_site_mcp_run_stdio_server",
-      "confidence_score": 1.0
+      "target": "mcp_server_site_mcp_run_stdio_server"
     },
     {
       "relation": "contains",
@@ -7266,9 +7266,9 @@
       "source_file": "scripts/site_automation.py",
       "source_location": "L166",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_site_automation_rationale_166",
-      "target": "scripts_site_automation_update_tracker",
-      "confidence_score": 1.0
+      "target": "scripts_site_automation_update_tracker"
     },
     {
       "relation": "contains",
@@ -8600,9 +8600,9 @@
       "source_file": "scripts/verify.py",
       "source_location": "L578",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_verify_rationale_578",
-      "target": "scripts_verify_check_manifest",
-      "confidence_score": 1.0
+      "target": "scripts_verify_check_manifest"
     },
     {
       "relation": "calls",
@@ -8621,9 +8621,9 @@
       "source_file": "scripts/verify.py",
       "source_location": "L609",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_verify_rationale_609",
-      "target": "scripts_verify_check_jsonld_schemas",
-      "confidence_score": 1.0
+      "target": "scripts_verify_check_jsonld_schemas"
     },
     {
       "relation": "calls",
@@ -8642,9 +8642,9 @@
       "source_file": "scripts/verify.py",
       "source_location": "L651",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_verify_rationale_651",
-      "target": "scripts_verify_check_file_sizes",
-      "confidence_score": 1.0
+      "target": "scripts_verify_check_file_sizes"
     },
     {
       "relation": "calls",
@@ -8663,9 +8663,9 @@
       "source_file": "scripts/verify.py",
       "source_location": "L683",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_verify_rationale_683",
-      "target": "scripts_verify_check_sw_cache_completeness",
-      "confidence_score": 1.0
+      "target": "scripts_verify_check_sw_cache_completeness"
     },
     {
       "relation": "calls",
@@ -8684,9 +8684,9 @@
       "source_file": "scripts/verify.py",
       "source_location": "L723",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_verify_rationale_723",
-      "target": "scripts_verify_check_robots_txt",
-      "confidence_score": 1.0
+      "target": "scripts_verify_check_robots_txt"
     },
     {
       "relation": "calls",
@@ -8705,9 +8705,9 @@
       "source_file": "scripts/verify.py",
       "source_location": "L753",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_verify_rationale_753",
-      "target": "scripts_verify_check_global_id_uniqueness",
-      "confidence_score": 1.0
+      "target": "scripts_verify_check_global_id_uniqueness"
     },
     {
       "relation": "contains",
@@ -8975,9 +8975,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker",
-      "target": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47"
     },
     {
       "relation": "contains",
@@ -8985,9 +8985,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L124",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_evidence_verification_log_v20_additions",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_evidence_verification_log_v20_additions"
     },
     {
       "relation": "contains",
@@ -8995,9 +8995,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_last_updated_2026_08_15",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_last_updated_2026_08_15"
     },
     {
       "relation": "contains",
@@ -9005,9 +9005,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_meta",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_meta"
     },
     {
       "relation": "contains",
@@ -9015,9 +9015,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L103",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_state_of_play",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_state_of_play"
     },
     {
       "relation": "contains",
@@ -9025,9 +9025,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L135",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v21_addition_both_v20_flagged_unmatched_pdfs_closed_out",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_v21_addition_both_v20_flagged_unmatched_pdfs_closed_out"
     },
     {
       "relation": "contains",
@@ -9035,9 +9035,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L143",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v22_addition_kec_it_club_introduction_to_git_2024_card_closed_no_source_file_available",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_v22_addition_kec_it_club_introduction_to_git_2024_card_closed_no_source_file_available"
     },
     {
       "relation": "contains",
@@ -9045,9 +9045,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L151",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v23_addition_latest_site_refinements_2026_07_18",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_v23_addition_latest_site_refinements_2026_07_18"
     },
     {
       "relation": "contains",
@@ -9055,9 +9055,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L169",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v24_addition_site_optimization_pass_mobile_legend_line_break_fix_2026_07_18",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_v24_addition_site_optimization_pass_mobile_legend_line_break_fix_2026_07_18"
     },
     {
       "relation": "contains",
@@ -9065,9 +9065,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L220",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v25_addition_bug_check_sweep_pages_1_3_4_2026_07_27",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_v25_addition_bug_check_sweep_pages_1_3_4_2026_07_27"
     },
     {
       "relation": "contains",
@@ -9075,9 +9075,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L246",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v26_addition_bug_check_sweep_page_2_about_2026_07_27",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_v26_addition_bug_check_sweep_page_2_about_2026_07_27"
     },
     {
       "relation": "contains",
@@ -9085,9 +9085,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L270",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v28_addition_site_wide_bug_audit_structural_hardening_pass_2026_08_04",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_v28_addition_site_wide_bug_audit_structural_hardening_pass_2026_08_04"
     },
     {
       "relation": "contains",
@@ -9095,9 +9095,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L284",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v29_addition_site_wide_performance_pwa_seo_styling_upgrades_2026_08_04",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_v29_addition_site_wide_performance_pwa_seo_styling_upgrades_2026_08_04"
     },
     {
       "relation": "contains",
@@ -9105,9 +9105,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L298",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v30_addition_pwa_service_worker_skip_links_font_preconnects_content_visibility_optimization_expanded_verification_2026_08_04",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_v30_addition_pwa_service_worker_skip_links_font_preconnects_content_visibility_optimization_expanded_verification_2026_08_04"
     },
     {
       "relation": "contains",
@@ -9115,9 +9115,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L324",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v31_1_addition_interactive_what_s_new_major_commit_showcase_journey_nodes_2026_08_04",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_v31_1_addition_interactive_what_s_new_major_commit_showcase_journey_nodes_2026_08_04"
     },
     {
       "relation": "contains",
@@ -9125,9 +9125,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L311",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v31_addition_url_hash_filter_sync_screen_reader_accessibility_pwa_v31_cache_bump_seo_verification_2026_08_04",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_v31_addition_url_hash_filter_sync_screen_reader_accessibility_pwa_v31_cache_bump_seo_verification_2026_08_04"
     },
     {
       "relation": "contains",
@@ -9135,9 +9135,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L336",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v32_addition_pwa_offline_resilience_reading_progress_bar_3d_card_tilt_journey_node_j_028_2026_08_04",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_v32_addition_pwa_offline_resilience_reading_progress_bar_3d_card_tilt_journey_node_j_028_2026_08_04"
     },
     {
       "relation": "contains",
@@ -9145,9 +9145,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L349",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v33_addition_interactive_dev_terminal_cmdk_filter_pills_cursor_light_trail_journey_node_j_029_2026_08_04",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_v33_addition_interactive_dev_terminal_cmdk_filter_pills_cursor_light_trail_journey_node_j_029_2026_08_04"
     },
     {
       "relation": "contains",
@@ -9155,9 +9155,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L362",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v34_addition_mobile_touch_ux_ios_safe_area_web_haptics_suite_journey_node_j_030_2026_08_08",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_v34_addition_mobile_touch_ux_ios_safe_area_web_haptics_suite_journey_node_j_030_2026_08_08"
     },
     {
       "relation": "contains",
@@ -9165,9 +9165,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L376",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v35_addition_motion_typed_captions_count_up_counters_view_transitions_journey_node_j_031_2026_08_08",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_v35_addition_motion_typed_captions_count_up_counters_view_transitions_journey_node_j_031_2026_08_08"
     },
     {
       "relation": "contains",
@@ -9175,9 +9175,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L392",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v36_addition_visual_polish_performance_skill_matrix_mobile_ux_suite_journey_node_j_032_2026_08_08",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_v36_addition_visual_polish_performance_skill_matrix_mobile_ux_suite_journey_node_j_032_2026_08_08"
     },
     {
       "relation": "contains",
@@ -9185,9 +9185,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L408",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v37_addition_guided_cross_page_site_tour_with_spotlight_overlay_journey_node_j_033_2026_08_08",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_v37_addition_guided_cross_page_site_tour_with_spotlight_overlay_journey_node_j_033_2026_08_08"
     },
     {
       "relation": "contains",
@@ -9195,9 +9195,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L419",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v38_addition_web_audio_micro_sounds_reading_metrics_live_result_indicators_verification_suite_journey_node_j_034_2026_08_08",
-      "confidence_score": 1.0
+      "target": "dev_logs_portfoliowebsite_tracker_v38_addition_web_audio_micro_sounds_reading_metrics_live_result_indicators_verification_suite_journey_node_j_034_2026_08_08"
     },
     {
       "relation": "contains",
@@ -10097,5 +10097,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "04f3c3657c218e604c2def99a8c90a423db4947d"
+  "built_at_commit": "89f2ef30a19dfd012bbf7625e3046c96ae6431d3"
 }

@@ -1,16 +1,16 @@
-# Graph Report - Aaradhya-Dev-Tamrakar.github.io  (2026-08-13)
+# Graph Report - Aaradhya-Dev-Tamrakar.github.io  (2026-08-15)
 
 ## Corpus Check
-- 23 files · ~271,774 words
+- 23 files · ~272,832 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 411 nodes · 553 edges · 82 communities (21 shown, 61 thin omitted)
+- 412 nodes · 556 edges · 83 communities (22 shown, 61 thin omitted)
 - Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 52 edges (avg confidence: 0.82)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `13d686ad`
+- Built from commit: `04f3c365`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -95,11 +95,12 @@
 - [[_COMMUNITY_Community 78|Community 78]]
 - [[_COMMUNITY_Community 79|Community 79]]
 - [[_COMMUNITY_Community 81|Community 81]]
+- [[_COMMUNITY_Community 82|Community 82]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `bootSite()` - 33 edges
 2. `main()` - 24 edges
-3. `Portfolio Website Tracker — v46` - 23 edges
+3. `Portfolio Website Tracker — v47` - 23 edges
 4. `log_pass()` - 18 edges
 5. `log_error()` - 16 edges
 6. `get_html_files()` - 12 edges
@@ -123,11 +124,11 @@
 ## Import Cycles
 - None detected.
 
-## Communities (82 total, 61 thin omitted)
+## Communities (83 total, 61 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.05
-Nodes (53): bootSite(), initNetworkStatusListeners(), initReadingProgressBar(), initServiceWorker(), SEARCH_STATIC_INDEX, SITE_RELEASES, AD_MONTHS, adToBs() (+45 more)
+Cohesion: 0.07
+Nodes (41): bootSite(), initNetworkStatusListeners(), initReadingProgressBar(), initServiceWorker(), SEARCH_STATIC_INDEX, SITE_RELEASES, AD_MONTHS, adToBs() (+33 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.06
@@ -143,7 +144,7 @@ Nodes (7): IEEE, IEEE KEC Student Branch, Vice Secretary (2025-2026), IEEE Pulch
 
 ### Community 4 - "Community 4"
 Cohesion: 0.08
-Nodes (24): Evidence & Verification Log — v20 additions, _Last updated: 2026-08-13_, Meta, Portfolio Website Tracker — v46, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out, v22 addition — KEC IT Club "Introduction to Git" (2024) card: closed, no source file available (+16 more)
+Nodes (24): Evidence & Verification Log — v20 additions, _Last updated: 2026-08-15_, Meta, Portfolio Website Tracker — v47, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out, v22 addition — KEC IT Club "Introduction to Git" (2024) card: closed, no source file available (+16 more)
 
 ### Community 5 - "Community 5"
 Cohesion: 0.67
@@ -182,11 +183,11 @@ Cohesion: 0.40
 Nodes (4): File delivery, Local Git Workflow & Auto-Sync (`sync.ps1`), Output constraints (strict), Working conventions for this repo
 
 ### Community 75 - "Community 75"
-Cohesion: 0.12
-Nodes (30): ACCESS_CONTROL, ACCESS_CONTROL_PAYLOADS, addCustomVipEmail(), closeAccessModal(), decryptHexPayload(), getCustomVipEmails(), getDecryptionKey(), getGoogleClientId() (+22 more)
+Cohesion: 0.15
+Nodes (25): ACCESS_CONTROL, ACCESS_CONTROL_PAYLOADS, addCustomVipEmail(), closeAccessModal(), decryptHexPayload(), getCustomVipEmails(), getDecryptionKey(), getGoogleClientId() (+17 more)
 
 ### Community 76 - "Community 76"
-Cohesion: 0.21
+Cohesion: 0.22
 Nodes (16): closeTourOverlay(), ensureTourOverlay(), exitTour(), getTourCurrentPage(), getTourPageUrl(), initTour(), renderTourStep(), startTour() (+8 more)
 
 ### Community 77 - "Community 77"
@@ -201,24 +202,28 @@ Nodes (5): buildSearchIndex(), CMDK_PAGES, initGlobalSearch(), renderCmdk(), rev
 Cohesion: 0.31
 Nodes (8): handle_resource_read(), handle_tool_call(), process_request(), Fetches resource content based on URI., Executes requested tool and returns output., Routes JSON-RPC request to appropriate handler., Reads JSON-RPC messages from stdin and writes responses to stdout., run_stdio_server()
 
+### Community 82 - "Community 82"
+Cohesion: 0.13
+Nodes (18): getAudioContext(), initAudioCues(), playAudioCue(), syncAudioToggleUI(), toggleAudioCues(), closeResumeGenerator(), closeWhatsNewModal(), initCardTilt() (+10 more)
+
 ## Knowledge Gaps
-- **147 isolated node(s):** `ACCESS_CONTROL_PAYLOADS`, `ACCESS_CONTROL`, `CMDK_PAGES`, `SITE`, `SOCIAL_ICONS` (+142 more)
+- **148 isolated node(s):** `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL`, `CMDK_PAGES`, `SITE` (+143 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **61 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `bootSite()` connect `Community 0` to `Community 75`, `Community 76`, `Community 78`?**
-  _High betweenness centrality (0.135) - this node is a cross-community bridge._
+- **Why does `bootSite()` connect `Community 0` to `Community 82`, `Community 75`, `Community 76`, `Community 78`?**
+  _High betweenness centrality (0.136) - this node is a cross-community bridge._
 - **Why does `Contact — Aaradhya Dev Tamrakar` connect `Community 2` to `Community 0`?**
   _High betweenness centrality (0.048) - this node is a cross-community bridge._
 - **Are the 29 inferred relationships involving `bootSite()` (e.g. with `initAccessControl()` and `initAudioCues()`) actually correct?**
   _`bootSite()` has 29 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `ACCESS_CONTROL_PAYLOADS`, `ACCESS_CONTROL`, `CMDK_PAGES` to the rest of the system?**
-  _173 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL` to the rest of the system?**
+  _174 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.05076679005817028 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06753006475485661 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.05855855855855856 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**

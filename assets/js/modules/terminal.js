@@ -56,7 +56,7 @@
       },
       stats: () => {
         const achvCount = typeof SEARCH_STATIC_INDEX !== 'undefined' ? (SEARCH_STATIC_INDEX.achievement || []).length : 37;
-        const projCount = typeof SEARCH_STATIC_INDEX !== 'undefined' ? (SEARCH_STATIC_INDEX.project || []).length : 30;
+        const projCount = typeof SEARCH_STATIC_INDEX !== 'undefined' ? (SEARCH_STATIC_INDEX.project || []).length : 29;
         return `
 <span class="term-green">[ADT PORTFOLIO TELEMETRY v47]</span><br>
   • <span class="term-gold">Published Projects:</span> ${projCount} verified repositories &amp; systems<br>
@@ -149,11 +149,11 @@
 `.trim(),
       projects: () => `
 <span class="term-green">▶ Featured Projects:</span><br>
-  1. <span class="term-gold">PulseLive</span> — Real-Time Acoustic Patient Monitoring System<br>
-  2. <span class="term-gold">SPARK</span> — Intelligent Elderly Fall Detection Wearable<br>
-  3. <span class="term-gold">GCSBR</span> — Ground Control Station for High-Altitude Rocketry<br>
-  4. <span class="term-gold">Autonomous Rover</span> — LiDAR/Ultrasonic Obstacle Avoidance &amp; Sensor Fusion<br>
-  5. Type <span class="term-cyan">'2'</span> or navigate to <a href="projects.html" class="term-link">projects.html</a> for all 22 projects!
+  1. <span class="term-gold">SPARK</span> — Two-Layer Fall Detection Wearable<br>
+  2. <span class="term-gold">GCSBR</span> — Gesture-Controlled Self-Balancing Robot<br>
+  3. <span class="term-gold">Pulse Live</span> — Real-Time Interactive Polling Platform<br>
+  4. <span class="term-gold">PrakopNet</span> — Multi-Hazard Early Warning System<br>
+  5. Type <span class="term-cyan">'2'</span> or navigate to <a href="projects.html" class="term-link">projects.html</a> for all 29 projects!
 `.trim(),
       experience: () => `
 <span class="term-green">▶ Engineering Leadership &amp; Experience:</span><br>
@@ -234,7 +234,7 @@
         } else {
           checks.push('<span class="term-red">\u2717</span> Search index: SEARCH_STATIC_INDEX not found');
         }
-        return '<span class="term-green">[SITE HEALTHCHECK v45]</span><br>' + checks.map(c => '  ' + c).join('<br>');
+        return '<span class="term-green">[SITE HEALTHCHECK v47]</span><br>' + checks.map(c => '  ' + c).join('<br>');
       },
       sound: () => {
         if (typeof toggleAudioCues === 'function') toggleAudioCues();
