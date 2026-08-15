@@ -1,6 +1,6 @@
 {
-  "sha": "9e7ade4e0226c6248366317d324e053a1eb5485d",
-  "shortSha": "9e7ade4",
-  "date": "2026-08-15T13:12:41+05:45",
-  "message": "fix(ui): refine ATS resume generator modal button alignment\n"
+  "sha": "a5a401f1050cb3ab7ab696e648d62db3ddea6a10",
+  "shortSha": "a5a401f",
+  "date": "2026-08-15T13:14:30+05:45",
+  "message": "fix(resume): optimize A4 print layout and eliminate trailing blank pages\n"
 }
