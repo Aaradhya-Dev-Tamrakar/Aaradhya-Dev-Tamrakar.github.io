@@ -26,6 +26,7 @@ yarn-error.log*
 __pycache__/
 *.py[cod]
 *$py.class
+.venv/
 
 # Local dev tooling / analysis output — not part of the deployed site
 graphify-out/cache/**

@@ -263,6 +263,7 @@ function renderSiteFooter() {
   const socialsHtml = SITE.socials
     .map(s => `<a href="${s.href}" target="_blank" rel="noopener" aria-label="${s.label}" title="${s.label}">${SOCIAL_ICONS[s.label] || s.label}</a>`)
     .join('');
+  const currentRelVersion = (typeof SITE_RELEASES !== 'undefined' && SITE_RELEASES[0]) ? SITE_RELEASES[0].version : 'v47';
   el.innerHTML = `
     <div class="footer-inner">
       <div class="footer-brand">
@@ -272,7 +273,7 @@ function renderSiteFooter() {
       <div class="footer-socials">${socialsHtml}</div>
     </div>
     <div class="footer-rule"></div>
-    <div class="footer-copy">${SITE.footerCopy} · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a> · <button id="wnFooterBtn" type="button" class="footer-wn-btn">What's New (v38)</button></div>`;
+    <div class="footer-copy">${SITE.footerCopy} · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a> · <button id="wnFooterBtn" type="button" class="footer-wn-btn">What's New (${currentRelVersion})</button></div>`;
 
   const btn = document.getElementById('wnFooterBtn');
   if (btn) btn.addEventListener('click', openWhatsNewModal);

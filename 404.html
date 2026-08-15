@@ -13,12 +13,13 @@
   <meta name="robots" content="noindex, nofollow" />
 
   <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Aaradhya Dev Tamrakar" />
   <meta property="og:title" content="ADT | Page Not Found" />
   <meta property="og:description" content="The page you're looking for doesn't exist. Find your way back to ADT's (Aaradhya Dev Tamrakar) portfolio." />
   <meta property="og:image" content="https://aaradhya-dev-tamrakar.github.io/assets/images/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:site_name" content="Aaradhya Dev Tamrakar" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@AaradhyaDT" />
@@ -159,8 +160,8 @@
         <li><a href="/projects.html">Projects</a></li>
         <li><a href="/experience.html">Experience</a></li>
         <li><a href="/achievements.html">Achievements</a></li>
-        <li><a href="/journey.html">Journey</a></li>
         <li><a href="/about.html">About</a></li>
+        <li><a href="/journey.html">Journey</a></li>
       </ul>
       <div class="nav-right"><a href="/contact.html" class="nav-cta">Connect</a></div>
     </nav>
@@ -203,21 +204,41 @@
           <p class="quick-nav-desc">IEEEXtreme, fellowships, certifications, and competition results.</p>
           <span class="quick-nav-cta">View Achievements →</span>
         </a>
-        <a class="quick-nav-card" href="/journey.html">
-          <div class="quick-nav-index">P — 04</div>
-          <div class="quick-nav-title">Journey</div>
-          <p class="quick-nav-desc">How this site was built — applied skillset behind each milestone.</p>
-          <span class="quick-nav-cta">View Build Log →</span>
-        </a>
         <a class="quick-nav-card" href="/about.html">
-          <div class="quick-nav-index">P — 05</div>
+          <div class="quick-nav-index">P — 04</div>
           <div class="quick-nav-title">About</div>
           <p class="quick-nav-desc">Bio, technical stack, and the path from firmware to applied ML.</p>
           <span class="quick-nav-cta">Read Bio →</span>
         </a>
+        <a class="quick-nav-card" href="/journey.html">
+          <div class="quick-nav-index">P — 05</div>
+          <div class="quick-nav-title">Journey</div>
+          <p class="quick-nav-desc">How this site was built — applied skillset behind each milestone.</p>
+          <span class="quick-nav-cta">View Build Log →</span>
+        </a>
       </div>
     </section>
   </main>
+
+  <button class="back-top" id="backTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+      stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
+  <button class="back-top audio-toggle" id="audioToggle" aria-label="Toggle UI sound effects" aria-pressed="false" title="Toggle sound (Shift+A)">
+    <svg class="audio-icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+    </svg>
+    <svg class="audio-icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <line x1="23" y1="9" x2="17" y2="15"/>
+      <line x1="17" y1="9" x2="23" y2="15"/>
+    </svg>
+  </button>
+  <div class="scroll-pct" id="scrollPct" aria-hidden="true">0%</div>
 
   <footer role="contentinfo">
     <div id="siteFooter"></div>
