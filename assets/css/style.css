@@ -4381,32 +4381,57 @@ html[data-theme="light"] .card-gradient-border::before {
 
 .resume-role-selector {
   display: flex;
+  align-items: center;
   gap: 0.5rem;
-  padding: 1rem 1.75rem;
+  padding: 0.85rem 1.5rem;
   background: var(--bg2);
   border-bottom: 1px solid var(--line);
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.resume-role-selector::-webkit-scrollbar {
+  display: none;
 }
 
 .resume-role-btn {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  padding: 0.45rem 0.95rem;
+  border-radius: 9999px;
   border: 1px solid var(--line);
-  background: var(--bg);
+  background: var(--surface);
   color: var(--muted);
   cursor: pointer;
   white-space: nowrap;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.resume-role-btn:hover,
+.resume-role-btn:hover {
+  color: var(--text);
+  border-color: var(--accent-a40);
+  background: var(--accent-a07);
+  transform: translateY(-1px);
+}
+
 .resume-role-btn.active {
   color: var(--heading);
+  font-weight: 600;
   border-color: var(--accent);
-  background: var(--accent-a07);
-  box-shadow: 0 0 10px var(--accent-a15);
+  background: var(--accent-a12);
+  box-shadow: 0 2px 12px var(--accent-a15);
+  transform: translateY(0);
+}
+
+.resume-role-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .resume-preview-body {
