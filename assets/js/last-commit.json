@@ -1,6 +1,6 @@
 {
-  "sha": "0f9399f638d35f89808dc1acf23cc6ed09920b7f",
-  "shortSha": "0f9399f",
-  "date": "2026-08-15T23:03:05+05:45",
-  "message": "fix(ui): restore ATS Resume Generator modal & button screen styles\n"
+  "sha": "a7f314328c1c35919f90c2ccbd0fee5298232074",
+  "shortSha": "a7f3143",
+  "date": "2026-08-15T23:13:21+05:45",
+  "message": "style(resume): fix print formatting and multi-page typography for ATS resume\n"
 }
