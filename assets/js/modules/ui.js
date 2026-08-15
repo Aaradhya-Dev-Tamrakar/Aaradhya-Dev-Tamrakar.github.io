@@ -264,6 +264,7 @@ function initCardTilt() {
   document.addEventListener('mousemove', e => {
     const card = e.target.closest(selector);
     if (!card) return;
+    card.style.transition = 'none';
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -278,7 +279,9 @@ function initCardTilt() {
     const card = e.target.closest(selector);
     if (!card) return;
     if (!e.relatedTarget || !card.contains(e.relatedTarget)) {
+      card.style.transition = 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)';
       card.style.transform = '';
+      card.addEventListener('transitionend', () => { card.style.transition = ''; }, { once: true });
     }
   });
 }

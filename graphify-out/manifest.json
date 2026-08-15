@@ -55,8 +55,8 @@
     "semantic_hash": ""
   },
   "assets/js/last-commit.json": {
-    "mtime": 1786809340.4840498,
-    "ast_hash": "bbb3799e4113242844541c4bb3463ab7",
+    "mtime": 1786809635.5559084,
+    "ast_hash": "10975bd938fe46f7afa807dbb651b2f1",
     "semantic_hash": ""
   },
   "dev-logs/achievements/achievements-inline-script.js": {
@@ -725,8 +725,8 @@
     "semantic_hash": ""
   },
   "assets/js/modules/ui.js": {
-    "mtime": 1786809340.5999608,
-    "ast_hash": "5cd48e0c37479dd991af739048bd109d",
+    "mtime": 1786809635.881759,
+    "ast_hash": "9763d2d39a6dfe6400faa7c553fcd4f9",
     "semantic_hash": ""
   },
   "mcp-server/mcp_config.json": {
