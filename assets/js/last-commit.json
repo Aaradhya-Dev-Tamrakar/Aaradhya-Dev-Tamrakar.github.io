@@ -1,6 +1,6 @@
 {
-  "sha": "2e5551792421d16ab8e6eb391a4232dc8a31232e",
-  "shortSha": "2e55517",
-  "date": "2026-08-15T13:02:41+05:45",
-  "message": "added GEMINI.md\n"
+  "sha": "c5e21ab98234dbbbd6267bf8c2a052283e58c450",
+  "shortSha": "c5e21ab",
+  "date": "2026-08-15T13:03:09+05:45",
+  "message": "refactor: update AGENTS.md, GEMINI.md +8 more - To avoid merge conflicts on `assets/js/last-commit.json` (bot-managed) and preve (+313/-134)\n"
 }
