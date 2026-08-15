@@ -1,7 +1,7 @@
 # Graph Report - Aaradhya-Dev-Tamrakar.github.io  (2026-08-15)
 
 ## Corpus Check
-- 25 files · ~278,116 words
+- 25 files · ~278,228 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary

@@ -1038,3 +1038,6 @@ function renderTailoredResumePreview(roleKey) {
     ${sectionsHtml}
   `;
 }
+
+window.openResumeGenerator = openResumeGenerator;
+window.closeResumeGenerator = closeResumeGenerator;

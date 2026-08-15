@@ -1,10 +1,11 @@
-﻿# Portfolio Website Tracker — v47
+# Portfolio Website Tracker — v47
 
 ## \_Last updated
 
 ## Meta
 
 - **v47 (Update) — Performance Architecture, Render-Blocking Elimination & Asset Optimization.** Shipped major site-wide performance upgrade eliminating the 9-module CSS @import waterfall, optimizing client-side resource scheduling, and boosting rendering speed:
+  - **ATS Resume Generator Screen Styles & Trigger Button Fix**: Resolved unstyled ATS Resume / Export PDF button across all occurrences (`experience.html`, `about.html`, and `#resumePrintBtn`). Migrated screen modal and trigger button CSS (`.resume-modal-*`, `.resume-role-selector`, `.resume-role-btn`, `.resume-preview-*`, `.resume-print-btn`) from `print.css` to `components.css` to ensure zero FOUC and full theme synchronization on screen media while preserving pure `@page` and `@media print` rules in `print.css`. Standardized button labels, accessibility attributes (`aria-label`, `aria-hidden`), and shimmer hover states.
   - **CSS @import Waterfall Elimination**: Replaced the sequential 9-step @import cascade across all 10 site pages with parallel `<link>` loading for critical CSS modules (`tokens.css`, `base.css`, `layout.css`, `components.css`) and deferred non-blocking loading for non-critical modules (`cmdk.css`, `access.css`, `terminal.css`, `tour.css`, `print.css`) via standard `media="print" onload="this.media='all'"` swapping.
   - **Resource Preloads & Hint Scheduling**: Added high-priority `<link rel="preload">` hints for critical tokens and core runtime scripts (`tokens.css`, `base.css`, `core.js`, `ui.js`, `script.js`) across all HTML heads to trigger early network discovery. Removed redundant `dns-prefetch` where `preconnect` was already established.
   - **Canvas Animation Externalization & Caching**: Extracted 250+ lines of inline canvas animations (`SignalWaveBackground` and `PCBTraces`) from `index.html` into a standalone, cacheable `assets/js/bg-animations.js` module loaded with `defer`, reducing `index.html` payload by 8.7KB.
