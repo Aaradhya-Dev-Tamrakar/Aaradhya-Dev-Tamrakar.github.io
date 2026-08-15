@@ -1,16 +1,16 @@
 # Graph Report - Aaradhya-Dev-Tamrakar.github.io  (2026-08-15)
 
 ## Corpus Check
-- 25 files · ~276,099 words
+- 25 files · ~278,116 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 434 nodes · 583 edges · 84 communities (23 shown, 61 thin omitted)
+- 440 nodes · 593 edges · 87 communities (26 shown, 61 thin omitted)
 - Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 51 edges (avg confidence: 0.82)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `ec1d114f`
+- Built from commit: `fbbe6a73`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -87,6 +87,7 @@
 - [[_COMMUNITY_Community 69|Community 69]]
 - [[_COMMUNITY_Community 70|Community 70]]
 - [[_COMMUNITY_Community 71|Community 71]]
+- [[_COMMUNITY_Community 72|Community 72]]
 - [[_COMMUNITY_Community 73|Community 73]]
 - [[_COMMUNITY_Community 74|Community 74]]
 - [[_COMMUNITY_Community 75|Community 75]]
@@ -97,6 +98,9 @@
 - [[_COMMUNITY_Community 81|Community 81]]
 - [[_COMMUNITY_Community 82|Community 82]]
 - [[_COMMUNITY_Community 83|Community 83]]
+- [[_COMMUNITY_Community 84|Community 84]]
+- [[_COMMUNITY_Community 85|Community 85]]
+- [[_COMMUNITY_Community 86|Community 86]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `bootSite()` - 32 edges
@@ -125,11 +129,11 @@
 ## Import Cycles
 - None detected.
 
-## Communities (84 total, 61 thin omitted)
+## Communities (87 total, 61 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.05
-Nodes (52): bootSite(), initNetworkStatusListeners(), initReadingProgressBar(), initServiceWorker(), SEARCH_STATIC_INDEX, SITE_RELEASES, AD_MONTHS, adToBs() (+44 more)
+Cohesion: 0.10
+Nodes (24): AD_MONTHS, adToBs(), applyAccent(), applyLiveDates(), applyTheme(), BS_EPOCH_UTC, BS_MONTHS, BS_YEARS (+16 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.06
@@ -183,13 +187,17 @@ Nodes (5): 1. Git Workflow & Automation (CRITICAL — STRICT ENFORCEMENT), 2. Kn
 Cohesion: 0.12
 Nodes (46): bold(), _c(), check_asset_references(), check_cross_page_links(), check_file_sizes(), check_global_id_uniqueness(), check_ids(), check_internal_hrefs() (+38 more)
 
+### Community 72 - "Community 72"
+Cohesion: 0.33
+Nodes (6): Get-LfsInstalled(), Get-PythonPath(), Show-Diagnostics(), Sync-BotStamp(), Update-TrackerLog(), Write-Badge()
+
 ### Community 74 - "Community 74"
 Cohesion: 0.40
 Nodes (4): File delivery, Local Git Workflow & Auto-Sync (`sync.ps1`), Output constraints (strict), Working conventions for this repo
 
 ### Community 75 - "Community 75"
-Cohesion: 0.12
-Nodes (31): ACCESS_CONTROL, ACCESS_CONTROL_PAYLOADS, addCustomVipEmail(), closeAccessModal(), decryptHexPayload(), getCustomVipEmails(), getDecryptionKey(), getGoogleClientId() (+23 more)
+Cohesion: 0.17
+Nodes (23): ACCESS_CONTROL, ACCESS_CONTROL_PAYLOADS, addCustomVipEmail(), closeAccessModal(), decryptHexPayload(), getCustomVipEmails(), getDecryptionKey(), getGoogleClientId() (+15 more)
 
 ### Community 76 - "Community 76"
 Cohesion: 0.22
@@ -211,6 +219,18 @@ Nodes (8): handle_resource_read(), handle_tool_call(), process_request(), Fetche
 Cohesion: 0.33
 Nodes (5): 1. Git Workflow & Automation (CRITICAL — STRICT ENFORCEMENT), 2. Knowledge Graph & Codebase Navigation (Graphify), 3. Operational Rules & Efficiency, Antigravity IDE & Gemini Agent Rules for Portfolio Repository, Commands
 
+### Community 84 - "Community 84"
+Cohesion: 0.12
+Nodes (19): bootSite(), initNetworkStatusListeners(), initReadingProgressBar(), initServiceWorker(), SEARCH_STATIC_INDEX, SITE_RELEASES, initAccentPicker(), initCursor() (+11 more)
+
+### Community 85 - "Community 85"
+Cohesion: 0.18
+Nodes (9): initCountUp(), initFilterCountIndicators(), initKeyNav(), initLightbox(), initReadingMetrics(), initTypedCaption(), openResumeGenerator(), renderTailoredResumePreview() (+1 more)
+
+### Community 86 - "Community 86"
+Cohesion: 0.36
+Nodes (8): getAudioContext(), initAudioCues(), playAudioCue(), syncAudioToggleUI(), toggleAudioCues(), closeResumeGenerator(), closeWhatsNewModal(), openWhatsNewModal()
+
 ## Knowledge Gaps
 - **154 isolated node(s):** `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL`, `CMDK_PAGES`, `SITE` (+149 more)
   These have ≤1 connection - possible missing edges or undocumented components.
@@ -219,16 +239,16 @@ Nodes (5): 1. Git Workflow & Automation (CRITICAL — STRICT ENFORCEMENT), 2. Kn
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `bootSite()` connect `Community 0` to `Community 75`, `Community 76`, `Community 78`?**
-  _High betweenness centrality (0.121) - this node is a cross-community bridge._
-- **Why does `Contact — Aaradhya Dev Tamrakar` connect `Community 2` to `Community 0`?**
-  _High betweenness centrality (0.043) - this node is a cross-community bridge._
+- **Why does `bootSite()` connect `Community 84` to `Community 0`, `Community 75`, `Community 76`, `Community 78`, `Community 85`, `Community 86`?**
+  _High betweenness centrality (0.118) - this node is a cross-community bridge._
+- **Why does `Contact — Aaradhya Dev Tamrakar` connect `Community 2` to `Community 84`?**
+  _High betweenness centrality (0.041) - this node is a cross-community bridge._
 - **Are the 28 inferred relationships involving `bootSite()` (e.g. with `initAccessControl()` and `initAudioCues()`) actually correct?**
   _`bootSite()` has 28 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL` to the rest of the system?**
   _180 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.05136612021857923 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09971509971509972 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.05855855855855856 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**

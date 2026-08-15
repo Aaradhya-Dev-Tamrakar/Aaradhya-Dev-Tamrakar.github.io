@@ -1,6 +1,6 @@
-# Portfolio Website Tracker — v47
+﻿# Portfolio Website Tracker — v47
 
-## _Last updated: 2026-08-15_
+## _Last updated: 
 
 ## Meta
 
@@ -12,6 +12,7 @@
   - **Content-Visibility & Below-the-Fold Rendering Optimization**: Added `.content-visibility-auto` and `.cv-auto` / `.cv-card` CSS utility classes with `contain-intrinsic-size` to skip rendering calculations for off-screen sections until scrolled into view.
   - **PWA Service Worker Cache Sync**: Updated `sw.js` `STATIC_ASSETS` to include `assets/js/bg-animations.js` and all WebP logo variants for offline and instant return navigation.
   - **Documentation & Site Metadata Synchronization**: Updated `sitemap.xml` timestamps to `2026-08-15`, refreshed `README.md` directory trees to include `assets/js/bg-animations.js` and `.github/workflows/deploy-pages.yml`, synchronized MCP server (`mcp-server/site_mcp.py`) and automation engine (`scripts/site_automation.py`) tool descriptions/defaults to `v47`.
+  - **Automated Sync Engine Upgrade (`sync.ps1`)**: Completely overhauled `sync.ps1` with Git LFS pointer synchronization, multi-scope conventional commit categorization (`feat`, `refactor`, `style`, `perf`, `docs`, `ci`, `tools`, `seo`), diagnostic verification gate, version bump integration (`-v`), dry-run preview mode (`-WhatIf`), repository health inspect (`-Status`), safe pull (`-PullOnly`), push-only (`-PushOnly`), and adaptive bot stamp commit synchronization.
   - **Verification Suite**: Passed `python scripts/verify.py` across all 17 categories with 0 errors and 0 warnings.
 
 - **v47 — Comprehensive Upgrade Suite: Diagnostics, 8-Track Remediation, Modular CSS, Stability Hardening & Git LFS Media Architecture.** Fixed verify.py diagnostic false warnings, remediated all 8-track audit findings (blockers B1/B2, security hardening, MCP server fixes, tour lifecycle & contrast compliance), modularized monolithic CSS into 9 decoupled modules in `assets/css/modules/` orchestrated by `style.css`, implemented Git LFS for multimedia and document assets (`.mp4`, `.pdf`, `.webp`, `.png`, `.jpg`, `.jpeg`, `.gif`, `.ico`, `.mp3`, `.wav`), configured automated GitHub Actions Pages deployment (`.github/workflows/deploy-pages.yml`) with LFS checkout support, expanded Dev Terminal with 4 new interactive commands and history navigation, enhanced glassmorphic card aesthetics, and bumped PWA cache to v47.

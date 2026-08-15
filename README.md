@@ -179,7 +179,7 @@ Alternatively, open `index.html` directly in any web browser.
 
 To prevent merge conflicts with GitHub Actions commit-back bots and ensure code quality:
 
-- **Routine & Minor Updates** (Auto-runs index extraction, graphify knowledge update, `verify.py` pre-commit gate, conventional commit generation & push):
+- **Routine & Minor Updates** (Auto-runs index extraction, graphify knowledge update, `verify.py` pre-commit gate, LFS sync, conventional commit generation & push):
 
   ```powershell
   .\sync.ps1
@@ -190,19 +190,37 @@ To prevent merge conflicts with GitHub Actions commit-back bots and ensure code 
   ```powershell
   # 1. Update dev-logs/PortfolioWebsite_TRACKER.md with release notes first
   # 2. Run sync script with detailed message:
-  .\sync.ps1 -m "feat(v45): ship robust troubleshooting infrastructure & pre-commit gate"
+  .\sync.ps1 -m "feat(scope): detailed architectural summary"
   ```
 
-- **Emergency Push (Bypass Verification Gate)**:
+- **Version Bump & Metadata Sync** (Syncs `sw.js` cache name, `sitemap.xml`, and tracker):
 
   ```powershell
-  .\sync.ps1 -SkipVerify
+  .\sync.ps1 -v v48
   ```
 
-- **Safe Remote Pull**:
+- **Dry Run / Preview Mode** (Checks index, graph, verification, and previews auto-commit message without pushing):
+
+  ```powershell
+  .\sync.ps1 -WhatIf
+  ```
+
+- **Safe Remote Pull** (Safely pulls with `--autostash` and synchronizes Git LFS pointers):
 
   ```powershell
   .\sync.ps1 -PullOnly
+  ```
+
+- **Repository Diagnostics & Health**:
+
+  ```powershell
+  .\sync.ps1 -Status
+  ```
+
+- **Bypass Pre-Commit Gate (Urgent WIP / Hotfix)**:
+
+  ```powershell
+  .\sync.ps1 -SkipVerify  # or .\sync.ps1 -Force
   ```
 
 ---
