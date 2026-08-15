@@ -1,6 +1,6 @@
 {
-  "sha": "a0872d1042b72c2ff6695b08c93c7108ee88accb",
-  "shortSha": "a0872d1",
-  "date": "2026-08-15T22:41:30+05:45",
-  "message": "perf(core): optimize render pipeline, eliminate CSS waterfall & externalize canvas\n"
+  "sha": "6326bc026b89a1121c84affb1f065c2c50af09ef",
+  "shortSha": "6326bc0",
+  "date": "2026-08-15T22:44:09+05:45",
+  "message": "docs(meta): update sitemap dates, readme directory tree & mcp tool specs\n"
 }
