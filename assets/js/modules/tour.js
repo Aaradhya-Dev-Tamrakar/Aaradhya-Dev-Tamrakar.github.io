@@ -9,7 +9,7 @@ const TOUR_STEPS = {
     { sel: '#hero', title: 'Welcome & Status', body: 'Welcome to ADT Portfolio — start here on any visit. Track real-time focus, role, and NPT clock in the live status widget.' },
     { sel: '#stats', title: 'Impact & Metrics', body: 'Stat counters tracking 15+ built engineering projects, 4th-year BEI student status, and fellowship milestones.' },
     { sel: '#adtTerminal', title: 'Dev Terminal', body: 'A live interactive command line — type "help" for a full command list, or try quick preset buttons like "skills", "projects", and "matrix".' },
-    { sel: '#exploreGrid', title: 'Quick Navigation', body: 'Explore hub to jump straight into Projects, Experience, Achievements, Journey, and About.' },
+    { sel: '#quickNavGrid', title: 'Quick Navigation', body: 'Explore hub to jump straight into Projects, Experience, Achievements, Journey, and About.' },
     { sel: '#about-sign-in', title: 'Access Control', body: 'Optional browser-only Google Sign-In to unlock additional technical research notes and VIP specs.' },
     { sel: '#keymap', title: 'Keymap & Display Guide', body: 'Complete keyboard shortcuts (1-7, 0, Shift+N, Shift+T, /, Esc) and 400-nit OLED display calibration benchmarks.' },
   ],
@@ -440,6 +440,3 @@ function promptGuidedTour() {
 
   requestAnimationFrame(() => banner.classList.add('open'));
 }
-
-
-

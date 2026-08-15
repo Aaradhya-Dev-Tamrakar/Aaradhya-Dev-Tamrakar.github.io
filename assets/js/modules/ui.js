@@ -371,11 +371,11 @@ function initLightbox() {
     }
   });
 
-  document.querySelectorAll('.cert-btn').forEach(btn => {
-    btn.addEventListener('click', event => {
-      event.preventDefault();
-      openLightbox(btn.dataset.cert, btn.dataset.label, btn.dataset.type, btn.dataset.download, btn.dataset.verify);
-    });
+  document.addEventListener('click', event => {
+    const btn = event.target.closest('.cert-btn');
+    if (!btn) return;
+    event.preventDefault();
+    openLightbox(btn.dataset.cert, btn.dataset.label, btn.dataset.type, btn.dataset.download, btn.dataset.verify);
   });
 
   lbClose.addEventListener('click', closeLightbox);
@@ -1034,7 +1034,7 @@ function renderTailoredResumePreview(roleKey) {
   if (!sheet) return;
 
   const roleData = RESUME_DATA.roles[roleKey] || RESUME_DATA.roles.all;
-  
+
   let sectionsHtml = roleData.sections.map(sec => `
     <div class="resume-sheet-section">
       <div class="resume-sheet-sec-title">${sec.title}</div>
@@ -1063,5 +1063,3 @@ function renderTailoredResumePreview(roleKey) {
     ${sectionsHtml}
   `;
 }
-
-

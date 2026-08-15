@@ -273,16 +273,29 @@
         return '';
       },
       matrix: () => {
-        let lines = [];
-        const chars = '0110010101010101001010101010101001';
-        for (let i = 0; i < 6; i++) {
+        const rows = 6, cols = 36, chars = '01';
+        const randRow = () => {
           let row = '';
-          for (let j = 0; j < 36; j++) {
-            row += chars[Math.floor(Math.random() * chars.length)];
-          }
-          lines.push(`<span class="term-green" style="opacity:${(i+1)/6};">${row}</span>`);
-        }
-        return lines.join('<br>');
+          for (let j = 0; j < cols; j++) row += chars[Math.floor(Math.random() * chars.length)];
+          return row;
+        };
+        const id = 'matrix-rain-' + Date.now();
+        const rowsHtml = Array.from({ length: rows }, (_, i) =>
+          `<span class="term-green" style="opacity:${(i + 1) / rows};display:block;">${randRow()}</span>`
+        ).join('');
+        // Deferred so the container exists in the DOM (appendOutput runs
+        // synchronously right after this returns) before we animate it.
+        setTimeout(() => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          const spans = el.querySelectorAll('span');
+          let ticks = 0;
+          const iv = setInterval(() => {
+            spans.forEach(s => { s.textContent = randRow(); });
+            if (++ticks > 20) clearInterval(iv);
+          }, 90);
+        }, 0);
+        return `<div id="${id}">${rowsHtml}</div>`;
       }
     };
 
@@ -368,6 +381,3 @@
     setup();
   }
 })();
-
-
-
