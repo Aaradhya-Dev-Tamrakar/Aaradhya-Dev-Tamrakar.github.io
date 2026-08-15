@@ -250,7 +250,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "modules_audio",
-      "community": 82,
+      "community": 75,
       "norm_label": "audio.js"
     },
     {
@@ -260,7 +260,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "modules_audio_getaudiocontext",
-      "community": 82,
+      "community": 75,
       "norm_label": "getaudiocontext()"
     },
     {
@@ -270,7 +270,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "modules_audio_playaudiocue",
-      "community": 82,
+      "community": 75,
       "norm_label": "playaudiocue()"
     },
     {
@@ -280,7 +280,7 @@
       "source_location": "L106",
       "_origin": "ast",
       "id": "modules_audio_syncaudiotoggleui",
-      "community": 82,
+      "community": 75,
       "norm_label": "syncaudiotoggleui()"
     },
     {
@@ -290,7 +290,7 @@
       "source_location": "L114",
       "_origin": "ast",
       "id": "modules_audio_toggleaudiocues",
-      "community": 82,
+      "community": 75,
       "norm_label": "toggleaudiocues()"
     },
     {
@@ -300,7 +300,7 @@
       "source_location": "L128",
       "_origin": "ast",
       "id": "modules_audio_initaudiocues",
-      "community": 82,
+      "community": 75,
       "norm_label": "initaudiocues()"
     },
     {
@@ -440,7 +440,7 @@
       "source_location": "L178",
       "_origin": "ast",
       "id": "modules_core_handleaccessbtnclick",
-      "community": 75,
+      "community": 0,
       "norm_label": "handleaccessbtnclick()"
     },
     {
@@ -450,7 +450,7 @@
       "source_location": "L187",
       "_origin": "ast",
       "id": "modules_core_openlogoutmodal",
-      "community": 75,
+      "community": 0,
       "norm_label": "openlogoutmodal()"
     },
     {
@@ -1000,7 +1000,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "modules_ui",
-      "community": 82,
+      "community": 0,
       "norm_label": "ui.js"
     },
     {
@@ -1010,7 +1010,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "modules_ui_openwhatsnewmodal",
-      "community": 82,
+      "community": 75,
       "norm_label": "openwhatsnewmodal()"
     },
     {
@@ -1020,7 +1020,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "modules_ui_closewhatsnewmodal",
-      "community": 82,
+      "community": 75,
       "norm_label": "closewhatsnewmodal()"
     },
     {
@@ -1030,7 +1030,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "modules_ui_initcountup",
-      "community": 82,
+      "community": 0,
       "norm_label": "initcountup()"
     },
     {
@@ -1040,7 +1040,7 @@
       "source_location": "L132",
       "_origin": "ast",
       "id": "modules_ui_inittypedcaption",
-      "community": 82,
+      "community": 0,
       "norm_label": "inittypedcaption()"
     },
     {
@@ -1050,7 +1050,7 @@
       "source_location": "L176",
       "_origin": "ast",
       "id": "modules_ui_initreadingmetrics",
-      "community": 82,
+      "community": 0,
       "norm_label": "initreadingmetrics()"
     },
     {
@@ -1060,7 +1060,7 @@
       "source_location": "L209",
       "_origin": "ast",
       "id": "modules_ui_initfiltercountindicators",
-      "community": 82,
+      "community": 0,
       "norm_label": "initfiltercountindicators()"
     },
     {
@@ -1070,7 +1070,7 @@
       "source_location": "L259",
       "_origin": "ast",
       "id": "modules_ui_initcardtilt",
-      "community": 82,
+      "community": 0,
       "norm_label": "initcardtilt()"
     },
     {
@@ -1080,7 +1080,7 @@
       "source_location": "L294",
       "_origin": "ast",
       "id": "modules_ui_initlightbox",
-      "community": 82,
+      "community": 0,
       "norm_label": "initlightbox()"
     },
     {
@@ -1090,7 +1090,7 @@
       "source_location": "L401",
       "_origin": "ast",
       "id": "modules_ui_initkeynav",
-      "community": 82,
+      "community": 0,
       "norm_label": "initkeynav()"
     },
     {
@@ -1100,7 +1100,7 @@
       "source_location": "L504",
       "_origin": "ast",
       "id": "modules_ui_spawnparticle",
-      "community": 82,
+      "community": 0,
       "norm_label": "spawnparticle()"
     },
     {
@@ -1110,7 +1110,7 @@
       "source_location": "L620",
       "_origin": "ast",
       "id": "modules_ui_initskillradar",
-      "community": 82,
+      "community": 0,
       "norm_label": "initskillradar()"
     },
     {
@@ -1120,7 +1120,7 @@
       "source_location": "L738",
       "_origin": "ast",
       "id": "modules_ui_resume_data",
-      "community": 82,
+      "community": 0,
       "norm_label": "resume_data"
     },
     {
@@ -1130,7 +1130,7 @@
       "source_location": "L949",
       "_origin": "ast",
       "id": "modules_ui_openresumegenerator",
-      "community": 82,
+      "community": 0,
       "norm_label": "openresumegenerator()"
     },
     {
@@ -1140,7 +1140,7 @@
       "source_location": "L1016",
       "_origin": "ast",
       "id": "modules_ui_closeresumegenerator",
-      "community": 82,
+      "community": 75,
       "norm_label": "closeresumegenerator()"
     },
     {
@@ -1150,7 +1150,7 @@
       "source_location": "L1024",
       "_origin": "ast",
       "id": "modules_ui_rendertailoredresumepreview",
-      "community": 82,
+      "community": 0,
       "norm_label": "rendertailoredresumepreview()"
     },
     {
@@ -2114,24 +2114,54 @@
       "norm_label": "agents.md"
     },
     {
-      "label": "graphify",
+      "label": "Agent Rules & Workflow Guidelines",
       "file_type": "document",
       "source_file": "AGENTS.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "agents_graphify",
+      "id": "agents_agent_rules_workflow_guidelines",
       "community": 12,
-      "norm_label": "graphify"
+      "norm_label": "agent rules & workflow guidelines"
     },
     {
-      "label": "git-workflow",
+      "label": "1. Git Workflow & Automation (CRITICAL \u2014 STRICT ENFORCEMENT)",
       "file_type": "document",
       "source_file": "AGENTS.md",
-      "source_location": "L12",
+      "source_location": "L3",
       "_origin": "ast",
-      "id": "agents_git_workflow",
+      "id": "agents_1_git_workflow_automation_critical_strict_enforcement",
       "community": 12,
-      "norm_label": "git-workflow"
+      "norm_label": "1. git workflow & automation (critical \u2014 strict enforcement)"
+    },
+    {
+      "label": "Commands:",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "agents_commands",
+      "community": 12,
+      "norm_label": "commands:"
+    },
+    {
+      "label": "2. Knowledge Graph & Codebase Navigation (Graphify)",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "agents_2_knowledge_graph_codebase_navigation_graphify",
+      "community": 12,
+      "norm_label": "2. knowledge graph & codebase navigation (graphify)"
+    },
+    {
+      "label": "3. Operational Rules & Efficiency",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "agents_3_operational_rules_efficiency",
+      "community": 12,
+      "norm_label": "3. operational rules & efficiency"
     },
     {
       "label": "CLAUDE.md",
@@ -2182,6 +2212,66 @@
       "id": "claude_output_constraints_strict",
       "community": 74,
       "norm_label": "output constraints (strict)"
+    },
+    {
+      "label": "GEMINI.md",
+      "file_type": "document",
+      "source_file": "GEMINI.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "gemini",
+      "community": 82,
+      "norm_label": "gemini.md"
+    },
+    {
+      "label": "Antigravity IDE & Gemini Agent Rules for Portfolio Repository",
+      "file_type": "document",
+      "source_file": "GEMINI.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "gemini_antigravity_ide_gemini_agent_rules_for_portfolio_repository",
+      "community": 82,
+      "norm_label": "antigravity ide & gemini agent rules for portfolio repository"
+    },
+    {
+      "label": "1. Git Workflow & Automation (CRITICAL \u2014 STRICT ENFORCEMENT)",
+      "file_type": "document",
+      "source_file": "GEMINI.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "gemini_1_git_workflow_automation_critical_strict_enforcement",
+      "community": 82,
+      "norm_label": "1. git workflow & automation (critical \u2014 strict enforcement)"
+    },
+    {
+      "label": "Commands:",
+      "file_type": "document",
+      "source_file": "GEMINI.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "gemini_commands",
+      "community": 82,
+      "norm_label": "commands:"
+    },
+    {
+      "label": "2. Knowledge Graph & Codebase Navigation (Graphify)",
+      "file_type": "document",
+      "source_file": "GEMINI.md",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "gemini_2_knowledge_graph_codebase_navigation_graphify",
+      "community": 82,
+      "norm_label": "2. knowledge graph & codebase navigation (graphify)"
+    },
+    {
+      "label": "3. Operational Rules & Efficiency",
+      "file_type": "document",
+      "source_file": "GEMINI.md",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "gemini_3_operational_rules_efficiency",
+      "community": 82,
+      "norm_label": "3. operational rules & efficiency"
     },
     {
       "label": "README.md",
@@ -8743,31 +8833,51 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "AGENTS.md",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "agents",
-      "target": "agents_git_workflow"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "AGENTS.md",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "agents",
-      "target": "agents_graphify"
+      "target": "agents_agent_rules_workflow_guidelines",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "AGENTS.md",
-      "source_location": "L12",
+      "source_location": "L3",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "agents_graphify",
-      "target": "agents_git_workflow"
+      "source": "agents_agent_rules_workflow_guidelines",
+      "target": "agents_1_git_workflow_automation_critical_strict_enforcement",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "agents_agent_rules_workflow_guidelines",
+      "target": "agents_2_knowledge_graph_codebase_navigation_graphify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "agents_agent_rules_workflow_guidelines",
+      "target": "agents_3_operational_rules_efficiency",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "agents_1_git_workflow_automation_critical_strict_enforcement",
+      "target": "agents_commands",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8808,6 +8918,56 @@
       "confidence_score": 1.0,
       "source": "claude_working_conventions_for_this_repo",
       "target": "claude_output_constraints_strict"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "GEMINI.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "gemini",
+      "target": "gemini_antigravity_ide_gemini_agent_rules_for_portfolio_repository",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "GEMINI.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "gemini_antigravity_ide_gemini_agent_rules_for_portfolio_repository",
+      "target": "gemini_1_git_workflow_automation_critical_strict_enforcement",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "GEMINI.md",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "gemini_antigravity_ide_gemini_agent_rules_for_portfolio_repository",
+      "target": "gemini_2_knowledge_graph_codebase_navigation_graphify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "GEMINI.md",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "gemini_antigravity_ide_gemini_agent_rules_for_portfolio_repository",
+      "target": "gemini_3_operational_rules_efficiency",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "GEMINI.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "gemini_1_git_workflow_automation_critical_strict_enforcement",
+      "target": "gemini_commands",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -10097,5 +10257,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "2f0556da325ec5ce5238d59cbeff7626c254e24d"
+  "built_at_commit": "94ab45497aa1d5f7c90c49c0735e4f86572ddb29"
 }

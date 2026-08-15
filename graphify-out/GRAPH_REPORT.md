@@ -1,16 +1,16 @@
 # Graph Report - Aaradhya-Dev-Tamrakar.github.io  (2026-08-15)
 
 ## Corpus Check
-- 23 files · ~273,298 words
+- 24 files · ~273,624 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 412 nodes · 556 edges · 83 communities (22 shown, 61 thin omitted)
+- 421 nodes · 563 edges · 83 communities (23 shown, 60 thin omitted)
 - Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 52 edges (avg confidence: 0.82)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2f0556da`
+- Built from commit: `94ab4549`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -124,11 +124,11 @@
 ## Import Cycles
 - None detected.
 
-## Communities (83 total, 61 thin omitted)
+## Communities (83 total, 60 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.07
-Nodes (41): bootSite(), initNetworkStatusListeners(), initReadingProgressBar(), initServiceWorker(), SEARCH_STATIC_INDEX, SITE_RELEASES, AD_MONTHS, adToBs() (+33 more)
+Cohesion: 0.05
+Nodes (53): bootSite(), initNetworkStatusListeners(), initReadingProgressBar(), initServiceWorker(), SEARCH_STATIC_INDEX, SITE_RELEASES, AD_MONTHS, adToBs() (+45 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.06
@@ -174,6 +174,10 @@ Nodes (3): EPC Basic Electronics Workshop Banner, Electronics and Propagation Cl
 Cohesion: 1.00
 Nodes (3): SimOps AI for Graduates Certificate, SimOps Expert Certificate, SimOps Platform
 
+### Community 12 - "Community 12"
+Cohesion: 0.33
+Nodes (5): 1. Git Workflow & Automation (CRITICAL — STRICT ENFORCEMENT), 2. Knowledge Graph & Codebase Navigation (Graphify), 3. Operational Rules & Efficiency, Agent Rules & Workflow Guidelines, Commands:
+
 ### Community 71 - "Community 71"
 Cohesion: 0.12
 Nodes (46): bold(), _c(), check_asset_references(), check_cross_page_links(), check_file_sizes(), check_global_id_uniqueness(), check_ids(), check_internal_hrefs() (+38 more)
@@ -183,8 +187,8 @@ Cohesion: 0.40
 Nodes (4): File delivery, Local Git Workflow & Auto-Sync (`sync.ps1`), Output constraints (strict), Working conventions for this repo
 
 ### Community 75 - "Community 75"
-Cohesion: 0.15
-Nodes (25): ACCESS_CONTROL, ACCESS_CONTROL_PAYLOADS, addCustomVipEmail(), closeAccessModal(), decryptHexPayload(), getCustomVipEmails(), getDecryptionKey(), getGoogleClientId() (+17 more)
+Cohesion: 0.12
+Nodes (31): ACCESS_CONTROL, ACCESS_CONTROL_PAYLOADS, addCustomVipEmail(), closeAccessModal(), decryptHexPayload(), getCustomVipEmails(), getDecryptionKey(), getGoogleClientId() (+23 more)
 
 ### Community 76 - "Community 76"
 Cohesion: 0.22
@@ -203,27 +207,27 @@ Cohesion: 0.31
 Nodes (8): handle_resource_read(), handle_tool_call(), process_request(), Fetches resource content based on URI., Executes requested tool and returns output., Routes JSON-RPC request to appropriate handler., Reads JSON-RPC messages from stdin and writes responses to stdout., run_stdio_server()
 
 ### Community 82 - "Community 82"
-Cohesion: 0.13
-Nodes (18): getAudioContext(), initAudioCues(), playAudioCue(), syncAudioToggleUI(), toggleAudioCues(), closeResumeGenerator(), closeWhatsNewModal(), initCardTilt() (+10 more)
+Cohesion: 0.33
+Nodes (5): 1. Git Workflow & Automation (CRITICAL — STRICT ENFORCEMENT), 2. Knowledge Graph & Codebase Navigation (Graphify), 3. Operational Rules & Efficiency, Antigravity IDE & Gemini Agent Rules for Portfolio Repository, Commands:
 
 ## Knowledge Gaps
-- **148 isolated node(s):** `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL`, `CMDK_PAGES`, `SITE` (+143 more)
+- **154 isolated node(s):** `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL`, `CMDK_PAGES`, `SITE` (+149 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **61 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **60 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `bootSite()` connect `Community 0` to `Community 82`, `Community 75`, `Community 76`, `Community 78`?**
-  _High betweenness centrality (0.136) - this node is a cross-community bridge._
+- **Why does `bootSite()` connect `Community 0` to `Community 75`, `Community 76`, `Community 78`?**
+  _High betweenness centrality (0.130) - this node is a cross-community bridge._
 - **Why does `Contact — Aaradhya Dev Tamrakar` connect `Community 2` to `Community 0`?**
-  _High betweenness centrality (0.048) - this node is a cross-community bridge._
+  _High betweenness centrality (0.046) - this node is a cross-community bridge._
 - **Are the 29 inferred relationships involving `bootSite()` (e.g. with `initAccessControl()` and `initAudioCues()`) actually correct?**
   _`bootSite()` has 29 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL` to the rest of the system?**
-  _174 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _180 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.06753006475485661 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05076679005817028 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.05855855855855856 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**

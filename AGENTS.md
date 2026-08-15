@@ -1,20 +1,45 @@
-# graphify
+# Agent Rules & Workflow Guidelines
 
-This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
+## 1. Git Workflow & Automation (CRITICAL — STRICT ENFORCEMENT)
 
-Rules:
+To avoid merge conflicts on `assets/js/last-commit.json` (bot-managed) and prevent wasteful multi-step Git commands, **NEVER run individual `git add`, `git commit`, `git push`, or `git pull` commands directly.**
 
-- ALWAYS read graphify-out/GRAPH_REPORT.md before reading any source files, running grep/glob searches, or answering codebase questions. The graph is your primary map of the codebase.
-- IF graphify-out/wiki/index.md EXISTS, navigate it instead of reading raw files
-- For cross-module "how does X relate to Y" questions, prefer `graphify query "<question>"`, `graphify path "<A>" "<B>"`, or `graphify explain "<concept>"` over grep — these traverse the graph's EXTRACTED + INFERRED edges instead of scanning files
-- After modifying code, run `graphify update .` to keep the graph current (AST-only, no API cost).
+**ALWAYS execute `.\sync.ps1` for repository synchronization and version control.**
 
-## git-workflow
+### Commands:
+- **Routine / Minor Changes**:
+  ```powershell
+  .\sync.ps1
+  ```
+  *Automatically handles search index extraction, graph updates, pre-commit verification, tracker log timestamps, auto-commit message generation, push, and bot stamp sync.*
 
-To prevent merge conflicts on `assets/js/last-commit.json` (which is updated automatically on GitHub by a commit-back bot on every push) and ensure index/graph updates run automatically:
-
-- **ALWAYS** execute `.\sync.ps1` for committing and pushing changes. NEVER run individual `git add`, `git commit`, or `git push` commands directly.
-- **Minor / Routine Changes**: Execute `.\sync.ps1` without arguments. It auto-runs index extraction, graph updates, auto-generates a conventional commit message, and pushes to origin main.
 - **Major Features / Architectural Changes**:
-  1. Update `dev-logs/PortfolioWebsite_TRACKER.md` with detailed release notes, state of play items, and verification build logs.
-  2. Execute `.\sync.ps1 -m "type(scope): detailed commit summary"` with a descriptive message to ensure rich historical context is preserved.
+  1. Update `dev-logs/PortfolioWebsite_TRACKER.md` with release notes and verification details.
+  2. Execute:
+     ```powershell
+     .\sync.ps1 -m "type(scope): detailed commit summary"
+     ```
+
+- **Safe Pull Only**:
+  ```powershell
+  .\sync.ps1 -PullOnly
+  ```
+
+---
+
+## 2. Knowledge Graph & Codebase Navigation (Graphify)
+
+- **Map First**: Read `graphify-out/GRAPH_REPORT.md` (or `graphify-out/wiki/index.md` if present) before deep-diving into raw files.
+- **Relationship Queries**: Prefer `graphify query "<question>"`, `graphify path "<A>" "<B>"`, or `graphify explain "<concept>"` over blind grep searches.
+- **Graph Updates**: `.\sync.ps1` automatically executes `graphify update .`.
+
+---
+
+## 3. Operational Rules & Efficiency
+
+- **Zero-Waste Execution**: Be concise and dive straight to work. Avoid conversational filler.
+- **Single-Pass Sync**: Do not run manual separate commands for indexing, graphify, or staging — `.\sync.ps1` accomplishes all of this in one run.
+- **Bot-Managed Files**: NEVER manually modify or stage `assets/js/last-commit.json`.
+- **Notebooks**: Do NOT execute `.ipynb` files locally; run manually in Google Colab or external runtime.
+- **Verification Gate**: Ensure changes adhere to standards checked by `python scripts/verify.py`.
+- **Web Standards**: Maintain Vanilla HTML/CSS/JS architecture, high-end aesthetics, semantic markup, and cross-site link/asset integrity across all pages.
