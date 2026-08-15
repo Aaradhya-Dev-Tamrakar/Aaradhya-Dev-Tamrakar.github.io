@@ -40,6 +40,8 @@ SW_JS = ROOT / "sw.js"
 SITEMAP_XML = ROOT / "sitemap.xml"
 MANIFEST = ROOT / "site.webmanifest"
 ROBOTS_TXT = ROOT / "robots.txt"
+CSS_STYLE = ROOT / "assets" / "css" / "style.css"
+CSS_MODULES_DIR = ROOT / "assets" / "css" / "modules"
 MODULES_DIR = ROOT / "assets" / "js" / "modules"
 
 # ── State ───────────────────────────────────────────────────────────
@@ -507,29 +509,47 @@ def check_version_consistency():
 #  CHECK 10: Module file existence (NEW)
 # ════════════════════════════════════════════════════════════════════
 def check_module_files():
-    """Parse the MODULES array from script.js and verify every listed
-    module path exists on disk."""
+    """Parse the MODULES array from script.js and @import rules from style.css,
+    and verify every listed module path exists on disk."""
     cat = "modules"
+    all_ok = True
+
+    # JS Modules
     if not SCRIPT_JS.exists():
         log_error(cat, "script.js not found")
-        return
+        all_ok = False
+    else:
+        text = SCRIPT_JS.read_text(encoding="utf-8")
+        js_modules = re.findall(r"['\"]([^'\"]*modules/[^'\"]+\.js)['\"]", text[:1000])
+        if not js_modules:
+            log_error(cat, "could not parse MODULES array from script.js")
+            all_ok = False
+        else:
+            for mod_path in js_modules:
+                full = ROOT / mod_path
+                if not full.exists():
+                    log_error(cat, f"JS module '{mod_path}' listed in MODULES but file not found")
+                    all_ok = False
 
-    text = SCRIPT_JS.read_text(encoding="utf-8")
-    # Extract MODULES array entries
-    modules = re.findall(r"['\"]([^'\"]*modules/[^'\"]+\.js)['\"]", text[:1000])
-    if not modules:
-        log_error(cat, "could not parse MODULES array from script.js")
-        return
+    # CSS Modules
+    if not CSS_STYLE.exists():
+        log_error(cat, "style.css not found")
+        all_ok = False
+    else:
+        css_text = CSS_STYLE.read_text(encoding="utf-8")
+        css_imports = re.findall(r"@import\s+['\"]\.?/?([^'\"]+)['\"];", css_text)
+        if not css_imports:
+            log_error(cat, "could not parse @import rules from style.css")
+            all_ok = False
+        else:
+            for imp_path in css_imports:
+                full = CSS_STYLE.parent / imp_path
+                if not full.exists():
+                    log_error(cat, f"CSS module '{imp_path}' imported in style.css but file not found")
+                    all_ok = False
 
-    missing = []
-    for mod_path in modules:
-        full = ROOT / mod_path
-        if not full.exists():
-            log_error(cat, f"module '{mod_path}' listed in MODULES but file not found")
-            missing.append(mod_path)
-
-    if not missing:
-        log_pass(cat, f"all {len(modules)} modules in MODULES array exist on disk")
+    if all_ok:
+        log_pass(cat, f"all JS & CSS modules referenced in orchestrators exist on disk")
 
 
 # ════════════════════════════════════════════════════════════════════
@@ -651,10 +671,15 @@ def check_file_sizes():
     """Warn when files exceed size thresholds."""
     cat = "size"
     thresholds = {
-        "CSS": (ROOT / "assets" / "css" / "style.css", 150_000),
+        "CSS (style.css)": (CSS_STYLE, 50_000),
         "JS (script.js)": (SCRIPT_JS, 60_000),
     }
-    # Individual modules
+    # Individual CSS modules
+    if CSS_MODULES_DIR.exists():
+        for mod in sorted(CSS_MODULES_DIR.glob("*.css")):
+            thresholds[f"CSS ({mod.name})"] = (mod, 50_000)
+
+    # Individual JS modules
     if MODULES_DIR.exists():
         for mod in sorted(MODULES_DIR.glob("*.js")):
             thresholds[f"JS ({mod.name})"] = (mod, 60_000)

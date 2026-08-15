@@ -1,0 +1,497 @@
+/* ── ATS Resume Generator & Print Stylesheet Engine ──────── */
+
+/* ── Tailored ATS Resume Generator Modal (v43) ── */
+.resume-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 8, 10, 0.75);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  z-index: 10050;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.resume-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.resume-modal-card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 850px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 20px var(--accent-a15);
+  overflow: hidden;
+  transform: scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.resume-modal-overlay.open .resume-modal-card {
+  transform: scale(1);
+}
+
+.resume-modal-header {
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg);
+}
+
+.resume-modal-title {
+  font-family: var(--display-serif);
+  font-size: 1.35rem;
+  color: var(--heading);
+}
+
+.resume-role-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.resume-role-selector::-webkit-scrollbar {
+  display: none;
+}
+
+.resume-role-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  padding: 0.45rem 0.95rem;
+  border-radius: 9999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.resume-role-btn:hover {
+  color: var(--text);
+  border-color: var(--accent-a40);
+  background: var(--accent-a07);
+  transform: translateY(-1px);
+}
+
+.resume-role-btn.active {
+  color: var(--heading);
+  font-weight: 600;
+  border-color: var(--accent);
+  background: var(--accent-a12);
+  box-shadow: 0 2px 12px var(--accent-a15);
+  transform: translateY(0);
+}
+
+.resume-role-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.resume-preview-body {
+  padding: 1.75rem;
+  overflow-y: auto;
+  flex: 1;
+  background: var(--bg);
+}
+
+.resume-preview-sheet {
+  background: #ffffff;
+  color: #1a1a1a;
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.resume-sheet-head {
+  border-bottom: 2px solid #222;
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.resume-sheet-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: -0.02em;
+}
+
+.resume-sheet-subtitle {
+  font-size: 0.95rem;
+  color: #444;
+  font-weight: 500;
+  margin-top: 0.2rem;
+}
+
+.resume-sheet-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  font-size: 0.78rem;
+  color: #555;
+  margin-top: 0.5rem;
+  font-family: var(--mono);
+}
+
+.resume-sheet-section {
+  margin-bottom: 1.25rem;
+}
+
+.resume-sheet-sec-title {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #111;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.resume-item-row {
+  margin-bottom: 0.75rem;
+}
+
+.resume-item-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: #222;
+}
+
+.resume-item-sub {
+  font-size: 0.82rem;
+  color: #555;
+  font-style: italic;
+  margin-bottom: 0.25rem;
+}
+
+.resume-bullet-list {
+  padding-left: 1.2rem;
+  font-size: 0.82rem;
+  color: #333;
+}
+
+.resume-bullet-list li {
+  margin-bottom: 0.2rem;
+}
+
+.resume-modal-footer {
+  padding: 1rem 1.75rem;
+  border-top: 1px solid var(--line);
+  background: var(--bg2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resume-print-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--bg);
+  border: 1px solid var(--accent);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.resume-print-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px var(--accent-a35);
+}
+
+
+
+/* ==========================================================================
+   Print Stylesheet Engine: ATS Resume & Document Export (A4 Optimized)
+   ========================================================================== */
+@page {
+  size: A4 portrait;
+  margin: 10mm 12mm 10mm 12mm;
+}
+
+@media print {
+  /* Global print baseline */
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    text-shadow: none !important;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+    font-size: 8.5pt !important;
+    line-height: 1.32 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* Universal chrome and UI elements to hide on all prints */
+  .nav,
+  .nav-header,
+  .nav-drawer-backdrop,
+  .nav-drawer,
+  .cursor,
+  .cursor-dot,
+  .cursor-ring,
+  .cursor-trail-particle,
+  .ambient-glow,
+  .glow-orb,
+  .hero-glow,
+  .grain-overlay,
+  .back-top,
+  .back-to-top,
+  .scroll-pct,
+  .scroll-progress-bar,
+  .cmdk-modal,
+  .lb-modal,
+  .keymap-modal,
+  .tour-tooltip,
+  .tour-overlay,
+  .terminal-drawer,
+  .audio-btn,
+  .color-picker-wrap,
+  .color-picker-popover,
+  .access-modal-overlay:not(.resume-modal-overlay),
+  #bg-canvas,
+  footer {
+    display: none !important;
+  }
+
+  /* ── Mode 1: ATS Resume Generator Printing ── */
+  /* Remove all other page children from layout flow to prevent trailing blank pages */
+  body:has(.resume-modal-overlay.open) > *:not(.resume-modal-overlay),
+  body.printing-resume > *:not(.resume-modal-overlay) {
+    display: none !important;
+  }
+
+  body:has(.resume-modal-overlay.open) .resume-modal-overlay,
+  body.printing-resume .resume-modal-overlay,
+  .resume-modal-overlay.open {
+    position: static !important;
+    inset: auto !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    overflow: visible !important;
+  }
+
+  .resume-modal-overlay.open .resume-modal-card,
+  body.printing-resume .resume-modal-card {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    transform: none !important;
+    overflow: visible !important;
+  }
+
+  .resume-modal-header,
+  .resume-role-selector,
+  .resume-modal-footer {
+    display: none !important;
+  }
+
+  .resume-preview-body {
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    height: auto !important;
+    max-height: none !important;
+    display: block !important;
+  }
+
+  .resume-preview-sheet {
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: transparent !important;
+    color: #111111 !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-size: 8.5pt !important;
+    line-height: 1.3 !important;
+  }
+
+  .resume-sheet-head {
+    border-bottom: 1.5pt solid #111111 !important;
+    padding-bottom: 3.5pt !important;
+    margin-bottom: 5pt !important;
+  }
+
+  .resume-sheet-name {
+    font-size: 15pt !important;
+    font-weight: 700 !important;
+    color: #000000 !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.1 !important;
+    margin-bottom: 1pt !important;
+  }
+
+  .resume-sheet-subtitle {
+    font-size: 8.8pt !important;
+    color: #222222 !important;
+    font-weight: 600 !important;
+    margin-top: 0 !important;
+    margin-bottom: 1.5pt !important;
+    line-height: 1.2 !important;
+  }
+
+  .resume-sheet-contact {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+    font-size: 7.4pt !important;
+    color: #333333 !important;
+    margin-top: 1pt !important;
+    font-family: var(--mono), monospace !important;
+    line-height: 1.2 !important;
+  }
+
+  .resume-sheet-section {
+    margin-bottom: 7pt !important;
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  .resume-sheet-sec-title {
+    font-size: 8.8pt !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: #000000 !important;
+    border-bottom: 0.8pt solid #333333 !important;
+    padding-bottom: 1.5pt !important;
+    margin-bottom: 3.5pt !important;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .resume-sheet-summary-text,
+  .resume-sheet-section p {
+    font-size: 8.4pt !important;
+    line-height: 1.3 !important;
+    color: #222222 !important;
+    margin: 0 !important;
+  }
+
+  .resume-item-row {
+    margin-bottom: 4.5pt !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .resume-item-row:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .resume-item-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    font-size: 8.6pt !important;
+    font-weight: 700 !important;
+    color: #111111 !important;
+    line-height: 1.25 !important;
+  }
+
+  .resume-item-sub {
+    font-size: 8pt !important;
+    color: #444444 !important;
+    font-style: italic !important;
+    margin-top: 0.5pt !important;
+    margin-bottom: 2pt !important;
+    line-height: 1.25 !important;
+  }
+
+  .resume-bullet-list {
+    padding-left: 12pt !important;
+    margin-top: 1.5pt !important;
+    margin-bottom: 0 !important;
+    font-size: 8pt !important;
+    line-height: 1.3 !important;
+    color: #222222 !important;
+  }
+
+  .resume-bullet-list li {
+    margin-bottom: 1.5pt !important;
+  }
+
+  /* ── Mode 2: Standard Portfolio Pages Printing ── */
+  .project-card,
+  .achievement-item,
+  .exp-card,
+  .exp-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    border: 1px solid #dddddd !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  a {
+    color: #111111 !important;
+    text-decoration: underline !important;
+  }
+}

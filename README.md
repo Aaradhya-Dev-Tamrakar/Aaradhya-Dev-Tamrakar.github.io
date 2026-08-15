@@ -28,7 +28,8 @@ Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronic
 ├── 🎨 Assets (`assets/`)
 │   ├── certificates/          # PDF downloads and WebP image previews for all 37 certifications
 │   ├── css/
-│   │   └── style.css          # Core CSS stylesheet: design tokens, dark/light theme palette, glassmorphic UI & responsive styles
+│   │   ├── style.css          # Primary stylesheet entry orchestrator (@import './modules/*.css')
+│   │   └── modules/           # Modular CSS architecture (tokens, base, layout, components, cmdk, access, terminal, tour, print)
 │   ├── docs/
 │   │   ├── AARADHYA_DEV_TAMRAKAR_CV.pdf # Official downloadable Curriculum Vitae
 │   │   └── ADT_LOGO.png        # Brand emblem and identity asset
