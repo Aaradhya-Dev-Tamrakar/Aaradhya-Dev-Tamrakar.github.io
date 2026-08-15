@@ -1033,7 +1033,7 @@ function renderTailoredResumePreview(roleKey) {
     </div>
     <div class="resume-sheet-section">
       <div class="resume-sheet-sec-title">Professional Summary</div>
-      <p class="resume-sheet-summary-text" style="font-size: 0.84rem; color: #333;">${RESUME_DATA.summary}</p>
+      <p class="resume-sheet-summary-text">${RESUME_DATA.summary}</p>
     </div>
     ${sectionsHtml}
   `;

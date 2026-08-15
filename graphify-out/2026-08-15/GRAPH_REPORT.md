@@ -1,7 +1,7 @@
 # Graph Report - Aaradhya-Dev-Tamrakar.github.io  (2026-08-15)
 
 ## Corpus Check
-- 25 files · ~278,228 words
+- 25 files · ~278,319 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `fbbe6a73`
+- Built from commit: `356852b8`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -149,7 +149,7 @@ Nodes (7): IEEE, IEEE KEC Student Branch, Vice Secretary (2025-2026), IEEE Pulch
 
 ### Community 4 - "Community 4"
 Cohesion: 0.08
-Nodes (24): Evidence & Verification Log — v20 additions, _Last updated: 2026-08-15_, Meta, Portfolio Website Tracker — v47, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out, v22 addition — KEC IT Club "Introduction to Git" (2024) card: closed, no source file available (+16 more)
+Nodes (24): Evidence & Verification Log — v20 additions, \_Last updated, Meta, Portfolio Website Tracker — v47, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out, v22 addition — KEC IT Club "Introduction to Git" (2024) card: closed, no source file available (+16 more)
 
 ### Community 5 - "Community 5"
 Cohesion: 0.67

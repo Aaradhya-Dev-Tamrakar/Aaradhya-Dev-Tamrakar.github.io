@@ -979,6 +979,13 @@ html[data-theme="light"] .card-gradient-border::before {
   margin-bottom: 0.75rem;
 }
 
+.resume-sheet-summary-text {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #333;
+  margin: 0;
+}
+
 .resume-item-row {
   margin-bottom: 0.75rem;
 }
@@ -991,7 +998,7 @@ html[data-theme="light"] .card-gradient-border::before {
 }
 
 .resume-item-sub {
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   color: #555;
   font-style: italic;
   margin-bottom: 0.25rem;
@@ -999,12 +1006,13 @@ html[data-theme="light"] .card-gradient-border::before {
 
 .resume-bullet-list {
   padding-left: 1.2rem;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
   color: #333;
 }
 
 .resume-bullet-list li {
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
 }
 
 .resume-modal-footer {
