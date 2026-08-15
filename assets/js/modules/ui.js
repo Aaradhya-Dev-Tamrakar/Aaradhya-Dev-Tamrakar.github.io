@@ -995,7 +995,14 @@ function openResumeGenerator() {
 
   document.getElementById('resumeModalClose').addEventListener('click', closeResumeGenerator);
   modal.addEventListener('click', e => { if (e.target === modal) closeResumeGenerator(); });
-  document.getElementById('resumePrintBtn').addEventListener('click', () => { window.print(); });
+  document.getElementById('resumePrintBtn').addEventListener('click', () => {
+    document.body.classList.add('printing-resume');
+    window.print();
+  });
+
+  window.addEventListener('afterprint', () => {
+    document.body.classList.remove('printing-resume');
+  });
 
   const roleBtns = modal.querySelectorAll('.resume-role-btn');
   roleBtns.forEach(btn => {
@@ -1018,6 +1025,7 @@ function closeResumeGenerator() {
   if (!modal) return;
   modal.classList.remove('open');
   document.body.style.overflow = '';
+  document.body.classList.remove('printing-resume');
   playAudioCue('close');
 }
 
@@ -1050,7 +1058,7 @@ function renderTailoredResumePreview(roleKey) {
     </div>
     <div class="resume-sheet-section">
       <div class="resume-sheet-sec-title">Professional Summary</div>
-      <p style="font-size: 0.84rem; color: #333;">${RESUME_DATA.summary}</p>
+      <p class="resume-sheet-summary-text" style="font-size: 0.84rem; color: #333;">${RESUME_DATA.summary}</p>
     </div>
     ${sectionsHtml}
   `;

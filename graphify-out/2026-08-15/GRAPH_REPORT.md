@@ -1,7 +1,7 @@
 # Graph Report - Aaradhya-Dev-Tamrakar.github.io  (2026-08-15)
 
 ## Corpus Check
-- 24 files · ~273,624 words
+- 24 files · ~273,619 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `94ab4549`
+- Built from commit: `2c81d930`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -176,7 +176,7 @@ Nodes (3): SimOps AI for Graduates Certificate, SimOps Expert Certificate, SimOp
 
 ### Community 12 - "Community 12"
 Cohesion: 0.33
-Nodes (5): 1. Git Workflow & Automation (CRITICAL — STRICT ENFORCEMENT), 2. Knowledge Graph & Codebase Navigation (Graphify), 3. Operational Rules & Efficiency, Agent Rules & Workflow Guidelines, Commands:
+Nodes (5): 1. Git Workflow & Automation (CRITICAL — STRICT ENFORCEMENT), 2. Knowledge Graph & Codebase Navigation (Graphify), 3. Operational Rules & Efficiency, Agent Rules & Workflow Guidelines, Commands
 
 ### Community 71 - "Community 71"
 Cohesion: 0.12
@@ -208,7 +208,7 @@ Nodes (8): handle_resource_read(), handle_tool_call(), process_request(), Fetche
 
 ### Community 82 - "Community 82"
 Cohesion: 0.33
-Nodes (5): 1. Git Workflow & Automation (CRITICAL — STRICT ENFORCEMENT), 2. Knowledge Graph & Codebase Navigation (Graphify), 3. Operational Rules & Efficiency, Antigravity IDE & Gemini Agent Rules for Portfolio Repository, Commands:
+Nodes (5): 1. Git Workflow & Automation (CRITICAL — STRICT ENFORCEMENT), 2. Knowledge Graph & Codebase Navigation (Graphify), 3. Operational Rules & Efficiency, Antigravity IDE & Gemini Agent Rules for Portfolio Repository, Commands
 
 ## Knowledge Gaps
 - **154 isolated node(s):** `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL`, `CMDK_PAGES`, `SITE` (+149 more)

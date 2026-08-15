@@ -2134,20 +2134,20 @@
       "norm_label": "1. git workflow & automation (critical \u2014 strict enforcement)"
     },
     {
-      "label": "Commands:",
+      "label": "Commands",
       "file_type": "document",
       "source_file": "AGENTS.md",
       "source_location": "L9",
       "_origin": "ast",
       "id": "agents_commands",
       "community": 12,
-      "norm_label": "commands:"
+      "norm_label": "commands"
     },
     {
       "label": "2. Knowledge Graph & Codebase Navigation (Graphify)",
       "file_type": "document",
       "source_file": "AGENTS.md",
-      "source_location": "L30",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "agents_2_knowledge_graph_codebase_navigation_graphify",
       "community": 12,
@@ -2157,7 +2157,7 @@
       "label": "3. Operational Rules & Efficiency",
       "file_type": "document",
       "source_file": "AGENTS.md",
-      "source_location": "L38",
+      "source_location": "L43",
       "_origin": "ast",
       "id": "agents_3_operational_rules_efficiency",
       "community": 12,
@@ -2244,20 +2244,20 @@
       "norm_label": "1. git workflow & automation (critical \u2014 strict enforcement)"
     },
     {
-      "label": "Commands:",
+      "label": "Commands",
       "file_type": "document",
       "source_file": "GEMINI.md",
       "source_location": "L9",
       "_origin": "ast",
       "id": "gemini_commands",
       "community": 82,
-      "norm_label": "commands:"
+      "norm_label": "commands"
     },
     {
       "label": "2. Knowledge Graph & Codebase Navigation (Graphify)",
       "file_type": "document",
       "source_file": "GEMINI.md",
-      "source_location": "L30",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "gemini_2_knowledge_graph_codebase_navigation_graphify",
       "community": 82,
@@ -2267,7 +2267,7 @@
       "label": "3. Operational Rules & Efficiency",
       "file_type": "document",
       "source_file": "GEMINI.md",
-      "source_location": "L38",
+      "source_location": "L43",
       "_origin": "ast",
       "id": "gemini_3_operational_rules_efficiency",
       "community": 82,
@@ -8835,9 +8835,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "agents",
-      "target": "agents_agent_rules_workflow_guidelines",
-      "confidence_score": 1.0
+      "target": "agents_agent_rules_workflow_guidelines"
     },
     {
       "relation": "contains",
@@ -8845,9 +8845,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "agents_agent_rules_workflow_guidelines",
-      "target": "agents_1_git_workflow_automation_critical_strict_enforcement",
-      "confidence_score": 1.0
+      "target": "agents_1_git_workflow_automation_critical_strict_enforcement"
     },
     {
       "relation": "contains",
@@ -8855,9 +8855,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L30",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "agents_agent_rules_workflow_guidelines",
-      "target": "agents_2_knowledge_graph_codebase_navigation_graphify",
-      "confidence_score": 1.0
+      "target": "agents_2_knowledge_graph_codebase_navigation_graphify"
     },
     {
       "relation": "contains",
@@ -8865,9 +8865,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L38",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "agents_agent_rules_workflow_guidelines",
-      "target": "agents_3_operational_rules_efficiency",
-      "confidence_score": 1.0
+      "target": "agents_3_operational_rules_efficiency"
     },
     {
       "relation": "contains",
@@ -8875,9 +8875,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "agents_1_git_workflow_automation_critical_strict_enforcement",
-      "target": "agents_commands",
-      "confidence_score": 1.0
+      "target": "agents_commands"
     },
     {
       "relation": "contains",
@@ -8925,9 +8925,9 @@
       "source_file": "GEMINI.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "gemini",
-      "target": "gemini_antigravity_ide_gemini_agent_rules_for_portfolio_repository",
-      "confidence_score": 1.0
+      "target": "gemini_antigravity_ide_gemini_agent_rules_for_portfolio_repository"
     },
     {
       "relation": "contains",
@@ -8935,9 +8935,9 @@
       "source_file": "GEMINI.md",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "gemini_antigravity_ide_gemini_agent_rules_for_portfolio_repository",
-      "target": "gemini_1_git_workflow_automation_critical_strict_enforcement",
-      "confidence_score": 1.0
+      "target": "gemini_1_git_workflow_automation_critical_strict_enforcement"
     },
     {
       "relation": "contains",
@@ -8945,9 +8945,9 @@
       "source_file": "GEMINI.md",
       "source_location": "L30",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "gemini_antigravity_ide_gemini_agent_rules_for_portfolio_repository",
-      "target": "gemini_2_knowledge_graph_codebase_navigation_graphify",
-      "confidence_score": 1.0
+      "target": "gemini_2_knowledge_graph_codebase_navigation_graphify"
     },
     {
       "relation": "contains",
@@ -8955,9 +8955,9 @@
       "source_file": "GEMINI.md",
       "source_location": "L38",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "gemini_antigravity_ide_gemini_agent_rules_for_portfolio_repository",
-      "target": "gemini_3_operational_rules_efficiency",
-      "confidence_score": 1.0
+      "target": "gemini_3_operational_rules_efficiency"
     },
     {
       "relation": "contains",
@@ -8965,9 +8965,9 @@
       "source_file": "GEMINI.md",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "gemini_1_git_workflow_automation_critical_strict_enforcement",
-      "target": "gemini_commands",
-      "confidence_score": 1.0
+      "target": "gemini_commands"
     },
     {
       "relation": "contains",
@@ -10257,5 +10257,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "94ab45497aa1d5f7c90c49c0735e4f86572ddb29"
+  "built_at_commit": "2c81d9306c436a23932589c88d8986c05ca93ffd"
 }
