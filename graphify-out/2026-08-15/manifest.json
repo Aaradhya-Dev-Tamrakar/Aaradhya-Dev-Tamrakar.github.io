@@ -5,8 +5,8 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1785299686.1074834,
-    "ast_hash": "049486771f38578e4faf620346554e9e",
+    "mtime": 1786778192.789915,
+    "ast_hash": "d7dbbfece1cd124ce3a2ea2737879864",
     "semantic_hash": ""
   },
   "README.md": {
@@ -55,8 +55,8 @@
     "semantic_hash": ""
   },
   "assets/js/last-commit.json": {
-    "mtime": 1786778013.7167642,
-    "ast_hash": "76f22fc45fc4d645f2566e8f2f5c4ed0",
+    "mtime": 1786778257.8384776,
+    "ast_hash": "0300b757812756da0bf588cb6a939384",
     "semantic_hash": ""
   },
   "dev-logs/achievements/achievements-inline-script.js": {
@@ -747,6 +747,11 @@
   ".github/workflows/lighthouse-audit.yml": {
     "mtime": 1786621990.9498374,
     "ast_hash": "82c978623e5e86918212e3e196a6688b",
+    "semantic_hash": ""
+  },
+  "GEMINI.md": {
+    "mtime": 1786778181.0458317,
+    "ast_hash": "d861952c36f34e7d1bf9f5cf9b90d289",
     "semantic_hash": ""
   }
 }

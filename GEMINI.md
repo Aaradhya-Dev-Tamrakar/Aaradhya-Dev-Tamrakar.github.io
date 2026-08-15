@@ -6,21 +6,26 @@ To avoid merge conflicts on `assets/js/last-commit.json` (bot-managed) and preve
 
 **ALWAYS execute `.\sync.ps1` for repository synchronization and version control.**
 
-### Commands:
+### Commands
+
 - **Routine / Minor Changes**:
+
   ```powershell
   .\sync.ps1
   ```
-  *Automatically runs search index extraction, knowledge graph update, verification tests, updates tracker timestamp, generates a smart conventional commit message, pushes to origin main, and syncs GitHub Actions bot stamp commit.*
+
+  _Automatically runs search index extraction, knowledge graph update, verification tests, updates tracker timestamp, generates a smart conventional commit message, pushes to origin main, and syncs GitHub Actions bot stamp commit._
 
 - **Major Features / Architectural Changes**:
   1. Update `dev-logs/PortfolioWebsite_TRACKER.md` with detailed release notes and state-of-play items.
   2. Execute:
+
      ```powershell
      .\sync.ps1 -m "type(scope): detailed commit summary"
      ```
 
 - **Safe Pull Only**:
+
   ```powershell
   .\sync.ps1 -PullOnly
   ```
