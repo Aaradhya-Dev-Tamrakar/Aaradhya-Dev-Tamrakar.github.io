@@ -1,6 +1,6 @@
 {
-  "sha": "c5e21ab98234dbbbd6267bf8c2a052283e58c450",
-  "shortSha": "c5e21ab",
-  "date": "2026-08-15T13:03:09+05:45",
-  "message": "refactor: update AGENTS.md, GEMINI.md +8 more - To avoid merge conflicts on `assets/js/last-commit.json` (bot-managed) and preve (+313/-134)\n"
+  "sha": "9e7ade4e0226c6248366317d324e053a1eb5485d",
+  "shortSha": "9e7ade4",
+  "date": "2026-08-15T13:12:41+05:45",
+  "message": "fix(ui): refine ATS resume generator modal button alignment\n"
 }
