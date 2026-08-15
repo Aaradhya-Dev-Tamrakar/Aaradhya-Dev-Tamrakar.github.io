@@ -1,6 +1,6 @@
 {
-  "sha": "9783fab03aa386889ba172404bff0f8cf25c5219",
-  "shortSha": "9783fab",
-  "date": "2026-08-15T21:45:39+05:45",
-  "message": "fix(ui): stop card-tilt transform fighting CSS transition, causing hover flicker\n"
+  "sha": "86609d790091ac6e3650d26087a7194d15a7d213",
+  "shortSha": "86609d7",
+  "date": "2026-08-15T21:48:06+05:45",
+  "message": "refactor(ui): remove 3D card tilt micro-interaction\n"
 }
