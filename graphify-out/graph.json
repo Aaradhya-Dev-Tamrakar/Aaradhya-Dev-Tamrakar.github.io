@@ -1257,7 +1257,7 @@
       "label": "openSkillRadarModal()",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L715",
+      "source_location": "L760",
       "_origin": "ast",
       "id": "modules_ui_openskillradarmodal",
       "community": 85,
@@ -1267,7 +1267,7 @@
       "label": "closeSkillRadarModal()",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L773",
+      "source_location": "L818",
       "_origin": "ast",
       "id": "modules_ui_closeskillradarmodal",
       "community": 85,
@@ -1277,7 +1277,7 @@
       "label": "initSkillRadar()",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L781",
+      "source_location": "L826",
       "_origin": "ast",
       "id": "modules_ui_initskillradar",
       "community": 85,
@@ -1287,7 +1287,7 @@
       "label": "RESUME_DATA",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L793",
+      "source_location": "L838",
       "_origin": "ast",
       "id": "modules_ui_resume_data",
       "community": 85,
@@ -1297,7 +1297,7 @@
       "label": "generateResumePlainText()",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L1004",
+      "source_location": "L1049",
       "_origin": "ast",
       "id": "modules_ui_generateresumeplaintext",
       "community": 85,
@@ -1307,7 +1307,7 @@
       "label": "generateResumeMarkdown()",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L1032",
+      "source_location": "L1077",
       "_origin": "ast",
       "id": "modules_ui_generateresumemarkdown",
       "community": 85,
@@ -1317,7 +1317,7 @@
       "label": "downloadResumeMarkdown()",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L1059",
+      "source_location": "L1104",
       "_origin": "ast",
       "id": "modules_ui_downloadresumemarkdown",
       "community": 85,
@@ -1327,7 +1327,7 @@
       "label": "copyResumePlainText()",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L1075",
+      "source_location": "L1120",
       "_origin": "ast",
       "id": "modules_ui_copyresumeplaintext",
       "community": 85,
@@ -1337,7 +1337,7 @@
       "label": "openResumeGenerator()",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L1086",
+      "source_location": "L1131",
       "_origin": "ast",
       "id": "modules_ui_openresumegenerator",
       "community": 85,
@@ -1347,7 +1347,7 @@
       "label": "closeResumeGenerator()",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L1186",
+      "source_location": "L1231",
       "_origin": "ast",
       "id": "modules_ui_closeresumegenerator",
       "community": 85,
@@ -1357,7 +1357,7 @@
       "label": "renderTailoredResumePreview()",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L1195",
+      "source_location": "L1240",
       "_origin": "ast",
       "id": "modules_ui_rendertailoredresumepreview",
       "community": 85,
@@ -7019,9 +7019,9 @@
       "source_file": "assets/js/modules/ui.js",
       "source_location": "L773",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "modules_ui",
-      "target": "modules_ui_closeskillradarmodal",
-      "confidence_score": 1.0
+      "target": "modules_ui_closeskillradarmodal"
     },
     {
       "relation": "contains",
@@ -7119,9 +7119,9 @@
       "source_file": "assets/js/modules/ui.js",
       "source_location": "L603",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "modules_ui",
-      "target": "modules_ui_initradarcanvas",
-      "confidence_score": 1.0
+      "target": "modules_ui_initradarcanvas"
     },
     {
       "relation": "contains",
@@ -7169,9 +7169,9 @@
       "source_file": "assets/js/modules/ui.js",
       "source_location": "L715",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "modules_ui",
-      "target": "modules_ui_openskillradarmodal",
-      "confidence_score": 1.0
+      "target": "modules_ui_openskillradarmodal"
     },
     {
       "relation": "contains",
@@ -7209,9 +7209,9 @@
       "source_file": "assets/js/modules/ui.js",
       "source_location": "L595",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "modules_ui",
-      "target": "modules_ui_skill_radar_domains",
-      "confidence_score": 1.0
+      "target": "modules_ui_skill_radar_domains"
     },
     {
       "relation": "contains",
@@ -7296,9 +7296,9 @@
       "source_file": "assets/js/modules/ui.js",
       "source_location": "L784",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "modules_ui_initskillradar",
-      "target": "modules_ui_initradarcanvas",
-      "confidence_score": 1.0
+      "target": "modules_ui_initradarcanvas"
     },
     {
       "relation": "calls",
@@ -7307,9 +7307,9 @@
       "source_file": "assets/js/modules/ui.js",
       "source_location": "L770",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "modules_ui_openskillradarmodal",
-      "target": "modules_ui_initradarcanvas",
-      "confidence_score": 1.0
+      "target": "modules_ui_initradarcanvas"
     },
     {
       "relation": "calls",
@@ -7318,9 +7318,9 @@
       "source_file": "assets/js/modules/ui.js",
       "source_location": "L788",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "modules_ui_initskillradar",
-      "target": "modules_ui_openskillradarmodal",
-      "confidence_score": 1.0
+      "target": "modules_ui_openskillradarmodal"
     },
     {
       "relation": "calls",
@@ -11054,5 +11054,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "b13787a0dd4cd2e25b7aa8ee4d49eeb398b6c231"
+  "built_at_commit": "2b1842d344b08ab1a447853167b0cfc81fdb421b"
 }

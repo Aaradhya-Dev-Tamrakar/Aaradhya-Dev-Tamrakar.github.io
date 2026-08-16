@@ -607,13 +607,18 @@ function initRadarCanvas(canvasId, domainSelector) {
   const ctx = canvas.getContext('2d');
   const domains = SKILL_RADAR_DOMAINS;
   const numSides = domains.length;
-  const size = 300;
-  canvas.width = size;
-  canvas.height = size;
+  const size = 360;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  
+  canvas.width = size * dpr;
+  canvas.height = size * dpr;
+  canvas.style.width = size + 'px';
+  canvas.style.height = size + 'px';
+  ctx.scale(dpr, dpr);
 
   const centerX = size / 2;
   const centerY = size / 2;
-  const radius = size * 0.38;
+  const radius = size * 0.31; // ~112px
 
   let activeIndex = 0;
 
@@ -628,7 +633,7 @@ function initRadarCanvas(canvasId, domainSelector) {
   function renderRadar() {
     ctx.clearRect(0, 0, size, size);
 
-    // Render Concentric Web Grids
+    // 1. Render Concentric Web Grids & Scale Tier Legends
     const levels = 4;
     for (let l = 1; l <= levels; l++) {
       const levelScale = l / levels;
@@ -639,12 +644,19 @@ function initRadarCanvas(canvasId, domainSelector) {
         else ctx.lineTo(pt.x, pt.y);
       }
       ctx.closePath();
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+      ctx.strokeStyle = l === levels ? 'rgba(255, 255, 255, 0.18)' : 'rgba(255, 255, 255, 0.07)';
       ctx.lineWidth = 1;
       ctx.stroke();
+
+      // Tier percentage label on vertical axis
+      ctx.font = '9px "DM Mono", monospace';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.32)';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'bottom';
+      ctx.fillText(`${l * 25}%`, centerX, centerY - (radius * levelScale) - 2);
     }
 
-    // Render Radial Spokes
+    // 2. Render Radial Spokes
     for (let i = 0; i < numSides; i++) {
       const pt = getPointCoordinates(i, 1);
       ctx.beginPath();
@@ -654,7 +666,7 @@ function initRadarCanvas(canvasId, domainSelector) {
       ctx.stroke();
     }
 
-    // Draw Filled Data Polygon
+    // 3. Draw Filled Data Polygon
     ctx.beginPath();
     for (let i = 0; i < numSides; i++) {
       const pt = getPointCoordinates(i, domains[i].score);
@@ -674,19 +686,52 @@ function initRadarCanvas(canvasId, domainSelector) {
     ctx.lineWidth = 2;
     ctx.stroke();
 
-    // Draw Data Point Nodes
+    // 4. Draw Data Point Nodes
     for (let i = 0; i < numSides; i++) {
       const pt = getPointCoordinates(i, domains[i].score);
       const isSelected = (i === activeIndex);
 
       ctx.beginPath();
-      ctx.arc(pt.x, pt.y, isSelected ? 6 : 4, 0, Math.PI * 2);
+      ctx.arc(pt.x, pt.y, isSelected ? 6.5 : 4, 0, Math.PI * 2);
       ctx.fillStyle = isSelected ? '#ffffff' : '#d4a85a';
       ctx.fill();
-      ctx.strokeStyle = isSelected ? '#d4a85a' : '#000000';
+      ctx.strokeStyle = isSelected ? '#d4a85a' : '#0d0e11';
       ctx.lineWidth = 2;
       ctx.stroke();
     }
+
+    // 5. Render Outer Axis Vertex Legends & Percentage Tags
+    domains.forEach((dom, i) => {
+      const isSelected = (i === activeIndex);
+      const labelRadius = radius + 24;
+      const angle = (Math.PI * 2 / numSides) * i - Math.PI / 2;
+      const lx = centerX + Math.cos(angle) * labelRadius;
+      const ly = centerY + Math.sin(angle) * labelRadius;
+
+      // Adjust text align based on horizontal angle position
+      const cosA = Math.cos(angle);
+      const sinA = Math.sin(angle);
+      if (Math.abs(cosA) < 0.25) {
+        ctx.textAlign = 'center';
+        ctx.textBaseline = sinA < 0 ? 'bottom' : 'top';
+      } else if (cosA > 0) {
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+      } else {
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+      }
+
+      // Domain Title
+      ctx.font = isSelected ? '600 11px "DM Mono", monospace' : '500 10.5px "Inter", sans-serif';
+      ctx.fillStyle = isSelected ? '#d4a85a' : 'rgba(255, 255, 255, 0.78)';
+      ctx.fillText(dom.label, lx, ly - 5);
+
+      // Score Badge
+      ctx.font = '600 10px "DM Mono", monospace';
+      ctx.fillStyle = isSelected ? '#ffffff' : 'rgba(212, 168, 90, 0.9)';
+      ctx.fillText(`${Math.round(dom.score * 100)}%`, lx, ly + 8);
+    });
   }
 
   renderRadar();
