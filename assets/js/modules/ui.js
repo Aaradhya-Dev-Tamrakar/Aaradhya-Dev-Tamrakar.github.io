@@ -591,20 +591,21 @@ function initKeyNav() {
   }, true);
 })();
 
-/* ── Interactive Skill Radar & Domain Competency Visualizer (v43) ── */
-function initSkillRadar() {
-  const canvas = document.getElementById('skillRadarCanvas');
+/* ── Interactive Skill Radar & Domain Competency Visualizer (v48) ── */
+const SKILL_RADAR_DOMAINS = [
+  { label: 'AI/ML & GenAI', score: 0.94, desc: 'Transformers, PyTorch, Agentic AI, RAG Pipelines, SHAP Explainability, Scikit-Learn', tags: ['PyTorch', 'Agentic RAG', 'Transformers', 'FastAPI'] },
+  { label: 'Embedded C/C++', score: 0.90, desc: 'FreeRTOS multi-threading, ESP32, STM32, ARM Cortex-M, SPI/I2C/UART bus tuning', tags: ['FreeRTOS', 'ESP32', 'C++20', 'Micro-Controllers'] },
+  { label: 'Electronics & PCB', score: 0.92, desc: 'KiCAD Multi-Layer PCB layout, Active analog signal filters, IMU MPU6050 calibration', tags: ['KiCAD', 'SPARK', 'Analog Circuits', 'PCB Design'] },
+  { label: 'Full-Stack Web', score: 0.88, desc: 'Vanilla JS ES6+, PWA Offline Architecture, Node.js, WebSockets, Web Crypto, REST APIs', tags: ['JavaScript', 'PWA / Service Worker', 'WebSockets', 'Node.js'] },
+  { label: 'Data Science & Omics', score: 0.89, desc: 'Pandas/NumPy, GCSBR Signal Telemetry, Genomic eQTL Analysis, Statistical Modeling', tags: ['Data Science', 'Genomics', 'Pandas', 'Telemetry'] }
+];
+
+function initRadarCanvas(canvasId, domainSelector) {
+  const canvas = typeof canvasId === 'string' ? document.getElementById(canvasId) : canvasId;
   if (!canvas) return;
 
   const ctx = canvas.getContext('2d');
-  const domains = [
-    { label: 'AI/ML & GenAI', score: 0.94, tags: ['PyTorch', 'Transformers', 'Agentic AI', 'RAG', 'LLMs', 'Scikit-Learn'] },
-    { label: 'Embedded C/C++', score: 0.90, tags: ['FreeRTOS', 'ESP32', 'STM32', 'I2C/SPI', 'Firmware Tuning', 'C++20'] },
-    { label: 'Electronics & PCB', score: 0.92, tags: ['KiCAD', 'EasyEDA', 'Circuit Design', 'IMU Calibration', 'Sensors', 'SPARK'] },
-    { label: 'Full-Stack Web', score: 0.88, tags: ['JavaScript', 'HTML5/CSS3', 'PWA', 'REST APIs', 'Node.js', 'Web Crypto'] },
-    { label: 'Data Science & Omics', score: 0.89, tags: ['Pandas/NumPy', 'GCSBR', 'Genomic Data', 'Bioinformatics', 'Statistical Analysis'] }
-  ];
-
+  const domains = SKILL_RADAR_DOMAINS;
   const numSides = domains.length;
   const size = 300;
   canvas.width = size;
@@ -691,22 +692,101 @@ function initSkillRadar() {
   renderRadar();
 
   // Wire domain list hover & clicks
-  const domainItems = document.querySelectorAll('.domain-item');
-  domainItems.forEach((item, idx) => {
-    item.addEventListener('mouseenter', () => {
-      activeIndex = idx;
-      domainItems.forEach(d => d.classList.remove('active'));
-      item.classList.add('active');
-      renderRadar();
+  const domainItems = typeof domainSelector === 'string' ? document.querySelectorAll(domainSelector) : domainSelector;
+  if (domainItems && domainItems.length) {
+    domainItems.forEach((item, idx) => {
+      item.addEventListener('mouseenter', () => {
+        activeIndex = idx;
+        domainItems.forEach(d => d.classList.remove('active'));
+        item.classList.add('active');
+        renderRadar();
+      });
+      item.addEventListener('click', () => {
+        activeIndex = idx;
+        domainItems.forEach(d => d.classList.remove('active'));
+        item.classList.add('active');
+        renderRadar();
+        if (typeof triggerHapticFeedback === 'function') triggerHapticFeedback('light');
+      });
     });
-    item.addEventListener('click', () => {
-      activeIndex = idx;
-      domainItems.forEach(d => d.classList.remove('active'));
-      item.classList.add('active');
-      renderRadar();
-      if (typeof triggerHapticFeedback === 'function') triggerHapticFeedback('light');
-    });
-  });
+  }
+}
+
+function openSkillRadarModal() {
+  let modal = document.getElementById('skillRadarModalOverlay');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'skillRadarModalOverlay';
+    modal.className = 'resume-modal-overlay';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Interactive Skill Radar Visualizer');
+    document.body.appendChild(modal);
+  }
+
+  modal.innerHTML = `
+    <div class="resume-modal-card" style="max-width: 820px;">
+      <div class="resume-modal-header">
+        <div class="resume-modal-title">
+          <span>5-Domain Skill Radar &amp; Competency Visualizer</span>
+        </div>
+        <button type="button" class="access-modal-close" id="skillRadarModalClose" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div style="padding: 1.25rem 1.5rem 1.75rem; overflow-y: auto; max-height: calc(85vh - 70px);">
+        <div class="radar-layout-grid">
+          <div class="radar-canvas-container">
+            <canvas id="modalSkillRadarCanvas" class="radar-canvas" width="300" height="300"></canvas>
+          </div>
+          <div class="radar-domains-list" id="modalRadarDomainsList">
+            ${SKILL_RADAR_DOMAINS.map((d, i) => `
+              <div class="domain-item ${i === 0 ? 'active' : ''}" data-domain="${i}">
+                <div class="domain-item-head">
+                  <span>${d.label}</span>
+                  <span class="domain-score">${Math.round(d.score * 100)}%</span>
+                </div>
+                <div class="domain-desc">${d.desc}</div>
+                <div class="domain-tech-tags">
+                  ${d.tags.map(t => `<span class="domain-tech-tag">${t}</span>`).join('')}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('skillRadarModalClose').addEventListener('click', closeSkillRadarModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeSkillRadarModal(); });
+
+  requestAnimationFrame(() => modal.classList.add('open'));
+  document.body.style.overflow = 'hidden';
+  if (typeof playAudioCue === 'function') playAudioCue('open');
+
+  initRadarCanvas('modalSkillRadarCanvas', '#modalRadarDomainsList .domain-item');
+}
+
+function closeSkillRadarModal() {
+  const modal = document.getElementById('skillRadarModalOverlay');
+  if (!modal) return;
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+  if (typeof playAudioCue === 'function') playAudioCue('close');
+}
+
+function initSkillRadar() {
+  const inlineCanvas = document.getElementById('skillRadarCanvas');
+  if (inlineCanvas) {
+    initRadarCanvas('skillRadarCanvas', '.radar-domains-list .domain-item');
+    const sec = document.getElementById('skill-radar');
+    if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    openSkillRadarModal();
+  }
 }
 
 /* ── Tailored ATS Resume Generator & Exporter (v43) ── */
@@ -1151,3 +1231,6 @@ window.openResumeGenerator = openResumeGenerator;
 window.closeResumeGenerator = closeResumeGenerator;
 window.downloadResumeMarkdown = downloadResumeMarkdown;
 window.copyResumePlainText = copyResumePlainText;
+window.initSkillRadar = initSkillRadar;
+window.openSkillRadarModal = openSkillRadarModal;
+window.closeSkillRadarModal = closeSkillRadarModal;

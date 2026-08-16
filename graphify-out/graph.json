@@ -580,7 +580,7 @@
       "source_location": "L178",
       "_origin": "ast",
       "id": "modules_core_handleaccessbtnclick",
-      "community": 0,
+      "community": 75,
       "norm_label": "handleaccessbtnclick()"
     },
     {
@@ -590,7 +590,7 @@
       "source_location": "L187",
       "_origin": "ast",
       "id": "modules_core_openlogoutmodal",
-      "community": 0,
+      "community": 75,
       "norm_label": "openlogoutmodal()"
     },
     {
@@ -1234,10 +1234,50 @@
       "norm_label": "spawnparticle()"
     },
     {
-      "label": "initSkillRadar()",
+      "label": "SKILL_RADAR_DOMAINS",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
       "source_location": "L595",
+      "_origin": "ast",
+      "id": "modules_ui_skill_radar_domains",
+      "community": 85,
+      "norm_label": "skill_radar_domains"
+    },
+    {
+      "label": "initRadarCanvas()",
+      "file_type": "code",
+      "source_file": "assets/js/modules/ui.js",
+      "source_location": "L603",
+      "_origin": "ast",
+      "id": "modules_ui_initradarcanvas",
+      "community": 85,
+      "norm_label": "initradarcanvas()"
+    },
+    {
+      "label": "openSkillRadarModal()",
+      "file_type": "code",
+      "source_file": "assets/js/modules/ui.js",
+      "source_location": "L715",
+      "_origin": "ast",
+      "id": "modules_ui_openskillradarmodal",
+      "community": 85,
+      "norm_label": "openskillradarmodal()"
+    },
+    {
+      "label": "closeSkillRadarModal()",
+      "file_type": "code",
+      "source_file": "assets/js/modules/ui.js",
+      "source_location": "L773",
+      "_origin": "ast",
+      "id": "modules_ui_closeskillradarmodal",
+      "community": 85,
+      "norm_label": "closeskillradarmodal()"
+    },
+    {
+      "label": "initSkillRadar()",
+      "file_type": "code",
+      "source_file": "assets/js/modules/ui.js",
+      "source_location": "L781",
       "_origin": "ast",
       "id": "modules_ui_initskillradar",
       "community": 85,
@@ -1247,7 +1287,7 @@
       "label": "RESUME_DATA",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L713",
+      "source_location": "L793",
       "_origin": "ast",
       "id": "modules_ui_resume_data",
       "community": 85,
@@ -1257,7 +1297,7 @@
       "label": "generateResumePlainText()",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L924",
+      "source_location": "L1004",
       "_origin": "ast",
       "id": "modules_ui_generateresumeplaintext",
       "community": 85,
@@ -1267,7 +1307,7 @@
       "label": "generateResumeMarkdown()",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L952",
+      "source_location": "L1032",
       "_origin": "ast",
       "id": "modules_ui_generateresumemarkdown",
       "community": 85,
@@ -1277,7 +1317,7 @@
       "label": "downloadResumeMarkdown()",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L979",
+      "source_location": "L1059",
       "_origin": "ast",
       "id": "modules_ui_downloadresumemarkdown",
       "community": 85,
@@ -1287,7 +1327,7 @@
       "label": "copyResumePlainText()",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L995",
+      "source_location": "L1075",
       "_origin": "ast",
       "id": "modules_ui_copyresumeplaintext",
       "community": 85,
@@ -1297,7 +1337,7 @@
       "label": "openResumeGenerator()",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L1006",
+      "source_location": "L1086",
       "_origin": "ast",
       "id": "modules_ui_openresumegenerator",
       "community": 85,
@@ -1307,7 +1347,7 @@
       "label": "closeResumeGenerator()",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L1106",
+      "source_location": "L1186",
       "_origin": "ast",
       "id": "modules_ui_closeresumegenerator",
       "community": 85,
@@ -1317,7 +1357,7 @@
       "label": "renderTailoredResumePreview()",
       "file_type": "code",
       "source_file": "assets/js/modules/ui.js",
-      "source_location": "L1115",
+      "source_location": "L1195",
       "_origin": "ast",
       "id": "modules_ui_rendertailoredresumepreview",
       "community": 85,
@@ -5658,6 +5698,17 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "assets/js/modules/ui.js",
+      "source_location": "L778",
+      "weight": 1.0,
+      "source": "modules_ui_closeskillradarmodal",
+      "target": "modules_audio_playaudiocue"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "assets/js/modules/ui.js",
       "source_location": "L73",
       "weight": 1.0,
       "source": "modules_ui_closewhatsnewmodal",
@@ -5683,6 +5734,17 @@
       "source_location": "L988",
       "weight": 1.0,
       "source": "modules_ui_openresumegenerator",
+      "target": "modules_audio_playaudiocue"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "assets/js/modules/ui.js",
+      "source_location": "L768",
+      "weight": 1.0,
+      "source": "modules_ui_openskillradarmodal",
       "target": "modules_audio_playaudiocue"
     },
     {
@@ -6955,6 +7017,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/modules/ui.js",
+      "source_location": "L773",
+      "weight": 1.0,
+      "source": "modules_ui",
+      "target": "modules_ui_closeskillradarmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/modules/ui.js",
       "source_location": "L68",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -7045,6 +7117,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/modules/ui.js",
+      "source_location": "L603",
+      "weight": 1.0,
+      "source": "modules_ui",
+      "target": "modules_ui_initradarcanvas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/modules/ui.js",
       "source_location": "L176",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -7085,6 +7167,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/modules/ui.js",
+      "source_location": "L715",
+      "weight": 1.0,
+      "source": "modules_ui",
+      "target": "modules_ui_openskillradarmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/modules/ui.js",
       "source_location": "L7",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -7110,6 +7202,16 @@
       "confidence_score": 1.0,
       "source": "modules_ui",
       "target": "modules_ui_resume_data"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/modules/ui.js",
+      "source_location": "L595",
+      "weight": 1.0,
+      "source": "modules_ui",
+      "target": "modules_ui_skill_radar_domains",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7186,6 +7288,39 @@
       "weight": 1.0,
       "source": "js_script_bootsite",
       "target": "modules_ui_initkeynav"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/modules/ui.js",
+      "source_location": "L784",
+      "weight": 1.0,
+      "source": "modules_ui_initskillradar",
+      "target": "modules_ui_initradarcanvas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/modules/ui.js",
+      "source_location": "L770",
+      "weight": 1.0,
+      "source": "modules_ui_openskillradarmodal",
+      "target": "modules_ui_initradarcanvas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/modules/ui.js",
+      "source_location": "L788",
+      "weight": 1.0,
+      "source": "modules_ui_initskillradar",
+      "target": "modules_ui_openskillradarmodal",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -10919,5 +11054,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "9f5079133c8895622123b36a76b0e99608a0c221"
+  "built_at_commit": "b13787a0dd4cd2e25b7aa8ee4d49eeb398b6c231"
 }

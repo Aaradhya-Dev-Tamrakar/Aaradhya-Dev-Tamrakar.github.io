@@ -1,16 +1,16 @@
 # Graph Report - Aaradhya-Dev-Tamrakar.github.io  (2026-08-16)
 
 ## Corpus Check
-- 25 files · ~280,072 words
+- 25 files · ~280,368 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 446 nodes · 603 edges · 85 communities (24 shown, 61 thin omitted)
-- Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 53 edges (avg confidence: 0.82)
+- 450 nodes · 612 edges · 85 communities (24 shown, 61 thin omitted)
+- Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 55 edges (avg confidence: 0.81)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `9f507913`
+- Built from commit: `b13787a0`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -106,7 +106,7 @@
 3. `Portfolio Website Tracker — v48` - 23 edges
 4. `log_pass()` - 18 edges
 5. `log_error()` - 16 edges
-6. `playAudioCue()` - 12 edges
+6. `playAudioCue()` - 14 edges
 7. `get_html_files()` - 12 edges
 8. `log_warning()` - 12 edges
 9. `aaradhya-dev-tamrakar.github.io` - 10 edges
@@ -131,7 +131,7 @@
 
 ### Community 0 - "Community 0"
 Cohesion: 0.06
-Nodes (43): bootSite(), initNetworkStatusListeners(), initReadingProgressBar(), initServiceWorker(), SEARCH_STATIC_INDEX, SITE_RELEASES, AD_MONTHS, adToBs() (+35 more)
+Nodes (41): bootSite(), initNetworkStatusListeners(), initReadingProgressBar(), initServiceWorker(), SEARCH_STATIC_INDEX, SITE_RELEASES, AD_MONTHS, adToBs() (+33 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.06
@@ -194,8 +194,8 @@ Cohesion: 0.40
 Nodes (4): File delivery, Local Git Workflow & Auto-Sync (`sync.ps1`), Output constraints (strict), Working conventions for this repo
 
 ### Community 75 - "Community 75"
-Cohesion: 0.17
-Nodes (23): ACCESS_CONTROL, ACCESS_CONTROL_PAYLOADS, addCustomVipEmail(), closeAccessModal(), decryptHexPayload(), getCustomVipEmails(), getDecryptionKey(), getGoogleClientId() (+15 more)
+Cohesion: 0.15
+Nodes (25): ACCESS_CONTROL, ACCESS_CONTROL_PAYLOADS, addCustomVipEmail(), closeAccessModal(), decryptHexPayload(), getCustomVipEmails(), getDecryptionKey(), getGoogleClientId() (+17 more)
 
 ### Community 76 - "Community 76"
 Cohesion: 0.22
@@ -218,11 +218,11 @@ Cohesion: 0.33
 Nodes (5): 1. Git Workflow & Automation (CRITICAL — STRICT ENFORCEMENT), 2. Knowledge Graph & Codebase Navigation (Graphify), 3. Operational Rules & Efficiency, Antigravity IDE & Gemini Agent Rules for Portfolio Repository, Commands
 
 ### Community 85 - "Community 85"
-Cohesion: 0.12
-Nodes (21): getAudioContext(), initAudioCues(), playAudioCue(), syncAudioToggleUI(), toggleAudioCues(), closeResumeGenerator(), closeWhatsNewModal(), copyResumePlainText() (+13 more)
+Cohesion: 0.11
+Nodes (26): getAudioContext(), initAudioCues(), playAudioCue(), syncAudioToggleUI(), toggleAudioCues(), closeResumeGenerator(), closeSkillRadarModal(), closeWhatsNewModal() (+18 more)
 
 ## Knowledge Gaps
-- **154 isolated node(s):** `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL`, `CMDK_PAGES`, `SITE` (+149 more)
+- **155 isolated node(s):** `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL`, `CMDK_PAGES`, `SITE` (+150 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **61 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -230,15 +230,15 @@ Nodes (21): getAudioContext(), initAudioCues(), playAudioCue(), syncAudioToggleU
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `bootSite()` connect `Community 0` to `Community 75`, `Community 76`, `Community 85`, `Community 78`?**
-  _High betweenness centrality (0.121) - this node is a cross-community bridge._
+  _High betweenness centrality (0.124) - this node is a cross-community bridge._
 - **Why does `Contact — Aaradhya Dev Tamrakar` connect `Community 2` to `Community 0`?**
-  _High betweenness centrality (0.042) - this node is a cross-community bridge._
+  _High betweenness centrality (0.043) - this node is a cross-community bridge._
 - **Are the 28 inferred relationships involving `bootSite()` (e.g. with `initAccessControl()` and `initAudioCues()`) actually correct?**
   _`bootSite()` has 28 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL` to the rest of the system?**
-  _180 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _181 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.0611764705882353 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06377551020408163 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.05855855855855856 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
