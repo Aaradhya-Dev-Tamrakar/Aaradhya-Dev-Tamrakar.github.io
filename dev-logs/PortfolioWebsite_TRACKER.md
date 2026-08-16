@@ -12,7 +12,6 @@
   - **Dev Terminal CLI Command Expansion (`terminal.js`)**: Added `goto <page>`, `cv`, `email`, and `filter <cat>` interactive commands with updated terminal help documentation.
   - **Verification Suite**: Passed `python scripts/verify.py` across all 17 categories with 0 errors and 0 warnings.
 
-
 - **v47 (Update) — Security & Vulnerability Remediation Suite.** Shipped repository-wide security hardening and vulnerability mitigations:
   - **CI/CD Workflow Injection Fix (`stamp-last-commit.yml`)**: Eliminated shell expression injection risk by binding GitHub commit metadata (`github.sha`, `timestamp`, `message`) to step environment variables and serializing `last-commit.json` securely via `jq -n --arg`.
   - **DOM XSS & Attribute Sanitization (`access.js`)**: Sanitized dynamic VIP email list rendering with single-quote escaping (`&#39;`) and replaced inline `onclick` string interpolation with standard event listeners; hardened user avatar rendering against attribute injection.
