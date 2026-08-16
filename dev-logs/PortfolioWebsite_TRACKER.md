@@ -4,6 +4,13 @@
 
 ## Meta
 
+- **v47 (Update) — Security & Vulnerability Remediation Suite.** Shipped repository-wide security hardening and vulnerability mitigations:
+  - **CI/CD Workflow Injection Fix (`stamp-last-commit.yml`)**: Eliminated shell expression injection risk by binding GitHub commit metadata (`github.sha`, `timestamp`, `message`) to step environment variables and serializing `last-commit.json` securely via `jq -n --arg`.
+  - **DOM XSS & Attribute Sanitization (`access.js`)**: Sanitized dynamic VIP email list rendering with single-quote escaping (`&#39;`) and replaced inline `onclick` string interpolation with standard event listeners; hardened user avatar rendering against attribute injection.
+  - **Tabnabbing Protection**: Enforced `rel="noopener noreferrer"` across dynamic external links in `terminal.js` and unlocked repository links in `access.js`.
+  - **Subresource Integrity (SRI) Pinning (`contact.html`)**: Added `integrity="sha384-..."` and `crossOrigin="anonymous"` attributes to dynamically loaded `@emailjs/browser` CDN library.
+  - **Verification Suite**: Passed `python scripts/verify.py` across all 17 categories with 0 errors and 0 warnings.
+
 - **v47 (Update) — Git LFS Removal & Native Binary Asset Restoration for GitHub Pages.** De-LFS'd repository assets and restored standard Git binary tracking to resolve broken image, certificate, and media rendering on GitHub Pages:
   - **De-LFS & Native Git Tracking Restoration**: Removed Git LFS filter patterns from `.gitattributes` and re-indexed all 106 media, document, image, and video assets (`.webp`, `.png`, `.jpg`, `.pdf`, `.mp4`, `.svg`) as native binary objects in Git.
   - **GitHub Pages Direct Serving Fix**: Fixed root issue where GitHub Pages branch deployments served ~130-byte raw ASCII LFS pointer files with image MIME types instead of actual image binaries.

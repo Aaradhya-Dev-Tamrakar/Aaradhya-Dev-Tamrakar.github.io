@@ -644,6 +644,8 @@
       emailjsReady = new Promise((resolve, reject) => {
         const s = document.createElement("script");
         s.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+        s.integrity = "sha384-SALc35EccAf6RzGw4iNsyj7kTPr33K7RoGzYu+7heZhT8s0GZouafRiCg1qy44AS";
+        s.crossOrigin = "anonymous";
         s.onload = () => {
           emailjs.init(EMAILJS_PUBLIC_KEY);
           resolve();

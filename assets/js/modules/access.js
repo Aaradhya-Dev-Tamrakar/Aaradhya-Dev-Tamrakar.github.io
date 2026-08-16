@@ -393,9 +393,10 @@ function renderAccessNavButton() {
     }
 
     let iconContent = defaultSvg;
-    if (userPic) {
+    if (userPic && /^https?:\/\//i.test(userPic)) {
+      const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
       btn.classList.add('has-avatar');
-      iconContent = `<img src="${userPic}" class="nav-user-avatar" alt="${userName}" referrerpolicy="no-referrer" loading="eager" onerror="this.style.display='none';if(this.nextElementSibling)this.nextElementSibling.style.display='inline-flex';" /><span class="nav-avatar-fallback" style="display:none;">${defaultSvg}</span>`;
+      iconContent = `<img src="${esc(userPic)}" class="nav-user-avatar" alt="${esc(userName)}" referrerpolicy="no-referrer" loading="eager" onerror="this.style.display='none';if(this.nextElementSibling)this.nextElementSibling.style.display='inline-flex';" /><span class="nav-avatar-fallback" style="display:none;">${defaultSvg}</span>`;
     } else {
       btn.classList.remove('has-avatar');
     }
@@ -467,6 +468,7 @@ async function updateGatedContentVisibility() {
       }
       link.href = link.dataset.resolvedHref || '#';
       link.target = '_blank';
+      link.rel = 'noopener noreferrer';
       link.innerHTML = 'View on GitHub ↗';
       link.onclick = null;
       link.classList.remove('project-link--locked');
@@ -857,13 +859,19 @@ function renderMasterControlPanel() {
     if (customList.length === 0) {
       vipWrap.innerHTML = `<span style="color:#71717a;font-style:italic;">No custom VIP emails added yet (Wildcard '*' active).</span>`;
     } else {
-      const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
       vipWrap.innerHTML = customList.map(email => `
         <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.03);padding:0.2rem 0.4rem;border-radius:4px;">
           <span>${esc(email)}</span>
-          <button type="button" onclick="removeCustomVipEmail('${esc(email)}')" style="background:none;border:none;color:#ef4444;cursor:pointer;font-size:0.65rem;" title="Remove VIP Access">✕</button>
+          <button type="button" class="vip-remove-btn" data-email="${esc(email)}" style="background:none;border:none;color:#ef4444;cursor:pointer;font-size:0.65rem;" title="Remove VIP Access">✕</button>
         </div>
       `).join('');
+      vipWrap.querySelectorAll('.vip-remove-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetEmail = btn.getAttribute('data-email');
+          if (targetEmail) removeCustomVipEmail(targetEmail);
+        });
+      });
     }
   }
 }

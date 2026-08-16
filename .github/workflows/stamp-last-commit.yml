@@ -32,16 +32,19 @@ jobs:
           fetch-depth: 1
 
       - name: Write last-commit.json
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+          COMMIT_DATE: ${{ github.event.head_commit.timestamp }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
           mkdir -p assets/js
-          cat > assets/js/last-commit.json << EOF
-          {
-            "sha": "${{ github.sha }}",
-            "shortSha": "$(echo ${{ github.sha }} | cut -c1-7)",
-            "date": "${{ github.event.head_commit.timestamp }}",
-            "message": $(echo '${{ github.event.head_commit.message }}' | head -1 | jq -Rs .)
-          }
-          EOF
+          FIRST_LINE="$(printf '%s\n' "$COMMIT_MSG" | head -n 1)"
+          jq -n \
+            --arg sha "$COMMIT_SHA" \
+            --arg shortSha "${COMMIT_SHA:0:7}" \
+            --arg date "$COMMIT_DATE" \
+            --arg msg "$FIRST_LINE" \
+            '{sha: $sha, shortSha: $shortSha, date: $date, message: $msg}' > assets/js/last-commit.json
           cat assets/js/last-commit.json
 
       - name: Commit and push

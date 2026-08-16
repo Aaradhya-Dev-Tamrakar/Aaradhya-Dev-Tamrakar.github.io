@@ -171,8 +171,8 @@
       contact: () => `
 <span class="term-green">▶ Connect Channels:</span><br>
   • Email:    <a href="mailto:aaradhyadevtmr@gmail.com" class="term-link">aaradhyadevtmr@gmail.com</a><br>
-  • GitHub:   <a href="https://github.com/AaradhyaDT" target="_blank" class="term-link">github.com/AaradhyaDT</a><br>
-  • LinkedIn: <a href="https://www.linkedin.com/in/aaradhya-dev-tamrakar" target="_blank" class="term-link">linkedin.com/in/aaradhya-dev-tamrakar</a>
+  • GitHub:   <a href="https://github.com/AaradhyaDT" target="_blank" rel="noopener noreferrer" class="term-link">github.com/AaradhyaDT</a><br>
+  • LinkedIn: <a href="https://www.linkedin.com/in/aaradhya-dev-tamrakar" target="_blank" rel="noopener noreferrer" class="term-link">linkedin.com/in/aaradhya-dev-tamrakar</a>
 `.trim(),
       whatsnew: () => {
         if (typeof openWhatsNewModal === 'function') openWhatsNewModal();
