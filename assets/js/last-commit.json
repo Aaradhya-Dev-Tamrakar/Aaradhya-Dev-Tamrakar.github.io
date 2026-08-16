@@ -1,6 +1,6 @@
 {
-  "sha": "a7f314328c1c35919f90c2ccbd0fee5298232074",
-  "shortSha": "a7f3143",
-  "date": "2026-08-15T23:13:21+05:45",
-  "message": "style(resume): fix print formatting and multi-page typography for ATS resume\n"
+  "sha": "31d752868382ea966f856348a5ba4466fcd51dd3",
+  "shortSha": "31d7528",
+  "date": "2026-08-16T10:09:03+05:45",
+  "message": "fix(assets): remove Git LFS and restore native binary asset tracking for GitHub Pages\n"
 }
