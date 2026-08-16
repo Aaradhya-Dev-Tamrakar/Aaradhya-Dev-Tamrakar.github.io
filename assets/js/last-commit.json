@@ -1,6 +1,6 @@
 {
-  "sha": "552251573b81da0573674462993fdc0d6254f80b",
-  "shortSha": "5522515",
-  "date": "2026-08-16T12:06:55+05:45",
-  "message": "security(core): patch workflow injection, dom xss, sri and link attributes"
+  "sha": "6c921422c820f42c96f8fdb383230a1363d8207c",
+  "shortSha": "6c92142",
+  "date": "2026-08-16T12:19:15+05:45",
+  "message": "feat(suite): project category filters, ats resume exporter, offline queue & security rate-limiting"
 }
