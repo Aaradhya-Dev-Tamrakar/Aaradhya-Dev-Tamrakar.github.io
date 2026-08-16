@@ -636,6 +636,79 @@
       color: var(--muted);
     }
 
+    /* ── Stats legend ─────────────────────────────────────── */
+    .stats-legend {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.25rem 2rem;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--bg2);
+    }
+
+    .stats-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s ease, transform .15s ease;
+    }
+
+    .stats-legend-item:hover {
+      color: var(--heading);
+      transform: translateY(-1px);
+    }
+
+    .stats-legend-swatch {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .stats-legend-swatch--projects {
+      background: var(--accent);
+      box-shadow: 0 0 6px var(--accent);
+    }
+
+    .stats-legend-swatch--academic {
+      background: var(--glow-teal);
+      box-shadow: 0 0 6px var(--glow-teal);
+    }
+
+    .stats-legend-swatch--fellowships {
+      background: var(--glow-violet);
+      box-shadow: 0 0 6px var(--glow-violet);
+    }
+
+    .stats-legend-swatch--roles {
+      background: var(--glow-coral);
+      box-shadow: 0 0 6px var(--glow-coral);
+    }
+
+    html[data-theme="light"] .stats-legend {
+      background: #ffffff;
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+
+    html[data-theme="light"] .stats-legend-swatch {
+      box-shadow: none;
+    }
+
+    html[data-theme="light"] .stats-legend-item:hover {
+      color: #1f1b16;
+    }
+
     /* ── Quick-nav cards: base styles in shared style.css. Padding values
        below are entangled with #stats in the same media queries, so they
        stay inline; #quick-nav's own numbers match style.css exactly. ── */
@@ -1014,6 +1087,24 @@
           <div class="stat-num" data-count-target="8">8</div>
           <div class="stat-label">Roles &amp; Contributions</div>
         </div>
+      </div>
+      <div class="stats-legend reveal" aria-label="Stats legend">
+        <a href="projects.html" class="stats-legend-item">
+          <span class="stats-legend-swatch stats-legend-swatch--projects" aria-hidden="true"></span>
+          Projects → View All
+        </a>
+        <a href="about.html" class="stats-legend-item">
+          <span class="stats-legend-swatch stats-legend-swatch--academic" aria-hidden="true"></span>
+          Academic → About
+        </a>
+        <a href="experience.html" class="stats-legend-item">
+          <span class="stats-legend-swatch stats-legend-swatch--fellowships" aria-hidden="true"></span>
+          Fellowships → Experience
+        </a>
+        <a href="achievements.html" class="stats-legend-item">
+          <span class="stats-legend-swatch stats-legend-swatch--roles" aria-hidden="true"></span>
+          Roles → Achievements
+        </a>
       </div>
     </section>
 
