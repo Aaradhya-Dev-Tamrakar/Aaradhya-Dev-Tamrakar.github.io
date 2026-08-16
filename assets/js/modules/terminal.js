@@ -113,7 +113,7 @@
         const achvCount = typeof SEARCH_STATIC_INDEX !== 'undefined' ? (SEARCH_STATIC_INDEX.achievement || []).length : 37;
         const projCount = typeof SEARCH_STATIC_INDEX !== 'undefined' ? (SEARCH_STATIC_INDEX.project || []).length : 29;
         return `
-<span class="term-green">[ADT PORTFOLIO TELEMETRY v47]</span><br>
+<span class="term-green">[ADT PORTFOLIO TELEMETRY v48]</span><br>
   • <span class="term-gold">Published Projects:</span> ${projCount} verified repositories &amp; systems<br>
   • <span class="term-gold">Certifications:</span> ${achvCount} verifiable credentials<br>
   • <span class="term-gold">Journey Milestones:</span> 35 chronological commits<br>
@@ -144,7 +144,7 @@
         const sub = (arg || '').toLowerCase().trim();
         if (sub === 'spark') {
           return `
-<span class="term-green">[SPARK TELEMETRY SIMULATOR v47]</span><br>
+<span class="term-green">[SPARK TELEMETRY SIMULATOR v48]</span><br>
   [00:00:01] Initializing ESP32 I2C bus @ 400kHz... <span class="term-cyan">OK</span><br>
   [00:00:02] Calibrating PPG Optical Pulse Sensor... <span class="term-cyan">STABLE</span><br>
   [00:00:03] Bio-Signal Filter: Bandpass 0.5Hz–5.0Hz... <span class="term-gold">ACTIVE</span><br>
@@ -152,14 +152,14 @@
 `.trim();
         } else if (sub === 'gcsbr') {
           return `
-<span class="term-green">[GCSBR PID &amp; SENSOR FUSION SIMULATOR v47]</span><br>
+<span class="term-green">[GCSBR PID &amp; SENSOR FUSION SIMULATOR v48]</span><br>
   [00:00:01] MPU6050 Accelerometer/Gyro Init... <span class="term-cyan">OK</span><br>
   [00:00:02] Complementary Filter α=0.98, Tilt Angle: +0.12°... <span class="term-cyan">BALANCED</span><br>
   [00:00:03] PID Loop Output: Kp=14.5 Ki=0.8 Kd=1.2 -&gt; Motor PWM: <span class="term-gold">142 / 255</span>
 `.trim();
         } else if (sub === 'prakopnet') {
           return `
-<span class="term-green">[PRAKOPNET DISASTER TELEMETRY ENGINE v47]</span><br>
+<span class="term-green">[PRAKOPNET DISASTER TELEMETRY ENGINE v48]</span><br>
   [00:00:01] LoRaWAN Mesh Network Node 0x7F... <span class="term-cyan">SYNCED</span><br>
   [00:00:02] Seismic Geophone Ingestion: 250 SPS... <span class="term-cyan">NOMINAL</span><br>
   [00:00:03] Flash Flood Level Sensor: Normal Basin Threshold... <span class="term-gold">MONITORING</span><br>
@@ -167,7 +167,7 @@
 `.trim();
         } else if (sub === 'pulselive') {
           return `
-<span class="term-green">[PULSELIVE DIAGNOSTIC HUB SIMULATOR v47]</span><br>
+<span class="term-green">[PULSELIVE DIAGNOSTIC HUB SIMULATOR v48]</span><br>
   [00:00:01] Audio DSP Pipeline: 44.1kHz 24-bit Stream Ingest... <span class="term-cyan">LOCKED</span><br>
   [00:00:02] Wavelet Transform Acoustic Feature Extractor... <span class="term-cyan">ACTIVE</span><br>
   [00:00:03] Inference Model: Edge-Optimized Neural Classifier... <span class="term-gold">RUNNING (1.4ms)</span><br>

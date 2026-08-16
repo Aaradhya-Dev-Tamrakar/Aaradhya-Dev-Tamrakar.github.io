@@ -1,10 +1,10 @@
 /* ============================================================
-   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io (v47)
+   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io (v48)
    Loaded on every page via <script src="assets/js/script.js">.
    Orchestrates core modules from assets/js/modules/
    ============================================================ */
 
-/* ── Dynamic Module Loader (v47) ───────────────────────────── */
+/* ── Dynamic Module Loader (v48) ───────────────────────────── */
 window.__modulesLoadedPromise = (function () {
   const MODULES = [
     'assets/js/modules/core.js',
@@ -47,6 +47,19 @@ window.__modulesLoadedPromise = (function () {
 
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
+  {
+    version: 'v48',
+    date: '2026-08-16',
+    sha: '6c92142',
+    title: 'Multi-Category Project Filters, ATS Multi-Format Exporter & Security Suite',
+    highlights: [
+      'Projects: Added dynamic category filter pill bar (All, AI/ML, Robotics/Embedded, Hardware, Web/Apps) with real-time count badges and smooth transitions',
+      'ATS Resume Generator: One-click Copy ATS Plain Text and Download Markdown (.md) multi-format exports directly from the modal',
+      'Offline Resilience: Contact form offline submission queue with automatic background synchronization on network reconnect',
+      'Security & CLI: Client-side passcode brute-force rate limiting with 30s cooldown and new Dev Terminal navigation commands (goto, cv, email, filter)',
+      'PWA & Cache: Bumped Service Worker cache to aaradhya-portfolio-v48'
+    ]
+  },
   {
     version: 'v47',
     date: '2026-08-14',
