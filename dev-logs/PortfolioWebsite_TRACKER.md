@@ -4,6 +4,12 @@
 
 ## Meta
 
+- **v47 (Update) — Git LFS Removal & Native Binary Asset Restoration for GitHub Pages.** De-LFS'd repository assets and restored standard Git binary tracking to resolve broken image, certificate, and media rendering on GitHub Pages:
+  - **De-LFS & Native Git Tracking Restoration**: Removed Git LFS filter patterns from `.gitattributes` and re-indexed all 106 media, document, image, and video assets (`.webp`, `.png`, `.jpg`, `.pdf`, `.mp4`, `.svg`) as native binary objects in Git.
+  - **GitHub Pages Direct Serving Fix**: Fixed root issue where GitHub Pages branch deployments served ~130-byte raw ASCII LFS pointer files with image MIME types instead of actual image binaries.
+  - **CI & Deployment Workflow Cleanup**: Removed `lfs: true` checkouts from `.github/workflows/verify.yml` and `.github/workflows/deploy-pages.yml`.
+  - **Verification Suite**: Passed `python scripts/verify.py` across all 17 categories with 0 errors and 0 warnings.
+
 - **v47 (Update) — Performance Architecture, Render-Blocking Elimination & Asset Optimization.** Shipped major site-wide performance upgrade eliminating the 9-module CSS @import waterfall, optimizing client-side resource scheduling, and boosting rendering speed:
   - **ATS Resume Print Typography & Multi-Page Pagination Fix**: Completely revised resume print stylesheet (`print.css`) and modal preview (`components.css`, `ui.js`) to eliminate artificial single-page compression. Scaled base typography from cramped ~7.4pt–8.5pt up to standard readable 10pt (name 20pt, section titles 10.5pt, subheadings 10pt, bullets 9.2pt/1.4 line-height, contact 9pt) with 14mm/16mm standard page margins and robust page-break rules (`break-inside: avoid;` on items and `break-after: avoid;` on section headings), ensuring crisp, professional, human-readable multi-page and single-page resume exports.
   - **ATS Resume Generator Screen Styles & Trigger Button Fix**: Resolved unstyled ATS Resume / Export PDF button across all occurrences (`experience.html`, `about.html`, and `#resumePrintBtn`). Migrated screen modal and trigger button CSS (`.resume-modal-*`, `.resume-role-selector`, `.resume-role-btn`, `.resume-preview-*`, `.resume-print-btn`) from `print.css` to `components.css` to ensure zero FOUC and full theme synchronization on screen media while preserving pure `@page` and `@media print` rules in `print.css`. Standardized button labels, accessibility attributes (`aria-label`, `aria-hidden`), and shimmer hover states.
