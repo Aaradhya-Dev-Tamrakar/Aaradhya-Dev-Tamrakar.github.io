@@ -25,11 +25,15 @@
 
     const COMMANDS = {
       help: () => `
-<span class="term-green">Available Commands (v47):</span><br>
+<span class="term-green">Available Commands:</span><br>
   <span class="term-gold">skills</span>       - Overview of technical skillset &amp; engineering tools<br>
   <span class="term-gold">radar</span>        - Interactive 5-Domain Skill Radar visualizer<br>
-  <span class="term-gold">resume</span>       - Open Tailored ATS Resume Generator &amp; PDF Exporter<br>
+  <span class="term-gold">resume</span>       - Open Tailored ATS Resume Generator &amp; Multi-Format Exporter<br>
   <span class="term-gold">projects</span>     - Key engineering &amp; AI/ML projects<br>
+  <span class="term-gold">filter [cat]</span> - Filter project cards ('filter aiml', 'filter embedded', 'filter apps')<br>
+  <span class="term-gold">goto [page]</span>  - Quick navigation ('goto projects', 'goto about', 'goto contact')<br>
+  <span class="term-gold">cv</span>           - Download official Curriculum Vitae (PDF)<br>
+  <span class="term-gold">email</span>        - Copy direct contact email to clipboard<br>
   <span class="term-gold">run [name]</span>   - Run simulation ('run spark', 'run gcsbr', 'run prakopnet', 'run pulselive')<br>
   <span class="term-gold">stats</span>        - Site telemetry summary (projects, achievements, milestones)<br>
   <span class="term-gold">benchmark</span>    - Client runtime performance &amp; DOM metrics<br>
@@ -46,6 +50,57 @@
   <span class="term-gold">matrix</span>       - Trigger cybernetic digital rain<br>
   <span class="term-gold">clear</span>        - Clear terminal screen output
 `.trim(),
+      goto: (arg) => {
+        const dest = (arg || '').toLowerCase().trim();
+        const map = {
+          home: 'index.html',
+          projects: 'projects.html',
+          project: 'projects.html',
+          experience: 'experience.html',
+          achievements: 'achievements.html',
+          achievement: 'achievements.html',
+          about: 'about.html',
+          journey: 'journey.html',
+          contact: 'contact.html',
+          terms: 'terms.html',
+          privacy: 'privacy.html'
+        };
+        if (map[dest]) {
+          setTimeout(() => { window.location.href = map[dest]; }, 600);
+          return `<span class="term-green">Navigating to ${map[dest]}...</span>`;
+        }
+        return `<span class="term-gold">Usage: goto [home | projects | experience | achievements | about | journey | contact]</span>`;
+      },
+      cv: () => {
+        const a = document.createElement('a');
+        a.href = 'assets/docs/AARADHYA_DEV_TAMRAKAR_CV.pdf';
+        a.download = 'AARADHYA_DEV_TAMRAKAR_CV.pdf';
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        return '<span class="term-green">Triggered CV download (AARADHYA_DEV_TAMRAKAR_CV.pdf).</span>';
+      },
+      email: () => {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText('aaradhyadevtmr@gmail.com');
+          return '<span class="term-green">Copied aaradhyadevtmr@gmail.com to clipboard!</span>';
+        }
+        return '<span class="term-gold">Email: aaradhyadevtmr@gmail.com</span>';
+      },
+      filter: (arg) => {
+        const cat = (arg || '').toLowerCase().trim();
+        const filterBtn = document.querySelector(`.proj-filter-btn[data-filter="${cat}"]`);
+        if (filterBtn) {
+          filterBtn.click();
+          return `<span class="term-green">Applied filter: ${cat}</span>`;
+        }
+        if (location.pathname.includes('projects.html')) {
+          return `<span class="term-gold">Available filters on projects.html: all, aiml, embedded, hardware, apps</span>`;
+        }
+        return `<span class="term-gold">Project filters are available on projects.html (type 'goto projects' first).</span>`;
+      },
       radar: () => {
         if (typeof initSkillRadar === 'function') initSkillRadar();
         return '<span class="term-green">Interactive Skill Radar rendered.</span>';

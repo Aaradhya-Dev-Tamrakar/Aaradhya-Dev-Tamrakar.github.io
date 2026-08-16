@@ -750,7 +750,20 @@
             }
             throw new Error("Formspree failed");
           } catch (err) {
-            console.warn("Formspree failed, falling back to mailto...", err);
+            console.warn("Formspree failed, checking network state...", err);
+          }
+
+          // If device is offline, save to local queue for auto-dispatch when reconnected
+          if (!navigator.onLine) {
+            if (window.queueOfflineContactMessage) {
+              queueOfflineContactMessage(formData);
+            }
+            status.innerHTML = '<div class="form-success-badge" style="background:var(--accent-a12);border-color:var(--accent);color:var(--accent);"><span>⏳</span> You are currently offline. Message saved and will auto-send when connection is restored!</div>';
+            if (window.playAudioCue) playAudioCue('click');
+            this.reset();
+            btn.disabled = false;
+            btn.textContent = "Send Message →";
+            return;
           }
 
           // 3. Last resort: mailto

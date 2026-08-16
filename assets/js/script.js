@@ -863,8 +863,55 @@ function initReadingProgressBar() {
 function initNetworkStatusListeners() {
   window.addEventListener('online', () => {
     showToast('Connection restored — back online');
+    syncQueuedContactMessages();
   });
   window.addEventListener('offline', () => {
     showToast('You are currently offline');
   });
 }
+
+function syncQueuedContactMessages() {
+  try {
+    const raw = localStorage.getItem('adt_queued_contact_submissions');
+    if (!raw) return;
+    const list = JSON.parse(raw);
+    if (!Array.isArray(list) || !list.length) return;
+
+    const pending = list.slice();
+    localStorage.removeItem('adt_queued_contact_submissions');
+
+    pending.forEach(async (formData) => {
+      try {
+        const FORMSPREE_ID = "xnnjkrrn";
+        const res = await fetch("https://formspree.io/f/" + FORMSPREE_ID, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(formData),
+        });
+        if (res.ok) {
+          showToast(`Queued message from ${formData.name} sent successfully!`);
+          if (typeof playAudioCue === 'function') playAudioCue('chime');
+        } else {
+          queueOfflineContactMessage(formData);
+        }
+      } catch (err) {
+        queueOfflineContactMessage(formData);
+      }
+    });
+  } catch (e) {
+    console.warn('Sync queued contact messages:', e);
+  }
+}
+
+function queueOfflineContactMessage(formData) {
+  try {
+    const list = JSON.parse(localStorage.getItem('adt_queued_contact_submissions') || '[]');
+    list.push(formData);
+    localStorage.setItem('adt_queued_contact_submissions', JSON.stringify(list));
+  } catch (e) {
+    console.warn('Queue offline contact message:', e);
+  }
+}
+
+window.queueOfflineContactMessage = queueOfflineContactMessage;
+window.syncQueuedContactMessages = syncQueuedContactMessages;

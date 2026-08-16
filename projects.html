@@ -721,6 +721,23 @@
 </header>
 <section aria-label="Projects grid" id="projects">
 <div class="projects-header-bar">
+<div class="projects-filter-bar" id="projectsFilterBar" role="tablist" aria-label="Filter projects by domain">
+<button type="button" class="proj-filter-btn active" data-filter="all" role="tab" aria-selected="true">
+<span>All</span><span class="proj-filter-count">29</span>
+</button>
+<button type="button" class="proj-filter-btn" data-filter="aiml" role="tab" aria-selected="false">
+<span>AI / ML &amp; Agentic</span><span class="proj-filter-count">21</span>
+</button>
+<button type="button" class="proj-filter-btn" data-filter="embedded" role="tab" aria-selected="false">
+<span>Robotics &amp; Embedded</span><span class="proj-filter-count">5</span>
+</button>
+<button type="button" class="proj-filter-btn" data-filter="hardware" role="tab" aria-selected="false">
+<span>Hardware &amp; Systems</span><span class="proj-filter-count">5</span>
+</button>
+<button type="button" class="proj-filter-btn" data-filter="apps" role="tab" aria-selected="false">
+<span>Web &amp; Apps</span><span class="proj-filter-count">8</span>
+</button>
+</div>
 <button class="project-toggle-all" id="projectToggleAllBtn" type="button">
 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24">
 <polyline points="6 9 12 15 18 9"></polyline>
@@ -731,7 +748,7 @@
 <div class="projects-grid" id="projectsGrid">
 <h2 class="projects-section-title" id="section-projects">Projects<span class="projects-section-sub">Major,
             minor, and capstone builds + coursework and archived projects</span></h2>
-<details class="project-card reveal project-card--major" id="p-018">
+<details class="project-card reveal project-card--major" id="p-018" data-category="aiml">
 <summary class="project-summary">
 <div class="project-index">P — 018 <span class="project-status">In Progress</span></div>
 <h3 class="project-title">BiasAperture — Vision Fairness &amp; Bias Audit</h3>
@@ -763,7 +780,7 @@
 </div>
 </div>
 </details>
-<details class="project-card reveal project-card--gold" id="p-001">
+<details class="project-card reveal project-card--gold" id="p-001" data-category="embedded hardware">
 <summary class="project-summary">
 <div class="project-index">P — 001 <span class="project-date">2024</span></div>
 <h3 class="project-title">Gesture-Controlled Self-Balancing Robot</h3>
@@ -799,7 +816,7 @@
 </div>
 </div>
 </details>
-<details class="project-card reveal project-card--major" id="p-015">
+<details class="project-card reveal project-card--major" id="p-015" data-category="embedded hardware aiml">
 <summary class="project-summary">
 <div class="project-index">P — 015 <span class="project-status">In Progress</span></div>
 <h3 class="project-title">SPARK — Two-Layer Fall Detection Wearable</h3>
@@ -832,7 +849,7 @@
 </div>
 </div>
 </details>
-<details class="project-card reveal" id="p-013">
+<details class="project-card reveal" id="p-013" data-category="hardware">
 <summary class="project-summary">
 <div class="project-index">P — 013 <span class="project-date">Jun 2026</span></div>
 <h3 class="project-title">Antenna Lab Data Analysis</h3>
@@ -850,7 +867,7 @@
 </div>
 </div>
 </details>
-<details class="project-card reveal" id="p-012">
+<details class="project-card reveal" id="p-012" data-category="hardware">
 <summary class="project-summary">
 <div class="project-index">P — 012 <span class="project-date">Jun 2026</span></div>
 <h3 class="project-title">Custom Processor FSM Design</h3>
@@ -868,7 +885,7 @@
 </div>
 </div>
 </details>
-<details class="project-card reveal project-card--archived" id="p-010">
+<details class="project-card reveal project-card--archived" id="p-010" data-category="embedded hardware">
 <summary class="project-summary">
 <div class="project-index">P — 010 <span class="project-status">Archived</span> <span class="project-date">Jun 2026</span></div>
 <h3 class="project-title">PrakopNet — Multi-Hazard Early Warning System</h3>
@@ -889,7 +906,7 @@
 </details>
 <h2 class="projects-section-title" id="section-fuseaif">Fuse AIF<span class="projects-section-sub">Fusemachines
             AI Fellowship — weekly coursework</span></h2>
-<details class="project-card reveal project-card--major" id="p-030">
+<details class="project-card reveal project-card--major" id="p-030" data-category="aiml">
 <summary class="project-summary">
 <div class="project-index">P — 030 <span class="project-date">12 Aug 2026</span></div>
 <h3 class="project-title">Fusemachines Wk 14 — Agentic Intent Routing</h3>
@@ -910,7 +927,7 @@
 <a class="project-link" data-payload-link-id="proj-fuse-wk14" rel="noopener" target="_blank">View on GitHub ↗</a>
 </div>
 </details>
-<details class="project-card reveal" id="p-029">
+<details class="project-card reveal" id="p-029" data-category="aiml">
 <summary class="project-summary">
 <div class="project-index">P — 029 <span class="project-date">6 Aug 2026</span></div>
 <h3 class="project-title">Fusemachines Wk 13 — LSTM Text Classification</h3>
@@ -930,7 +947,7 @@
 <a class="project-link" data-payload-link-id="proj-fuse-wk13" rel="noopener" target="_blank">View on GitHub ↗</a>
 </div>
 </details>
-<details class="project-card reveal" id="p-028">
+<details class="project-card reveal" id="p-028" data-category="aiml">
 <summary class="project-summary">
 <div class="project-index">P — 028 <span class="project-date">30 Jul 2026</span></div>
 <h3 class="project-title">Fusemachines Wk 12 — NER for Customer Support</h3>
@@ -950,7 +967,7 @@
 <a class="project-link" data-payload-link-id="proj-fuse-wk12" rel="noopener" target="_blank">View on GitHub ↗</a>
 </div>
 </details>
-<details class="project-card reveal project-card--major" id="p-019">
+<details class="project-card reveal project-card--major" id="p-019" data-category="aiml">
 <summary class="project-summary">
 <div class="project-index">P — 019 <span class="project-date">Jul 2026</span></div>
 <h3 class="project-title">Fusemachines Wk 11 — Vision Transformers</h3>
@@ -972,7 +989,7 @@
               ↗</a>
 </div>
 </details>
-<details class="project-card reveal" id="p-017">
+<details class="project-card reveal" id="p-017" data-category="aiml">
 <summary class="project-summary">
 <div class="project-index">P — 017 <span class="project-date">16 Jul 2026</span></div>
 <h3 class="project-title">Fusemachines Wk 10 — Image Processing</h3>
@@ -995,7 +1012,7 @@
               ↗</a>
 </div>
 </details>
-<details class="project-card reveal" id="p-016">
+<details class="project-card reveal" id="p-016" data-category="aiml">
 <summary class="project-summary">
 <div class="project-index">P — 016 <span class="project-date">9 Jul 2026</span></div>
 <h3 class="project-title">Fusemachines Wk 9 — NEU Steel Defect CNN</h3>
@@ -1016,7 +1033,7 @@
               ↗</a>
 </div>
 </details>
-<details class="project-card reveal" id="p-014">
+<details class="project-card reveal" id="p-014" data-category="aiml">
 <summary class="project-summary">
 <div class="project-index">P — 014 <span class="project-date">1 Jul 2026</span></div>
 <h3 class="project-title">Fusemachines Wk 8 — Forecasting</h3>
@@ -1038,7 +1055,7 @@
               ↗</a>
 </div>
 </details>
-<details class="project-card reveal" id="p-009">
+<details class="project-card reveal" id="p-009" data-category="aiml">
 <summary class="project-summary">
 <div class="project-index">P — 009 <span class="project-date">21 Jun 2026</span></div>
 <h3 class="project-title">Fusemachines Wk 7 — Customer Segmentation</h3>
@@ -1060,7 +1077,7 @@
               ↗</a>
 </div>
 </details>
-<details class="project-card reveal" id="p-008">
+<details class="project-card reveal" id="p-008" data-category="aiml">
 <summary class="project-summary">
 <div class="project-index">P — 008 <span class="project-date">5 Jun 2026</span></div>
 <h3 class="project-title">Fusemachines Wk 6 — Probabilistic Models</h3>
@@ -1081,7 +1098,7 @@
               ↗</a>
 </div>
 </details>
-<details class="project-card reveal" id="p-004">
+<details class="project-card reveal" id="p-004" data-category="aiml">
 <summary class="project-summary">
 <div class="project-index">P — 004 <span class="project-date">28 May 2026</span></div>
 <h3 class="project-title">Fusemachines Wk 4 — Telco Churn &amp; CLV ML Pipeline</h3>
@@ -1102,7 +1119,7 @@
               ↗</a>
 </div>
 </details>
-<details class="project-card reveal" id="p-003">
+<details class="project-card reveal" id="p-003" data-category="aiml">
 <summary class="project-summary">
 <div class="project-index">P — 003 <span class="project-date">31 May 2026</span></div>
 <h3 class="project-title">Fusemachines Wk 5 — Telco Churn Tree-Based Ensemble Pipeline</h3>
@@ -1124,7 +1141,7 @@
               ↗</a>
 </div>
 </details>
-<details class="project-card reveal" id="p-002">
+<details class="project-card reveal" id="p-002" data-category="aiml">
 <summary class="project-summary">
 <div class="project-index">P — 002 <span class="project-date">20 May 2026</span></div>
 <h3 class="project-title">Fusemachines Wk 3 — Text-to-SQL Agentic Pipeline</h3>
@@ -1146,7 +1163,7 @@
               ↗</a>
 </div>
 </details>
-<details class="project-card reveal" id="p-027">
+<details class="project-card reveal" id="p-027" data-category="aiml apps">
 <summary class="project-summary">
 <div class="project-index">P — 027 <span class="project-date">12 May 2026</span></div>
 <h3 class="project-title">Fusemachines Wk 2 — Customer API App</h3>
@@ -1166,7 +1183,7 @@
 <a class="project-link" data-payload-link-id="proj-fuse-wk2" rel="noopener" target="_blank">View on GitHub ↗</a>
 </div>
 </details>
-<details class="project-card reveal" id="p-026">
+<details class="project-card reveal" id="p-026" data-category="aiml">
 <summary class="project-summary">
 <div class="project-index">P — 026 <span class="project-date">30 Apr 2026</span></div>
 <h3 class="project-title">Fusemachines Wk 1 — Cardiac Event Data Wrangling</h3>
@@ -1184,7 +1201,7 @@
 <a class="project-link" data-payload-link-id="proj-fuse-wk1" rel="noopener" target="_blank">View on GitHub ↗</a>
 </div>
 </details>
-<details class="project-card reveal" id="p-025">
+<details class="project-card reveal" id="p-025" data-category="aiml">
 <summary class="project-summary">
 <div class="project-index">P — 025 <span class="project-date">Jul 2026</span></div>
 <h3 class="project-title">ONM Case Study — Fusemachines Inc.</h3>
@@ -1204,7 +1221,7 @@
 </div>
 </details>
 <h2 class="projects-section-title" id="section-personal">Personal Tools &amp; Apps<span class="projects-section-sub">Side projects, utilities, and shipped tools</span></h2>
-<details class="project-card reveal" id="p-021">
+<details class="project-card reveal" id="p-021" data-category="apps">
 <summary class="project-summary">
 <div class="project-index">P — 021 <span class="project-date">Jul 2026</span></div>
 <h3 class="project-title">Claude Desktop Multi-Profile &amp; Sync Utilities</h3>
@@ -1225,7 +1242,7 @@
 <a class="project-link" data-payload-link-id="proj-claude-desktop" data-payload-tier="master" rel="noopener" target="_blank">View on GitHub ↗</a>
 </div>
 </details>
-<details class="project-card reveal" id="p-023">
+<details class="project-card reveal" id="p-023" data-category="apps">
 <summary class="project-summary">
 <div class="project-index">P — 023 <span class="project-date">Jun 2026</span></div>
 <h3 class="project-title">IEEE KEC React Workshop</h3>
@@ -1243,7 +1260,7 @@
 <a class="project-link" data-payload-link-id="proj-react-ws" rel="noopener" target="_blank">View on GitHub ↗</a>
 </div>
 </details>
-<details class="project-card reveal" id="p-022">
+<details class="project-card reveal" id="p-022" data-category="apps aiml">
 <summary class="project-summary">
 <div class="project-index">P — 022 <span class="project-date">Jul 2026</span></div>
 <h3 class="project-title">Cryptarithmetic Solver &amp; API</h3>
@@ -1263,7 +1280,7 @@
 <a class="project-link" data-payload-link-id="proj-crypto" rel="noopener" target="_blank">View on GitHub ↗</a>
 </div>
 </details>
-<details class="project-card reveal" id="p-020">
+<details class="project-card reveal" id="p-020" data-category="apps aiml">
 <summary class="project-summary">
 <div class="project-index">P — 020 <span class="project-date">Jul 2026</span></div>
 <h3 class="project-title">Pulse Live — Real-Time Interactive Polling Platform</h3>
@@ -1284,7 +1301,7 @@
 <a class="project-link" data-payload-link-id="proj-pulselive" rel="noopener" target="_blank">View on GitHub ↗</a>
 </div>
 </details>
-<details class="project-card reveal project-card--in-progress" id="p-011">
+<details class="project-card reveal project-card--in-progress" id="p-011" data-category="apps aiml">
 <summary class="project-summary">
 <div class="project-index">P — 011 <span class="project-status">In Progress</span></div>
 <h3 class="project-title">Nexus — Personal AI Operating System</h3>
@@ -1315,7 +1332,7 @@
               GitHub ↗</a>
 </div>
 </details>
-<details class="project-card reveal" id="p-007">
+<details class="project-card reveal" id="p-007" data-category="apps">
 <summary class="project-summary">
 <div class="project-index">P — 007 <span class="project-date">May 2026</span></div>
 <h3 class="project-title">SysOptimizer — Windows Optimization Tool</h3>
@@ -1333,7 +1350,7 @@
 </div>
 </div>
 </details>
-<details class="project-card reveal" id="p-006">
+<details class="project-card reveal" id="p-006" data-category="aiml embedded">
 <summary class="project-summary">
 <div class="project-index">P — 006 <span class="project-date">May 2026</span></div>
 <h3 class="project-title">Edge AI Stability Detection System</h3>
@@ -1356,7 +1373,7 @@
               GitHub ↗</a>
 </div>
 </details>
-<details class="project-card reveal project-card--in-progress" id="p-005">
+<details class="project-card reveal project-card--in-progress" id="p-005" data-category="apps embedded">
 <summary class="project-summary">
 <div class="project-index">P — 005 <span class="project-status">In Progress</span></div>
 <h3 class="project-title">Alpha Android Super-App</h3>
@@ -1515,7 +1532,54 @@
       syncProjectToggleAllLabel();
     }
 
+    
+    function initProjectFilters() {
+      const filterBar = document.getElementById('projectsFilterBar');
+      const cards = document.querySelectorAll('#projectsGrid details.project-card');
+      const sections = document.querySelectorAll('#projectsGrid .projects-section-title');
+      if (!filterBar || !cards.length) return;
+
+      const btns = filterBar.querySelectorAll('.proj-filter-btn');
+
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.filter;
+          btns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+
+          cards.forEach(card => {
+            const cats = (card.dataset.category || '').split(' ');
+            const match = filter === 'all' || cats.includes(filter);
+            card.style.display = match ? '' : 'none';
+          });
+
+          // Toggle visibility of section headers based on whether they contain visible cards
+          sections.forEach(sec => {
+            let next = sec.nextElementSibling;
+            let hasVisible = false;
+            while (next && !next.classList.contains('projects-section-title')) {
+              if (next.classList.contains('project-card') && next.style.display !== 'none') {
+                hasVisible = true;
+                break;
+              }
+              next = next.nextElementSibling;
+            }
+            sec.style.display = hasVisible ? '' : 'none';
+          });
+
+          if (typeof playAudioCue === 'function') playAudioCue('click');
+          if (typeof triggerHapticFeedback === 'function') triggerHapticFeedback('light');
+          syncProjectToggleAllLabel();
+        });
+      });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
+      initProjectFilters();
       initProjectCardFluidity();
       initProjectToggleAll();
     });

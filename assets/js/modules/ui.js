@@ -921,6 +921,88 @@ const RESUME_DATA = {
   }
 };
 
+function generateResumePlainText(roleKey) {
+  const roleData = RESUME_DATA.roles[roleKey] || RESUME_DATA.roles.all;
+  let lines = [];
+  lines.push(RESUME_DATA.name.toUpperCase());
+  lines.push(roleData.title);
+  lines.push(RESUME_DATA.contact);
+  lines.push('');
+  lines.push('PROFESSIONAL SUMMARY');
+  lines.push('----------------------------------------');
+  lines.push(RESUME_DATA.summary);
+  lines.push('');
+
+  roleData.sections.forEach(sec => {
+    lines.push(sec.title.toUpperCase());
+    lines.push('----------------------------------------');
+    sec.items.forEach(item => {
+      lines.push(item.header);
+      if (item.sub) lines.push(item.sub);
+      if (item.bullets && item.bullets.length) {
+        item.bullets.forEach(b => lines.push(`• ${b}`));
+      }
+      lines.push('');
+    });
+  });
+
+  return lines.join('\n').trim();
+}
+
+function generateResumeMarkdown(roleKey) {
+  const roleData = RESUME_DATA.roles[roleKey] || RESUME_DATA.roles.all;
+  let md = [];
+  md.push(`# ${RESUME_DATA.name}`);
+  md.push(`### ${roleData.title}`);
+  md.push(`**Contact:** ${RESUME_DATA.contact}`);
+  md.push('');
+  md.push(`## Professional Summary`);
+  md.push(RESUME_DATA.summary);
+  md.push('');
+
+  roleData.sections.forEach(sec => {
+    md.push(`## ${sec.title}`);
+    sec.items.forEach(item => {
+      md.push(`### ${item.header}`);
+      if (item.sub) md.push(`*${item.sub}*`);
+      md.push('');
+      if (item.bullets && item.bullets.length) {
+        item.bullets.forEach(b => md.push(`- ${b}`));
+        md.push('');
+      }
+    });
+  });
+
+  return md.join('\n').trim();
+}
+
+function downloadResumeMarkdown(roleKey) {
+  const md = generateResumeMarkdown(roleKey);
+  const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const safeTitle = (RESUME_DATA.roles[roleKey]?.title || 'Master_CV').replace(/[^a-zA-Z0-9]/g, '_');
+  a.href = url;
+  a.download = `Aaradhya_Dev_Tamrakar_Resume_${safeTitle}.md`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('Markdown Resume downloaded!');
+  if (typeof playAudioCue === 'function') playAudioCue('click');
+}
+
+function copyResumePlainText(roleKey) {
+  const text = generateResumePlainText(roleKey);
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('ATS Plain-Text Resume copied to clipboard!');
+    if (typeof playAudioCue === 'function') playAudioCue('chime');
+  }).catch(err => {
+    console.error('Clipboard copy failed:', err);
+    showToast('Failed to copy to clipboard.');
+  });
+}
+
 function openResumeGenerator() {
   let modal = document.getElementById('resumeModalOverlay');
   if (!modal) {
@@ -932,6 +1014,8 @@ function openResumeGenerator() {
     modal.setAttribute('aria-label', 'Tailored ATS Resume Generator');
     document.body.appendChild(modal);
   }
+
+  let currentActiveRole = 'all';
 
   modal.innerHTML = `
     <div class="resume-modal-card">
@@ -955,15 +1039,32 @@ function openResumeGenerator() {
         <div class="resume-preview-sheet" id="resumeSheet"></div>
       </div>
       <div class="resume-modal-footer">
-        <span style="font-family: var(--mono); font-size: 0.72rem; color: var(--muted)">ATS-Optimized Printable Format</span>
-        <button type="button" class="resume-print-btn" id="resumePrintBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
-            <polyline points="6 9 6 2 18 2 18 9"/>
-            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
-            <rect x="6" y="14" width="12" height="8"/>
-          </svg>
-          <span>Print / Save PDF</span>
-        </button>
+        <span style="font-family: var(--mono); font-size: 0.72rem; color: var(--muted)">ATS-Optimized Formats</span>
+        <div class="resume-btn-group">
+          <button type="button" class="resume-action-btn" id="resumeCopyTextBtn" title="Copy standard ATS plain text to clipboard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <span>Copy ATS Text</span>
+          </button>
+          <button type="button" class="resume-action-btn" id="resumeDownloadMdBtn" title="Download resume in Markdown format">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            <span>Download .MD</span>
+          </button>
+          <button type="button" class="resume-print-btn" id="resumePrintBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15">
+              <polyline points="6 9 6 2 18 2 18 9"/>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+              <rect x="6" y="14" width="12" height="8"/>
+            </svg>
+            <span>Print / Save PDF</span>
+          </button>
+        </div>
       </div>
     </div>
   `;
@@ -973,6 +1074,12 @@ function openResumeGenerator() {
   document.getElementById('resumePrintBtn').addEventListener('click', () => {
     document.body.classList.add('printing-resume');
     window.print();
+  });
+  document.getElementById('resumeCopyTextBtn').addEventListener('click', () => {
+    copyResumePlainText(currentActiveRole);
+  });
+  document.getElementById('resumeDownloadMdBtn').addEventListener('click', () => {
+    downloadResumeMarkdown(currentActiveRole);
   });
 
   window.addEventListener('afterprint', () => {
@@ -984,7 +1091,8 @@ function openResumeGenerator() {
     btn.addEventListener('click', () => {
       roleBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      renderTailoredResumePreview(btn.getAttribute('data-role'));
+      currentActiveRole = btn.getAttribute('data-role') || 'all';
+      renderTailoredResumePreview(currentActiveRole);
       if (typeof triggerHapticFeedback === 'function') triggerHapticFeedback('light');
     });
   });
@@ -1041,3 +1149,5 @@ function renderTailoredResumePreview(roleKey) {
 
 window.openResumeGenerator = openResumeGenerator;
 window.closeResumeGenerator = closeResumeGenerator;
+window.downloadResumeMarkdown = downloadResumeMarkdown;
+window.copyResumePlainText = copyResumePlainText;

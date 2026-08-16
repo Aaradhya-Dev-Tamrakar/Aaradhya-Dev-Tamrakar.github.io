@@ -118,6 +118,13 @@ const ACCESS_CONTROL = {
   },
 
   authenticate(passcode, requestedTier = 1) {
+    const now = Date.now();
+    const lockoutUntil = parseInt(sessionStorage.getItem('adt_lockout_until') || '0', 10);
+    if (lockoutUntil > now) {
+      const remainingSec = Math.ceil((lockoutUntil - now) / 1000);
+      return { success: false, error: `Too many failed attempts. Locked out for ${remainingSec}s.` };
+    }
+
     const clean = passcode.trim().toLowerCase();
 
     if (requestedTier === this.TIER_MASTER) {
@@ -125,11 +132,22 @@ const ACCESS_CONTROL = {
     }
 
     if (this.VIP_PASSCODES.includes(clean)) {
+      sessionStorage.removeItem('adt_failed_pass_attempts');
+      sessionStorage.removeItem('adt_lockout_until');
       this.saveSession(this.TIER_VIP, clean);
       return { success: true, tier: this.TIER_VIP, label: 'Higher Tier (VIP)' };
     }
 
-    return { success: false, error: 'Invalid passcode. Please try again.' };
+    let failures = parseInt(sessionStorage.getItem('adt_failed_pass_attempts') || '0', 10) + 1;
+    if (failures >= 5) {
+      const lockDuration = 30 * 1000; // 30s lockout
+      sessionStorage.setItem('adt_lockout_until', (now + lockDuration).toString());
+      sessionStorage.removeItem('adt_failed_pass_attempts');
+      return { success: false, error: '5 invalid attempts. Access locked for 30 seconds.' };
+    } else {
+      sessionStorage.setItem('adt_failed_pass_attempts', failures.toString());
+      return { success: false, error: `Invalid passcode. (${5 - failures} attempt${5 - failures === 1 ? '' : 's'} remaining)` };
+    }
   },
 
   saveSession(tier, passcode) {

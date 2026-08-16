@@ -4,6 +4,15 @@
 
 ## Meta
 
+- **v48 (Update) — Multi-Category Project Filters, ATS Multi-Format Exporter, Offline Contact Queue & Security Hardening.** Shipped comprehensive feature & security upgrades across the site:
+  - **Interactive Multi-Category Project Filters (`projects.html`, `components.css`)**: Added dynamic category filter pill buttons (`All`, `AI/ML & Agentic`, `Robotics & Embedded`, `Hardware & Systems`, `Web & Apps`) with live count badges, smooth card visibility transitions, and intelligent section header toggling. Tagged all 29 project cards with granular `data-category` attributes.
+  - **ATS Resume Multi-Format Exporter (`ui.js`, `components.css`)**: Expanded the Tailored ATS Resume Generator modal with one-click **Copy Plain Text ATS** (`copyResumePlainText`) and **Download Markdown (.md)** (`downloadResumeMarkdown`) capabilities alongside the existing A4 PDF print engine, giving recruiters instant access to machine-readable formats.
+  - **Offline Contact Form Queue & Auto-Sync (`contact.html`, `script.js`)**: Integrated offline message queueing (`queueOfflineContactMessage`) when submitted while offline, with automatic background synchronization (`syncQueuedContactMessages`) upon connection restoration.
+  - **Client-Side Passcode Rate Limiting & Cooldown (`access.js`)**: Implemented progressive brute-force rate limiting with a 30-second lockout timer after 5 consecutive failed passcode attempts.
+  - **Dev Terminal CLI Command Expansion (`terminal.js`)**: Added `goto <page>`, `cv`, `email`, and `filter <cat>` interactive commands with updated terminal help documentation.
+  - **Verification Suite**: Passed `python scripts/verify.py` across all 17 categories with 0 errors and 0 warnings.
+
+
 - **v47 (Update) — Security & Vulnerability Remediation Suite.** Shipped repository-wide security hardening and vulnerability mitigations:
   - **CI/CD Workflow Injection Fix (`stamp-last-commit.yml`)**: Eliminated shell expression injection risk by binding GitHub commit metadata (`github.sha`, `timestamp`, `message`) to step environment variables and serializing `last-commit.json` securely via `jq -n --arg`.
   - **DOM XSS & Attribute Sanitization (`access.js`)**: Sanitized dynamic VIP email list rendering with single-quote escaping (`&#39;`) and replaced inline `onclick` string interpolation with standard event listeners; hardened user avatar rendering against attribute injection.
