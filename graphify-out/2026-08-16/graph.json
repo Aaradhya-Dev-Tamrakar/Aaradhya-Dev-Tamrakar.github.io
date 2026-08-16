@@ -1347,7 +1347,7 @@
       "label": "SEARCH_STATIC_INDEX",
       "file_type": "code",
       "source_file": "assets/js/script.js",
-      "source_location": "L311",
+      "source_location": "L324",
       "_origin": "ast",
       "id": "js_script_search_static_index",
       "community": 0,
@@ -1357,7 +1357,7 @@
       "label": "bootSite()",
       "file_type": "code",
       "source_file": "assets/js/script.js",
-      "source_location": "L786",
+      "source_location": "L799",
       "_origin": "ast",
       "id": "js_script_bootsite",
       "community": 0,
@@ -1367,7 +1367,7 @@
       "label": "initServiceWorker()",
       "file_type": "code",
       "source_file": "assets/js/script.js",
-      "source_location": "L838",
+      "source_location": "L851",
       "_origin": "ast",
       "id": "js_script_initserviceworker",
       "community": 0,
@@ -1377,7 +1377,7 @@
       "label": "initReadingProgressBar()",
       "file_type": "code",
       "source_file": "assets/js/script.js",
-      "source_location": "L848",
+      "source_location": "L861",
       "_origin": "ast",
       "id": "js_script_initreadingprogressbar",
       "community": 0,
@@ -1387,7 +1387,7 @@
       "label": "initNetworkStatusListeners()",
       "file_type": "code",
       "source_file": "assets/js/script.js",
-      "source_location": "L863",
+      "source_location": "L876",
       "_origin": "ast",
       "id": "js_script_initnetworkstatuslisteners",
       "community": 0,
@@ -1397,7 +1397,7 @@
       "label": "syncQueuedContactMessages()",
       "file_type": "code",
       "source_file": "assets/js/script.js",
-      "source_location": "L873",
+      "source_location": "L886",
       "_origin": "ast",
       "id": "js_script_syncqueuedcontactmessages",
       "community": 0,
@@ -1407,7 +1407,7 @@
       "label": "queueOfflineContactMessage()",
       "file_type": "code",
       "source_file": "assets/js/script.js",
-      "source_location": "L906",
+      "source_location": "L919",
       "_origin": "ast",
       "id": "js_script_queueofflinecontactmessage",
       "community": 0,
@@ -2704,24 +2704,24 @@
       "norm_label": "portfoliowebsite_tracker.md"
     },
     {
-      "label": "Portfolio Website Tracker \u2014 v47",
+      "label": "Portfolio Website Tracker \u2014 v48",
       "file_type": "document",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
+      "id": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
       "community": 4,
-      "norm_label": "portfolio website tracker \u2014 v47"
+      "norm_label": "portfolio website tracker \u2014 v48"
     },
     {
-      "label": "\\_Last updated",
+      "label": "_Last updated: 2026-08-16_",
       "file_type": "document",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L3",
       "_origin": "ast",
-      "id": "dev_logs_portfoliowebsite_tracker_last_updated",
+      "id": "dev_logs_portfoliowebsite_tracker_last_updated_2026_08_16",
       "community": 4,
-      "norm_label": "\\_last updated"
+      "norm_label": "_last updated: 2026-08-16_"
     },
     {
       "label": "Meta",
@@ -9797,19 +9797,19 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker",
-      "target": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47"
+      "target": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L124",
+      "source_location": "L163",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_evidence_verification_log_v20_additions"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_evidence_verification_log_v20_additions",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -9817,9 +9817,9 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L3",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_last_updated"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_last_updated_2026_08_16",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -9827,199 +9827,199 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_meta"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_meta",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L103",
+      "source_location": "L142",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_state_of_play"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_state_of_play",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L135",
+      "source_location": "L174",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v21_addition_both_v20_flagged_unmatched_pdfs_closed_out"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_v21_addition_both_v20_flagged_unmatched_pdfs_closed_out",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L143",
+      "source_location": "L182",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v22_addition_kec_it_club_introduction_to_git_2024_card_closed_no_source_file_available"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_v22_addition_kec_it_club_introduction_to_git_2024_card_closed_no_source_file_available",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L151",
+      "source_location": "L190",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v23_addition_latest_site_refinements_2026_07_18"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_v23_addition_latest_site_refinements_2026_07_18",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L169",
+      "source_location": "L208",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v24_addition_site_optimization_pass_mobile_legend_line_break_fix_2026_07_18"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_v24_addition_site_optimization_pass_mobile_legend_line_break_fix_2026_07_18",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L220",
+      "source_location": "L259",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v25_addition_bug_check_sweep_pages_1_3_4_2026_07_27"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_v25_addition_bug_check_sweep_pages_1_3_4_2026_07_27",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L246",
+      "source_location": "L285",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v26_addition_bug_check_sweep_page_2_about_2026_07_27"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_v26_addition_bug_check_sweep_page_2_about_2026_07_27",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L270",
+      "source_location": "L309",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v28_addition_site_wide_bug_audit_structural_hardening_pass_2026_08_04"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_v28_addition_site_wide_bug_audit_structural_hardening_pass_2026_08_04",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L284",
+      "source_location": "L323",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v29_addition_site_wide_performance_pwa_seo_styling_upgrades_2026_08_04"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_v29_addition_site_wide_performance_pwa_seo_styling_upgrades_2026_08_04",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L298",
+      "source_location": "L337",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v30_addition_pwa_service_worker_skip_links_font_preconnects_content_visibility_optimization_expanded_verification_2026_08_04"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_v30_addition_pwa_service_worker_skip_links_font_preconnects_content_visibility_optimization_expanded_verification_2026_08_04",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L324",
+      "source_location": "L363",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v31_1_addition_interactive_what_s_new_major_commit_showcase_journey_nodes_2026_08_04"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_v31_1_addition_interactive_what_s_new_major_commit_showcase_journey_nodes_2026_08_04",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L311",
+      "source_location": "L350",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v31_addition_url_hash_filter_sync_screen_reader_accessibility_pwa_v31_cache_bump_seo_verification_2026_08_04"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_v31_addition_url_hash_filter_sync_screen_reader_accessibility_pwa_v31_cache_bump_seo_verification_2026_08_04",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L336",
+      "source_location": "L375",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v32_addition_pwa_offline_resilience_reading_progress_bar_3d_card_tilt_journey_node_j_028_2026_08_04"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_v32_addition_pwa_offline_resilience_reading_progress_bar_3d_card_tilt_journey_node_j_028_2026_08_04",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L349",
+      "source_location": "L388",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v33_addition_interactive_dev_terminal_cmdk_filter_pills_cursor_light_trail_journey_node_j_029_2026_08_04"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_v33_addition_interactive_dev_terminal_cmdk_filter_pills_cursor_light_trail_journey_node_j_029_2026_08_04",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L362",
+      "source_location": "L401",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v34_addition_mobile_touch_ux_ios_safe_area_web_haptics_suite_journey_node_j_030_2026_08_08"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_v34_addition_mobile_touch_ux_ios_safe_area_web_haptics_suite_journey_node_j_030_2026_08_08",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L376",
+      "source_location": "L415",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v35_addition_motion_typed_captions_count_up_counters_view_transitions_journey_node_j_031_2026_08_08"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_v35_addition_motion_typed_captions_count_up_counters_view_transitions_journey_node_j_031_2026_08_08",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L392",
+      "source_location": "L431",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v36_addition_visual_polish_performance_skill_matrix_mobile_ux_suite_journey_node_j_032_2026_08_08"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_v36_addition_visual_polish_performance_skill_matrix_mobile_ux_suite_journey_node_j_032_2026_08_08",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L408",
+      "source_location": "L447",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v37_addition_guided_cross_page_site_tour_with_spotlight_overlay_journey_node_j_033_2026_08_08"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_v37_addition_guided_cross_page_site_tour_with_spotlight_overlay_journey_node_j_033_2026_08_08",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
-      "source_location": "L419",
+      "source_location": "L458",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v47",
-      "target": "dev_logs_portfoliowebsite_tracker_v38_addition_web_audio_micro_sounds_reading_metrics_live_result_indicators_verification_suite_journey_node_j_034_2026_08_08"
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v48",
+      "target": "dev_logs_portfoliowebsite_tracker_v38_addition_web_audio_micro_sounds_reading_metrics_live_result_indicators_verification_suite_journey_node_j_034_2026_08_08",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -10919,5 +10919,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "72e60b5364f2c28aec5da290ee2513de9b078823"
+  "built_at_commit": "27a6137eb34db24dde76b4e0491f60cd87f52b1c"
 }
