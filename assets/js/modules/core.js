@@ -281,6 +281,12 @@ function renderSiteFooter() {
 
 
 
+function getCurrentPageFile() {
+  const raw = location.pathname.split('/').pop() || 'index.html';
+  if (!raw || raw === '/' || raw === '') return 'index.html';
+  return raw.endsWith('.html') ? raw : (raw + '.html');
+}
+
 /* ── Explore ("quick-nav") grid injection ─────────────────────
    Renders every QUICK_NAV_PAGES entry that's eligible for the
    current page (always-shown pages, plus any showOn-gated page
@@ -291,7 +297,7 @@ function renderSiteFooter() {
 function renderQuickNav() {
   const el = document.getElementById('quickNavGrid');
   if (!el) return;
-  const page = location.pathname.split('/').pop() || 'index.html';
+  const page = getCurrentPageFile();
   const currentIndex = QUICK_NAV_PAGES.findIndex(p => p.file === page);
   const eligible = QUICK_NAV_PAGES.filter(p => !p.showOn || p.showOn.includes(page));
 
@@ -325,9 +331,11 @@ function renderQuickNav() {
 /* ── Active nav link (page-level, not anchor) ─────────────── */
 function setActiveNav() {
   // Match current page filename against each nav link's href
-  const page = location.pathname.split('/').pop() || 'index.html';
+  const page = getCurrentPageFile();
   document.querySelectorAll('.nav-links a, .nav-drawer a, .nav-cta').forEach(a => {
-    const linkPage = (a.getAttribute('href') || '').split('/').pop().split('#')[0] || 'index.html';
+    let linkPage = (a.getAttribute('href') || '').split('/').pop().split('#')[0] || 'index.html';
+    if (!linkPage || linkPage === '/' || linkPage === '') linkPage = 'index.html';
+    if (!linkPage.endsWith('.html')) linkPage += '.html';
     const isCurrent = linkPage === page;
     a.classList.toggle('active', isCurrent);
     if (isCurrent) {

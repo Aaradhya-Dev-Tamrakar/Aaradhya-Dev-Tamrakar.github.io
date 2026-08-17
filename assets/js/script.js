@@ -828,6 +828,7 @@ function bootSite() {
   if (typeof initAudioCues === 'function') initAudioCues();
   if (typeof initReadingMetrics === 'function') initReadingMetrics();
   if (typeof initFilterCountIndicators === 'function') initFilterCountIndicators();
+  if (typeof initSkillRadar === 'function') initSkillRadar(false);
   if (typeof loadGA4 === 'function') window.addEventListener('load', loadGA4);
 }
 

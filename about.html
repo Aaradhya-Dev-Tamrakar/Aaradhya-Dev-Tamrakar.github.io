@@ -671,10 +671,13 @@
       #about-intro,
       #skills,
       #education,
-      #tools {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-        padding-bottom: 4rem;
+      #tools,
+      #skill-radar,
+      #itinerary,
+      #faq {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+        padding-bottom: 3.5rem;
       }
 
       .about-layout {
@@ -700,6 +703,68 @@
       .edu-card {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #about-intro,
+      #skills,
+      #education,
+      #tools,
+      #skill-radar,
+      #itinerary,
+      #faq {
+        padding-left: 0.85rem;
+        padding-right: 0.85rem;
+        padding-bottom: 2.75rem;
+      }
+
+      .about-bio {
+        font-size: 0.88rem;
+        line-height: 1.65;
+      }
+
+      .skill-card {
+        padding: 1.25rem 1rem;
+      }
+
+      .edu-card {
+        padding: 1.25rem 1rem;
+      }
+
+      .faq-card {
+        padding: 1.2rem 1rem !important;
+      }
+    }
+
+    @media (max-width: 360px) {
+      #about-intro,
+      #skills,
+      #education,
+      #tools,
+      #skill-radar,
+      #itinerary,
+      #faq {
+        padding-left: 0.65rem;
+        padding-right: 0.65rem;
+        padding-bottom: 2.25rem;
+      }
+
+      .about-photo-wrap,
+      .about-stats,
+      .about-cv {
+        max-width: 220px;
+      }
+
+      .tool-chip {
+        font-size: 0.62rem;
+        padding: 0.4rem 0.75rem;
       }
     }
 
@@ -982,7 +1047,7 @@
       </div>
     </section>
 
-    <section id="skill-radar" class="skill-radar-section" aria-label="Interactive Skill Radar" style="padding: 0 3rem 4rem;">
+    <section id="skill-radar" class="skill-radar-section" aria-label="Interactive Skill Radar">
       <div class="section-header reveal">
         <div class="section-num">Radar</div>
         <h2 class="section-title">Domain Competency <em>Radar</em></h2>
@@ -1159,7 +1224,7 @@
       <div class="divider-edge divider-edge--right"></div>
     </div>
 
-    <section id="itinerary" aria-label="Schedule and itinerary" style="padding: 0 3rem 6rem;">
+    <section id="itinerary" aria-label="Schedule and itinerary">
       <div class="section-header reveal">
         <div class="section-num">Schedule</div>
         <h2 class="section-title">What's on the <em>Itinerary</em></h2>
@@ -1214,12 +1279,12 @@
       </p>
     </section>
 
-    <section id="faq" aria-label="Frequently Asked Questions" style="padding: 0 3rem 4rem;">
+    <section id="faq" aria-label="Frequently Asked Questions">
       <div class="section-header reveal">
         <div class="section-num">FAQ</div>
         <h2 class="section-title">Frequently Asked <em>Questions</em></h2>
       </div>
-      <div class="faq-grid reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem;">
+      <div class="faq-grid reveal">
         <div class="faq-card" style="border: 1px solid var(--line); border-radius: 4px; padding: 1.5rem; background: var(--bg2);">
           <h3 style="font-family: var(--serif); font-size: 1.15rem; color: var(--accent); margin-bottom: 0.5rem;">Who is Aaradhya Dev Tamrakar (ADT)?</h3>
           <p style="font-family: var(--sans); font-size: 0.9rem; line-height: 1.6; color: var(--text-dim);">

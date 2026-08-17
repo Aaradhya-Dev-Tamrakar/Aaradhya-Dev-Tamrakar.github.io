@@ -427,18 +427,55 @@
 
     @media (max-width: 900px) {
       #contact {
-        padding: 1.5rem 1.5rem 4rem;
+        padding: 1.5rem 1.25rem 4rem;
       }
 
       .contact-layout {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 2.5rem;
       }
     }
 
     @media (max-width: 768px) {
       .form-row {
         grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #contact {
+        padding: 1rem 0.85rem 3.5rem;
+      }
+
+      .contact-note {
+        font-size: 0.86rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-link {
+        padding: 1rem 0;
+      }
+
+      .contact-link-label {
+        font-size: 1.05rem;
+      }
+
+      .contact-form-wrap {
+        padding: 1.25rem 1rem;
+      }
+
+      .btn-submit {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 360px) {
+      #contact {
+        padding: 0.85rem 0.65rem 3rem;
+      }
+
+      .contact-form-wrap {
+        padding: 1rem 0.75rem;
       }
     }
   </style>

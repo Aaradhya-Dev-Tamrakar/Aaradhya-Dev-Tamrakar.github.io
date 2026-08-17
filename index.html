@@ -840,44 +840,97 @@
 
     @media (max-width: 480px) {
       #hero {
-        padding: 6rem 1rem 3rem;
+        padding: calc(var(--nav-h, 60px) + 1.25rem) 0.85rem 2.5rem;
+        gap: 1.75rem;
       }
 
       .hero-tag {
         font-size: 0.58rem;
-        max-width: calc(100vw - 2rem);
+        max-width: calc(100vw - 1.7rem);
+      }
+
+      .hero-name {
+        font-size: clamp(2rem, 9vw, 2.6rem);
       }
 
       .hero-caption {
-        max-width: calc(100vw - 2rem);
+        max-width: calc(100vw - 1.7rem);
         white-space: normal;
         overflow: visible;
         text-overflow: clip;
         word-break: break-word;
         overflow-wrap: break-word;
+        font-size: 0.82rem;
       }
 
       .hero-actions {
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: stretch;
         gap: 0.6rem;
       }
 
-      .stat-num {
-        font-size: 2.1rem;
+      .hero-actions .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .status-card {
+        padding: 1.1rem 0.9rem;
       }
 
       .status-label {
         flex-wrap: wrap;
-        row-gap: 0.5rem;
+        row-gap: 0.35rem;
       }
 
       .status-clock {
-        margin-left: 1.25rem;
+        margin-left: 0;
+        width: 100%;
       }
 
       .status-item-value {
-        font-size: 0.88rem;
-        max-width: 50%;
+        font-size: 0.82rem;
+        max-width: 60%;
+      }
+
+      #stats {
+        padding: 2.5rem 0.85rem;
+      }
+
+      .stats-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-cell {
+        border-right: none !important;
+        border-bottom: 1px solid var(--line);
+        padding: 1.25rem 0.75rem;
+      }
+
+      .stat-cell:last-child {
+        border-bottom: none;
+      }
+
+      .stat-num {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      #hero {
+        padding: calc(var(--nav-h, 56px) + 1rem) 0.65rem 2rem;
+      }
+
+      .hero-name {
+        font-size: 1.85rem;
+      }
+
+      .status-card {
+        padding: 0.9rem 0.75rem;
+      }
+
+      #stats {
+        padding: 2rem 0.65rem;
       }
     }
 

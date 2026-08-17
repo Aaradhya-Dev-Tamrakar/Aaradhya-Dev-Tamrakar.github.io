@@ -601,24 +601,28 @@ const SKILL_RADAR_DOMAINS = [
 ];
 
 function initRadarCanvas(canvasId, domainSelector) {
-  const canvas = typeof canvasId === 'string' ? document.getElementById(canvasId) : canvasId;
+  const canvas = document.getElementById(canvasId);
   if (!canvas) return;
-
   const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
   const domains = SKILL_RADAR_DOMAINS;
   const numSides = domains.length;
-  const size = 360;
+  const container = canvas.parentElement;
+  const containerWidth = container ? container.clientWidth : 320;
+  const size = Math.min(340, Math.max(240, containerWidth > 0 ? containerWidth : 300));
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
   
   canvas.width = size * dpr;
   canvas.height = size * dpr;
   canvas.style.width = size + 'px';
   canvas.style.height = size + 'px';
+  canvas.style.maxWidth = '100%';
   ctx.scale(dpr, dpr);
 
   const centerX = size / 2;
   const centerY = size / 2;
-  const radius = size * 0.31; // ~112px
+  const radius = size * 0.30;
 
   let activeIndex = 0;
 
@@ -823,13 +827,15 @@ function closeSkillRadarModal() {
   if (typeof playAudioCue === 'function') playAudioCue('close');
 }
 
-function initSkillRadar() {
+function initSkillRadar(shouldScroll) {
   const inlineCanvas = document.getElementById('skillRadarCanvas');
   if (inlineCanvas) {
     initRadarCanvas('skillRadarCanvas', '.radar-domains-list .domain-item');
-    const sec = document.getElementById('skill-radar');
-    if (sec) sec.scrollIntoView({ behavior: 'smooth' });
-  } else {
+    if (shouldScroll) {
+      const sec = document.getElementById('skill-radar');
+      if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+    }
+  } else if (shouldScroll) {
     openSkillRadarModal();
   }
 }
