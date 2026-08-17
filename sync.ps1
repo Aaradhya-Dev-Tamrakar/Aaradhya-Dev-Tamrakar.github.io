@@ -237,7 +237,8 @@ function Show-Diagnostics {
     Write-Host '  Working Tree State:' -ForegroundColor Yellow
     if ($statusShort) {
         $statusShort | ForEach-Object { Write-Host "    $_" -ForegroundColor White }
-    } else {
+    }
+    else {
         Write-Host '    Working tree clean (no uncommitted changes)' -ForegroundColor Green
     }
     Write-Host '==========================================================================' -ForegroundColor Cyan
@@ -400,16 +401,16 @@ function Get-AutoCommitMessage {
     }
     else {
         $hunkContext = $rawDiff |
-            Select-String '^@@.*@@\s*(\S.*)$' |
-            ForEach-Object { $_.Matches[0].Groups[1].Value } |
-            Select-Object -First 1
+        Select-String '^@@.*@@\s*(\S.*)$' |
+        ForEach-Object { $_.Matches[0].Groups[1].Value } |
+        Select-Object -First 1
 
         if (-not $hunkContext) {
             $addedLine = $rawDiff |
-                Select-String '^\+[^+]' |
-                ForEach-Object { $_.Line.Substring(1).Trim() } |
-                Where-Object { $_.Length -gt 0 } |
-                Select-Object -First 1
+            Select-String '^\+[^+]' |
+            ForEach-Object { $_.Line.Substring(1).Trim() } |
+            Where-Object { $_.Length -gt 0 } |
+            Select-Object -First 1
             if ($addedLine) {
                 $snippet = $addedLine
                 if ($snippet.Length -gt 45) { $snippet = $snippet.Substring(0, 45) + "..." }
@@ -553,7 +554,8 @@ if (-not $PushOnly) {
                 Write-Badge "Version" "Auto-incrementing point release for pending updates..." "Cyan" "White"
                 $patchOut = & $pythonExe scripts/site_automation.py bump-patch 2>&1 | Out-String
                 if ($VerboseLog) { Write-Host $patchOut.Trim() -ForegroundColor Gray }
-            } else {
+            }
+            else {
                 Write-Badge "Version" "Ensuring site-wide version consistency from SITE_RELEASES..." "Cyan" "Gray"
                 & $pythonExe scripts/site_automation.py sync-metadata
             }
@@ -574,11 +576,13 @@ if (-not $SkipIndex -and -not $PushOnly) {
             if ($VerboseLog -or $indexOutput -match 'Extracted|updated') {
                 Write-Host $indexOutput.Trim() -ForegroundColor Gray
             }
-        } else {
+        }
+        else {
             Write-Badge "Index" "Warning: Python runtime not detected -- skipping search index extraction." "Yellow" "Yellow"
         }
     }
-} else {
+}
+else {
     if ($SkipIndex) { Write-Badge "Index" "Skipped search index extraction (-SkipIndex set)." "Yellow" "Gray" }
 }
 
@@ -588,10 +592,12 @@ if (-not $SkipGraph -and -not $PushOnly) {
     if ($graphifyCmd) {
         Write-Badge "Graph" "Updating AST knowledge graph (graphify update .)..." "Cyan" "White"
         & $graphifyCmd.Source update .
-    } else {
+    }
+    else {
         Write-Badge "Graph" "Graphify CLI not found in PATH -- skipping graph AST sync." "DarkGray" "Gray"
     }
-} else {
+}
+else {
     if ($SkipGraph) { Write-Badge "Graph" "Skipped knowledge graph update (-SkipGraph set)." "Yellow" "Gray" }
 }
 
@@ -617,11 +623,13 @@ if (-not $SkipVerify -and -not $BypassVerify -and -not $PushOnly) {
             else {
                 Write-Badge "Verify" "All verification checks passed cleanly (0 errors, 0 warnings)." "Green" "Green"
             }
-        } else {
+        }
+        else {
             Write-Badge "Verify" "Warning: Python not detected. Cannot run verification gate." "Yellow" "Yellow"
         }
     }
-} else {
+}
+else {
     if ($SkipVerify -or $BypassVerify) {
         Write-Badge "Verify" "Bypassed verification gate (-SkipVerify / -Force flag set)." "Yellow" "Yellow"
     }
@@ -699,7 +707,8 @@ if ($Message) {
 
         # Step 11: Sync Bot Stamp
         Sync-BotStamp
-    } else {
+    }
+    else {
         Write-Badge "Git" "Skipped remote push (-NoPush flag active). Commit saved locally." "Yellow" "Yellow"
     }
 }
@@ -712,7 +721,8 @@ else {
         Write-Badge "Git" "Pushing unpushed commits to origin main..." "Cyan" "White"
         git push origin main
         Sync-BotStamp
-    } else {
+    }
+    else {
         Write-Badge "Git" "No local working tree changes detected to commit." "DarkGray" "Gray"
     }
 }
