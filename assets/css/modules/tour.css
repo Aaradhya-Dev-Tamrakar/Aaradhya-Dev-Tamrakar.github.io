@@ -339,7 +339,7 @@ body.tour-active .cv-card {
   position: relative !important;
   z-index: 10011 !important;
   outline: 2px solid var(--accent) !important;
-  outline-offset: 6px !important;
+  outline-offset: 8px !important;
   border-radius: 10px !important;
   /* box-shadow scrim removed — it painted at the highlight's z-level (10011)
      and covered the card (inside overlay at 10010), causing double-dimming,

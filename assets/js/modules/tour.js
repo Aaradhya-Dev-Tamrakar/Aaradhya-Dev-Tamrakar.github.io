@@ -33,7 +33,7 @@ const TOUR_STEPS = {
   ],
   'journey.html': [
     { sel: '#page-header', title: 'Engineering Journey', body: 'A 35-node narrative timeline tracing site architecture, commit milestones, and engineering releases.' },
-    { sel: '#j-001', title: 'Milestone Checkpoints', body: 'Expandable checkpoint nodes — press Alt+6 anytime to toggle all timeline nodes at once.' },
+    { sel: '#journeyTrack .journey-card', title: 'Milestone Checkpoints', body: 'Expandable checkpoint nodes — press Alt+6 anytime to toggle all timeline nodes at once.' },
   ],
   'contact.html': [
     { sel: '#contact-intro', title: 'Contact Channels', body: 'Direct communication channels for research, collaborations, internships, and IEEE engagements.' },
@@ -301,24 +301,61 @@ function positionTourCard(target) {
   }
 
   const spaceBelow = window.innerHeight - rect.bottom;
+  const spaceAbove = rect.top;
+  const spaceLeft = rect.left;
+  const spaceRight = window.innerWidth - rect.right;
 
-  let left = rect.left;
-  left = Math.max(16, Math.min(left, window.innerWidth - cardW - 16));
-
-  let top;
+  // 1. Below target
   if (spaceBelow > cardH + 24) {
-    top = rect.bottom + 16;
-  } else if (rect.top > cardH + 24) {
-    top = rect.top - cardH - 16;
-  } else {
-    top = Math.max(16, (window.innerHeight - cardH) / 2);
+    let left = rect.left;
+    left = Math.max(16, Math.min(left, window.innerWidth - cardW - 16));
+    card.style.position = 'fixed';
+    card.style.left = left + 'px';
+    card.style.right = 'auto';
+    card.style.top = (rect.bottom + 16) + 'px';
+    card.style.transform = 'none';
+    return;
   }
 
+  // 2. Above target
+  if (spaceAbove > cardH + 24) {
+    let left = rect.left;
+    left = Math.max(16, Math.min(left, window.innerWidth - cardW - 16));
+    card.style.position = 'fixed';
+    card.style.left = left + 'px';
+    card.style.right = 'auto';
+    card.style.top = (rect.top - cardH - 16) + 'px';
+    card.style.transform = 'none';
+    return;
+  }
+
+  // 3. Side placement (for 2-column layouts like contact.html where vertical space is constrained)
+  if (spaceLeft >= cardW + 24) {
+    let top = Math.max(16, Math.min(rect.top + (rect.height - cardH) / 2, window.innerHeight - cardH - 16));
+    card.style.position = 'fixed';
+    card.style.left = (rect.left - cardW - 20) + 'px';
+    card.style.right = 'auto';
+    card.style.top = top + 'px';
+    card.style.transform = 'none';
+    return;
+  }
+
+  if (spaceRight >= cardW + 24) {
+    let top = Math.max(16, Math.min(rect.top + (rect.height - cardH) / 2, window.innerHeight - cardH - 16));
+    card.style.position = 'fixed';
+    card.style.left = (rect.right + 20) + 'px';
+    card.style.right = 'auto';
+    card.style.top = top + 'px';
+    card.style.transform = 'none';
+    return;
+  }
+
+  // 4. Centered fallback
   card.style.position = 'fixed';
-  card.style.left = left + 'px';
+  card.style.left = '50%';
+  card.style.top = '50%';
   card.style.right = 'auto';
-  card.style.top = top + 'px';
-  card.style.transform = 'none';
+  card.style.transform = 'translate(-50%, -50%)';
 }
 
 function closeTourOverlay() {
