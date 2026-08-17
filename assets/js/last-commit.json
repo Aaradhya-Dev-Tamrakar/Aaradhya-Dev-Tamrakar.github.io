@@ -1,6 +1,6 @@
 {
-  "sha": "b45da6ddeb09cb9aad014028d9e4c22eed05ef8f",
-  "shortSha": "b45da6d",
-  "date": "2026-08-17T08:38:11+05:45",
-  "message": "fix(sync): enforce markdownlint MD009 and MD026 compliance in tracker and sync pipeline"
+  "sha": "6d3f751536b6be9e6e04039a21dd0438b6d73161",
+  "shortSha": "6d3f751",
+  "date": "2026-08-17T08:39:21+05:45",
+  "message": "fix(sync): fix PowerShell variable interpolation in tracker timestamp and add markdown hygiene gate"
 }
