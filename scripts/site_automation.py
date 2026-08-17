@@ -204,7 +204,7 @@ def sync_metadata(version_tag=None):
         today_ymd = datetime.date.today().strftime("%Y-%m-%d")
         tr_text = TRACKER_MD.read_text(encoding="utf-8")
         new_tr = re.sub(r"# Portfolio Website Tracker\s*—\s*v[\d.]+", f"# Portfolio Website Tracker — {clean_v}", tr_text)
-        new_tr = re.sub(r"(?m)^(?:##\s*)?\\?[_*]?Last updated.*$", f"_Last updated: {today_ymd}_", new_tr)
+        new_tr = re.sub(r"(?m)^(?:##\s*)?\\?[_*]?Last updated.*$", f"Last updated: _{today_ymd}_", new_tr)
         clean_lines = [line.rstrip() for line in new_tr.splitlines()]
         new_tr = "\n".join(clean_lines) + "\n"
         TRACKER_MD.write_text(new_tr, encoding="utf-8")
@@ -291,7 +291,7 @@ def update_tracker(version, title, highlights):
             new_content = content[:insert_pos] + entry + content[insert_pos:]
             
             new_content = re.sub(r"# Portfolio Website Tracker\s*—\s*v[\d.]+", f"# Portfolio Website Tracker — {version}", new_content)
-            new_content = re.sub(r"(?m)^(?:##\s*)?\\?[_*]?Last updated.*$", f"_Last updated: {today}_", new_content)
+            new_content = re.sub(r"(?m)^(?:##\s*)?\\?[_*]?Last updated.*$", f"Last updated: _{today}_", new_content)
             clean_lines = [line.rstrip() for line in new_content.splitlines()]
             new_content = "\n".join(clean_lines) + "\n"
             

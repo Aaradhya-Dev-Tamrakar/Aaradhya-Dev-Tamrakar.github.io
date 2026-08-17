@@ -464,8 +464,8 @@ function Update-TrackerLog {
     $content = $cleanLines -join "`n"
 
     # Support all variations: ## _Last updated..._, _Last updated..._, *Last updated...*, ## Last Updated...
-    # Formats as clean italic subtitle `_Last updated: YYYY-MM-DD_` without heading colons (MD026) or trailing spaces (MD009)
-    $formattedDate = "_Last updated: $($todayDate)_"
+    # Formats as clean subtitle `Last updated: _YYYY-MM-DD_` without heading colons (MD026), trailing spaces (MD009), or full emphasis (MD036)
+    $formattedDate = "Last updated: _$($todayDate)_"
     if ($content -match '(?m)^(?:##\s*)?\\?[_*]?Last updated.*$') {
         $content = [regex]::Replace($content, '(?m)^(?:##\s*)?\\?[_*]?Last updated.*$', $formattedDate)
     }

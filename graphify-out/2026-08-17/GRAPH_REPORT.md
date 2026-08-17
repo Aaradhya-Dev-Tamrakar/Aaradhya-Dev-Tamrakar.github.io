@@ -1,16 +1,16 @@
 # Graph Report - Aaradhya-Dev-Tamrakar.github.io  (2026-08-17)
 
 ## Corpus Check
-- 25 files · ~283,169 words
+- 25 files · ~283,268 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 457 nodes · 630 edges · 85 communities (24 shown, 61 thin omitted)
+- 458 nodes · 631 edges · 85 communities (24 shown, 61 thin omitted)
 - Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 56 edges (avg confidence: 0.81)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b462bee2`
+- Built from commit: `dc4a48dc`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -103,7 +103,7 @@
 ## God Nodes (most connected - your core abstractions)
 1. `bootSite()` - 33 edges
 2. `main()` - 24 edges
-3. `Portfolio Website Tracker — v49.14` - 22 edges
+3. `Portfolio Website Tracker — v49.15` - 22 edges
 4. `log_pass()` - 18 edges
 5. `log_error()` - 16 edges
 6. `playAudioCue()` - 14 edges
@@ -147,7 +147,7 @@ Nodes (7): IEEE, IEEE KEC Student Branch, Vice Secretary (2025-2026), IEEE Pulch
 
 ### Community 4 - "Community 4"
 Cohesion: 0.08
-Nodes (23): Evidence & Verification Log — v20 additions, Meta, Portfolio Website Tracker — v49.14, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out, v22 addition — KEC IT Club "Introduction to Git" (2024) card: closed, no source file available, v23 addition — latest site refinements (2026-07-18) (+15 more)
+Nodes (23): Evidence & Verification Log — v20 additions, Meta, Portfolio Website Tracker — v49.15, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out, v22 addition — KEC IT Club "Introduction to Git" (2024) card: closed, no source file available, v23 addition — latest site refinements (2026-07-18) (+15 more)
 
 ### Community 5 - "Community 5"
 Cohesion: 0.67
@@ -194,11 +194,11 @@ Cohesion: 0.40
 Nodes (4): File delivery, Local Git Workflow & Auto-Sync (`sync.ps1`), Output constraints (strict), Working conventions for this repo
 
 ### Community 75 - "Community 75"
-Cohesion: 0.17
-Nodes (23): ACCESS_CONTROL, ACCESS_CONTROL_PAYLOADS, addCustomVipEmail(), closeAccessModal(), decryptHexPayload(), getCustomVipEmails(), getDecryptionKey(), getGoogleClientId() (+15 more)
+Cohesion: 0.15
+Nodes (25): ACCESS_CONTROL, ACCESS_CONTROL_PAYLOADS, addCustomVipEmail(), closeAccessModal(), decryptHexPayload(), getCustomVipEmails(), getDecryptionKey(), getGoogleClientId() (+17 more)
 
 ### Community 76 - "Community 76"
-Cohesion: 0.22
+Cohesion: 0.21
 Nodes (16): closeTourOverlay(), ensureTourOverlay(), exitTour(), getTourCurrentPage(), getTourPageUrl(), initTour(), renderTourStep(), startTour() (+8 more)
 
 ### Community 77 - "Community 77"
@@ -218,8 +218,8 @@ Cohesion: 0.33
 Nodes (5): 1. Git Workflow & Automation (CRITICAL — STRICT ENFORCEMENT), 2. Knowledge Graph & Codebase Navigation (Graphify), 3. Operational Rules & Efficiency, Antigravity IDE & Gemini Agent Rules for Portfolio Repository, Commands
 
 ### Community 85 - "Community 85"
-Cohesion: 0.11
-Nodes (26): getAudioContext(), initAudioCues(), playAudioCue(), syncAudioToggleUI(), toggleAudioCues(), closeResumeGenerator(), closeSkillRadarModal(), closeWhatsNewModal() (+18 more)
+Cohesion: 0.12
+Nodes (24): getAudioContext(), initAudioCues(), playAudioCue(), syncAudioToggleUI(), toggleAudioCues(), closeResumeGenerator(), closeSkillRadarModal(), closeWhatsNewModal() (+16 more)
 
 ## Knowledge Gaps
 - **154 isolated node(s):** `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL`, `CMDK_PAGES`, `SITE` (+149 more)
@@ -230,7 +230,7 @@ Nodes (26): getAudioContext(), initAudioCues(), playAudioCue(), syncAudioToggleU
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `bootSite()` connect `Community 0` to `Community 75`, `Community 76`, `Community 85`, `Community 78`?**
-  _High betweenness centrality (0.122) - this node is a cross-community bridge._
+  _High betweenness centrality (0.123) - this node is a cross-community bridge._
 - **Why does `Contact — Aaradhya Dev Tamrakar` connect `Community 2` to `Community 0`?**
   _High betweenness centrality (0.042) - this node is a cross-community bridge._
 - **Are the 29 inferred relationships involving `bootSite()` (e.g. with `initAccessControl()` and `initAudioCues()`) actually correct?**
