@@ -1,6 +1,6 @@
 {
-  "sha": "30c49e20ce42ac293268990ed137406e53a6726c",
-  "shortSha": "30c49e2",
-  "date": "2026-08-17T21:01:08+05:45",
-  "message": "fix(tour): resolve spotlight highlight stacking context for steps 3 and 4"
+  "sha": "7361deaade2d6d7af6dcc185eb4d3b347e5afdc2",
+  "shortSha": "7361dea",
+  "date": "2026-08-17T21:03:58+05:45",
+  "message": "fix(tour): resolve spotlight highlight and positioning for steps 18 and 20"
 }
