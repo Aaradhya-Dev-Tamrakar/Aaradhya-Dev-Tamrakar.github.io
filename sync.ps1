@@ -465,11 +465,12 @@ function Update-TrackerLog {
 
     # Support all variations: ## _Last updated..._, _Last updated..._, *Last updated...*, ## Last Updated...
     # Formats as clean italic subtitle `_Last updated: YYYY-MM-DD_` without heading colons (MD026) or trailing spaces (MD009)
+    $formattedDate = "_Last updated: $($todayDate)_"
     if ($content -match '(?m)^(?:##\s*)?\\?[_*]?Last updated.*$') {
-        $content = [regex]::Replace($content, '(?m)^(?:##\s*)?\\?[_*]?Last updated.*$', "_Last updated: $todayDate_")
+        $content = [regex]::Replace($content, '(?m)^(?:##\s*)?\\?[_*]?Last updated.*$', $formattedDate)
     }
     elseif ($content -match '(?m)^# Portfolio Website Tracker.*$') {
-        $content = [regex]::Replace($content, '(?m)^(# Portfolio Website Tracker.*)$', "`$1`n`n_Last updated: $todayDate_")
+        $content = [regex]::Replace($content, '(?m)^(# Portfolio Website Tracker.*)$', "`$1`n`n$formattedDate")
     }
 
     # Ensure clean single trailing newline
