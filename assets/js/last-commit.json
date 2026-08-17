@@ -1,6 +1,6 @@
 {
-  "sha": "d88e128830d6ca3c4b871f0eb17147a0f8abe03f",
-  "shortSha": "d88e128",
-  "date": "2026-08-17T08:02:40+05:45",
-  "message": "perf(pwa): update script.js, PortfolioWebsite_TRACKER.md +12 more - const SITE_RELEASES = [ (+612/-294)"
+  "sha": "c48623599470b834cf036fbd695ca3ae2331f220",
+  "shortSha": "c486235",
+  "date": "2026-08-17T08:05:48+05:45",
+  "message": "fix(sync): clean up script structure and verify version workflow"
 }
