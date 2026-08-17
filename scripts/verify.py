@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 verify.py — comprehensive structural integrity checker for
-aaradhya-dev-tamrakar.github.io (v49.6)
+aaradhya-dev-tamrakar.github.io (v49.7)
 
 17 check categories covering HTML structure, cross-page links, asset
 references, JS syntax, version consistency, SEO metadata, PWA
@@ -826,7 +826,7 @@ def main():
     args = parser.parse_args()
 
     print(bold("=" * 60))
-    print(bold("  Portfolio Site Verification Suite (v49.6)"))
+    print(bold("  Portfolio Site Verification Suite (v49.7)"))
     print(bold("=" * 60))
     print()
 

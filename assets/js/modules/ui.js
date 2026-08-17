@@ -1033,7 +1033,7 @@ const RESUME_DATA = {
               header: "Personal Developer Portfolio & Web App Platform",
               sub: "Full-Stack Architecture & Design",
               bullets: [
-                "Engineered modular JS architecture across 8 decoupled modules, Service Worker offline caching (PWA v43), and custom CMDK palette."
+                "Engineered modular JS architecture across 8 decoupled modules, Service Worker offline caching (PWA), and custom CMDK palette."
               ]
             }
           ]

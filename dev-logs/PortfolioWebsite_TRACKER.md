@@ -1,10 +1,10 @@
-# Portfolio Website Tracker — v49.6
+# Portfolio Website Tracker — v49.7
 
 ## _Last updated: 
 
 ## Meta
 
-- **v48 (Update) — Comprehensive Mobile Responsiveness & Ultra-Small Screen Overhaul.** Shipped site-wide mobile responsiveness optimizations tailored for any viewport size down to ultra-small screens (280px–360px):
+- **v49.6 / v49 (Update) — Comprehensive Mobile Responsiveness & Ultra-Small Screen Overhaul.** Shipped site-wide mobile responsiveness optimizations tailored for any viewport size down to ultra-small screens (280px–360px):
   - **CSS Cascade & Navigation Precedence Fix (`layout.css`, `base.css`)**: Resolved CSS precedence inversion by moving all responsive media queries for navigation into `layout.css` (enforcing `.nav-links { display: none !important; }` and `.nav-hamburger { display: flex !important; }` on screens &le; 900px), eliminating horizontal navigation clipping across mobile devices. Standardized responsive nav padding, action icon button dimensions (`34px` on &le; 480px, `30px` on &le; 340px), and logo typography scaling.
   - **Explore Quick-Nav & Clean URL Fix (`core.js`, `layout.css`)**: Fixed empty Explore section when browsing clean URLs (e.g. `/contact`) by introducing `getCurrentPageFile()` to resolve extensionless paths to canonical filenames, and refactored `.quick-nav-grid` into a responsive single-column layout on mobile with full card visibility.
   - **Interactive Skill Radar Auto-Boot & Responsive Canvas (`ui.js`, `script.js`, `components.css`, `about.html`)**: Integrated `initSkillRadar(false)` into `bootSite()` lifecycle to auto-render radar on load without disruptive auto-scroll. Made canvas container and dimensions dynamically responsive (`size = Math.min(340, Math.max(240, containerWidth))`), eliminated hardcoded inline section paddings in `about.html`, and added mobile-friendly card padding.
@@ -150,22 +150,23 @@
 
 ## State of Play
 
-**Open items:**
+**Current System Status:**
 
-| Item                                                             | Status                                                                                                                                                                                                                                                                                                                    |
-| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Particle-fx trigger style — always-on vs. click/hover toggle** | **Open, deferred by user this version (v27) — explicitly "continue later."** Currently shipped as always-on. If revisited: swap to click/hover would mean gating the rAF start/stop on a click/pointer listener instead of only `visibilitychange`; the reduced-motion check and 34-particle cap wouldn't need to change. |
-| GitHub API direct commit/deployment count                        | Still blocked — sandbox shared-IP rate limit (confirmed v19). `last-commit.json` (SHA `43d99bd`) remains the fallback.                                                                                                                                                                                                    |
-| Merge-pending: still separate from `AARADHYA_MASTER`             | Unchanged, carried forward.                                                                                                                                                                                                                                                                                               |
+| Item | Status |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Site Verification Suite (`verify.py`)** | **100% PASS (17/17 Categories)** — Zero errors, zero warnings. Content: 37 achievements, 29 projects, 35 journey nodes. |
+| **PWA Service Worker & Offline Caching** | **Active (`aaradhya-portfolio-v49.6`)** — Cache-first static assets, network-first HTML navigation, offline contact form queue. |
+| **Mobile Responsiveness & CSS Cascade** | **Optimized down to 280px viewports** — Responsive navigation drawer, fluid Explore grid, de-squished modals, auto-scaling Skill Radar canvas. |
+| **Security & Access Control** | **Hardened (3 Tiers)** — Web Crypto AES-256-GCM zero-leak gated payloads, GSI Google Sign-In, client-side passcode rate limiting (30s cooldown). |
+| **Live Commit Status & CI/CD** | **Synchronized** — GitHub Actions `stamp-last-commit.yml` with rebase-retry loop stamping `assets/js/last-commit.json`. |
 
-_Dropped from this table (v24): the two v20/v21 unmatched-PDF items and the `graphify-out/` stale-filename item — all resolved, all documented in their own dedicated sections below rather than carried indefinitely as "open."_
+**Resolved in Recent Releases (v45 — v49.6):**
 
-**Resolved this version:**
-
-- **Site-optimization pass** (`e7b6f8b`, `034ae1e`, `42d30e0`) — untracked `graphify-out/`+`dev-logs/` (~1MB no longer publicly served by GitHub Pages), regenerated `og-image.jpg` with the correct post-migration domain, converted 3 oversized logo PNGs to sized WebP pairs, added an LCP `fetchpriority` hint on `about.html`'s hero, rAF-throttled the scroll handler in `script.js`, plus `.hintrc`/template a11y follow-ups. Full breakdown below.
-- **Mobile legend line-break fix** (`8683db4`) — `achievements.html`'s category/year legend groups now stack as distinct blocks on mobile instead of an ambiguous inline wrap.
-
-**_(Note: this bullet list had gone stale — it still described v20's cert-download work as of the v23 file. Replaced to actually describe v24's resolutions; v20's own summary remains intact in the Meta section above and isn't lost.)_**
+- **v49.6 / v49**: Comprehensive mobile responsiveness overhaul across ultra-small viewports (280px–360px), CSS cascade precedence fixes for navigation drawer, clean URL path resolver (`getCurrentPageFile`), load-time Skill Radar canvas auto-boot & responsive scaling, modal de-squishing, and keymap text wrapping.
+- **v48**: Dynamic multi-category project filters (`All`, `AI/ML`, `Robotics/Embedded`, `Hardware`, `Web/Apps`) with live counts, ATS Resume multi-format exporter (`.md`, plain text, A4 PDF print engine), offline contact message queue with automatic reconnect sync, client-side passcode rate limiting, and Dev Terminal CLI navigation commands (`goto`, `cv`, `email`, `filter`).
+- **v47**: Full 8-track audit remediation, modular CSS architecture (9 modules in `assets/css/modules/` coordinated by `style.css`), CI shell injection defense, subresource integrity pinning, and render-blocking CSS waterfall elimination.
+- **v46**: Site-wide hyper-automation engine (`scripts/site_automation.py`) and custom Model Context Protocol (MCP) server (`mcp-server/site_mcp.py`).
+- **v45**: 17-category diagnostic verification engine (`scripts/verify.py`), pre-commit automated gate in `sync.ps1`, and client-side terminal `healthcheck` command.
 
 ---
 

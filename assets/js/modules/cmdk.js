@@ -16,7 +16,7 @@ const CMDK_PAGES = [
   { title: "Interactive Skill Radar Visualizer", href: "javascript:initSkillRadar()" },
   { title: "Guided Site Tour (Shift+T)", href: "javascript:startTour()" },
   { title: "Toggle Audio Micro-Sounds (Shift+A)", href: "javascript:toggleAudioCues()" },
-  { title: "What's New (v47 Major Releases)", href: "javascript:openWhatsNewModal()" },
+  { title: "What's New (Release History)", href: "javascript:openWhatsNewModal()" },
   { title: "Accent Color: Amber Gold (Default 👑)", href: "javascript:applyAccent('gold')" },
   { title: "Accent Color: Cyber Emerald (⚡)", href: "javascript:applyAccent('emerald')" },
   { title: "Accent Color: Electric Violet (🔮)", href: "javascript:applyAccent('violet')" },

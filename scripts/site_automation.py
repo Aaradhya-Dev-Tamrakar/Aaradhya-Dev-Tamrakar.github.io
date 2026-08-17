@@ -13,7 +13,7 @@ Provides automated workflows for:
 Usage:
   python scripts/site_automation.py audit
   python scripts/site_automation.py stats
-  python scripts/site_automation.py sync-metadata --version v47
+  python scripts/site_automation.py sync-metadata --version v49.6
   python scripts/site_automation.py rebuild-index
   python scripts/site_automation.py update-graph
   python scripts/site_automation.py add-project --title "..." --desc "..." --tags "Python,AI"
