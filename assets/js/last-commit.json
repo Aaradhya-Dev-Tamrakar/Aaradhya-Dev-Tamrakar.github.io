@@ -1,6 +1,6 @@
 {
-  "sha": "99170cf34633c027569f7677cbbfc265b1472205",
-  "shortSha": "99170cf",
-  "date": "2026-08-17T20:51:36+05:45",
-  "message": "fix(sync): rename cmdlet to approved verb Format-MarkdownHygiene"
+  "sha": "30c49e20ce42ac293268990ed137406e53a6726c",
+  "shortSha": "30c49e2",
+  "date": "2026-08-17T21:01:08+05:45",
+  "message": "fix(tour): resolve spotlight highlight stacking context for steps 3 and 4"
 }
