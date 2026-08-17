@@ -1,6 +1,6 @@
 {
-  "sha": "fa1422915d9d06e97559e339e7d8001b45bccc50",
-  "shortSha": "fa14229",
-  "date": "2026-08-17T07:52:20+05:45",
-  "message": "chore: update stat-index.json, manifest.json - {\"D:\\\\Aaradhya-Dev-Tamrakar\\\\Aaradhya-Dev-Tam... (+3/-3)"
+  "sha": "1ef46134af3f82cf523f2b2fc33cce90b48dec2d",
+  "shortSha": "1ef4613",
+  "date": "2026-08-17T07:59:51+05:45",
+  "message": "chore(version): unify versioning architecture to Single Source of Truth and auto-propagation"
 }
