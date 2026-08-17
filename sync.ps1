@@ -513,13 +513,16 @@ if ($PullOnly) {
     exit 0
 }
 
-# Step 3: Version Bump & Metadata Sync (if -Version specified)
-if ($Version) {
-    Write-Badge "Version" "Synchronizing version metadata for tag '$Version'..." "Magenta" "White"
+# Step 3: Version Bump & Metadata Sync (Auto-propagates across all site files)
+if (-not $PushOnly) {
     if ($pythonExe -and (Test-Path "scripts/site_automation.py")) {
-        & $pythonExe scripts/site_automation.py sync-metadata --version $Version
-    } else {
-        Write-Badge "Version" "Warning: scripts/site_automation.py or Python not found. Skipping version sync." "Yellow" "Yellow"
+        if ($Version) {
+            Write-Badge "Version" "Synchronizing version metadata for tag '$Version'..." "Magenta" "White"
+            & $pythonExe scripts/site_automation.py sync-metadata --version $Version
+        } else {
+            Write-Badge "Version" "Ensuring site-wide version consistency from SITE_RELEASES..." "Cyan" "Gray"
+            & $pythonExe scripts/site_automation.py sync-metadata
+        }
     }
 }
 

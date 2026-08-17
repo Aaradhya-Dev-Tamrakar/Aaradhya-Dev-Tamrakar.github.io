@@ -132,26 +132,61 @@ def get_site_stats():
     }
 
 
-def sync_metadata(version_tag):
-    """Syncs version tag across sw.js, sitemap.xml, and website files."""
+def sync_metadata(version_tag=None):
+    """Syncs version tag across sw.js, script.js, verify.py, tracker, and sitemap.xml."""
     results = []
     
-    # 1. Update Service Worker Cache Version
+    # 0. Determine version: explicit parameter or auto-read from SITE_RELEASES[0] in script.js
+    if not version_tag and SCRIPT_JS.exists():
+        script_text = SCRIPT_JS.read_text(encoding="utf-8")
+        m = re.search(r"version:\s*['\"](v\d+)['\"]", script_text)
+        if m:
+            version_tag = m.group(1)
+            
+    if not version_tag:
+        version_tag = "v49"
+
+    clean_v = version_tag.lower().strip()
+    if not clean_v.startswith("v"):
+        clean_v = f"v{clean_v}"
+
+    # 1. Update Service Worker Cache Version & Header
     if SW_JS.exists():
         sw_text = SW_JS.read_text(encoding="utf-8")
-        clean_v = version_tag.lower().strip()
-        if not clean_v.startswith("v"):
-            clean_v = f"v{clean_v}"
         cache_name = f"aaradhya-portfolio-{clean_v}"
         new_sw = re.sub(
             r"(CACHE_NAME\s*=\s*['\"])[^'\"]+(['\"])",
             lambda m: f"{m.group(1)}{cache_name}{m.group(2)}",
             sw_text
         )
+        new_sw = re.sub(r"Service Worker.*?\(v\d+\)", f"Service Worker — Aaradhya Dev Tamrakar Portfolio ({clean_v})", new_sw)
         SW_JS.write_text(new_sw, encoding="utf-8")
-        results.append(f"Updated sw.js cache name to '{cache_name}'")
+        results.append(f"Updated sw.js cache name and header to '{clean_v}'")
 
-    # 2. Update sitemap.xml timestamps
+    # 2. Update script.js Header & Dynamic Module Loader
+    if SCRIPT_JS.exists():
+        script_text = SCRIPT_JS.read_text(encoding="utf-8")
+        new_script = re.sub(r"SHARED SCRIPT.*?\(v\d+\)", f"SHARED SCRIPT — aaradhya-dev-tamrakar.github.io ({clean_v})", script_text)
+        new_script = re.sub(r"Dynamic Module Loader\s*\(v\d+\)", f"Dynamic Module Loader ({clean_v})", new_script)
+        SCRIPT_JS.write_text(new_script, encoding="utf-8")
+        results.append(f"Updated script.js headers to '{clean_v}'")
+
+    # 3. Update verify.py
+    if VERIFY_PY.exists():
+        v_text = VERIFY_PY.read_text(encoding="utf-8")
+        new_v = re.sub(r"aaradhya-dev-tamrakar\.github\.io\s*\(v\d+\)", f"aaradhya-dev-tamrakar.github.io ({clean_v})", v_text)
+        new_v = re.sub(r"Portfolio Site Verification Suite\s*\(v\d+\)", f"Portfolio Site Verification Suite ({clean_v})", new_v)
+        VERIFY_PY.write_text(new_v, encoding="utf-8")
+        results.append(f"Updated verify.py suite headers to '{clean_v}'")
+
+    # 4. Update Tracker Header
+    if TRACKER_MD.exists():
+        tr_text = TRACKER_MD.read_text(encoding="utf-8")
+        new_tr = re.sub(r"# Portfolio Website Tracker\s*—\s*v\d+", f"# Portfolio Website Tracker — {clean_v}", tr_text)
+        TRACKER_MD.write_text(new_tr, encoding="utf-8")
+        results.append(f"Updated TRACKER.md title to '{clean_v}'")
+
+    # 5. Update sitemap.xml timestamps
     if SITEMAP_XML.exists():
         today_ymd = datetime.date.today().strftime("%Y-%m-%d")
         site_text = SITEMAP_XML.read_text(encoding="utf-8")
@@ -198,7 +233,7 @@ def main():
     subparsers.add_parser("update-graph", help="Update Graphify AST knowledge graph")
 
     sync_p = subparsers.add_parser("sync-metadata", help="Sync metadata & SW cache version")
-    sync_p.add_argument("--version", required=True, help="Version tag (e.g. v47)")
+    sync_p.add_argument("--version", default=None, help="Version tag (e.g. v49; auto-detected if omitted)")
 
     tracker_p = subparsers.add_parser("update-tracker", help="Add entry to Portfolio Tracker")
     tracker_p.add_argument("--version", required=True, help="Version string (e.g. v47)")
