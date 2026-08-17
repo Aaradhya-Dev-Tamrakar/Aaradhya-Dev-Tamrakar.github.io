@@ -450,7 +450,7 @@ function Get-AutoCommitMessage {
 }
 
 # -----------------------------------------------------------------------------
-# Tracker & Metadata Synchronization
+# Tracker & Metadata Synchronization (Markdownlint MD009/MD026 Compliant)
 # -----------------------------------------------------------------------------
 function Update-TrackerLog {
     $trackerFile = "dev-logs/PortfolioWebsite_TRACKER.md"
@@ -459,11 +459,37 @@ function Update-TrackerLog {
     $todayDate = Get-Date -Format "yyyy-MM-dd"
     $content = Get-Content $trackerFile -Raw -Encoding UTF8
     
-    # Support all _Last updated..._, *Last updated...*, and escaped \_Last updated formats
-    if ($content -match '##\s*\\?[_*]Last updated.*') {
-        $newContent = [regex]::Replace($content, '##\s*\\?[_*]Last updated.*', "## _Last updated: $todayDate_")
-        Set-Content -Path $trackerFile -Value $newContent -NoNewline -Encoding UTF8
-        Write-Badge "Tracker" "Updated $trackerFile timestamp to $todayDate" "Cyan" "Green"
+    # Clean trailing whitespace across all lines to satisfy MD009
+    $cleanLines = ($content -split "\r?\n") | ForEach-Object { $_.TrimEnd() }
+    $content = $cleanLines -join "`n"
+
+    # Support all variations: ## _Last updated..._, _Last updated..._, *Last updated...*, ## Last Updated...
+    # Formats as clean italic subtitle `_Last updated: YYYY-MM-DD_` without heading colons (MD026) or trailing spaces (MD009)
+    if ($content -match '(?m)^(?:##\s*)?\\?[_*]?Last updated.*$') {
+        $content = [regex]::Replace($content, '(?m)^(?:##\s*)?\\?[_*]?Last updated.*$', "_Last updated: $todayDate_")
+    }
+    elseif ($content -match '(?m)^# Portfolio Website Tracker.*$') {
+        $content = [regex]::Replace($content, '(?m)^(# Portfolio Website Tracker.*)$', "`$1`n`n_Last updated: $todayDate_")
+    }
+
+    # Ensure clean single trailing newline
+    $content = $content.TrimEnd() + "`n"
+
+    Set-Content -Path $trackerFile -Value $content -NoNewline -Encoding UTF8
+    Write-Badge "Tracker" "Updated $trackerFile timestamp to $todayDate (MD009/MD026 clean)" "Cyan" "Green"
+}
+
+function Clean-MarkdownHygiene {
+    $mdFiles = @("README.md", "CLAUDE.md", "GEMINI.md", "AGENTS.md", "dev-logs/PortfolioWebsite_TRACKER.md")
+    foreach ($file in $mdFiles) {
+        if (Test-Path $file) {
+            $raw = Get-Content $file -Raw -Encoding UTF8
+            $cleanLines = ($raw -split "\r?\n") | ForEach-Object { $_.TrimEnd() }
+            $cleanContent = ($cleanLines -join "`n").TrimEnd() + "`n"
+            if ($cleanContent -ne $raw) {
+                Set-Content -Path $file -Value $cleanContent -NoNewline -Encoding UTF8
+            }
+        }
     }
 }
 
@@ -712,7 +738,8 @@ if ($WhatIf) {
 }
 
 # Step 10: Stage, Commit, and Push
-# Update tracker timestamp before committing
+# Sanitize markdown formatting (MD009/MD026) and update tracker timestamp
+Clean-MarkdownHygiene
 Update-TrackerLog
 
 Write-Badge "Git" "Staging modified repository assets (git add .)..." "Cyan" "White"

@@ -199,12 +199,16 @@ def sync_metadata(version_tag=None):
         VERIFY_PY.write_text(new_v, encoding="utf-8")
         results.append(f"Updated verify.py suite headers to '{clean_v}'")
 
-    # 4. Update Tracker Header
+    # 4. Update Tracker Header & Timestamp (MD009/MD026 compliant)
     if TRACKER_MD.exists():
+        today_ymd = datetime.date.today().strftime("%Y-%m-%d")
         tr_text = TRACKER_MD.read_text(encoding="utf-8")
         new_tr = re.sub(r"# Portfolio Website Tracker\s*—\s*v[\d.]+", f"# Portfolio Website Tracker — {clean_v}", tr_text)
+        new_tr = re.sub(r"(?m)^(?:##\s*)?\\?[_*]?Last updated.*$", f"_Last updated: {today_ymd}_", new_tr)
+        clean_lines = [line.rstrip() for line in new_tr.splitlines()]
+        new_tr = "\n".join(clean_lines) + "\n"
         TRACKER_MD.write_text(new_tr, encoding="utf-8")
-        results.append(f"Updated TRACKER.md title to '{clean_v}'")
+        results.append(f"Updated TRACKER.md title to '{clean_v}' and timestamp to '{today_ymd}'")
 
     # 5. Update sitemap.xml timestamps
     if SITEMAP_XML.exists():
@@ -287,7 +291,9 @@ def update_tracker(version, title, highlights):
             new_content = content[:insert_pos] + entry + content[insert_pos:]
             
             new_content = re.sub(r"# Portfolio Website Tracker\s*—\s*v[\d.]+", f"# Portfolio Website Tracker — {version}", new_content)
-            new_content = re.sub(r"##\s*\\?[_*]Last updated.*", f"## _Last updated: {today}_", new_content)
+            new_content = re.sub(r"(?m)^(?:##\s*)?\\?[_*]?Last updated.*$", f"_Last updated: {today}_", new_content)
+            clean_lines = [line.rstrip() for line in new_content.splitlines()]
+            new_content = "\n".join(clean_lines) + "\n"
             
             TRACKER_MD.write_text(new_content, encoding="utf-8")
             return {"success": True, "entry": entry.strip()}

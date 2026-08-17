@@ -1,16 +1,16 @@
 # Graph Report - Aaradhya-Dev-Tamrakar.github.io  (2026-08-17)
 
 ## Corpus Check
-- 25 files · ~282,739 words
+- 25 files · ~283,002 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 457 nodes · 629 edges · 85 communities (24 shown, 61 thin omitted)
+- 457 nodes · 630 edges · 85 communities (24 shown, 61 thin omitted)
 - Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 56 edges (avg confidence: 0.81)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b7f40850`
+- Built from commit: `bddeb88a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -103,12 +103,12 @@
 ## God Nodes (most connected - your core abstractions)
 1. `bootSite()` - 33 edges
 2. `main()` - 24 edges
-3. `Portfolio Website Tracker — v49.9` - 23 edges
+3. `Portfolio Website Tracker — v49.10` - 22 edges
 4. `log_pass()` - 18 edges
 5. `log_error()` - 16 edges
 6. `playAudioCue()` - 14 edges
-7. `get_html_files()` - 12 edges
-8. `log_warning()` - 12 edges
+7. `log_warning()` - 13 edges
+8. `get_html_files()` - 12 edges
 9. `aaradhya-dev-tamrakar.github.io` - 10 edges
 10. `showToast()` - 8 edges
 
@@ -147,7 +147,7 @@ Nodes (7): IEEE, IEEE KEC Student Branch, Vice Secretary (2025-2026), IEEE Pulch
 
 ### Community 4 - "Community 4"
 Cohesion: 0.08
-Nodes (24): Evidence & Verification Log — v20 additions, \_Last updated, Meta, Portfolio Website Tracker — v49.9, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out, v22 addition — KEC IT Club "Introduction to Git" (2024) card: closed, no source file available (+16 more)
+Nodes (23): Evidence & Verification Log — v20 additions, Meta, Portfolio Website Tracker — v49.10, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out, v22 addition — KEC IT Club "Introduction to Git" (2024) card: closed, no source file available, v23 addition — latest site refinements (2026-07-18) (+15 more)
 
 ### Community 5 - "Community 5"
 Cohesion: 0.67
@@ -182,11 +182,11 @@ Cohesion: 0.33
 Nodes (5): 1. Git Workflow & Automation (CRITICAL — STRICT ENFORCEMENT), 2. Knowledge Graph & Codebase Navigation (Graphify), 3. Operational Rules & Efficiency, Agent Rules & Workflow Guidelines, Commands
 
 ### Community 71 - "Community 71"
-Cohesion: 0.12
+Cohesion: 0.13
 Nodes (46): bold(), _c(), check_asset_references(), check_cross_page_links(), check_file_sizes(), check_global_id_uniqueness(), check_ids(), check_internal_hrefs() (+38 more)
 
 ### Community 72 - "Community 72"
-Cohesion: 0.33
+Cohesion: 0.29
 Nodes (6): Get-LfsInstalled(), Get-PythonPath(), Show-Diagnostics(), Sync-BotStamp(), Update-TrackerLog(), Write-Badge()
 
 ### Community 74 - "Community 74"
@@ -222,7 +222,7 @@ Cohesion: 0.11
 Nodes (26): getAudioContext(), initAudioCues(), playAudioCue(), syncAudioToggleUI(), toggleAudioCues(), closeResumeGenerator(), closeSkillRadarModal(), closeWhatsNewModal() (+18 more)
 
 ## Knowledge Gaps
-- **155 isolated node(s):** `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL`, `CMDK_PAGES`, `SITE` (+150 more)
+- **154 isolated node(s):** `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL`, `CMDK_PAGES`, `SITE` (+149 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **61 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -236,7 +236,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Are the 29 inferred relationships involving `bootSite()` (e.g. with `initAccessControl()` and `initAudioCues()`) actually correct?**
   _`bootSite()` has 29 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL` to the rest of the system?**
-  _183 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _182 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.06108597285067873 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**

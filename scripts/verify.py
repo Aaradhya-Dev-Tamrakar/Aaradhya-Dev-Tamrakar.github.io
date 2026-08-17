@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 verify.py — comprehensive structural integrity checker for
-aaradhya-dev-tamrakar.github.io (v49.9)
+aaradhya-dev-tamrakar.github.io (v49.10)
 
 17 check categories covering HTML structure, cross-page links, asset
 references, JS syntax, version consistency, SEO metadata, PWA
@@ -493,6 +493,22 @@ def check_version_consistency():
         if m:
             versions["sw.js header"] = m.group(1)
 
+    # TRACKER.md title & timestamp (MD009/MD026 validation)
+    tracker_path = ROOT / "dev-logs" / "PortfolioWebsite_TRACKER.md"
+    if tracker_path.exists():
+        tr_text = tracker_path.read_text(encoding="utf-8")
+        m = re.search(r"# Portfolio Website Tracker\s*—\s*v([\d.]+)", tr_text)
+        if m:
+            versions["TRACKER.md header"] = m.group(1)
+
+        # Check for trailing punctuation in headings (MD026) or dangling Last updated
+        if re.search(r"(?m)^##.*[:;,!?]\s*$", tr_text):
+            log_warning(cat, "TRACKER.md contains headings with trailing punctuation (violates MD026)")
+        
+        # Check for trailing whitespace (MD009)
+        if any(line.rstrip("\r\n") != line.rstrip() for line in tr_text.splitlines()):
+            log_warning(cat, "TRACKER.md contains lines with trailing whitespace (violates MD009)")
+
     unique_versions = set(versions.values())
     if len(unique_versions) == 0:
         log_error(cat, "could not extract any version numbers")
@@ -826,7 +842,7 @@ def main():
     args = parser.parse_args()
 
     print(bold("=" * 60))
-    print(bold("  Portfolio Site Verification Suite (v49.9)"))
+    print(bold("  Portfolio Site Verification Suite (v49.10)"))
     print(bold("=" * 60))
     print()
 
