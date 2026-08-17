@@ -287,7 +287,7 @@ def update_tracker(version, title, highlights):
             new_content = content[:insert_pos] + entry + content[insert_pos:]
             
             new_content = re.sub(r"# Portfolio Website Tracker\s*—\s*v[\d.]+", f"# Portfolio Website Tracker — {version}", new_content)
-            new_content = re.sub(r"## _Last updated: [^_]+_", f"## _Last updated: {today}_", new_content)
+            new_content = re.sub(r"##\s*\\?[_*]Last updated.*", f"## _Last updated: {today}_", new_content)
             
             TRACKER_MD.write_text(new_content, encoding="utf-8")
             return {"success": True, "entry": entry.strip()}

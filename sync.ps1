@@ -249,7 +249,7 @@ function Show-Diagnostics {
 # Smart Commit Message Generation
 # -----------------------------------------------------------------------------
 function Get-AutoCommitMessage {
-    $statusLines = git status --porcelain 2>$null | Where-Object { $_ -notmatch 'assets/js/last-commit.json' }
+    $statusLines = git status --porcelain 2>$null | Where-Object { $_ -notmatch 'assets/js/last-commit\.json' }
     if (-not $statusLines) {
         return $null
     }
@@ -263,6 +263,9 @@ function Get-AutoCommitMessage {
         if ($line.Length -lt 4) { continue }
         $code = $line.Substring(0, 2).Trim()
         $rawPath = $line.Substring(3).Trim().Trim('"')
+        if ($rawPath -match ' -> ') {
+            $rawPath = ($rawPath -split ' -> ')[-1].Trim().Trim('"')
+        }
         $fileName = Split-Path $rawPath -Leaf
         $allPaths += $rawPath
 
@@ -282,54 +285,62 @@ function Get-AutoCommitMessage {
         return $null
     }
 
+    # Filter out auto-generated noise for human-readable summaries
+    $userChanged = $allChanged | Where-Object { $_ -notmatch '^(stat-index\.json|manifest\.json|last-commit\.json)$' }
+    $displayFiles = if ($userChanged.Count -gt 0) { $userChanged } else { $allChanged }
+
     # Determine conventional type and scope from modified filepaths
     $type = "chore"
     $scope = ""
 
-    # Scope detection based on path patterns
-    if ($allPaths | Where-Object { $_ -match '^assets/css/' }) {
+    # Priority scope detection
+    if ($allPaths | Where-Object { $_ -match 'projects\.html' }) {
+        $type = if ($addedFiles -contains 'projects.html') { "feat" } else { "update" }
+        $scope = "projects"
+    }
+    elseif ($allPaths | Where-Object { $_ -match 'achievements\.html' }) {
+        $type = if ($addedFiles -contains 'achievements.html') { "feat" } else { "update" }
+        $scope = "achievements"
+    }
+    elseif ($allPaths | Where-Object { $_ -match 'experience\.html' }) {
+        $type = if ($addedFiles -contains 'experience.html') { "feat" } else { "update" }
+        $scope = "experience"
+    }
+    elseif ($allPaths | Where-Object { $_ -match 'about\.html' }) {
+        $type = if ($addedFiles -contains 'about.html') { "feat" } else { "update" }
+        $scope = "about"
+    }
+    elseif ($allPaths | Where-Object { $_ -match 'contact\.html' }) {
+        $type = if ($addedFiles -contains 'contact.html') { "feat" } else { "update" }
+        $scope = "contact"
+    }
+    elseif ($allPaths | Where-Object { $_ -match 'journey\.html' }) {
+        $type = if ($addedFiles -contains 'journey.html') { "feat" } else { "update" }
+        $scope = "journey"
+    }
+    elseif ($allPaths | Where-Object { $_ -match 'index\.html' }) {
+        $type = if ($addedFiles -contains 'index.html') { "feat" } else { "refactor" }
+        $scope = "home"
+    }
+    elseif ($allPaths | Where-Object { $_ -match '^assets/css/' }) {
         $type = "style"
         $scope = "css"
-    }
-    elseif ($allPaths | Where-Object { $_ -match '^assets/js/modules/' }) {
-        $type = "refactor"
-        $scope = "js"
     }
     elseif ($allPaths | Where-Object { $_ -match '^assets/js/bg-animations\.js' }) {
         $type = "perf"
         $scope = "canvas"
     }
+    elseif ($allPaths | Where-Object { $_ -match '^assets/js/modules/(core|ui|terminal|access|audio|tour|haptics)\.js' }) {
+        $type = "refactor"
+        $scope = "js"
+    }
+    elseif ($allPaths | Where-Object { $_ -match '^assets/js/modules/cmdk\.js' }) {
+        $type = "search"
+        $scope = "index"
+    }
     elseif ($allPaths | Where-Object { $_ -match '^assets/(images|videos|docs|media)/' }) {
         $type = "assets"
         $scope = "media"
-    }
-    elseif ($allPaths | Where-Object { $_ -match 'projects\.html' }) {
-        $type = if ($addedFiles.Count -gt 0) { "feat" } else { "update" }
-        $scope = "projects"
-    }
-    elseif ($allPaths | Where-Object { $_ -match 'achievements\.html' }) {
-        $type = if ($addedFiles.Count -gt 0) { "feat" } else { "update" }
-        $scope = "achievements"
-    }
-    elseif ($allPaths | Where-Object { $_ -match 'experience\.html' }) {
-        $type = if ($addedFiles.Count -gt 0) { "feat" } else { "update" }
-        $scope = "experience"
-    }
-    elseif ($allPaths | Where-Object { $_ -match 'about\.html' }) {
-        $type = if ($addedFiles.Count -gt 0) { "feat" } else { "update" }
-        $scope = "about"
-    }
-    elseif ($allPaths | Where-Object { $_ -match 'contact\.html' }) {
-        $type = if ($addedFiles.Count -gt 0) { "feat" } else { "update" }
-        $scope = "contact"
-    }
-    elseif ($allPaths | Where-Object { $_ -match 'journey\.html' }) {
-        $type = if ($addedFiles.Count -gt 0) { "feat" } else { "update" }
-        $scope = "journey"
-    }
-    elseif ($allPaths | Where-Object { $_ -match 'index\.html' }) {
-        $type = if ($addedFiles.Count -gt 0) { "feat" } else { "refactor" }
-        $scope = "home"
     }
     elseif ($allPaths | Where-Object { $_ -match 'sw\.js' }) {
         $type = "perf"
@@ -355,6 +366,10 @@ function Get-AutoCommitMessage {
         $type = "chore"
         $scope = "sync"
     }
+    elseif ($allPaths | Where-Object { $_ -match '^graphify-out/' }) {
+        $type = "chore"
+        $scope = "graph"
+    }
     elseif ($addedFiles.Count -gt 0) {
         $type = "feat"
     }
@@ -364,12 +379,12 @@ function Get-AutoCommitMessage {
 
     # Summary list of files
     $summary = ""
-    if ($allChanged.Count -le 3) {
-        $summary = $allChanged -join ", "
+    if ($displayFiles.Count -le 3) {
+        $summary = $displayFiles -join ", "
     }
     else {
-        $firstTwo = ($allChanged[0..1]) -join ", "
-        $extraCount = $allChanged.Count - 2
+        $firstTwo = ($displayFiles[0..1]) -join ", "
+        $extraCount = $displayFiles.Count - 2
         $summary = "$firstTwo +$extraCount more"
     }
 
@@ -400,28 +415,35 @@ function Get-AutoCommitMessage {
         $hunkContext = "add trailing newline"
     }
     else {
-        $hunkContext = $rawDiff |
-        Select-String '^@@.*@@\s*(\S.*)$' |
-        ForEach-Object { $_.Matches[0].Groups[1].Value } |
-        Select-Object -First 1
-
-        if (-not $hunkContext) {
-            $addedLine = $rawDiff |
-            Select-String '^\+[^+]' |
-            ForEach-Object { $_.Line.Substring(1).Trim() } |
-            Where-Object { $_.Length -gt 0 } |
+        $hunkMatch = $rawDiff |
+            Select-String '^@@.*@@\s*([a-zA-Z0-9_\-\.\#\s]{3,})$' |
+            ForEach-Object { $_.Matches[0].Groups[1].Value.Trim() } |
             Select-Object -First 1
+
+        if ($hunkMatch) {
+            $hunkContext = $hunkMatch
+        }
+        else {
+            $addedLine = $rawDiff |
+                Select-String '^\+[^+]' |
+                ForEach-Object { $_.Line.Substring(1).Trim() } |
+                Where-Object { $_.Length -gt 0 -and $_ -notmatch '^[\{\}\[\]",\s]+$' -and $_ -notmatch '^[0-9]+$' } |
+                Select-Object -First 1
             if ($addedLine) {
-                $snippet = $addedLine
+                $snippet = $addedLine -replace '[\r\n\t]+', ' ' -replace '["`]', "'"
                 if ($snippet.Length -gt 45) { $snippet = $snippet.Substring(0, 45) + "..." }
-                $hunkContext = $snippet
+                $hunkContext = $snippet.Trim()
             }
         }
     }
 
+    if ($hunkContext) {
+        $hunkContext = $hunkContext -replace '["`]', "'" -replace '[\r\n]', ' '
+    }
+
     $scopeTag = if ($scope) { "($scope)" } else { "" }
 
-    if ($hunkContext) {
+    if ($hunkContext -and $hunkContext.Length -gt 2) {
         return "${type}${scopeTag}: update ${summary} - ${hunkContext}${churn}"
     }
     return "${type}${scopeTag}: update ${summary}${churn}"
@@ -437,9 +459,9 @@ function Update-TrackerLog {
     $todayDate = Get-Date -Format "yyyy-MM-dd"
     $content = Get-Content $trackerFile -Raw -Encoding UTF8
     
-    # Support all _Last updated..._ and *Last updated...* Markdown formats
-    if ($content -match '##\s*[_*]Last updated.*') {
-        $newContent = [regex]::Replace($content, '##\s*[_*]Last updated.*', "## _Last updated: $todayDate_")
+    # Support all _Last updated..._, *Last updated...*, and escaped \_Last updated formats
+    if ($content -match '##\s*\\?[_*]Last updated.*') {
+        $newContent = [regex]::Replace($content, '##\s*\\?[_*]Last updated.*', "## _Last updated: $todayDate_")
         Set-Content -Path $trackerFile -Value $newContent -NoNewline -Encoding UTF8
         Write-Badge "Tracker" "Updated $trackerFile timestamp to $todayDate" "Cyan" "Green"
     }
@@ -451,15 +473,14 @@ function Update-TrackerLog {
 function Sync-BotStamp {
     Write-Badge "BotSync" "Awaiting GitHub Actions stamp bot commit..." "Yellow" "White"
     
-    $maxAttempts = 4
+    $maxAttempts = 5
     $botSynced = $false
 
     for ($attempt = 1; $attempt -le $maxAttempts; $attempt++) {
-        $waitTime = if ($attempt -eq 1) { 3 } else { 2 }
-        Start-Sleep -Seconds $waitTime
+        Start-Sleep -Seconds 3
 
         # Pull silently with autostash
-        $pullOut = git pull --autostash origin main 2>&1 | Out-String
+        $null = git pull --autostash origin main 2>&1
         
         $latestAuthor = git log -1 '--pretty=format:%an' 2>$null
         $latestMsg = git log -1 '--pretty=format:%s' 2>$null
@@ -468,9 +489,6 @@ function Sync-BotStamp {
         if ($latestAuthor -match 'github-actions' -or $latestMsg -match 'stamp last commit') {
             Write-Badge "BotSync" "Synchronized bot stamp commit [$latestSha] '$latestMsg'" "Green" "Green"
             $botSynced = $true
-            break
-        }
-        elseif ($pullOut -match 'Already up to date' -and $attempt -ge 2) {
             break
         }
     }
@@ -507,13 +525,20 @@ $lfsAvailable = Get-LfsInstalled
 
 # Step 1: Clean Bot-Managed File
 Write-Badge "Git" "Resetting uncommitted modifications to assets/js/last-commit.json..." "Cyan" "White"
-git checkout assets/js/last-commit.json 2>$null
+git restore --staged assets/js/last-commit.json 2>$null
+git restore assets/js/last-commit.json 2>$null
+git checkout -- assets/js/last-commit.json 2>$null
 
 # Step 2: Safe Pull Remote Changes
 Write-Badge "Git" "Pulling latest changes from origin main (--autostash)..." "Cyan" "White"
-git pull --autostash origin main
+$pullOut = git pull --autostash origin main 2>&1 | Out-String
 if ($LASTEXITCODE -ne 0) {
-    Write-Badge "Git" "Warning: Pull returned non-zero exit code. Checking state..." "Yellow" "Yellow"
+    if ($pullOut -match 'CONFLICT|Merge conflict|Automatic merge failed') {
+        Write-Badge "Git" "MERGE CONFLICT DETECTED during pull. Please resolve conflicts before running sync." "Red" "Red"
+        Write-Host $pullOut -ForegroundColor Yellow
+        exit 1
+    }
+    Write-Badge "Git" "Warning: Pull returned non-zero exit code ($LASTEXITCODE). Checking state..." "Yellow" "Yellow"
 }
 
 # Step 2b: Git LFS Synchronization
@@ -642,7 +667,13 @@ if ($PushOnly) {
     if ($LASTEXITCODE -ne 0) {
         Write-Badge "Git" "Push was rejected. Re-pulling with rebase and retrying..." "Yellow" "Yellow"
         git pull --rebase --autostash origin main
-        git push origin main
+        if ($LASTEXITCODE -eq 0) {
+            git push origin main
+        }
+        else {
+            Write-Badge "Git" "Rebase failed. Please resolve conflicts manually." "Red" "Red"
+            exit 1
+        }
     }
     Sync-BotStamp
     $stopwatch.Stop()
@@ -681,16 +712,27 @@ if ($WhatIf) {
 }
 
 # Step 10: Stage, Commit, and Push
-if ($Message) {
-    # Update tracker timestamp before committing
-    Update-TrackerLog
+# Update tracker timestamp before committing
+Update-TrackerLog
 
-    Write-Badge "Git" "Staging modified repository assets (git add .)..." "Cyan" "White"
-    git add .
+Write-Badge "Git" "Staging modified repository assets (git add .)..." "Cyan" "White"
+git add .
 
-    # Ensure local edit to last-commit.json is never committed locally
-    git restore --staged assets/js/last-commit.json 2>$null
-    git checkout assets/js/last-commit.json 2>$null
+# Ensure local edit to last-commit.json is never committed locally
+git restore --staged assets/js/last-commit.json 2>$null
+git restore assets/js/last-commit.json 2>$null
+git checkout -- assets/js/last-commit.json 2>$null
+
+# Check if there are staged changes to commit
+$staged = git diff --cached --name-only 2>$null
+
+if ($staged) {
+    if (-not $Message) {
+        $Message = Get-AutoCommitMessage
+        if (-not $Message) {
+            $Message = "chore: synchronize repository assets and metadata"
+        }
+    }
 
     Write-Badge "Git" "Committing: '$Message'..." "Cyan" "White"
     git commit -m "$Message"
@@ -702,7 +744,13 @@ if ($Message) {
         if ($LASTEXITCODE -ne 0) {
             Write-Badge "Git" "Push rejected (non-fast-forward). Auto-rebasing with autostash..." "Yellow" "Yellow"
             git pull --rebase --autostash origin main
-            git push origin main
+            if ($LASTEXITCODE -eq 0) {
+                git push origin main
+            }
+            else {
+                Write-Badge "Git" "Rebase encountered merge conflicts. Please resolve manually." "Red" "Red"
+                exit 1
+            }
         }
 
         # Step 11: Sync Bot Stamp
@@ -716,14 +764,27 @@ else {
     # Check if there are unpushed commits from previous sessions
     $unpushed = git log origin/main..HEAD --oneline 2>$null
     if ($unpushed -and -not $NoPush) {
-        Write-Badge "Git" "No working tree changes, but found unpushed local commits:" "Cyan" "Yellow"
+        Write-Badge "Git" "Working tree is clean, but found unpushed local commits:" "Cyan" "Yellow"
         $unpushed | ForEach-Object { Write-Host "    $_" -ForegroundColor Gray }
         Write-Badge "Git" "Pushing unpushed commits to origin main..." "Cyan" "White"
         git push origin main
+        
+        if ($LASTEXITCODE -ne 0) {
+            Write-Badge "Git" "Push rejected (non-fast-forward). Auto-rebasing with autostash..." "Yellow" "Yellow"
+            git pull --rebase --autostash origin main
+            if ($LASTEXITCODE -eq 0) {
+                git push origin main
+            }
+            else {
+                Write-Badge "Git" "Rebase encountered merge conflicts. Please resolve manually." "Red" "Red"
+                exit 1
+            }
+        }
+        
         Sync-BotStamp
     }
     else {
-        Write-Badge "Git" "No local working tree changes detected to commit." "DarkGray" "Gray"
+        Write-Badge "Git" "Working tree is clean. No changes to commit or push." "DarkGray" "Gray"
     }
 }
 
