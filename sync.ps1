@@ -24,8 +24,14 @@
     If omitted, an intelligent conventional commit message is auto-generated.
 
 .PARAMETER Version
-    Optional version bump tag (e.g. -v v48). Automatically updates Service Worker
-    cache name in sw.js, sitemap.xml lastmod dates, and tracker header.
+    Optional explicit version tag (e.g. -v v50). Sets exact version and propagates across all files.
+
+.PARAMETER Major
+    Bumps major release integer (e.g. 49 -> 50), prepends release block to SITE_RELEASES,
+    and updates tracker and cache.
+
+.PARAMETER NoBump
+    Suppresses automatic point release increment on routine sync.
 
 .PARAMETER PullOnly
     Safely pull remote changes with --autostash and LFS sync without committing or pushing.
@@ -63,9 +69,12 @@
     Displays this formatted interactive help manual.
 
 .EXAMPLE
-    .\sync.ps1                               # Fully automated: pull, index, graph, verify, commit & push
+    .\sync.ps1                               # Routine sync: auto-increments point version (49.1, 49.2), verifies & pushes
+    .\sync.ps1 -Major                        # Major release bump: 49 -> 50, updates releases & tracker
+    .\sync.ps1 -Major -Title "New Design"    # Major bump with custom title
+    .\sync.ps1 -v v50                        # Explicit version sync
+    .\sync.ps1 -NoBump                       # Sync without incrementing version
     .\sync.ps1 -m "feat(ui): refine radar"   # Custom commit message
-    .\sync.ps1 -v v48                        # Sync version metadata, verify, commit & push
     .\sync.ps1 -PullOnly                     # Safe pull only
     .\sync.ps1 -WhatIf                       # Dry-run preview
     .\sync.ps1 -Status                       # Show repository telemetry
@@ -77,6 +86,15 @@ param (
 
     [Alias("v")]
     [string]$Version,
+
+    [Alias("BumpMajor")]
+    [switch]$Major,
+
+    [switch]$NoBump,
+
+    [string]$Title,
+
+    [string[]]$Highlights,
 
     [switch]$PullOnly,
     [switch]$PushOnly,
@@ -516,10 +534,31 @@ if ($PullOnly) {
 # Step 3: Version Bump & Metadata Sync (Auto-propagates across all site files)
 if (-not $PushOnly) {
     if ($pythonExe -and (Test-Path "scripts/site_automation.py")) {
-        if ($Version) {
+        if ($Major) {
+            Write-Badge "Version" "Bumping to next major release integer..." "Magenta" "White"
+            $majorArgs = @("scripts/site_automation.py", "bump-major")
+            if ($Title) { $majorArgs += @("--title", $Title) }
+            if ($Highlights) { $majorArgs += @("--highlights") + $Highlights }
+            $majorOut = & $pythonExe $majorArgs 2>&1 | Out-String
+            if ($VerboseLog) { Write-Host $majorOut.Trim() -ForegroundColor Gray }
+        }
+        elseif ($Version) {
             Write-Badge "Version" "Synchronizing version metadata for tag '$Version'..." "Magenta" "White"
             & $pythonExe scripts/site_automation.py sync-metadata --version $Version
-        } else {
+        }
+        elseif (-not $NoBump -and -not $WhatIf) {
+            # Auto point bump (e.g. 49.1, 49.2) if local modifications exist
+            $statusCheck = git status --porcelain 2>$null | Where-Object { $_ -notmatch 'last-commit\.json' }
+            if ($statusCheck) {
+                Write-Badge "Version" "Auto-incrementing point release for pending updates..." "Cyan" "White"
+                $patchOut = & $pythonExe scripts/site_automation.py bump-patch 2>&1 | Out-String
+                if ($VerboseLog) { Write-Host $patchOut.Trim() -ForegroundColor Gray }
+            } else {
+                Write-Badge "Version" "Ensuring site-wide version consistency from SITE_RELEASES..." "Cyan" "Gray"
+                & $pythonExe scripts/site_automation.py sync-metadata
+            }
+        }
+        else {
             Write-Badge "Version" "Ensuring site-wide version consistency from SITE_RELEASES..." "Cyan" "Gray"
             & $pythonExe scripts/site_automation.py sync-metadata
         }

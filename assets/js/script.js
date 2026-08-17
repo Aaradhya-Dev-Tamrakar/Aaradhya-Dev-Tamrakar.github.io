@@ -1,10 +1,10 @@
 /* ============================================================
-   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io (v49)
+   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io (v49.1)
    Loaded on every page via <script src="assets/js/script.js">.
    Orchestrates core modules from assets/js/modules/
    ============================================================ */
 
-/* ── Dynamic Module Loader (v49) ───────────────────────────── */
+/* ── Dynamic Module Loader (v49.1) ───────────────────────────── */
 window.__modulesLoadedPromise = (function () {
   const MODULES = [
     'assets/js/modules/core.js',
@@ -48,7 +48,7 @@ window.__modulesLoadedPromise = (function () {
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
   {
-    version: 'v49',
+    version: 'v49.1',
     date: '2026-08-17',
     sha: 'mob49',
     title: 'Comprehensive Mobile Responsiveness & Ultra-Small Screen Overhaul',

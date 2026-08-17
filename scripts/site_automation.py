@@ -132,19 +132,39 @@ def get_site_stats():
     }
 
 
+def get_current_version():
+    """Extracts the latest version string from SITE_RELEASES[0] in script.js."""
+    if SCRIPT_JS.exists():
+        script_text = SCRIPT_JS.read_text(encoding="utf-8")
+        m = re.search(r"version:\s*['\"]v?([\d.]+)['\"]", script_text)
+        if m:
+            return f"v{m.group(1)}"
+    return "v49"
+
+
+def compute_next_version(current_v, bump_type="patch"):
+    """Computes the next point release (patch) or major integer release."""
+    clean = current_v.lower().lstrip("v")
+    parts = clean.split(".")
+    major = int(parts[0]) if parts[0].isdigit() else 49
+    
+    if bump_type == "major":
+        return f"v{major + 1}"
+    
+    # Patch bump: 49 -> 49.1, 49.1 -> 49.2, etc.
+    if len(parts) > 1 and parts[1].isdigit():
+        patch = int(parts[1]) + 1
+    else:
+        patch = 1
+    return f"v{major}.{patch}"
+
+
 def sync_metadata(version_tag=None):
     """Syncs version tag across sw.js, script.js, verify.py, tracker, and sitemap.xml."""
     results = []
     
-    # 0. Determine version: explicit parameter or auto-read from SITE_RELEASES[0] in script.js
-    if not version_tag and SCRIPT_JS.exists():
-        script_text = SCRIPT_JS.read_text(encoding="utf-8")
-        m = re.search(r"version:\s*['\"](v\d+)['\"]", script_text)
-        if m:
-            version_tag = m.group(1)
-            
     if not version_tag:
-        version_tag = "v49"
+        version_tag = get_current_version()
 
     clean_v = version_tag.lower().strip()
     if not clean_v.startswith("v"):
@@ -159,30 +179,30 @@ def sync_metadata(version_tag=None):
             lambda m: f"{m.group(1)}{cache_name}{m.group(2)}",
             sw_text
         )
-        new_sw = re.sub(r"Service Worker.*?\(v\d+\)", f"Service Worker — Aaradhya Dev Tamrakar Portfolio ({clean_v})", new_sw)
+        new_sw = re.sub(r"Service Worker.*?\(v[\d.]+\)", f"Service Worker — Aaradhya Dev Tamrakar Portfolio ({clean_v})", new_sw)
         SW_JS.write_text(new_sw, encoding="utf-8")
         results.append(f"Updated sw.js cache name and header to '{clean_v}'")
 
     # 2. Update script.js Header & Dynamic Module Loader
     if SCRIPT_JS.exists():
         script_text = SCRIPT_JS.read_text(encoding="utf-8")
-        new_script = re.sub(r"SHARED SCRIPT.*?\(v\d+\)", f"SHARED SCRIPT — aaradhya-dev-tamrakar.github.io ({clean_v})", script_text)
-        new_script = re.sub(r"Dynamic Module Loader\s*\(v\d+\)", f"Dynamic Module Loader ({clean_v})", new_script)
+        new_script = re.sub(r"SHARED SCRIPT.*?\(v[\d.]+\)", f"SHARED SCRIPT — aaradhya-dev-tamrakar.github.io ({clean_v})", script_text)
+        new_script = re.sub(r"Dynamic Module Loader\s*\(v[\d.]+\)", f"Dynamic Module Loader ({clean_v})", new_script)
         SCRIPT_JS.write_text(new_script, encoding="utf-8")
         results.append(f"Updated script.js headers to '{clean_v}'")
 
     # 3. Update verify.py
     if VERIFY_PY.exists():
         v_text = VERIFY_PY.read_text(encoding="utf-8")
-        new_v = re.sub(r"aaradhya-dev-tamrakar\.github\.io\s*\(v\d+\)", f"aaradhya-dev-tamrakar.github.io ({clean_v})", v_text)
-        new_v = re.sub(r"Portfolio Site Verification Suite\s*\(v\d+\)", f"Portfolio Site Verification Suite ({clean_v})", new_v)
+        new_v = re.sub(r"aaradhya-dev-tamrakar\.github\.io\s*\(v[\d.]+\)", f"aaradhya-dev-tamrakar.github.io ({clean_v})", v_text)
+        new_v = re.sub(r"Portfolio Site Verification Suite\s*\(v[\d.]+\)", f"Portfolio Site Verification Suite ({clean_v})", new_v)
         VERIFY_PY.write_text(new_v, encoding="utf-8")
         results.append(f"Updated verify.py suite headers to '{clean_v}'")
 
     # 4. Update Tracker Header
     if TRACKER_MD.exists():
         tr_text = TRACKER_MD.read_text(encoding="utf-8")
-        new_tr = re.sub(r"# Portfolio Website Tracker\s*—\s*v\d+", f"# Portfolio Website Tracker — {clean_v}", tr_text)
+        new_tr = re.sub(r"# Portfolio Website Tracker\s*—\s*v[\d.]+", f"# Portfolio Website Tracker — {clean_v}", tr_text)
         TRACKER_MD.write_text(new_tr, encoding="utf-8")
         results.append(f"Updated TRACKER.md title to '{clean_v}'")
 
@@ -195,6 +215,57 @@ def sync_metadata(version_tag=None):
         results.append(f"Updated sitemap.xml timestamps to '{today_ymd}'")
 
     return results
+
+
+def bump_version(bump_type="patch", explicit_version=None, title=None, highlights=None):
+    """Bumps version and propagates across all metadata files."""
+    current_v = get_current_version()
+    
+    if explicit_version:
+        new_v = explicit_version.lower().strip()
+        if not new_v.startswith("v"):
+            new_v = f"v{new_v}"
+    else:
+        new_v = compute_next_version(current_v, bump_type=bump_type)
+
+    actions = [f"Bumping version from {current_v} -> {new_v} ({bump_type})"]
+
+    # 1. Update SITE_RELEASES in script.js
+    if SCRIPT_JS.exists():
+        script_text = SCRIPT_JS.read_text(encoding="utf-8")
+        today = datetime.date.today().strftime("%Y-%m-%d")
+
+        if bump_type == "major" or (explicit_version and not explicit_version.startswith(current_v)):
+            rel_title = title or f"Major Release {new_v}"
+            rel_highlights = highlights or [
+                f"Core updates and architectural improvements for {new_v}",
+                f"PWA & Cache: Bumped Service Worker cache to aaradhya-portfolio-{new_v}"
+            ]
+            hl_json = ",\n".join([f"      {json.dumps(h)}" for h in rel_highlights])
+            clean_sha = f"rel{new_v.replace('.', '').replace('v', '')}"
+            new_block = f"""  {{\n    version: '{new_v}',\n    date: '{today}',\n    sha: '{clean_sha}',\n    title: {json.dumps(rel_title)},\n    highlights: [\n{hl_json}\n    ]\n  }},"""
+            new_script = re.sub(r"(const SITE_RELEASES = \[\s*)", r"\1" + new_block + "\n", script_text, count=1)
+            SCRIPT_JS.write_text(new_script, encoding="utf-8")
+            actions.append(f"Prepended new release block for {new_v} in script.js")
+            
+            # Update Tracker log for major bump
+            update_tracker(new_v, rel_title, rel_highlights)
+        else:
+            new_script = re.sub(r"(const SITE_RELEASES = \[\s*\{\s*version:\s*['\"])[^'\"]+(['\"])",
+                                rf"\g<1>{new_v}\g<2>", script_text, count=1)
+            SCRIPT_JS.write_text(new_script, encoding="utf-8")
+            actions.append(f"Updated SITE_RELEASES[0].version to '{new_v}' in script.js")
+
+    # 2. Sync all metadata
+    sync_results = sync_metadata(new_v)
+    actions.extend(sync_results)
+
+    return {
+        "previous_version": current_v,
+        "new_version": new_v,
+        "bump_type": bump_type,
+        "actions": actions
+    }
 
 
 def update_tracker(version, title, highlights):
@@ -215,7 +286,7 @@ def update_tracker(version, title, highlights):
             insert_pos = header_end + 1
             new_content = content[:insert_pos] + entry + content[insert_pos:]
             
-            new_content = re.sub(r"# Portfolio Website Tracker — v\d+", f"# Portfolio Website Tracker — {version}", new_content)
+            new_content = re.sub(r"# Portfolio Website Tracker\s*—\s*v[\d.]+", f"# Portfolio Website Tracker — {version}", new_content)
             new_content = re.sub(r"## _Last updated: [^_]+_", f"## _Last updated: {today}_", new_content)
             
             TRACKER_MD.write_text(new_content, encoding="utf-8")
@@ -232,11 +303,17 @@ def main():
     subparsers.add_parser("rebuild-index", help="Extract and regenerate search index")
     subparsers.add_parser("update-graph", help="Update Graphify AST knowledge graph")
 
+    subparsers.add_parser("bump-patch", help="Auto-increment point/patch release (e.g. v49.1 -> v49.2)")
+    
+    major_p = subparsers.add_parser("bump-major", help="Bump to next major release (e.g. v49 -> v50)")
+    major_p.add_argument("--title", default=None, help="Title of release")
+    major_p.add_argument("--highlights", nargs="+", default=None, help="List of highlights")
+
     sync_p = subparsers.add_parser("sync-metadata", help="Sync metadata & SW cache version")
     sync_p.add_argument("--version", default=None, help="Version tag (e.g. v49; auto-detected if omitted)")
 
     tracker_p = subparsers.add_parser("update-tracker", help="Add entry to Portfolio Tracker")
-    tracker_p.add_argument("--version", required=True, help="Version string (e.g. v47)")
+    tracker_p.add_argument("--version", required=True, help="Version string (e.g. v49)")
     tracker_p.add_argument("--title", required=True, help="Title of release")
     tracker_p.add_argument("--highlights", nargs="+", required=True, help="List of highlights")
 
@@ -252,6 +329,12 @@ def main():
         print(json.dumps(res, indent=2))
     elif args.command == "update-graph":
         res = update_knowledge_graph()
+        print(json.dumps(res, indent=2))
+    elif args.command == "bump-patch":
+        res = bump_version(bump_type="patch")
+        print(json.dumps(res, indent=2))
+    elif args.command == "bump-major":
+        res = bump_version(bump_type="major", title=args.title, highlights=args.highlights)
         print(json.dumps(res, indent=2))
     elif args.command == "sync-metadata":
         res = sync_metadata(args.version)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 verify.py — comprehensive structural integrity checker for
-aaradhya-dev-tamrakar.github.io (v49)
+aaradhya-dev-tamrakar.github.io (v49.1)
 
 17 check categories covering HTML structure, cross-page links, asset
 references, JS syntax, version consistency, SEO metadata, PWA
@@ -310,7 +310,7 @@ def check_pwa_and_a11y_metadata():
     sw_path = ROOT / "sw.js"
     if sw_path.exists():
         sw_text = sw_path.read_text(encoding="utf-8")
-        if not re.search(r"CACHE_NAME\s*=\s*['\"]aaradhya-portfolio-v\d+['\"]", sw_text):
+        if not re.search(r"CACHE_NAME\s*=\s*['\"]aaradhya-portfolio-v[\d.]+['\"]", sw_text):
             log_error(cat, "sw.js CACHE_NAME missing or malformed")
             all_ok = False
 
@@ -468,7 +468,7 @@ def check_version_consistency():
     # sw.js CACHE_NAME
     if SW_JS.exists():
         sw_text = SW_JS.read_text(encoding="utf-8")
-        m = re.search(r"CACHE_NAME\s*=\s*['\"]aaradhya-portfolio-v(\d+)['\"]", sw_text)
+        m = re.search(r"CACHE_NAME\s*=\s*['\"]aaradhya-portfolio-v([\d.]+)['\"]", sw_text)
         if m:
             versions["sw.js CACHE_NAME"] = m.group(1)
         else:
@@ -477,19 +477,19 @@ def check_version_consistency():
     # script.js header comment
     if SCRIPT_JS.exists():
         script_text = SCRIPT_JS.read_text(encoding="utf-8")
-        m = re.search(r"SHARED SCRIPT.*?\(v(\d+)\)", script_text[:500])
+        m = re.search(r"SHARED SCRIPT.*?\(v([\d.]+)\)", script_text[:500])
         if m:
             versions["script.js header"] = m.group(1)
 
         # SITE_RELEASES[0].version
-        m = re.search(r"version:\s*['\"]v(\d+)['\"]", script_text[:2000])
+        m = re.search(r"version:\s*['\"]v?([\d.]+)['\"]", script_text[:2000])
         if m:
             versions["SITE_RELEASES[0]"] = m.group(1)
 
     # sw.js header comment
     if SW_JS.exists():
         sw_text = SW_JS.read_text(encoding="utf-8")
-        m = re.search(r"Service Worker.*?\(v(\d+)\)", sw_text[:500])
+        m = re.search(r"Service Worker.*?\(v([\d.]+)\)", sw_text[:500])
         if m:
             versions["sw.js header"] = m.group(1)
 
@@ -826,7 +826,7 @@ def main():
     args = parser.parse_args()
 
     print(bold("=" * 60))
-    print(bold("  Portfolio Site Verification Suite (v49)"))
+    print(bold("  Portfolio Site Verification Suite (v49.1)"))
     print(bold("=" * 60))
     print()
 

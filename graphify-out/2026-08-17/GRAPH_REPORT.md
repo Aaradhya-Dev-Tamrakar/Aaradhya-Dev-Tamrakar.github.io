@@ -1,7 +1,7 @@
 # Graph Report - Aaradhya-Dev-Tamrakar.github.io  (2026-08-17)
 
 ## Corpus Check
-- 25 files · ~281,597 words
+- 25 files · ~281,873 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `eab8a759`
+- Built from commit: `ac11d1fe`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -103,7 +103,7 @@
 ## God Nodes (most connected - your core abstractions)
 1. `bootSite()` - 33 edges
 2. `main()` - 24 edges
-3. `Portfolio Website Tracker — v48` - 23 edges
+3. `Portfolio Website Tracker — v49` - 23 edges
 4. `log_pass()` - 18 edges
 5. `log_error()` - 16 edges
 6. `playAudioCue()` - 14 edges
@@ -147,7 +147,7 @@ Nodes (7): IEEE, IEEE KEC Student Branch, Vice Secretary (2025-2026), IEEE Pulch
 
 ### Community 4 - "Community 4"
 Cohesion: 0.08
-Nodes (24): Evidence & Verification Log — v20 additions, \_Last updated, Meta, Portfolio Website Tracker — v48, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out, v22 addition — KEC IT Club "Introduction to Git" (2024) card: closed, no source file available (+16 more)
+Nodes (24): Evidence & Verification Log — v20 additions, \_Last updated, Meta, Portfolio Website Tracker — v49, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out, v22 addition — KEC IT Club "Introduction to Git" (2024) card: closed, no source file available (+16 more)
 
 ### Community 5 - "Community 5"
 Cohesion: 0.67
@@ -203,7 +203,7 @@ Nodes (16): closeTourOverlay(), ensureTourOverlay(), exitTour(), getTourCurrentP
 
 ### Community 77 - "Community 77"
 Cohesion: 0.20
-Nodes (15): audit(), get_site_stats(), main(), Syncs version tag across sw.js, sitemap.xml, and website files., Appends a new version entry to dev-logs/PortfolioWebsite_TRACKER.md., Executes a subprocess command and returns (returncode, stdout, stderr)., Runs the 17-category verification suite from scripts/verify.py., Regenerates search index in assets/js/modules/cmdk.js using extract_index.py. (+7 more)
+Nodes (15): audit(), get_site_stats(), main(), Syncs version tag across sw.js, script.js, verify.py, tracker, and sitemap.xml., Appends a new version entry to dev-logs/PortfolioWebsite_TRACKER.md., Executes a subprocess command and returns (returncode, stdout, stderr)., Runs the 17-category verification suite from scripts/verify.py., Regenerates search index in assets/js/modules/cmdk.js using extract_index.py. (+7 more)
 
 ### Community 78 - "Community 78"
 Cohesion: 0.53
