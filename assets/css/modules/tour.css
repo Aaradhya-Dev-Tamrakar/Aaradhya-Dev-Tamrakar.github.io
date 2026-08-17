@@ -327,12 +327,20 @@
   backdrop-filter: blur(2px);
 }
 
+/* Disable content-visibility containment during active tour so highlighted elements
+   and children are never trapped behind the tour scrim stacking context */
+body.tour-active .cv-auto,
+body.tour-active .content-visibility-auto,
+body.tour-active .cv-card {
+  content-visibility: visible !important;
+}
+
 .tour-highlight {
   position: relative !important;
   z-index: 10011 !important;
-  outline: 2px solid var(--accent);
-  outline-offset: 6px;
-  border-radius: 10px;
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 6px !important;
+  border-radius: 10px !important;
   /* box-shadow scrim removed — it painted at the highlight's z-level (10011)
      and covered the card (inside overlay at 10010), causing double-dimming,
      transparent-looking backgrounds, and unclickable buttons. The .tour-scrim
