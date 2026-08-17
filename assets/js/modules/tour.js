@@ -83,6 +83,46 @@ function getTourCurrentPage() {
   return file;
 }
 
+function updateTourSpotlight(target) {
+  const hole = document.getElementById('tourHoleRect');
+  const frame = document.getElementById('tourSpotlightFrame');
+
+  if (!target || target === document.body) {
+    if (hole) {
+      hole.setAttribute('x', '0');
+      hole.setAttribute('y', '0');
+      hole.setAttribute('width', '0');
+      hole.setAttribute('height', '0');
+    }
+    if (frame) frame.style.display = 'none';
+    return;
+  }
+
+  const r = target.getBoundingClientRect();
+  const pad = 8;
+  const x = Math.max(0, r.left - pad);
+  const y = Math.max(0, r.top - pad);
+  const w = Math.min(window.innerWidth, r.width + pad * 2);
+  const h = Math.min(window.innerHeight, r.height + pad * 2);
+
+  if (hole) {
+    hole.setAttribute('x', String(x));
+    hole.setAttribute('y', String(y));
+    hole.setAttribute('width', String(w));
+    hole.setAttribute('height', String(h));
+    hole.setAttribute('rx', '10');
+    hole.setAttribute('ry', '10');
+  }
+
+  if (frame) {
+    frame.style.display = 'block';
+    frame.style.left = x + 'px';
+    frame.style.top = y + 'px';
+    frame.style.width = w + 'px';
+    frame.style.height = h + 'px';
+  }
+}
+
 function ensureTourOverlay() {
   let overlay = document.getElementById('tourOverlay');
   if (!overlay) {
@@ -92,7 +132,22 @@ function ensureTourOverlay() {
     overlay.setAttribute('role', 'dialog');
     overlay.setAttribute('aria-modal', 'true');
     overlay.setAttribute('aria-label', 'Site tour');
+    overlay.innerHTML = `
+      <div class="tour-scrim">
+        <svg class="tour-mask-svg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <mask id="tourSpotlightMask">
+              <rect x="0" y="0" width="100%" height="100%" fill="white" />
+              <rect id="tourHoleRect" x="0" y="0" width="0" height="0" rx="10" ry="10" fill="black" />
+            </mask>
+          </defs>
+          <rect class="tour-mask-bg" x="0" y="0" width="100%" height="100%" fill="rgba(10, 10, 12, 0.55)" mask="url(#tourSpotlightMask)" />
+        </svg>
+        <div id="tourSpotlightFrame" class="tour-spotlight-frame"></div>
+      </div>`;
     document.body.appendChild(overlay);
+    const bg = overlay.querySelector('.tour-mask-bg');
+    if (bg) bg.addEventListener('click', () => { exitTour(); });
   }
   return overlay;
 }
@@ -162,11 +217,8 @@ function renderTourStep(idx) {
   const isFirst = idx === 0;
   const isLast = idx === TOUR_FLAT_STEPS.length - 1;
 
-  // Scrim lives inside the overlay — inherits its stacking context at z-10010.
-  overlay.innerHTML = `<div class="tour-scrim"></div>`;
-
   // Card is a direct child of <body> so its z-index: 10012 is in the root
-  // stacking context — always above the highlight (10011) and scrim (10010).
+  // stacking context — always above the highlight frame (10011) and scrim (10010).
   let card = document.getElementById('tourCard');
   if (!card) {
     card = document.createElement('div');
@@ -194,7 +246,6 @@ function renderTourStep(idx) {
   document.getElementById('tourCloseBtn').addEventListener('click', () => { exitTour(); });
   document.getElementById('tourNextBtn').addEventListener('click', tourAdvance);
   document.getElementById('tourBackBtn').addEventListener('click', tourBack);
-  overlay.querySelector('.tour-scrim').addEventListener('click', () => { exitTour(); });
 
   document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
   if (target !== document.body) {
@@ -202,11 +253,7 @@ function renderTourStep(idx) {
     target.scrollIntoView({ block: 'center', behavior: tourReducedMotion() ? 'auto' : 'smooth' });
   }
 
-  // scrollIntoView with smooth behavior spans multiple frames — a single
-  // rAF still measures the target mid-scroll, producing a stale rect and
-  // a card positioned/sized against a target that hasn't settled yet.
-  // Wait for two consecutive frames with an unchanged rect (or a hard
-  // cap) before positioning, and use instant scroll under reduced motion.
+  // scrollIntoView with smooth behavior spans multiple frames — wait for two consecutive frames with an unchanged rect.
   const waitForScrollSettle = (cb) => {
     if (tourReducedMotion() || target === document.body) { cb(); return; }
     let last = null, stableFrames = 0, tries = 0;
@@ -225,10 +272,9 @@ function renderTourStep(idx) {
   requestAnimationFrame(() => {
     overlay.classList.add('open');
     waitForScrollSettle(() => {
+      updateTourSpotlight(target);
       positionTourCard(target);
-      // Focus the primary action each render — lands SR users on the new
-      // step content and lets keyboard users glide through by pressing
-      // Enter repeatedly, same as clicking Next each time.
+      // Focus the primary action each render
       const nextBtn = document.getElementById('tourNextBtn');
       if (nextBtn) nextBtn.focus();
     });
@@ -363,11 +409,17 @@ function closeTourOverlay() {
   const overlay = document.getElementById('tourOverlay');
   document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
   if (tourLastFocus) { tourLastFocus.focus(); tourLastFocus = null; }
-  // Toggle .open off only — the node is created once in initTour() and
-  // reused for every open/close cycle (matches openWhatsNewModal's
-  // persistent-node convention). Removing it here would orphan the
-  // swipe-close listener initTouchGestures() attached to this exact node.
+  // Toggle .open off only
   if (overlay) overlay.classList.remove('open');
+  const hole = document.getElementById('tourHoleRect');
+  if (hole) {
+    hole.setAttribute('x', '0');
+    hole.setAttribute('y', '0');
+    hole.setAttribute('width', '0');
+    hole.setAttribute('height', '0');
+  }
+  const frame = document.getElementById('tourSpotlightFrame');
+  if (frame) frame.style.display = 'none';
   // Card now lives outside the overlay — clean it up on close.
   const card = document.getElementById('tourCard');
   if (card) card.remove();
@@ -411,12 +463,18 @@ function initTour() {
     }
   }
 
-  window.addEventListener('resize', () => {
+  const updateActiveSpotlight = () => {
     const overlay = document.getElementById('tourOverlay');
     if (!overlay || !overlay.classList.contains('open')) return;
     const highlighted = document.querySelector('.tour-highlight');
-    positionTourCard(highlighted);
-  });
+    if (highlighted) {
+      updateTourSpotlight(highlighted);
+      positionTourCard(highlighted);
+    }
+  };
+
+  window.addEventListener('resize', updateActiveSpotlight);
+  window.addEventListener('scroll', updateActiveSpotlight, { passive: true });
 
   document.addEventListener('keydown', e => {
     const overlay = document.getElementById('tourOverlay');

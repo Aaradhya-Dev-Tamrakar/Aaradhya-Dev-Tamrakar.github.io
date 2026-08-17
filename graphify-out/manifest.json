@@ -1,7 +1,7 @@
 {
   "assets/js/script.js": {
-    "mtime": 1786979933.0320294,
-    "ast_hash": "9f44bc408926bec669a3e8fc27ac561a",
+    "mtime": 1786980416.7431796,
+    "ast_hash": "79230d612513284bacf10bbdf35b1816",
     "semantic_hash": ""
   },
   "AGENTS.md": {
@@ -55,8 +55,8 @@
     "semantic_hash": ""
   },
   "assets/js/last-commit.json": {
-    "mtime": 1786979788.1745913,
-    "ast_hash": "7bb651b54ceaf98a2ba8c2137c6feb40",
+    "mtime": 1786979957.9561622,
+    "ast_hash": "e6a2b385212c773191565d71543f8e89",
     "semantic_hash": ""
   },
   "dev-logs/achievements/achievements-inline-script.js": {
@@ -595,8 +595,8 @@
     "semantic_hash": ""
   },
   "dev-logs/PortfolioWebsite_TRACKER.md": {
-    "mtime": 1786979933.035028,
-    "ast_hash": "24ac3eccc634fb81a61a4d354124380f",
+    "mtime": 1786980416.749685,
+    "ast_hash": "39dc2fa3dccc287c877a1c938c617df4",
     "semantic_hash": ""
   },
   "scripts/dev-serve.py": {
@@ -665,8 +665,8 @@
     "semantic_hash": ""
   },
   "scripts/verify.py": {
-    "mtime": 1786979933.0330286,
-    "ast_hash": "d6b126b15eea71a9f00aecca81c47054",
+    "mtime": 1786980416.7451808,
+    "ast_hash": "6032d9b8dfe23d3f0293786224a4676a",
     "semantic_hash": ""
   },
   "assets/certificates/AI-Fluency_Foundations_of_Coworking_with_AI.pdf": {
@@ -685,8 +685,8 @@
     "semantic_hash": ""
   },
   "sw.js": {
-    "mtime": 1786979932.9369743,
-    "ast_hash": "5d4cfcf76cee2ce7ca7b5a9d5c2074bc",
+    "mtime": 1786980416.6676078,
+    "ast_hash": "a639136580ff6c098c47cb2d66711bfd",
     "semantic_hash": ""
   },
   "assets/js/modules/access.js": {
@@ -720,8 +720,8 @@
     "semantic_hash": ""
   },
   "assets/js/modules/tour.js": {
-    "mtime": 1786979903.0545688,
-    "ast_hash": "4a82a6c976a3d789e05a5e03078c1d88",
+    "mtime": 1786980347.0837135,
+    "ast_hash": "e39552224fdfbca3ab599be3df141a6b",
     "semantic_hash": ""
   },
   "assets/js/modules/ui.js": {

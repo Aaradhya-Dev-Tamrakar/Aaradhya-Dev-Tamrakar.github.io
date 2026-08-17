@@ -1024,10 +1024,20 @@
       "norm_label": "gettourcurrentpage()"
     },
     {
-      "label": "ensureTourOverlay()",
+      "label": "updateTourSpotlight()",
       "file_type": "code",
       "source_file": "assets/js/modules/tour.js",
       "source_location": "L86",
+      "_origin": "ast",
+      "id": "modules_tour_updatetourspotlight",
+      "community": 76,
+      "norm_label": "updatetourspotlight()"
+    },
+    {
+      "label": "ensureTourOverlay()",
+      "file_type": "code",
+      "source_file": "assets/js/modules/tour.js",
+      "source_location": "L126",
       "_origin": "ast",
       "id": "modules_tour_ensuretouroverlay",
       "community": 76,
@@ -1037,7 +1047,7 @@
       "label": "tourCurrentIndex()",
       "file_type": "code",
       "source_file": "assets/js/modules/tour.js",
-      "source_location": "L100",
+      "source_location": "L155",
       "_origin": "ast",
       "id": "modules_tour_tourcurrentindex",
       "community": 76,
@@ -1047,7 +1057,7 @@
       "label": "tourGoTo()",
       "file_type": "code",
       "source_file": "assets/js/modules/tour.js",
-      "source_location": "L104",
+      "source_location": "L159",
       "_origin": "ast",
       "id": "modules_tour_tourgoto",
       "community": 76,
@@ -1057,7 +1067,7 @@
       "label": "startTour()",
       "file_type": "code",
       "source_file": "assets/js/modules/tour.js",
-      "source_location": "L115",
+      "source_location": "L170",
       "_origin": "ast",
       "id": "modules_tour_starttour",
       "community": 76,
@@ -1067,7 +1077,7 @@
       "label": "exitTour()",
       "file_type": "code",
       "source_file": "assets/js/modules/tour.js",
-      "source_location": "L127",
+      "source_location": "L182",
       "_origin": "ast",
       "id": "modules_tour_exittour",
       "community": 76,
@@ -1077,7 +1087,7 @@
       "label": "tourAdvance()",
       "file_type": "code",
       "source_file": "assets/js/modules/tour.js",
-      "source_location": "L134",
+      "source_location": "L189",
       "_origin": "ast",
       "id": "modules_tour_touradvance",
       "community": 76,
@@ -1087,7 +1097,7 @@
       "label": "tourBack()",
       "file_type": "code",
       "source_file": "assets/js/modules/tour.js",
-      "source_location": "L146",
+      "source_location": "L201",
       "_origin": "ast",
       "id": "modules_tour_tourback",
       "community": 76,
@@ -1097,7 +1107,7 @@
       "label": "renderTourStep()",
       "file_type": "code",
       "source_file": "assets/js/modules/tour.js",
-      "source_location": "L152",
+      "source_location": "L207",
       "_origin": "ast",
       "id": "modules_tour_rendertourstep",
       "community": 76,
@@ -1107,7 +1117,7 @@
       "label": "positionTourCard()",
       "file_type": "code",
       "source_file": "assets/js/modules/tour.js",
-      "source_location": "L238",
+      "source_location": "L284",
       "_origin": "ast",
       "id": "modules_tour_positiontourcard",
       "community": 76,
@@ -1117,7 +1127,7 @@
       "label": "closeTourOverlay()",
       "file_type": "code",
       "source_file": "assets/js/modules/tour.js",
-      "source_location": "L361",
+      "source_location": "L407",
       "_origin": "ast",
       "id": "modules_tour_closetouroverlay",
       "community": 76,
@@ -1127,7 +1137,7 @@
       "label": "initTour()",
       "file_type": "code",
       "source_file": "assets/js/modules/tour.js",
-      "source_location": "L376",
+      "source_location": "L428",
       "_origin": "ast",
       "id": "modules_tour_inittour",
       "community": 76,
@@ -1137,7 +1147,7 @@
       "label": "promptGuidedTour()",
       "file_type": "code",
       "source_file": "assets/js/modules/tour.js",
-      "source_location": "L439",
+      "source_location": "L497",
       "_origin": "ast",
       "id": "modules_tour_promptguidedtour",
       "community": 76,
@@ -1320,7 +1330,7 @@
       "source_location": "L1083",
       "_origin": "ast",
       "id": "modules_ui_generateresumemarkdown",
-      "community": 85,
+      "community": 75,
       "norm_label": "generateresumemarkdown()"
     },
     {
@@ -1330,7 +1340,7 @@
       "source_location": "L1110",
       "_origin": "ast",
       "id": "modules_ui_downloadresumemarkdown",
-      "community": 85,
+      "community": 75,
       "norm_label": "downloadresumemarkdown()"
     },
     {
@@ -2824,14 +2834,14 @@
       "norm_label": "portfoliowebsite_tracker.md"
     },
     {
-      "label": "Portfolio Website Tracker \u2014 v49.14",
+      "label": "Portfolio Website Tracker \u2014 v49.15",
       "file_type": "document",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "id": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "community": 4,
-      "norm_label": "portfolio website tracker \u2014 v49.14"
+      "norm_label": "portfolio website tracker \u2014 v49.15"
     },
     {
       "label": "Meta",
@@ -6875,6 +6885,16 @@
       "target": "modules_tour_tourreducedmotion"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/modules/tour.js",
+      "source_location": "L86",
+      "weight": 1.0,
+      "source": "modules_tour",
+      "target": "modules_tour_updatetourspotlight",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -10203,7 +10223,7 @@
       "source_location": "L1",
       "weight": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker",
-      "target": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "target": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "confidence_score": 1.0
     },
     {
@@ -10212,7 +10232,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L173",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_evidence_verification_log_v20_additions",
       "confidence_score": 1.0
     },
@@ -10222,7 +10242,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L5",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_meta",
       "confidence_score": 1.0
     },
@@ -10232,7 +10252,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L151",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_state_of_play",
       "confidence_score": 1.0
     },
@@ -10242,7 +10262,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L184",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_v21_addition_both_v20_flagged_unmatched_pdfs_closed_out",
       "confidence_score": 1.0
     },
@@ -10252,7 +10272,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L192",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_v22_addition_kec_it_club_introduction_to_git_2024_card_closed_no_source_file_available",
       "confidence_score": 1.0
     },
@@ -10262,7 +10282,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L200",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_v23_addition_latest_site_refinements_2026_07_18",
       "confidence_score": 1.0
     },
@@ -10272,7 +10292,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L218",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_v24_addition_site_optimization_pass_mobile_legend_line_break_fix_2026_07_18",
       "confidence_score": 1.0
     },
@@ -10282,7 +10302,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L269",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_v25_addition_bug_check_sweep_pages_1_3_4_2026_07_27",
       "confidence_score": 1.0
     },
@@ -10292,7 +10312,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L295",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_v26_addition_bug_check_sweep_page_2_about_2026_07_27",
       "confidence_score": 1.0
     },
@@ -10302,7 +10322,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L319",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_v28_addition_site_wide_bug_audit_structural_hardening_pass_2026_08_04",
       "confidence_score": 1.0
     },
@@ -10312,7 +10332,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L333",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_v29_addition_site_wide_performance_pwa_seo_styling_upgrades_2026_08_04",
       "confidence_score": 1.0
     },
@@ -10322,7 +10342,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L347",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_v30_addition_pwa_service_worker_skip_links_font_preconnects_content_visibility_optimization_expanded_verification_2026_08_04",
       "confidence_score": 1.0
     },
@@ -10332,7 +10352,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L373",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_v31_1_addition_interactive_what_s_new_major_commit_showcase_journey_nodes_2026_08_04",
       "confidence_score": 1.0
     },
@@ -10342,7 +10362,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L360",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_v31_addition_url_hash_filter_sync_screen_reader_accessibility_pwa_v31_cache_bump_seo_verification_2026_08_04",
       "confidence_score": 1.0
     },
@@ -10352,7 +10372,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L385",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_v32_addition_pwa_offline_resilience_reading_progress_bar_3d_card_tilt_journey_node_j_028_2026_08_04",
       "confidence_score": 1.0
     },
@@ -10362,7 +10382,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L398",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_v33_addition_interactive_dev_terminal_cmdk_filter_pills_cursor_light_trail_journey_node_j_029_2026_08_04",
       "confidence_score": 1.0
     },
@@ -10372,7 +10392,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L411",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_v34_addition_mobile_touch_ux_ios_safe_area_web_haptics_suite_journey_node_j_030_2026_08_08",
       "confidence_score": 1.0
     },
@@ -10382,7 +10402,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L425",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_v35_addition_motion_typed_captions_count_up_counters_view_transitions_journey_node_j_031_2026_08_08",
       "confidence_score": 1.0
     },
@@ -10392,7 +10412,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L441",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_v36_addition_visual_polish_performance_skill_matrix_mobile_ux_suite_journey_node_j_032_2026_08_08",
       "confidence_score": 1.0
     },
@@ -10402,7 +10422,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L457",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_v37_addition_guided_cross_page_site_tour_with_spotlight_overlay_journey_node_j_033_2026_08_08",
       "confidence_score": 1.0
     },
@@ -10412,7 +10432,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L468",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_14",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_15",
       "target": "dev_logs_portfoliowebsite_tracker_v38_addition_web_audio_micro_sounds_reading_metrics_live_result_indicators_verification_suite_journey_node_j_034_2026_08_08",
       "confidence_score": 1.0
     },
@@ -11314,5 +11334,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "b462bee2f5b0c9efb0e8fa9a972b96120ae39632"
+  "built_at_commit": "dc4a48dc34fde3e14b14ad92704bfacee7f1337a"
 }
