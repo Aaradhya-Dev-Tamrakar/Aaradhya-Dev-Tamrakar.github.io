@@ -1,6 +1,6 @@
 {
-  "sha": "7361deaade2d6d7af6dcc185eb4d3b347e5afdc2",
-  "shortSha": "7361dea",
-  "date": "2026-08-17T21:03:58+05:45",
-  "message": "fix(tour): resolve spotlight highlight and positioning for steps 18 and 20"
+  "sha": "dc1ec4ca22127919ee75fb85200b9279f079c0d7",
+  "shortSha": "dc1ec4c",
+  "date": "2026-08-17T21:12:08+05:45",
+  "message": "fix(tour): implement SVG cutout mask and spotlight frame to eliminate ancestor stacking context dimming"
 }
