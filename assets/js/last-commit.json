@@ -1,6 +1,6 @@
 {
-  "sha": "c48623599470b834cf036fbd695ca3ae2331f220",
-  "shortSha": "c486235",
-  "date": "2026-08-17T08:05:48+05:45",
-  "message": "fix(sync): clean up script structure and verify version workflow"
+  "sha": "85c1a6afc75addbcdc17471b4e90914593782e29",
+  "shortSha": "85c1a6a",
+  "date": "2026-08-17T08:15:47+05:45",
+  "message": "fix(sync): clean up tail syntax and verify sync pipeline"
 }
