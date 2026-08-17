@@ -480,7 +480,7 @@ function Update-TrackerLog {
     Write-Badge "Tracker" "Updated $trackerFile timestamp to $todayDate (MD009/MD026 clean)" "Cyan" "Green"
 }
 
-function Clean-MarkdownHygiene {
+function Format-MarkdownHygiene {
     $mdFiles = @("README.md", "CLAUDE.md", "GEMINI.md", "AGENTS.md", "dev-logs/PortfolioWebsite_TRACKER.md")
     foreach ($file in $mdFiles) {
         if (Test-Path $file) {
@@ -740,7 +740,7 @@ if ($WhatIf) {
 
 # Step 10: Stage, Commit, and Push
 # Sanitize markdown formatting (MD009/MD026) and update tracker timestamp
-Clean-MarkdownHygiene
+Format-MarkdownHygiene
 Update-TrackerLog
 
 Write-Badge "Git" "Staging modified repository assets (git add .)..." "Cyan" "White"
