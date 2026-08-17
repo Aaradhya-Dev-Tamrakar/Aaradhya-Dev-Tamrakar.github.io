@@ -103,7 +103,7 @@
 ## God Nodes (most connected - your core abstractions)
 1. `bootSite()` - 33 edges
 2. `main()` - 24 edges
-3. `Portfolio Website Tracker — v49.1` - 23 edges
+3. `Portfolio Website Tracker — v49.2` - 23 edges
 4. `log_pass()` - 18 edges
 5. `log_error()` - 16 edges
 6. `playAudioCue()` - 14 edges
@@ -147,7 +147,7 @@ Nodes (7): IEEE, IEEE KEC Student Branch, Vice Secretary (2025-2026), IEEE Pulch
 
 ### Community 4 - "Community 4"
 Cohesion: 0.08
-Nodes (24): Evidence & Verification Log — v20 additions, \_Last updated, Meta, Portfolio Website Tracker — v49.1, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out, v22 addition — KEC IT Club "Introduction to Git" (2024) card: closed, no source file available (+16 more)
+Nodes (24): Evidence & Verification Log — v20 additions, \_Last updated, Meta, Portfolio Website Tracker — v49.2, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out, v22 addition — KEC IT Club "Introduction to Git" (2024) card: closed, no source file available (+16 more)
 
 ### Community 5 - "Community 5"
 Cohesion: 0.67
