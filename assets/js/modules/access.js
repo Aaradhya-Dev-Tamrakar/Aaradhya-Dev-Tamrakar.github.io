@@ -1,6 +1,6 @@
 /* ============================================================
-   MODULE: access.js — aaradhya-dev-tamrakar.github.io
-   Access control, VIP gates, and Google OAuth integration (v49.16).
+   MODULE: access.js — aaradhya-dev-tamrakar.github.io (v49.18)
+   Access control, VIP gates, and Google OAuth integration.
    ============================================================ */
 
 /* ── Encrypted Payload Data Store (Zero-leak AES-256-GCM) ───── */

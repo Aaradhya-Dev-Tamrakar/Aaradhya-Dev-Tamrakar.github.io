@@ -1,6 +1,6 @@
 /* ============================================================
-   MODULE: cmdk.js — aaradhya-dev-tamrakar.github.io
-   Command palette (Cmd+K) search and quick navigation (v49.16).
+   MODULE: cmdk.js — aaradhya-dev-tamrakar.github.io (v49.18)
+   Command palette (Cmd+K) search and quick navigation.
    ============================================================ */
 
 /* ── Command palette data ─────────────────────────────────── */

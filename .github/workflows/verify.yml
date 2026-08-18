@@ -1,10 +1,11 @@
 name: Verify
 
-# Last updated: 2026-08-13 (v45)
+# Last updated: 2026-08-18 (v49.17)
 
-# Runs scripts/verify.py (17 check categories: ids, tags, links, assets,
+# Runs scripts/verify.py (22 check categories: ids, tags, links, assets,
 # JS syntax, version consistency, modules, sitemap, manifest, JSON-LD,
-# file sizes, SW cache, robots.txt, global ID uniqueness, and more) and
+# file sizes, SW cache, robots.txt, global ID uniqueness, JS runtime safety,
+# CSS integrity, deep a11y & SEO, data consistency, tracker hygiene, etc.) and
 # fails the run if any check errors.
 #
 # Trigger: workflow_run on completion of "Update search index", NOT
@@ -64,6 +65,7 @@ jobs:
         run: |
           echo "Checking JavaScript syntax..."
           node --check assets/js/script.js
+          node --check assets/js/bg-animations.js
           for f in assets/js/modules/*.js; do
             echo "  node --check $f"
             node --check "$f"

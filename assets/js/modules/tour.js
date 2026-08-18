@@ -1,6 +1,6 @@
 /* ============================================================
-   MODULE: tour.js — aaradhya-dev-tamrakar.github.io
-   Cross-page spotlight tour with keyboard navigation (v49.16).
+   MODULE: tour.js — aaradhya-dev-tamrakar.github.io (v49.18)
+   Cross-page spotlight tour with keyboard navigation.
    ============================================================ */
 
 /* ── Guided Site Tour data (v37) ─────────────────────────── */

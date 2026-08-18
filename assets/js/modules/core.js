@@ -1,5 +1,5 @@
 /* ============================================================
-   MODULE: core.js — aaradhya-dev-tamrakar.github.io (v49.16)
+   MODULE: core.js — aaradhya-dev-tamrakar.github.io (v49.18)
    Theme, navigation, layout, scroll, parallax, and date helpers.
    ============================================================ */
 

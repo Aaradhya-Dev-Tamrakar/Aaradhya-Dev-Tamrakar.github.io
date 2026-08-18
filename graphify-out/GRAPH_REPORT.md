@@ -1,16 +1,16 @@
 # Graph Report - Aaradhya-Dev-Tamrakar.github.io  (2026-08-18)
 
 ## Corpus Check
-- 25 files · ~283,286 words
+- 25 files · ~284,741 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 458 nodes · 631 edges · 85 communities (24 shown, 61 thin omitted)
-- Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 56 edges (avg confidence: 0.81)
+- 468 nodes · 659 edges · 85 communities (24 shown, 61 thin omitted)
+- Extraction: 92% EXTRACTED · 8% INFERRED · 0% AMBIGUOUS · INFERRED: 56 edges (avg confidence: 0.81)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `524a13b5`
+- Built from commit: `20c0b12f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -102,13 +102,13 @@
 
 ## God Nodes (most connected - your core abstractions)
 1. `bootSite()` - 33 edges
-2. `main()` - 24 edges
-3. `Portfolio Website Tracker — v49.17` - 22 edges
-4. `log_pass()` - 18 edges
-5. `log_error()` - 16 edges
-6. `playAudioCue()` - 14 edges
-7. `log_warning()` - 13 edges
-8. `get_html_files()` - 12 edges
+2. `main()` - 29 edges
+3. `log_pass()` - 23 edges
+4. `Portfolio Website Tracker — v49.18` - 22 edges
+5. `log_error()` - 20 edges
+6. `log_warning()` - 16 edges
+7. `playAudioCue()` - 14 edges
+8. `get_html_files()` - 13 edges
 9. `aaradhya-dev-tamrakar.github.io` - 10 edges
 10. `showToast()` - 8 edges
 
@@ -147,7 +147,7 @@ Nodes (7): IEEE, IEEE KEC Student Branch, Vice Secretary (2025-2026), IEEE Pulch
 
 ### Community 4 - "Community 4"
 Cohesion: 0.08
-Nodes (23): Evidence & Verification Log — v20 additions, Meta, Portfolio Website Tracker — v49.17, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out, v22 addition — KEC IT Club "Introduction to Git" (2024) card: closed, no source file available, v23 addition — latest site refinements (2026-07-18) (+15 more)
+Nodes (23): Evidence & Verification Log — v20 additions, Meta, Portfolio Website Tracker — v49.18, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out, v22 addition — KEC IT Club "Introduction to Git" (2024) card: closed, no source file available, v23 addition — latest site refinements (2026-07-18) (+15 more)
 
 ### Community 5 - "Community 5"
 Cohesion: 0.67
@@ -182,8 +182,8 @@ Cohesion: 0.33
 Nodes (5): 1. Git Workflow & Automation (CRITICAL — STRICT ENFORCEMENT), 2. Knowledge Graph & Codebase Navigation (Graphify), 3. Operational Rules & Efficiency, Agent Rules & Workflow Guidelines, Commands
 
 ### Community 71 - "Community 71"
-Cohesion: 0.13
-Nodes (46): bold(), _c(), check_asset_references(), check_cross_page_links(), check_file_sizes(), check_global_id_uniqueness(), check_ids(), check_internal_hrefs() (+38 more)
+Cohesion: 0.10
+Nodes (56): bold(), _c(), check_asset_references(), check_cross_page_links(), check_css_integrity(), check_data_consistency(), check_file_sizes(), check_global_id_uniqueness() (+48 more)
 
 ### Community 72 - "Community 72"
 Cohesion: 0.29
@@ -194,8 +194,8 @@ Cohesion: 0.40
 Nodes (4): File delivery, Local Git Workflow & Auto-Sync (`sync.ps1`), Output constraints (strict), Working conventions for this repo
 
 ### Community 75 - "Community 75"
-Cohesion: 0.15
-Nodes (25): ACCESS_CONTROL, ACCESS_CONTROL_PAYLOADS, addCustomVipEmail(), closeAccessModal(), decryptHexPayload(), getCustomVipEmails(), getDecryptionKey(), getGoogleClientId() (+17 more)
+Cohesion: 0.17
+Nodes (23): ACCESS_CONTROL, ACCESS_CONTROL_PAYLOADS, addCustomVipEmail(), closeAccessModal(), decryptHexPayload(), getCustomVipEmails(), getDecryptionKey(), getGoogleClientId() (+15 more)
 
 ### Community 76 - "Community 76"
 Cohesion: 0.21
@@ -218,8 +218,8 @@ Cohesion: 0.33
 Nodes (5): 1. Git Workflow & Automation (CRITICAL — STRICT ENFORCEMENT), 2. Knowledge Graph & Codebase Navigation (Graphify), 3. Operational Rules & Efficiency, Antigravity IDE & Gemini Agent Rules for Portfolio Repository, Commands
 
 ### Community 85 - "Community 85"
-Cohesion: 0.12
-Nodes (24): getAudioContext(), initAudioCues(), playAudioCue(), syncAudioToggleUI(), toggleAudioCues(), closeResumeGenerator(), closeSkillRadarModal(), closeWhatsNewModal() (+16 more)
+Cohesion: 0.11
+Nodes (26): getAudioContext(), initAudioCues(), playAudioCue(), syncAudioToggleUI(), toggleAudioCues(), closeResumeGenerator(), closeSkillRadarModal(), closeWhatsNewModal() (+18 more)
 
 ## Knowledge Gaps
 - **154 isolated node(s):** `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL`, `CMDK_PAGES`, `SITE` (+149 more)
@@ -230,13 +230,13 @@ Nodes (24): getAudioContext(), initAudioCues(), playAudioCue(), syncAudioToggleU
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `bootSite()` connect `Community 0` to `Community 75`, `Community 76`, `Community 85`, `Community 78`?**
-  _High betweenness centrality (0.123) - this node is a cross-community bridge._
+  _High betweenness centrality (0.117) - this node is a cross-community bridge._
 - **Why does `Contact — Aaradhya Dev Tamrakar` connect `Community 2` to `Community 0`?**
-  _High betweenness centrality (0.042) - this node is a cross-community bridge._
+  _High betweenness centrality (0.040) - this node is a cross-community bridge._
 - **Are the 29 inferred relationships involving `bootSite()` (e.g. with `initAccessControl()` and `initAudioCues()`) actually correct?**
   _`bootSite()` has 29 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL` to the rest of the system?**
-  _182 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _188 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.06108597285067873 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**

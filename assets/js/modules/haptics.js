@@ -1,6 +1,6 @@
 /* ============================================================
-   MODULE: haptics.js — aaradhya-dev-tamrakar.github.io
-   Touch gesture recognition and haptic feedback (v49.16).
+   MODULE: haptics.js — aaradhya-dev-tamrakar.github.io (v49.18)
+   Touch gesture recognition and haptic feedback.
    ============================================================ */
 
 /* ── Haptic Feedback & Touch Gesture Micro-Interactions (v34) ── */

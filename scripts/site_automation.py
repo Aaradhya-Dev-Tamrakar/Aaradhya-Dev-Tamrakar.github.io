@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-site_automation.py — Hyper-Automation Engine for Aaradhya-Dev-Tamrakar.github.io
+site_automation.py — Hyper-Automation Engine for Aaradhya-Dev-Tamrakar.github.io (v49.18)
 
 Provides automated workflows for:
 - Automated site verification & diagnostics (via scripts/verify.py)
@@ -9,14 +9,6 @@ Provides automated workflows for:
 - Programmatic HTML project & achievement updates
 - Release tracker & Service Worker cache version syncing
 - Structured telemetry & site metadata extraction
-
-Usage:
-  python scripts/site_automation.py audit
-  python scripts/site_automation.py stats
-  python scripts/site_automation.py sync-metadata --version v49.6
-  python scripts/site_automation.py rebuild-index
-  python scripts/site_automation.py update-graph
-  python scripts/site_automation.py add-project --title "..." --desc "..." --tags "Python,AI"
 """
 
 import argparse
@@ -36,6 +28,9 @@ EXTRACT_INDEX_PY = SCRIPTS_DIR / "extract_index.py"
 TRACKER_MD = ROOT / "dev-logs" / "PortfolioWebsite_TRACKER.md"
 SW_JS = ROOT / "sw.js"
 SCRIPT_JS = ROOT / "assets" / "js" / "script.js"
+CSS_STYLE = ROOT / "assets" / "css" / "style.css"
+CSS_MODULES_DIR = ROOT / "assets" / "css" / "modules"
+MODULES_DIR = ROOT / "assets" / "js" / "modules"
 SITEMAP_XML = ROOT / "sitemap.xml"
 MANIFEST_JSON = ROOT / "site.webmanifest"
 PROJECTS_HTML = ROOT / "projects.html"
@@ -217,6 +212,33 @@ def sync_metadata(version_tag=None):
         new_sitemap = re.sub(r"<lastmod>[^<]+</lastmod>", f"<lastmod>{today_ymd}</lastmod>", site_text)
         SITEMAP_XML.write_text(new_sitemap, encoding="utf-8")
         results.append(f"Updated sitemap.xml timestamps to '{today_ymd}'")
+
+    # 6. Update style.css Header
+    if CSS_STYLE.exists():
+        css_text = CSS_STYLE.read_text(encoding="utf-8")
+        new_css = re.sub(r"SHARED STYLES.*?\(v[\d.]+\)", f"SHARED STYLES — aaradhya-dev-tamrakar.github.io ({clean_v})", css_text)
+        CSS_STYLE.write_text(new_css, encoding="utf-8")
+        results.append(f"Updated style.css header to '{clean_v}'")
+
+    # 7. Update JS Module Headers
+    if MODULES_DIR.exists():
+        mod_count = 0
+        for mod_path in sorted(MODULES_DIR.glob("*.js")):
+            mod_text = mod_path.read_text(encoding="utf-8")
+            new_mod = re.sub(r"\(v[\d.]+\)", f"({clean_v})", mod_text, count=1)
+            if new_mod != mod_text:
+                mod_path.write_text(new_mod, encoding="utf-8")
+                mod_count += 1
+        results.append(f"Updated {mod_count} JS module headers in assets/js/modules/ to '{clean_v}'")
+
+    # 8. Update site_automation.py Header Docstring
+    self_path = Path(__file__).resolve()
+    if self_path.exists():
+        self_text = self_path.read_text(encoding="utf-8")
+        new_self = re.sub(r"Aaradhya-Dev-Tamrakar\.github\.io\s*\(v[\d.]+\)", f"Aaradhya-Dev-Tamrakar.github.io ({clean_v})", self_text, count=1)
+        if new_self != self_text:
+            self_path.write_text(new_self, encoding="utf-8")
+            results.append(f"Updated site_automation.py header to '{clean_v}'")
 
     return results
 

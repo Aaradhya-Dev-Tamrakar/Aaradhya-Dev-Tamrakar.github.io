@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
 verify.py — comprehensive structural integrity checker for
-aaradhya-dev-tamrakar.github.io (v49.17)
+aaradhya-dev-tamrakar.github.io (v49.18)
 
-17 check categories covering HTML structure, cross-page links, asset
-references, JS syntax, version consistency, SEO metadata, PWA
-compliance, file size budgets, and more.
+22 check categories covering HTML structure, cross-page links, asset
+references, JS syntax, JS runtime safety, CSS URL integrity, deep a11y & SEO,
+version consistency across all modules, semantic data consistency, PWA
+compliance, file size budgets, markdown hygiene, and more.
 
 Run:  python scripts/verify.py            # standard output
       python scripts/verify.py --verbose  # show passes too
@@ -36,6 +37,7 @@ from bs4 import BeautifulSoup
 # ── Paths ───────────────────────────────────────────────────────────
 ROOT = Path(__file__).resolve().parent.parent
 SCRIPT_JS = ROOT / "assets" / "js" / "script.js"
+BG_ANIMATIONS_JS = ROOT / "assets" / "js" / "bg-animations.js"
 SW_JS = ROOT / "sw.js"
 SITEMAP_XML = ROOT / "sitemap.xml"
 MANIFEST = ROOT / "site.webmanifest"
@@ -43,6 +45,8 @@ ROBOTS_TXT = ROOT / "robots.txt"
 CSS_STYLE = ROOT / "assets" / "css" / "style.css"
 CSS_MODULES_DIR = ROOT / "assets" / "css" / "modules"
 MODULES_DIR = ROOT / "assets" / "js" / "modules"
+TRACKER_MD = ROOT / "dev-logs" / "PortfolioWebsite_TRACKER.md"
+SITE_AUTOMATION_PY = ROOT / "scripts" / "site_automation.py"
 
 # ── State ───────────────────────────────────────────────────────────
 errors = []
@@ -319,7 +323,7 @@ def check_pwa_and_a11y_metadata():
 
 
 # ════════════════════════════════════════════════════════════════════
-#  CHECK 6: Cross-page link validation (NEW)
+#  CHECK 6: Cross-page link validation
 # ════════════════════════════════════════════════════════════════════
 def check_cross_page_links():
     """Scan every href="*.html" and href="*.html#fragment" across all pages.
@@ -381,7 +385,7 @@ def check_cross_page_links():
 
 
 # ════════════════════════════════════════════════════════════════════
-#  CHECK 7: Asset file existence (NEW)
+#  CHECK 7: Asset file existence
 # ════════════════════════════════════════════════════════════════════
 def check_asset_references():
     """Scan src=, href=, data-cert=, data-download= for local asset paths.
@@ -416,10 +420,10 @@ def check_asset_references():
 
 
 # ════════════════════════════════════════════════════════════════════
-#  CHECK 8: JavaScript syntax validation (NEW)
+#  CHECK 8: JavaScript syntax validation
 # ════════════════════════════════════════════════════════════════════
 def check_js_syntax():
-    """Run node --check on script.js and all modules."""
+    """Run node --check on script.js, bg-animations.js, and all modules."""
     cat = "js-syntax"
     node = shutil.which("node")
     if not node:
@@ -427,6 +431,8 @@ def check_js_syntax():
         return
 
     js_files = [SCRIPT_JS]
+    if BG_ANIMATIONS_JS.exists():
+        js_files.append(BG_ANIMATIONS_JS)
     if MODULES_DIR.exists():
         js_files.extend(sorted(MODULES_DIR.glob("*.js")))
 
@@ -457,15 +463,15 @@ def check_js_syntax():
 
 
 # ════════════════════════════════════════════════════════════════════
-#  CHECK 9: Version consistency (NEW)
+#  CHECK 9: Comprehensive Version Consistency across All Sources
 # ════════════════════════════════════════════════════════════════════
 def check_version_consistency():
-    """Assert sw.js CACHE_NAME, script.js header, and SITE_RELEASES[0]
-    all report the same version number."""
+    """Assert sw.js, script.js, style.css, all 8 JS modules, tracker, verify.py,
+    and site_automation.py all report the exact same version number."""
     cat = "version"
     versions = {}
 
-    # sw.js CACHE_NAME
+    # 1. sw.js CACHE_NAME
     if SW_JS.exists():
         sw_text = SW_JS.read_text(encoding="utf-8")
         m = re.search(r"CACHE_NAME\s*=\s*['\"]aaradhya-portfolio-v([\d.]+)['\"]", sw_text)
@@ -474,55 +480,80 @@ def check_version_consistency():
         else:
             log_error(cat, "sw.js CACHE_NAME version not found")
 
-    # script.js header comment
+        # sw.js header comment
+        m = re.search(r"Service Worker.*?\(v([\d.]+)\)", sw_text[:500])
+        if m:
+            versions["sw.js header"] = m.group(1)
+
+    # 2. script.js header & SITE_RELEASES[0]
     if SCRIPT_JS.exists():
         script_text = SCRIPT_JS.read_text(encoding="utf-8")
         m = re.search(r"SHARED SCRIPT.*?\(v([\d.]+)\)", script_text[:500])
         if m:
             versions["script.js header"] = m.group(1)
 
-        # SITE_RELEASES[0].version
+        m = re.search(r"Dynamic Module Loader\s*\(v([\d.]+)\)", script_text[:500])
+        if m:
+            versions["script.js module loader"] = m.group(1)
+
         m = re.search(r"version:\s*['\"]v?([\d.]+)['\"]", script_text[:2000])
         if m:
             versions["SITE_RELEASES[0]"] = m.group(1)
 
-    # sw.js header comment
-    if SW_JS.exists():
-        sw_text = SW_JS.read_text(encoding="utf-8")
-        m = re.search(r"Service Worker.*?\(v([\d.]+)\)", sw_text[:500])
+    # 3. style.css header
+    if CSS_STYLE.exists():
+        css_text = CSS_STYLE.read_text(encoding="utf-8")
+        m = re.search(r"SHARED STYLES.*?\(v([\d.]+)\)", css_text[:500])
         if m:
-            versions["sw.js header"] = m.group(1)
+            versions["style.css header"] = m.group(1)
+        else:
+            log_error(cat, "style.css header version not found")
 
-    # TRACKER.md title & timestamp (MD009/MD026 validation)
-    tracker_path = ROOT / "dev-logs" / "PortfolioWebsite_TRACKER.md"
-    if tracker_path.exists():
-        tr_text = tracker_path.read_text(encoding="utf-8")
+    # 4. All 8 JS module headers
+    if MODULES_DIR.exists():
+        for mod_path in sorted(MODULES_DIR.glob("*.js")):
+            mod_text = mod_path.read_text(encoding="utf-8")
+            m = re.search(r"\(v([\d.]+)\)", mod_text[:300])
+            if m:
+                versions[f"{mod_path.name} header"] = m.group(1)
+            else:
+                log_error(cat, f"{mod_path.name} header version missing or malformed")
+
+    # 5. TRACKER.md title
+    if TRACKER_MD.exists():
+        tr_text = TRACKER_MD.read_text(encoding="utf-8")
         m = re.search(r"# Portfolio Website Tracker\s*—\s*v([\d.]+)", tr_text)
         if m:
             versions["TRACKER.md header"] = m.group(1)
 
-        # Check for trailing punctuation in headings (MD026) or dangling Last updated
-        if re.search(r"(?m)^##.*[:;,!?]\s*$", tr_text):
-            log_warning(cat, "TRACKER.md contains headings with trailing punctuation (violates MD026)")
-        
-        # Check for trailing whitespace (MD009)
-        if any(line.rstrip("\r\n") != line.rstrip() for line in tr_text.splitlines()):
-            log_warning(cat, "TRACKER.md contains lines with trailing whitespace (violates MD009)")
+    # 6. verify.py header
+    self_path = Path(__file__).resolve()
+    if self_path.exists():
+        v_text = self_path.read_text(encoding="utf-8")
+        m = re.search(r"aaradhya-dev-tamrakar\.github\.io\s*\(v([\d.]+)\)", v_text[:400])
+        if m:
+            versions["verify.py header"] = m.group(1)
+
+    # 7. site_automation.py
+    if SITE_AUTOMATION_PY.exists():
+        sa_text = SITE_AUTOMATION_PY.read_text(encoding="utf-8")
+        m = re.search(r"Aaradhya-Dev-Tamrakar\.github\.io\s*\(v([\d.]+)\)", sa_text[:400])
+        if m:
+            versions["site_automation.py header"] = m.group(1)
 
     unique_versions = set(versions.values())
     if len(unique_versions) == 0:
         log_error(cat, "could not extract any version numbers")
     elif len(unique_versions) > 1:
         detail = ", ".join(f"{k}=v{v}" for k, v in versions.items())
-        log_error(cat, f"version mismatch detected: {detail}")
+        log_error(cat, f"version mismatch detected across sources: {detail}")
     else:
         ver = unique_versions.pop()
-        log_pass(cat, f"all version strings consistent at v{ver} "
-                      f"({len(versions)} sources checked)")
+        log_pass(cat, f"all {len(versions)} sources consistent at v{ver}")
 
 
 # ════════════════════════════════════════════════════════════════════
-#  CHECK 10: Module file existence (NEW)
+#  CHECK 10: Module file existence
 # ════════════════════════════════════════════════════════════════════
 def check_module_files():
     """Parse the MODULES array from script.js and @import rules from style.css,
@@ -569,7 +600,7 @@ def check_module_files():
 
 
 # ════════════════════════════════════════════════════════════════════
-#  CHECK 11: Sitemap sync (NEW)
+#  CHECK 11: Sitemap sync
 # ════════════════════════════════════════════════════════════════════
 def check_sitemap_sync(fix=False):
     """Compare sitemap.xml URLs against actual *.html files."""
@@ -582,7 +613,6 @@ def check_sitemap_sync(fix=False):
     sitemap_pages = set(re.findall(
         r"<loc>https://aaradhya-dev-tamrakar\.github\.io/([^<]*)</loc>", text
     ))
-    # Normalize: empty string = index
     sitemap_pages_norm = set()
     for p in sitemap_pages:
         if p == "" or p == "/":
@@ -591,7 +621,6 @@ def check_sitemap_sync(fix=False):
             sitemap_pages_norm.add(p.lstrip("/"))
 
     actual_pages = {f.name for f in get_html_files()}
-    # Exclude google verification page and 404 error page (which should not be in sitemap)
     actual_pages -= {f.name for f in ROOT.glob("google*.html")}
     actual_pages -= {"404.html"}
 
@@ -608,7 +637,7 @@ def check_sitemap_sync(fix=False):
 
 
 # ════════════════════════════════════════════════════════════════════
-#  CHECK 12: Web manifest validation (NEW)
+#  CHECK 12: Web manifest validation
 # ════════════════════════════════════════════════════════════════════
 def check_manifest():
     """Parse site.webmanifest as JSON. Verify required fields."""
@@ -630,7 +659,6 @@ def check_manifest():
     else:
         log_pass(cat, "site.webmanifest has all required fields")
 
-    # Check icons array has at least one entry
     icons = data.get("icons", [])
     if not icons:
         log_warning(cat, "site.webmanifest has empty icons array")
@@ -639,7 +667,7 @@ def check_manifest():
 
 
 # ════════════════════════════════════════════════════════════════════
-#  CHECK 13: JSON-LD schema validation (NEW)
+#  CHECK 13: JSON-LD schema validation
 # ════════════════════════════════════════════════════════════════════
 def check_jsonld_schemas():
     """Extract <script type="application/ld+json"> blocks, parse as JSON,
@@ -681,7 +709,7 @@ def check_jsonld_schemas():
 
 
 # ════════════════════════════════════════════════════════════════════
-#  CHECK 14: File size budgets (NEW)
+#  CHECK 14: File size budgets
 # ════════════════════════════════════════════════════════════════════
 def check_file_sizes():
     """Warn when files exceed size thresholds."""
@@ -690,17 +718,14 @@ def check_file_sizes():
         "CSS (style.css)": (CSS_STYLE, 50_000),
         "JS (script.js)": (SCRIPT_JS, 60_000),
     }
-    # Individual CSS modules
     if CSS_MODULES_DIR.exists():
         for mod in sorted(CSS_MODULES_DIR.glob("*.css")):
             thresholds[f"CSS ({mod.name})"] = (mod, 50_000)
 
-    # Individual JS modules
     if MODULES_DIR.exists():
         for mod in sorted(MODULES_DIR.glob("*.js")):
             thresholds[f"JS ({mod.name})"] = (mod, 60_000)
 
-    # HTML pages
     for f in get_html_files():
         thresholds[f"HTML ({f.name})"] = (f, 200_000)
 
@@ -718,24 +743,22 @@ def check_file_sizes():
 
 
 # ════════════════════════════════════════════════════════════════════
-#  CHECK 15: Service Worker cache completeness (NEW)
+#  CHECK 15: Service Worker cache completeness & module coverage
 # ════════════════════════════════════════════════════════════════════
 def check_sw_cache_completeness():
     """Parse sw.js STATIC_ASSETS array. Verify every listed file exists.
-    Flag any *.html page not in the cache list."""
+    Flag any *.html page or CSS/JS module not in the cache list."""
     cat = "sw-assets"
     if not SW_JS.exists():
         log_error(cat, "sw.js not found")
         return
 
     sw_text = SW_JS.read_text(encoding="utf-8")
-    # Extract STATIC_ASSETS entries
     cached_paths = re.findall(r"['\"]\./([\w./\-]+)['\"]", sw_text)
     if not cached_paths:
         log_error(cat, "could not parse STATIC_ASSETS from sw.js")
         return
 
-    # Check each cached path exists
     missing = []
     for p in cached_paths:
         if p == "./":
@@ -748,17 +771,33 @@ def check_sw_cache_completeness():
     # Check all HTML pages are cached
     actual_pages = {f.name for f in get_html_files()}
     cached_pages = {p for p in cached_paths if p.endswith(".html")}
-    uncached = actual_pages - cached_pages
-    for p in sorted(uncached):
+    uncached_pages = actual_pages - cached_pages
+    for p in sorted(uncached_pages):
         log_warning(cat, f"'{p}' is a site page but not in sw.js STATIC_ASSETS")
 
-    if not missing and not uncached:
+    # Check all CSS modules are cached
+    if CSS_MODULES_DIR.exists():
+        css_modules = {f"assets/css/modules/{f.name}" for f in CSS_MODULES_DIR.glob("*.css")}
+        cached_css = set(cached_paths)
+        uncached_css = css_modules - cached_css
+        for c in sorted(uncached_css):
+            log_warning(cat, f"CSS module '{c}' not in sw.js STATIC_ASSETS")
+
+    # Check all JS modules are cached
+    if MODULES_DIR.exists():
+        js_modules = {f"assets/js/modules/{f.name}" for f in MODULES_DIR.glob("*.js")}
+        cached_js = set(cached_paths)
+        uncached_js = js_modules - cached_js
+        for j in sorted(uncached_js):
+            log_warning(cat, f"JS module '{j}' not in sw.js STATIC_ASSETS")
+
+    if not missing and not uncached_pages:
         log_pass(cat, f"all {len(cached_paths)} cached assets exist, "
-                      f"all HTML pages cached")
+                      f"all HTML pages and modules cached")
 
 
 # ════════════════════════════════════════════════════════════════════
-#  CHECK 16: Robots.txt validation (NEW)
+#  CHECK 16: Robots.txt validation
 # ════════════════════════════════════════════════════════════════════
 def check_robots_txt():
     """Verify Sitemap: directive URL and basic syntax."""
@@ -788,27 +827,24 @@ def check_robots_txt():
 
 
 # ════════════════════════════════════════════════════════════════════
-#  CHECK 17: Global ID uniqueness across pages (NEW)
+#  CHECK 17: Global ID uniqueness across pages
 # ════════════════════════════════════════════════════════════════════
 def check_global_id_uniqueness():
     """Scan all pages for id="" attributes. Flag collisions that could
     confuse cross-page fragment links."""
     cat = "ids-global"
-    # Structural IDs expected on every page (not a collision)
     structural_ids = {
         "main-content", "readProgressBar", "siteFooter", "bg-canvas",
         "pcb-canvas", "whatsNewModal", "tourOverlay", "accessModal",
         "adtTerminal", "cmdkOverlay",
-        # Shared UI elements rendered on every page by JS/HTML
         "siteNav", "page-header", "cursor", "cursorDot", "cursorRing",
         "backTop", "scrollPct", "scrollProgress", "audioToggle",
         "quick-nav", "quickNavGrid",
-        # Lightbox (present on pages with cert-btns)
         "cert-lightbox", "lb-body", "lb-close", "lb-download",
         "lb-label", "lb-open",
     }
 
-    id_locations = {}  # id -> list of filenames
+    id_locations = {}
     for f in get_html_files():
         soup = parse_html(f)
         for el in soup.find_all(attrs={"id": True}):
@@ -820,12 +856,244 @@ def check_global_id_uniqueness():
     collisions = {k: v for k, v in id_locations.items() if len(v) > 1}
     if collisions:
         for el_id, files in sorted(collisions.items()):
-            # Only warn if the same ID is used as a link target
             log_warning(cat, f"id='{el_id}' appears in multiple pages: "
                               f"{', '.join(files)}")
     else:
         unique_ids = sum(1 for v in id_locations.values() if len(v) == 1)
         log_pass(cat, f"{unique_ids} unique content IDs, no cross-page collisions")
+
+
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 18: JavaScript Runtime Safety & Hygiene (NEW)
+# ════════════════════════════════════════════════════════════════════
+def check_js_safety():
+    """Check for unguarded optional function calls, duplicate listeners,
+    and legacy monolithic comment blocks."""
+    cat = "js-safety"
+    all_ok = True
+
+    # 1. Guard check for playAudioCue in JS modules and scripts
+    js_files = []
+    if SCRIPT_JS.exists():
+        js_files.append(SCRIPT_JS)
+    if MODULES_DIR.exists():
+        js_files.extend(sorted(MODULES_DIR.glob("*.js")))
+
+    unguarded_audio = []
+    for js_path in js_files:
+        if js_path.name == "audio.js":
+            continue
+        lines = js_path.read_text(encoding="utf-8").splitlines()
+        for idx, line in enumerate(lines, 1):
+            if "playAudioCue(" in line and "function playAudioCue" not in line:
+                # Check if this line or previous line has typeof check
+                prev_line = lines[idx - 2] if idx >= 2 else ""
+                has_guard = ("typeof playAudioCue" in line or "typeof playAudioCue" in prev_line or
+                             "window.playAudioCue" in line)
+                if not has_guard:
+                    unguarded_audio.append(f"{js_path.name}:{idx}")
+
+    if unguarded_audio:
+        log_error(cat, f"unguarded playAudioCue() calls found at: {', '.join(unguarded_audio)}")
+        all_ok = False
+
+    # 2. Check for duplicate DOMContentLoaded / orphan initializers in modules
+    if MODULES_DIR.exists():
+        for mod_path in sorted(MODULES_DIR.glob("*.js")):
+            mod_text = mod_path.read_text(encoding="utf-8")
+            # Modules should not define redundant DOMContentLoaded listeners for functions handled by bootSite
+            if re.search(r"document\.addEventListener\(['\"]DOMContentLoaded['\"].*?initSkillRadar", mod_text):
+                log_error(cat, f"{mod_path.name} contains orphan DOMContentLoaded -> initSkillRadar listener")
+                all_ok = False
+            if "SHARED SCRIPT — aaradhya-dev-tamrakar.github.io" in mod_text:
+                log_error(cat, f"{mod_path.name} contains deprecated monolithic 'SHARED SCRIPT' header")
+                all_ok = False
+
+    # 3. Check for consecutive duplicate comment blocks in script.js
+    if SCRIPT_JS.exists():
+        lines = SCRIPT_JS.read_text(encoding="utf-8").splitlines()
+        for i in range(len(lines) - 1):
+            line_a = lines[i].strip()
+            line_b = lines[i + 1].strip()
+            if line_a and line_a.startswith(("/*", "//")) and line_a == line_b:
+                log_warning(cat, f"script.js contains duplicate comment on lines {i+1}-{i+2}: '{line_a}'")
+                all_ok = False
+
+    if all_ok:
+        log_pass(cat, "all JS modules adhere to runtime safety & hygiene rules")
+
+
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 19: CSS Asset & URL Reference Integrity (NEW)
+# ════════════════════════════════════════════════════════════════════
+def check_css_integrity():
+    """Scan all CSS files for url(...) references and verify assets exist."""
+    cat = "css-integrity"
+    css_files = []
+    if CSS_STYLE.exists():
+        css_files.append(CSS_STYLE)
+    if CSS_MODULES_DIR.exists():
+        css_files.extend(sorted(CSS_MODULES_DIR.glob("*.css")))
+
+    missing_assets = []
+    total_urls = 0
+
+    for cf in css_files:
+        text = cf.read_text(encoding="utf-8")
+        for m in re.finditer(r'url\(\s*[\'"]?([^\'")]+)[\'"]?\s*\)', text):
+            url = m.group(1).strip()
+            # Skip data URIs, external protocols, and in-page/SVG fragment filters (including url-encoded %23)
+            if url.startswith(("data:", "http://", "https://", "#", "%23")):
+                continue
+            total_urls += 1
+            # Resolve relative to CSS file directory
+            if url.startswith("/"):
+                target = ROOT / url.lstrip("/")
+            else:
+                target = (cf.parent / url).resolve()
+            if not target.exists():
+                missing_assets.append(f"{cf.name} -> '{url}'")
+
+    if missing_assets:
+        log_error(cat, f"broken CSS asset references: {', '.join(missing_assets)}")
+    else:
+        log_pass(cat, f"all {total_urls} local CSS url() asset references exist on disk")
+
+
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 20: Deep HTML, Accessibility & SEO Hygiene (NEW)
+# ════════════════════════════════════════════════════════════════════
+def check_html_a11y_seo():
+    """Verify image alt attributes, link noopener on _blank, single h1 per page,
+    title, meta description, and html lang."""
+    cat = "html-a11y-seo"
+    site_files = get_html_files()
+    all_ok = True
+    total_imgs = 0
+    total_ext_links = 0
+
+    for f in site_files:
+        soup = parse_html(f)
+
+        # 1. Single <h1> per page
+        h1s = soup.find_all("h1")
+        if len(h1s) != 1:
+            log_error(cat, f"{f.name} has {len(h1s)} <h1> tags (must be exactly 1)")
+            all_ok = False
+
+        # 2. Image alt tags
+        imgs = soup.find_all("img")
+        for img in imgs:
+            total_imgs += 1
+            if not img.has_attr("alt"):
+                src = img.get("src", "unknown")
+                log_error(cat, f"{f.name} has <img> missing alt attribute: {src}")
+                all_ok = False
+
+        # 3. Security: target="_blank" must include rel="noopener"
+        ext_links = soup.find_all("a", target="_blank")
+        for a in ext_links:
+            total_ext_links += 1
+            rel = a.get("rel", [])
+            if isinstance(rel, str):
+                rel = rel.split()
+            if "noopener" not in rel and "noreferrer" not in rel:
+                log_error(cat, f"{f.name} external link '{a.get('href')}' missing rel=\"noopener\"")
+                all_ok = False
+
+        # 4. <html lang="en">
+        html_tag = soup.find("html")
+        if not html_tag or not html_tag.get("lang"):
+            log_error(cat, f"{f.name} missing <html lang=\"en\"> attribute")
+            all_ok = False
+
+        # 5. Non-empty <title>
+        title_tag = soup.find("title")
+        if not title_tag or not title_tag.text.strip():
+            log_error(cat, f"{f.name} missing or empty <title>")
+            all_ok = False
+
+        # 6. Non-empty <meta name="description">
+        desc_tag = soup.find("meta", attrs={"name": "description"})
+        if not desc_tag or not desc_tag.get("content", "").strip():
+            log_error(cat, f"{f.name} missing or empty meta description")
+            all_ok = False
+
+        # 7. Canonical link (on all regular pages except 404)
+        if f.name != "404.html":
+            can_tag = soup.find("link", attrs={"rel": "canonical"})
+            if not can_tag or not can_tag.get("href", "").strip():
+                log_error(cat, f"{f.name} missing canonical <link rel=\"canonical\">")
+                all_ok = False
+
+    if all_ok:
+        log_pass(cat, f"all {len(site_files)} pages pass a11y & SEO hygiene "
+                      f"({total_imgs} images with alt, {total_ext_links} secure links, 1 h1/page)")
+
+
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 21: Cross-Surface Semantic Data Consistency (NEW)
+# ════════════════════════════════════════════════════════════════════
+def check_data_consistency():
+    """Verify resume data in ui.js matches HTML & JSON-LD role titles and contact info."""
+    cat = "data-consistency"
+    all_ok = True
+
+    # 1. RESUME_DATA in ui.js should say Vice Chair, not Vice Secretary
+    ui_js_path = MODULES_DIR / "ui.js"
+    if ui_js_path.exists():
+        ui_text = ui_js_path.read_text(encoding="utf-8")
+        if "Vice Secretary" in ui_text:
+            log_error(cat, "ui.js RESUME_DATA contains stale title 'Vice Secretary' (must be 'Vice Chair')")
+            all_ok = False
+
+    # 2. SITE constants in core.js
+    core_js_path = MODULES_DIR / "core.js"
+    if core_js_path.exists():
+        core_text = core_js_path.read_text(encoding="utf-8")
+        if "aaradhyadevtmr@gmail.com" not in core_text:
+            log_warning(cat, "core.js SITE.masterEmails missing primary contact email")
+            all_ok = False
+        if "https://github.com/AaradhyaDT" not in core_text:
+            log_warning(cat, "core.js SITE.socials missing primary GitHub profile URL")
+            all_ok = False
+
+    # 3. contact.html email and github consistency
+    contact_path = ROOT / "contact.html"
+    if contact_path.exists():
+        contact_text = contact_path.read_text(encoding="utf-8")
+        if "aaradhyadevtmr@gmail.com" not in contact_text:
+            log_warning(cat, "contact.html missing primary contact email")
+            all_ok = False
+
+    if all_ok:
+        log_pass(cat, "cross-surface resume titles, contact info & profile metadata consistent")
+
+
+# ════════════════════════════════════════════════════════════════════
+#  CHECK 22: Dev Tracker & Markdown Hygiene (NEW)
+# ════════════════════════════════════════════════════════════════════
+def check_tracker_hygiene():
+    """Validate Portfolio Tracker and key Markdown documents for MD009/MD026 compliance."""
+    cat = "tracker-hygiene"
+    all_ok = True
+
+    md_files = [TRACKER_MD, ROOT / "README.md", ROOT / "AGENTS.md", ROOT / "GEMINI.md"]
+    for md in md_files:
+        if not md.exists():
+            continue
+        text = md.read_text(encoding="utf-8")
+        # MD026: Heading trailing punctuation
+        if re.search(r"(?m)^##.*[:;,!?]\s*$", text):
+            log_warning(cat, f"{md.name} contains headings with trailing punctuation (violates MD026)")
+            all_ok = False
+        # MD009: Trailing whitespace
+        if any(line.rstrip("\r\n") != line.rstrip() for line in text.splitlines()):
+            log_warning(cat, f"{md.name} contains lines with trailing whitespace (violates MD009)")
+            all_ok = False
+
+    if all_ok:
+        log_pass(cat, "tracker and key documentation files clean of MD009/MD026 lint issues")
 
 
 # ════════════════════════════════════════════════════════════════════
@@ -842,11 +1110,11 @@ def main():
     args = parser.parse_args()
 
     print(bold("=" * 60))
-    print(bold("  Portfolio Site Verification Suite (v49.17)"))
+    print(bold("  Portfolio Site Verification Suite (v49.18)"))
     print(bold("=" * 60))
     print()
 
-    # ── Run all checks ──────────────────────────────────────────
+    # ── Run all 22 check categories ─────────────────────────────
     # 1. Content IDs
     id_results = {}
     for name, cfg in PAGES.items():
@@ -868,50 +1136,63 @@ def main():
     # 5. PWA & a11y metadata
     check_pwa_and_a11y_metadata()
 
-    # 6. Cross-page links (NEW)
+    # 6. Cross-page links
     check_cross_page_links()
 
-    # 7. Asset references (NEW)
+    # 7. Asset references
     check_asset_references()
 
-    # 8. JS syntax (NEW)
+    # 8. JS syntax
     check_js_syntax()
 
-    # 9. Version consistency (NEW)
+    # 9. Version consistency
     check_version_consistency()
 
-    # 10. Module files (NEW)
+    # 10. Module files
     check_module_files()
 
-    # 11. Sitemap sync (NEW)
+    # 11. Sitemap sync
     check_sitemap_sync(fix=args.fix)
 
-    # 12. Manifest validation (NEW)
+    # 12. Manifest validation
     check_manifest()
 
-    # 13. JSON-LD schemas (NEW)
+    # 13. JSON-LD schemas
     check_jsonld_schemas()
 
-    # 14. File size budgets (NEW)
+    # 14. File size budgets
     check_file_sizes()
 
-    # 15. SW cache completeness (NEW)
+    # 15. SW cache completeness
     check_sw_cache_completeness()
 
-    # 16. Robots.txt (NEW)
+    # 16. Robots.txt
     check_robots_txt()
 
-    # 17. Global ID uniqueness (NEW)
+    # 17. Global ID uniqueness
     check_global_id_uniqueness()
 
+    # 18. JS safety & runtime hygiene (NEW)
+    check_js_safety()
+
+    # 19. CSS asset & URL integrity (NEW)
+    check_css_integrity()
+
+    # 20. Deep HTML, Accessibility & SEO (NEW)
+    check_html_a11y_seo()
+
+    # 21. Semantic Data Consistency (NEW)
+    check_data_consistency()
+
+    # 22. Tracker & Markdown Hygiene (NEW)
+    check_tracker_hygiene()
+
     # ── Output ──────────────────────────────────────────────────
-    # Collect all categories
     all_cats = set()
     for cat, _ in errors + warnings + passes:
         all_cats.add(cat)
     all_cats = sorted(all_cats)
 
-    # Category summary
     cat_status = {}
     for cat in all_cats:
         cat_errors = [m for c, m in errors if c == cat]
@@ -940,7 +1221,7 @@ def main():
 
     # Summary dashboard
     print(bold("-" * 60))
-    print(bold("  Category Summary"))
+    print(bold("  Category Summary (22 Categories)"))
     print(bold("-" * 60))
     for cat in all_cats:
         cat_e, cat_w, cat_p = cat_status[cat]
@@ -950,7 +1231,7 @@ def main():
             status = yellow(f"WARN ({len(cat_w)} warning(s))")
         else:
             status = green("PASS")
-        print(f"  [{cat:>14s}]  {status}")
+        print(f"  [{cat:>16s}]  {status}")
     print(bold("-" * 60))
 
     # Content counts
@@ -967,7 +1248,7 @@ def main():
         print(yellow(bold(f"OK with {len(warnings)} warning(s).")))
         sys.exit(2)
     else:
-        print(green(bold("ALL CHECKS PASSED")))
+        print(green(bold("ALL 22 CHECKS PASSED")))
         sys.exit(0)
 
 

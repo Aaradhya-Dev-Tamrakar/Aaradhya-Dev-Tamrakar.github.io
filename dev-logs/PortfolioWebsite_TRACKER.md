@@ -1,8 +1,17 @@
-# Portfolio Website Tracker — v49.17
+﻿# Portfolio Website Tracker — v49.18
 
 Last updated: _2026-08-18_
 
 ## Meta
+
+- **v49.17 (Update) — Verification Suite Expansion & Hyper-Tightened Diagnostic Checks (22 Categories).** Shipped deep expansion of pre-commit & CI checking scripts (`scripts/verify.py` and `scripts/site_automation.py`) to permanently prevent code-quality, data-drift, and runtime bugs:
+  - **JS Runtime Safety & Guard Enforcement (`js-safety`)**: Added automated AST/token scanner ensuring all optional global functions (`playAudioCue`) are safely guarded with `typeof ... === 'function'`, flagging any unprotected calls; detects redundant/orphan `DOMContentLoaded` and `window.load` listeners in modular JS; catches duplicate consecutive comment blocks and deprecated monolithic headers.
+  - **Comprehensive Multi-Source Version Consistency (`version`)**: Expanded version validation from 5 sources to 17 distinct files (Service Worker `CACHE_NAME` & header, `script.js` header & Dynamic Module Loader & `SITE_RELEASES[0]`, `style.css` header, all 8 JS module headers, `TRACKER.md` title, `verify.py` banner, and `site_automation.py` header), backed by automated synchronization in `site_automation.py sync_metadata()`.
+  - **CSS Asset & URL Reference Integrity (`css-integrity`)**: Added parser for all `url(...)` declarations in `style.css` and all 9 CSS modules, verifying referenced local fonts, images, and SVG filters exist on disk.
+  - **Deep HTML, Accessibility & SEO Hygiene (`html-a11y-seo`)**: Added checks enforcing `alt` attributes on every `<img>`, `rel="noopener"` on all external `target="_blank"` links, single `<h1>` per page, `<html lang="en">`, non-empty `<title>`, `<meta name="description">`, and `<link rel="canonical">`.
+  - **Cross-Surface Semantic Data Consistency (`data-consistency`)**: Added validation ensuring `RESUME_DATA` in `ui.js` matches canonical titles (e.g. "Vice Chair") and primary contact details/social URLs match across `core.js`, `contact.html`, and `about.html`.
+  - **Dev Tracker & Markdown Hygiene (`tracker-hygiene`)**: Enforced Markdownlint MD009 (trailing whitespace) and MD026 (trailing punctuation in headings) across all documentation and tracker logs.
+  - **Verification Gate**: Passed `python scripts/verify.py` across all 22 categories cleanly (0 errors, 0 warnings).
 
 - **v49.6 / v49 (Update) — Comprehensive Mobile Responsiveness & Ultra-Small Screen Overhaul.** Shipped site-wide mobile responsiveness optimizations tailored for any viewport size down to ultra-small screens (280px–360px):
   - **CSS Cascade & Navigation Precedence Fix (`layout.css`, `base.css`)**: Resolved CSS precedence inversion by moving all responsive media queries for navigation into `layout.css` (enforcing `.nav-links { display: none !important; }` and `.nav-hamburger { display: flex !important; }` on screens &le; 900px), eliminating horizontal navigation clipping across mobile devices. Standardized responsive nav padding, action icon button dimensions (`34px` on &le; 480px, `30px` on &le; 340px), and logo typography scaling.
