@@ -35,9 +35,12 @@ env/
 
 # Local dev tooling / analysis output — not part of the deployed site
 graphify-out/cache/
+graphify-out/20*
+graphify-out/????-??-??/
 dev-logs/*
 !dev-logs/og-image/
 !dev-logs/og-image/**
 !dev-logs/PortfolioWebsite_TRACKER.md
 !dev-logs/PortfolioWebsite_TRACKER_*.md
 dev-logs/secrets/
+

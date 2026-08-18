@@ -1,8 +1,12 @@
-﻿# Portfolio Website Tracker — v49.18
+# Portfolio Website Tracker — v49.19
 
 Last updated: _2026-08-18_
 
 ## Meta
+
+- **v49.18 (Update) — Build Hygiene & Graphify Snapshot Cleanup.** Hardened repository ignore rules and purged untracked local build cruft:
+  - **Graphify Daily Snapshot & Cache Untracking (`.gitignore`)**: Added `graphify-out/20*` and `graphify-out/????-??-??/` patterns to `.gitignore`, and purged 400+ cached semantic AST files and historical dated snapshot directories (`graphify-out/2026-08-15` through `2026-08-18`) from the Git index (~1.5 MB repo footprint reduction).
+  - **Verification Gate**: Passed `python scripts/verify.py` across all 22 categories cleanly (0 errors, 0 warnings).
 
 - **v49.17 (Update) — Verification Suite Expansion & Hyper-Tightened Diagnostic Checks (22 Categories).** Shipped deep expansion of pre-commit & CI checking scripts (`scripts/verify.py` and `scripts/site_automation.py`) to permanently prevent code-quality, data-drift, and runtime bugs:
   - **JS Runtime Safety & Guard Enforcement (`js-safety`)**: Added automated AST/token scanner ensuring all optional global functions (`playAudioCue`) are safely guarded with `typeof ... === 'function'`, flagging any unprotected calls; detects redundant/orphan `DOMContentLoaded` and `window.load` listeners in modular JS; catches duplicate consecutive comment blocks and deprecated monolithic headers.
