@@ -1,6 +1,6 @@
 /* ============================================================
    MODULE: audio.js — aaradhya-dev-tamrakar.github.io
-   Part of the v42 Performance & Code Quality Architecture.
+   Web Audio synthesized micro-sounds with user toggle (v49.16).
    ============================================================ */
 
 /* ── Web Audio Micro-Sounds (v38) ─────────────────────────── */

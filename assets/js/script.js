@@ -1,10 +1,10 @@
 /* ============================================================
-   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io (v49.16)
+   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io (v49.17)
    Loaded on every page via <script src="assets/js/script.js">.
    Orchestrates core modules from assets/js/modules/
    ============================================================ */
 
-/* ── Dynamic Module Loader (v49.16) ───────────────────────────── */
+/* ── Dynamic Module Loader (v49.17) ───────────────────────────── */
 window.__modulesLoadedPromise = (function () {
   const MODULES = [
     'assets/js/modules/core.js',
@@ -48,7 +48,7 @@ window.__modulesLoadedPromise = (function () {
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
   {
-    version: 'v49.16',
+    version: 'v49.17',
     date: '2026-08-17',
     sha: 'mob49',
     title: 'Comprehensive Mobile Responsiveness & Ultra-Small Screen Overhaul',
@@ -328,8 +328,6 @@ const SITE_RELEASES = [
 ];
 
 
-/* ── Global search index (each page appends its entries) ──── */
-// Usage in page: SEARCH_INDEX.push(...entries)
 /* ── Global search index (each page appends its entries) ──── */
 // Usage in page: SEARCH_INDEX.push(...entries)
 window.SEARCH_INDEX = window.SEARCH_INDEX || [];

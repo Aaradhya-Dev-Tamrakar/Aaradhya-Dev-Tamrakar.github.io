@@ -1,6 +1,6 @@
 /* ============================================================
    MODULE: haptics.js — aaradhya-dev-tamrakar.github.io
-   Part of the v42 Performance & Code Quality Architecture.
+   Touch gesture recognition and haptic feedback (v49.16).
    ============================================================ */
 
 /* ── Haptic Feedback & Touch Gesture Micro-Interactions (v34) ── */

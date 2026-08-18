@@ -1,6 +1,6 @@
 /* ============================================================
    MODULE: tour.js — aaradhya-dev-tamrakar.github.io
-   Part of the v42 Performance & Code Quality Architecture.
+   Cross-page spotlight tour with keyboard navigation (v49.16).
    ============================================================ */
 
 /* ── Guided Site Tour data (v37) ─────────────────────────── */
@@ -191,11 +191,11 @@ function tourAdvance() {
   if (next >= TOUR_FLAT_STEPS.length) {
     exitTour();
     showToast('Tour complete.');
-    playAudioCue('chime');
+    if (typeof playAudioCue === 'function') playAudioCue('chime');
     return;
   }
   tourGoTo(next);
-  playAudioCue('step');
+  if (typeof playAudioCue === 'function') playAudioCue('step');
 }
 
 function tourBack() {

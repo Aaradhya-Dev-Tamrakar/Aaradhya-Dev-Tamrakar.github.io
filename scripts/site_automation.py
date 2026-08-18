@@ -73,7 +73,7 @@ def audit(verbose=False):
 
 
 def rebuild_search_index():
-    """Regenerates search index in assets/js/modules/cmdk.js using extract_index.py."""
+    """Regenerates SEARCH_STATIC_INDEX in assets/js/script.js using extract_index.py."""
     code, stdout, stderr = run_command([sys.executable, str(EXTRACT_INDEX_PY)])
     return {
         "success": code == 0,
@@ -92,7 +92,7 @@ def update_knowledge_graph():
 
 def get_site_stats():
     """Collects structured metrics and telemetry across the portfolio site."""
-    html_files = list(ROOT.glob("*.html"))
+    html_files = sorted([f for f in ROOT.glob("*.html") if not f.name.startswith("google")])
     projects_count = 0
     achievements_count = 0
     

@@ -1,6 +1,6 @@
 /* ============================================================
    MODULE: ui.js — aaradhya-dev-tamrakar.github.io
-   Part of the v42 Performance & Code Quality Architecture.
+   UI modals, count-up, skill radar, ATS resume, and overlays (v49.16).
    ============================================================ */
 
 /* ── What's New modal ───────────────────────────────────────── */
@@ -62,7 +62,7 @@ function openWhatsNewModal() {
   localStorage.setItem('adt_last_seen_release', SITE_RELEASES[0].version);
   requestAnimationFrame(() => modal.classList.add('open'));
   document.body.style.overflow = 'hidden';
-  playAudioCue('open');
+  if (typeof playAudioCue === 'function') playAudioCue('open');
 }
 
 function closeWhatsNewModal() {
@@ -70,7 +70,7 @@ function closeWhatsNewModal() {
   if (!modal) return;
   modal.classList.remove('open');
   document.body.style.overflow = '';
-  playAudioCue('close');
+  if (typeof playAudioCue === 'function') playAudioCue('close');
 }
 
 
@@ -305,7 +305,7 @@ function initLightbox() {
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
     lbClose.focus();
-    playAudioCue('open');
+    if (typeof playAudioCue === 'function') playAudioCue('open');
   }
 
   function closeLightbox() {
@@ -318,7 +318,7 @@ function initLightbox() {
       lbVerify.href = '#';
     }
     if (lastFocus) lastFocus.focus();
-    playAudioCue('close');
+    if (typeof playAudioCue === 'function') playAudioCue('close');
   }
 
   lb.addEventListener('keydown', e => {
@@ -858,7 +858,7 @@ const RESUME_DATA = {
               sub: "Bachelor of Engineering in Electronics, Communication & Information Engineering (2022 – 2026)",
               bullets: [
                 "Curriculum: Embedded Systems, Signal Processing, Microprocessors, Control Systems, Machine Learning, Communication Networks.",
-                "Vice Secretary of IEEE KEC Student Branch (2025–2026); Executive Member & Mentor at Electronics & Propagation Club (EPC)."
+                "Vice Chair of IEEE KEC Student Branch (2026–2027); Executive Member & Mentor at Electronics & Propagation Club (EPC)."
               ]
             }
           ]
@@ -876,7 +876,7 @@ const RESUME_DATA = {
             },
             {
               header: "IEEE KEC Student Branch & EPC Club",
-              sub: "Vice Secretary & Electronics Mentor | 2024 – Present",
+              sub: "Vice Chair & Electronics Mentor | 2024 – Present",
               bullets: [
                 "Organized PCB design workshops (KiCAD), micro-controller bootcamps, and mentored 100+ junior engineering students in embedded hardware."
               ]
@@ -1231,7 +1231,7 @@ function openResumeGenerator() {
   renderTailoredResumePreview('all');
   requestAnimationFrame(() => modal.classList.add('open'));
   document.body.style.overflow = 'hidden';
-  playAudioCue('open');
+  if (typeof playAudioCue === 'function') playAudioCue('open');
 }
 
 function closeResumeGenerator() {
@@ -1240,7 +1240,7 @@ function closeResumeGenerator() {
   modal.classList.remove('open');
   document.body.style.overflow = '';
   document.body.classList.remove('printing-resume');
-  playAudioCue('close');
+  if (typeof playAudioCue === 'function') playAudioCue('close');
 }
 
 function renderTailoredResumePreview(roleKey) {

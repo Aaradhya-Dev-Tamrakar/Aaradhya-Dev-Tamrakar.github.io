@@ -1,6 +1,6 @@
 /* ============================================================
    MODULE: terminal.js — aaradhya-dev-tamrakar.github.io
-   Part of the v42 Performance & Code Quality Architecture.
+   Interactive retro-futuristic dev terminal widget (v49.16).
    ============================================================ */
 
 /* ── Interactive Dev Terminal Widget (v33) ─────────────────── */

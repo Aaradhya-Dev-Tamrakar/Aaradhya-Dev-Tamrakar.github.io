@@ -1,12 +1,6 @@
 /* ============================================================
-   MODULE: core.js — aaradhya-dev-tamrakar.github.io
-   Part of the v42 Performance & Code Quality Architecture.
-   ============================================================ */
-
-/* ============================================================
-   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io
-   Loaded on every page via <script src="assets/js/script.js">.
-   Page-specific JS lives in each page's own <script defer> block.
+   MODULE: core.js — aaradhya-dev-tamrakar.github.io (v49.16)
+   Theme, navigation, layout, scroll, parallax, and date helpers.
    ============================================================ */
 
 /* ── Site constants ─────────────────────────────────────────── */
@@ -807,7 +801,3 @@ function initStatusDate() {
   el.addEventListener('click', toggleStatusDate);
   renderStatusDate();
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  if (typeof initSkillRadar === 'function') initSkillRadar();
-});

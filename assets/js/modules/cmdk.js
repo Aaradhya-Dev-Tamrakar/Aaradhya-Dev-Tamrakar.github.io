@@ -1,6 +1,6 @@
 /* ============================================================
    MODULE: cmdk.js — aaradhya-dev-tamrakar.github.io
-   Part of the v42 Performance & Code Quality Architecture.
+   Command palette (Cmd+K) search and quick navigation (v49.16).
    ============================================================ */
 
 /* ── Command palette data ─────────────────────────────────── */
@@ -211,14 +211,14 @@ function initGlobalSearch() {
     cmdk.classList.add('open');
     document.body.style.overflow = 'hidden';
     input.focus();
-    playAudioCue('open');
+    if (typeof playAudioCue === 'function') playAudioCue('open');
   }
 
   function closeCmdk() {
     cmdk.classList.remove('open');
     document.body.style.overflow = '';
     if (lastFocus) lastFocus.focus();
-    playAudioCue('close');
+    if (typeof playAudioCue === 'function') playAudioCue('close');
   }
 
   if (navBtn) navBtn.addEventListener('click', openCmdk);
@@ -250,7 +250,7 @@ function initGlobalSearch() {
         ? (activeIndex + 1) % max
         : (activeIndex - 1 + max) % max;
       setActiveResult();
-      playAudioCue('tick');
+      if (typeof playAudioCue === 'function') playAudioCue('tick');
       return;
     }
     if (e.key === 'Enter') {

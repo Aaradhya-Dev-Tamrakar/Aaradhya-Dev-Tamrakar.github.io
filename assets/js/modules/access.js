@@ -1,6 +1,6 @@
 /* ============================================================
    MODULE: access.js — aaradhya-dev-tamrakar.github.io
-   Part of the v42 Performance & Code Quality Architecture.
+   Access control, VIP gates, and Google OAuth integration (v49.16).
    ============================================================ */
 
 /* ── Encrypted Payload Data Store (Zero-leak AES-256-GCM) ───── */
@@ -716,7 +716,7 @@ function openAccessModal(defaultTier = 1) {
   document.body.style.overflow = 'hidden';
   if (passInput) passInput.focus();
   renderGoogleSignInButton();
-  playAudioCue('open');
+  if (typeof playAudioCue === 'function') playAudioCue('open');
 }
 
 function closeAccessModal() {
@@ -724,7 +724,7 @@ function closeAccessModal() {
   if (overlay) {
     overlay.classList.remove('open');
     document.body.style.overflow = '';
-    playAudioCue('close');
+    if (typeof playAudioCue === 'function') playAudioCue('close');
   }
 }
 
@@ -734,7 +734,7 @@ function showError(msg) {
     el.textContent = msg;
     el.classList.add('visible');
   }
-  playAudioCue('error');
+  if (typeof playAudioCue === 'function') playAudioCue('error');
 }
 
 function showToast(msg) {
