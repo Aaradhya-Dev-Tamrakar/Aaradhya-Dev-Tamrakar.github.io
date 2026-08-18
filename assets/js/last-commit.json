@@ -1,6 +1,6 @@
 {
-  "sha": "75b8eb0fe6d3c912d4591298f138655c16617b89",
-  "shortSha": "75b8eb0",
-  "date": "2026-08-17T21:15:20+05:45",
-  "message": "perf(pwa): update script.js, PortfolioWebsite_TRACKER.md +9 more - SHARED SCRIPT ÔÇö aaradhya-dev-tamrakar.githu... (+145/-125)"
+  "sha": "27ea7301a2ebc1833d576eff1086fd15186404a7",
+  "shortSha": "27ea730",
+  "date": "2026-08-18T21:09:08+05:45",
+  "message": "fix(audit): resolve 10 findings from deep analysis — double init, unguarded audio, stale headers, resume data"
 }
