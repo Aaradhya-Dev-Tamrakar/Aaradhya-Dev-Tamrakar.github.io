@@ -1,10 +1,10 @@
 /* ============================================================
-   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io (v49.19)
+   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io (v49.21)
    Loaded on every page via <script src="assets/js/script.js">.
    Orchestrates core modules from assets/js/modules/
    ============================================================ */
 
-/* ── Dynamic Module Loader (v49.19) ───────────────────────────── */
+/* ── Dynamic Module Loader (v49.21) ───────────────────────────── */
 window.__modulesLoadedPromise = (function () {
   const MODULES = [
     'assets/js/modules/core.js',
@@ -48,16 +48,15 @@ window.__modulesLoadedPromise = (function () {
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
   {
-    version: 'v49.19',
-    date: '2026-08-17',
-    sha: 'mob49',
-    title: 'Comprehensive Mobile Responsiveness & Ultra-Small Screen Overhaul',
+    version: 'v49.21',
+    date: '2026-08-19',
+    sha: 'xtool20',
+    title: 'xTool Laser Safety Awareness Training & Printer Maintenance Certifications',
     highlights: [
-      'Navigation: Fixed CSS cascade precedence so mobile navigation and hamburger drawer render reliably without desktop overflow',
-      'Quick-Nav: Added clean URL path resolver (getCurrentPageFile) and responsive Explore card grid across all viewports',
-      'Skill Radar: Added automatic load-time canvas initialization and responsive container-based scaling for mobile',
-      'Modals: De-squished What\'s New and ATS Resume Generator modals with responsive sheet padding and mobile button stack',
-      'PWA & Cache: Bumped Service Worker cache to aaradhya-portfolio-v49'
+      'Certifications: Added xTool Laser Safety Awareness Training (achv-37) & Printer Maintenance Certification (achv-38) with WebP previews & PDF downloads',
+      'Makerspace Integration: Tagged under Academic Certifications in collaboration with KEC Makerspace',
+      'Search & Tour: Updated search static index and site tour metrics to 39 verified achievements',
+      'Hygiene: Passed complete 22-category verification suite'
     ]
   },
   {
@@ -571,6 +570,20 @@ const SEARCH_STATIC_INDEX = {
     "meta": "Nepal Engineering Council (NEC) · 10 May 2026",
     "href": "achievements.html#achv-36",
     "text": "nepal engineering council (nec) nec license exam mock test (bct) scored 97/100 on the computer engineering (bct) format licensure preparation assessment. 10 may 2026"
+  },
+  {
+    "type": "achievement",
+    "title": "Laser Safety Awareness Training",
+    "meta": "xTool · KEC Makerspace · 19 Aug 2026",
+    "href": "achievements.html#achv-37",
+    "text": "xtool · kec makerspace laser safety awareness training 19 aug 2026"
+  },
+  {
+    "type": "achievement",
+    "title": "Printer Maintenance Certification",
+    "meta": "xTool · KEC Makerspace · 19 Aug 2026",
+    "href": "achievements.html#achv-38",
+    "text": "xtool · kec makerspace printer maintenance certification 19 aug 2026"
   },
   {
     "type": "achievement",

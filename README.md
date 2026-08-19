@@ -26,7 +26,7 @@ Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronic
 │   └── google3e772e11a3eb8313.html # Google Search Console site ownership verification file
 │
 ├── 🎨 Assets (`assets/`)
-│   ├── certificates/          # PDF downloads and WebP image previews for all 37 certifications
+│   ├── certificates/          # PDF downloads and WebP image previews for all 39 certifications
 │   ├── css/
 │   │   ├── style.css          # Primary stylesheet entry orchestrator (@import './modules/*.css')
 │   │   └── modules/           # Modular CSS architecture (tokens, base, layout, components, cmdk, access, terminal, tour, print)
@@ -118,7 +118,7 @@ Press **`/`** (or click the **Search** button in the navigation bar) on any page
 
 ### Key Features
 
-- **Instant Cross-Page Search**: Searches across all 10 site pages, all 37 achievements, all 29 projects, and direct quick-navigation commands.
+- **Instant Cross-Page Search**: Searches across all 10 site pages, all 39 achievements, all 29 projects, and direct quick-navigation commands.
 - **Dual Index Strategy**:
   1. `SEARCH_STATIC_INDEX`: Pre-compiled static snapshot bundled into `assets/js/script.js` and `assets/js/modules/cmdk.js` so search works immediately on non-list pages (`index.html`, `contact.html`, `about.html`, etc.).
   2. **Live DOM Scanning**: Real-time DOM fallback scanner on `achievements.html` and `projects.html` to instantly reflect any client-side content edits in search results.
@@ -141,7 +141,7 @@ Located directly on the Home page (`index.html`), the **Interactive Dev Terminal
 - `benchmark`: Client browser runtime performance, DOM elements, loaded scripts, and heap metrics.
 - `glossary [term]`: Looks up technical engineering acronyms.
 - `experience`: Engineering leadership roles (IEEE KEC Vice Secretary, Robotics Lead).
-- `achievements`: Overview of 37 verified certifications and competition awards.
+- `achievements`: Overview of 39 verified certifications and competition awards.
 - `contact`: Direct email, GitHub, and LinkedIn links.
 - `whatsnew`: Triggers the **What's New** major releases modal.
 - `healthcheck`: Runs **client-side site diagnostics** (modules, SW, version, timing, nav links).

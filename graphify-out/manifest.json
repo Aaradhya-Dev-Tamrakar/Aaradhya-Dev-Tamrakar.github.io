@@ -1,7 +1,7 @@
 {
   "assets/js/script.js": {
-    "mtime": 1787067962.1765816,
-    "ast_hash": "19631bd9c897e8aee1b6121b557af06a",
+    "mtime": 1787148053.873494,
+    "ast_hash": "453a003975a4976918456ba594e13c69",
     "semantic_hash": ""
   },
   "AGENTS.md": {
@@ -10,8 +10,8 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1786934623.1210167,
-    "ast_hash": "2c9a0f83cd87df4c53dbb037115a8091",
+    "mtime": 1787147944.9536881,
+    "ast_hash": "c6a42edb5d88e4cfd85afa8c33f28671",
     "semantic_hash": ""
   },
   "about.html": {
@@ -20,8 +20,8 @@
     "semantic_hash": ""
   },
   "achievements.html": {
-    "mtime": 1786932313.764097,
-    "ast_hash": "0289744ef8f69965fb64fc865b786ab1",
+    "mtime": 1787147902.8685315,
+    "ast_hash": "1162fd055b924b6033c35615cc99a488",
     "semantic_hash": ""
   },
   "contact.html": {
@@ -55,8 +55,8 @@
     "semantic_hash": ""
   },
   "assets/js/last-commit.json": {
-    "mtime": 1787067152.426581,
-    "ast_hash": "e8c3aa89967b53fb31aa2eb2816abb31",
+    "mtime": 1787067988.0051246,
+    "ast_hash": "730ccea9a7c615004ab770edfa7998f8",
     "semantic_hash": ""
   },
   "dev-logs/achievements/achievements-inline-script.js": {
@@ -595,8 +595,8 @@
     "semantic_hash": ""
   },
   "dev-logs/PortfolioWebsite_TRACKER.md": {
-    "mtime": 1787067962.1795754,
-    "ast_hash": "ce136137c757aabb154819a0e7d18d69",
+    "mtime": 1787148053.877494,
+    "ast_hash": "3581b87e9540d48b7fc8c813edb652c4",
     "semantic_hash": ""
   },
   "scripts/dev-serve.py": {
@@ -665,8 +665,8 @@
     "semantic_hash": ""
   },
   "scripts/verify.py": {
-    "mtime": 1787067962.1765816,
-    "ast_hash": "34472e17a47a4628af315ab0322c8fdc",
+    "mtime": 1787148053.8744934,
+    "ast_hash": "63b491b7a32d6acb334b098a663d217c",
     "semantic_hash": ""
   },
   "assets/certificates/AI-Fluency_Foundations_of_Coworking_with_AI.pdf": {
@@ -685,48 +685,48 @@
     "semantic_hash": ""
   },
   "sw.js": {
-    "mtime": 1787067962.1273339,
-    "ast_hash": "f830fa4395305723fd48656d6c618ac8",
+    "mtime": 1787148053.8132443,
+    "ast_hash": "93420d86498170d97da527a064c8b503",
     "semantic_hash": ""
   },
   "assets/js/modules/access.js": {
-    "mtime": 1787067962.1816077,
-    "ast_hash": "6b1f96f11f41a97d6f11f1015c890b93",
+    "mtime": 1787148053.880496,
+    "ast_hash": "ed5bac3bc7e1eb57eab8e7b1a5523146",
     "semantic_hash": ""
   },
   "assets/js/modules/audio.js": {
-    "mtime": 1787067962.182596,
-    "ast_hash": "1f9d3fac354e9809210d5fd941c23ad1",
+    "mtime": 1787148053.880496,
+    "ast_hash": "236e9e6a78146a7e73f0cd9cd9910c16",
     "semantic_hash": ""
   },
   "assets/js/modules/cmdk.js": {
-    "mtime": 1787067962.182596,
-    "ast_hash": "34c95a5ca06e67ad923aa6b3dff1c4c5",
+    "mtime": 1787148053.880496,
+    "ast_hash": "b6e82d0e90456aff6bb9878a44c33f4d",
     "semantic_hash": ""
   },
   "assets/js/modules/core.js": {
-    "mtime": 1787067962.182596,
-    "ast_hash": "cfcfb402ead9bd994a906c10e40d52d3",
+    "mtime": 1787148053.8814986,
+    "ast_hash": "2cfe63d2a1cdd4f5edf101e1142ac120",
     "semantic_hash": ""
   },
   "assets/js/modules/haptics.js": {
-    "mtime": 1787067962.1835957,
-    "ast_hash": "f2ca97d73b3d4f3aa828415fc59552d7",
+    "mtime": 1787148053.8814986,
+    "ast_hash": "0c259a6cc710dd7f9a67642b7d3336de",
     "semantic_hash": ""
   },
   "assets/js/modules/terminal.js": {
-    "mtime": 1787067962.1835957,
-    "ast_hash": "3e926c18b5cc4b068cbaf94c43289370",
+    "mtime": 1787148053.8824975,
+    "ast_hash": "df0fc819ef28596ddc280d293299aa73",
     "semantic_hash": ""
   },
   "assets/js/modules/tour.js": {
-    "mtime": 1787067962.1845963,
-    "ast_hash": "25dcc957d842e895b8c18b529c001e57",
+    "mtime": 1787148053.8824975,
+    "ast_hash": "19f01897d9b22184664ce2aaa7ba9dd4",
     "semantic_hash": ""
   },
   "assets/js/modules/ui.js": {
-    "mtime": 1787067962.1845963,
-    "ast_hash": "595a7a075b916460e67c4385f4c9f4ab",
+    "mtime": 1787148053.8834984,
+    "ast_hash": "bbd33a03e08b52224d678e3a78c89e56",
     "semantic_hash": ""
   },
   "mcp-server/mcp_config.json": {
@@ -740,8 +740,8 @@
     "semantic_hash": ""
   },
   "scripts/site_automation.py": {
-    "mtime": 1787067962.1855958,
-    "ast_hash": "9888c56da2e49aa1bdd49a278efe20a1",
+    "mtime": 1787148053.8843558,
+    "ast_hash": "2861d9f2bae9b8253e3787c6b0d62eb0",
     "semantic_hash": ""
   },
   ".github/workflows/lighthouse-audit.yml": {
@@ -772,6 +772,26 @@
   "assets/images/logos/nssr.webp": {
     "mtime": 1786812266.3337429,
     "ast_hash": "e1314554b747044940b0510b1b5bcb82",
+    "semantic_hash": ""
+  },
+  "assets/certificates/Laser-Safety-Awareness-Training.pdf": {
+    "mtime": 1787147269.735655,
+    "ast_hash": "53a2ef40022128392ff1431dbfeb6688",
+    "semantic_hash": ""
+  },
+  "assets/certificates/Printer-Maintenance-Certification.pdf": {
+    "mtime": 1787147419.1998284,
+    "ast_hash": "c3d39d6ef8caa067402d6fbe660f0cec",
+    "semantic_hash": ""
+  },
+  "assets/certificates/Laser-Safety-Awareness-Training.webp": {
+    "mtime": 1787147746.988953,
+    "ast_hash": "bbb98e34359ca49f32fa6338c9171733",
+    "semantic_hash": ""
+  },
+  "assets/certificates/Printer-Maintenance-Certification.webp": {
+    "mtime": 1787147747.5215461,
+    "ast_hash": "bd6f869ef866e94a49b371ead8513ca7",
     "semantic_hash": ""
   }
 }
