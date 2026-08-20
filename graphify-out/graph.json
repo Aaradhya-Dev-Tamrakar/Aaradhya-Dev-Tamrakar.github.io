@@ -2294,24 +2294,24 @@
       "norm_label": "href=\"<file>.html#<id>\" anchors must resolve."
     },
     {
-      "label": "Scan every href=\"*.html\" and href=\"*.html#fragment\" across all pages.     Verify",
+      "label": "Scan every href=\"*.html\" and href=\"*.html#fragment\" across all pages.     Verif",
       "file_type": "rationale",
       "source_file": "scripts/verify.py",
       "source_location": "L329",
       "_origin": "ast",
       "id": "scripts_verify_rationale_329",
       "community": 12,
-      "norm_label": "scan every href=\"*.html\" and href=\"*.html#fragment\" across all pages.     verify"
+      "norm_label": "scan every href=\"*.html\" and href=\"*.html#fragment\" across all pages.     verif"
     },
     {
-      "label": "Scan src=, href=, data-cert=, data-download= for local asset paths.     Verify e",
+      "label": "Scan src=, href=, data-cert=, data-download= for local asset paths.     Verify",
       "file_type": "rationale",
       "source_file": "scripts/verify.py",
       "source_location": "L391",
       "_origin": "ast",
       "id": "scripts_verify_rationale_391",
       "community": 12,
-      "norm_label": "scan src=, href=, data-cert=, data-download= for local asset paths.     verify e"
+      "norm_label": "scan src=, href=, data-cert=, data-download= for local asset paths.     verify"
     },
     {
       "label": "Run node --check on script.js, bg-animations.js, and all modules.",
@@ -2324,24 +2324,24 @@
       "norm_label": "run node --check on script.js, bg-animations.js, and all modules."
     },
     {
-      "label": "Assert sw.js, script.js, style.css, all 8 JS modules, tracker, verify.py,     an",
+      "label": "Assert sw.js, script.js, style.css, all 8 JS modules, tracker, verify.py,     a",
       "file_type": "rationale",
       "source_file": "scripts/verify.py",
       "source_location": "L469",
       "_origin": "ast",
       "id": "scripts_verify_rationale_469",
       "community": 12,
-      "norm_label": "assert sw.js, script.js, style.css, all 8 js modules, tracker, verify.py,     an"
+      "norm_label": "assert sw.js, script.js, style.css, all 8 js modules, tracker, verify.py,     a"
     },
     {
-      "label": "Parse the MODULES array from script.js and @import rules from style.css,     and",
+      "label": "Parse the MODULES array from script.js and @import rules from style.css,     an",
       "file_type": "rationale",
       "source_file": "scripts/verify.py",
       "source_location": "L559",
       "_origin": "ast",
       "id": "scripts_verify_rationale_559",
       "community": 12,
-      "norm_label": "parse the modules array from script.js and @import rules from style.css,     and"
+      "norm_label": "parse the modules array from script.js and @import rules from style.css,     an"
     },
     {
       "label": "Compare sitemap.xml URLs against actual *.html files.",
@@ -2364,14 +2364,14 @@
       "norm_label": "parse site.webmanifest as json. verify required fields."
     },
     {
-      "label": "Extract <script type=\"application/ld+json\"> blocks, parse as JSON,     verify @c",
+      "label": "Extract <script type=\"application/ld+json\"> blocks, parse as JSON,     verify @",
       "file_type": "rationale",
       "source_file": "scripts/verify.py",
       "source_location": "L673",
       "_origin": "ast",
       "id": "scripts_verify_rationale_673",
       "community": 12,
-      "norm_label": "extract <script type=\"application/ld+json\"> blocks, parse as json,     verify @c"
+      "norm_label": "extract <script type=\"application/ld+json\"> blocks, parse as json,     verify @"
     },
     {
       "label": "Warn when files exceed size thresholds.",
@@ -2384,14 +2384,14 @@
       "norm_label": "warn when files exceed size thresholds."
     },
     {
-      "label": "Parse sw.js STATIC_ASSETS array. Verify every listed file exists.     Flag any *",
+      "label": "Parse sw.js STATIC_ASSETS array. Verify every listed file exists.     Flag any",
       "file_type": "rationale",
       "source_file": "scripts/verify.py",
       "source_location": "L749",
       "_origin": "ast",
       "id": "scripts_verify_rationale_749",
       "community": 12,
-      "norm_label": "parse sw.js static_assets array. verify every listed file exists.     flag any *"
+      "norm_label": "parse sw.js static_assets array. verify every listed file exists.     flag any"
     },
     {
       "label": "Verify Sitemap: directive URL and basic syntax.",
@@ -2404,24 +2404,24 @@
       "norm_label": "verify sitemap: directive url and basic syntax."
     },
     {
-      "label": "Scan all pages for id=\"\" attributes. Flag collisions that could     confuse cros",
+      "label": "Scan all pages for id=\"\" attributes. Flag collisions that could     confuse cro",
       "file_type": "rationale",
       "source_file": "scripts/verify.py",
       "source_location": "L833",
       "_origin": "ast",
       "id": "scripts_verify_rationale_833",
       "community": 12,
-      "norm_label": "scan all pages for id=\"\" attributes. flag collisions that could     confuse cros"
+      "norm_label": "scan all pages for id=\"\" attributes. flag collisions that could     confuse cro"
     },
     {
-      "label": "Check for unguarded optional function calls, duplicate listeners,     and legacy",
+      "label": "Check for unguarded optional function calls, duplicate listeners,     and legac",
       "file_type": "rationale",
       "source_file": "scripts/verify.py",
       "source_location": "L870",
       "_origin": "ast",
       "id": "scripts_verify_rationale_870",
       "community": 12,
-      "norm_label": "check for unguarded optional function calls, duplicate listeners,     and legacy"
+      "norm_label": "check for unguarded optional function calls, duplicate listeners,     and legac"
     },
     {
       "label": "Scan all CSS files for url(...) references and verify assets exist.",
@@ -2434,14 +2434,14 @@
       "norm_label": "scan all css files for url(...) references and verify assets exist."
     },
     {
-      "label": "Verify image alt attributes, link noopener on _blank, single h1 per page,     ti",
+      "label": "Verify image alt attributes, link noopener on _blank, single h1 per page,     t",
       "file_type": "rationale",
       "source_file": "scripts/verify.py",
       "source_location": "L967",
       "_origin": "ast",
       "id": "scripts_verify_rationale_967",
       "community": 12,
-      "norm_label": "verify image alt attributes, link noopener on _blank, single h1 per page,     ti"
+      "norm_label": "verify image alt attributes, link noopener on _blank, single h1 per page,     t"
     },
     {
       "label": "Verify resume data in ui.js matches HTML & JSON-LD role titles and contact info.",
@@ -12285,5 +12285,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "e888cadd3960031c9d1605e81e0f553f4b2b5fe4"
+  "built_at_commit": "4c674176b844216fe36fb02c4a64c8c00efd57df"
 }
