@@ -1,6 +1,6 @@
 {
-  "sha": "67253a0a7ad73b56add6bb48a253c88568be905b",
-  "shortSha": "67253a0",
-  "date": "2026-08-19T19:46:01+05:45",
-  "message": "feat(achievements): add xTool Laser Safety & Printer Maintenance certificates"
+  "sha": "c9846270de12db67451f7c8eec9a3f54b82894bb",
+  "shortSha": "c984627",
+  "date": "2026-08-20T17:25:53+05:45",
+  "message": "Update manifest.json with new mtime and semantic_hash values for various assets"
 }
