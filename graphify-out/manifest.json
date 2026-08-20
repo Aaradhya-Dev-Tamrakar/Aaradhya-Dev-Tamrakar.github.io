@@ -1,38 +1,38 @@
 {
   "assets/js/script.js": {
-    "mtime": 1787148053.873494,
-    "ast_hash": "453a003975a4976918456ba594e13c69",
+    "mtime": 1787225957.2751937,
+    "ast_hash": "85b95638eb123a32974074d53fe0cb26",
     "semantic_hash": ""
   },
   "AGENTS.md": {
     "mtime": 1786778286.103922,
     "ast_hash": "f3f9eecf0dd8f3c270234bda24373215",
-    "semantic_hash": ""
+    "semantic_hash": "f3f9eecf0dd8f3c270234bda24373215"
   },
   "README.md": {
     "mtime": 1787147944.9536881,
     "ast_hash": "c6a42edb5d88e4cfd85afa8c33f28671",
-    "semantic_hash": ""
+    "semantic_hash": "c6a42edb5d88e4cfd85afa8c33f28671"
   },
   "about.html": {
     "mtime": 1786932313.762385,
     "ast_hash": "e6d8c7fd08449f1779b4dde9315d4108",
-    "semantic_hash": ""
+    "semantic_hash": "e6d8c7fd08449f1779b4dde9315d4108"
   },
   "achievements.html": {
     "mtime": 1787147902.8685315,
     "ast_hash": "1162fd055b924b6033c35615cc99a488",
-    "semantic_hash": ""
+    "semantic_hash": "1162fd055b924b6033c35615cc99a488"
   },
   "contact.html": {
     "mtime": 1786932313.7825367,
     "ast_hash": "bea08ce03a40218f96ca48181e4636e0",
-    "semantic_hash": ""
+    "semantic_hash": "bea08ce03a40218f96ca48181e4636e0"
   },
   "experience.html": {
     "mtime": 1786932313.7850761,
     "ast_hash": "f61cf63237f6fa88c89b00fe993a92ec",
-    "semantic_hash": ""
+    "semantic_hash": "f61cf63237f6fa88c89b00fe993a92ec"
   },
   "google3e772e11a3eb8313.html": {
     "mtime": 1784603600.0,
@@ -42,22 +42,22 @@
   "index.html": {
     "mtime": 1786932313.7863884,
     "ast_hash": "1110c06d10c4705743e7aaba7cdc4f42",
-    "semantic_hash": ""
+    "semantic_hash": "1110c06d10c4705743e7aaba7cdc4f42"
   },
   "projects.html": {
     "mtime": 1786932313.7885332,
     "ast_hash": "8a299fc560f5255834e744f811aa89cd",
-    "semantic_hash": ""
+    "semantic_hash": "8a299fc560f5255834e744f811aa89cd"
   },
   "robots.txt": {
     "mtime": 1786776790.8229463,
     "ast_hash": "45b5e5d9b04429c0289607522f743c3c",
-    "semantic_hash": ""
+    "semantic_hash": "45b5e5d9b04429c0289607522f743c3c"
   },
   "assets/js/last-commit.json": {
-    "mtime": 1787067988.0051246,
-    "ast_hash": "730ccea9a7c615004ab770edfa7998f8",
-    "semantic_hash": ""
+    "mtime": 1787148082.2610433,
+    "ast_hash": "3f5b8b19263f4bb8c9a3a22105b0e441",
+    "semantic_hash": "3f5b8b19263f4bb8c9a3a22105b0e441"
   },
   "dev-logs/achievements/achievements-inline-script.js": {
     "mtime": 1784367167.0,
@@ -72,12 +72,12 @@
   ".github/workflows/stamp-last-commit.yml": {
     "mtime": 1786861255.9393306,
     "ast_hash": "f6aa1475e866297f4f90b28c08cd61a1",
-    "semantic_hash": ""
+    "semantic_hash": "f6aa1475e866297f4f90b28c08cd61a1"
   },
   "404.html": {
     "mtime": 1786812985.0217938,
     "ast_hash": "d1e1ce4417fce191ed8c5e3c60caee51",
-    "semantic_hash": ""
+    "semantic_hash": "d1e1ce4417fce191ed8c5e3c60caee51"
   },
   "dev-logs/achievements/implementation.md": {
     "mtime": 1784367167.0,
@@ -362,7 +362,7 @@
   "assets/certificates/IEEE_Nepal_Section_CLW_2026.webp": {
     "mtime": 1786810499.028366,
     "ast_hash": "cd4b724f7f2ad192d32f92623d5a2007",
-    "semantic_hash": ""
+    "semantic_hash": "cd4b724f7f2ad192d32f92623d5a2007"
   },
   "assets/certificates/KECIT_Git_GitHub_Session_2024.webp": {
     "mtime": 1786810499.0544007,
@@ -442,22 +442,22 @@
   "dev-logs/og-image/template.html": {
     "mtime": 1784603600.0,
     "ast_hash": "b8a3378189e7f7fadcef5ed0cf67591f",
-    "semantic_hash": ""
+    "semantic_hash": "b8a3378189e7f7fadcef5ed0cf67591f"
   },
   "assets/images/logos/epc-club.webp": {
     "mtime": 1786810499.1075468,
     "ast_hash": "11f6cd31114d6ed35432ff55d3df858f",
-    "semantic_hash": ""
+    "semantic_hash": "11f6cd31114d6ed35432ff55d3df858f"
   },
   "assets/images/logos/fusemachines.webp": {
     "mtime": 1786810499.1095421,
     "ast_hash": "bffd3ed47b065b589157ab40fb58a6fb",
-    "semantic_hash": ""
+    "semantic_hash": "bffd3ed47b065b589157ab40fb58a6fb"
   },
   "assets/images/logos/makerspace.webp": {
     "mtime": 1786810499.1115425,
     "ast_hash": "9c25b40368263a5b743b29894bcbf6e7",
-    "semantic_hash": ""
+    "semantic_hash": "9c25b40368263a5b743b29894bcbf6e7"
   },
   "scripts/extract_index.py": {
     "mtime": 1784629159.0,
@@ -472,172 +472,172 @@
   ".github/workflows/update-search-index.yml": {
     "mtime": 1784603597.0,
     "ast_hash": "f3e010a6291529623b187c83387df548",
-    "semantic_hash": ""
+    "semantic_hash": "f3e010a6291529623b187c83387df548"
   },
   "assets/certificates/EU_AI_Act_Literacy_EU0028355472158.pdf": {
     "mtime": 1786810498.99158,
     "ast_hash": "5a52e732a08a53dd66a5aa893fc2780e",
-    "semantic_hash": ""
+    "semantic_hash": "5a52e732a08a53dd66a5aa893fc2780e"
   },
   "assets/certificates/EU_AI_Act_Literacy_EU0028355472158.webp": {
     "mtime": 1786810498.9926457,
     "ast_hash": "37af17678ba3f740eb2ffb0ab7e0ecdd",
-    "semantic_hash": ""
+    "semantic_hash": "37af17678ba3f740eb2ffb0ab7e0ecdd"
   },
   "assets/events/autocad-workshop-2025.webp": {
     "mtime": 1786810499.091185,
     "ast_hash": "b03334ca6c90054c7c4be6d31a4ae145",
-    "semantic_hash": ""
+    "semantic_hash": "b03334ca6c90054c7c4be6d31a4ae145"
   },
   "assets/events/dristi-3-0-2025.webp": {
     "mtime": 1786810499.0926893,
     "ast_hash": "66c72d7282663e26ba07d5d7432f5442",
-    "semantic_hash": ""
+    "semantic_hash": "66c72d7282663e26ba07d5d7432f5442"
   },
   "assets/events/epc-basic-electronics-2025-1.webp": {
     "mtime": 1786810499.093934,
     "ast_hash": "2c23310cf504a9ff41fe708f0c5717ab",
-    "semantic_hash": ""
+    "semantic_hash": "2c23310cf504a9ff41fe708f0c5717ab"
   },
   "assets/events/epc-basic-electronics-2025-2.webp": {
     "mtime": 1786810499.0949464,
     "ast_hash": "5c537cb2848d24e6d50623f6ae7a7998",
-    "semantic_hash": ""
+    "semantic_hash": "5c537cb2848d24e6d50623f6ae7a7998"
   },
   "assets/events/epc-basic-electronics-2025-banner.webp": {
     "mtime": 1786810499.0949464,
     "ast_hash": "32c36c70abf1e9e3bd7d9ea9c535516b",
-    "semantic_hash": ""
+    "semantic_hash": "32c36c70abf1e9e3bd7d9ea9c535516b"
   },
   "assets/events/ieee-plus2-orientation-2026.webp": {
     "mtime": 1786810499.0964582,
     "ast_hash": "e0766416873d5a67ec2721520c5d153f",
-    "semantic_hash": ""
+    "semantic_hash": "e0766416873d5a67ec2721520c5d153f"
   },
   "assets/events/kec-music-club.svg": {
     "mtime": 1784603598.0,
     "ast_hash": "17f9ab86847ea927f3fcc4cd7e292d7c",
-    "semantic_hash": ""
+    "semantic_hash": "17f9ab86847ea927f3fcc4cd7e292d7c"
   },
   "assets/events/machine-learning-hackathon-2024.webp": {
     "mtime": 1786810499.0974708,
     "ast_hash": "a182e0677698402755c70cecfcfbe180",
-    "semantic_hash": ""
+    "semantic_hash": "a182e0677698402755c70cecfcfbe180"
   },
   "assets/events/mr-kec-2025-1.webp": {
     "mtime": 1786810499.0984704,
     "ast_hash": "24f5329631798c466a1bd4063d5cd851",
-    "semantic_hash": ""
+    "semantic_hash": "24f5329631798c466a1bd4063d5cd851"
   },
   "assets/events/mr-kec-2025-2.webp": {
     "mtime": 1786810499.09947,
     "ast_hash": "1d4b48657f794e24852ee7a72f6c82d3",
-    "semantic_hash": ""
+    "semantic_hash": "1d4b48657f794e24852ee7a72f6c82d3"
   },
   "assets/events/mr-kec-2025-3.webp": {
     "mtime": 1786810499.1004667,
     "ast_hash": "86a8945616d1a11241fee7ef102762ef",
-    "semantic_hash": ""
+    "semantic_hash": "86a8945616d1a11241fee7ef102762ef"
   },
   "assets/events/pcb-design-fabrication-workshop-2025-day1.webp": {
     "mtime": 1786810499.101469,
     "ast_hash": "b407efa25930e8848d92550cb40d954b",
-    "semantic_hash": ""
+    "semantic_hash": "b407efa25930e8848d92550cb40d954b"
   },
   "assets/events/pcb-design-fabrication-workshop-2025-day2.webp": {
     "mtime": 1786810499.101469,
     "ast_hash": "bee9e39b558752a4747b4e80f0bf1235",
-    "semantic_hash": ""
+    "semantic_hash": "bee9e39b558752a4747b4e80f0bf1235"
   },
   "assets/events/pcb-design-fabrication-workshop-2025-day3.webp": {
     "mtime": 1786810499.102979,
     "ast_hash": "3241eabfee2a3241cdbe6ba37981d165",
-    "semantic_hash": ""
+    "semantic_hash": "3241eabfee2a3241cdbe6ba37981d165"
   },
   "assets/events/proteus-workshop-2024-banner.webp": {
     "mtime": 1786810499.103992,
     "ast_hash": "9e2a3e9f7863b54a8445f5699b263955",
-    "semantic_hash": ""
+    "semantic_hash": "9e2a3e9f7863b54a8445f5699b263955"
   },
   "assets/events/proteus-workshop-2024-day1.webp": {
     "mtime": 1786810499.1050043,
     "ast_hash": "051b361eacf9ee4ab1590ceac6c4912b",
-    "semantic_hash": ""
+    "semantic_hash": "051b361eacf9ee4ab1590ceac6c4912b"
   },
   "assets/events/proteus-workshop-2024-day2.webp": {
     "mtime": 1786810499.1050043,
     "ast_hash": "dbc13cdb3020d47877450c2ef9af42da",
-    "semantic_hash": ""
+    "semantic_hash": "dbc13cdb3020d47877450c2ef9af42da"
   },
   "assets/events/proteus-workshop-2024.svg": {
     "mtime": 1784603598.0,
     "ast_hash": "17f9ab86847ea927f3fcc4cd7e292d7c",
-    "semantic_hash": ""
+    "semantic_hash": "17f9ab86847ea927f3fcc4cd7e292d7c"
   },
   "assets/events/sports-week-2026.svg": {
     "mtime": 1784603598.0,
     "ast_hash": "17f9ab86847ea927f3fcc4cd7e292d7c",
-    "semantic_hash": ""
+    "semantic_hash": "17f9ab86847ea927f3fcc4cd7e292d7c"
   },
   "assets/videos/GCSBR_working_demo_poster.jpg": {
     "mtime": 1786810499.1380694,
     "ast_hash": "84fb75e3ad7abfecd2dd0df4e74bfd8d",
-    "semantic_hash": ""
+    "semantic_hash": "84fb75e3ad7abfecd2dd0df4e74bfd8d"
   },
   "sync.ps1": {
     "mtime": 1786980558.9083827,
     "ast_hash": "5f3cd58c0eebcb2ae457ebd49cb2f2b1",
-    "semantic_hash": ""
+    "semantic_hash": "5f3cd58c0eebcb2ae457ebd49cb2f2b1"
   },
   "journey.html": {
     "mtime": 1786812985.0314136,
     "ast_hash": "1b856f6b2d383505813c16b6c4f9ae2f",
-    "semantic_hash": ""
+    "semantic_hash": "1b856f6b2d383505813c16b6c4f9ae2f"
   },
   "dev-logs/PortfolioWebsite_TRACKER.md": {
-    "mtime": 1787148053.877494,
-    "ast_hash": "3581b87e9540d48b7fc8c813edb652c4",
+    "mtime": 1787225969.3803618,
+    "ast_hash": "9230236a25592abe760d9ae4a619db73",
     "semantic_hash": ""
   },
   "scripts/dev-serve.py": {
     "mtime": 1786621782.663795,
     "ast_hash": "232d5e480911ce779ee1cbc2d19118fe",
-    "semantic_hash": ""
+    "semantic_hash": "232d5e480911ce779ee1cbc2d19118fe"
   },
   "CLAUDE.md": {
     "mtime": 1784713911.0977888,
     "ast_hash": "6e2aa83acef5af5b50b2ac5c6a898a05",
-    "semantic_hash": ""
+    "semantic_hash": "6e2aa83acef5af5b50b2ac5c6a898a05"
   },
   "privacy.html": {
     "mtime": 1786862229.2180233,
     "ast_hash": "5c4467520898116276fe554e6386dc3d",
-    "semantic_hash": ""
+    "semantic_hash": "5c4467520898116276fe554e6386dc3d"
   },
   "terms.html": {
     "mtime": 1786862229.220017,
     "ast_hash": "d2bdccf8608db8d32c26ca35aff5cced",
-    "semantic_hash": ""
+    "semantic_hash": "d2bdccf8608db8d32c26ca35aff5cced"
   },
   "assets/docs/ADT_LOGO.png": {
     "mtime": 1786810499.091185,
     "ast_hash": "0a8173914973dcf6b72398cfa55a5667",
-    "semantic_hash": ""
+    "semantic_hash": "0a8173914973dcf6b72398cfa55a5667"
   },
   "assets/certificates/AI-Assisted_Coding_for_Developers_48952793.pdf": {
     "mtime": 1786810498.9723442,
     "ast_hash": "3d7b77849fdb002b444f5b1f65b39fc0",
-    "semantic_hash": ""
+    "semantic_hash": "3d7b77849fdb002b444f5b1f65b39fc0"
   },
   "assets/certificates/Introduction_to_Git_48697649.pdf": {
     "mtime": 1786810499.038406,
     "ast_hash": "2dd8c522211836fe4da13de54ee9d8f7",
-    "semantic_hash": ""
+    "semantic_hash": "2dd8c522211836fe4da13de54ee9d8f7"
   },
   "assets/certificates/Introduction_to_Python_47717251.pdf": {
     "mtime": 1786810499.0453632,
     "ast_hash": "01ce3b4ac1d6189e66b6c5cea18e7390",
-    "semantic_hash": ""
+    "semantic_hash": "01ce3b4ac1d6189e66b6c5cea18e7390"
   },
   "assets/certificates/Introduction_to_Security_in_the_World_of_AI.pdf": {
     "mtime": 1786810499.0513916,
@@ -647,151 +647,151 @@
   "assets/certificates/AI-Assisted_Coding_for_Developers_48952793.webp": {
     "mtime": 1786810498.9739861,
     "ast_hash": "9587bb5908ffa3bed3b695369c6a6d28",
-    "semantic_hash": ""
+    "semantic_hash": "9587bb5908ffa3bed3b695369c6a6d28"
   },
   "assets/certificates/Introduction_to_Git_48697649.webp": {
     "mtime": 1786810499.040351,
     "ast_hash": "c884739fc402e2b6a67062f8ea2bf0f6",
-    "semantic_hash": ""
+    "semantic_hash": "c884739fc402e2b6a67062f8ea2bf0f6"
   },
   "assets/certificates/Introduction_to_Python_47717251.webp": {
     "mtime": 1786810499.0468721,
     "ast_hash": "a78f007304b8214e775761a3a03b6163",
-    "semantic_hash": ""
+    "semantic_hash": "a78f007304b8214e775761a3a03b6163"
   },
   "assets/certificates/Introduction_to_Security_in_the_World_of_AI.webp": {
     "mtime": 1786810499.0534005,
     "ast_hash": "a85d9718c4e69900ec173dcc499f570d",
-    "semantic_hash": ""
+    "semantic_hash": "a85d9718c4e69900ec173dcc499f570d"
   },
   "scripts/verify.py": {
-    "mtime": 1787148053.8744934,
-    "ast_hash": "63b491b7a32d6acb334b098a663d217c",
+    "mtime": 1787225981.338249,
+    "ast_hash": "8f473f197087786a4c86cbeabd6ed522",
     "semantic_hash": ""
   },
   "assets/certificates/AI-Fluency_Foundations_of_Coworking_with_AI.pdf": {
     "mtime": 1786810498.979418,
     "ast_hash": "69d5ef95fe932c470e8b0d99b07555df",
-    "semantic_hash": ""
+    "semantic_hash": "69d5ef95fe932c470e8b0d99b07555df"
   },
   "assets/certificates/AI-Fluency_Foundations_of_Coworking_with_AI.webp": {
     "mtime": 1786810498.9805813,
     "ast_hash": "caecfabf76ad83a3247139ee133648e4",
-    "semantic_hash": ""
+    "semantic_hash": "caecfabf76ad83a3247139ee133648e4"
   },
   ".github/workflows/verify.yml": {
     "mtime": 1787067063.9699886,
     "ast_hash": "d4587b90fe41d6349dde5198108eb17e",
-    "semantic_hash": ""
+    "semantic_hash": "d4587b90fe41d6349dde5198108eb17e"
   },
   "sw.js": {
-    "mtime": 1787148053.8132443,
-    "ast_hash": "93420d86498170d97da527a064c8b503",
+    "mtime": 1787225953.3820987,
+    "ast_hash": "443d5d9d775a68c29d8280b6db3d2f6e",
     "semantic_hash": ""
   },
   "assets/js/modules/access.js": {
-    "mtime": 1787148053.880496,
-    "ast_hash": "ed5bac3bc7e1eb57eab8e7b1a5523146",
+    "mtime": 1787225958.5789566,
+    "ast_hash": "22f8cb281af693d838e2e0afd6d835ae",
     "semantic_hash": ""
   },
   "assets/js/modules/audio.js": {
-    "mtime": 1787148053.880496,
-    "ast_hash": "236e9e6a78146a7e73f0cd9cd9910c16",
+    "mtime": 1787225960.265403,
+    "ast_hash": "75a9b0f462deb7cd6fa3f4bc7bc92d00",
     "semantic_hash": ""
   },
   "assets/js/modules/cmdk.js": {
-    "mtime": 1787148053.880496,
-    "ast_hash": "b6e82d0e90456aff6bb9878a44c33f4d",
+    "mtime": 1787225962.056315,
+    "ast_hash": "8da6747b69e628594e5de5ebbf292478",
     "semantic_hash": ""
   },
   "assets/js/modules/core.js": {
-    "mtime": 1787148053.8814986,
-    "ast_hash": "2cfe63d2a1cdd4f5edf101e1142ac120",
+    "mtime": 1787225962.8843524,
+    "ast_hash": "2fe9a80d044ec16b43bb98eb912cba46",
     "semantic_hash": ""
   },
   "assets/js/modules/haptics.js": {
-    "mtime": 1787148053.8814986,
-    "ast_hash": "0c259a6cc710dd7f9a67642b7d3336de",
+    "mtime": 1787225964.5620916,
+    "ast_hash": "b73906b027a6ce739f6aac950e70491d",
     "semantic_hash": ""
   },
   "assets/js/modules/terminal.js": {
-    "mtime": 1787148053.8824975,
-    "ast_hash": "df0fc819ef28596ddc280d293299aa73",
+    "mtime": 1787225965.4833803,
+    "ast_hash": "29289ee5f31cac101741986287cff797",
     "semantic_hash": ""
   },
   "assets/js/modules/tour.js": {
-    "mtime": 1787148053.8824975,
-    "ast_hash": "19f01897d9b22184664ce2aaa7ba9dd4",
+    "mtime": 1787225967.1219628,
+    "ast_hash": "fdbdf61793822b0a9efc91a1c13a5912",
     "semantic_hash": ""
   },
   "assets/js/modules/ui.js": {
-    "mtime": 1787148053.8834984,
-    "ast_hash": "bbd33a03e08b52224d678e3a78c89e56",
+    "mtime": 1787225967.9829476,
+    "ast_hash": "345369a2fbc9e8fc31af99c2ceb7a255",
     "semantic_hash": ""
   },
   "mcp-server/mcp_config.json": {
     "mtime": 1786622100.633133,
     "ast_hash": "70d992972a30248f0373b6c459adcc28",
-    "semantic_hash": ""
+    "semantic_hash": "70d992972a30248f0373b6c459adcc28"
   },
   "mcp-server/site_mcp.py": {
     "mtime": 1786813144.5345354,
     "ast_hash": "9f300e72f127d12477de61fef52d1e8a",
-    "semantic_hash": ""
+    "semantic_hash": "9f300e72f127d12477de61fef52d1e8a"
   },
   "scripts/site_automation.py": {
-    "mtime": 1787148053.8843558,
-    "ast_hash": "2861d9f2bae9b8253e3787c6b0d62eb0",
+    "mtime": 1787225978.8733258,
+    "ast_hash": "82b63123981f60805bc9525fb1f00241",
     "semantic_hash": ""
   },
   ".github/workflows/lighthouse-audit.yml": {
     "mtime": 1786621990.9498374,
     "ast_hash": "82c978623e5e86918212e3e196a6688b",
-    "semantic_hash": ""
+    "semantic_hash": "82c978623e5e86918212e3e196a6688b"
   },
   "GEMINI.md": {
     "mtime": 1786778286.1044502,
     "ast_hash": "e40477809b18f1d14aec164e3ec750fc",
-    "semantic_hash": ""
+    "semantic_hash": "e40477809b18f1d14aec164e3ec750fc"
   },
   "assets/js/bg-animations.js": {
     "mtime": 1786812254.8129094,
     "ast_hash": "f0d5994d3ee65ba930d1596829f7ce66",
-    "semantic_hash": ""
+    "semantic_hash": "f0d5994d3ee65ba930d1596829f7ce66"
   },
   ".github/workflows/deploy-pages.yml": {
     "mtime": 1786854200.3165689,
     "ast_hash": "c56caa42b7cd0f6a409effb3ecb187a1",
-    "semantic_hash": ""
+    "semantic_hash": "c56caa42b7cd0f6a409effb3ecb187a1"
   },
   "assets/images/logos/ieee-kec.webp": {
     "mtime": 1786812266.323997,
     "ast_hash": "37faef835c5aef46026e58f6f694d0ad",
-    "semantic_hash": ""
+    "semantic_hash": "37faef835c5aef46026e58f6f694d0ad"
   },
   "assets/images/logos/nssr.webp": {
     "mtime": 1786812266.3337429,
     "ast_hash": "e1314554b747044940b0510b1b5bcb82",
-    "semantic_hash": ""
+    "semantic_hash": "e1314554b747044940b0510b1b5bcb82"
   },
   "assets/certificates/Laser-Safety-Awareness-Training.pdf": {
     "mtime": 1787147269.735655,
     "ast_hash": "53a2ef40022128392ff1431dbfeb6688",
-    "semantic_hash": ""
+    "semantic_hash": "53a2ef40022128392ff1431dbfeb6688"
   },
   "assets/certificates/Printer-Maintenance-Certification.pdf": {
     "mtime": 1787147419.1998284,
     "ast_hash": "c3d39d6ef8caa067402d6fbe660f0cec",
-    "semantic_hash": ""
+    "semantic_hash": "c3d39d6ef8caa067402d6fbe660f0cec"
   },
   "assets/certificates/Laser-Safety-Awareness-Training.webp": {
     "mtime": 1787147746.988953,
     "ast_hash": "bbb98e34359ca49f32fa6338c9171733",
-    "semantic_hash": ""
+    "semantic_hash": "bbb98e34359ca49f32fa6338c9171733"
   },
   "assets/certificates/Printer-Maintenance-Certification.webp": {
     "mtime": 1787147747.5215461,
     "ast_hash": "bd6f869ef866e94a49b371ead8513ca7",
-    "semantic_hash": ""
+    "semantic_hash": "bd6f869ef866e94a49b371ead8513ca7"
   }
 }
