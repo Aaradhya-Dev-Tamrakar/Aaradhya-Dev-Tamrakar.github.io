@@ -1,6 +1,6 @@
 {
-  "sha": "a0995ad6c14641b6c19ee7676dcd2c2305454d35",
-  "shortSha": "a0995ad",
-  "date": "2026-08-22T12:38:14+05:45",
-  "message": "fix(projects): automate latest coursework highlight and add verify check"
+  "sha": "878b044598c79dfc99403e517293710bf366d6de",
+  "shortSha": "878b044",
+  "date": "2026-08-22T12:39:38+05:45",
+  "message": "feat(search): index page locations (Explore, CLI, Keymap, RADAR, Education) in command palette"
 }
