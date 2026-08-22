@@ -1,5 +1,5 @@
 /* ============================================================
-   MODULE: ui.js — aaradhya-dev-tamrakar.github.io (v49.24)
+   MODULE: ui.js — aaradhya-dev-tamrakar.github.io (v49.25)
    UI modals, count-up, skill radar, ATS resume, and overlays.
    ============================================================ */
 
@@ -613,26 +613,37 @@ function initRadarCanvas(canvasId, domainSelector) {
 
   function renderRadar() {
     const container = canvas.parentElement;
-    const containerWidth = container ? container.clientWidth : 380;
-    const width = Math.min(460, Math.max(280, containerWidth > 0 ? containerWidth : 380));
-    const height = Math.min(390, Math.max(280, Math.round(width * 0.88)));
+    const containerWidth = container ? container.clientWidth : 280;
+    const size = Math.min(300, Math.max(220, containerWidth > 0 ? containerWidth : 280));
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-    if (canvas.width !== width * dpr || canvas.height !== height * dpr) {
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      canvas.style.width = width + 'px';
-      canvas.style.height = height + 'px';
+    if (canvas.width !== size * dpr || canvas.height !== size * dpr) {
+      canvas.width = size * dpr;
+      canvas.height = size * dpr;
+      canvas.style.width = size + 'px';
+      canvas.style.height = size + 'px';
       canvas.style.maxWidth = '100%';
     }
 
     ctx.save();
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, width, height);
+    ctx.clearRect(0, 0, size, size);
 
-    const centerX = width / 2;
-    const centerY = height / 2 + 6;
-    const radius = Math.min(width * 0.25, height * 0.28);
+    const centerX = size / 2;
+    const centerY = size / 2;
+    const radius = size * 0.25;
+
+    // Abbreviated labels for canvas (full names in domain cards)
+    const shortLabels = domains.map(d => {
+      if (d.label.length > 16) {
+        // Shorten "Leadership & Applied Strategy" → "Leadership"
+        // Shorten "Data Science & Omics" → "Data Sci & Omics"
+        const parts = d.label.split(' & ');
+        if (parts.length === 2 && d.label.length > 20) return parts[0];
+        return d.label.length > 18 ? d.label.substring(0, 16) + '…' : d.label;
+      }
+      return d.label;
+    });
 
     function getPointCoordinates(index, scale) {
       const angle = (Math.PI * 2 / numSides) * index - Math.PI / 2;
@@ -658,8 +669,8 @@ function initRadarCanvas(canvasId, domainSelector) {
       ctx.stroke();
 
       // Tier percentage label on vertical axis
-      ctx.font = '9px "DM Mono", monospace';
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.32)';
+      ctx.font = '8px "DM Mono", monospace';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.28)';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'bottom';
       ctx.fillText(`${l * 25}%`, centerX, centerY - (radius * levelScale) - 2);
@@ -671,7 +682,7 @@ function initRadarCanvas(canvasId, domainSelector) {
       ctx.beginPath();
       ctx.moveTo(centerX, centerY);
       ctx.lineTo(pt.x, pt.y);
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.10)';
       ctx.stroke();
     }
 
@@ -684,15 +695,14 @@ function initRadarCanvas(canvasId, domainSelector) {
     }
     ctx.closePath();
 
-    // Accent Gradient Fill
-    const grad = ctx.createRadialGradient(centerX, centerY, 10, centerX, centerY, radius);
+    const grad = ctx.createRadialGradient(centerX, centerY, 8, centerX, centerY, radius);
     grad.addColorStop(0, 'rgba(212, 168, 90, 0.45)');
     grad.addColorStop(1, 'rgba(109, 191, 170, 0.15)');
     ctx.fillStyle = grad;
     ctx.fill();
 
     ctx.strokeStyle = '#d4a85a';
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 1.5;
     ctx.stroke();
 
     // 4. Draw Data Point Nodes
@@ -701,79 +711,64 @@ function initRadarCanvas(canvasId, domainSelector) {
       const isSelected = (i === activeIndex);
 
       ctx.beginPath();
-      ctx.arc(pt.x, pt.y, isSelected ? 6.5 : 4, 0, Math.PI * 2);
+      ctx.arc(pt.x, pt.y, isSelected ? 5 : 3.5, 0, Math.PI * 2);
       ctx.fillStyle = isSelected ? '#ffffff' : '#d4a85a';
       ctx.fill();
       ctx.strokeStyle = isSelected ? '#d4a85a' : '#0d0e11';
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 1.5;
       ctx.stroke();
     }
 
-    // 5. Render Outer Axis Vertex Legends & Percentage Tags
+    // 5. Render Outer Axis Vertex Labels & Scores
+    const labelOffset = radius + 18;
     domains.forEach((dom, i) => {
       const isSelected = (i === activeIndex);
       const angle = (Math.PI * 2 / numSides) * i - Math.PI / 2;
       const cosA = Math.cos(angle);
       const sinA = Math.sin(angle);
 
-      const titleFont = isSelected ? '600 11px "DM Mono", monospace' : '500 10.5px "Inter", sans-serif';
-      const scoreFont = '600 10px "DM Mono", monospace';
+      let lx = centerX + cosA * labelOffset;
+      let ly = centerY + sinA * labelOffset;
 
-      ctx.font = titleFont;
-      const labelW = ctx.measureText(dom.label).width;
-      ctx.font = scoreFont;
+      const titleFont = isSelected ? '600 9.5px "DM Mono", monospace' : '500 9px "Inter", sans-serif';
+      const scoreFont = '600 8.5px "DM Mono", monospace';
       const scoreStr = `${Math.round(dom.score * 100)}%`;
-      const scoreW = ctx.measureText(scoreStr).width;
-      const maxW = Math.max(labelW, scoreW);
 
-      let lx, ly;
-      const padding = 8;
-
-      if (Math.abs(cosA) < 0.25) {
-        // Top vertex (i = 0)
+      // Text alignment by position
+      if (Math.abs(cosA) < 0.3) {
         ctx.textAlign = 'center';
-        ctx.textBaseline = 'bottom';
-        lx = centerX;
-        ly = centerY - radius - 12;
+        ctx.textBaseline = sinA < 0 ? 'bottom' : 'top';
       } else if (cosA > 0) {
-        // Right side vertices (i = 1, 2)
         ctx.textAlign = 'left';
         ctx.textBaseline = 'middle';
-        const labelRadius = radius + (sinA > 0.5 ? 18 : 14);
-        lx = centerX + cosA * labelRadius;
-        ly = centerY + sinA * labelRadius;
-
-        // Clamp to prevent right overflow
-        if (lx + maxW > width - padding) {
-          lx = width - padding - maxW;
-        }
       } else {
-        // Left side vertices (i = 3, 4)
         ctx.textAlign = 'right';
         ctx.textBaseline = 'middle';
-        const labelRadius = radius + (sinA > 0.5 ? 18 : 14);
-        lx = centerX + cosA * labelRadius;
-        ly = centerY + sinA * labelRadius;
-
-        // Clamp to prevent left overflow
-        if (lx - maxW < padding) {
-          lx = padding + maxW;
-        }
       }
 
-      // Clamp vertical bounds
-      if (ly - 16 < padding) ly = padding + 16;
-      if (ly + 16 > height - padding) ly = height - padding - 16;
-
-      // Render Domain Title
+      // Clamp to canvas bounds
       ctx.font = titleFont;
-      ctx.fillStyle = isSelected ? '#d4a85a' : 'rgba(255, 255, 255, 0.88)';
-      ctx.fillText(dom.label, lx, ly - 5);
+      const tw = ctx.measureText(shortLabels[i]).width;
+      const pad = 4;
 
-      // Render Score Badge
+      if (ctx.textAlign === 'left' && lx + tw > size - pad) lx = size - pad - tw;
+      if (ctx.textAlign === 'right' && lx - tw < pad) lx = pad + tw;
+      if (ctx.textAlign === 'center') {
+        if (lx - tw / 2 < pad) lx = pad + tw / 2;
+        if (lx + tw / 2 > size - pad) lx = size - pad - tw / 2;
+      }
+      if (ly < pad + 10) ly = pad + 10;
+      if (ly > size - pad - 10) ly = size - pad - 10;
+
+      // Domain label
+      ctx.font = titleFont;
+      ctx.fillStyle = isSelected ? '#d4a85a' : 'rgba(255, 255, 255, 0.80)';
+      ctx.fillText(shortLabels[i], lx, ly - 4);
+
+      // Score
       ctx.font = scoreFont;
-      ctx.fillStyle = isSelected ? '#ffffff' : 'rgba(212, 168, 90, 0.95)';
-      ctx.fillText(scoreStr, lx, ly + 8);
+      ctx.fillStyle = isSelected ? '#ffffff' : 'rgba(212, 168, 90, 0.9)';
+      ctx.fillText(scoreStr, lx, ly + 7);
     });
 
     ctx.restore();
