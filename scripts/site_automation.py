@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-site_automation.py — Hyper-Automation Engine for Aaradhya-Dev-Tamrakar.github.io (v49.27)
+site_automation.py — Hyper-Automation Engine for Aaradhya-Dev-Tamrakar.github.io (v49.28)
 
 Provides automated workflows for:
 - Automated site verification & diagnostics (via scripts/verify.py)
@@ -55,7 +55,7 @@ def run_command(cmd, cwd=ROOT):
 
 
 def audit(verbose=False):
-    """Runs the 17-category verification suite from scripts/verify.py."""
+    """Runs the 22-category verification suite from scripts/verify.py."""
     cmd = [sys.executable, str(VERIFY_PY)]
     if verbose:
         cmd.append("--verbose")

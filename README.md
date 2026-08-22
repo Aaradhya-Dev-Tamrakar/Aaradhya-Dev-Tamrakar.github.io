@@ -22,7 +22,7 @@ Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronic
 │   ├── terms.html              # Terms of service and usage terms
 │   ├── 404.html                # Custom styled Not-Found page (excluded from sitemap, marked noindex)
 │   ├── site.webmanifest        # Progressive Web App manifest metadata (standalone app, dark theme tokens)
-│   ├── sw.js                   # PWA Service Worker (v49.6 cache-first static assets & network-first HTML)
+│   ├── sw.js                   # PWA Service Worker (v49.27 cache-first static assets & network-first HTML)
 │   └── google3e772e11a3eb8313.html # Google Search Console site ownership verification file
 │
 ├── 🎨 Assets (`assets/`)
@@ -39,7 +39,7 @@ Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronic
 │   │   ├── og-image.jpg        # Open Graph social sharing preview card
 │   │   └── logos/              # Institutional logos (IEEE KEC, Fusemachines, EPC Club, Maker's Space, NSSR)
 │   ├── js/
-│   │   ├── script.js           # Core site engine: nav, theme toggle, access control, Google Sign-In & search (v49.6)
+│   │   ├── script.js           # Core site engine: nav, theme toggle, access control, Google Sign-In & search (v49.27)
 │   │   ├── bg-animations.js    # Standalone SignalWave and PCBTraces background canvas animations
 │   │   ├── modules/            # Decoupled ES/IIFE JavaScript modules (core, ui, cmdk, access, tour, audio, terminal, haptics)
 │   │   └── last-commit.json    # Commit metadata stamped on push via GitHub Actions for live commit status display
@@ -47,11 +47,11 @@ Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronic
 │
 ├── 🤖 MCP Server & Automation (`mcp-server/` & `scripts/`)
 │   ├── mcp-server/
-│   │   └── site_mcp.py         # Standard Model Context Protocol (MCP) server exposing site resources, telemetry & tools
-│   ├── mcp_config.json         # MCP server registration config for AI IDEs & desktop clients
+│   │   ├── site_mcp.py         # Standard Model Context Protocol (MCP) server exposing site resources, telemetry & tools
+│   │   └── mcp_config.json     # MCP server registration config for AI IDEs & desktop clients
 │   └── scripts/
 │       ├── site_automation.py  # Hyper-automation engine: site telemetry, version syncing & tracker logging
-│       ├── verify.py           # 17-category diagnostic suite: cross-page links, asset references, JS syntax, versions, JSON-LD, size budgets
+│       ├── verify.py           # 22-category diagnostic suite: cross-page links, asset references, JS syntax, versions, JSON-LD, size budgets
 │       ├── extract_index.py    # Python script to extract searchable items into the static command palette index
 │       └── dev-serve.py        # Local HTTP dev testing server with project root resolution, CORS headers & MIME type handling
 │
@@ -140,7 +140,7 @@ Located directly on the Home page (`index.html`), the **Interactive Dev Terminal
 - `stats`: Structured site telemetry summary (projects, achievements, milestones, target hardware).
 - `benchmark`: Client browser runtime performance, DOM elements, loaded scripts, and heap metrics.
 - `glossary [term]`: Looks up technical engineering acronyms.
-- `experience`: Engineering leadership roles (IEEE KEC Vice Secretary, Robotics Lead).
+- `experience`: Engineering leadership roles (IEEE KEC Vice Chair, Fuse AI Fellow, NSSR Fellow).
 - `achievements`: Overview of 39 verified certifications and competition awards.
 - `contact`: Direct email, GitHub, and LinkedIn links.
 - `whatsnew`: Triggers the **What's New** major releases modal.
@@ -168,7 +168,7 @@ Located directly on the Home page (`index.html`), the **Interactive Dev Terminal
 
 ### Verification & Diagnostic Suite
 
-To run the complete 17-category diagnostic verification engine locally:
+To run the complete 22-category diagnostic verification engine locally:
 
 ```bash
 python scripts/verify.py            # Standard verification check

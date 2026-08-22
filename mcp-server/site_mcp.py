@@ -10,7 +10,7 @@ Resources exposed:
 - site://achievements  : Certifications, badges, and verification links
 - site://tracker       : Portfolio tracker release history & state of play
 - site://graph         : Codebase knowledge graph analysis (God nodes, communities)
-- site://health        : Structural verification status (17 check categories)
+- site://health        : Structural verification status (22 check categories)
 - site://stats         : Structured site metrics and telemetry
 
 Tools exposed:
@@ -74,7 +74,7 @@ RESOURCES = [
     {
         "uri": "site://health",
         "name": "Site Structural Verification Report",
-        "description": "Live status of the 17-category diagnostic verification suite.",
+        "description": "Live status of the 22-category diagnostic verification suite.",
         "mimeType": "application/json"
     },
     {
@@ -89,7 +89,7 @@ RESOURCES = [
 TOOLS = [
     {
         "name": "run_verification",
-        "description": "Executes the 17-category site verification suite (scripts/verify.py).",
+        "description": "Executes the 22-category site verification suite (scripts/verify.py).",
         "inputSchema": {
             "type": "object",
             "properties": {

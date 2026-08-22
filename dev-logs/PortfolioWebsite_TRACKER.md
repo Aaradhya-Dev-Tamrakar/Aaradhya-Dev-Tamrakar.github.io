@@ -1,8 +1,13 @@
-﻿# Portfolio Website Tracker — v49.27
+﻿# Portfolio Website Tracker — v49.28
 
 Last updated: _2026-08-22_
 
 ## Meta
+
+- **v49.27 (Update) — xTool Laser Safety & Maintenance Credentials and Diagnostic Alignment.** Synchronized site metadata and verified credentials across the portfolio:
+  - **Verified Credentials & Lightbox Sync**: Integrated xTool Laser Safety Awareness Training (`achv-37`) and Printer Maintenance Certification (`achv-38`) with 39 verified achievements total, WebP previews, and PDF downloads.
+  - **Telemetry & Terminal Sync**: Updated CLI command fallback parameters, diagnostic healthchecks, and site metrics in `assets/js/modules/terminal.js` and `mcp-server/site_mcp.py` to reflect 39 achievements and the 22-category verification suite.
+  - **Verification Gate**: Passed `python scripts/verify.py` cleanly across all 22 diagnostic categories (0 errors, 0 warnings).
 
 - **v49.25 (Update) — Global Search Expansion for Page Locations & Landmark Sections.** Enhanced site-wide command palette (`/` / `Cmd+K`) search to index key landmark sections, features, and page locations across all pages:
   - **Comprehensive Page Locations & Landmarks (`assets/js/modules/cmdk.js`)**: Indexed major sections including Explore (`/index.html#quick-nav`), Interactive Dev Terminal / CLI (`/index.html#terminal-section`), Keymap & Display Guide (`/index.html#keymap`), Domain Competency Radar (`/about.html#skill-radar`), Education (`/about.html#education`), Skills & Technical Stack (`/about.html#skills`), Biography (`/about.html#about-intro`), Workflow & Toolbox (`/about.html#tools`), Schedule (`/about.html#itinerary`), FAQ (`/about.html#faq`), Stats (`/index.html#stats`), Access Control (`/index.html#about-sign-in`), and all sub-sections.
@@ -179,14 +184,19 @@ Last updated: _2026-08-22_
 
 | Item                                      | Status                                                                                                                                           |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Site Verification Suite (`verify.py`)** | **100% PASS (17/17 Categories)** — Zero errors, zero warnings. Content: 37 achievements, 29 projects, 35 journey nodes.                          |
-| **PWA Service Worker & Offline Caching**  | **Active (`aaradhya-portfolio-v49.6`)** — Cache-first static assets, network-first HTML navigation, offline contact form queue.                  |
+| **Site Verification Suite (`verify.py`)** | **100% PASS (22/22 Categories)** — Zero errors, zero warnings. Content: 39 achievements, 29 projects, 35 journey nodes.                          |
+| **PWA Service Worker & Offline Caching**  | **Active (`aaradhya-portfolio-v49.27`)** — Cache-first static assets, network-first HTML navigation, offline contact form queue.                 |
 | **Mobile Responsiveness & CSS Cascade**   | **Optimized down to 280px viewports** — Responsive navigation drawer, fluid Explore grid, de-squished modals, auto-scaling Skill Radar canvas.   |
 | **Security & Access Control**             | **Hardened (3 Tiers)** — Web Crypto AES-256-GCM zero-leak gated payloads, GSI Google Sign-In, client-side passcode rate limiting (30s cooldown). |
 | **Live Commit Status & CI/CD**            | **Synchronized** — GitHub Actions `stamp-last-commit.yml` with rebase-retry loop stamping `assets/js/last-commit.json`.                          |
 
-**Resolved in Recent Releases (v45 — v49.6):**
+**Resolved in Recent Releases (v45 — v49.27):**
 
+- **v49.27**: Synchronized xTool credential telemetry, 22-category verification suite parity across MCP server & CLI diagnostics, and resolved all documentation/fallback version discrepancies.
+- **v49.25**: Global search expansion for page locations and landmark sections (`cmdk.js`), multi-token query matching, and in-page hash scroll animation.
+- **v49.20**: Added xTool Laser Safety Awareness Training (`achv-37`) & Printer Maintenance Certification (`achv-38`) with WebP previews & PDF downloads.
+- **v49.18**: Build hygiene & Graphify snapshot cleanup (`.gitignore` patterns and Git index cache reduction).
+- **v49.17**: Verification suite expansion & hyper-tightened diagnostic checks across 22 categories (`js-safety`, `css-integrity`, `html-a11y-seo`, `data-consistency`, `tracker-hygiene`).
 - **v49.6 / v49**: Comprehensive mobile responsiveness overhaul across ultra-small viewports (280px–360px), CSS cascade precedence fixes for navigation drawer, clean URL path resolver (`getCurrentPageFile`), load-time Skill Radar canvas auto-boot & responsive scaling, modal de-squishing, and keymap text wrapping.
 - **v48**: Dynamic multi-category project filters (`All`, `AI/ML`, `Robotics/Embedded`, `Hardware`, `Web/Apps`) with live counts, ATS Resume multi-format exporter (`.md`, plain text, A4 PDF print engine), offline contact message queue with automatic reconnect sync, client-side passcode rate limiting, and Dev Terminal CLI navigation commands (`goto`, `cv`, `email`, `filter`).
 - **v47**: Full 8-track audit remediation, modular CSS architecture (9 modules in `assets/css/modules/` coordinated by `style.css`), CI shell injection defense, subresource integrity pinning, and render-blocking CSS waterfall elimination.
