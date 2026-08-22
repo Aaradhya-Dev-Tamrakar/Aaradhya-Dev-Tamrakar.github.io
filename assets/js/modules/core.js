@@ -1,5 +1,5 @@
 /* ============================================================
-   MODULE: core.js — aaradhya-dev-tamrakar.github.io (v49.25)
+   MODULE: core.js — aaradhya-dev-tamrakar.github.io (v49.26)
    Theme, navigation, layout, scroll, parallax, and date helpers.
    ============================================================ */
 
@@ -88,10 +88,18 @@ const QUICK_NAV_PAGES = [
   },
 ];
 
-const CMDK_TYPE_LABEL = { page: 'Page', project: 'Project', achievement: 'Achievement' };
+const CMDK_TYPE_LABEL = {
+  page: 'Page',
+  section: 'Location',
+  action: 'Action',
+  project: 'Project',
+  achievement: 'Achievement'
+};
 
 const CMDK_ICONS = {
   page: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 22V12h6v10M3 10l9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>',
+  section: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+  action: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
   project: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
   achievement: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 6 22l6-3 6 3-3-8.5"/></svg>',
 };

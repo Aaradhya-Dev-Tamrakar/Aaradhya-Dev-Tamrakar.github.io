@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 verify.py — comprehensive structural integrity checker for
-aaradhya-dev-tamrakar.github.io (v49.25)
+aaradhya-dev-tamrakar.github.io (v49.26)
 
 22 check categories covering HTML structure, cross-page links, asset
 references, JS syntax, JS runtime safety, CSS URL integrity, deep a11y & SEO,
@@ -1066,6 +1066,30 @@ def check_data_consistency():
             log_warning(cat, "contact.html missing primary contact email")
             all_ok = False
 
+    # 4. Project card highlighting hygiene (Ensure single major/latest highlight per coursework section)
+    projects_path = ROOT / "projects.html"
+    if projects_path.exists():
+        soup = parse_html(projects_path)
+        fuse_heading = soup.select_one("#section-fuseaif")
+        if fuse_heading:
+            fuse_cards = []
+            curr = fuse_heading.find_next_sibling()
+            while curr:
+                classes = curr.get("class", [])
+                if curr.name == "h2" and "projects-section-title" in classes:
+                    break
+                if "project-card" in classes:
+                    fuse_cards.append(curr)
+                curr = curr.find_next_sibling()
+
+            major_fuse = [c for c in fuse_cards if "project-card--major" in c.get("class", [])]
+            if len(major_fuse) > 1:
+                ids = [c.get("id", "unknown") for c in major_fuse]
+                log_error(cat, f"Multiple Fuse AIF cards have 'project-card--major' ({', '.join(ids)}). Only the latest should be highlighted.")
+                all_ok = False
+            elif len(major_fuse) == 1 and fuse_cards and major_fuse[0] != fuse_cards[0]:
+                log_warning(cat, f"Fuse AIF 'project-card--major' is on #{major_fuse[0].get('id')} but #{fuse_cards[0].get('id')} is the top/latest card.")
+
     if all_ok:
         log_pass(cat, "cross-surface resume titles, contact info & profile metadata consistent")
 
@@ -1110,7 +1134,7 @@ def main():
     args = parser.parse_args()
 
     print(bold("=" * 60))
-    print(bold("  Portfolio Site Verification Suite (v49.25)"))
+    print(bold("  Portfolio Site Verification Suite (v49.26)"))
     print(bold("=" * 60))
     print()
 

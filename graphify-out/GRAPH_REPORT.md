@@ -1,16 +1,16 @@
 # Graph Report - Aaradhya-Dev-Tamrakar.github.io  (2026-08-22)
 
 ## Corpus Check
-- 25 files · ~289,089 words
+- 25 files · ~290,532 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 497 nodes · 694 edges · 97 communities (27 shown, 70 thin omitted)
+- 497 nodes · 695 edges · 97 communities (27 shown, 70 thin omitted)
 - Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 62 edges (avg confidence: 0.81)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3e517c07`
+- Built from commit: `0ad99cb2`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -111,7 +111,7 @@
 1. `bootSite()` - 33 edges
 2. `main()` - 29 edges
 3. `log_pass()` - 23 edges
-4. `Portfolio Website Tracker — v49.25` - 22 edges
+4. `Portfolio Website Tracker — v49.26` - 22 edges
 5. `log_error()` - 20 edges
 6. `log_warning()` - 15 edges
 7. `playAudioCue()` - 14 edges
@@ -178,7 +178,7 @@ Nodes (5): 1. Git Workflow & Automation (CRITICAL — STRICT ENFORCEMENT), 2. Kn
 
 ### Community 11 - "Community 11"
 Cohesion: 0.53
-Nodes (5): buildSearchIndex(), CMDK_PAGES, initGlobalSearch(), renderCmdk(), revealSearchTarget()
+Nodes (5): buildSearchIndex(), CMDK_ENTRIES, initGlobalSearch(), renderCmdk(), revealSearchTarget()
 
 ### Community 12 - "Community 12"
 Cohesion: 0.10
@@ -210,7 +210,7 @@ Nodes (3): SimOps AI for Graduates Certificate, SimOps Expert Certificate, SimOp
 
 ### Community 94 - "Community 94"
 Cohesion: 0.10
-Nodes (32): AI-Assisted Coding for Developers Certificate, AI Fluency Foundations Certificate, Evidence & Verification Log — v20 additions, Meta, Portfolio Website Tracker — v49.25, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out (+24 more)
+Nodes (32): AI-Assisted Coding for Developers Certificate, AI Fluency Foundations Certificate, Evidence & Verification Log — v20 additions, Meta, Portfolio Website Tracker — v49.26, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out (+24 more)
 
 ### Community 95 - "Community 95"
 Cohesion: 0.08
@@ -221,7 +221,7 @@ Cohesion: 0.12
 Nodes (16): aaradhya-dev-tamrakar.github.io, Automated Git Workflow & Pre-Commit Gate (`sync.ps1`), 📈 Codebase Knowledge Graph (`Graphify`), 📬 Contact & Connect, 🔑 Google OAuth 2.0 Integration, 💻 Interactive Developer Terminal Widget (`#adtTerminal`), Key Features, 📄 License (+8 more)
 
 ## Knowledge Gaps
-- **151 isolated node(s):** `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL`, `CMDK_PAGES`, `SITE` (+146 more)
+- **151 isolated node(s):** `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL`, `CMDK_ENTRIES`, `SITE` (+146 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **70 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 

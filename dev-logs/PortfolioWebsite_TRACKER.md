@@ -1,8 +1,14 @@
-# Portfolio Website Tracker — v49.25
+# Portfolio Website Tracker — v49.26
 
 Last updated: _2026-08-22_
 
 ## Meta
+
+- **v49.25 (Update) — Global Search Expansion for Page Locations & Landmark Sections.** Enhanced site-wide command palette (`/` / `Cmd+K`) search to index key landmark sections, features, and page locations across all pages:
+  - **Comprehensive Page Locations & Landmarks (`assets/js/modules/cmdk.js`)**: Indexed major sections including Explore (`/index.html#quick-nav`), Interactive Dev Terminal / CLI (`/index.html#terminal-section`), Keymap & Display Guide (`/index.html#keymap`), Domain Competency Radar (`/about.html#skill-radar`), Education (`/about.html#education`), Skills & Technical Stack (`/about.html#skills`), Biography (`/about.html#about-intro`), Workflow & Toolbox (`/about.html#tools`), Schedule (`/about.html#itinerary`), FAQ (`/about.html#faq`), Stats (`/index.html#stats`), Access Control (`/index.html#about-sign-in`), and all sub-sections.
+  - **Multi-Token Query Matching & Relevance Ranking**: Replaced strict substring search with multi-word token matching (`tokens.every(...)`) with smart title-exact, title-prefix, and keyword relevance sorting.
+  - **In-Page Hash Navigation & Scroll Animation**: Upgraded `revealSearchTarget()` and result click handlers to smoothly scroll to in-page section headers with `.search-highlight` animation without full-page reloads.
+  - **Verification Gate**: Passed `python scripts/verify.py` cleanly across all 22 diagnostic categories.
 
 - **v49.20 (Update) — Added xTool Laser Safety Awareness Training & Printer Maintenance Certifications.** Integrated two new verified hardware & fabrication credentials from xTool Studio & KEC Makerspace:
   - **New Certificate Cards (`achievements.html`)**: Added `Laser Safety Awareness Training` (`achv-37`) and `Printer Maintenance Certification` (`achv-38`) under the Academic Certification track, complete with crisp 1700x1202 WebP thumbnails, PDF downloads, and lightbox modal integration.

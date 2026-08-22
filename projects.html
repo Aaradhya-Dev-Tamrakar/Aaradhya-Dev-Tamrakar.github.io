@@ -1005,7 +1005,7 @@
 <a class="project-link" data-payload-link-id="proj-fuse-wk12" rel="noopener" target="_blank">View on GitHub ↗</a>
 </div>
 </details>
-<details class="project-card reveal project-card--major" id="p-019" data-category="aiml">
+<details class="project-card reveal" id="p-019" data-category="aiml">
 <summary class="project-summary">
 <div class="project-index">P — 019 <span class="project-date">Jul 2026</span></div>
 <h3 class="project-title">Fusemachines Wk 11 — Vision Transformers</h3>
@@ -1616,7 +1616,26 @@
       });
     }
 
+    function initCourseworkHighlights() {
+      const fuseSec = document.getElementById('section-fuseaif');
+      if (!fuseSec) return;
+      let next = fuseSec.nextElementSibling;
+      let isFirst = true;
+      while (next && !next.classList.contains('projects-section-title')) {
+        if (next.classList.contains('project-card')) {
+          if (isFirst) {
+            next.classList.add('project-card--major');
+            isFirst = false;
+          } else {
+            next.classList.remove('project-card--major');
+          }
+        }
+        next = next.nextElementSibling;
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
+      initCourseworkHighlights();
       initProjectFilters();
       initProjectCardFluidity();
       initProjectToggleAll();
