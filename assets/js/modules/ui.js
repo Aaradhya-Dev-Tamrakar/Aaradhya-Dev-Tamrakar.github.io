@@ -1,5 +1,5 @@
 /* ============================================================
-   MODULE: ui.js — aaradhya-dev-tamrakar.github.io (v49.23)
+   MODULE: ui.js — aaradhya-dev-tamrakar.github.io (v49.24)
    UI modals, count-up, skill radar, ATS resume, and overlays.
    ============================================================ */
 
@@ -597,7 +597,8 @@ const SKILL_RADAR_DOMAINS = [
   { label: 'Embedded C/C++', score: 0.90, desc: 'FreeRTOS multi-threading, ESP32, STM32, ARM Cortex-M, SPI/I2C/UART bus tuning', tags: ['FreeRTOS', 'ESP32', 'C++20', 'Micro-Controllers'] },
   { label: 'Electronics & PCB', score: 0.92, desc: 'KiCAD Multi-Layer PCB layout, Active analog signal filters, IMU MPU6050 calibration', tags: ['KiCAD', 'SPARK', 'Analog Circuits', 'PCB Design'] },
   { label: 'Full-Stack Web', score: 0.88, desc: 'Vanilla JS ES6+, PWA Offline Architecture, Node.js, WebSockets, Web Crypto, REST APIs', tags: ['JavaScript', 'PWA / Service Worker', 'WebSockets', 'Node.js'] },
-  { label: 'Data Science & Omics', score: 0.89, desc: 'Pandas/NumPy, GCSBR Signal Telemetry, Genomic eQTL Analysis, Statistical Modeling', tags: ['Data Science', 'Genomics', 'Pandas', 'Telemetry'] }
+  { label: 'Data Science & Omics', score: 0.89, desc: 'Pandas/NumPy, GCSBR Signal Telemetry, Genomic eQTL Analysis, Statistical Modeling', tags: ['Data Science', 'Genomics', 'Pandas', 'Telemetry'] },
+  { label: 'Leadership & Applied Strategy', score: 0.91, desc: 'IEEE event ops & mentorship, security-first risk framing, agile delivery, cross-functional case studies', tags: ['IEEE Ops', 'Mentorship', 'Security Mindset', 'Agile'] }
 ];
 
 function initRadarCanvas(canvasId, domainSelector) {
