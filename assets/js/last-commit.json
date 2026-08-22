@@ -1,6 +1,6 @@
 {
-  "sha": "878b044598c79dfc99403e517293710bf366d6de",
-  "shortSha": "878b044",
-  "date": "2026-08-22T12:39:38+05:45",
-  "message": "feat(search): index page locations (Explore, CLI, Keymap, RADAR, Education) in command palette"
+  "sha": "c15c0b8765fded083ae03ff391d065446d957a00",
+  "shortSha": "c15c0b8",
+  "date": "2026-08-22T12:47:29+05:45",
+  "message": "fix(docs): resolve site metadata, fallback versions & documentation discrepancies"
 }
