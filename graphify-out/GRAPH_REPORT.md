@@ -1,16 +1,16 @@
-# Graph Report - Aaradhya-Dev-Tamrakar.github.io  (2026-08-20)
+# Graph Report - Aaradhya-Dev-Tamrakar.github.io  (2026-08-22)
 
 ## Corpus Check
-- 25 files · ~288,779 words
+- 25 files · ~289,004 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 496 nodes · 672 edges · 97 communities (27 shown, 70 thin omitted)
+- 497 nodes · 694 edges · 97 communities (27 shown, 70 thin omitted)
 - Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 62 edges (avg confidence: 0.81)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `4c674176`
+- Built from commit: `21b363c1`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -111,13 +111,13 @@
 1. `bootSite()` - 33 edges
 2. `main()` - 29 edges
 3. `log_pass()` - 23 edges
-4. `log_error()` - 20 edges
-5. `log_warning()` - 15 edges
-6. `playAudioCue()` - 14 edges
-7. `get_html_files()` - 13 edges
-8. `aaradhya-dev-tamrakar.github.io` - 10 edges
-9. `showToast()` - 8 edges
-10. `main()` - 8 edges
+4. `Portfolio Website Tracker — v49.23` - 22 edges
+5. `log_error()` - 20 edges
+6. `log_warning()` - 15 edges
+7. `playAudioCue()` - 14 edges
+8. `get_html_files()` - 13 edges
+9. `aaradhya-dev-tamrakar.github.io` - 10 edges
+10. `showToast()` - 8 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Printer Maintenance Certification Certificate` --semantically_similar_to--> `Printer Maintenance Certification PDF`  [INFERRED] [semantically similar]
@@ -209,8 +209,8 @@ Cohesion: 1.00
 Nodes (3): SimOps AI for Graduates Certificate, SimOps Expert Certificate, SimOps Platform
 
 ### Community 94 - "Community 94"
-Cohesion: 0.06
-Nodes (31): AI-Assisted Coding for Developers Certificate, AI Fluency Foundations Certificate, Evidence & Verification Log — v20 additions, Meta, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out, v22 addition — KEC IT Club "Introduction to Git" (2024) card: closed, no source file available (+23 more)
+Cohesion: 0.10
+Nodes (32): AI-Assisted Coding for Developers Certificate, AI Fluency Foundations Certificate, Evidence & Verification Log — v20 additions, Meta, Portfolio Website Tracker — v49.23, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out (+24 more)
 
 ### Community 95 - "Community 95"
 Cohesion: 0.08
@@ -221,7 +221,7 @@ Cohesion: 0.12
 Nodes (16): aaradhya-dev-tamrakar.github.io, Automated Git Workflow & Pre-Commit Gate (`sync.ps1`), 📈 Codebase Knowledge Graph (`Graphify`), 📬 Contact & Connect, 🔑 Google OAuth 2.0 Integration, 💻 Interactive Developer Terminal Widget (`#adtTerminal`), Key Features, 📄 License (+8 more)
 
 ## Knowledge Gaps
-- **171 isolated node(s):** `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL`, `CMDK_PAGES`, `SITE` (+166 more)
+- **151 isolated node(s):** `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL`, `CMDK_PAGES`, `SITE` (+146 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **70 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -229,15 +229,15 @@ Nodes (16): aaradhya-dev-tamrakar.github.io, Automated Git Workflow & Pre-Commit
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `bootSite()` connect `Community 2` to `Community 11`, `Community 3`, `Community 4`, `Community 6`?**
-  _High betweenness centrality (0.180) - this node is a cross-community bridge._
+  _High betweenness centrality (0.181) - this node is a cross-community bridge._
 - **Why does `Verify workflow` connect `Community 95` to `Community 2`, `Community 12`?**
-  _High betweenness centrality (0.133) - this node is a cross-community bridge._
+  _High betweenness centrality (0.134) - this node is a cross-community bridge._
 - **Why does `initAccessControl()` connect `Community 4` to `Community 2`?**
   _High betweenness centrality (0.035) - this node is a cross-community bridge._
 - **Are the 29 inferred relationships involving `bootSite()` (e.g. with `initAccessControl()` and `initAudioCues()`) actually correct?**
   _`bootSite()` has 29 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL` to the rest of the system?**
-  _205 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _185 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.05689900426742532 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**

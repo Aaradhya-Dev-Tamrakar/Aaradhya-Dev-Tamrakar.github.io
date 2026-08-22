@@ -1,5 +1,5 @@
 /* ============================================================
-   MODULE: ui.js — aaradhya-dev-tamrakar.github.io (v49.22)
+   MODULE: ui.js — aaradhya-dev-tamrakar.github.io (v49.23)
    UI modals, count-up, skill radar, ATS resume, and overlays.
    ============================================================ */
 
@@ -608,34 +608,38 @@ function initRadarCanvas(canvasId, domainSelector) {
 
   const domains = SKILL_RADAR_DOMAINS;
   const numSides = domains.length;
-  const container = canvas.parentElement;
-  const containerWidth = container ? container.clientWidth : 320;
-  const size = Math.min(340, Math.max(240, containerWidth > 0 ? containerWidth : 300));
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  
-  canvas.width = size * dpr;
-  canvas.height = size * dpr;
-  canvas.style.width = size + 'px';
-  canvas.style.height = size + 'px';
-  canvas.style.maxWidth = '100%';
-  ctx.scale(dpr, dpr);
-
-  const centerX = size / 2;
-  const centerY = size / 2;
-  const radius = size * 0.30;
-
   let activeIndex = 0;
 
-  function getPointCoordinates(index, scale) {
-    const angle = (Math.PI * 2 / numSides) * index - Math.PI / 2;
-    return {
-      x: centerX + Math.cos(angle) * (radius * scale),
-      y: centerY + Math.sin(angle) * (radius * scale)
-    };
-  }
-
   function renderRadar() {
-    ctx.clearRect(0, 0, size, size);
+    const container = canvas.parentElement;
+    const containerWidth = container ? container.clientWidth : 380;
+    const width = Math.min(460, Math.max(280, containerWidth > 0 ? containerWidth : 380));
+    const height = Math.min(390, Math.max(280, Math.round(width * 0.88)));
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    if (canvas.width !== width * dpr || canvas.height !== height * dpr) {
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      canvas.style.maxWidth = '100%';
+    }
+
+    ctx.save();
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, width, height);
+
+    const centerX = width / 2;
+    const centerY = height / 2 + 6;
+    const radius = Math.min(width * 0.25, height * 0.28);
+
+    function getPointCoordinates(index, scale) {
+      const angle = (Math.PI * 2 / numSides) * index - Math.PI / 2;
+      return {
+        x: centerX + Math.cos(angle) * (radius * scale),
+        y: centerY + Math.sin(angle) * (radius * scale)
+      };
+    }
 
     // 1. Render Concentric Web Grids & Scale Tier Legends
     const levels = 4;
@@ -707,38 +711,86 @@ function initRadarCanvas(canvasId, domainSelector) {
     // 5. Render Outer Axis Vertex Legends & Percentage Tags
     domains.forEach((dom, i) => {
       const isSelected = (i === activeIndex);
-      const labelRadius = radius + 24;
       const angle = (Math.PI * 2 / numSides) * i - Math.PI / 2;
-      const lx = centerX + Math.cos(angle) * labelRadius;
-      const ly = centerY + Math.sin(angle) * labelRadius;
-
-      // Adjust text align based on horizontal angle position
       const cosA = Math.cos(angle);
       const sinA = Math.sin(angle);
+
+      const titleFont = isSelected ? '600 11px "DM Mono", monospace' : '500 10.5px "Inter", sans-serif';
+      const scoreFont = '600 10px "DM Mono", monospace';
+
+      ctx.font = titleFont;
+      const labelW = ctx.measureText(dom.label).width;
+      ctx.font = scoreFont;
+      const scoreStr = `${Math.round(dom.score * 100)}%`;
+      const scoreW = ctx.measureText(scoreStr).width;
+      const maxW = Math.max(labelW, scoreW);
+
+      let lx, ly;
+      const padding = 8;
+
       if (Math.abs(cosA) < 0.25) {
+        // Top vertex (i = 0)
         ctx.textAlign = 'center';
-        ctx.textBaseline = sinA < 0 ? 'bottom' : 'top';
+        ctx.textBaseline = 'bottom';
+        lx = centerX;
+        ly = centerY - radius - 12;
       } else if (cosA > 0) {
+        // Right side vertices (i = 1, 2)
         ctx.textAlign = 'left';
         ctx.textBaseline = 'middle';
+        const labelRadius = radius + (sinA > 0.5 ? 18 : 14);
+        lx = centerX + cosA * labelRadius;
+        ly = centerY + sinA * labelRadius;
+
+        // Clamp to prevent right overflow
+        if (lx + maxW > width - padding) {
+          lx = width - padding - maxW;
+        }
       } else {
+        // Left side vertices (i = 3, 4)
         ctx.textAlign = 'right';
         ctx.textBaseline = 'middle';
+        const labelRadius = radius + (sinA > 0.5 ? 18 : 14);
+        lx = centerX + cosA * labelRadius;
+        ly = centerY + sinA * labelRadius;
+
+        // Clamp to prevent left overflow
+        if (lx - maxW < padding) {
+          lx = padding + maxW;
+        }
       }
 
-      // Domain Title
-      ctx.font = isSelected ? '600 11px "DM Mono", monospace' : '500 10.5px "Inter", sans-serif';
-      ctx.fillStyle = isSelected ? '#d4a85a' : 'rgba(255, 255, 255, 0.78)';
+      // Clamp vertical bounds
+      if (ly - 16 < padding) ly = padding + 16;
+      if (ly + 16 > height - padding) ly = height - padding - 16;
+
+      // Render Domain Title
+      ctx.font = titleFont;
+      ctx.fillStyle = isSelected ? '#d4a85a' : 'rgba(255, 255, 255, 0.88)';
       ctx.fillText(dom.label, lx, ly - 5);
 
-      // Score Badge
-      ctx.font = '600 10px "DM Mono", monospace';
-      ctx.fillStyle = isSelected ? '#ffffff' : 'rgba(212, 168, 90, 0.9)';
-      ctx.fillText(`${Math.round(dom.score * 100)}%`, lx, ly + 8);
+      // Render Score Badge
+      ctx.font = scoreFont;
+      ctx.fillStyle = isSelected ? '#ffffff' : 'rgba(212, 168, 90, 0.95)';
+      ctx.fillText(scoreStr, lx, ly + 8);
     });
+
+    ctx.restore();
   }
 
   renderRadar();
+
+  // ResizeObserver for dynamic responsiveness
+  if (typeof ResizeObserver !== 'undefined' && canvas.parentElement) {
+    if (canvas._radarResizeObs) {
+      canvas._radarResizeObs.disconnect();
+    }
+    const ro = new ResizeObserver(() => {
+      renderRadar();
+    });
+    ro.observe(canvas.parentElement);
+    canvas._radarResizeObs = ro;
+  }
 
   // Wire domain list hover & clicks
   const domainItems = typeof domainSelector === 'string' ? document.querySelectorAll(domainSelector) : domainSelector;
