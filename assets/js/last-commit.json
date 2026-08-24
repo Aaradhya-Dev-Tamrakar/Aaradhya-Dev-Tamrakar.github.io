@@ -1,6 +1,6 @@
 {
-  "sha": "eb867bb99493c30d742498fd6b8673d046c14726",
-  "shortSha": "eb867bb",
-  "date": "2026-08-24T10:00:17+05:45",
-  "message": "chore(workflow): allow deploy-pages to trigger on bot stamp commit"
+  "sha": "9470cca9e11fddcbc5378a418b38a4515c24adbb",
+  "shortSha": "9470cca",
+  "date": "2026-08-24T10:12:34+05:45",
+  "message": "perf(core): optimize contrast for 100 A11y, defer GA4 and canvas animations, fix CLS on hero-glow"
 }
