@@ -1,7 +1,7 @@
 {
   "assets/js/script.js": {
-    "mtime": 1787544717.6549444,
-    "ast_hash": "f9370b791c9b6e73e5397a70b2821007",
+    "mtime": 1787544813.0366707,
+    "ast_hash": "61028fd5e7294a76b930360bd30ce7ec",
     "semantic_hash": ""
   },
   "AGENTS.md": {
@@ -55,8 +55,8 @@
     "semantic_hash": ""
   },
   "assets/js/last-commit.json": {
-    "mtime": 1787544449.8260381,
-    "ast_hash": "faf9a3b15e4bd341b2f5bdbac9a9bf60",
+    "mtime": 1787544739.0338945,
+    "ast_hash": "46632cb8a744f1b5e178a78059491260",
     "semantic_hash": ""
   },
   ".github/workflows/stamp-last-commit.yml": {
@@ -580,8 +580,8 @@
     "semantic_hash": ""
   },
   "dev-logs/PortfolioWebsite_TRACKER.md": {
-    "mtime": 1787544717.658045,
-    "ast_hash": "da06a7670400da7851c5463bebe1c91c",
+    "mtime": 1787544813.0396705,
+    "ast_hash": "87d6ea31b19182a20755f4d8da43e5b8",
     "semantic_hash": ""
   },
   "scripts/dev-serve.py": {
@@ -650,8 +650,8 @@
     "semantic_hash": "a85d9718c4e69900ec173dcc499f570d"
   },
   "scripts/verify.py": {
-    "mtime": 1787544717.656048,
-    "ast_hash": "a7cc03a8d78b2f322f8ce277c4b409ef",
+    "mtime": 1787544813.037671,
+    "ast_hash": "869e1d18536b2085e3660e6abd6879a8",
     "semantic_hash": ""
   },
   "assets/certificates/AI-Fluency_Foundations_of_Coworking_with_AI.pdf": {
@@ -670,48 +670,48 @@
     "semantic_hash": ""
   },
   "sw.js": {
-    "mtime": 1787544717.6549444,
-    "ast_hash": "f658313f26772b756770179864b36c0a",
+    "mtime": 1787544812.9872506,
+    "ast_hash": "0267b5e6a54078475c64986af4db5fa2",
     "semantic_hash": ""
   },
   "assets/js/modules/access.js": {
-    "mtime": 1787544431.0420303,
-    "ast_hash": "730fe1e4a62786d90e95452f11e8329e",
+    "mtime": 1787544813.0421839,
+    "ast_hash": "d8a1d4d4c77daee5bf45dbfdf0845ebf",
     "semantic_hash": ""
   },
   "assets/js/modules/audio.js": {
-    "mtime": 1787544431.0420303,
-    "ast_hash": "f16fb6746c946d7945192340eefe1529",
+    "mtime": 1787544813.0421839,
+    "ast_hash": "3abb33e26976bd1a326a02b8faa47fc3",
     "semantic_hash": ""
   },
   "assets/js/modules/cmdk.js": {
-    "mtime": 1787544431.0420303,
-    "ast_hash": "96156ff183feba4cacda66c8b29ae40e",
+    "mtime": 1787544813.0431845,
+    "ast_hash": "5425f16c12636e3955186f680288f5a5",
     "semantic_hash": ""
   },
   "assets/js/modules/core.js": {
-    "mtime": 1787544431.043419,
-    "ast_hash": "5eb3696b14b2645655b81db5320c064b",
+    "mtime": 1787544813.0431845,
+    "ast_hash": "a7a80cfc8717c795c3bbf225f9882752",
     "semantic_hash": ""
   },
   "assets/js/modules/haptics.js": {
-    "mtime": 1787544431.043419,
-    "ast_hash": "8d6a314ab82ff6b592d96063d57e8347",
+    "mtime": 1787544813.0431845,
+    "ast_hash": "d4008ec3d10eebfd7ea924da2ce7a8c8",
     "semantic_hash": ""
   },
   "assets/js/modules/terminal.js": {
-    "mtime": 1787544431.043924,
-    "ast_hash": "739e7ebd6eacc989e3ea1b601377e983",
+    "mtime": 1787544813.0441816,
+    "ast_hash": "c4611ab71774b22e83e4d74baeff7ae9",
     "semantic_hash": ""
   },
   "assets/js/modules/tour.js": {
-    "mtime": 1787544431.043924,
-    "ast_hash": "010bef411a69059b4754db260118471f",
+    "mtime": 1787544813.0441816,
+    "ast_hash": "384d3a8875811c9ce583aae2b18f7787",
     "semantic_hash": ""
   },
   "assets/js/modules/ui.js": {
-    "mtime": 1787544431.0449295,
-    "ast_hash": "950d3b6ade5d4c5fbf110b11796dfd32",
+    "mtime": 1787544813.0451827,
+    "ast_hash": "75b43f0ebaab0b6b0e40086e3a20cba0",
     "semantic_hash": ""
   },
   "mcp-server/mcp_config.json": {
@@ -725,8 +725,8 @@
     "semantic_hash": ""
   },
   "scripts/site_automation.py": {
-    "mtime": 1787544431.0449295,
-    "ast_hash": "09b7b3f14082041d56796668131f7532",
+    "mtime": 1787544813.0451827,
+    "ast_hash": "81139b0f7f88d8852919f80f77f7c13a",
     "semantic_hash": ""
   },
   ".github/workflows/lighthouse-audit.yml": {
@@ -778,5 +778,10 @@
     "mtime": 1787543027.333115,
     "ast_hash": "bd6f869ef866e94a49b371ead8513ca7",
     "semantic_hash": "bd6f869ef866e94a49b371ead8513ca7"
+  },
+  "llms.txt": {
+    "mtime": 1787544797.6881368,
+    "ast_hash": "0650850c5afeb2cbf6c5fa9b68a1fa43",
+    "semantic_hash": ""
   }
 }

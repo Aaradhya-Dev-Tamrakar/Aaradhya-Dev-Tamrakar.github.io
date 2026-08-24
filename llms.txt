@@ -1,0 +1,23 @@
+# Aaradhya Dev Tamrakar (ADT)
+
+> Aaradhya Dev Tamrakar (ADT) is an Electronics, Communication & Information Engineering student (BEI IV/I) at Kathmandu Engineering College (IOE, Tribhuvan University). He is a Fuse AI Fellow (Fusemachines 2026), NSSR DataCamp Fellow (Cohort 2), and Vice Chair of the IEEE KEC KTM Student Branch, specializing in embedded systems, robotics, Edge AI (ESP32-S3 / MPU6050), machine learning, and full-stack software development.
+
+## Core Pages
+
+- [Home](https://aaradhyadt.github.io/): Overview of engineering background, interactive terminal, radar skills matrix, and featured work.
+- [Projects](https://aaradhyadt.github.io/projects.html): Complete catalog of engineering projects across embedded systems, hardware, and machine learning (including SPARK and 14 weeks of Fusemachines AI pipelines).
+- [Experience](https://aaradhyadt.github.io/experience.html): Professional fellowships (Fuse AI Fellow, NSSR DataCamp Fellow) and leadership history (IEEE KEC KTM Vice Chair, EPC Event Manager).
+- [Achievements](https://aaradhyadt.github.io/achievements.html): 39 verified certificates, awards, hackathons, and technical credentials.
+- [About](https://aaradhyadt.github.io/about.html): In-depth biography, technical skills stack, coursework, and frequently asked questions.
+- [Journey](https://aaradhyadt.github.io/journey.html): Interactive commit-level changelog and portfolio evolution milestones.
+- [Contact](https://aaradhyadt.github.io/contact.html): Communication channels, social handles, and collaboration inquiries.
+
+## Key Projects
+
+- **SPARK**: Two-layer, fully on-device fall-detection wearable for eldercare featuring an ESP32-S3 microcontroller, MPU6050 IMU, TFLite Micro CNN inference, and a Raspberry Pi 4B gateway with SHAP explainability.
+- **BiasAperture**: Vision-model fairness and demographic disparity diagnostic suite (Fuse AI Fellowship capstone).
+- **Text-to-SQL Agentic Pipeline**: Five-stage agentic Text-to-SQL generation pipeline with 100% benchmark execution accuracy.
+
+## Optional
+
+- [Sitemap](https://aaradhyadt.github.io/sitemap.xml): Complete XML sitemap index.
