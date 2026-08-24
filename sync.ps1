@@ -523,6 +523,16 @@ function Sync-BotStamp {
     if (-not $botSynced) {
         Write-Badge "BotSync" "Local branch is aligned with origin main." "Cyan" "Gray"
     }
+
+    # Mirror-sync all configured push remotes to ensure secondary remotes receive the final bot stamp commit
+    $pushUrls = git remote get-url --all --push origin 2>$null
+    if ($pushUrls -and $pushUrls.Count -gt 1) {
+        foreach ($url in $pushUrls) {
+            Write-Badge "Mirror" "Synchronizing $url to HEAD..." "DarkGray" "Gray"
+            $null = git push $url main --force 2>&1
+        }
+        Write-Badge "Mirror" "All configured remotes synchronized to $(git rev-parse --short HEAD)." "Green" "Green"
+    }
 }
 
 # -----------------------------------------------------------------------------
