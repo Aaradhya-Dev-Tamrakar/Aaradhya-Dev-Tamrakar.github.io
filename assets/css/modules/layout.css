@@ -90,11 +90,16 @@ nav.scrolled {
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 10px var(--accent-a35);
-  animation: nav-cta-flicker 3.2s ease-in-out infinite;
   transition:
     background 0.25s,
     color 0.25s,
     box-shadow 0.3s;
+}
+
+@media (hover: hover) and (min-width: 769px) {
+  .nav-cta {
+    animation: nav-cta-flicker 3.2s ease-in-out infinite;
+  }
 }
 
 .nav-cta::before {
