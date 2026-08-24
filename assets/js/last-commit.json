@@ -1,6 +1,6 @@
 {
-  "sha": "ec63811230a19f6c1ca5500b1c3f1ae2d0010b43",
-  "shortSha": "ec63811",
-  "date": "2026-08-24T09:57:01+05:45",
-  "message": "chore(deploy): trigger live github pages deployment for aaradhyadt.github.io"
+  "sha": "22b9b363e5f20fef8e168dff89825c757e5f3b81",
+  "shortSha": "22b9b36",
+  "date": "2026-08-24T09:58:37+05:45",
+  "message": "feat(seo): add llms.txt standard for AI crawlers and PageSpeed AI readiness"
 }
