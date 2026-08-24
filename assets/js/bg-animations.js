@@ -246,14 +246,15 @@ class PCBTraces {
   }
 }
 
+function initBackgroundAnimations() {
+  new SignalWaveBackground();
+  new PCBTraces();
+}
+
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      new SignalWaveBackground();
-      new PCBTraces();
-    });
+  if (typeof window.requestIdleCallback === 'function') {
+    window.requestIdleCallback(() => initBackgroundAnimations(), { timeout: 1500 });
   } else {
-    new SignalWaveBackground();
-    new PCBTraces();
+    window.addEventListener('load', () => setTimeout(initBackgroundAnimations, 200));
   }
 }

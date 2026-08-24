@@ -253,6 +253,8 @@
       background: radial-gradient(circle, var(--accent-a07) 0%, transparent 70%);
       pointer-events: none;
       z-index: 0;
+      contain: paint;
+      will-change: transform;
       animation: glow-drift 20s ease-in-out infinite;
     }
 
@@ -412,8 +414,9 @@
       gap: 0.5rem;
       font-weight: 800;
       color: var(--accent2);
-      text-shadow: 0 0 8px var(--glow-teal-a70);
+      text-shadow: 0 0 10px var(--glow-teal-a70);
       animation: label-glow 2.4s ease-in-out infinite;
+      will-change: opacity;
     }
 
     html[data-theme="light"] .status-label {
@@ -424,10 +427,10 @@
 
     @keyframes label-glow {
       0%, 100% {
-        text-shadow: 0 0 8px var(--glow-teal-a70);
+        opacity: 0.88;
       }
       50% {
-        text-shadow: 0 0 16px var(--glow-teal);
+        opacity: 1;
       }
     }
 

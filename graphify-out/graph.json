@@ -144,6 +144,16 @@
       "norm_label": ".animate()"
     },
     {
+      "label": "initBackgroundAnimations()",
+      "file_type": "code",
+      "source_file": "assets/js/bg-animations.js",
+      "source_location": "L249",
+      "_origin": "ast",
+      "id": "js_bg_animations_initbackgroundanimations",
+      "community": 7,
+      "norm_label": "initbackgroundanimations()"
+    },
+    {
       "label": "access.js",
       "file_type": "code",
       "source_file": "assets/js/modules/access.js",
@@ -764,10 +774,20 @@
       "norm_label": "loadga4()"
     },
     {
+      "label": "scheduleGA4()",
+      "file_type": "code",
+      "source_file": "assets/js/modules/core.js",
+      "source_location": "L659",
+      "_origin": "ast",
+      "id": "modules_core_schedulega4",
+      "community": 2,
+      "norm_label": "schedulega4()"
+    },
+    {
       "label": "computeLiveDates()",
       "file_type": "code",
       "source_file": "assets/js/modules/core.js",
-      "source_location": "L662",
+      "source_location": "L675",
       "_origin": "ast",
       "id": "modules_core_computelivedates",
       "community": 2,
@@ -777,7 +797,7 @@
       "label": "applyLiveDates()",
       "file_type": "code",
       "source_file": "assets/js/modules/core.js",
-      "source_location": "L737",
+      "source_location": "L750",
       "_origin": "ast",
       "id": "modules_core_applylivedates",
       "community": 2,
@@ -787,7 +807,7 @@
       "label": "BS_YEARS",
       "file_type": "code",
       "source_file": "assets/js/modules/core.js",
-      "source_location": "L754",
+      "source_location": "L767",
       "_origin": "ast",
       "id": "modules_core_bs_years",
       "community": 2,
@@ -797,7 +817,7 @@
       "label": "BS_EPOCH_UTC",
       "file_type": "code",
       "source_file": "assets/js/modules/core.js",
-      "source_location": "L755",
+      "source_location": "L768",
       "_origin": "ast",
       "id": "modules_core_bs_epoch_utc",
       "community": 2,
@@ -807,7 +827,7 @@
       "label": "BS_MONTHS",
       "file_type": "code",
       "source_file": "assets/js/modules/core.js",
-      "source_location": "L756",
+      "source_location": "L769",
       "_origin": "ast",
       "id": "modules_core_bs_months",
       "community": 2,
@@ -817,7 +837,7 @@
       "label": "AD_MONTHS",
       "file_type": "code",
       "source_file": "assets/js/modules/core.js",
-      "source_location": "L757",
+      "source_location": "L770",
       "_origin": "ast",
       "id": "modules_core_ad_months",
       "community": 2,
@@ -827,7 +847,7 @@
       "label": "kathmanduYMD()",
       "file_type": "code",
       "source_file": "assets/js/modules/core.js",
-      "source_location": "L760",
+      "source_location": "L773",
       "_origin": "ast",
       "id": "modules_core_kathmanduymd",
       "community": 2,
@@ -837,7 +857,7 @@
       "label": "adToBs()",
       "file_type": "code",
       "source_file": "assets/js/modules/core.js",
-      "source_location": "L768",
+      "source_location": "L781",
       "_origin": "ast",
       "id": "modules_core_adtobs",
       "community": 2,
@@ -847,7 +867,7 @@
       "label": "renderStatusDate()",
       "file_type": "code",
       "source_file": "assets/js/modules/core.js",
-      "source_location": "L784",
+      "source_location": "L797",
       "_origin": "ast",
       "id": "modules_core_renderstatusdate",
       "community": 2,
@@ -857,7 +877,7 @@
       "label": "toggleStatusDate()",
       "file_type": "code",
       "source_file": "assets/js/modules/core.js",
-      "source_location": "L791",
+      "source_location": "L804",
       "_origin": "ast",
       "id": "modules_core_togglestatusdate",
       "community": 2,
@@ -867,7 +887,7 @@
       "label": "initStatusDate()",
       "file_type": "code",
       "source_file": "assets/js/modules/core.js",
-      "source_location": "L798",
+      "source_location": "L811",
       "_origin": "ast",
       "id": "modules_core_initstatusdate",
       "community": 2,
@@ -1427,7 +1447,7 @@
       "label": "initServiceWorker()",
       "file_type": "code",
       "source_file": "assets/js/script.js",
-      "source_location": "L876",
+      "source_location": "L877",
       "_origin": "ast",
       "id": "js_script_initserviceworker",
       "community": 2,
@@ -1437,7 +1457,7 @@
       "label": "initReadingProgressBar()",
       "file_type": "code",
       "source_file": "assets/js/script.js",
-      "source_location": "L886",
+      "source_location": "L887",
       "_origin": "ast",
       "id": "js_script_initreadingprogressbar",
       "community": 2,
@@ -1447,7 +1467,7 @@
       "label": "initNetworkStatusListeners()",
       "file_type": "code",
       "source_file": "assets/js/script.js",
-      "source_location": "L901",
+      "source_location": "L902",
       "_origin": "ast",
       "id": "js_script_initnetworkstatuslisteners",
       "community": 2,
@@ -1457,7 +1477,7 @@
       "label": "syncQueuedContactMessages()",
       "file_type": "code",
       "source_file": "assets/js/script.js",
-      "source_location": "L911",
+      "source_location": "L912",
       "_origin": "ast",
       "id": "js_script_syncqueuedcontactmessages",
       "community": 2,
@@ -1467,7 +1487,7 @@
       "label": "queueOfflineContactMessage()",
       "file_type": "code",
       "source_file": "assets/js/script.js",
-      "source_location": "L944",
+      "source_location": "L945",
       "_origin": "ast",
       "id": "js_script_queueofflinecontactmessage",
       "community": 2,
@@ -2934,14 +2954,14 @@
       "norm_label": "portfoliowebsite_tracker.md"
     },
     {
-      "label": "Portfolio Website Tracker \u2014 v49.32",
+      "label": "Portfolio Website Tracker \u2014 v49.33",
       "file_type": "document",
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "id": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "community": 94,
-      "norm_label": "portfolio website tracker \u2014 v49.32"
+      "norm_label": "portfolio website tracker \u2014 v49.33"
     },
     {
       "label": "Meta",
@@ -5428,6 +5448,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/bg-animations.js",
+      "source_location": "L249",
+      "weight": 1.0,
+      "source": "js_bg_animations",
+      "target": "js_bg_animations_initbackgroundanimations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/bg-animations.js",
       "source_location": "L99",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -6836,6 +6866,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/modules/core.js",
+      "source_location": "L659",
+      "weight": 1.0,
+      "source": "modules_core",
+      "target": "modules_core_schedulega4",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/modules/core.js",
       "source_location": "L329",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -7079,6 +7119,17 @@
       "weight": 1.0,
       "source": "js_script_bootsite",
       "target": "modules_core_initcursor"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "assets/js/script.js",
+      "source_location": "L856",
+      "weight": 1.0,
+      "source": "js_script_bootsite",
+      "target": "modules_core_schedulega4"
     },
     {
       "relation": "calls",
@@ -11175,7 +11226,7 @@
       "source_location": "L1",
       "weight": 1.0,
       "source": "dev_logs_portfoliowebsite_tracker",
-      "target": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "target": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "confidence_score": 1.0
     },
     {
@@ -11394,7 +11445,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L208",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_evidence_verification_log_v20_additions",
       "confidence_score": 1.0
     },
@@ -11404,7 +11455,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L5",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_meta",
       "confidence_score": 1.0
     },
@@ -11414,7 +11465,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L181",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_state_of_play",
       "confidence_score": 1.0
     },
@@ -11424,7 +11475,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L219",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_v21_addition_both_v20_flagged_unmatched_pdfs_closed_out",
       "confidence_score": 1.0
     },
@@ -11434,7 +11485,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L227",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_v22_addition_kec_it_club_introduction_to_git_2024_card_closed_no_source_file_available",
       "confidence_score": 1.0
     },
@@ -11444,7 +11495,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L235",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_v23_addition_latest_site_refinements_2026_07_18",
       "confidence_score": 1.0
     },
@@ -11454,7 +11505,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L253",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_v24_addition_site_optimization_pass_mobile_legend_line_break_fix_2026_07_18",
       "confidence_score": 1.0
     },
@@ -11464,7 +11515,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L304",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_v25_addition_bug_check_sweep_pages_1_3_4_2026_07_27",
       "confidence_score": 1.0
     },
@@ -11474,7 +11525,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L330",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_v26_addition_bug_check_sweep_page_2_about_2026_07_27",
       "confidence_score": 1.0
     },
@@ -11484,7 +11535,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L354",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_v28_addition_site_wide_bug_audit_structural_hardening_pass_2026_08_04",
       "confidence_score": 1.0
     },
@@ -11494,7 +11545,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L368",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_v29_addition_site_wide_performance_pwa_seo_styling_upgrades_2026_08_04",
       "confidence_score": 1.0
     },
@@ -11504,7 +11555,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L382",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_v30_addition_pwa_service_worker_skip_links_font_preconnects_content_visibility_optimization_expanded_verification_2026_08_04",
       "confidence_score": 1.0
     },
@@ -11514,7 +11565,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L408",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_v31_1_addition_interactive_what_s_new_major_commit_showcase_journey_nodes_2026_08_04",
       "confidence_score": 1.0
     },
@@ -11524,7 +11575,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L395",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_v31_addition_url_hash_filter_sync_screen_reader_accessibility_pwa_v31_cache_bump_seo_verification_2026_08_04",
       "confidence_score": 1.0
     },
@@ -11534,7 +11585,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L420",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_v32_addition_pwa_offline_resilience_reading_progress_bar_3d_card_tilt_journey_node_j_028_2026_08_04",
       "confidence_score": 1.0
     },
@@ -11544,7 +11595,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L433",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_v33_addition_interactive_dev_terminal_cmdk_filter_pills_cursor_light_trail_journey_node_j_029_2026_08_04",
       "confidence_score": 1.0
     },
@@ -11554,7 +11605,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L446",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_v34_addition_mobile_touch_ux_ios_safe_area_web_haptics_suite_journey_node_j_030_2026_08_08",
       "confidence_score": 1.0
     },
@@ -11564,7 +11615,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L460",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_v35_addition_motion_typed_captions_count_up_counters_view_transitions_journey_node_j_031_2026_08_08",
       "confidence_score": 1.0
     },
@@ -11574,7 +11625,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L476",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_v36_addition_visual_polish_performance_skill_matrix_mobile_ux_suite_journey_node_j_032_2026_08_08",
       "confidence_score": 1.0
     },
@@ -11584,7 +11635,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L492",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_v37_addition_guided_cross_page_site_tour_with_spotlight_overlay_journey_node_j_033_2026_08_08",
       "confidence_score": 1.0
     },
@@ -11594,7 +11645,7 @@
       "source_file": "dev-logs/PortfolioWebsite_TRACKER.md",
       "source_location": "L503",
       "weight": 1.0,
-      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_32",
+      "source": "dev_logs_portfoliowebsite_tracker_portfolio_website_tracker_v49_33",
       "target": "dev_logs_portfoliowebsite_tracker_v38_addition_web_audio_micro_sounds_reading_metrics_live_result_indicators_verification_suite_journey_node_j_034_2026_08_08",
       "confidence_score": 1.0
     },
@@ -12526,5 +12577,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "62a68a44e450d2755845a04a245ef7ad9b244b3c"
+  "built_at_commit": "42e48f3769962bd8a2600f1bdbe8f41de1d3ed38"
 }

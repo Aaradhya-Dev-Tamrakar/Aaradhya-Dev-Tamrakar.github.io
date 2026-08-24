@@ -1,5 +1,5 @@
 /* ============================================================
-   MODULE: core.js — aaradhya-dev-tamrakar.github.io (v49.32)
+   MODULE: core.js — aaradhya-dev-tamrakar.github.io (v49.33)
    Theme, navigation, layout, scroll, parallax, and date helpers.
    ============================================================ */
 
@@ -644,6 +644,8 @@ function initCursor() {
 
 /* ── Deferred GA4 load ────────────────────────────────────── */
 function loadGA4() {
+  if (window._ga4Loaded) return;
+  window._ga4Loaded = true;
   window.dataLayer = window.dataLayer || [];
   function gtag() { dataLayer.push(arguments); }
   window.gtag = gtag;
@@ -652,6 +654,17 @@ function loadGA4() {
   s.src = `https://www.googletagmanager.com/gtag/js?id=${SITE.GA4_ID}`;
   s.onload = () => { gtag('js', new Date()); gtag('config', SITE.GA4_ID); };
   document.head.appendChild(s);
+}
+
+function scheduleGA4() {
+  if (typeof window.requestIdleCallback === 'function') {
+    window.requestIdleCallback(() => setTimeout(loadGA4, 1500), { timeout: 4000 });
+  } else {
+    setTimeout(loadGA4, 3000);
+  }
+  ['pointerdown', 'touchstart', 'scroll', 'keydown'].forEach(evt => {
+    window.addEventListener(evt, loadGA4, { once: true, passive: true });
+  });
 }
 
 

@@ -1,10 +1,10 @@
 /* ============================================================
-   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io (v49.32)
+   SHARED SCRIPT — aaradhya-dev-tamrakar.github.io (v49.33)
    Loaded on every page via <script src="assets/js/script.js">.
    Orchestrates core modules from assets/js/modules/
    ============================================================ */
 
-/* ── Dynamic Module Loader (v49.32) ───────────────────────────── */
+/* ── Dynamic Module Loader (v49.33) ───────────────────────────── */
 window.__modulesLoadedPromise = (function () {
   const MODULES = [
     'assets/js/modules/core.js',
@@ -48,7 +48,7 @@ window.__modulesLoadedPromise = (function () {
 /* ── Site release history ─────────────────────────────────── */
 const SITE_RELEASES = [
   {
-    version: 'v49.32',
+    version: 'v49.33',
     date: '2026-08-19',
     sha: 'xtool20',
     title: 'xTool Laser Safety Awareness Training & Printer Maintenance Certifications',
@@ -853,7 +853,8 @@ function bootSite() {
   if (typeof initReadingMetrics === 'function') initReadingMetrics();
   if (typeof initFilterCountIndicators === 'function') initFilterCountIndicators();
   if (typeof initSkillRadar === 'function') initSkillRadar(false);
-  if (typeof loadGA4 === 'function') window.addEventListener('load', loadGA4);
+  if (typeof scheduleGA4 === 'function') scheduleGA4();
+  else if (typeof loadGA4 === 'function') window.addEventListener('load', loadGA4);
 }
 
 if (window.__modulesLoadedPromise) {

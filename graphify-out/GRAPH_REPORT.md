@@ -1,16 +1,16 @@
 # Graph Report - AaradhyaDT.github.io  (2026-08-24)
 
 ## Corpus Check
-- 25 files · ~290,974 words
+- 25 files · ~291,032 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 497 nodes · 695 edges · 97 communities (27 shown, 70 thin omitted)
-- Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 62 edges (avg confidence: 0.81)
+- 499 nodes · 698 edges · 97 communities (27 shown, 70 thin omitted)
+- Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 63 edges (avg confidence: 0.81)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `62a68a44`
+- Built from commit: `42e48f37`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -108,10 +108,10 @@
 - [[_COMMUNITY_Community 96|Community 96]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `bootSite()` - 33 edges
+1. `bootSite()` - 34 edges
 2. `main()` - 29 edges
 3. `log_pass()` - 23 edges
-4. `Portfolio Website Tracker — v49.32` - 22 edges
+4. `Portfolio Website Tracker — v49.33` - 22 edges
 5. `log_error()` - 20 edges
 6. `log_warning()` - 15 edges
 7. `playAudioCue()` - 14 edges
@@ -146,7 +146,7 @@ Nodes (6): KEC EPC Club Logo, Fusemachines Logo, KEC Maker's Space Logo, Social 
 
 ### Community 2 - "Community 2"
 Cohesion: 0.06
-Nodes (44): bootSite(), initNetworkStatusListeners(), initReadingProgressBar(), initServiceWorker(), SEARCH_STATIC_INDEX, SITE_RELEASES, AD_MONTHS, adToBs() (+36 more)
+Nodes (45): bootSite(), initNetworkStatusListeners(), initReadingProgressBar(), initServiceWorker(), SEARCH_STATIC_INDEX, SITE_RELEASES, AD_MONTHS, adToBs() (+37 more)
 
 ### Community 3 - "Community 3"
 Cohesion: 0.11
@@ -210,7 +210,7 @@ Nodes (3): SimOps AI for Graduates Certificate, SimOps Expert Certificate, SimOp
 
 ### Community 94 - "Community 94"
 Cohesion: 0.10
-Nodes (32): AI-Assisted Coding for Developers Certificate, AI Fluency Foundations Certificate, Evidence & Verification Log — v20 additions, Meta, Portfolio Website Tracker — v49.32, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out (+24 more)
+Nodes (32): AI-Assisted Coding for Developers Certificate, AI Fluency Foundations Certificate, Evidence & Verification Log — v20 additions, Meta, Portfolio Website Tracker — v49.33, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out (+24 more)
 
 ### Community 95 - "Community 95"
 Cohesion: 0.08
@@ -234,8 +234,8 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.134) - this node is a cross-community bridge._
 - **Why does `initAccessControl()` connect `Community 4` to `Community 2`?**
   _High betweenness centrality (0.035) - this node is a cross-community bridge._
-- **Are the 29 inferred relationships involving `bootSite()` (e.g. with `initAccessControl()` and `initAudioCues()`) actually correct?**
-  _`bootSite()` has 29 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 30 inferred relationships involving `bootSite()` (e.g. with `initAccessControl()` and `initAudioCues()`) actually correct?**
+  _`bootSite()` has 30 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL` to the rest of the system?**
   _185 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
