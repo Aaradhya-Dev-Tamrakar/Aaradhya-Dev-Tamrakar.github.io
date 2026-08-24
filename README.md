@@ -1,8 +1,8 @@
-# aaradhya-dev-tamrakar.github.io
+# aaradhydt.github.io
 
 Official personal portfolio website for **Aaradhya Dev Tamrakar** — Electronics Engineer & AI/ML Developer. Built as a high-performance, responsive static web app hosted on GitHub Pages, featuring zero-leak client-side AES-256-GCM encryption, Google OAuth 2.0 authentication, dynamic command-palette search, and an interactive milestone build log.
 
-🌐 **Live Website**: [aaradhya-dev-tamrakar.github.io](https://aaradhya-dev-tamrakar.github.io)
+🌐 **Live Website**: [aaradhydt.github.io](https://aaradhydt.github.io)
 
 ---
 
@@ -247,9 +247,9 @@ This repository uses **Graphify** for local AST-level knowledge graph extraction
 ## 📬 Contact & Connect
 
 - **Email**: `aaradhyadevtmr@gmail.com`
-- **GitHub**: [github.com/Aaradhya-Dev-Tamrakar](https://github.com/Aaradhya-Dev-Tamrakar)
-- **LinkedIn**: [Aaradhya Dev Tamrakar](https://www.linkedin.com/in/aaradhya-dev-tamrakar)
-- **Portfolio Site**: [aaradhya-dev-tamrakar.github.io](https://aaradhya-dev-tamrakar.github.io)
+- **GitHub**: [github.com/aaradhydt](https://github.com/aaradhydt)
+- **LinkedIn**: [Aaradhya Dev Tamrakar](https://www.linkedin.com/in/aaradhydt)
+- **Portfolio Site**: [aaradhydt.github.io](https://aaradhydt.github.io)
 
 ---
 
