@@ -56,7 +56,7 @@ jobs:
           # commits when re-running or when the date format is identical
           # (won't happen in practice since SHA always changes, but cheap
           # to guard anyway).
-          git diff --staged --quiet || git commit -m "chore: stamp last commit [skip ci]"
+          git diff --staged --quiet || git commit -m "chore: stamp last commit"
           # update-search-index.yml also triggers on this same push and
           # commits back to main in parallel — retry with rebase in case
           # it pushed first and this push would otherwise be rejected as
