@@ -247,8 +247,8 @@ This repository uses **Graphify** for local AST-level knowledge graph extraction
 ## 📬 Contact & Connect
 
 - **Email**: `aaradhyadevtmr@gmail.com`
-- **GitHub**: [github.com/aaradhydt](https://github.com/aaradhydt)
-- **LinkedIn**: [Aaradhya Dev Tamrakar](https://www.linkedin.com/in/aaradhydt)
+- **GitHub**: [github.com/aaradhydt](https://github.com/AaradhyDT)
+- **LinkedIn**: [Aaradhya Dev Tamrakar](https://www.linkedin.com/in/aaradhya-dev-tamrakar)
 - **Portfolio Site**: [aaradhydt.github.io](https://aaradhydt.github.io)
 
 ---
