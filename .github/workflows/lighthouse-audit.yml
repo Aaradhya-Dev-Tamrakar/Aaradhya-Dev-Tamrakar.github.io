@@ -34,8 +34,8 @@ jobs:
         uses: treosh/lighthouse-ci-action@v11
         with:
           urls: |
-            https://aaradhya-dev-tamrakar.github.io/
-            https://aaradhya-dev-tamrakar.github.io/about.html
-            https://aaradhya-dev-tamrakar.github.io/projects.html
+            https://aaradhyadt.github.io/
+            https://aaradhyadt.github.io/about.html
+            https://aaradhyadt.github.io/projects.html
           uploadArtifacts: true
           temporaryPublicStorage: true

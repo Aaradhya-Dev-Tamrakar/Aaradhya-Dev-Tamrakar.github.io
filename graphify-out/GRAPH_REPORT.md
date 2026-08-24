@@ -1,7 +1,7 @@
-# Graph Report - Aaradhya-Dev-Tamrakar.github.io  (2026-08-22)
+# Graph Report - AaradhyaDT.github.io  (2026-08-24)
 
 ## Corpus Check
-- 25 files · ~290,725 words
+- 25 files · ~290,744 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1cf63ae4`
+- Built from commit: `6b554acd`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -111,12 +111,12 @@
 1. `bootSite()` - 33 edges
 2. `main()` - 29 edges
 3. `log_pass()` - 23 edges
-4. `Portfolio Website Tracker — v49.28` - 22 edges
+4. `Portfolio Website Tracker — v49.30` - 22 edges
 5. `log_error()` - 20 edges
 6. `log_warning()` - 15 edges
 7. `playAudioCue()` - 14 edges
 8. `get_html_files()` - 13 edges
-9. `aaradhya-dev-tamrakar.github.io` - 10 edges
+9. `aaradhydt.github.io` - 10 edges
 10. `showToast()` - 8 edges
 
 ## Surprising Connections (you probably didn't know these)
@@ -210,7 +210,7 @@ Nodes (3): SimOps AI for Graduates Certificate, SimOps Expert Certificate, SimOp
 
 ### Community 94 - "Community 94"
 Cohesion: 0.10
-Nodes (32): AI-Assisted Coding for Developers Certificate, AI Fluency Foundations Certificate, Evidence & Verification Log — v20 additions, Meta, Portfolio Website Tracker — v49.28, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out (+24 more)
+Nodes (32): AI-Assisted Coding for Developers Certificate, AI Fluency Foundations Certificate, Evidence & Verification Log — v20 additions, Meta, Portfolio Website Tracker — v49.30, State of Play, Status, v21 addition — both v20-flagged unmatched PDFs closed out (+24 more)
 
 ### Community 95 - "Community 95"
 Cohesion: 0.08
@@ -218,7 +218,7 @@ Nodes (25): File delivery, Local Git Workflow & Auto-Sync (`sync.ps1`), Output c
 
 ### Community 96 - "Community 96"
 Cohesion: 0.12
-Nodes (16): aaradhya-dev-tamrakar.github.io, Automated Git Workflow & Pre-Commit Gate (`sync.ps1`), 📈 Codebase Knowledge Graph (`Graphify`), 📬 Contact & Connect, 🔑 Google OAuth 2.0 Integration, 💻 Interactive Developer Terminal Widget (`#adtTerminal`), Key Features, 📄 License (+8 more)
+Nodes (16): aaradhydt.github.io, Automated Git Workflow & Pre-Commit Gate (`sync.ps1`), 📈 Codebase Knowledge Graph (`Graphify`), 📬 Contact & Connect, 🔑 Google OAuth 2.0 Integration, 💻 Interactive Developer Terminal Widget (`#adtTerminal`), Key Features, 📄 License (+8 more)
 
 ## Knowledge Gaps
 - **151 isolated node(s):** `ACCESS_CONTROL_PAYLOADS`, `KEY_CACHE`, `ACCESS_CONTROL`, `CMDK_ENTRIES`, `SITE` (+146 more)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 verify.py — comprehensive structural integrity checker for
-aaradhya-dev-tamrakar.github.io (v49.29)
+aaradhya-dev-tamrakar.github.io (v49.30)
 
 22 check categories covering HTML structure, cross-page links, asset
 references, JS syntax, JS runtime safety, CSS URL integrity, deep a11y & SEO,
@@ -530,14 +530,14 @@ def check_version_consistency():
     self_path = Path(__file__).resolve()
     if self_path.exists():
         v_text = self_path.read_text(encoding="utf-8")
-        m = re.search(r"aaradhya-dev-tamrakar\.github\.io\s*\(v([\d.]+)\)", v_text[:400])
+        m = re.search(r"(?:aaradhya-dev-tamrakar|aaradhyadt)\.github\.io\s*\(v([\d.]+)\)", v_text[:400], re.IGNORECASE)
         if m:
             versions["verify.py header"] = m.group(1)
 
     # 7. site_automation.py
     if SITE_AUTOMATION_PY.exists():
         sa_text = SITE_AUTOMATION_PY.read_text(encoding="utf-8")
-        m = re.search(r"Aaradhya-Dev-Tamrakar\.github\.io\s*\(v([\d.]+)\)", sa_text[:400])
+        m = re.search(r"(?:Aaradhya-Dev-Tamrakar|AaradhyaDT)\.github\.io\s*\(v([\d.]+)\)", sa_text[:400], re.IGNORECASE)
         if m:
             versions["site_automation.py header"] = m.group(1)
 
@@ -611,7 +611,7 @@ def check_sitemap_sync(fix=False):
 
     text = SITEMAP_XML.read_text(encoding="utf-8")
     sitemap_pages = set(re.findall(
-        r"<loc>https://aaradhya-dev-tamrakar\.github\.io/([^<]*)</loc>", text
+        r"<loc>https://(?:aaradhya-dev-tamrakar|aaradhyadt)\.github\.io/([^<]*)</loc>", text, re.IGNORECASE
     ))
     sitemap_pages_norm = set()
     for p in sitemap_pages:
@@ -815,7 +815,7 @@ def check_robots_txt():
     m = re.search(r"Sitemap:\s*(\S+)", text)
     if m:
         url = m.group(1)
-        if "aaradhya-dev-tamrakar.github.io/sitemap.xml" not in url:
+        if not re.search(r"(?:aaradhya-dev-tamrakar|aaradhyadt)\.github\.io/sitemap\.xml", url, re.IGNORECASE):
             log_error(cat, f"robots.txt Sitemap URL looks wrong: {url}")
         else:
             log_pass(cat, "robots.txt Sitemap directive correct")
@@ -1134,7 +1134,7 @@ def main():
     args = parser.parse_args()
 
     print(bold("=" * 60))
-    print(bold("  Portfolio Site Verification Suite (v49.29)"))
+    print(bold("  Portfolio Site Verification Suite (v49.30)"))
     print(bold("=" * 60))
     print()
 

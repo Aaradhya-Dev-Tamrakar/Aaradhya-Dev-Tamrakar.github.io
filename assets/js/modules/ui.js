@@ -1,5 +1,5 @@
 /* ============================================================
-   MODULE: ui.js — aaradhya-dev-tamrakar.github.io (v49.29)
+   MODULE: ui.js — aaradhya-dev-tamrakar.github.io (v49.30)
    UI modals, count-up, skill radar, ATS resume, and overlays.
    ============================================================ */
 
@@ -23,7 +23,7 @@ function openWhatsNewModal() {
         <span class="wn-title">${rel.title}</span>
         <div class="wn-meta">
           <span class="wn-date">${rel.date}</span> · 
-          <a class="wn-sha" href="https://github.com/Aaradhya-Dev-Tamrakar/Aaradhya-Dev-Tamrakar.github.io/commit/${rel.sha}" target="_blank" rel="noopener">${rel.sha} ↗</a>
+          <a class="wn-sha" href="https://github.com/AaradhyaDT/AaradhyaDT.github.io/commit/${rel.sha}" target="_blank" rel="noopener">${rel.sha} ↗</a>
         </div>
       </div>
       <ul class="wn-highlights">
