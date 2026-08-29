@@ -1,6 +1,6 @@
 {
-  "sha": "00146156ea20552efab18c949aa1e531b5a6ff6a",
-  "shortSha": "0014615",
-  "date": "2026-08-24T10:36:39+05:45",
-  "message": "style(css): update style.css, script.js +4 more - 'mtime': 1787547094.709588, (+168/-168)"
+  "sha": "ac81e99ffaaab3d4d2bee58e994c9fdd4249ca30",
+  "shortSha": "ac81e99",
+  "date": "2026-08-29T10:46:56+05:45",
+  "message": "feat(seo): redirect domain and canonical authority to aaradhyadt.github.io"
 }
